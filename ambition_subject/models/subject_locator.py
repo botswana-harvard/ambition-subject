@@ -3,7 +3,7 @@ from django.db import models
 from django_crypto_fields.fields import EncryptedCharField
 
 from edc_base.bw.validators import BWCellNumber, BWTelephoneNumber
-from edc_base.model.models import HistoricalRecords, BaseUuidModel
+from edc_base.model_mixins import HistoricalRecords, BaseUuidModel
 from edc_constants.choices import YES_NO_NA, YES, NOT_APPLICABLE
 from edc_consent.model_mixins import RequiresConsentMixin
 from edc_locator.model_mixins import LocatorModelMixin

@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 from django.db import models
 
-from edc_base.model.models import BaseUuidModel, HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel, HistoricalRecords
 from edc_consent.field_mixins.bw import IdentityFieldsMixin
 from edc_consent.field_mixins import (
     ReviewFieldsMixin, PersonalFieldsMixin, VulnerabilityFieldsMixin,
