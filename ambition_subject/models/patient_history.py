@@ -2,8 +2,8 @@ from django.core.validators import MinValueValidator, RegexValidator
 from django.db import models
 
 from edc_base.model_fields import OtherCharField
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
@@ -15,7 +15,7 @@ bp_validator = RegexValidator(
     '^\d{1,3}\/\d{1,3}$', message='Enter a valid BP in SYS/DIA format')
 
 
-class PatientHistory (BaseUuidModel):
+class PatientHistory(BaseUuidModel):
 
     current_symptoms = models.ManyToManyField(
         Symptoms,

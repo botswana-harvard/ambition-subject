@@ -5,4 +5,4 @@ from edc_metadata.model_mixins.metadata_models import CrfModelMixin
 class CrfMetadata(CrfModelMixin, BaseUuidModel):
 
     class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition'
+        app_label = 'ambition_subject'

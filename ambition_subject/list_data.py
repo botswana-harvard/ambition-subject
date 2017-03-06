@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import OTHER
 
 list_data = {
-    'ambition_subject.adverse_event': [
+    'ambition_subject.ae_classification': [
         ('anaemia', 'Anaemia'),
         ('thrombocytopenia', 'Thrombocytopenia'),
         ('diarrhoea', 'Diarrhoea'),
@@ -14,7 +14,7 @@ list_data = {
         ('hypokalaemia', 'Hypokalaemia'),
         ('bacteraemia/sepsis', 'Bacteraemia/sepsis'),
         ('neutropaenia', 'Neutropaenia'),
-        ('CM_IRIS', 'CM IRIS')
+        ('CM_IRIS', 'CM IRIS'),
         ('respiratory_distress', 'Respiratory distress'),
         (OTHER, 'Other')
     ],

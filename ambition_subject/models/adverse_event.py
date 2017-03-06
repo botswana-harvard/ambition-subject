@@ -56,7 +56,7 @@ class AdverseEvent(BaseUuidModel):
         max_length=25,
         verbose_name='Relationship to study drug Fluconozole:')
 
-    last_implicated_medication_administered_on = models.DateTimeField(
+    last_implicated_medication_administered_datetime = models.DateTimeField(
         validators=[datetime_is_future],
         verbose_name='Date and time of last implicated study medication'
                      'administered')
@@ -88,7 +88,7 @@ class AdverseEvent(BaseUuidModel):
     action_taken_treatment = models.TextField(
         verbose_name='Specify action taken for treatment of AE:')
 
-    recurrence_cm_symptoms = models.TextField(
+    recurrence_cm_symptoms = models.CharField(
         choices=YES_NO,
         help_text='If yes, fill in the Recurrence of Symptoms form',
         max_length=5,
@@ -148,6 +148,7 @@ class AdverseEvent(BaseUuidModel):
 
     ae_classification = models.ManyToManyField(
         AEClassification,
+        related_name='ae_classification',
         verbose_name='Classification of AE (Tick all that apply):')
 
     investigator_ae_description = models.TextField(
