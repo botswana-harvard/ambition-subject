@@ -50,3 +50,25 @@ RAE_REASON = (
     _('Medically important event (e.g. Severe thrombophlebitis, Bacteraemia, '
       'recurrence of symptoms not requiring admission, Hospital acquired '
       'pneumonia)'))
+
+ARV_REGIMEN = (
+    ('TDF +3TC/FTC + either EFZ or NVP', _('TDF +3TC/FTC + either EFZ or NVP')),
+    ('AZT + 3-TC + either EFV or NVP', _('AZT + 3-TC + either EFV or NVP')),
+    ('d4T + 3-TC + either EFV or NVP', _('d4T + 3-TC + either EFV or NVP')),
+    ('TDF + 3TC/FTC + either ATZ/r or Lopinavir/r',
+     _('TDF + 3TC/FTC + either ATZ/r or Lopinavir/r')),
+    ('AZT + 3TC + either ATZ/r or Lopinavir/r',
+     _('AZT + 3TC + either ATZ/r or Lopinavir/r'))
+)
+FIRST_LINE_REGIMEN = (
+    ('EFV', _('EFV')),
+    ('NVP', _('NVP'))
+)
+TB_SITE = (
+    ('Pulmonary', _('Pulmonary')),
+    ('Extra pulmonary', _('Extra pulmonary')),
+)
+MEDICATION_HISTORY = (
+    ('TMP-SMX', _('TMP-SMX')),
+    (OTHER, _('Other, specify:')),
+)
