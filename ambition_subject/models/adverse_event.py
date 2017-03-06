@@ -51,7 +51,7 @@ class AdverseEvent(BaseUuidModel):
         max_length=25,
         verbose_name='Relationship to study drug Ambisome:')
 
-    incident_drug_relationship_ambisome = models.CharField(
+    incident_drug_relationship_fluconozole = models.CharField(
         choices=STUDY_DRUG_RELATIONSHIP,
         max_length=25,
         verbose_name='Relationship to study drug Fluconozole:')

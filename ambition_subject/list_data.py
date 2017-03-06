@@ -16,7 +16,7 @@ list_data = {
         ('Neutropaenia', 'Neutropaenia'),
         ('CM IRIS', 'CM IRIS')
         ('Respiratory distress', 'Respiratory distress'),
-        ('Other', 'Other')
+        (OTHER, 'Other')
     ],
     'ambition_subject.symptoms': [
         ('Headache', 'Headache'),
