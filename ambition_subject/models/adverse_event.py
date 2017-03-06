@@ -162,4 +162,4 @@ class AdverseEvent(BaseUuidModel):
 
     class Meta:
         app_label = 'ambition_subject'
-        verbose_name = "Hospital Admission"
+        verbose_name = 'Adverse Event'
