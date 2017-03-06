@@ -1,3 +1,4 @@
+from .adverse_event_form import AdverseEventForm
 from .subject_consent_form import SubjectConsentForm
 from .subject_locator_form import SubjectLocatorForm
 from .subject_requisition_form import SubjectRequisitionForm
