@@ -8,7 +8,7 @@ from ..models import AdverseEvent
 
 
 @admin.register(AdverseEvent, site=ambition_subject_admin)
-class AdverseEventAdmin():
+class AdverseEventAdmin(admin.ModelAdmin):
 
     form = AdverseEventForm
 

@@ -48,6 +48,7 @@ class PatientHistory (BaseUuidModel):
         default=None,
         null=True,
         blank=True,
+        max_length=50,
         choices=TB_SITE)
 
     tb_treatment = models.CharField(
@@ -104,6 +105,7 @@ class PatientHistory (BaseUuidModel):
             'What ARV regimen are you currently prescribed?'),
         null=True,
         blank=True,
+        max_length=50,
         choices=ARV_REGIMEN)
 
     first_line_choice = models.CharField(
@@ -130,9 +132,13 @@ class PatientHistory (BaseUuidModel):
         verbose_name='Last Viral Load, if known?',
         null=True,
         blank=True,
+        decimal_places=3,
+        max_digits=5,
         help_text='copies/mL')
 
     temp = models.DecimalField(
+        decimal_places=3,
+        max_digits=5,
         verbose_name='Temperature: ',
         null=True,
         blank=True,
@@ -183,11 +189,15 @@ class PatientHistory (BaseUuidModel):
         blank=True)
 
     left_acuity = models.DecimalField(
+        decimal_places=3,
+        max_digits=5,
         verbose_name='Visual acuity Left eye: ',
         null=True,
         blank=True)
 
     right_acuity = models.DecimalField(
+        decimal_places=3,
+        max_digits=5,
         verbose_name='Visual acuity Right eye: ',
         null=True,
         blank=True)

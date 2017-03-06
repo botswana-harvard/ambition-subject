@@ -19,13 +19,10 @@ AE_INTENSITY = (
     ('severe', 'Severe'))
 
 PATIENT_TREATMENT_GROUP = (
-    ('regiment_1', 'Regiment 1 (Ambisome 10 mg/kg day 1 (single dose))'),
-    ('regiment_2', 'Regiment 2 (Ambisome 10 mg/kg day 1, Ambisome 5 mg/kg '
-                   'day 3 (two doses))'),
-    ('regiment_3', 'Regiment 3 (Ambisome 10 mg/kg day 1, Ambisome 5 mg/kg '
-                   'days 3, and 7 (three doses))')
-    ('regiment_4', 'Regimen 4 (Ambisome 3 mg/kg/d for 14 days '
-                   '(standard dose, "control arm")))'))
+    ('regimen_1', 'Regimen 1 (Ambisome 10 mg/kg day 1 (single dose))'),
+    ('regimen_2', 'Regimen 2 (Ambisome 10 mg/kg day 1, Ambisome 5 mg/kg day 3 (two doses))'),
+    ('regimen_3', 'Regimen 3 (Ambisome 10 mg/kg day 1, Ambisome 5 mg/kg days 3, and 7 (three doses))'))
+    #('regimen_4', 'Regimen 4 (Ambisome 3 mg/kg/d for 14 days (standard dose, control arm)))'))
 
 STUDY_DRUG_RELATIONSHIP = (
     ('not_related', 'Not related'),

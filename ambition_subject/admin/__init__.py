@@ -1,3 +1,4 @@
+from .adverse_event_admin import AdverseEventAdmin
 from .subject_consent_admin import SubjectConsentAdmin
 from .subject_locator_admin import SubjectLocatorAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin

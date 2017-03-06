@@ -106,6 +106,7 @@ class AdverseEvent(BaseUuidModel):
         blank=True,
         choices=RAE_REASON,
         null=True,
+        max_length=50,
         verbose_name='If Yes, Reason for SAE:')
 
     is_susar = models.CharField(
@@ -118,10 +119,11 @@ class AdverseEvent(BaseUuidModel):
         blank=True,
         choices=YES_NO,
         null=True,
+        max_length=5,
         verbose_name='If yes, SUSAR must be reported to Principal '
                      'Investigator and TMG immediately, is SUSAR Reported?')
 
-    susar_reported_on = models.DateTimeField(
+    susar_reported_datetime = models.DateTimeField(
         blank=True,
         help_text='AEs ≥ Grade 3 or SAE must be reported to the Trial '
                   'Management Group (TMG) within 48hrs (Email to: '
@@ -129,12 +131,12 @@ class AdverseEvent(BaseUuidModel):
         null=True,
         verbose_name='Date and time AE reported')
 
-    ae_form_received_on = models.DateTimeField(
+    ae_form_received_datetime = models.DateTimeField(
         blank=True,
         null=True,
         verbose_name='Date and time AE form received:')
 
-    clinical_review_on = models.DateTimeField(
+    clinical_review_datetime = models.DateTimeField(
         blank=True,
         null=True,
         verbose_name='Date and time of Clinical Review: ')
@@ -153,7 +155,7 @@ class AdverseEvent(BaseUuidModel):
         null=True,
         verbose_name='Description of AE:')
 
-    regulatory_officials_notified_on = models.DateTimeField(
+    regulatory_officials_notified_datetime = models.DateTimeField(
         blank=True,
         null=True,
         verbose_name='Date and time Regulatory authorities notified (SUSARs)')
