@@ -10,6 +10,6 @@ from ..models import PatientHistory
 
 
 @admin.register(PatientHistory, site=ambition_subject_admin)
-class AdverseEventAdmin(admin.ModelAdmin, ModelAdminMixin):
+class PatientHistoryAdmin(admin.ModelAdmin, ModelAdminMixin):
 
     form = PatientHistoryForm
