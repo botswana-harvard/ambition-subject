@@ -137,7 +137,7 @@ class PatientHistory(BaseUuidModel):
         help_text='copies/mL')
 
     temp = models.DecimalField(
-        decimal_places=3,
+        decimal_places=2,
         max_digits=5,
         verbose_name='Temperature: ',
         null=True,
@@ -163,6 +163,14 @@ class PatientHistory(BaseUuidModel):
         null=True,
         blank=True,
         help_text='breaths/min')
+
+    weight = models.DecimalField(
+        decimal_places=2,
+        max_digits=4,
+        verbose_name='Weight: ',
+        null=True,
+        blank=True,
+        help_text='Kg')
 
     glasgow_coma_score = models.IntegerField(
         verbose_name='Glasgow Coma Score: ',
@@ -229,3 +237,4 @@ class PatientHistory(BaseUuidModel):
 
     class Meta():
         app_label = 'ambition_subject'
+        verbose_name_plural = 'Patients History'
