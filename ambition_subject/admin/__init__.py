@@ -1,6 +1,6 @@
 from .adverse_event_admin import AdverseEventAdmin
+from .patient_history_admin import PatientHistory
 from .subject_consent_admin import SubjectConsentAdmin
 from .subject_locator_admin import SubjectLocatorAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
-from .patient_history_admin import PatientHistory

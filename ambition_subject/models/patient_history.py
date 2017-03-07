@@ -133,47 +133,47 @@ class PatientHistory(BaseUuidModel):
         null=True,
         blank=True,
         decimal_places=3,
-        max_digits=5,
+        max_digits=6,
         help_text='copies/mL')
 
     temp = models.DecimalField(
-        decimal_places=2,
-        max_digits=5,
-        verbose_name='Temperature: ',
+        decimal_places=1,
+        max_digits=3,
+        verbose_name='Temperature:',
         null=True,
         blank=True,
         help_text='°C')
 
     heart_rate = models.IntegerField(
-        verbose_name='Heart Rate: ',
+        verbose_name='Heart Rate:',
         null=True,
         blank=True,
         help_text='bpm')
 
     blood_pressure = models.CharField(
-        verbose_name='Blood Pressure: ',
-        max_length=15,
+        verbose_name='Blood Pressure:',
+        max_length=6,
         validators=[bp_validator],
         null=True,
         blank=True,
         help_text='in mmHg. format SYS/DIA, e.g. 120/80')
 
     respiratory_rate = models.IntegerField(
-        verbose_name='Respiratory Rate: ',
+        verbose_name='Respiratory Rate:',
         null=True,
         blank=True,
         help_text='breaths/min')
 
     weight = models.DecimalField(
-        decimal_places=2,
+        decimal_places=1,
         max_digits=4,
-        verbose_name='Weight: ',
+        verbose_name='Weight:',
         null=True,
         blank=True,
         help_text='Kg')
 
     glasgow_coma_score = models.IntegerField(
-        verbose_name='Glasgow Coma Score: ',
+        verbose_name='Glasgow Coma Score:',
         null=True,
         blank=True,
         help_text='/15')
@@ -198,15 +198,15 @@ class PatientHistory(BaseUuidModel):
 
     left_acuity = models.DecimalField(
         decimal_places=3,
-        max_digits=5,
-        verbose_name='Visual acuity Left eye: ',
+        max_digits=4,
+        verbose_name='Visual acuity Left eye:',
         null=True,
         blank=True)
 
     right_acuity = models.DecimalField(
         decimal_places=3,
-        max_digits=5,
-        verbose_name='Visual acuity Right eye: ',
+        max_digits=4,
+        verbose_name='Visual acuity Right eye:',
         null=True,
         blank=True)
 
@@ -235,6 +235,6 @@ class PatientHistory(BaseUuidModel):
 
     history = HistoricalRecords()
 
-    class Meta():
+    class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Patients History'
