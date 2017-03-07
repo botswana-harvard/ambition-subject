@@ -58,7 +58,7 @@ class AdverseEvent(BaseUuidModel):
 
     last_implicated_medication_administered_datetime = models.DateTimeField(
         validators=[datetime_is_future],
-        verbose_name='Date and time of last implicated study medication'
+        verbose_name='Date and time of last implicated study medication '
                      'administered')
 
     last_implicated_medication = models.CharField(
