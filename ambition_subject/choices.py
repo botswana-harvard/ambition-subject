@@ -34,7 +34,7 @@ CAUSE_OF_DEATH = (
     ('bacterial_pneumonia', 'Bacterial pneumonia'),
     ('malignancy', 'Malignancy'),
     ('art_toxicity', 'ART toxicity'),
-    ('IRIS_non_CM', 'RIS non-CM'),
+    ('IRIS_non_CM', 'IRIS non-CM'),
     ('diarrhea_wasting', 'Diarrhea/wasting'),
     (UNKNOWN, 'Unknown'),
     (OTHER, 'Other, specify'))
