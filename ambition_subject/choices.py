@@ -1,11 +1,10 @@
-from edc_constants.constants import OTHER, NOT_APPLICABLE
+from edc_constants.constants import OTHER, NOT_APPLICABLE, UNKNOWN
 
 ACTION_REQUIRED = (
     ('participant_to_remain', 'Participant to remain on trial'),
     ('participant_to_be_withdrawn', 'participant to be withdrawn from trial'),
     ('patient_remains_on_study', 'Patient remains on study but data analysis '
-     'will be modified')
-)
+     'will be modified'))
 
 AE_INTENSITY = (
     ('mild', 'Mild'),
@@ -26,14 +25,27 @@ ARV_REGIMEN = (
     ('AZT + 3TC + either ATZ/r or Lopinavir/r',
      'AZT + 3TC + either ATZ/r or Lopinavir/r'))
 
+CAUSE_OF_DEATH = (
+    ('cryptococcal_meningitis', 'Cryptococcal meningitis'),
+    ('Cryptococcal_meningitis_relapse_IRIS', 'Cryptococcal meningitis '
+     'relapse/IRIS'),
+    ('TB', 'TB'),
+    ('bacteraemia', 'Bacteraemia'),
+    ('bacterial_pneumonia', 'Bacterial pneumonia'),
+    ('malignancy', 'Malignancy'),
+    ('art_toxicity', 'ART toxicity'),
+    ('IRIS_non_CM', 'RIS non-CM'),
+    ('diarrhea_wasting', 'Diarrhea/wasting'),
+    (UNKNOWN, 'Unknown'),
+    (OTHER, 'Other, specify'))
+
 FIRST_LINE_REGIMEN = (
     ('EFV', 'EFV'),
     ('NVP', 'NVP'))
 
 MEDICATION_HISTORY = (
     ('TMP-SMX', 'TMP-SMX'),
-    (OTHER, 'Other, specify:'),
-)
+    (OTHER, 'Other, specify:'))
 
 PATIENT_TREATMENT_GROUP = (
     ('regimen_1', 'Regimen 1 (Ambisome 10 mg/kg day 1 (single dose))'),
@@ -61,8 +73,7 @@ PROTOCOL_VIOLATION = (
     ('medication_noncompliance', 'Medication_noncompliance'),
     ('national_regulations_not_met', 'Standard WPD, ICH-GCP, local/national '
      'regulations not met'),
-    (OTHER, 'Other')
-)
+    (OTHER, 'Other'))
 
 RAE_REASON = (
     ('death', 'Death (Please complete Death form and Study termination form)'),
@@ -87,6 +98,11 @@ STUDY_DRUG_RELATIONSHIP = (
 TB_SITE = (
     ('pulmonary', 'Pulmonary'),
     ('extra_pulmonary', 'Extra pulmonary'))
+
+TB_SITE_DEATH = (
+    ('meningitis', 'Meningitis'),
+    ('pulmonary', 'Pulmonary'),
+    ('disseminated', 'Disseminated'))
 
 VISIT_UNSCHEDULED_REASON = (
     ('routine_oncology',
