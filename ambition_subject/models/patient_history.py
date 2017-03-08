@@ -227,11 +227,18 @@ class PatientHistory(BaseUuidModel):
     other_medications = models.CharField(
         verbose_name='Other medications:',
         max_length=25,
+        choices=YES_NO,
+        null=True,
+        blank=True)
+
+    specify_medications = models.CharField(
+        verbose_name='If Yes, specify:',
+        max_length=25,
         choices=MEDICATION_HISTORY,
         null=True,
         blank=True)
 
-    other_medications_other = OtherCharField()
+    specify_medications_other = OtherCharField()
 
     history = HistoricalRecords()
 
