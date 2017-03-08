@@ -28,6 +28,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
         'lung_exam': admin.VERTICAL,
         'cryptococcal_lesions': admin.VERTICAL,
         'other_medications': admin.VERTICAL,
+        'specify_medications': admin.VERTICAL,
     }
 
     fieldsets = (
@@ -77,5 +78,6 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'lung_exam',
                 'cryptococcal_lesions',
                 'other_medications',
-                'other_medications_other')}
+                'specify_medications',
+                'specify_medications_other')}
          ), audit_fieldset_tuple)
