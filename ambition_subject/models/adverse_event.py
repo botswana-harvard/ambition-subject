@@ -56,9 +56,9 @@ class AdverseEvent(BaseUuidModel):
         max_length=25,
         verbose_name='Relationship to study drug Fluconozole:')
 
-    last_implicated_medication_administered_on = models.DateTimeField(
+    last_implicated_medication_administered_datetime = models.DateTimeField(
         validators=[datetime_is_future],
-        verbose_name='Date and time of last implicated study medication'
+        verbose_name='Date and time of last implicated study medication '
                      'administered')
 
     last_implicated_medication = models.CharField(
@@ -88,7 +88,7 @@ class AdverseEvent(BaseUuidModel):
     action_taken_treatment = models.TextField(
         verbose_name='Specify action taken for treatment of AE:')
 
-    recurrence_cm_symptoms = models.TextField(
+    recurrence_cm_symptoms = models.CharField(
         choices=YES_NO,
         help_text='If yes, fill in the Recurrence of Symptoms form',
         max_length=5,
@@ -106,6 +106,7 @@ class AdverseEvent(BaseUuidModel):
         blank=True,
         choices=RAE_REASON,
         null=True,
+        max_length=50,
         verbose_name='If Yes, Reason for SAE:')
 
     is_susar = models.CharField(
@@ -118,10 +119,11 @@ class AdverseEvent(BaseUuidModel):
         blank=True,
         choices=YES_NO,
         null=True,
+        max_length=5,
         verbose_name='If yes, SUSAR must be reported to Principal '
                      'Investigator and TMG immediately, is SUSAR Reported?')
 
-    susar_reported_on = models.DateTimeField(
+    susar_reported_datetime = models.DateTimeField(
         blank=True,
         help_text='AEs ≥ Grade 3 or SAE must be reported to the Trial '
                   'Management Group (TMG) within 48hrs (Email to: '
@@ -129,12 +131,12 @@ class AdverseEvent(BaseUuidModel):
         null=True,
         verbose_name='Date and time AE reported')
 
-    ae_form_received_on = models.DateTimeField(
+    ae_form_received_datetime = models.DateTimeField(
         blank=True,
         null=True,
         verbose_name='Date and time AE form received:')
 
-    clinical_review_on = models.DateTimeField(
+    clinical_review_datetime = models.DateTimeField(
         blank=True,
         null=True,
         verbose_name='Date and time of Clinical Review: ')
@@ -146,6 +148,7 @@ class AdverseEvent(BaseUuidModel):
 
     ae_classification = models.ManyToManyField(
         AEClassification,
+        related_name='ae_classification',
         verbose_name='Classification of AE (Tick all that apply):')
 
     investigator_ae_description = models.TextField(
@@ -153,7 +156,7 @@ class AdverseEvent(BaseUuidModel):
         null=True,
         verbose_name='Description of AE:')
 
-    regulatory_officials_notified_on = models.DateTimeField(
+    regulatory_officials_notified_datetime = models.DateTimeField(
         blank=True,
         null=True,
         verbose_name='Date and time Regulatory authorities notified (SUSARs)')
