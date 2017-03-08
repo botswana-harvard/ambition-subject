@@ -2,6 +2,7 @@ from django import forms
 
 from edc_constants.constants import YES, NO
 
+from ..constants import NVP
 from ..models import PatientHistory
 from .form_mixins import SubjectModelFormMixin
 
@@ -26,11 +27,11 @@ class PatientHistoryForm(SubjectModelFormMixin):
             YES, field='other_medications', field_required='specify_medications')
 
         if ((not cleaned_data.get('arvs')
-                or 'NVP' not in cleaned_data.get('arvs'))
+                or NVP not in cleaned_data.get('arvs'))
                 and cleaned_data.get('first_line_choice')):
             raise forms.ValidationError({
                 'first_line_choice': 'This field is not required.'})
-        elif (cleaned_data.get('arvs') and 'NVP' in cleaned_data.get('arvs')
+        elif (cleaned_data.get('arvs') and NVP in cleaned_data.get('arvs')
                 and not cleaned_data.get('first_line_choice')):
             raise forms.ValidationError({
                 'first_line_choice': 'This field is required.'})
