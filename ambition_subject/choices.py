@@ -72,3 +72,28 @@ MEDICATION_HISTORY = (
     ('TMP-SMX', _('TMP-SMX')),
     (OTHER, _('Other, specify:')),
 )
+PROTOCOL_VIOLATION = (
+    ('failure_to_obtain_informed_consent', 
+     _('Failure to obtain informed consent')),
+    ('enrollment_of_ineligible_patient', _('Enrollment of ineligible patient')),
+    ('screening_procedure not done',
+     _('Screening procedure required by protocol not done')),
+    ('screening_or_on-study_procedure',
+     _('Screening or on-study procedure/lab work required not done')),
+    ('incorrect_research_treatment',
+     _('Incorrect research treatment given to patient')),
+    ('procedure_not_completed',
+     _('On-study procedure required by protocol not completed')),
+    ('visit_non-compliance', _('Visit non-compliance')),
+    ('medication_stopped_early', _('Medication stopped early')),
+    ('medication_noncompliance', _('Medication_noncompliance')),
+    ('national_regulations_not_met',
+     _('Standard WPD, ICH-GCP, local/national regulations not met')),
+    (OTHER, _('Other'))
+)
+ACTION_REQUIRED = (
+    ('participant_to_remain', _('Participant to remain on trial')),
+    ('participant_to_be_withdrawn', _('participant to be withdrawn from trial')),
+    ('patient_remains_on_study',
+     _('Patient remains on study but data analysis will be modified'))
+)
