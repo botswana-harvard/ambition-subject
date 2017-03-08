@@ -1,4 +1,5 @@
 from .adverse_event_admin import AdverseEventAdmin
+from .protocol_deviation_violation_admin import ProtocolDeviationViolation
 from .patient_history_admin import PatientHistory
 from .subject_consent_admin import SubjectConsentAdmin
 from .subject_locator_admin import SubjectLocatorAdmin
