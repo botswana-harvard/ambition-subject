@@ -148,7 +148,6 @@ class AdverseEvent(BaseUuidModel):
 
     ae_classification = models.ManyToManyField(
         AEClassification,
-        related_name='ae_classification',
         verbose_name='Classification of AE (Tick all that apply):')
 
     investigator_ae_description = models.TextField(
