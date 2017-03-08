@@ -43,6 +43,11 @@ FIRST_LINE_REGIMEN = (
     ('EFV', 'EFV'),
     ('NVP', 'NVP'))
 
+FLUCONAZOLE_DOSE = (
+    ('400mg_daily', '400mg daily'),
+    ('800mg_daily', '800mg daily'),
+    (OTHER, 'Other, please specify:'))
+
 MEDICATION_HISTORY = (
     ('TMP-SMX', 'TMP-SMX'),
     (OTHER, 'Other, specify:'))
