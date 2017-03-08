@@ -1,17 +1,17 @@
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_is_future
 from edc_constants.choices import YES_NO
 
 from ..choices import (
     AE_SEVERITY, AE_INTENSITY, PATIENT_TREATMENT_GROUP, RAE_REASON,
     STUDY_DRUG_RELATIONSHIP)
+from .crf_metadata import CrfMetadata
 from .list_models import AEClassification
 
 
-class AdverseEvent(BaseUuidModel):
+class AdverseEvent(CrfMetadata):
 
     ae_awareness_date = models.DateField(
         verbose_name='AE Awareness date',
