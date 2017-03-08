@@ -16,12 +16,22 @@ class ProtocolDeviationViolation (BaseUuidModel):
         blank=True,
         choices=YES_NO)
 
+    safety_details = models.TextField(
+        verbose_name='Safety of the participant details',
+        null=True,
+        blank=True)
+
     outcomes = models.CharField(
         verbose_name='Study outcomes',
         max_length=25,
         null=True,
         blank=True,
         choices=YES_NO)
+
+    outcomes_details = models.TextField(
+        verbose_name='Study outcomes details',
+        null=True,
+        blank=True)
 
     date_violation_datetime = models.DateTimeField(
         validators=[date_not_future],
