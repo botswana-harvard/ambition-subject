@@ -45,7 +45,18 @@ list_data = {
         ('CN_IV_palsy', 'Cranial Nerve IV palsy'),
         ('CN_VII_palsy', 'Cranial Nerve VII palsy'),
         ('CN_VIII_palsy', 'Cranial Nerve VIII palsy'),
-        (OTHER, 'Other CN palsy'), ],
+        (OTHER, 'Other CN palsy'),
+    ],
+    'ambition_subject.significantnewdiagnoses': [
+        ('tb_pulmonary', 'TB pulmonary'),
+        ('kaposi_sarcoma', 'Kaposi’s sarcoma'),
+        ('bacteraemia', 'Bacteraemia'),
+        ('diarrhoeal_wasting', 'Diarrhoeal wasting'),
+        ('tb_extra_pulmonary', 'TB extra-pulmonary'),
+        ('malaria', 'Malaria'),
+        ('bacterial_pneumonia', 'Bacterial pneumonia'),
+        (OTHER, 'Other, please specify:'),
+    ],
 }
 
 

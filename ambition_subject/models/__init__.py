@@ -3,6 +3,7 @@ from .crf_metadata import CrfMetadata
 from .death import Death
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
+from .follow_up import FollowUp
 from .result import ResultItem, Result
 from .patient_history import PatientHistory
 from .protocol_deviation_violation import ProtocolDeviationViolation
