@@ -100,6 +100,14 @@ STUDY_DRUG_RELATIONSHIP = (
     ('definitely_related', 'Definitely related'),
     (NOT_APPLICABLE, 'Not Applicable'))
 
+REASON_DRUG_MISSED = (
+    ('administered_to_protocol', 'Administered acc to protocol'),
+    ('toxicity', 'Toxicity'),
+    ('missed', 'Missed'),
+    ('refused', 'Refused'),
+    (OTHER, 'Other'),
+    ('not_required_acc_protocol', 'Not required according to protocol'))
+
 TB_SITE = (
     ('pulmonary', 'Pulmonary'),
     ('extra_pulmonary', 'Extra pulmonary'))
