@@ -64,6 +64,25 @@ list_data = {
         ('skin_lesions_cough', 'Skin Lesions Cough'),
         ('shortness_of_breath', 'Shortness of breath'),
     ],
+    'ambition_subject.otherdruglist': [
+        ('antibiotics', 'Antibiotics'),
+        ('K', 'K'),
+        ('Mg', 'Mg'),
+        ('vitamins', 'Vitamins'),
+        ('TMP_SMX_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
+        ('Anti_convulsants', 'Anti convulsants'),
+        (OTHER, ' OTHER, specify')
+    ],
+    'ambition_subject.antibiotics': [
+        ('flucloxacillin', 'Flucloxacillin'),
+        ('gentamicin', 'Gentamicin'),
+        ('ceftriaxone', 'Ceftriaxone'),
+        ('amoxicillin_ampicillin', 'Amoxicillin/Ampicillin'),
+        ('doxycycline', 'Doxycycline'),
+        ('erythromycin', 'Erythromycin'),
+        ('ciprofloxacin', 'Ciprofloxacin'),
+        (OTHER, ' OTHER, specify')
+    ],
 }
 
 
