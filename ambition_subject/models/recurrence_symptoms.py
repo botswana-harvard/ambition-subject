@@ -8,7 +8,7 @@ from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
 from ..choices import ANTIBIOTICS, DR_OPINION, STEROIDS_CHOICES
-from ..models.list_models import Neurological, MeningitisSymptoms
+from .list_models import Neurological, MeningitisSymptoms
 
 
 class RecurrenceSymptoms(BaseUuidModel):
@@ -16,6 +16,7 @@ class RecurrenceSymptoms(BaseUuidModel):
     meningitis_symptoms = models.ManyToManyField(
         MeningitisSymptoms,
         blank=True,
+        null=True,
         verbose_name='What are your current symptoms?')
 
     meningitis_symptoms_other = OtherCharField()
@@ -24,41 +25,32 @@ class RecurrenceSymptoms(BaseUuidModel):
         verbose_name=(
             'Has the patient been readmitted due to these recurrent symptoms?'),
         max_length=5,
-        null=True,
-        blank=True,
         choices=YES_NO,
         help_text='If Yes, complete AE CRF.')
 
     glasgow_coma_score = models.IntegerField(
         verbose_name='Score:',
         validators=[MinValueValidator(1), MaxValueValidator(15)],
-        null=True,
-        blank=True,
         help_text='/15')
 
     recent_seizure = models.CharField(
         verbose_name=(
             'Recent seizure (<72 hrs):'),
         max_length=5,
-        null=True,
-        blank=True,
         choices=YES_NO)
 
     behaviour_change = models.CharField(
         max_length=5,
-        null=True,
-        blank=True,
         choices=YES_NO)
 
     confusion = models.CharField(
         max_length=5,
-        null=True,
-        blank=True,
         choices=YES_NO)
 
     neurological = models.ManyToManyField(
         Neurological,
-        blank=True)
+        blank=True,
+        null=True)
 
     neurological_other = OtherCharField()
 
@@ -77,8 +69,6 @@ class RecurrenceSymptoms(BaseUuidModel):
 
     amb_administered = models.CharField(
         max_length=5,
-        null=True,
-        blank=True,
         choices=YES_NO)
 
     amb_duration = models.IntegerField(
@@ -89,15 +79,11 @@ class RecurrenceSymptoms(BaseUuidModel):
 
     tb_treatment = models.CharField(
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     steroids_administered = models.CharField(
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     steroids_duration = models.IntegerField(
         verbose_name='If yes, Specify length of course:',
@@ -107,8 +93,8 @@ class RecurrenceSymptoms(BaseUuidModel):
 
     steroids_choices = models.CharField(
         verbose_name='If Yes:',
-        null=True,
         blank=True,
+        null=True,
         max_length=25,
         choices=STEROIDS_CHOICES)
 
@@ -122,8 +108,8 @@ class RecurrenceSymptoms(BaseUuidModel):
 
     antibiotic_treatment = models.CharField(
         verbose_name='Antibiotics treatment:',
-        null=True,
         blank=True,
+        null=True,
         max_length=25,
         choices=ANTIBIOTICS)
 
@@ -131,9 +117,7 @@ class RecurrenceSymptoms(BaseUuidModel):
 
     on_arvs = models.CharField(
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     arv_date = models.DateField(
         verbose_name='Study date ARVs started.',
@@ -144,9 +128,7 @@ class RecurrenceSymptoms(BaseUuidModel):
     arvs_stopped = models.CharField(
         verbose_name='ARVs stopped this clinical episode?',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     narrative_summary = models.TextField(
         verbose_name='Narrative Summary of recurrence of symptoms:',
@@ -158,8 +140,8 @@ class RecurrenceSymptoms(BaseUuidModel):
         verbose_name='Study Dr’s opinion:',
         max_length=10,
         choices=DR_OPINION,
-        null=True,
-        blank=True)
+        blank=True,
+        null=True)
 
     dr_opinion_other = OtherCharField()
 
@@ -167,3 +149,4 @@ class RecurrenceSymptoms(BaseUuidModel):
 
     class Meta:
         app_label = 'ambition_subject'
+        verbose_name_plural = 'Recurrence Symptoms'
