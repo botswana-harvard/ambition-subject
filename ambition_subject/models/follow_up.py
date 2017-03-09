@@ -49,7 +49,7 @@ class FollowUp(CrfMetadata):
     cn_palsy = models.CharField(
         choices=YES_NO,
         max_length=5,
-        verbose_name='CNpalsy:')
+        verbose_name='CN palsy:')
 
     behaviour_change = models.CharField(
         choices=YES_NO,
@@ -59,7 +59,7 @@ class FollowUp(CrfMetadata):
     focal_neurology = models.CharField(
         choices=YES_NO,
         max_length=5,
-        verbose_name='Focal Neurology:')
+        verbose_name='Focal neurology:')
 
     significant_new_diagnoses = models.ManyToManyField(
         SignificantNewDiagnoses,

@@ -4,6 +4,7 @@ from .death import Death
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
 from .follow_up import FollowUp
+from .lp_csf import LpCsf
 from .result import ResultItem, Result
 from .patient_history import PatientHistory
 from .protocol_deviation_violation import ProtocolDeviationViolation
