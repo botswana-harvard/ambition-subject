@@ -45,7 +45,6 @@ class PatientHistory(BaseUuidModel):
 
     tb_site = models.CharField(
         verbose_name='If Yes, site of TB?',
-        default=None,
         null=True,
         blank=True,
         max_length=15,
