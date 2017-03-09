@@ -16,6 +16,15 @@ AE_SEVERITY = (
     ('grade_4', 'Grade 4- Life-threatening'),
     ('grade_5', 'Grade 5- Death'))
 
+ANTIBIOTICS = (
+    ('amoxicillin', 'Amoxicillin'),
+    ('doxycycline', 'Doxycycline'),
+    ('flucloxacillin', 'Flucloxacillin'),
+    ('ceftriaxone', 'Ceftriaxone'),
+    ('erythromycin', 'Erythromycin (contra-indicated with concomitant high dose fluconazole)'),
+    ('ciprofloxacin', 'Ciprofloxacin (avoid with concomitant high dose fluconazole)'),
+    (OTHER, 'Other, specify'))
+
 ARV_REGIMEN = (
     ('TDF +3TC/FTC + either EFZ or NVP', 'TDF +3TC/FTC + either EFZ or NVP'),
     ('AZT + 3-TC + either EFV or NVP', 'AZT + 3-TC + either EFV or NVP'),
@@ -37,6 +46,11 @@ CAUSE_OF_DEATH = (
     ('IRIS_non_CM', 'IRIS non-CM'),
     ('diarrhea_wasting', 'Diarrhea/wasting'),
     (UNKNOWN, 'Unknown'),
+    (OTHER, 'Other, specify'))
+
+DR_OPINION = (
+    ('cm_release', 'CM Relapse'),
+    ('cm_iris', 'CM IRIS'),
     (OTHER, 'Other, specify'))
 
 FIRST_LINE_REGIMEN = (
@@ -97,6 +111,11 @@ RAE_REASON = (
      'recurrence of symptoms not requiring admission, Hospital acquired '
      'pneumonia)'))
 
+STEROIDS_CHOICES = (
+    ('oral_prednisolone', 'Oral prednisolone'),
+    ('iv_dexamethasone', 'IV Dexamethasone used'),
+    (OTHER, 'Other, specify:'))
+
 STUDY_DRUG_RELATIONSHIP = (
     ('not_related', 'Not related'),
     ('unlikely_related', 'Unlikely related'),
@@ -104,6 +123,14 @@ STUDY_DRUG_RELATIONSHIP = (
     ('probably_related', 'Probably related'),
     ('definitely_related', 'Definitely related'),
     (NOT_APPLICABLE, 'Not Applicable'))
+
+REASON_DRUG_MISSED = (
+    ('administered_to_protocol', 'Administered acc to protocol'),
+    ('toxicity', 'Toxicity'),
+    ('missed', 'Missed'),
+    ('refused', 'Refused'),
+    (OTHER, 'Other'),
+    ('not_required_acc_protocol', 'Not required according to protocol'))
 
 TB_SITE = (
     ('pulmonary', 'Pulmonary'),

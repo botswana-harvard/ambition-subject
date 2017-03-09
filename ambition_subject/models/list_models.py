@@ -7,6 +7,12 @@ class AEClassification(ListModelMixin, BaseUuidModel):
         app_label = 'ambition_subject'
 
 
+class MeningitisSymptoms(ListModelMixin, BaseUuidModel):
+
+    class Meta(ListModelMixin.Meta):
+        app_label = 'ambition_subject'
+
+
 class Neurological(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):

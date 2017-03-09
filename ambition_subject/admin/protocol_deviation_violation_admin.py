@@ -36,7 +36,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'corrective_action_datetime',
                 'corrective_action',
-                ' preventative_action_datetime',
+                'preventative_action_datetime',
                 'preventative_action',
                 'action_required',)}),
         audit_fieldset_tuple
