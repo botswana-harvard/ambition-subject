@@ -12,7 +12,8 @@ class LpCsf(CrfMetadata):
 
     reason_for_lp = models.CharField(
         choices=LP_REASON,
-        max_length=50)
+        max_length=50,
+        verbose_name='Reason for LP')
 
     opening_pressure = models.IntegerField(
         help_text='Units cm of H2O',
@@ -40,7 +41,9 @@ class LpCsf(CrfMetadata):
         verbose_name='CSF culture: Other organism (non-crytococcus)')
 
     other_csf_culture = models.CharField(
+        blank=True,
         max_length=75,
+        null=True,
         verbose_name='If yes, specify organism:')
 
     csf_wbc_cell_count = models.IntegerField(
