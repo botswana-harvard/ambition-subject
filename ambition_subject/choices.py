@@ -162,13 +162,20 @@ GLASGOW_COMA_SCORE_EYES = (
     ('opens_eyes_to_pain_only', 'Opens eyes to pain only'),
     ('opens_eyes_to_voice', 'Opens eyes to voice'),
     ('opens_eyes_spontaneously', 'Opens eyes spontaneously'),
-    (NOT_APPLICABLE, 'NA'))
+    (NOT_APPLICABLE, 'Not Applicable'))
 
 GLASGOW_COMA_SCORE_VERBAL = (
     ('makes_no_sounds', 'Makes no sounds'),
     ('makes_sounds', 'Makes sounds'),
     ('makes_words', 'Makes words'),
     ('disoriented', 'Disoriented'),
-    ('oriented', 'Oriented')
-    (NOT_APPLICABLE, 'NA'))
+    ('oriented', 'Oriented'),
+    (NOT_APPLICABLE, 'Not Applicable'),)
 
+GLASGOW_COMA_SCORE_MOTOR = (
+    ('makes_no_movement', 'Makes no movement'),
+    ('extension_to_pain', 'Extension to pain'),
+    ('flexion_to_pain', 'Flexion to pain'),
+    ('withdraws_from_pain', 'Withdraws from pain'),
+    ('localizes_pain', 'Localizes pain'),
+    ('obey_commands', 'Obey commands'),)
