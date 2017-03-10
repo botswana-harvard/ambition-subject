@@ -170,7 +170,7 @@ GLASGOW_COMA_SCORE_VERBAL = (
     ('makes_words', 'Makes words'),
     ('disoriented', 'Disoriented'),
     ('oriented', 'Oriented'),
-    (NOT_APPLICABLE, 'Not Applicable'),)
+    (NOT_APPLICABLE, 'Not Applicable'))
 
 GLASGOW_COMA_SCORE_MOTOR = (
     ('makes_no_movement', 'Makes no movement'),
@@ -178,4 +178,4 @@ GLASGOW_COMA_SCORE_MOTOR = (
     ('flexion_to_pain', 'Flexion to pain'),
     ('withdraws_from_pain', 'Withdraws from pain'),
     ('localizes_pain', 'Localizes pain'),
-    ('obey_commands', 'Obey commands'),)
+    ('obey_commands', 'Obey commands'))
