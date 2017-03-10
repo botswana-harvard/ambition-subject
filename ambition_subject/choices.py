@@ -125,16 +125,25 @@ STUDY_DRUG_RELATIONSHIP = (
     (NOT_APPLICABLE, 'Not Applicable'))
 
 REASON_DRUG_MISSED = (
-    ('administered_to_protocol', 'Administered acc to protocol'),
-    ('toxicity', 'Toxicity'),
-    ('missed', 'Missed'),
-    ('refused', 'Refused'),
+    ('A', 'Administered acc to protocol'),
+    ('T', 'Toxicity'),
+    ('M', 'Missed'),
+    ('R', 'Refused'),
     (OTHER, 'Other'),
-    ('not_required_acc_protocol', 'Not required according to protocol'))
+    ('N', 'Not required according to protocol'))
 
 TB_SITE = (
     ('pulmonary', 'Pulmonary'),
     ('extra_pulmonary', 'Extra pulmonary'))
+
+CLINICAL_ASSESSMENT = (
+    (NOT_APPLICABLE, 'NA'))
+
+MEDICINES = (
+    ('fluconazole', 'Fluconazole'),
+    ('rifampicin', 'Rifampicin'),
+    ('co-trimoxazole', 'Co-trimoxazole'),
+    (OTHER, 'Other, specify:'))
 
 TB_SITE_DEATH = (
     ('meningitis', 'Meningitis'),
@@ -147,3 +156,19 @@ VISIT_UNSCHEDULED_REASON = (
     ('ill_oncology', 'Ill oncology clinic visit'),
     ('patient_called', 'Patient called to come for visit'),
     (OTHER, 'Other, specify:'))
+
+GLASGOW_COMA_SCORE_EYES = (
+    ('does_not_open_eyes', 'Does not open eyes'),
+    ('opens_eyes_to_pain_only', 'Opens eyes to pain only'),
+    ('opens_eyes_to_voice', 'Opens eyes to voice'),
+    ('opens_eyes_spontaneously', 'Opens eyes spontaneously'),
+    (NOT_APPLICABLE, 'NA'))
+
+GLASGOW_COMA_SCORE_VERBAL = (
+    ('makes_no_sounds', 'Makes no sounds'),
+    ('makes_sounds', 'Makes sounds'),
+    ('makes_words', 'Makes words'),
+    ('disoriented', 'Disoriented'),
+    ('oriented', 'Oriented')
+    (NOT_APPLICABLE, 'NA'))
+

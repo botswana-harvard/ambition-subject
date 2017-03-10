@@ -83,6 +83,16 @@ list_data = {
         ('ciprofloxacin', 'Ciprofloxacin'),
         (OTHER, ' OTHER, specify')
     ],
+    'ambition_subject.significant_diagnosis': [
+        ('tuberculosis_pulmonary', 'Tuberculosis pulmonary'),
+        ('tuberculosis_extra-pulmonary', 'Tuberculosis extra-pulmonary'),
+        ('kaposi’s_sarcoma', 'Kaposi’s sarcoma'),
+        ('malaria', 'Malaria'),
+        ('bacteraemia', 'Bacteraemia'),
+        ('bacterial_pneumonia', 'Bacterial pneumonia'),
+        ('diarrhoeal_wasting', 'Diarrhoeal wasting'),
+        (OTHER, ' OTHER, specify')
+    ],
 }
 
 
