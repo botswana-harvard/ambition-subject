@@ -10,78 +10,66 @@ from ambition_subject.choices import PROTOCOL_VIOLATION, ACTION_REQUIRED
 class ProtocolDeviationViolation (BaseUuidModel):
 
     safety = models.CharField(
-        verbose_name='Safety of the participant',
+        verbose_name='Could this occurrence have an impact on safety of the '
+                     'participant',
         max_length=25,
         null=True,
         blank=True,
         choices=YES_NO)
 
     safety_details = models.TextField(
-        verbose_name='Safety of the participant details',
+        verbose_name='If yes, details:',
         null=True,
         blank=True)
 
     outcomes = models.CharField(
-        verbose_name='Study outcomes',
+        verbose_name='Could this occurrence have an impact on Study outcomes',
         max_length=25,
-        null=True,
-        blank=True,
         choices=YES_NO)
 
     outcomes_details = models.TextField(
-        verbose_name='Study outcomes details',
+        verbose_name='If yes, details:',
         null=True,
         blank=True)
 
     date_violation_datetime = models.DateTimeField(
-        validators=[date_not_future],
-        null=True,
-        blank=False)
+        validators=[date_not_future])
 
     protocol_violation_type = models.CharField(
         verbose_name='Type of Protocol Violation/Deviation',
         max_length=25,
-        null=True,
-        blank=True,
         choices=PROTOCOL_VIOLATION)
 
-    description = models.TextField(
-        verbose_name='Describe the violation fully. How the violation happened, what occurred?',
+    other_protocol_violation_type = models.CharField(
         null=True,
-        blank=True)
+        blank=True,
+        verbose_name='If other, please specify',
+        max_length=50)
+
+    description = models.TextField(
+        verbose_name='Describe the violation fully. How the violation '
+                     'happened, what occurred?')
 
     violation_reason = models.TextField(
-        verbose_name='Explain the reason why the violation occurred',
-        null=True,
-        blank=True)
+        verbose_name='Explain the reason why the violation occurred')
 
     corrective_action_datetime = models.DateTimeField(
-        validators=[date_not_future],
-        null=True,
-        blank=False)
+        validators=[date_not_future])
 
     corrective_action = models.CharField(
         verbose_name='Corrective action taken',
-        max_length=125,
-        null=True,
-        blank=True)
+        max_length=125)
 
     preventative_action_datetime = models.DateTimeField(
-        validators=[date_not_future],
-        null=True,
-        blank=False)
+        validators=[date_not_future])
 
     preventative_action = models.CharField(
         verbose_name='Preventative action taken',
-        max_length=125,
-        null=True,
-        blank=True)
+        max_length=125)
 
     action_required = models.CharField(
         verbose_name='action required',
         max_length=25,
-        null=True,
-        blank=True,
         choices=ACTION_REQUIRED)
 
     history = HistoricalRecords()
