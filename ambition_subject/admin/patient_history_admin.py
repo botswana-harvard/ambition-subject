@@ -33,13 +33,13 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     fieldsets = (
         ('Current Symptoms', {
-            'fields': (
+            'fields': [
                 'current_symptoms',
                 'headache_duration',
-                'visual_loss_duration')}
+                'visual_loss_duration']}
          ),
         ('Previous Medical History', {
-            'fields': (
+            'fields': [
                 'med_history',
                 'tb_site',
                 'tb_treatment',
@@ -53,31 +53,31 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'first_line_choice',
                 'patient_adherence',
                 'last_dose',
-                'last_viral_load')}
+                'last_viral_load']}
          ),
         ('Vital Signs', {
-            'fields': (
+            'fields': [
                 'temp',
                 'heart_rate',
                 'blood_pressure',
                 'respiratory_rate',
                 'weight',
-                'glasgow_coma_score')}
+                'glasgow_coma_score']}
          ),
         ('Neurological', {
-            'fields': (
+            'fields': [
                 'neurological',
                 'neurological_other',
                 'focal_neurologic_deficit',
                 'visual_acuity_day',
                 'left_acuity',
-                'right_acuity')}
+                'right_acuity']}
          ),
         ('Other', {
-            'fields': (
+            'fields': [
                 'lung_exam',
                 'cryptococcal_lesions',
                 'other_medications',
                 'specify_medications',
-                'specify_medications_other')}
+                'specify_medications_other']}
          ), audit_fieldset_tuple)

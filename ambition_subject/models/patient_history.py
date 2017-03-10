@@ -10,7 +10,7 @@ from edc_constants.choices import YES_NO
 
 from ..choices import (
     ARV_REGIMEN, FIRST_LINE_REGIMEN, MEDICATION_HISTORY, TB_SITE)
-from ..models.list_models import Neurological, Symptoms
+from .list_models import Neurological, Symptoms
 
 bp_validator = RegexValidator(
     '^\d{1,3}\/\d{1,3}$', message='Enter a valid BP in SYS/DIA format')
@@ -21,7 +21,6 @@ class PatientHistory(BaseUuidModel):
     current_symptoms = models.ManyToManyField(
         Symptoms,
         related_name='symptoms',
-        blank=True,
         verbose_name='What are your current symptoms?')
 
     headache_duration = models.IntegerField(
@@ -39,8 +38,6 @@ class PatientHistory(BaseUuidModel):
     med_history = models.CharField(
         verbose_name='Previous medical history of Tubercolosis?',
         max_length=5,
-        null=True,
-        blank=True,
         choices=YES_NO)
 
     tb_site = models.CharField(
@@ -53,16 +50,12 @@ class PatientHistory(BaseUuidModel):
     tb_treatment = models.CharField(
         verbose_name='Are you currently taking TB treatment?',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     taking_rifampicin = models.CharField(
         verbose_name='If yes, are you currently also taking Rifampicin?',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     rifampicin_started_date = models.DateField(
         verbose_name='If yes, when did you first start taking Rifampicin?',
@@ -73,9 +66,7 @@ class PatientHistory(BaseUuidModel):
     previous_infection = models.CharField(
         verbose_name='Previous opportunistic infection?',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     infection_date = models.DateField(
         verbose_name='If yes, what was the date of infection?',
@@ -86,9 +77,7 @@ class PatientHistory(BaseUuidModel):
     taking_arv = models.CharField(
         verbose_name='Already taking ARVs?',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     arv_date = models.DateField(
         verbose_name='If yes, date ARVs were started.',
@@ -113,9 +102,7 @@ class PatientHistory(BaseUuidModel):
     patient_adherence = models.CharField(
         verbose_name='Is the patient reportedly adherent?',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     last_dose = models.IntegerField(
         verbose_name='If no, how many months since the last dose was taken?',
@@ -135,50 +122,39 @@ class PatientHistory(BaseUuidModel):
         verbose_name='Temperature:',
         decimal_places=1,
         max_digits=3,
-        null=True,
-        blank=True,
         help_text='°C')
 
     heart_rate = models.IntegerField(
         verbose_name='Heart Rate:',
         validators=[MinValueValidator(1)],
-        null=True,
-        blank=True,
         help_text='bpm')
 
     blood_pressure = models.CharField(
         verbose_name='Blood Pressure:',
         max_length=6,
         validators=[bp_validator],
-        null=True,
-        blank=True,
         help_text='in mmHg. format SYS/DIA, e.g. 120/80')
 
     respiratory_rate = models.IntegerField(
         verbose_name='Respiratory Rate:',
         validators=[MinValueValidator(1)],
-        null=True,
-        blank=True,
         help_text='breaths/min')
 
     weight = models.DecimalField(
         verbose_name='Weight:',
         decimal_places=1,
         max_digits=4,
-        null=True,
-        blank=True,
         help_text='Kg')
 
     glasgow_coma_score = models.IntegerField(
         verbose_name='Glasgow Coma Score:',
         validators=[MinValueValidator(1), MaxValueValidator(15)],
-        null=True,
-        blank=True,
         help_text='/15')
 
     neurological = models.ManyToManyField(
         Neurological,
-        blank=True)
+        blank=True,
+        null=True)
 
     neurological_other = OtherCharField()
 
@@ -190,44 +166,32 @@ class PatientHistory(BaseUuidModel):
 
     visual_acuity_day = models.DateField(
         verbose_name='Study day visual acuity recorded?',
-        validators=[date_not_future],
-        null=True,
-        blank=True)
+        validators=[date_not_future])
 
     left_acuity = models.DecimalField(
         verbose_name='Visual acuity Left eye:',
         decimal_places=3,
-        max_digits=4,
-        null=True,
-        blank=True)
+        max_digits=4)
 
     right_acuity = models.DecimalField(
         verbose_name='Visual acuity Right eye:',
         decimal_places=3,
-        max_digits=4,
-        null=True,
-        blank=True)
+        max_digits=4)
 
     lung_exam = models.CharField(
         verbose_name='Abnormal lung exam:',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     cryptococcal_lesions = models.CharField(
         verbose_name='Cryptococcal related skin lesions:',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     other_medications = models.CharField(
         verbose_name='Other medications:',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True)
+        choices=YES_NO)
 
     specify_medications = models.CharField(
         verbose_name='If Yes, specify:',
