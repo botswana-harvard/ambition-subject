@@ -88,4 +88,3 @@ class ProtocolDeviationViolation (BaseUuidModel):
 
     class Meta():
         app_label = 'ambition_subject'
-        verbose_name = 'ProtocolDeviationViolation'
