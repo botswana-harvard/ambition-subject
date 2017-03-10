@@ -9,25 +9,23 @@ from ambition_subject.choices import PROTOCOL_VIOLATION, ACTION_REQUIRED
 
 class ProtocolDeviationViolation (BaseUuidModel):
 
-    safety = models.CharField(
+    participant_safety_impact = models.CharField(
         verbose_name='Could this occurrence have an impact on safety of the '
                      'participant',
-        max_length=25,
-        null=True,
-        blank=True,
+        max_length=5,
         choices=YES_NO)
 
-    safety_details = models.TextField(
+    participant_safety_impact_details = models.TextField(
         verbose_name='If yes, details:',
         null=True,
         blank=True)
 
-    outcomes = models.CharField(
+    study_outcomes_impact = models.CharField(
         verbose_name='Could this occurrence have an impact on Study outcomes',
-        max_length=25,
+        max_length=5,
         choices=YES_NO)
 
-    outcomes_details = models.TextField(
+    study_outcomes_impact_details = models.TextField(
         verbose_name='If yes, details:',
         null=True,
         blank=True)
@@ -46,7 +44,7 @@ class ProtocolDeviationViolation (BaseUuidModel):
         verbose_name='If other, please specify',
         max_length=50)
 
-    description = models.TextField(
+    violation_description = models.TextField(
         verbose_name='Describe the violation fully. How the violation '
                      'happened, what occurred?')
 
