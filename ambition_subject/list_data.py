@@ -18,6 +18,16 @@ list_data = {
         ('respiratory_distress', 'Respiratory distress'),
         (OTHER, 'Other')
     ],
+    'ambition_subject.antibiotics': [
+        ('flucloxacillin', 'Flucloxacillin'),
+        ('gentamicin', 'Gentamicin'),
+        ('ceftriaxone', 'Ceftriaxone'),
+        ('amoxicillin_ampicillin', 'Amoxicillin/Ampicillin'),
+        ('doxycycline', 'Doxycycline'),
+        ('erythromycin', 'Erythromycin'),
+        ('ciprofloxacin', 'Ciprofloxacin'),
+        (OTHER, ' OTHER, specify')
+    ],
     'ambition_subject.meningitissymptoms': [
         ('headache', 'Headache'),
         ('vomiting', 'Vomiting'),
@@ -71,26 +81,6 @@ list_data = {
         ('vitamins', 'Vitamins'),
         ('TMP_SMX_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
         ('Anti_convulsants', 'Anti convulsants'),
-        (OTHER, ' OTHER, specify')
-    ],
-    'ambition_subject.antibiotics': [
-        ('flucloxacillin', 'Flucloxacillin'),
-        ('gentamicin', 'Gentamicin'),
-        ('ceftriaxone', 'Ceftriaxone'),
-        ('amoxicillin_ampicillin', 'Amoxicillin/Ampicillin'),
-        ('doxycycline', 'Doxycycline'),
-        ('erythromycin', 'Erythromycin'),
-        ('ciprofloxacin', 'Ciprofloxacin'),
-        (OTHER, ' OTHER, specify')
-    ],
-    'ambition_subject.significant_diagnosis': [
-        ('tuberculosis_pulmonary', 'Tuberculosis pulmonary'),
-        ('tuberculosis_extra-pulmonary', 'Tuberculosis extra-pulmonary'),
-        ('kaposi’s_sarcoma', 'Kaposi’s sarcoma'),
-        ('malaria', 'Malaria'),
-        ('bacteraemia', 'Bacteraemia'),
-        ('bacterial_pneumonia', 'Bacterial pneumonia'),
-        ('diarrhoeal_wasting', 'Diarrhoeal wasting'),
         (OTHER, ' OTHER, specify')
     ],
 }

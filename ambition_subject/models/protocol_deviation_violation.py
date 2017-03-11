@@ -4,7 +4,8 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
-from ambition_subject.choices import PROTOCOL_VIOLATION, ACTION_REQUIRED
+
+from ..choices import PROTOCOL_VIOLATION, ACTION_REQUIRED
 
 
 class ProtocolDeviationViolation (BaseUuidModel):
