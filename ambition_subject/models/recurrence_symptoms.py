@@ -15,8 +15,6 @@ class RecurrenceSymptoms(BaseUuidModel):
 
     meningitis_symptoms = models.ManyToManyField(
         MeningitisSymptoms,
-        blank=True,
-        null=True,
         verbose_name='What are your current symptoms?')
 
     meningitis_symptoms_other = OtherCharField()
@@ -48,9 +46,7 @@ class RecurrenceSymptoms(BaseUuidModel):
         choices=YES_NO)
 
     neurological = models.ManyToManyField(
-        Neurological,
-        blank=True,
-        null=True)
+        Neurological)
 
     neurological_other = OtherCharField()
 

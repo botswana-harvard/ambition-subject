@@ -94,7 +94,7 @@ INFILTRATE_LOCATION = (
     ('lul', 'LUL'),
     ('lll', 'LLL'),
     ('rul', 'RUL'),
-    ('rll', 'RLL')
+    ('rll', 'RLL'),
     ('rml', 'RML'),
     ('diffuse', 'Diffuse'))
 

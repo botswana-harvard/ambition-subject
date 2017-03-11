@@ -25,6 +25,7 @@ class Radiology(CrfMetadata):
     infiltrate_location = models.CharField(
         blank=True,
         choices=INFILTRATE_LOCATION,
+        max_length=10,
         null=True,
         verbose_name='If CXR type is Infiltrate, please specify location:')
 
@@ -56,7 +57,7 @@ class Radiology(CrfMetadata):
         blank=True,
         max_length=50,
         null=True,
-        verbose='If other, please specify:')
+        verbose_name='If other, please specify:')
 
     are_results_abnormal = models.CharField(
         blank=True,
