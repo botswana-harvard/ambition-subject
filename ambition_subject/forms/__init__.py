@@ -6,6 +6,7 @@ from .patient_history_form import PatientHistoryForm
 from .protocol_deviation_violation_form import ProtocolDeviationViolationForm
 from .radiology_form import RadiologyForm
 from .recurrence_symptoms_form import RecurrenceSymptomsForm
+from .screening_and_randomization_form import ScreeningRandomizationForm
 from .subject_consent_form import SubjectConsentForm
 from .subject_locator_form import SubjectLocatorForm
 from .subject_requisition_form import SubjectRequisitionForm

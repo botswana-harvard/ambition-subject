@@ -197,6 +197,12 @@ STUDY_DRUG_RELATIONSHIP = (
     ('definitely_related', 'Definitely related'),
     (NOT_APPLICABLE, 'Not Applicable'))
 
+RANDOMISATION_NUMBER = (
+    ('n1', 'N(1)'),
+    ('a2', 'A(2)'),
+    ('ams_n3', 'AMS_N(3)'),
+    ('ams_a4', 'AMS_A(4)'))
+
 REASON_DRUG_MISSED = (
     ('A', 'Administered acc to protocol'),
     ('T', 'Toxicity'),
@@ -204,6 +210,12 @@ REASON_DRUG_MISSED = (
     ('R', 'Refused'),
     (OTHER, 'Other'),
     ('N', 'Not required according to protocol'))
+
+REGIMEN = (
+    ('single_dose', '1 (Single dose)'),
+    ('two_doses', '2 (Two doses)'),
+    ('three_doses', '3 (Three Doses)'),
+    ('control', '4 (Control)'))
 
 TB_SITE = (
     ('pulmonary', 'Pulmonary'),

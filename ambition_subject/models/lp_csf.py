@@ -92,4 +92,5 @@ class LpCsf(CrfMetadata):
 
     class Meta:
         app_label = 'ambition_subject'
-        verbose_name = 'LP/CSF Form'
+        verbose_name = 'Lumbar Puncture/Cerebrospinal Fluid'
+        verbose_name_plural = 'Lumbar Puncture/Cerebrospinal Fluid'

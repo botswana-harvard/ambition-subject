@@ -10,6 +10,7 @@ from .protocol_deviation_violation import ProtocolDeviationViolation
 from .radiology import Radiology
 from .recurrence_symptoms import RecurrenceSymptoms
 from .result import ResultItem, Result
+from .screening_and_randomization import ScreeningRandomization
 from .subject_consent import SubjectConsent
 from .subject_locator import SubjectLocator
 from .subject_offstudy import SubjectOffstudy
