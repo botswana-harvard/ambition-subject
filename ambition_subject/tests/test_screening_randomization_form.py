@@ -10,7 +10,6 @@ from ..forms import ScreeningRandomizationForm
 class TestScreeningRandomization(TestCase):
 
     def setUp(self):
-        super().setUp()
 
         self.data = {
             'age': 21,
@@ -42,5 +41,12 @@ class TestScreeningRandomization(TestCase):
     def test_arv_start_date_required(self):
         self.data.update(
             arv_start_date=None)
+        form = ScreeningRandomizationForm(data=self.data)
+        self.assertFalse(form.is_valid())
+
+    def test_arv_start_date_not_required(self):
+        self.data.update(
+            already_on_arvs=NO,
+            arv_start_date=timezone.now().date())
         form = ScreeningRandomizationForm(data=self.data)
         self.assertFalse(form.is_valid())
