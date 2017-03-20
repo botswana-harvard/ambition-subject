@@ -2,6 +2,7 @@ from .adverse_event_form import AdverseEventForm
 from .death_form import DeathForm
 from .follow_up import FollowUpForm
 from .lp_csf_form import LpCsfForm
+from .microbiology_form import MicrobiologyForm
 from .patient_history_form import PatientHistoryForm
 from .protocol_deviation_violation_form import ProtocolDeviationViolationForm
 from .radiology_form import RadiologyForm

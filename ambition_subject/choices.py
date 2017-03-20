@@ -46,6 +46,20 @@ ARV_REGIMEN = (
     ('AZT + 3TC + either ATZ/r or Lopinavir/r',
      'AZT + 3TC + either ATZ/r or Lopinavir/r'))
 
+BIOPSY_RESULTS_ORGANISM = (
+    ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
+    ('mycobacterium_tuberculosis', 'Mycobacterium Tuberculosis'),
+    (OTHER, 'If other, please specify'))
+
+BLOOD_CULTURE_RESULTS_ORGANISM = (
+    ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
+    ('e.coli', 'E.coli'),
+    ('klebsiella_sp', 'Klebsiella sp'),
+    ('streptococcus_pneumoniae', 'Streptococcus pneumoniae'),
+    ('staphylococus_aureus', '(Sensitive) Staphylococus aureus'),
+    ('mrsa', 'MRSA'),
+    (OTHER, 'Other, specify'))
+
 BRAIN_IMAGINING_REASON = (
     ('reduction_in_gcs', 'Reduction in GCS'),
     ('new_neurology', 'New neurology'),
@@ -69,6 +83,10 @@ CAUSE_OF_DEATH = (
 CLINICAL_ASSESSMENT = (
     (NOT_APPLICABLE, 'Not applicable'))
 
+CULTURE_RESULTS = (
+    ('no_growth', 'No growth'),
+    ('positive', 'Positive'))
+
 CXR_TYPE = (
     ('normal', 'Normal'),
     ('hilar_adenopathy', 'Hilar adenopathy'),
@@ -89,18 +107,6 @@ FLUCONAZOLE_DOSE = (
     ('400mg_daily', '400mg daily'),
     ('800mg_daily', '800mg daily'),
     (OTHER, 'Other, please specify:'))
-
-INFILTRATE_LOCATION = (
-    ('lul', 'LUL'),
-    ('lll', 'LLL'),
-    ('rul', 'RUL'),
-    ('rll', 'RLL'),
-    ('rml', 'RML'),
-    ('diffuse', 'Diffuse'))
-
-MEDICATION_HISTORY = (
-    ('TMP-SMX', 'TMP-SMX'),
-    (OTHER, 'Other, specify:'))
 
 GLASGOW_COMA_SCORE_EYES = (
     ('does_not_open_eyes', 'Does not open eyes'),
@@ -125,6 +131,14 @@ GLASGOW_COMA_SCORE_MOTOR = (
     ('localizes_pain', 'Localizes pain'),
     ('obey_commands', 'Obey commands'))
 
+INFILTRATE_LOCATION = (
+    ('lul', 'LUL'),
+    ('lll', 'LLL'),
+    ('rul', 'RUL'),
+    ('rll', 'RLL'),
+    ('rml', 'RML'),
+    ('diffuse', 'Diffuse'))
+
 LP_REASON = (
     ('scheduled_per_protocol', 'Scheduled per protocol'),
     ('therapeutic_lp', 'Therapeutic LP'),
@@ -136,6 +150,10 @@ MEDICINES = (
     ('co_trimoxazole', 'Co-trimoxazole'),
     (OTHER, 'Other, specify:'))
 
+MEDICATION_HISTORY = (
+    ('TMP-SMX', 'TMP-SMX'),
+    (OTHER, 'Other, specify:'))
+
 PATIENT_TREATMENT_GROUP = (
     ('regimen_1', 'Regimen 1 (Ambisome 10 mg/kg day 1 (single dose))'),
     ('regimen_2', 'Regimen 2 (Ambisome 10 mg/kg day 1, Ambisome 5 mg/kg day 3 '
@@ -144,6 +162,11 @@ PATIENT_TREATMENT_GROUP = (
                   '3, and 7 (three doses))'),
     ('regimen_4', 'Regimen 4 (Ambisome 3 mg/kg/d for 14 days (standard dose'
                   ', control arm))'))
+
+POS_NEG_NA = (
+    ('positive', 'Positive'),
+    ('negative', 'Negative'),
+    (NOT_APPLICABLE, 'Not applicable'))
 
 PROTOCOL_VIOLATION = (
     ('failure_to_obtain_informed_consent', 'Failure to obtain informed '
@@ -225,6 +248,11 @@ TB_SITE_DEATH = (
     ('meningitis', 'Meningitis'),
     ('pulmonary', 'Pulmonary'),
     ('disseminated', 'Disseminated'))
+
+URINE_CULTURE_RESULTS_ORGANISM = (
+    ('e.coli', 'E.coli'),
+    ('klebsiella_sp', 'Klebsiella sp.'),
+    (OTHER, 'Other, specify:'))
 
 VISIT_UNSCHEDULED_REASON = (
     ('routine_oncology',
