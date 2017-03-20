@@ -2,6 +2,7 @@ from .adverse_event_admin import AdverseEventAdmin
 from .death_admin import DeathAdmin
 from .follow_up_admin import FollowUpAdmin
 from .lp_csf_admin import LpCsfAdmin
+from .microbiology_admin import MicrobiologyAdmin
 from .patient_history_admin import PatientHistory
 from .protocol_deviation_violation_admin import ProtocolDeviationViolation
 from .radiology_admin import RadiologyAdmin
