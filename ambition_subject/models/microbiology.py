@@ -116,7 +116,9 @@ class Microbiology(CrfMetadata):
         null=True,
         verbose_name='If other, please specify:')
 
-    histopathology_report = models.TextField()
+    histopathology_report = models.TextField(
+        blank=True,
+        null=True)
 
     history = HistoricalRecords()
 
