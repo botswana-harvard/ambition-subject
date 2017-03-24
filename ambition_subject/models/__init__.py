@@ -17,3 +17,4 @@ from .subject_locator import SubjectLocator
 from .subject_offstudy import SubjectOffstudy
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
+from .week2 import Week2

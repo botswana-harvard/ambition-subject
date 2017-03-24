@@ -7,6 +7,12 @@ class AEClassification(ListModelMixin, BaseUuidModel):
         app_label = 'ambition_subject'
 
 
+class Antibiotics(ListModelMixin, BaseUuidModel):
+
+    class Meta(ListModelMixin.Meta):
+        app_label = 'ambition_subject'
+
+
 class MeningitisSymptoms(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
@@ -26,6 +32,12 @@ class SignificantNewDiagnoses(ListModelMixin, BaseUuidModel):
 
 
 class Symptoms(ListModelMixin, BaseUuidModel):
+
+    class Meta(ListModelMixin.Meta):
+        app_label = 'ambition_subject'
+
+
+class Otherdruglist(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
         app_label = 'ambition_subject'
