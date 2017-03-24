@@ -2,8 +2,8 @@ from django.db import models
 from django.utils import timezone
 
 from edc_appointment.model_mixins import CreateAppointmentsMixin
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_visit_schedule.model_mixins import EnrollmentModelMixin
 
 from ..managers import EnrollmentManager as BaseEnrollmentManager

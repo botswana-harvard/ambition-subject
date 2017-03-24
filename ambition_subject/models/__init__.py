@@ -1,6 +1,6 @@
 from .adverse_event import AdverseEvent
 from .crf_metadata import CrfMetadata
-from .death import Death
+from .death_report import DeathReport
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
 from .follow_up import FollowUp
