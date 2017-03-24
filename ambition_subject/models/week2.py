@@ -1,15 +1,13 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
+from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
-from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
-from ambition_subject.choices import PROTOCOL_VIOLATION, ACTION_REQUIRED,\
-    REASON_DRUG_MISSED, MEDICINES, CLINICAL_ASSESSMENT
-#     GLASGOW_COMA_SCORE_VERBAL, GLASGOW_COMA_SCORE_EYES,\
-#     GLASGOW_COMA_SCORE_MOTOR
-from django.core.validators import MinValueValidator
-from ambition_subject.models.list_models import Antibiotics, Otherdruglist
+
+from ..choices import REASON_DRUG_MISSED, MEDICINES, CLINICAL_ASSESSMENT
+from .list_models import Antibiotics, Otherdruglist
 
 
 class Week2(BaseUuidModel):
