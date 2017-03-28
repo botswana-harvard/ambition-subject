@@ -199,6 +199,13 @@ RAE_REASON = (
      'recurrence of symptoms not requiring admission, Hospital acquired '
      'pneumonia)'))
 
+
+RANDOMISATION_NUMBER = (
+    ('n1', 'N(1)'),
+    ('a2', 'A(2)'),
+    ('ams_n3', 'AMS_N(3)'),
+    ('ams_a4', 'AMS_A(4)'))
+
 REASON_DRUG_MISSED = (
     ('administered_to_protocol', 'Administered acc to protocol'),
     ('toxicity', 'Toxicity'),
@@ -206,6 +213,22 @@ REASON_DRUG_MISSED = (
     ('refused', 'Refused'),
     (OTHER, 'Other'),
     ('not_required_acc_protocol', 'Not required according to protocol'))
+
+REASON_STUDY_TERMINATED = (
+    ('10_weeks_completed_followUp', 'Patient completed 10 weeks of follow-up'),
+    ('patient_lost_to_follow_up', 'Patient lost to follow-up'),
+    ('died', 'Reported/known to have died'),
+    ('withdrawal_of_subject_consent', 'Withdrawal of Subject Consent for '
+                                      'participation'),
+    ('care_transferred_to_another_institution', 'Care transferred to another '
+                                                'institution'),
+    ('late_exclusion_criteria_met', 'Late exclusion criteria met'))
+
+REGIMEN = (
+    ('single_dose', '1 (Single dose)'),
+    ('two_doses', '2 (Two doses)'),
+    ('three_doses', '3 (Three Doses)'),
+    ('control', '4 (Control)'))
 
 STEROIDS_CHOICES = (
     ('oral_prednisolone', 'Oral prednisolone'),
@@ -219,26 +242,6 @@ STUDY_DRUG_RELATIONSHIP = (
     ('probably_related', 'Probably related'),
     ('definitely_related', 'Definitely related'),
     (NOT_APPLICABLE, 'Not Applicable'))
-
-RANDOMISATION_NUMBER = (
-    ('n1', 'N(1)'),
-    ('a2', 'A(2)'),
-    ('ams_n3', 'AMS_N(3)'),
-    ('ams_a4', 'AMS_A(4)'))
-
-REASON_DRUG_MISSED = (
-    ('A', 'Administered acc to protocol'),
-    ('T', 'Toxicity'),
-    ('M', 'Missed'),
-    ('R', 'Refused'),
-    (OTHER, 'Other'),
-    ('N', 'Not required according to protocol'))
-
-REGIMEN = (
-    ('single_dose', '1 (Single dose)'),
-    ('two_doses', '2 (Two doses)'),
-    ('three_doses', '3 (Three Doses)'),
-    ('control', '4 (Control)'))
 
 TB_SITE = (
     ('pulmonary', 'Pulmonary'),

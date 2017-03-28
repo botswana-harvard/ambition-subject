@@ -4,11 +4,11 @@ from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
 from ..forms import DeathForm
-from ..models import Death
+from ..models import DeathReport
 from .modeladmin_mixins import ModelAdminMixin
 
 
-@admin.register(Death, site=ambition_subject_admin)
+@admin.register(DeathReport, site=ambition_subject_admin)
 class DeathAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = DeathForm

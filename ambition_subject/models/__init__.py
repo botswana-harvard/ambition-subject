@@ -12,9 +12,10 @@ from .radiology import Radiology
 from .recurrence_symptoms import RecurrenceSymptoms
 from .result import ResultItem, Result
 from .screening_and_randomization import ScreeningRandomization
+from .study_termination_conclusion import StudyTerminationConclusion
 from .subject_consent import SubjectConsent
 from .subject_locator import SubjectLocator
 from .subject_offstudy import SubjectOffstudy
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
-from .week2 import Week2
+#from .week2 import Week2

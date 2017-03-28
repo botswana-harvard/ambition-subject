@@ -8,8 +8,9 @@ from .protocol_deviation_violation_form import ProtocolDeviationViolationForm
 from .radiology_form import RadiologyForm
 from .recurrence_symptoms_form import RecurrenceSymptomsForm
 from .screening_and_randomization_form import ScreeningRandomizationForm
+from .study_termination_conclusion_form import StudyTerminationConclusionForm
 from .subject_consent_form import SubjectConsentForm
 from .subject_locator_form import SubjectLocatorForm
 from .subject_requisition_form import SubjectRequisitionForm
 from .subject_visit_form import SubjectVisitForm
-from .week2_form import Week2Form
+#from .week2_form import Week2Form

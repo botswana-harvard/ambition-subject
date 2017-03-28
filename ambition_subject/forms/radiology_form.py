@@ -1,10 +1,10 @@
 from .form_mixins import SubjectModelFormMixin
 
-from ..models import Death
+from ..models import Radiology
 
 
 class RadiologyForm(SubjectModelFormMixin):
 
     class Meta():
-        model = Death
+        model = Radiology
         fields = '__all__'
