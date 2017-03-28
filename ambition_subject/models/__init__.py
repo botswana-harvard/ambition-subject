@@ -4,7 +4,7 @@ from .death_report import DeathReport
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
 from .follow_up import FollowUp
-from .lp_csf import LpCsf
+from ambition_subject.models.lumbar_puncture_cerebro_spinal_fluid import LpCsf
 from .microbiology import Microbiology
 from .patient_history import PatientHistory
 from .protocol_deviation_violation import ProtocolDeviationViolation

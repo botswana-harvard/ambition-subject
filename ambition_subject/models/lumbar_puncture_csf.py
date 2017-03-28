@@ -8,7 +8,7 @@ from ..choices import LP_REASON
 from .crf_metadata import CrfMetadata
 
 
-class LpCsf(CrfMetadata):
+class LumbarPunctureCsf(CrfMetadata):
 
     reason_for_lp = models.CharField(
         choices=LP_REASON,
