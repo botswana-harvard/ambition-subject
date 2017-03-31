@@ -6,7 +6,7 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
-from ..choices import ARV_REGIMEN, REASON_STUDY_TERMINATED, FIRST_LINE_REGIMEN
+from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, REASON_STUDY_TERMINATED
 
 
 class StudyTerminationConclusion(BaseUuidModel):
