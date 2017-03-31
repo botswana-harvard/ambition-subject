@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 
-from edc_constants.constants import OTHER
+from edc_constants.constants import OTHER, UNKNOWN
 
 list_data = {
     'ambition_subject.aeclassification': [
@@ -36,6 +36,18 @@ list_data = {
         ('neck_pain', 'Neck Pain'),
         (OTHER, 'Other')
     ],
+    'ambition_subject.missedvisitreasons': [
+        ('transportation_difficulty', 'Transportation difficulty'),
+        ('severely_sick', 'Severely sick or other physical conditions'),
+        ('discouraged_by_clinic_situation', 'Discouraged by clinic situation '
+                                            '(long waits, rude clinicians)'),
+        ('away_working_schooling', 'Away Working/Schooling'),
+        ('away_visiting', 'Away Visiting'),
+        ('forgot', 'Forgot about appointment for clinic visit'),
+        ('not_given_an_appointment', 'Not given an appointment'),
+        (OTHER, 'Other, specify;'),
+        (UNKNOWN, 'Reason not known at time of completing this form')
+    ],
     'ambition_subject.neurological': [
         ('meningismus', 'Meningismus'),
         ('papilloedema', 'Papilloedema'),
@@ -46,6 +58,15 @@ list_data = {
         ('CN_VII_palsy', 'Cranial Nerve VII palsy'),
         ('CN_VIII_palsy', 'Cranial Nerve VIII palsy'),
         (OTHER, 'Other CN palsy'),
+    ],
+    'ambition_subject.otherdruglist': [
+        ('antibiotics', 'Antibiotics'),
+        ('K', 'K'),
+        ('Mg', 'Mg'),
+        ('vitamins', 'Vitamins'),
+        ('TMP_SMX_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
+        ('Anti_convulsants', 'Anti convulsants'),
+        (OTHER, ' OTHER, specify')
     ],
     'ambition_subject.significantnewdiagnoses': [
         ('tb_pulmonary', 'TB pulmonary'),
@@ -73,15 +94,6 @@ list_data = {
         ('weight_loss', 'Weight Loss'),
         ('skin_lesions_cough', 'Skin Lesions Cough'),
         ('shortness_of_breath', 'Shortness of breath'),
-    ],
-    'ambition_subject.otherdruglist': [
-        ('antibiotics', 'Antibiotics'),
-        ('K', 'K'),
-        ('Mg', 'Mg'),
-        ('vitamins', 'Vitamins'),
-        ('TMP_SMX_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
-        ('Anti_convulsants', 'Anti convulsants'),
-        (OTHER, ' OTHER, specify')
     ],
 }
 

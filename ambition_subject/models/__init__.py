@@ -6,6 +6,7 @@ from .enrollment import Enrollment
 from .follow_up import FollowUp
 from .lumbar_puncture_cerebro_spinal_fluid import LumbarPunctureCerebroSpinalFluid
 from .microbiology import Microbiology
+from .missed_visit import MissedVisit
 from .patient_history import PatientHistory
 from .protocol_deviation_violation import ProtocolDeviationViolation
 from .radiology import Radiology
@@ -18,4 +19,4 @@ from .subject_locator import SubjectLocator
 from .subject_offstudy import SubjectOffstudy
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
-#from .week2 import Week2
+from .week2 import Week2

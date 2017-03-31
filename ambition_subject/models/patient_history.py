@@ -1,5 +1,4 @@
-from django.core.validators import (
-    MinValueValidator, MaxValueValidator, RegexValidator)
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_fields import OtherCharField
@@ -10,10 +9,8 @@ from edc_constants.choices import YES_NO
 
 from ..choices import (
     ARV_REGIMEN, FIRST_LINE_REGIMEN, MEDICATION_HISTORY, TB_SITE)
+from ..validators import bp_validator
 from .list_models import Neurological, Symptoms
-
-bp_validator = RegexValidator(
-    '^\d{1,3}\/\d{1,3}$', message='Enter a valid BP in SYS/DIA format')
 
 
 class PatientHistory(BaseUuidModel):

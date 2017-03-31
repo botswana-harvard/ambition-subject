@@ -3,6 +3,7 @@ from .death_admin import DeathAdmin
 from .follow_up_admin import FollowUpAdmin
 from .lumbar_puncture_cerebro_spinal_fluid_admin import LumbarPunctureCerebroSpinalFluidAdmin
 from .microbiology_admin import MicrobiologyAdmin
+from .missed_visit_admin import MissedVisitAdmin
 from .patient_history_admin import PatientHistory
 from .protocol_deviation_violation_admin import ProtocolDeviationViolation
 from .radiology_admin import RadiologyAdmin
@@ -13,4 +14,4 @@ from .subject_consent_admin import SubjectConsentAdmin
 from .subject_locator_admin import SubjectLocatorAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
-#from .week2_form_admin import Week2Admin
+from .week2_form_admin import Week2Admin
