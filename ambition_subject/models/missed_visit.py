@@ -23,6 +23,12 @@ class MissedVisit(BaseUuidModel):
         related_name='missedvisitreasons',
         verbose_name='Reason(s) why participant missed the study visit;')
 
+    reason_visit_missed_other = models.CharField(
+        blank=True,
+        max_length=50,
+        null=True,
+        verbose_name='If other reason, please specify:')
+
     notes_or_action_taken = models.TextField()
 
     history = HistoricalRecords()

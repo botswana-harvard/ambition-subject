@@ -21,6 +21,7 @@ class MissedVisitAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'missed_study_visit_date',
                 'visit_missed',
                 'reason_visit_missed',
+                'reason_visit_missed_other',
                 'notes_or_action_taken')}],
         audit_fieldset_tuple
     )
