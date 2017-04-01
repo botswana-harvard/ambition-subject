@@ -1,4 +1,5 @@
 from .adverse_event import AdverseEvent
+from .blood_results import BloodResults
 from .crf_metadata import CrfMetadata
 from .death_report import DeathReport
 from .disenrollment import Disenrollment
