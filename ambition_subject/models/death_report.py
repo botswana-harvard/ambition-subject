@@ -80,8 +80,9 @@ class DeathReport(BaseUuidModel):
         null=True,
         verbose_name='If cause of death is TB, specify site of TB disease')
 
-    narrative_summary = models.TextField(
-        verbose_name='Narrative Summary:')
+    narrative_summary = models.CharField(
+        verbose_name='Narrative Summary:',
+        max_length=500,)
 
     history = HistoricalRecords()
 

@@ -150,8 +150,7 @@ class PatientHistory(BaseUuidModel):
 
     neurological = models.ManyToManyField(
         Neurological,
-        blank=True,
-        null=True)
+        blank=True)
 
     neurological_other = OtherCharField()
 

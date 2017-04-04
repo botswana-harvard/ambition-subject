@@ -25,7 +25,7 @@ class DeathAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'death_date',
+                # 'death_date',
                 'study_day',
                 'death_as_inpatient')},
          ),

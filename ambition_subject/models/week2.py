@@ -6,7 +6,8 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
 
-from ..choices import REASON_DRUG_MISSED, MEDICINES, CLINICAL_ASSESSMENT
+from ..choices import (REASON_DRUG_MISSED, MEDICINES, GLASGOW_COMA_SCORE_EYES,
+                       GLASGOW_COMA_SCORE_VERBAL, GLASGOW_COMA_SCORE_MOTOR)
 from .list_models import Antibiotics, Otherdruglist
 
 
@@ -51,7 +52,7 @@ class Week2(BaseUuidModel):
         null=True,
         blank=False)
 
-    Fluconazole_stop_datetime = models.DateTimeField(
+    fluconazole_stop_datetime = models.DateTimeField(
         validators=[date_not_future],
         null=True,
         blank=False)
@@ -121,7 +122,8 @@ class Week2(BaseUuidModel):
         verbose_name='Clinical Assessment',
         max_length=25,
         null=True,
-        choices=CLINICAL_ASSESSMENT)
+        help_text='Patient died before 2 week assesment',
+        choices=YES_NO)
 
     headache = models.CharField(
         verbose_name='Headache',
@@ -179,24 +181,27 @@ class Week2(BaseUuidModel):
         max_length=25,
         choices=MEDICINES)
 
-    signifiant_diagnosis = models.CharField(
+    significant_diagnosis = models.CharField(
         verbose_name='Other significant diagnoses since enrolment?',
         max_length=25,
         choices=YES_NO)
 
-#     glasgow_coma_score_eyes = models.CharField(
-#         verbose_name='Glasgow Coma Score of eyes',
-#         max_length=25,
-#         choices=GLASGOW_COMA_SCORE_EYES)
-#
-#     glasgow_coma_score_verbal = models.CharField(
-#         verbose_name='Glasgow Coma Score of verbal',
-#         max_length=25,
-#         choices=GLASGOW_COMA_SCORE_VERBAL)
-#
-#     glasgow_coma_score_motor = models.CharField(
-#         verbose_name='Glasgow Coma Score of motor',
-#         max_length=25,
-#         choices=GLASGOW_COMA_SCORE_MOTOR)
+    glasgow_coma_score_eyes = models.CharField(
+        verbose_name='Glasgow Coma Score of eyes',
+        max_length=25,
+        choices=GLASGOW_COMA_SCORE_EYES)
+
+    glasgow_coma_score_verbal = models.CharField(
+        verbose_name='Glasgow Coma Score of verbal',
+        max_length=25,
+        choices=GLASGOW_COMA_SCORE_VERBAL)
+
+    glasgow_coma_score_motor = models.CharField(
+        verbose_name='Glasgow Coma Score of motor',
+        max_length=25,
+        choices=GLASGOW_COMA_SCORE_MOTOR)
 
     history = HistoricalRecords()
+
+    class Meta:
+        app_label = 'ambition_subject'

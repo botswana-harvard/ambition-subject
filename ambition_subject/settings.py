@@ -15,6 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+KEY_PATH = '/Volumes/crypto_keys/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -37,6 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crypto_fields.apps.AppConfig',
+    'django_revision.apps.AppConfig',
+    'edc_identifier.apps.AppConfig',
+    'edc_lab.apps.AppConfig',
+    'ambition_subject.apps.AppConfig',
+    'ambition_subject.apps.EdcAppointmentAppConfig',
+    'ambition_subject.apps.EdcBaseAppConfig',
+    'ambition_subject.apps.EdcDeviceAppConfig',
+    'ambition_subject.apps.EdcMetadataAppConfig',
+    'ambition_subject.apps.EdcTimepointAppConfig',
+    'ambition_subject.apps.EdcVisitTrackingAppConfig',
+    'edc_protocol.apps.AppConfig',
 ]
 
 MIDDLEWARE = [

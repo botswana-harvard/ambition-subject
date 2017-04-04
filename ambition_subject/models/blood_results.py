@@ -58,7 +58,7 @@ class BloodResults(CrfMetadata):
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         verbose_name='ALT')
 
-    crp = models.IntegerField(
+    crp = models.DecimalField(
         decimal_places=1,
         help_text='units in U/L',
         max_digits=4,
@@ -92,3 +92,7 @@ class BloodResults(CrfMetadata):
         null=True,
         verbose_name='If results abnormal, are results within Grade III/IV '
                      'AE range?')
+
+    class Meta:
+        app_label = 'ambition_subject'
+
