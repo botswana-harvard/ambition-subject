@@ -12,6 +12,8 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week2Form
 
+    filter_horizontal = ('other_drug_type', 'antibiotic_list',)
+
     fieldsets = (
         ['Admission history', {
             'fields': (

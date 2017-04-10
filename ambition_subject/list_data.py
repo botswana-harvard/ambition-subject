@@ -61,11 +61,11 @@ list_data = {
     ],
     'ambition_subject.otherdruglist': [
         ('antibiotics', 'Antibiotics'),
-        ('K', 'K'),
-        ('Mg', 'Mg'),
+        ('k', 'K'),
+        ('mg', 'Mg'),
         ('vitamins', 'Vitamins'),
-        ('TMP_SMX_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
-        ('Anti_convulsants', 'Anti convulsants'),
+        ('tmp_smx_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
+        ('anti_convulsants', 'Anti convulsants'),
         (OTHER, ' OTHER, specify')
     ],
     'ambition_subject.significantnewdiagnoses': [
