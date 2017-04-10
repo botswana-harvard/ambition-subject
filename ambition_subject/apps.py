@@ -58,11 +58,6 @@ class EdcBaseAppConfig(BaseEdcBaseAppConfig):
         country='Botswana')
 
 
-class EdcDeviceAppConfig(BaseEdcDeviceAppConfig):
-    device_role = CENTRAL_SERVER
-    device_id = 99
-
-
 class EdcLabAppConfig(BaseEdcLabAppConfig):
     requisition_model = 'ambition_subject.subjectrequisition'
 
