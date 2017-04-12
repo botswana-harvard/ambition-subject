@@ -3,9 +3,9 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA, POS_NEG
+from edc_metadata.models import CrfMetadata
 
 from ..choices import LP_REASON
-from .crf_metadata import CrfMetadata
 
 
 class LumbarPunctureCsf(CrfMetadata):

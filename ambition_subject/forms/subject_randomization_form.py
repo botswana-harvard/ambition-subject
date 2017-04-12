@@ -1,10 +1,10 @@
 from edc_constants.constants import YES
 
-from ..models import ScreeningRandomization
+from ..models import SubjectRandomization
 from .form_mixins import SubjectModelFormMixin
 
 
-class ScreeningRandomizationForm(SubjectModelFormMixin):
+class SubjectRandomizationForm(SubjectModelFormMixin):
 
     def clean(self):
 
@@ -14,5 +14,5 @@ class ScreeningRandomizationForm(SubjectModelFormMixin):
             field_required='arv_start_date')
 
     class Meta():
-        model = ScreeningRandomization
+        model = SubjectRandomization
         fields = '__all__'

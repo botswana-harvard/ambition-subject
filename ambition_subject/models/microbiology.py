@@ -3,11 +3,11 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, POS_NEG
+from edc_metadata.models import CrfMetadata
 
 from ..choices import (
     BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM, CULTURE_RESULTS,
     POS_NEG_NA, URINE_CULTURE_RESULTS_ORGANISM)
-from .crf_metadata import CrfMetadata
 
 
 class Microbiology(CrfMetadata):

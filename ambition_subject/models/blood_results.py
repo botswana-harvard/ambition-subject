@@ -4,8 +4,7 @@ from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import POS_NEG, YES_NO
-
-from .crf_metadata import CrfMetadata
+from edc_metadata.models import CrfMetadata
 
 
 class BloodResults(CrfMetadata):
@@ -92,6 +91,8 @@ class BloodResults(CrfMetadata):
         null=True,
         verbose_name='If results abnormal, are results within Grade III/IV '
                      'AE range?')
+
+    history = HistoricalRecords()
 
     class Meta:
         app_label = 'ambition_subject'

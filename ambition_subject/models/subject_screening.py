@@ -2,20 +2,15 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_base.model_validators import date_not_future
 from edc_constants.choices import GENDER, YES_NO, YES_NO_NA
 
-from ..choices import RANDOMISATION_NUMBER, REGIMEN
 
+class SubjectScreening(BaseUuidModel):
 
-class ScreeningRandomization(BaseUuidModel):
-
-##Could be obtained from Consent Data
     sex = models.CharField(
         choices=GENDER,
         max_length=10)
 
-##Could be obtained from Consent Data
     age = models.IntegerField()
 
     is_of_age = models.CharField(
@@ -26,7 +21,7 @@ class ScreeningRandomization(BaseUuidModel):
     meningitis_diagoses_by_csf_or_crag = models.CharField(
         choices=YES_NO,
         max_length=5,
-        verbose_name='First episode cryptococcal meningitis diag- nosed by '
+        verbose_name='First episode cryptococcal meningitis diagnosed by '
                      'either: CSF India Ink or CSF cryptococcal antigen '
                      '(CRAG)')
 
@@ -75,49 +70,8 @@ class ScreeningRandomization(BaseUuidModel):
         max_length=5,
         verbose_name='Is the patient eligible for the study?')
 
-    consent_given = models.CharField(
-        choices=YES_NO,
-        max_length=5,
-        verbose_name='If yes, has consent been given?')
-
-    hospital_admission_date = models.DateField(
-        validators=[date_not_future],
-        verbose_name='Date of hospital admission')
-
-    inclusion_date = models.DateField(
-        validators=[date_not_future],
-        verbose_name='Date of inclusion')
-
-    abnormal_mental_status = models.CharField(
-        choices=YES_NO,
-        max_length=5,
-        help_text='Abnormal mental status is GCS<15')
-
-    already_on_arvs = models.CharField(
-        choices=YES_NO,
-        max_length=5)
-
-    arv_start_date = models.DateField(
-        blank=True,
-        null=True,
-        validators=[date_not_future],
-        verbose_name='If yes, ARV start date:')
-
-    randomization_number = models.CharField(
-        choices=RANDOMISATION_NUMBER,
-        max_length=10)
-
-    consent_form_signed = models.CharField(
-        choices=YES_NO,
-        max_length=5,
-        verbose_name='Consent form signed and copy given to participant')
-
-    regimen = models.CharField(
-        choices=REGIMEN,
-        max_length=15)
-
     history = HistoricalRecords()
 
     class Meta:
         app_label = 'ambition_subject'
-        verbose_name = 'Screening and randomization'
+        verbose_name = 'Subject Screening'
