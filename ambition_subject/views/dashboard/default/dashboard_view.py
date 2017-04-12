@@ -18,8 +18,8 @@ class DashboardView(
         AppConfigViewMixin, EdcBaseViewMixin,
         TemplateView):
 
-    app_config_name = 'bcpp_subject'
-    navbar_item_selected = 'bcpp_subject'
+    app_config_name = 'ambition_subject'
+    navbar_item_selected = 'ambition_subject'
     consent_model_wrapper_class = SubjectConsentModelWrapper
     consent_model = SubjectConsent
     crf_model_wrapper_class = CrfModelWrapper

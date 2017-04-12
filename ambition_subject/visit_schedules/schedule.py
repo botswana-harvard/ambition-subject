@@ -48,7 +48,7 @@ schedule.add_visit(
     code='D10',
     title='Day 10',
     timepoint=4,
-    base_interval=10,
+    base_interval=9, #TODO: Base interval should be 10
     base_interval_unit=DAYS,
     requisitions=requisitions,
     crfs=crfs)

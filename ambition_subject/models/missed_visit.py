@@ -19,8 +19,6 @@ class MissedVisit(BaseUuidModel):
 
     reason_visit_missed = models.ManyToManyField(
         MissedVisitReasons,
-        max_length=50,
-        related_name='missedvisitreasons',
         verbose_name='Reason(s) why participant missed the study visit;')
 
     reason_visit_missed_other = models.CharField(

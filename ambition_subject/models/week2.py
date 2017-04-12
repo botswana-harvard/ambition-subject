@@ -16,46 +16,40 @@ class Week2(BaseUuidModel):
     discharged = models.CharField(
         verbose_name='Discharged?',
         max_length=25,
-        null=True,
-        blank=True,
         choices=YES_NO)
 
     discharge_datetime = models.DateTimeField(
         validators=[date_not_future],
         null=True,
-        blank=False)
+        blank=True)
 
     died = models.CharField(
         verbose_name='Died?',
         max_length=25,
-        null=True,
-        blank=True,
         choices=YES_NO)
 
     death_datetime = models.DateTimeField(
         validators=[date_not_future],
         null=True,
-        blank=False)
+        blank=True)
 
     ambisome_start_datetime = models.DateTimeField(
-        validators=[date_not_future],
-        null=True,
-        blank=False)
+        validators=[date_not_future])
 
     ambisome_stop_datetime = models.DateTimeField(
         validators=[date_not_future],
         null=True,
-        blank=False)
+        blank=True)
 
     fluconazole_start_datetime = models.DateTimeField(
         validators=[date_not_future],
         null=True,
-        blank=False)
+        blank=True)
 
     fluconazole_stop_datetime = models.DateTimeField(
         validators=[date_not_future],
         null=True,
-        blank=False)
+        blank=True)
 
     drug_doses_missed = models.CharField(
         verbose_name='Were any drug doses missed?',
