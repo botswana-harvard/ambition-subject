@@ -11,7 +11,6 @@ class SubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {
         'sex': admin.VERTICAL,
-        'is_of_age': admin.VERTICAL,
         'meningitis_diagoses_by_csf_or_crag': admin.VERTICAL,
         'consent_to_hiv_test': admin.VERTICAL,
         'willing_to_give_informed_consent': admin.VERTICAL,

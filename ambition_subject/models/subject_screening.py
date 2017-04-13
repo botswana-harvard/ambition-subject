@@ -13,11 +13,6 @@ class SubjectScreening(BaseUuidModel):
 
     age = models.IntegerField()
 
-    is_of_age = models.CharField(
-        choices=YES_NO,
-        max_length=5,
-        verbose_name='Age ≥18 years')
-
     meningitis_diagoses_by_csf_or_crag = models.CharField(
         choices=YES_NO,
         max_length=5,
@@ -70,8 +65,25 @@ class SubjectScreening(BaseUuidModel):
         max_length=5,
         verbose_name='Is the patient eligible for the study?')
 
+    is_eligible = models.BooleanField(
+        default=False,
+        editable=False)
+
+    ineligibility = models.TextField(
+        verbose_name="Reason not eligible",
+        max_length=150,
+        null=True,
+        editable=False)
+
     history = HistoricalRecords()
 
     class Meta:
         app_label = 'ambition_subject'
         verbose_name = 'Subject Screening'
+
+    def save(self, *args, **kwargs):
+        self.is_eligible, self.ineligibility = self.get_is_eligible()
+        super(SubjectScreening, self).save(*args, **kwargs)
+
+    def get_is_eligible(self):
+        pass

@@ -3,7 +3,7 @@ from edc_visit_schedule.schedule import Schedule
 
 from .crfs import (
     crfs, day1_crfs, day3_crfs, day7_crfs, day14_crfs, week4_crfs, follow_up)
-from .requisitions import requisitions
+from .requisitions import requisitions, requisitions_d1, requisitions_d3, requisitions_d7
 
 # schedule for new participants
 schedule = Schedule(name='schedule', title='Ambition')
@@ -14,7 +14,7 @@ schedule.add_visit(
     timepoint=0,
     base_interval=1,
     base_interval_unit=DAYS,
-    requisitions=requisitions,
+    requisitions=requisitions_d1,
     crfs=day1_crfs)
 
 schedule.add_visit(
@@ -23,7 +23,7 @@ schedule.add_visit(
     timepoint=1,
     base_interval=3,
     base_interval_unit=DAYS,
-    requisitions=requisitions,
+    requisitions=requisitions_d3,
     crfs=day3_crfs)
 
 schedule.add_visit(
@@ -32,7 +32,7 @@ schedule.add_visit(
     timepoint=2,
     base_interval=5,
     base_interval_unit=DAYS,
-    requisitions=requisitions,
+    requisitions=requisitions_d3,
     crfs=crfs)
 
 schedule.add_visit(
@@ -41,7 +41,7 @@ schedule.add_visit(
     timepoint=3,
     base_interval=7,
     base_interval_unit=DAYS,
-    requisitions=requisitions,
+    requisitions=requisitions_d7,
     crfs=day7_crfs)
 
 schedule.add_visit(
@@ -50,7 +50,7 @@ schedule.add_visit(
     timepoint=4,
     base_interval=9, #TODO: Base interval should be 10
     base_interval_unit=DAYS,
-    requisitions=requisitions,
+    requisitions=requisitions_d3,
     crfs=crfs)
 
 schedule.add_visit(
@@ -59,7 +59,7 @@ schedule.add_visit(
     timepoint=5,
     base_interval=12,
     base_interval_unit=DAYS,
-    requisitions=requisitions,
+    requisitions=requisitions_d3,
     crfs=crfs)
 
 schedule.add_visit(
@@ -68,7 +68,7 @@ schedule.add_visit(
     timepoint=6,
     base_interval=14,
     base_interval_unit=DAYS,
-    requisitions=requisitions,
+    requisitions=requisitions_d7,
     crfs=day14_crfs)
 
 schedule.add_visit(

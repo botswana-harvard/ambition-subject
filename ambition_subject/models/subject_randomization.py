@@ -50,4 +50,4 @@ class SubjectRandomization(BaseUuidModel):
 
     class Meta:
         app_label = 'ambition_subject'
-        verbose_name = 'Screening and randomization'
+        verbose_name = 'Subject Randomization'
