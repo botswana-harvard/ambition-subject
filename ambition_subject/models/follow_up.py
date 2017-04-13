@@ -4,9 +4,9 @@ from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
+from edc_metadata.models import CrfMetadata
 
 from ..choices import FLUCONAZOLE_DOSE
-from .crf_metadata import CrfMetadata
 from .list_models import SignificantNewDiagnoses
 
 

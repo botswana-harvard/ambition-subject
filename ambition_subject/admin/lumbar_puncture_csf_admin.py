@@ -3,15 +3,15 @@ from django.contrib import admin
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..forms import LumbarPunctureCerebroSpinalFluidForm
-from ..models import LumbarPunctureCerebroSpinalFluid
+from ..forms import LumbarPunctureCSFForm
+from ..models import LumbarPunctureCsf
 from .modeladmin_mixins import ModelAdminMixin
 
 
-@admin.register(LumbarPunctureCerebroSpinalFluid, site=ambition_subject_admin)
-class LumbarPunctureCerebroSpinalFluidAdmin(ModelAdminMixin, admin.ModelAdmin):
+@admin.register(LumbarPunctureCsf, site=ambition_subject_admin)
+class LumbarPunctureCSFAdmin(ModelAdminMixin, admin.ModelAdmin):
 
-    form = LumbarPunctureCerebroSpinalFluidForm
+    form = LumbarPunctureCSFForm
 
     radio_fields = {
         'reason_for_lp': admin.VERTICAL,

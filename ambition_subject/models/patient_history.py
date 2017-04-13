@@ -3,9 +3,9 @@ from django.db import models
 
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
+from edc_metadata.models import CrfMetadata
 
 from ..choices import (
     ARV_REGIMEN, FIRST_LINE_REGIMEN, MEDICATION_HISTORY, TB_SITE)
@@ -13,7 +13,7 @@ from ..validators import bp_validator
 from .list_models import Neurological, Symptoms
 
 
-class PatientHistory(BaseUuidModel):
+class PatientHistory(CrfMetadata):
 
     current_symptoms = models.ManyToManyField(
         Symptoms,

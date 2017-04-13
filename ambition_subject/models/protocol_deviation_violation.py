@@ -8,7 +8,7 @@ from edc_constants.choices import YES_NO
 from ..choices import PROTOCOL_VIOLATION, ACTION_REQUIRED
 
 
-class ProtocolDeviationViolation (BaseUuidModel):
+class ProtocolDeviationViolation(BaseUuidModel):
 
     participant_safety_impact = models.CharField(
         verbose_name='Could this occurrence have an impact on safety of the '

@@ -2,16 +2,16 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
+from edc_metadata.models import CrfMetadata
 
 from ..choices import (REASON_DRUG_MISSED, MEDICINES, GLASGOW_COMA_SCORE_EYES,
                        GLASGOW_COMA_SCORE_VERBAL, GLASGOW_COMA_SCORE_MOTOR)
 from .list_models import Antibiotics, Otherdruglist
 
 
-class Week2(BaseUuidModel):
+class Week2(CrfMetadata):
 
     discharged = models.CharField(
         verbose_name='Discharged?',
