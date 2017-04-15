@@ -2,7 +2,6 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
-from edc_metadata.models import CrfMetadata
 
 from ..choices import (ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON,
                        CXR_TYPE, INFILTRATE_LOCATION)
