@@ -32,7 +32,7 @@ class UpdatesOrCreatesRegistrationModelMixin(BaseUpdatesOrCreatesRegistrationMod
         """
         registration_options = super().registration_options
         registration_options.update(
-            registration_identifier=self.household_member.internal_identifier)
+            registration_identifier=self.household_member.internal_identifier.hex)
         return registration_options
 
     def registration_raise_on_illegal_value_change(self, registered_subject):
@@ -46,7 +46,7 @@ class UpdatesOrCreatesRegistrationModelMixin(BaseUpdatesOrCreatesRegistrationMod
                     self.identity))
         if (registered_subject.registration_identifier
             and registered_subject.registration_identifier !=
-                self.household_member.internal_identifier):
+                self.household_member.internal_identifier.hex):
             raise RegisteredSubjectError(
                 'Internal Identifier may not be changed. Expected {}. '
                 'Got {}'.format(
