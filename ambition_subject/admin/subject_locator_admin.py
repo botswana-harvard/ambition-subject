@@ -17,7 +17,7 @@ class SubjectLocatorAdmin(ModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'subject_identifier',
-                'date_signed',
+                # 'date_signed',
                 'mail_address',
                 'home_visit_permission',
                 'physical_address',
@@ -44,7 +44,7 @@ class SubjectLocatorAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     list_display = (
         'subject_identifier',
-        'date_signed',
+        # 'date_signed',
         'home_visit_permission',
         'may_follow_up',
         'has_alt_contact',

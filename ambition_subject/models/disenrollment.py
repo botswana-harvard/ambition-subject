@@ -1,9 +1,8 @@
 from edc_base.model_mixins import BaseUuidModel
+from edc_consent.model_mixins import RequiresConsentMixin
 from edc_visit_schedule.model_mixins import DisenrollmentModelMixin
 
 from ..managers import DisenrollmentManager
-
-from edc_consent.model_mixins import RequiresConsentMixin
 
 
 class Disenrollment(DisenrollmentModelMixin, RequiresConsentMixin, BaseUuidModel):

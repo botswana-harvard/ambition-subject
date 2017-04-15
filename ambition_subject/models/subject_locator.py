@@ -2,8 +2,9 @@ from django.apps import apps as django_apps
 from django.db import models
 from django_crypto_fields.fields import EncryptedCharField
 
-from edc_base.bw.validators import BWCellNumber, BWTelephoneNumber
-from edc_base.model_mixins import HistoricalRecords, BaseUuidModel
+from edc_base.model_validators import CellNumber, TelephoneNumber
+from edc_base.model_mixins import BaseUuidModel
+from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO_NA, YES, NOT_APPLICABLE
 from edc_consent.model_mixins import RequiresConsentMixin
 from edc_locator.model_mixins import LocatorModelMixin
@@ -17,7 +18,7 @@ class SubjectLocator(LocatorModelMixin, RequiresConsentMixin, BaseUuidModel):
     alt_contact_cell_number = EncryptedCharField(
         max_length=8,
         verbose_name="Cell number (alternate)",
-        validators=[BWCellNumber, ],
+        validators=[CellNumber, ],
         help_text="",
         blank=True,
         null=True)
@@ -48,7 +49,7 @@ class SubjectLocator(LocatorModelMixin, RequiresConsentMixin, BaseUuidModel):
     alt_contact_cell = EncryptedCharField(
         max_length=8,
         verbose_name="Cell number",
-        validators=[BWCellNumber, ],
+        validators=[CellNumber, ],
         help_text="",
         blank=True,
         null=True,
@@ -57,7 +58,7 @@ class SubjectLocator(LocatorModelMixin, RequiresConsentMixin, BaseUuidModel):
     other_alt_contact_cell = EncryptedCharField(
         max_length=8,
         verbose_name="Cell number (alternate)",
-        validators=[BWCellNumber, ],
+        validators=[CellNumber, ],
         help_text="",
         blank=True,
         null=True,
@@ -66,7 +67,7 @@ class SubjectLocator(LocatorModelMixin, RequiresConsentMixin, BaseUuidModel):
     alt_contact_tel = EncryptedCharField(
         max_length=8,
         verbose_name="Telephone number",
-        validators=[BWTelephoneNumber, ],
+        validators=[TelephoneNumber, ],
         help_text="",
         blank=True,
         null=True,

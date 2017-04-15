@@ -1,0 +1,6 @@
+AMS_N3 = 'ams_n3'
+HISTOPATHOLOGY_REPORT = 'Some long report'
+NVP = 'NVP'
+POSITIVE = 'positive'
+SINGLE_DOSE = 'single_dose'
+VIBRIO = 'vibrio'

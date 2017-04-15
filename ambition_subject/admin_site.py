@@ -4,7 +4,7 @@ from django.contrib.admin import AdminSite as DjangoAdminSite
 class AdminSite(DjangoAdminSite):
     site_title = 'Ambition Subject'
     site_header = 'Ambition Subject'
-    index_title = 'BCPP Subject'
+    index_title = 'Ambition Subject'
     site_url = '/ambition_subject/list/'
 
 
