@@ -98,3 +98,8 @@ class StudyTerminationConclusion(BaseUuidModel):
         choices=FIRST_LINE_REGIMEN,
         max_length=3,
         verbose_name='If first line, on EFV or NVP?')
+
+    history = HistoricalRecords()
+
+    class Meta:
+        app_label = 'ambition_subject'

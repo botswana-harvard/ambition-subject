@@ -1,9 +1,9 @@
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_is_future
 from edc_constants.choices import YES_NO
-from edc_metadata.models import CrfMetadata
 
 from ..choices import (
     AE_SEVERITY, AE_INTENSITY, PATIENT_TREATMENT_GROUP, RAE_REASON,
@@ -11,7 +11,7 @@ from ..choices import (
 from .list_models import AEClassification
 
 
-class AdverseEvent(CrfMetadata):
+class AdverseEvent(BaseUuidModel):
 
     ae_awareness_date = models.DateField(
         verbose_name='AE Awareness date',
@@ -161,6 +161,6 @@ class AdverseEvent(CrfMetadata):
 
     history = HistoricalRecords()
 
-    class Meta:
+    class Meta(BaseUuidModel.Meta):
         app_label = 'ambition_subject'
         verbose_name = 'Adverse Event'

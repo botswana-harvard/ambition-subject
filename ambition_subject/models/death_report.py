@@ -2,14 +2,10 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
-#from edc_death_report.model_mixins import DeathReportModelMixin
 
 from ..choices import CAUSE_OF_DEATH, TB_SITE_DEATH
 
-
-#class DeathReport(DeathReportModelMixin, BaseUuidModel):
 
 class DeathReport(BaseUuidModel):
 

@@ -5,7 +5,7 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
-from ..choices import RANDOMISATION_NUMBER, REGIMEN
+from ..choices import RANDOMIZATION_NUMBER, REGIMEN
 
 
 class SubjectRandomization(BaseUuidModel):
@@ -34,7 +34,7 @@ class SubjectRandomization(BaseUuidModel):
         verbose_name='If yes, ARV start date:')
 
     randomization_number = models.CharField(
-        choices=RANDOMISATION_NUMBER,
+        choices=RANDOMIZATION_NUMBER,
         max_length=10)
 
     consent_form_signed = models.CharField(
@@ -50,4 +50,3 @@ class SubjectRandomization(BaseUuidModel):
 
     class Meta:
         app_label = 'ambition_subject'
-        verbose_name = 'Subject Randomization'

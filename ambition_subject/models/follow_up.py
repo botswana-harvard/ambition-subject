@@ -7,10 +7,11 @@ from edc_constants.choices import YES_NO
 from edc_metadata.models import CrfMetadata
 
 from ..choices import FLUCONAZOLE_DOSE
-from .list_models import SignificantNewDiagnoses
+from .list_models import SignificantNewDiagnosis
+from .model_mixins import CrfModelMixin
 
 
-class FollowUp(CrfMetadata):
+class FollowUp(CrfModelMixin):
 
     physical_symptoms = models.CharField(
         choices=YES_NO,
@@ -61,8 +62,8 @@ class FollowUp(CrfMetadata):
         max_length=5,
         verbose_name='Focal neurology:')
 
-    significant_new_diagnoses = models.ManyToManyField(
-        SignificantNewDiagnoses,
+    significant_new_diagnosis = models.ManyToManyField(
+        SignificantNewDiagnosis,
         help_text='Please tick all relevant',
         verbose_name='Other significant new diagnoses since last visit?:')
 
@@ -105,5 +106,5 @@ class FollowUp(CrfMetadata):
 
     history = HistoricalRecords()
 
-    class Meta:
+    class Meta(CrfMetadata.Meta):
         app_label = 'ambition_subject'

@@ -5,18 +5,18 @@ from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
-from edc_metadata.models import CrfMetadata
 
 from ..choices import (
     ARV_REGIMEN, FIRST_LINE_REGIMEN, MEDICATION_HISTORY, TB_SITE)
 from ..validators import bp_validator
-from .list_models import Neurological, Symptoms
+from .list_models import Neurological, Symptom
+from .model_mixins import CrfModelMixin
 
 
-class PatientHistory(CrfMetadata):
+class PatientHistory(CrfModelMixin):
 
-    current_symptoms = models.ManyToManyField(
-        Symptoms,
+    symptom = models.ManyToManyField(
+        Symptom,
         related_name='symptoms',
         verbose_name='What are your current symptoms?')
 
@@ -200,6 +200,6 @@ class PatientHistory(CrfMetadata):
 
     history = HistoricalRecords()
 
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         verbose_name_plural = 'Patients History'

@@ -6,9 +6,10 @@ from edc_metadata.models import CrfMetadata
 
 from ..choices import (ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON,
                        CXR_TYPE, INFILTRATE_LOCATION)
+from .model_mixins import CrfModelMixin
 
 
-class Radiology(CrfMetadata):
+class Radiology(CrfModelMixin):
 
     is_cxr_done = models.CharField(
         choices=YES_NO,
@@ -87,6 +88,6 @@ class Radiology(CrfMetadata):
 
     history = HistoricalRecords()
 
-    class Meta():
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         verbose_name_plural = 'Radiology'

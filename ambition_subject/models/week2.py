@@ -4,14 +4,14 @@ from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
-from edc_metadata.models import CrfMetadata
 
 from ..choices import (REASON_DRUG_MISSED, MEDICINES, GLASGOW_COMA_SCORE_EYES,
                        GLASGOW_COMA_SCORE_VERBAL, GLASGOW_COMA_SCORE_MOTOR)
-from .list_models import Antibiotics, Otherdruglist
+from .list_models import Antibiotic, OtherDrug
+from .model_mixins import CrfModelMixin
 
 
-class Week2(CrfMetadata):
+class Week2(CrfModelMixin):
 
     discharged = models.CharField(
         verbose_name='Discharged?',
@@ -82,12 +82,12 @@ class Week2(CrfMetadata):
         blank=True,
         choices=REASON_DRUG_MISSED)
 
-    other_drug_type = models.ManyToManyField(
-        Otherdruglist,
+    other_drug = models.ManyToManyField(
+        OtherDrug,
         verbose_name="Other drugs/interventions given during first 14 days",)
 
-    antibiotic_list = models.ManyToManyField(
-        Antibiotics,
+    antibiotic = models.ManyToManyField(
+        Antibiotic,
         verbose_name="if antibiotics, select the ones given",)
 
     blood_received = models.CharField(
@@ -197,5 +197,5 @@ class Week2(CrfMetadata):
 
     history = HistoricalRecords()
 
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'

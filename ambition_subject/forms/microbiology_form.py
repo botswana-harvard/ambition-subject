@@ -1,7 +1,7 @@
 from edc_constants.constants import OTHER, YES
 
-from ..models import Microbiology
 from ..constants import POSITIVE
+from ..models import Microbiology
 from .form_mixins import SubjectModelFormMixin
 
 
@@ -69,6 +69,6 @@ class MicrobiologyForm(SubjectModelFormMixin):
             field='tissue_biopsy_results',
             field_required='tissue_biopsy_organism_other')
 
-    class Meta():
+    class Meta:
         model = Microbiology
         fields = '__all__'

@@ -1,10 +1,9 @@
-from .form_mixins import SubjectModelFormMixin
-
 from ..models import SubjectScreening
+from .form_mixins import SubjectModelFormMixin
 
 
 class SubjectScreeningForm(SubjectModelFormMixin):
 
-    class Meta():
+    class Meta:
         model = SubjectScreening
         fields = '__all__'

@@ -13,7 +13,6 @@ class SubjectOffstudy(OffstudyModelMixin, BaseUuidModel):
 
     history = HistoricalRecords()
 
-    class Meta:
+    class Meta(OffstudyModelMixin.Meta):
         app_label = "ambition_subject"
-        verbose_name = "Subject Off Study"
         verbose_name_plural = "Subject Off Study"

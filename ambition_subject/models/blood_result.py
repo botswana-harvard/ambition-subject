@@ -2,12 +2,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import date_not_future
 from edc_constants.choices import POS_NEG, YES_NO
-from edc_metadata.models import CrfMetadata
+
+from .model_mixins import CrfModelMixin
 
 
-class BloodResults(CrfMetadata):
+class BloodResult(CrfModelMixin):
 
     wbc = models.DecimalField(
         decimal_places=1,
@@ -94,6 +94,5 @@ class BloodResults(CrfMetadata):
 
     history = HistoricalRecords()
 
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
-

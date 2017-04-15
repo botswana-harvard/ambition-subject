@@ -7,13 +7,13 @@ class AEClassification(ListModelMixin, BaseUuidModel):
         app_label = 'ambition_subject'
 
 
-class Antibiotics(ListModelMixin, BaseUuidModel):
+class Antibiotic(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
         app_label = 'ambition_subject'
 
 
-class MeningitisSymptoms(ListModelMixin, BaseUuidModel):
+class MeningitisSymptom(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
         app_label = 'ambition_subject'
@@ -25,25 +25,25 @@ class Neurological(ListModelMixin, BaseUuidModel):
         app_label = 'ambition_subject'
 
 
-class MissedVisitReasons(ListModelMixin, BaseUuidModel):
+class MissedVisitReason(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
         app_label = 'ambition_subject'
 
 
-class SignificantNewDiagnoses(ListModelMixin, BaseUuidModel):
+class SignificantNewDiagnosis(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
         app_label = 'ambition_subject'
 
 
-class Symptoms(ListModelMixin, BaseUuidModel):
+class Symptom(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
         app_label = 'ambition_subject'
 
 
-class Otherdruglist(ListModelMixin, BaseUuidModel):
+class OtherDrug(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
         app_label = 'ambition_subject'

@@ -7,7 +7,7 @@ from .missed_visit_admin import MissedVisitAdmin
 from .patient_history_admin import PatientHistory
 from .protocol_deviation_violation_admin import ProtocolDeviationViolation
 from .radiology_admin import RadiologyAdmin
-from .recurrence_symptoms_admin import RecurrenceSymptomsAdmin
+from .recurrence_symptom_admin import RecurrenceSymptomAdmin
 from .study_termination_conclusion_admin import StudyTerminationConclusionAdmin
 from .subject_consent_admin import SubjectConsentAdmin
 from .subject_locator_admin import SubjectLocatorAdmin

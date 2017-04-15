@@ -27,6 +27,6 @@ class PatientHistoryForm(SubjectModelFormMixin):
         self.required_if(
             YES, field='other_medications', field_required='specify_medications')
 
-    class Meta():
+    class Meta:
         model = PatientHistory
         fields = '__all__'

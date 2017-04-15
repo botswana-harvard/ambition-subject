@@ -3,15 +3,15 @@ from django.contrib import admin
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..forms import BloodResultsForm
-from ..models import BloodResults
+from ..forms import BloodResultForm
+from ..models import BloodResult
 from .modeladmin_mixins import ModelAdminMixin
 
 
-@admin.register(BloodResults, site=ambition_subject_admin)
+@admin.register(BloodResult, site=ambition_subject_admin)
 class BloodResultsAdmin(ModelAdminMixin, admin.ModelAdmin):
 
-    form = BloodResultsForm
+    form = BloodResultForm
 
     radio_fields = {
         'proteinuria': admin.VERTICAL,

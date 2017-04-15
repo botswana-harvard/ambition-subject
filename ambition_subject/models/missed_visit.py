@@ -4,7 +4,7 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 
-from .list_models import MissedVisitReasons
+from .list_models import MissedVisitReason
 
 
 class MissedVisit(BaseUuidModel):
@@ -17,11 +17,11 @@ class MissedVisit(BaseUuidModel):
         help_text='Insert visit code',
         max_digits=3)
 
-    reason_visit_missed = models.ManyToManyField(
-        MissedVisitReasons,
+    missed_visit_reason = models.ManyToManyField(
+        MissedVisitReason,
         verbose_name='Reason(s) why participant missed the study visit;')
 
-    reason_visit_missed_other = models.CharField(
+    missed_visit_reason_other = models.CharField(
         blank=True,
         max_length=50,
         null=True,
@@ -30,3 +30,6 @@ class MissedVisit(BaseUuidModel):
     notes_or_action_taken = models.TextField()
 
     history = HistoricalRecords()
+
+    class Meta:
+        app_label = 'ambition_subject'

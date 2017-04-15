@@ -200,7 +200,7 @@ RAE_REASON = (
      'pneumonia)'))
 
 
-RANDOMISATION_NUMBER = (
+RANDOMIZATION_NUMBER = (
     ('n1', 'N(1)'),
     ('a2', 'A(2)'),
     ('ams_n3', 'AMS_N(3)'),

@@ -3,12 +3,12 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA, POS_NEG
-from edc_metadata.models import CrfMetadata
 
 from ..choices import LP_REASON
+from .model_mixins import CrfModelMixin
 
 
-class LumbarPunctureCsf(CrfMetadata):
+class LumbarPunctureCsf(CrfModelMixin):
 
     reason_for_lp = models.CharField(
         choices=LP_REASON,
@@ -90,7 +90,7 @@ class LumbarPunctureCsf(CrfMetadata):
 
     history = HistoricalRecords()
 
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         verbose_name = 'Lumbar Puncture/Cerebrospinal Fluid'
         verbose_name_plural = 'Lumbar Puncture/Cerebrospinal Fluid'

@@ -4,6 +4,6 @@ from .form_mixins import SubjectModelFormMixin
 
 class MissedVisitForm(SubjectModelFormMixin):
 
-    class Meta():
+    class Meta:
         model = MissedVisit
         fields = '__all__'

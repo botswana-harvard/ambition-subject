@@ -77,13 +77,13 @@ class SubjectScreening(BaseUuidModel):
 
     history = HistoricalRecords()
 
+    def save(self, *args, **kwargs):
+        self.is_eligible, self.ineligibility = self.get_is_eligible()
+        super().save(*args, **kwargs)
+
+    def get_is_eligible(self):
+        raise TypeError('Eligibility criteria not evaluated')
+
     class Meta:
         app_label = 'ambition_subject'
         verbose_name = 'Subject Screening'
-
-    def save(self, *args, **kwargs):
-        self.is_eligible, self.ineligibility = self.get_is_eligible()
-        super(SubjectScreening, self).save(*args, **kwargs)
-
-    def get_is_eligible(self):
-        pass

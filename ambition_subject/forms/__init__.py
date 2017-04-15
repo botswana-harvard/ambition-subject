@@ -1,5 +1,5 @@
 from .adverse_event_form import AdverseEventForm
-from .blood_results_form import BloodResultsForm
+from .blood_result_form import BloodResultForm
 from .death_form import DeathForm
 from .follow_up import FollowUpForm
 from .lumbar_puncture_csf_form import LumbarPunctureCSFForm
@@ -8,7 +8,7 @@ from .missed_visit_form import MissedVisitForm
 from .patient_history_form import PatientHistoryForm
 from .protocol_deviation_violation_form import ProtocolDeviationViolationForm
 from .radiology_form import RadiologyForm
-from .recurrence_symptoms_form import RecurrenceSymptomsForm
+from .recurrence_symptom_form import RecurrenceSymptomForm
 from .study_termination_conclusion_form import StudyTerminationConclusionForm
 from .subject_consent_form import SubjectConsentForm
 from .subject_locator_form import SubjectLocatorForm

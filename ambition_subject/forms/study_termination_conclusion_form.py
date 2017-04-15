@@ -11,8 +11,8 @@ class StudyTerminationConclusionForm(SubjectModelFormMixin):
         self.validate_last_research_termination_date(cleaned_data)
 
     def validate_last_research_termination_date(self, cleaned_data):
-        if (cleaned_data.get('last_research_termination_date')
-               == cleaned_data.get('date_patient_terminated_study')):
+        if (cleaned_data.get('last_research_termination_date') == cleaned_data.get(
+                'date_patient_terminated_study')):
             raise forms.ValidationError({
                 'last_research_termination_date':
                 'This field is not applicable as'})
@@ -24,6 +24,6 @@ class StudyTerminationConclusionForm(SubjectModelFormMixin):
                 'last_research_termination_study_day':
                 'This field is not applicable as'})
 
-    class Meta():
+    class Meta:
         model = StudyTerminationConclusion
         fields = '__all__'

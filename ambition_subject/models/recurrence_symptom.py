@@ -3,21 +3,21 @@ from django.db import models
 
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
 from ..choices import ANTIBIOTICS, DR_OPINION, STEROIDS_CHOICES
-from .list_models import Neurological, MeningitisSymptoms
+from .list_models import Neurological, MeningitisSymptom
+from .model_mixins import CrfModelMixin
 
 
-class RecurrenceSymptoms(BaseUuidModel):
+class RecurrenceSymptom(CrfModelMixin):
 
-    meningitis_symptoms = models.ManyToManyField(
-        MeningitisSymptoms,
+    meningitis_symptom = models.ManyToManyField(
+        MeningitisSymptom,
         verbose_name='What are your current symptoms?')
 
-    meningitis_symptoms_other = OtherCharField()
+    meningitis_symptom_other = OtherCharField()
 
     patient_readmitted = models.CharField(
         verbose_name=(
@@ -143,6 +143,5 @@ class RecurrenceSymptoms(BaseUuidModel):
 
     history = HistoricalRecords()
 
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
-        verbose_name_plural = 'Recurrence Symptoms'

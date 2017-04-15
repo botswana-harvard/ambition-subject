@@ -73,5 +73,5 @@ class ProtocolDeviationViolation(BaseUuidModel):
 
     history = HistoricalRecords()
 
-    class Meta():
+    class Meta:
         app_label = 'ambition_subject'

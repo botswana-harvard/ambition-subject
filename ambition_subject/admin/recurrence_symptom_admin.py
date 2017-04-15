@@ -3,15 +3,15 @@ from django.contrib import admin
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..forms import RecurrenceSymptomsForm
-from ..models import RecurrenceSymptoms
+from ..forms import RecurrenceSymptomForm
+from ..models import RecurrenceSymptom
 from .modeladmin_mixins import ModelAdminMixin
 
 
-@admin.register(RecurrenceSymptoms, site=ambition_subject_admin)
-class RecurrenceSymptomsAdmin(ModelAdminMixin, admin.ModelAdmin):
+@admin.register(RecurrenceSymptom, site=ambition_subject_admin)
+class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
 
-    form = RecurrenceSymptomsForm
+    form = RecurrenceSymptomForm
 
     filter_horizontal = ('meningitis_symptoms', 'neurological')
 

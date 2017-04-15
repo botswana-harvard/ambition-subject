@@ -1,6 +1,6 @@
 from .adverse_event import AdverseEvent
 from .appointment import Appointment
-from .blood_results import BloodResults
+from .blood_result import BloodResult
 from .death_report import DeathReport
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
@@ -11,7 +11,7 @@ from .missed_visit import MissedVisit
 from .patient_history import PatientHistory
 from .protocol_deviation_violation import ProtocolDeviationViolation
 from .radiology import Radiology
-from .recurrence_symptoms import RecurrenceSymptoms
+from .recurrence_symptom import RecurrenceSymptom
 from .result import ResultItem, Result
 from .study_termination_conclusion import StudyTerminationConclusion
 from .subject_consent import SubjectConsent

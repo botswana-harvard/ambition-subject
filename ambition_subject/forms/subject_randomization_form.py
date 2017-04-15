@@ -8,11 +8,9 @@ class SubjectRandomizationForm(SubjectModelFormMixin):
 
     def clean(self):
 
-        self.required_if(
-            YES,
-            field='already_on_arvs',
-            field_required='arv_start_date')
+        self.required_if(YES, field='already_on_arvs',
+                         field_required='arv_start_date')
 
-    class Meta():
+    class Meta:
         model = SubjectRandomization
         fields = '__all__'
