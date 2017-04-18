@@ -60,4 +60,4 @@ class Enrollment(EnrollmentModelMixin,
         app_label = 'ambition_subject'
         consent_model = 'ambition_subject.subjectconsent'
         verbose_name = 'Enrollment'
-        visit_schedule_name = 'visit_schedule.schedule'
+        visit_schedule_name = 'visit_schedule1.schedule1'
