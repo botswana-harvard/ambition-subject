@@ -13,7 +13,7 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = RecurrenceSymptomForm
 
-    filter_horizontal = ('meningitis_symptoms', 'neurological')
+    filter_horizontal = ('neurological', )
 
     radio_fields = {
         'patient_readmitted': admin.VERTICAL,
@@ -34,8 +34,8 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                'meningitis_symptoms',
-                'meningitis_symptoms_other',
+                # 'meningitis_symptoms',
+                # 'meningitis_symptoms_other',
                 'patient_readmitted']}
          ),
         ('Glasgow Coma Score', {

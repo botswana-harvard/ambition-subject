@@ -13,14 +13,11 @@ class MissedVisitAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = MissedVisitForm
 
-    filter_horizontal = ('reason_visit_missed',)
-
     fieldsets = (
         [None, {
             'fields': (
                 'missed_study_visit_date',
                 'visit_missed',
-                'reason_visit_missed',
                 'reason_visit_missed_other',
                 'notes_or_action_taken')}],
         audit_fieldset_tuple

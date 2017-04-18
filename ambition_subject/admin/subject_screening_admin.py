@@ -18,5 +18,4 @@ class SubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
         'previous_adverse_drug_reaction': admin.VERTICAL,
         'medication_contraindicated_with_study_drug': admin.VERTICAL,
         'two_days_amphotericin_b': admin.VERTICAL,
-        'two_days_fluconazole': admin.VERTICAL,
-        'patient_eligible': admin.VERTICAL, }
+        'two_days_fluconazole': admin.VERTICAL, }

@@ -13,8 +13,6 @@ class FollowUpAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = FollowUpForm
 
-    filter_horizontal = ('significant_new_diagnoses',)
-
     radio_fields = {
         'physical_symptoms': admin.VERTICAL,
         'headache': admin.VERTICAL,
@@ -42,7 +40,6 @@ class FollowUpAdmin(ModelAdminMixin, admin.ModelAdmin):
          ),
         ('Drug Treatment', {
             'fields': (
-                'significant_new_diagnoses',
                 'other_significant_new_diagnosis',
                 'diagnosis_date',
                 'fluconazole_dose',
