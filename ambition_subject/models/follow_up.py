@@ -4,7 +4,6 @@ from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
-from edc_metadata.models import CrfMetadata
 
 from ..choices import FLUCONAZOLE_DOSE
 from .list_models import SignificantNewDiagnosis
@@ -106,5 +105,5 @@ class FollowUp(CrfModelMixin):
 
     history = HistoricalRecords()
 
-    class Meta(CrfMetadata.Meta):
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
