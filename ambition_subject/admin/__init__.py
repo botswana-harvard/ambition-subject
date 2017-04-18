@@ -1,4 +1,5 @@
 from .adverse_event_admin import AdverseEventAdmin
+from .clinic_note_admin import ClinicNoteAdmin
 from .death_admin import DeathAdmin
 from .follow_up_admin import FollowUpAdmin
 from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin

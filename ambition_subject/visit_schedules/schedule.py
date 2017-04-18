@@ -10,7 +10,7 @@ from .requisitions import requisitions, requisitions_d1, requisitions_d3, requis
 schedule1 = Schedule(name='schedule1', title='Ambition')
 
 schedule1.add_visit(
-    code='D1',
+    code='1000',
     title='Day 1',
     timepoint=0,
     base_interval=1,
@@ -19,7 +19,7 @@ schedule1.add_visit(
     crfs=crfs_d1)
 
 schedule1.add_visit(
-    code='D3',
+    code='1003',
     title='Day 3',
     timepoint=1,
     base_interval=3,
@@ -28,7 +28,7 @@ schedule1.add_visit(
     crfs=crfs_d3)
 
 schedule1.add_visit(
-    code='D5',
+    code='1005',
     title='Day 5',
     timepoint=2,
     base_interval=5,
@@ -37,7 +37,7 @@ schedule1.add_visit(
     crfs=crfs_d5)
 
 schedule1.add_visit(
-    code='D7',
+    code='1007',
     title='Day 7',
     timepoint=3,
     base_interval=7,
@@ -46,7 +46,7 @@ schedule1.add_visit(
     crfs=crfs_d7)
 
 schedule1.add_visit(
-    code='D10',
+    code='1010',
     title='Day 10',
     timepoint=4,
     base_interval=9,  # TODO: Base interval should be 10
@@ -55,7 +55,7 @@ schedule1.add_visit(
     crfs=crfs_d10)
 
 schedule1.add_visit(
-    code='D12',
+    code='1012',
     title='Day 12',
     timepoint=5,
     base_interval=12,
@@ -64,7 +64,7 @@ schedule1.add_visit(
     crfs=crfs_d12)
 
 schedule1.add_visit(
-    code='D14',
+    code='1014',
     title='Day 14',
     timepoint=6,
     base_interval=14,
@@ -73,7 +73,7 @@ schedule1.add_visit(
     crfs=crfs_d14)
 
 schedule1.add_visit(
-    code='W4',
+    code='1028',
     title='Week 4',
     timepoint=7,
     base_interval=4,
@@ -82,7 +82,7 @@ schedule1.add_visit(
     crfs=crfs_w4)
 
 schedule1.add_visit(
-    code='W6',
+    code='1042',
     title='Week 6',
     timepoint=8,
     base_interval=6,
@@ -91,7 +91,7 @@ schedule1.add_visit(
     crfs=crfs_w6)
 
 schedule1.add_visit(
-    code='W8',
+    code='1056',
     title='Week 8',
     timepoint=9,
     base_interval=8,
@@ -100,7 +100,7 @@ schedule1.add_visit(
     crfs=crfs_w8)
 
 schedule1.add_visit(
-    code='W10',
+    code='1070',
     title='Week 10',
     timepoint=10,
     base_interval=10,

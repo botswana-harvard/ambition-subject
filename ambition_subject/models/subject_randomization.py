@@ -1,14 +1,15 @@
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
 from ..choices import RANDOMIZATION_NUMBER, REGIMEN
 
+from .model_mixins import CrfModelMixin
 
-class SubjectRandomization(BaseUuidModel):
+
+class SubjectRandomization(CrfModelMixin):
 
     hospital_admission_date = models.DateField(
         validators=[date_not_future],

@@ -1,5 +1,6 @@
 from .adverse_event_form import AdverseEventForm
 from .blood_result_form import BloodResultForm
+from .clinic_note_form import ClinicNoteForm
 from .death_form import DeathForm
 from .follow_up import FollowUpForm
 from .lumbar_puncture_csf_form import LumbarPunctureCSFForm
