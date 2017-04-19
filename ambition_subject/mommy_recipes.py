@@ -5,14 +5,15 @@ from edc_constants.constants import YES, POS, NEG, NO
 
 from .models import (
     AdverseEvent, BloodResult, DeathReport, Microbiology, FollowUp,
-    ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom)
+    ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
+    SubjectScreening)
 from .models.list_models import (
     Neurological, SignificantNewDiagnosis, MeningitisSymptom)
 
 
 adverse_event = Recipe(
     AdverseEvent,
-    ae_awareness_date=get_utcnow,
+    ae_awareness_date=get_utcnow().date,
     description='life-threatening',
     ae_start_date=get_utcnow().date,
     ae_severity='death',
@@ -207,3 +208,18 @@ recurrence_symtom = Recipe(
     arvs_stopped=NO,
     narrative_summary=None,
     dr_opinion='CM Relapse')
+
+subject_screening = Recipe(
+    SubjectScreening,
+    sex='Male',
+    age=40,
+    meningitis_diagoses_by_csf_or_crag=YES,
+    consent_to_hiv_test=YES,
+    willing_to_give_informed_consent=YES,
+    pregrancy_or_lactation=NO,
+    previous_adverse_drug_reaction=NO,
+    medication_contraindicated_with_study_drug=YES,
+    two_days_amphotericin_b=YES,
+    two_days_fluconazole=YES,
+    is_eligible=True,
+    ineligibility=None)
