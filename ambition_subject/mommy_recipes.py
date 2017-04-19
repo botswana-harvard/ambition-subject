@@ -1,17 +1,20 @@
 from model_mommy.recipe import Recipe, related
-from .models import adverse_event, blood_result, death_report
+
 from edc_base.utils import get_utcnow
 from edc_constants.constants import YES, POS, NEG, NO
-from ambition_subject.models import microbiology, follow_up, protocol_deviation_violation
-from ambition_subject.models.list_models import (
-    Neurological, SignificantNewDiagnosis)
+
+from .models import (
+    AdverseEvent, BloodResult, DeathReport, Microbiology, FollowUp,
+    ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom)
+from .models.list_models import (
+    Neurological, SignificantNewDiagnosis, MeningitisSymptom)
 
 
 adverse_event = Recipe(
-    adverse_event,
+    AdverseEvent,
     ae_awareness_date=get_utcnow,
     description='life-threatening',
-    ae_start_date=get_utcnow,
+    ae_start_date=get_utcnow().date,
     ae_severity='death',
     ae_intensity='very high intensity',
     patient_treatment_group='inpatient',
@@ -30,16 +33,16 @@ adverse_event = Recipe(
     sae_event_reason='Life-threatening',
     is_susar=YES,
     susar_reported=YES,
-    susar_reported_datetime=get_utcnow,
-    ae_form_received_datetime=get_utcnow,
-    clinical_review_datetime=get_utcnow,
+    susar_reported_datetime=get_utcnow(),
+    ae_form_received_datetime=get_utcnow(),
+    clinical_review_datetime=get_utcnow(),
     investigator_comments='good',
     ae_classification='disease associated with treatment',
     investigator_ae_description='caused death of a member of the family',
-    regulatory_officials_notified_datetime=get_utcnow)
+    regulatory_officials_notified_datetime=get_utcnow())
 
 blood_result = Recipe(
-    blood_result,
+    BloodResult,
     wbc=0.502,
     platelets=203,
     haemoglobin=0.54,
@@ -59,7 +62,7 @@ blood_result = Recipe(
     abnormal_results_in_ae_range=YES)
 
 death_report = Recipe(
-    death_report,
+    DeathReport,
     study_day='Tuesday',
     death_as_inpatient=YES,
     cause_of_death_study_doctor_opinion='Cryptococcal meningitis',
@@ -76,7 +79,7 @@ death_report = Recipe(
 significant_new_diagnosis = Recipe(SignificantNewDiagnosis)
 
 follow_up = Recipe(
-    follow_up,
+    FollowUp,
     physical_symptoms=YES,
     headache=YES,
     visual_acuity_left_eye=0.5,
@@ -89,7 +92,7 @@ follow_up = Recipe(
     focal_neurology=YES,
     significant_new_diagnosis=related(significant_new_diagnosis),  # many2many
     other_significant_new_diagnosis=None,
-    diagnosis_date=get_utcnow,
+    diagnosis_date=get_utcnow().date,
     fluconazole_dose='400mg daily',
     other_fluconazole_dose=None,
     is_rifampicin_started=YES,
@@ -97,7 +100,7 @@ follow_up = Recipe(
     clinical_care_comments=None)
 
 microbiology = Recipe(
-    microbiology,
+    Microbiology,
     urine_culture_performed=YES,
     urine_culture_results='Positive',
     urine_culture_organism='Klebsiella sp.',
@@ -115,6 +118,7 @@ microbiology = Recipe(
     tissue_biopsy_organism='Cryptococcus neoformans')
 
 missed_visit = Recipe(
+    MissedVisit,
     missed_study_visit_date=get_utcnow,
     visit_missed=2,
     missed_visit_reason='Not feeling well',
@@ -123,6 +127,7 @@ missed_visit = Recipe(
 neurological = Recipe(Neurological)
 
 patient_history = Recipe(
+    PatientHistory,
     symptom=None,
     headache_duration=2,
     visual_loss_duration=1,
@@ -130,9 +135,9 @@ patient_history = Recipe(
     tb_site='Pulmonary',
     tb_treatment=YES,
     taking_rifampicin=NO,
-    rifampicin_started_date=get_utcnow,
+    rifampicin_started_date=get_utcnow().date,
     previous_infection=NO,
-    infection_date=get_utcnow,
+    infection_date=get_utcnow().date,
     taking_arv=NO,
     arvs=None,
     first_line_choice=None,
@@ -157,17 +162,48 @@ patient_history = Recipe(
     specify_medications=None)
 
 protocol_deviation_violation = Recipe(
-    protocol_deviation_violation,
+    ProtocolDeviationViolation,
     participant_safety_impact=NO,
     participant_safety_impact_details=None,
     study_outcomes_impact=NO,
     study_outcomes_impact_details=None,
-    date_violation_datetime=get_utcnow,
+    date_violation_datetime=get_utcnow(),
     protocol_violation_type='Failure to obtain informed consent',
     other_protocol_violation_type=None,
     violation_description=None,
     violation_reason=None,
-    corrective_action_datetime=get_utcnow,
+    corrective_action_datetime=get_utcnow(),
     corrective_action=None,
-    preventative_action_datetime=get_utcnow,
+    preventative_action_datetime=get_utcnow(),
     action_required='Participant to remain on trial')
+
+meningitis_symptom = Recipe(MeningitisSymptom)
+
+recurrence_symtom = Recipe(
+    RecurrenceSymptom,
+    meningitis_symptom=related(MeningitisSymptom),
+    meningitis_symptom_other=None,
+    patient_readmitted=NO,
+    glasgow_coma_score=8,
+    recent_seizure=NO,
+    behaviour_change=YES,
+    confusion=YES,
+    neurological=related(Neurological),
+    neurological_other=None,
+    focal_neurologic_deficit=None,
+    lp_completed=NO,
+    amb_administered=NO,
+    amb_duration=None,
+    tb_treatment=YES,
+    steroids_administered=NO,
+    steroids_duration=None,
+    steroids_choices=None,
+    steroids_choices_other=None,
+    CD4_count=50,
+    antibiotic_treatment='Amoxicillin',
+    antibiotic_treatment_other=None,
+    on_arvs=NO,
+    arv_date=None,
+    arvs_stopped=NO,
+    narrative_summary=None,
+    dr_opinion='CM Relapse')
