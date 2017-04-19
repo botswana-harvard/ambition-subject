@@ -1,14 +1,15 @@
 from model_mommy.recipe import Recipe, related
 
 from edc_base.utils import get_utcnow
-from edc_constants.constants import YES, POS, NEG, NO
+from edc_constants.constants import YES, POS, NEG, NO, UNKNOWN
 
 from .models import (
     AdverseEvent, BloodResult, DeathReport, Microbiology, FollowUp,
     ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
-    SubjectScreening)
+    SubjectScreening, SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
+    Radiology, StudyTerminationConclusion, SubjectLocator)
 from .models.list_models import (
-    Neurological, SignificantNewDiagnosis, MeningitisSymptom)
+    Neurological, SignificantNewDiagnosis, MeningitisSymptom, Antibiotic)
 
 
 adverse_event = Recipe(
@@ -223,3 +224,123 @@ subject_screening = Recipe(
     two_days_fluconazole=NO,
     is_eligible=True,
     ineligibility=None)
+
+subject_randomization = Recipe(
+    SubjectRandomization,
+    hospital_admission_date=get_utcnow().date,
+    inclusion_date=get_utcnow().date,
+    abnormal_mental_status=NO,
+    already_on_arvs=NO,
+    arv_start_date=None,
+    randomization_number='A(2)',
+    consent_form_signed=YES,
+    regimen=None)
+
+antibiotic = Recipe(Antibiotic)
+
+week2 = Recipe(
+    Week2,
+    discharged=NO,
+    discharge_datetime=get_utcnow(),
+    died=NO,
+    death_datetime=get_utcnow(),
+    ambisome_start_datetime=get_utcnow(),
+    ambisome_stop_datetime=None,
+    fluconazole_start_datetime=get_utcnow(),
+    fluconazole_stop_datetime=None,
+    drug_doses_missed=NO,
+    ambisome_missed_doses=NO,
+    ambisome_missed_reason='Administered acc to protocol',
+    fluconazole_missed_doses=NO,
+    fluconazole_missed_reason=None,
+    other_drug=None,
+    antibiotic=related(Antibiotic),
+    blood_receive=NO,
+    units=None,
+    hiv_status_pos=NO,
+    new_hiv_diagnosis=UNKNOWN,
+    clinic_assessment=NO,
+    headache=YES,
+    temperature=41.2,
+    glasgow_coma_score=8,
+    seizures_during_admission=NO,
+    recent_seizure=NO,
+    behaviour_change=YES,
+    confusion=NO,
+    cn_palsy=YES,
+    focal_neurology=NO,
+    weight=63,
+    medicines='Fluconazole',
+    significant_diagnosis='Extension to pain',
+    glasgow_coma_score_eyes='Opens eyes spontaneously',
+    glasgow_coma_score_verbal='Not Applicable',
+    glasgow_coma_score_motor='Extension to pain')
+
+subjectvisit = Recipe(
+    SubjectVisit,
+    reason_unscheduled='Patient called to come for visit')
+
+subject_locator = Recipe(
+    SubjectLocator,
+    alt_contact_cell_number='72200111',
+    has_alt_contact=None,
+    alt_contact_name=None,
+    alt_contact_rel=None,
+    alt_contact_cell=None,
+    other_alt_contact_cell='760000111',
+    alt_contact_tel=None)
+
+study_termination_conclusion = Recipe(
+    StudyTerminationConclusion,
+    date_patient_terminated_study=25,
+    last_research_termination_date=get_utcnow().date,
+    last_research_termination_study_day=30,
+    discharged_after_initial_admission=YES,
+    initial_discharge_date=get_utcnow().date,
+    initial_discharge_study_date=25,
+    readmission_following_initial_discharge=YES,
+    date_admitted=get_utcnow(),
+    date_discharged=get_utcnow().date,
+    study_termination_reason='Patient lost to follow-up',
+    withdrawal_of_consent_reason=None,
+    rifampicin_started_since_week4=NO,
+    rifampicin_started_study_day=None,
+    arv_regiment='AZT + 3TC + either ATZ/r or Lopinavir/r',
+    is_naive=YES,
+    date_started_arvs=get_utcnow(),
+    date_switched_arvs=None,
+    efv_or_nvp=None)
+
+radiology = Recipe(
+    Radiology,
+    is_cxr_done=NO,
+    cxr_type=None,
+    infiltrate_location=None,
+    cxr_description=None,
+    is_ct_performed=NO,
+    is_scanned_with_contrast=NO,
+    brain_imaging_reason='New neurology',
+    brain_imaging_reason_other=None,
+    are_results_abnormal=NO,
+    abnormal_results_reason=None,
+    abnormal_results_reason_other=None,
+    if_infarcts_location=None)
+
+lumbar_puncture_csf = Recipe(
+    LumbarPunctureCsf,
+    reason_for_lp='Scheduled per protocol',
+    opening_pressure=89,
+    closing_pressure=70,
+    csf_amount_removed=25,
+    quantitative_culture=None,
+    csf_culture=NO,
+    other_csf_culture=None,
+    csf_wbc_cell_count=200,
+    differential_lymphocyte_count=300,
+    differential_neutrophil_count=250,
+    india_ink=POS,
+    csf_glucose=1.9,
+    csf_protein=200,
+    csf_cr_ag=POS,
+    csf_cr_ag_titres=300,
+    csf_cr_ag_lfa=YES)
