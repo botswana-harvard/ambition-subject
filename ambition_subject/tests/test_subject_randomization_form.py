@@ -4,10 +4,10 @@ from django.utils import timezone
 from edc_constants.constants import YES, NO, MALE
 
 from ..constants import AMS_N3, SINGLE_DOSE
-from ..forms import ScreeningRandomizationForm
+from ..forms import SubjectRandomizationForm
 
 
-class TestScreeningRandomization(TestCase):
+class TestSubjectRandomization(TestCase):
 
     def setUp(self):
 
@@ -35,18 +35,18 @@ class TestScreeningRandomization(TestCase):
             'regimen': SINGLE_DOSE}
 
     def test_valid_form(self):
-        form = ScreeningRandomizationForm(data=self.data)
+        form = SubjectRandomizationForm(data=self.data)
         self.assertTrue(form.is_valid())
 
     def test_arv_start_date_required(self):
         self.data.update(
             arv_start_date=None)
-        form = ScreeningRandomizationForm(data=self.data)
+        form = SubjectRandomizationForm(data=self.data)
         self.assertFalse(form.is_valid())
 
     def test_arv_start_date_not_required(self):
         self.data.update(
             already_on_arvs=NO,
             arv_start_date=timezone.now().date())
-        form = ScreeningRandomizationForm(data=self.data)
+        form = SubjectRandomizationForm(data=self.data)
         self.assertFalse(form.is_valid())

@@ -14,7 +14,7 @@ class SubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
         'meningitis_diagoses_by_csf_or_crag': admin.VERTICAL,
         'consent_to_hiv_test': admin.VERTICAL,
         'willing_to_give_informed_consent': admin.VERTICAL,
-        'pregrancy_or_lactation': admin.VERTICAL,
+        'pregnancy_or_lactation': admin.VERTICAL,
         'previous_adverse_drug_reaction': admin.VERTICAL,
         'medication_contraindicated_with_study_drug': admin.VERTICAL,
         'two_days_amphotericin_b': admin.VERTICAL,
