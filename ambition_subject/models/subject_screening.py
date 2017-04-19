@@ -2,11 +2,17 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_base.utils import get_utcnow
 from edc_consent.site_consents import site_consents
 from edc_constants.choices import GENDER, YES_NO, YES_NO_NA, NO, YES, FEMALE
 
 
 class SubjectScreening(BaseUuidModel):
+
+    report_datetime = models.DateTimeField(
+        verbose_name="Report Date and Time",
+        default=get_utcnow,
+        help_text='Date and time of report.')
 
     sex = models.CharField(
         choices=GENDER,
@@ -32,7 +38,7 @@ class SubjectScreening(BaseUuidModel):
         verbose_name='Participant or legal guardian/representative able and '
                      'willing to give informed consent.')
 
-    pregrancy_or_lactation = models.CharField(
+    pregnancy_or_lactation = models.CharField(
         choices=YES_NO_NA,
         max_length=15,
         verbose_name='Pregnancy or lactation (Urine βhCG)')
@@ -79,15 +85,14 @@ class SubjectScreening(BaseUuidModel):
 
     def get_is_eligible(self):
         error_message = []
-        consent_config = site_consents.get_consent(
-            consent_model='ambition_subject.subjectconsent',
-            report_datetime=self.report_datetime)
-        if (self.age < consent_config.age_min and
+        # consent_config = site_consents.get_consent(
+        #    consent_model='ambition_subject.subjectconsent')
+        if (self.age < 18 and
            self.willing_to_give_informed_consent == NO):
             error_message.append(
-                'Participant is under {}'.format(consent_config.age_min))
+                'Participant is under 18')
 
-        if self.sex == FEMALE and self.pregrancy_or_lactation == YES:
+        if self.sex == FEMALE and self.pregnancy_or_lactation == YES:
             error_message.append('Participant is pregnant')
 
         if self.previous_adverse_drug_reaction == YES:
