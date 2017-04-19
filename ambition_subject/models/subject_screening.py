@@ -106,7 +106,7 @@ class SubjectScreening(BaseUuidModel):
         if self.two_days_amphotericin_b == YES:
             error_message.append('Has received >48 hours of Amphotericin B')
 
-        if self.two_days_amphotericin_b == YES:
+        if self.two_days_fluconazole == YES:
             error_message.append(
                 'Has received >48 hours of fluconazole '
                 'treatment (> 400mg daily dose) prior to screening.')
