@@ -65,3 +65,15 @@ class TestSubjectScreening(TestCase):
         subject_screening = mommy.make_recipe(
             'ambition_subject.subject_screening', **options)
         self.assertFalse(subject_screening.is_eligible)
+
+    def test_successful_screening_id_not_regenerated_on_resave(self):
+        """Test subject screening id is not regenerated when resaving
+           subject screening
+        """
+        options = {'age': 19}
+        subject_screening = mommy.make_recipe(
+            'ambition_subject.subject_screening', **options)
+        self.assertTrue(subject_screening.is_eligible)
+        screening_id = subject_screening.screening_identifier
+        subject_screening.save()
+        self.assertEqual(subject_screening.screening_identifier, screening_id)

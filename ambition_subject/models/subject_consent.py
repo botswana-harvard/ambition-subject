@@ -15,6 +15,7 @@ from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 
 from ..managers import SubjectConsentManager
 from .model_mixins import SearchSlugModelMixin
+from .subject_screening import SubjectScreening
 
 
 class Manager(SubjectConsentManager, SearchSlugManager):
@@ -29,6 +30,8 @@ class SubjectConsent(
         VulnerabilityFieldsMixin, SearchSlugModelMixin, BaseUuidModel):
     """ A model completed by the user that captures the ICF.
     """
+
+    subject_screening_reference = models.UUIDField()
 
     is_signed = models.BooleanField(default=False, editable=False)
 
@@ -45,6 +48,12 @@ class SubjectConsent(
             self.version)
 
     def save(self, *args, **kwargs):
+        try:
+            SubjectScreening.objects.get(reference=self.subject_screening_reference)
+        except SubjectScreening.DoesNotExist:
+            SubjectScreening.DoesNotExist(
+                'Unable to determine screening criteria.'
+                'Was Subject screening completed?')
         if not self.id:
             edc_protocol_app_config = django_apps.get_app_config(
                 'edc_protocol')

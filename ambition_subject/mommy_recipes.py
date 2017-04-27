@@ -1,16 +1,45 @@
-from model_mommy.recipe import Recipe, related
+from dateutil.relativedelta import relativedelta
+from faker import Faker
+from faker.providers import BaseProvider
+from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
+from edc_base_test.faker import EdcBaseProvider
 from edc_constants.constants import YES, POS, NEG, NO, UNKNOWN
 
 from .models import (
     AdverseEvent, BloodResult, DeathReport, Microbiology, FollowUp,
     ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
     SubjectScreening, SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
-    Radiology, StudyTerminationConclusion, SubjectLocator)
+    Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
 from .models.list_models import (
     Neurological, SignificantNewDiagnosis, MeningitisSymptom, Antibiotic)
 
+
+class DateProvider(BaseProvider):
+
+    def next_month(self):
+        return (get_utcnow() + relativedelta(months=1)).date()
+
+    def last_year(self):
+        return (get_utcnow() - relativedelta(years=1)).date()
+
+    def three_months_ago(self):
+        return (get_utcnow() - relativedelta(months=3)).date()
+
+    def thirty_four_weeks_ago(self):
+        return (get_utcnow() - relativedelta(weeks=34)).date()
+
+    def four_weeks_ago(self):
+        return (get_utcnow() - relativedelta(weeks=4)).date()
+
+    def yesterday(self):
+        return (get_utcnow() - relativedelta(days=1)).date()
+
+
+fake = Faker()
+fake.add_provider(EdcBaseProvider)
+fake.add_provider(DateProvider)
 
 adverse_event = Recipe(
     AdverseEvent,
@@ -254,7 +283,7 @@ week2 = Recipe(
     fluconazole_missed_doses=NO,
     fluconazole_missed_reason=None,
     other_drug=None,
-    antibiotic=related(Antibiotic),
+    antibiotic=related(antibiotic),
     blood_receive=NO,
     units=None,
     hiv_status_pos=NO,
@@ -344,3 +373,19 @@ lumbar_puncture_csf = Recipe(
     csf_cr_ag=POS,
     csf_cr_ag_titres=300,
     csf_cr_ag_lfa=YES)
+
+subject_consent = Recipe(
+    SubjectConsent,
+    subject_screening_reference=None,
+    subject_identifier=None,
+    study_site='40',
+    consent_datetime=get_utcnow(),
+    dob=fake.dob_for_consenting_adult,
+    first_name=fake.first_name,
+    last_name=fake.last_name,
+    initials=fake.initials,
+    gender='M',
+    identity=seq('12315678'),
+    confirm_identity=seq('12315678'),
+    identity_type='OMANG',
+    is_dob_estimated='-',)

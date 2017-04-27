@@ -1,13 +1,27 @@
+import random
+
 from django.db import models
+from uuid import uuid4
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.utils import get_utcnow
-from edc_consent.site_consents import site_consents
 from edc_constants.choices import GENDER, YES_NO, YES_NO_NA, NO, YES, FEMALE
 
 
 class SubjectScreening(BaseUuidModel):
+
+    reference = models.UUIDField(
+        verbose_name="Anonymous Reference",
+        unique=True,
+        default=uuid4,
+        editable=False)
+
+    screening_identifier = models.CharField(
+        verbose_name='Screening Id',
+        max_length=50,
+        blank=True,
+        unique=True,)
 
     report_datetime = models.DateTimeField(
         verbose_name="Report Date and Time",
@@ -81,6 +95,8 @@ class SubjectScreening(BaseUuidModel):
 
     def save(self, *args, **kwargs):
         self.is_eligible, self.ineligibility = self.get_is_eligible()
+        if self.is_eligible and not self.value_is_screening_identifier():
+            self.screening_identifier = self.prepare_screening_identifier()
         super().save(*args, **kwargs)
 
     def get_is_eligible(self):
@@ -112,6 +128,31 @@ class SubjectScreening(BaseUuidModel):
                 'treatment (> 400mg daily dose) prior to screening.')
         is_eligible = False if error_message else True
         return (is_eligible, ','.join(error_message))
+
+    def value_is_screening_identifier(self):
+        if not self.screening_identifier:
+            return False
+        if len(self.screening_identifier) == 7:
+            return True
+        return False
+
+    def prepare_screening_identifier(self):
+        """Generate and returns a locally unique study screening
+        identifier"""
+        template = '{random_string}'
+        opts = {
+            'random_string': ''.join([random.choice('ABCDEFGHKMNPRTUVWXYZ2346789') for _ in range(7)])}
+        screening_identifier = template.format(**opts)
+        # look for a duplicate
+        if self.__class__.objects.filter(screening_identifier=screening_identifier):
+            n = 1
+            while self.__class__.objects.filter(screening_identifier=screening_identifier):
+                screening_identifier = template.format(**opts)
+                n += 1
+                if n == len('ABCDEFGHKMNPRTUVWXYZ2346789') ** 7:
+                    raise TypeError('Unable prepare a unique requisition identifier, '
+                                    'all are taken. Increase the length of the random string')
+        return screening_identifier
 
     class Meta:
         app_label = 'ambition_subject'

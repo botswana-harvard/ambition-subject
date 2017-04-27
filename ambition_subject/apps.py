@@ -11,4 +11,4 @@ class AppConfig(DjangoApponfig):
     admin_site_name = 'ambition_subject_admin'
 
     def ready(self):
-        pass
+        from .models.signals import subject_consent_on_post_save
