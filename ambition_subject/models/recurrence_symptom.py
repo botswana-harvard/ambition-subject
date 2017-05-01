@@ -148,14 +148,13 @@ class RecurrenceSymptom(CrfModelMixin):
     dr_opinion = models.CharField(
         verbose_name='Study Dr’s opinion:',
         max_length=10,
-        choices=DR_OPINION,
-        verbose_name='Study doctor opinion')
+        choices=DR_OPINION)
 
     dr_opinion_other = models.CharField(
         blank=True,
         max_length=50,
         null=True,
-        verbose='If other doctor opinion, please specify:')
+        verbose_name='If other doctor opinion, please specify:')
 
     history = HistoricalRecords()
 
