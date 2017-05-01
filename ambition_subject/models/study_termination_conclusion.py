@@ -94,9 +94,15 @@ class StudyTerminationConclusion(BaseUuidModel):
         null=True,
         validators=[date_not_future])
 
+    is_first_line_regimen = models.CharField(
+        choices=YES_NO,
+        max_length=5)
+
     efv_or_nvp = models.CharField(
+        blank=True,
         choices=FIRST_LINE_REGIMEN,
         max_length=3,
+        null=True,
         verbose_name='If first line, on EFV or NVP?')
 
     history = HistoricalRecords()
