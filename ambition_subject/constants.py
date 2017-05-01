@@ -1,4 +1,6 @@
 AMS_N3 = 'ams_n3'
+INFARCTS = 'infarcts'
+INFILTRATE_LOCATION = 'infiltrate_location'
 HISTOPATHOLOGY_REPORT = 'Some long report'
 NVP = 'NVP'
 POSITIVE = 'positive'
