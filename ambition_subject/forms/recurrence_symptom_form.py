@@ -2,6 +2,7 @@ from django import forms
 
 from edc_constants.constants import OTHER, YES
 
+from ..constants import FOCAL_NEUROLOGIC_DEFICIT
 from ..models import RecurrenceSymptom
 from .form_mixins import SubjectModelFormMixin
 
@@ -60,7 +61,7 @@ class RecurrenceSymptomForm(SubjectModelFormMixin):
 
     def validate_focal_neurologic_deficit(self):
         cleaned_data = self.cleaned_data
-        if OTHER in cleaned_data.get('neurological'):
+        if FOCAL_NEUROLOGIC_DEFICIT in cleaned_data.get('neurological'):
             if not cleaned_data('focal_neurologic_deficit'):
                 raise forms.ValidationError({
                     'focal_neurologic_deficit': [

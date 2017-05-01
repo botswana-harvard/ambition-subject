@@ -1,4 +1,5 @@
 AMS_N3 = 'ams_n3'
+FOCAL_NEUROLOGIC_DEFICIT = 'focal_neurologic_deficit'
 INFARCTS = 'infarcts'
 INFILTRATE_LOCATION = 'infiltrate_location'
 HISTOPATHOLOGY_REPORT = 'Some long report'
