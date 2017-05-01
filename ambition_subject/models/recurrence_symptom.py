@@ -1,7 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
@@ -17,7 +16,11 @@ class RecurrenceSymptom(CrfModelMixin):
         MeningitisSymptom,
         verbose_name='What are your current symptoms?')
 
-    meningitis_symptom_other = OtherCharField()
+    meningitis_symptom_other = models.CharField(
+        blank=True,
+        max_length=50,
+        null=True,
+        verbose_name='If other symptom, please specify:')
 
     patient_readmitted = models.CharField(
         verbose_name=(
@@ -48,7 +51,11 @@ class RecurrenceSymptom(CrfModelMixin):
     neurological = models.ManyToManyField(
         Neurological)
 
-    neurological_other = OtherCharField()
+    neurological_other = models.CharField(
+        blank=True,
+        max_length=50,
+        null=True,
+        verbose_name='If other neurological, please specify:')
 
     focal_neurologic_deficit = models.CharField(
         verbose_name='If focal neurologic deficit chosen, please specify:',
@@ -58,8 +65,6 @@ class RecurrenceSymptom(CrfModelMixin):
 
     lp_completed = models.CharField(
         max_length=5,
-        null=True,
-        blank=True,
         choices=YES_NO,
         help_text='If, yes complete LP form')
 
@@ -94,7 +99,11 @@ class RecurrenceSymptom(CrfModelMixin):
         max_length=25,
         choices=STEROIDS_CHOICES)
 
-    steroids_choices_other = OtherCharField()
+    steroids_choices_other = models.CharField(
+        blank=True,
+        max_length=50,
+        null=True,
+        verbose_name='If other steroids, please specify:')
 
     CD4_count = models.IntegerField(
         verbose_name='CD4 count (if available):',
@@ -109,7 +118,11 @@ class RecurrenceSymptom(CrfModelMixin):
         max_length=25,
         choices=ANTIBIOTICS)
 
-    antibiotic_treatment_other = OtherCharField()
+    antibiotic_treatment_other = models.CharField(
+        blank=True,
+        max_length=50,
+        null=True,
+        verbose_name='If other antibiotic treatment, please specify:')
 
     on_arvs = models.CharField(
         max_length=5,
@@ -136,10 +149,13 @@ class RecurrenceSymptom(CrfModelMixin):
         verbose_name='Study Dr’s opinion:',
         max_length=10,
         choices=DR_OPINION,
-        blank=True,
-        null=True)
+        verbose_name='Study doctor opinion')
 
-    dr_opinion_other = OtherCharField()
+    dr_opinion_other = models.CharField(
+        blank=True,
+        max_length=50,
+        null=True,
+        verbose='If other doctor opinion, please specify:')
 
     history = HistoricalRecords()
 
