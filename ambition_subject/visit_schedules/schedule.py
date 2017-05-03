@@ -13,7 +13,7 @@ schedule1.add_visit(
     code='1000',
     title='Day 1',
     timepoint=0,
-    base_interval=1,
+    base_interval=0,
     base_interval_unit=DAYS,
     requisitions=requisitions_d1,
     crfs=crfs_d1)

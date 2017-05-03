@@ -1,6 +1,5 @@
 from django.db import models
 
-from edc_appointment.models import Appointment
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
 from edc_consent.model_mixins import RequiresConsentMixin
@@ -10,6 +9,8 @@ from edc_visit_tracking.managers import VisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin, PreviousVisitError
 
 from ..choices import VISIT_UNSCHEDULED_REASON
+
+from .appointment import Appointment
 
 
 class SubjectVisit(VisitModelMixin, CreatesMetadataModelMixin,

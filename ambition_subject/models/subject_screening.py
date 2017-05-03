@@ -99,6 +99,9 @@ class SubjectScreening(BaseUuidModel):
             self.screening_identifier = self.prepare_screening_identifier()
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return (self.screening_identifier + self.sex + self.age)
+
     def get_is_eligible(self):
         error_message = []
         # consent_config = site_consents.get_consent(

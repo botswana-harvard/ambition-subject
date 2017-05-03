@@ -1,17 +1,38 @@
-from django.test import TestCase
+from django.test import tag, TestCase
 from django.utils import timezone
+from model_mommy import mommy
 
+from edc_base.utils import get_utcnow
 from edc_constants.constants import YES, NO, MALE
+from edc_visit_tracking.constants import SCHEDULED
 
 from ..constants import AMS_N3, SINGLE_DOSE
 from ..forms import SubjectRandomizationForm
 
+from ..models import Appointment
 
+
+@tag('randomization')
 class TestSubjectRandomization(TestCase):
 
     def setUp(self):
+        screening = mommy.make_recipe(
+            'ambition_subject.subject_screening',
+            report_datetime=get_utcnow())
+        consent = mommy.make_recipe(
+            'ambition_subject.subject_consent',
+            consent_datetime=get_utcnow(),
+            subject_screening_reference=screening.reference)
+        appointment = Appointment.objects.get(
+            visit_code='1000')
+        subject_visit = mommy.make_recipe(
+            'ambition_subject.subjectvisit',
+            appointment=appointment,
+            subject_identifier=consent.subject_identifier,
+            reason=SCHEDULED,)
 
         self.data = {
+            'subject_visit': subject_visit,
             'age': 21,
             'sex': MALE,
             'is_of_age': YES,

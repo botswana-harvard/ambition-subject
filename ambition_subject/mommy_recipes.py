@@ -6,6 +6,7 @@ from model_mommy.recipe import Recipe, related, seq
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
 from edc_constants.constants import YES, POS, NEG, NO, UNKNOWN
+from edc_visit_tracking.constants import SCHEDULED
 
 from .models import (
     AdverseEvent, BloodResult, DeathReport, Microbiology, FollowUp,
@@ -307,7 +308,7 @@ week2 = Recipe(
 
 subjectvisit = Recipe(
     SubjectVisit,
-    reason_unscheduled='Patient called to come for visit')
+    reason=SCHEDULED,)
 
 subject_locator = Recipe(
     SubjectLocator,
