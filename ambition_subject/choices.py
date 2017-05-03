@@ -1,4 +1,4 @@
-from edc_constants.constants import OTHER, NOT_APPLICABLE, UNKNOWN
+from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN
 
 ABNORMAL_RESULTS_REASON = (
     ('cerebral_oedema', 'Cerebral oedema'),
@@ -85,7 +85,7 @@ CLINICAL_ASSESSMENT = (
 
 CULTURE_RESULTS = (
     ('no_growth', 'No growth'),
-    ('positive', 'Positive'))
+    (POS, 'Positive'))
 
 CXR_TYPE = (
     ('normal', 'Normal'),
@@ -164,8 +164,8 @@ PATIENT_TREATMENT_GROUP = (
                   ', control arm))'))
 
 POS_NEG_NA = (
-    ('positive', 'Positive'),
-    ('negative', 'Negative'),
+    (POS, 'Positive'),
+    (NEG, 'Negative'),
     (NOT_APPLICABLE, 'Not applicable'))
 
 PROTOCOL_VIOLATION = (
