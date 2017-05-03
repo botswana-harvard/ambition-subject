@@ -40,7 +40,7 @@ class RadiologyForm(SubjectModelFormMixin):
             field_required='brain_imaging_reason_other')
 
         self.required_if(
-            OTHER,
+            YES,
             field='is_cxr_done',
             field_required='are_results_abnormal')
 
