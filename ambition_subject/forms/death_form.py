@@ -1,4 +1,4 @@
-from edc_constants.constants import YES, OTHER
+from edc_constants.constants import YES, NO
 
 from ..models import Death
 
@@ -6,13 +6,16 @@ from .form_mixins import SubjectModelFormMixin
 
 
 class DeathForm (SubjectModelFormMixin):
-
     def clean(self):
-        cleaned_data = self.cleaned_data
-        self.validate_other_specify(
-            'cause_of_death_study_doctor_opinion',
-            'cause_other_study_doctor_opinion')
-        return cleaned_data
+
+        self.required_if(
+            YES,
+            field='cause_of_death_agreed',
+            field_required='narrative_summary')
+        self.required_if(
+            NO,
+            field='cause_of_death_study_doctor_opinion',
+            field_required='cause_other_study_doctor_opinion')
 
     class Meta:
         model = Death
