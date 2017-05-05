@@ -87,6 +87,12 @@ class FollowUp(CrfModelMixin):
         blank=True,
         max_length=75,
         null=True,
+        verbose_name='Please other Fluconazole dose')
+
+    other_fluconazole_dose_reason = models.CharField(
+        blank=True,
+        max_length=150,
+        null=True,
         verbose_name='Please other Fluconazole dose and reason')
 
     is_rifampicin_started = models.CharField(
@@ -101,6 +107,8 @@ class FollowUp(CrfModelMixin):
         verbose_name='Study day started rifampicin?')
 
     clinical_care_comments = models.TextField(
+        blank=True,
+        null=True,
         verbose_name='Comments on Clinical care/Assessment /Plan:')
 
     history = HistoricalRecords()
