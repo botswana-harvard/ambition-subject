@@ -18,7 +18,7 @@ list_data = {
         ('respiratory_distress', 'Respiratory distress'),
         (OTHER, 'Other')
     ],
-    'ambition_subject.antibiotics': [
+    'ambition_subject.antibiotic': [
         ('flucloxacillin', 'Flucloxacillin'),
         ('gentamicin', 'Gentamicin'),
         ('ceftriaxone', 'Ceftriaxone'),
@@ -28,7 +28,7 @@ list_data = {
         ('ciprofloxacin', 'Ciprofloxacin'),
         (OTHER, ' OTHER, specify')
     ],
-    'ambition_subject.meningitissymptoms': [
+    'ambition_subject.meningitissymptom': [
         ('headache', 'Headache'),
         ('vomiting', 'Vomiting'),
         ('fever', 'Fever'),
@@ -36,7 +36,7 @@ list_data = {
         ('neck_pain', 'Neck Pain'),
         (OTHER, 'Other')
     ],
-    'ambition_subject.missedvisitreasons': [
+    'ambition_subject.missedvisitreason': [
         ('transportation_difficulty', 'Transportation difficulty'),
         ('severely_sick', 'Severely sick or other physical conditions'),
         ('discouraged_by_clinic_situation', 'Discouraged by clinic situation '
@@ -59,7 +59,7 @@ list_data = {
         ('CN_VIII_palsy', 'Cranial Nerve VIII palsy'),
         (OTHER, 'Other CN palsy'),
     ],
-    'ambition_subject.otherdruglist': [
+    'ambition_subject.otherdrug': [
         ('antibiotics', 'Antibiotics'),
         ('k', 'K'),
         ('mg', 'Mg'),
@@ -68,7 +68,7 @@ list_data = {
         ('anti_convulsants', 'Anti convulsants'),
         (OTHER, ' OTHER, specify')
     ],
-    'ambition_subject.significantnewdiagnoses': [
+    'ambition_subject.significant_diagnosis': [
         ('tb_pulmonary', 'TB pulmonary'),
         ('kaposi_sarcoma', 'Kaposi’s sarcoma'),
         ('bacteraemia', 'Bacteraemia'),
@@ -76,8 +76,9 @@ list_data = {
         ('tb_extra_pulmonary', 'TB extra-pulmonary'),
         ('malaria', 'Malaria'),
         ('bacterial_pneumonia', 'Bacterial pneumonia'),
-        (OTHER, 'Other, please specify:'), ],
-    'ambition_subject.symptoms': [
+        (OTHER, 'Other, please specify:'),
+    ],
+    'ambition_subject.symptom': [
         ('headache', 'Headache'),
         ('double_vision', 'Double vision'),
         ('visual_loss', 'Visual loss'),
