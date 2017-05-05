@@ -13,7 +13,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = PatientHistoryForm
 
-    filter_horizontal = ('neurological', )
+    filter_horizontal = ('neurological', 'symptom')
 
     radio_fields = {
         'med_history': admin.VERTICAL,
@@ -34,6 +34,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ('Current Symptoms', {
             'fields': [
+                'symptom',
                 'headache_duration',
                 'visual_loss_duration']}
          ),
@@ -49,6 +50,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'taking_arv',
                 'arv_date',
                 'arvs',
+                'arvs_other',
                 'first_line_choice',
                 'patient_adherence',
                 'last_dose',
