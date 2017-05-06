@@ -1,35 +1,18 @@
 from dateutil.relativedelta import relativedelta
 
 from django.test import TestCase
-from model_mommy import mommy
 
 from edc_base.utils import get_utcnow
 from edc_constants.constants import NO, YES
-from edc_visit_tracking.constants import SCHEDULED
 
 from ..forms import ProtocolDeviationViolationForm
-from ..models import Appointment
 
 
 class TestProtocolDeviationViolation(TestCase):
 
     def setUp(self):
-        screening = mommy.make_recipe(
-            'ambition_subject.subject_screening',
-            report_datetime=get_utcnow())
-        consent = mommy.make_recipe(
-            'ambition_subject.subject_consent',
-            consent_datetime=get_utcnow(),
-            subject_screening_reference=screening.reference)
-        appointment = Appointment.objects.get(
-            visit_code='1000')
-        subject_visit = mommy.make_recipe(
-            'ambition_subject.subjectvisit',
-            appointment=appointment,
-            subject_identifier=consent.subject_identifier, reason=SCHEDULED,)
 
         self.data = {
-            'subject_visit': subject_visit.id,
             'report_datetime': get_utcnow(),
             'participant_safety_impact': NO,
             'participant_safety_impact_details': None,
