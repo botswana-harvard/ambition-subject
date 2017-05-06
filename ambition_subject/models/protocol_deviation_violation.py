@@ -32,6 +32,7 @@ class ProtocolDeviationViolation(BaseUuidModel):
         blank=True)
 
     date_violation_datetime = models.DateTimeField(
+        verbose_name='Date violation occured:',
         validators=[date_not_future])
 
     protocol_violation_type = models.CharField(
