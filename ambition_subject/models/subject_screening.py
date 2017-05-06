@@ -14,14 +14,14 @@ class SubjectScreening(BaseUuidModel):
     reference = models.UUIDField(
         verbose_name="Anonymous Reference",
         unique=True,
-        default=uuid4,
-        editable=False)
+        default=uuid4)
 
     screening_identifier = models.CharField(
         verbose_name='Screening Id',
         max_length=50,
         blank=True,
-        unique=True,)
+        unique=True,
+        editable=False)
 
     report_datetime = models.DateTimeField(
         verbose_name="Report Date and Time",
@@ -49,6 +49,8 @@ class SubjectScreening(BaseUuidModel):
     willing_to_give_informed_consent = models.CharField(
         choices=YES_NO,
         max_length=5,
+        blank=True,
+        unique=True,
         verbose_name='Participant or legal guardian/representative able and '
                      'willing to give informed consent.')
 
@@ -100,7 +102,7 @@ class SubjectScreening(BaseUuidModel):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return (self.screening_identifier + self.sex + self.age)
+        return (self.screening_identifier + self.sex + str(self.age))
 
     def get_is_eligible(self):
         error_message = []
