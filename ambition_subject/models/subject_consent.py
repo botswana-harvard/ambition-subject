@@ -13,9 +13,10 @@ from edc_dashboard.model_mixins import SearchSlugManager
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 
+from ambition_screening.models import SubjectScreening
+
 from ..managers import SubjectConsentManager
 from .model_mixins import SearchSlugModelMixin
-from .subject_screening import SubjectScreening
 
 
 class Manager(SubjectConsentManager, SearchSlugManager):
