@@ -54,7 +54,7 @@ class MicrobiologyForm(SubjectModelFormMixin):
             field_required='tissue_biopsy_results')
 
         self.required_if(
-            YES,
+            POS,
             field='tissue_biopsy_results',
             field_required='study_day_positive_biopsy_taken')
 

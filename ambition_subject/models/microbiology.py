@@ -2,6 +2,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import YES_NO, POS_NEG
 
 from ..choices import (
@@ -50,7 +51,7 @@ class Microbiology(CrfModelMixin):
     study_day_positive_blood_taken = models.IntegerField(
         blank=True,
         null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(99)],
+        validators=[MinValueValidator(1), MaxValueValidator(70)],
         verbose_name='If Positive, Study day positive culture sample taken:')
 
     blood_culture_organism = models.CharField(
@@ -85,10 +86,8 @@ class Microbiology(CrfModelMixin):
         max_length=15)
 
     tissue_biopsy_taken = models.CharField(
-        blank=True,
         choices=YES_NO,
-        max_length=5,
-        null=True)
+        max_length=5)
 
     tissue_biopsy_results = models.CharField(
         blank=True,
@@ -100,7 +99,7 @@ class Microbiology(CrfModelMixin):
     study_day_positive_biopsy_taken = models.IntegerField(
         blank=True,
         null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(99)],
+        validators=[MinValueValidator(1), MaxValueValidator(70)],
         verbose_name='If Positive, Study day positive culture sample taken:')
 
     tissue_biopsy_organism = models.CharField(
