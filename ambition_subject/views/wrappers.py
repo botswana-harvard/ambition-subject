@@ -126,6 +126,10 @@ class SubjectConsentModelWrapper(ModelWrapper):
     next_url_attrs = {
         'ambition_subject.subjectconsent': ['subject_identifier']}
     extra_querystring_attrs = {
-        'ambition_subject.subjectconsent': ['gender', 'first_name', 'initials']}
+        'ambition_subject.subjectconsent': ['gender', 'subject_screening', 'first_name', 'initials']}
     url_instance_attrs = [
-        'subject_identifier', 'gender', 'first_name', 'initials']
+        'subject_identifier', 'gender', 'subject_screening', 'first_name', 'initials']
+
+    @property
+    def subject_screening(self):
+        return str(self._original_object.subject_screening.id)
