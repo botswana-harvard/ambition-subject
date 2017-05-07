@@ -7,6 +7,7 @@ class AppConfig(DjangoApponfig):
     dashboard_template_name = 'ambition_subject/dashboard.html'
     base_template_name = 'edc_base/base.html'
     listboard_url_name = 'ambition_subject:listboard_url'
+    screening_listboard_url_name = 'ambition_subject:screening_listboard_url'
     dashboard_url_name = 'ambition_subject:dashboard_url'
     admin_site_name = 'ambition_subject_admin'
 

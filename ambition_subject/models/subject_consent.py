@@ -13,9 +13,10 @@ from edc_dashboard.model_mixins import SearchSlugManager
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 
+from ambition_screening.models import SubjectScreening
+
 from ..managers import SubjectConsentManager
 from .model_mixins import SearchSlugModelMixin
-from .subject_screening import SubjectScreening
 
 
 class Manager(SubjectConsentManager, SearchSlugManager):
@@ -31,7 +32,8 @@ class SubjectConsent(
     """ A model completed by the user that captures the ICF.
     """
 
-    subject_screening_reference = models.UUIDField()
+    subject_screening = models.ForeignKey(
+        SubjectScreening, on_delete=models.PROTECT)
 
     is_signed = models.BooleanField(default=False, editable=False)
 

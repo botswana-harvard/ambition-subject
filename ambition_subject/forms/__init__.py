@@ -15,6 +15,6 @@ from .subject_consent_form import SubjectConsentForm
 from .subject_locator_form import SubjectLocatorForm
 from .subject_randomization_form import SubjectRandomizationForm
 from .subject_requisition_form import SubjectRequisitionForm
-from .subject_screening_form import SubjectScreeningForm
+# from .subject_screening_form import SubjectScreeningForm
 from .subject_visit_form import SubjectVisitForm
 from .week2_form import Week2Form

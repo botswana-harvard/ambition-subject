@@ -1,9 +1,10 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from ambition_screening.models import SubjectScreening
+
 from .subject_consent import SubjectConsent
 from .enrollment import Enrollment
-from .subject_screening import SubjectScreening
 
 
 @receiver(post_save, weak=False, sender=SubjectConsent, dispatch_uid='subject_consent_on_post_save')
