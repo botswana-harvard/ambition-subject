@@ -44,14 +44,13 @@ class SubjectConsent(
     history = HistoricalRecords()
 
     def __str__(self):
-        return '{0} ({1}) V{2}'.format(
+        return '{0} V{1}'.format(
             self.subject_identifier,
-            self.survey_schedule_object.name,
             self.version)
 
     def save(self, *args, **kwargs):
         try:
-            SubjectScreening.objects.get(reference=self.subject_screening_reference)
+            SubjectScreening.objects.get(id=self.subject_screening.id)
         except SubjectScreening.DoesNotExist:
             SubjectScreening.DoesNotExist(
                 'Unable to determine screening criteria.'
