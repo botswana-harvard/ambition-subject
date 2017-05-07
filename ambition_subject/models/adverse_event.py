@@ -8,7 +8,6 @@ from edc_constants.choices import YES_NO
 from ..choices import (
     AE_SEVERITY, AE_INTENSITY, PATIENT_TREATMENT_GROUP, RAE_REASON,
     STUDY_DRUG_RELATIONSHIP)
-from .list_models import AEClassification
 
 
 class AdverseEvent(BaseUuidModel):
@@ -88,6 +87,8 @@ class AdverseEvent(BaseUuidModel):
         verbose_name='Specify action taken for treatment of AE:')
 
     recurrence_cm_symptoms = models.CharField(
+        blank=True,
+        null=True,
         choices=YES_NO,
         help_text='If yes, fill in the Recurrence of Symptoms form',
         max_length=5,
@@ -129,35 +130,6 @@ class AdverseEvent(BaseUuidModel):
                   'ambition_tmg@sgul.ac.uk)',
         null=True,
         verbose_name='Date and time AE reported')
-
-    ae_form_received_datetime = models.DateTimeField(
-        blank=True,
-        null=True,
-        verbose_name='Date and time AE form received:')
-
-    clinical_review_datetime = models.DateTimeField(
-        blank=True,
-        null=True,
-        verbose_name='Date and time of Clinical Review: ')
-
-    investigator_comments = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Investigator Comments:')
-
-    ae_classification = models.ManyToManyField(
-        AEClassification,
-        verbose_name='Classification of AE (Tick all that apply):')
-
-    investigator_ae_description = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Description of AE:')
-
-    regulatory_officials_notified_datetime = models.DateTimeField(
-        blank=True,
-        null=True,
-        verbose_name='Date and time Regulatory authorities notified (SUSARs)')
 
     history = HistoricalRecords()
 
