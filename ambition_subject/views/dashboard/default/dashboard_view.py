@@ -36,6 +36,8 @@ class DashboardView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        from django.apps import apps as django_apps
+        ambition_subject_dashboard_url_name=django_apps.get_app_config('ambition_subject').dashboard_url_name,
         try:
             subject_offstudy = SubjectOffstudy.objects.get(
                 subject_identifier=self.subject_identifier)
@@ -43,5 +45,5 @@ class DashboardView(
             subject_offstudy = None
         context.update(
             subject_offstudy=subject_offstudy,
-            anonymous=None)
+            ambition_subject_dashboard_url_name=ambition_subject_dashboard_url_name)
         return context

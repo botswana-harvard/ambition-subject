@@ -22,6 +22,7 @@ class BloodResultsAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ['Complete Blood Count (CBC)', {
             'fields': (
+                'subject_visit',
                 'wbc',
                 'platelets',
                 'haemoglobin',

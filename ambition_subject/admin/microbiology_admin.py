@@ -30,6 +30,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ['Urine Culture (Only for patients with >50 white cells in urine)', {
             'fields': (
+                'subject_visit',
                 'urine_culture_performed',
                 'urine_culture_results',
                 'urine_culture_organism',

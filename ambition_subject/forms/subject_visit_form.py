@@ -17,16 +17,10 @@ class SubjectVisitForm (VisitFormMixin, RequiresConsentModelFormMixin,
     def get_consent(self, subject_identifier, report_datetime):
         """Return an instance of the consent model.
         """
-        cleaned_data = self.cleaned_data
-        if cleaned_data.get('household_member').anonymous:
-            consent_object = site_consents.get_consent(
-                report_datetime=report_datetime,
-                consent_model=self._meta.model._meta.anonymous_consent_model)
-        else:
-            consent_object = site_consents.get_consent(
-                report_datetime=report_datetime,
-                consent_group=self._meta.model._meta.consent_group,
-                consent_model=self._meta.model._meta.consent_model)
+        consent_object = site_consents.get_consent(
+            report_datetime=report_datetime,
+            consent_group=self._meta.model._meta.consent_group,
+            consent_model=self._meta.model._meta.consent_model)
         try:
             obj = consent_object.model.consent.consent_for_period(
                 subject_identifier=subject_identifier,

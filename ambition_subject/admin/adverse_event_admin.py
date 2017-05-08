@@ -32,6 +32,7 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ('Initial Report', {
             'fields': (
+                'subject_visit',
                 'ae_awareness_date',
                 'description',
                 'ae_start_date',

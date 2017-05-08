@@ -25,6 +25,7 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         [None, {
             'fields': (
+                'subject_visit',
                 'date_patient_terminated_study',
                 'termination_study_day',
                 'last_research_termination_date',

@@ -45,8 +45,7 @@ class SubjectRequisition(
         return ([self.subject_visit.subject_identifier,
                  self.requisition_identifier,
                  self.human_readable_identifier,
-                 self.identifier_prefix]
-                + self.subject_visit.household_member.get_slugs())
+                 self.identifier_prefix])
 
     class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'

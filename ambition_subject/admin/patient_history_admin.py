@@ -34,6 +34,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ('Current Symptoms', {
             'fields': [
+                'subject_visit',
                 'symptom',
                 'headache_duration',
                 'visual_loss_duration']}

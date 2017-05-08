@@ -11,7 +11,7 @@ class ModelWrapperMixin(ModelWrapper):
     next_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
     extra_querystring_attrs = {}
-    next_url_attrs = {'edc_appointment.appointment': ['subject_identifier']}
+    next_url_attrs = {'ambition_subject.appointment': ['subject_identifier']}
     url_instance_attrs = ['subject_identifier']
 
 
@@ -19,16 +19,21 @@ class SubjectVisitModelWrapper(ModelWrapperMixin):
 
     model_name = 'ambition_subject.subjectvisit'
     extra_querystring_attrs = {
-        'ambition_subject.subjectvisit': ['household_member']}
+        'ambition_subject.subjectvisit': ['subject_identifier']}
     next_url_attrs = {'ambition_subject.subjectvisit': [
         'appointment', 'subject_identifier']}
     url_instance_attrs = ['subject_identifier', 'appointment']
 
 
-class AppointmentModelWrapper(AppointmentModelWrapper, ModelWrapperMixin):
+class AppointmentModelWrapper(AppointmentModelWrapper):
 
     model_name = 'ambition_subject.appointment'
     visit_model_wrapper_class = SubjectVisitModelWrapper
+    next_url_name = django_apps.get_app_config(
+        'ambition_subject').dashboard_url_name
+    extra_querystring_attrs = {}
+    next_url_attrs = {'ambition_subject.appointment': ['subject_identifier']}
+    url_instance_attrs = ['subject_identifier']
     dashboard_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
 
@@ -81,18 +86,6 @@ class CrfModelWrapper(ModelWrapper):
     @property
     def appointment(self):
         return self._original_object.subject_visit.appointment
-
-
-class SubjectLocatorModelWrapper(ModelWrapper):
-    model_name = 'ambition_subject.subjectlocator'
-    admin_site_name = django_apps.get_app_config(
-        'ambition_subject').admin_site_name
-    url_namespace = 'ambition_subject'
-    next_url_name = django_apps.get_app_config(
-        'ambition_subject').dashboard_url_name
-    next_url_attrs = {
-        'ambition_subject.subjectlocator': ['subject_identifier']}
-    url_instance_attrs = ['subject_identifier']
 
 
 class RequisitionModelWrapper(ModelWrapper):
