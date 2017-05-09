@@ -34,8 +34,7 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                # 'meningitis_symptoms',
-                # 'meningitis_symptoms_other',
+                'subject_visit',
                 'patient_readmitted']}
          ),
         ('Glasgow Coma Score', {

@@ -11,8 +11,9 @@ from .radiology_admin import RadiologyAdmin
 from .recurrence_symptom_admin import RecurrenceSymptomAdmin
 from .study_termination_conclusion_admin import StudyTerminationConclusionAdmin
 from .subject_consent_admin import SubjectConsentAdmin
-from .subject_locator_admin import SubjectLocatorAdmin
 from .subject_randomization_admin import SubjectRandomizationAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
 from .week2_form_admin import Week2Admin
+from .appointment_admin import AppointmentAdmin
+from .blood_result_admin import BloodResultsAdmin

@@ -22,6 +22,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ('Assessment to confirm violation', {
             'fields': (
+                'subject_visit',
                 'participant_safety_impact',
                 'participant_safety_impact_details',
                 'study_outcomes_impact',

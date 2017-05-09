@@ -45,6 +45,10 @@ def dashboard_urls():
             url(r'^' + label + '/'
                 '(?P<subject_identifier>' + subject_identifier + ')/',
                 dashboard_view_class.as_view(), name=dashboard_url_name),
+            url(r'^' + label + '/'
+                '(?P<subject_identifier>' + subject_identifier + ')/'
+                '(?P<schedule_name>' + 'schedule1' + ')/',
+                dashboard_view_class.as_view(), name=dashboard_url_name),
         ])
     return urlpatterns
 

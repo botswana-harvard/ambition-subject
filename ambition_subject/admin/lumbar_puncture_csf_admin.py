@@ -23,6 +23,7 @@ class LumbarPunctureCSFAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
+                'subject_visit',
                 'reason_for_lp',
                 'opening_pressure',
                 'closing_pressure',

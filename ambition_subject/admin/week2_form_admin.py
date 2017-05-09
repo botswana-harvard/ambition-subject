@@ -15,6 +15,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ['Admission history', {
             'fields': (
+                'subject_visit',
                 'discharged',
                 'discharge_datetime',
                 'died',
@@ -31,8 +32,6 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'ambisome_missed_reason',
                 'fluconazole_missed_doses',
                 'fluconazole_missed_reason',
-                # 'other_drug_type',
-                # 'antibiotic_list',
                 'blood_received',
                 'units',
                 'hiv_status_pos',

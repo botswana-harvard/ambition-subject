@@ -5,11 +5,9 @@ from edc_dashboard.view_mixins import (
 from ..appointment_view_mixin import AppointmentViewMixin
 from ..subject_visit_view_mixin import SubjectVisitViewMixin
 from ..visit_schedule_view_mixin import VisitScheduleViewMixin
-from .subject_locator_view_mixin import SubjectLocatorViewMixin
 
 
 class BaseDashboardView(
-        SubjectLocatorViewMixin,
         MetaDataViewMixin,
         ConsentViewMixin,
         SubjectVisitViewMixin,
