@@ -2,7 +2,8 @@ from model_mommy import mommy
 
 from django.test import TestCase, tag
 
-from edc_constants.constants import NO, FEMALE, YES
+from edc_constants.constants import NO, FEMALE, YES, MALE
+from ..forms import SubjectScreeningForm
 
 
 @tag('screening')
@@ -77,3 +78,10 @@ class TestSubjectScreening(TestCase):
         screening_id = subject_screening.screening_identifier
         subject_screening.save()
         self.assertEqual(subject_screening.screening_identifier, screening_id)
+        
+    def test_pregnancy_not_required_for_male(self):
+        """"Test male subject cannot be pregnant or lactating
+        """
+      
+
+

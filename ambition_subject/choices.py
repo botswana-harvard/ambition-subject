@@ -38,13 +38,14 @@ ANTIBIOTICS = (
     (OTHER, 'Other, specify'))
 
 ARV_REGIMEN = (
-    ('TDF +3TC/FTC + either EFZ or NVP', 'TDF +3TC/FTC + either EFZ or NVP'),
-    ('AZT + 3-TC + either EFV or NVP', 'AZT + 3-TC + either EFV or NVP'),
-    ('d4T + 3-TC + either EFV or NVP', 'd4T + 3-TC + either EFV or NVP'),
+    ('TDF +3TC/FTC + either EFZ or NVP', 'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
+    ('AZT + 3-TC + either EFV or NVP', 'AZT + 3-TC + either EFV or NVP or or DTG'),
     ('TDF + 3TC/FTC + either ATZ/r or Lopinavir/r',
      'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
     ('AZT + 3TC + either ATZ/r or Lopinavir/r',
-     'AZT + 3TC + either ATZ/r or Lopinavir/r'))
+     'AZT + 3TC + either ATZ/r or Lopinavir/r'),
+    (OTHER, 'Other, specify')          
+    )
 
 BIOPSY_RESULTS_ORGANISM = (
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
@@ -101,6 +102,7 @@ DR_OPINION = (
 
 FIRST_LINE_REGIMEN = (
     ('EFV', 'EFV'),
+    ('DTG', 'DTG'),
     ('NVP', 'NVP'))
 
 FLUCONAZOLE_DOSE = (

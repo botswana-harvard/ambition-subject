@@ -88,6 +88,8 @@ class PatientHistory(CrfModelMixin):
         blank=True,
         max_length=50,
         choices=ARV_REGIMEN)
+    
+    arvs_other = OtherCharField()
 
     first_line_choice = models.CharField(
         verbose_name='If first line, are you on EFV or NVP?',

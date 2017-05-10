@@ -9,7 +9,7 @@ from edc_constants.constants import YES, POS, NEG, NO, UNKNOWN
 from edc_visit_tracking.constants import SCHEDULED
 
 from .models import (
-    AdverseEvent, BloodResult, DeathReport, Microbiology, FollowUp,
+    AdverseEvent, BloodResult, Death, Microbiology, FollowUp,
     ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
     SubjectScreening, SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
     Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
@@ -93,8 +93,8 @@ blood_result = Recipe(
     are_results_normal=YES,
     abnormal_results_in_ae_range=YES)
 
-death_report = Recipe(
-    DeathReport,
+death = Recipe(
+    Death,
     study_day='Tuesday',
     death_as_inpatient=YES,
     cause_of_death_study_doctor_opinion='Cryptococcal meningitis',
