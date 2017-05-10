@@ -1,5 +1,7 @@
 from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN
 
+from .constants import N1, A2, AMS_N3, AMS_A4
+
 ABNORMAL_RESULTS_REASON = (
     ('cerebral_oedema', 'Cerebral oedema'),
     ('hydrocephalus', 'Hydrocephalus'),
@@ -203,10 +205,10 @@ RAE_REASON = (
 
 
 RANDOMIZATION_NUMBER = (
-    ('n1', 'N(1)'),
-    ('a2', 'A(2)'),
-    ('ams_n3', 'AMS_N(3)'),
-    ('ams_a4', 'AMS_A(4)'))
+    (N1, 'N(1)'),
+    (A2, 'A(2)'),
+    (AMS_N3, 'AMS_N(3)'),
+    (AMS_A4, 'AMS_A(4)'))
 
 REASON_DRUG_MISSED = (
     ('administered_to_protocol', 'Administered acc to protocol'),

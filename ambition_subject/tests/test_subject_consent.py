@@ -31,7 +31,7 @@ class TestSubjectConsent(TestCase):
 
         screening = mommy.make_recipe('ambition_subject.subject_screening')
         options = {
-            'subject_screening_reference': screening.reference,
+            'subject_screening': screening,
             'consent_datetime': get_utcnow, }
         mommy.make_recipe('ambition_subject.subject_consent', **options)
         RegisteredSubject = django_apps.get_app_config('edc_registration').model
@@ -50,7 +50,7 @@ class TestSubjectConsent(TestCase):
             consent_datetime=get_utcnow,
             subject_screening_reference=screening.reference)
         try:
-            SubjectConsent.objects.get(subject_screening_reference=screening.reference)
+            SubjectConsent.objects.get(subject_screening=screening)
         except SubjectConsent.DoesNotExist:
             self.fail('SubjectConsent.DoesNotExist unexpectedly raised')
 
@@ -59,7 +59,7 @@ class TestSubjectConsent(TestCase):
         mommy.make_recipe(
             'ambition_subject.subject_consent',
             consent_datetime=get_utcnow,
-            subject_screening_reference=screening.reference)
+            subject_screening=screening)
         enrollment = Enrollment.objects.all()
         self.assertTrue(enrollment[0].is_eligible)
         self.assertEqual(enrollment.count(), 1)

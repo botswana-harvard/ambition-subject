@@ -15,22 +15,14 @@ class SubjectRandomizationAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {
         'abnormal_mental_status': admin.VERTICAL,
-        'already_on_arvs': admin.VERTICAL,
-        'randomization_number': admin.VERTICAL,
-        'consent_form_signed': admin.VERTICAL,
-        'regimen': admin.VERTICAL}
+        'on_arvs': admin.VERTICAL}
 
     fieldsets = (
         ['First Contact', {
             'fields': (
                 'subject_visit',
                 'hospital_admission_date',
-                'inclusion_date',
                 'abnormal_mental_status',
-                'already_on_arvs',
-                'arv_start_date',
-                'randomization_number',
-                'consent_form_signed',
-                'regimen')}],
+                'on_arvs')}],
         audit_fieldset_tuple
     )
