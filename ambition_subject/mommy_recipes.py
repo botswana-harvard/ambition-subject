@@ -7,11 +7,13 @@ from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
 from edc_constants.constants import YES, POS, NEG, NO, UNKNOWN
 from edc_visit_tracking.constants import SCHEDULED
+from ambition_screening.models import SubjectScreening
 
+from .constants import A2
 from .models import (
     AdverseEvent, BloodResult, Death, Microbiology, FollowUp,
     ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
-    SubjectScreening, SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
+    SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
     Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
 from .models.list_models import (
     Neurological, SignificantNewDiagnosis, MeningitisSymptom, Antibiotic)
@@ -258,12 +260,10 @@ subject_screening = Recipe(
 subject_randomization = Recipe(
     SubjectRandomization,
     hospital_admission_date=get_utcnow().date,
-    inclusion_date=get_utcnow().date,
     abnormal_mental_status=NO,
-    already_on_arvs=NO,
+    on_arvs=NO,
     arv_start_date=None,
-    randomization_number='A(2)',
-    consent_form_signed=YES,
+    rando_category=A2,
     regimen=None)
 
 antibiotic = Recipe(Antibiotic)
@@ -377,7 +377,7 @@ lumbar_puncture_csf = Recipe(
 
 subject_consent = Recipe(
     SubjectConsent,
-    subject_screening_reference=None,
+    subject_screening=None,
     subject_identifier=None,
     study_site='40',
     consent_datetime=get_utcnow(),
