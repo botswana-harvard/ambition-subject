@@ -1,4 +1,5 @@
 from .adverse_event import AdverseEvent
+from .adverse_event_tmg import AdverseEventTMG
 from .appointment import Appointment
 from .blood_result import BloodResult
 from .clinic_note import ClinicNote

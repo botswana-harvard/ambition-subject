@@ -13,13 +13,11 @@ from ..models import Appointment
 class TestMicrobiology(TestCase):
 
     def setUp(self):
-        screening = mommy.make_recipe(
-            'ambition_subject.subject_screening',
-            report_datetime=get_utcnow())
+        screening = mommy.make_recipe('ambition_subject.subject_screening')
         consent = mommy.make_recipe(
             'ambition_subject.subject_consent',
-            consent_datetime=get_utcnow(),
-            subject_screening_reference=screening.reference)
+            consent_datetime=get_utcnow,
+            subject_screening=screening)
         appointment = Appointment.objects.get(
             visit_code='1000')
         subject_visit = mommy.make_recipe(
