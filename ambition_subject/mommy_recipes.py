@@ -16,7 +16,8 @@ from .models import (
     SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
     Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
 from .models.list_models import (
-    Neurological, SignificantNewDiagnosis, MeningitisSymptom, Antibiotic)
+    AEClassification, Neurological, SignificantNewDiagnosis, MeningitisSymptom,
+    Antibiotic)
 
 
 class DateProvider(BaseProvider):
@@ -43,6 +44,8 @@ class DateProvider(BaseProvider):
 fake = Faker()
 fake.add_provider(EdcBaseProvider)
 fake.add_provider(DateProvider)
+
+ae_classification = Recipe(AEClassification)
 
 adverse_event = Recipe(
     AdverseEvent,

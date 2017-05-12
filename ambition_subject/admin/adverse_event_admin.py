@@ -13,8 +13,6 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = AdverseEventForm
 
-    filter_horizontal = ('ae_classification',)
-
     radio_fields = {
         'ae_severity': admin.VERTICAL,
         'ae_intensity': admin.VERTICAL,
@@ -32,7 +30,6 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ('Initial Report', {
             'fields': (
-                'subject_visit',
                 'ae_awareness_date',
                 'description',
                 'ae_start_date',
@@ -56,13 +53,5 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'susar_reported',
                 'susar_reported_datetime')},
          ),
-        ('For completion by TMG Investigator Only', {
-            'fields': (
-                'ae_form_received_datetime',
-                'clinical_review_datetime',
-                'investigator_comments',
-                'investigator_ae_description',
-                'ae_classification',
-                'regulatory_officials_notified_datetime')}),
         audit_fieldset_tuple
     )
