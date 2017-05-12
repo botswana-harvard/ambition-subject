@@ -44,17 +44,9 @@ class SubjectConsent(
     history = HistoricalRecords()
 
     def __str__(self):
-        return '{0} V{1}'.format(
-            self.subject_identifier,
-            self.version)
+        return f'{self.subject_identifier} V{self.version}'
 
     def save(self, *args, **kwargs):
-        try:
-            SubjectScreening.objects.get(id=self.subject_screening.id)
-        except SubjectScreening.DoesNotExist:
-            SubjectScreening.DoesNotExist(
-                'Unable to determine screening criteria.'
-                'Was Subject screening completed?')
         if not self.id:
             edc_protocol_app_config = django_apps.get_app_config(
                 'edc_protocol')

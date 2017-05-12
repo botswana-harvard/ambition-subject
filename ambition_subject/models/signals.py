@@ -12,11 +12,9 @@ def subject_consent_on_post_save(sender, instance, raw, created, using, **kwargs
     if not raw:
         if created:
             try:
-                screening = SubjectScreening.objects.get(
-                    id=instance.subject_screening.id)
                 Enrollment.objects.create(
                     subject_identifier=instance.subject_identifier,
                     consent_identifier=instance.id,
-                    is_eligible=screening.is_eligible)
+                    is_eligible=instance.subject_screening.eligible)
             except SubjectScreening.DoesNotExist:
                 raise('Valid subject screening id not found')
