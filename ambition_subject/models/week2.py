@@ -41,12 +41,12 @@ class Week2(CrfModelMixin):
         null=True,
         blank=True)
 
-    fluconazole_start_datetime = models.DateTimeField(
+    flucon_start_datetime = models.DateTimeField(
         validators=[date_not_future],
         null=True,
         blank=True)
 
-    fluconazole_stop_datetime = models.DateTimeField(
+    flucon_stop_datetime = models.DateTimeField(
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -71,12 +71,12 @@ class Week2(CrfModelMixin):
         blank=True,
         choices=REASON_DRUG_MISSED)
 
-    fluconazole_missed_doses = models.CharField(
+    flucon_missed_doses = models.CharField(
         verbose_name='Were any drug doses missed?',
         max_length=25,
         choices=YES_NO)
 
-    fluconazole_missed_reason = models.CharField(
+    flucon_missed_reason = models.CharField(
         verbose_name='Were any drug doses missed?',
         max_length=25,
         blank=True,
@@ -131,7 +131,7 @@ class Week2(CrfModelMixin):
         blank=True,
         default=None)
 
-    glasgow_coma_score = models.IntegerField(
+    glasgow_cs = models.IntegerField(
         verbose_name='Glasgow Coma Score',
         null=True,
         blank=True)
@@ -180,17 +180,17 @@ class Week2(CrfModelMixin):
         max_length=25,
         choices=YES_NO)
 
-    glasgow_coma_score_eyes = models.CharField(
+    glasgow_cs_eyes = models.CharField(
         verbose_name='Glasgow Coma Score of eyes',
         max_length=25,
         choices=GLASGOW_COMA_SCORE_EYES)
 
-    glasgow_coma_score_verbal = models.CharField(
+    glasgow_cs_verbal = models.CharField(
         verbose_name='Glasgow Coma Score of verbal',
         max_length=25,
         choices=GLASGOW_COMA_SCORE_VERBAL)
 
-    glasgow_coma_score_motor = models.CharField(
+    glasgow_cs_motor = models.CharField(
         verbose_name='Glasgow Coma Score of motor',
         max_length=25,
         choices=GLASGOW_COMA_SCORE_MOTOR)

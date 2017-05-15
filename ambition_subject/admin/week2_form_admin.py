@@ -25,13 +25,13 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'ambisome_start_datetime',
                 'ambisome_stop_datetime',
-                'fluconazole_start_datetime',
-                'fluconazole_stop_datetime',
+                'flucon_start_datetime',
+                'flucon_stop_datetime',
                 'drug_doses_missed',
                 'ambisome_missed_doses',
                 'ambisome_missed_reason',
-                'fluconazole_missed_doses',
-                'fluconazole_missed_reason',
+                'flucon_missed_doses',
+                'flucon_missed_reason',
                 'blood_received',
                 'units',
                 'hiv_status_pos',
@@ -42,7 +42,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'clinic_assessment',
                 'headache',
                 'temperature',
-                'glasgow_coma_score',
+                'glasgow_cs',
                 'seizures_during_admission',
                 'recent_seizure',
                 'behaviour_change',
@@ -55,9 +55,9 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
          ],
         ['Glasgow Coma Score', {
             'fields': (
-                'glasgow_coma_score_eyes',
-                'glasgow_coma_score_verbal',
-                'glasgow_coma_score_motor')}],
+                'glasgow_cs_eyes',
+                'glasgow_cs_verbal',
+                'glasgow_cs_motor')}],
         audit_fieldset_tuple
     )
 
@@ -66,8 +66,8 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'died': admin.VERTICAL,
         'drug_doses_missed': admin.VERTICAL,
         'ambisome_missed_reason': admin.VERTICAL,
-        'fluconazole_missed_doses': admin.VERTICAL,
-        'fluconazole_missed_reason': admin.VERTICAL,
+        'flucon_missed_doses': admin.VERTICAL,
+        'flucon_missed_reason': admin.VERTICAL,
         'blood_received': admin.VERTICAL,
         'blood_received': admin.VERTICAL,
         'hiv_status_pos': admin.VERTICAL,
@@ -82,7 +82,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'focal_neurology': admin.VERTICAL,
         'medicines': admin.VERTICAL,
         'significant_diagnosis': admin.VERTICAL,
-        'glasgow_coma_score_eyes': admin.VERTICAL,
-        'glasgow_coma_score_verbal': admin.VERTICAL,
-        'glasgow_coma_score_motor': admin.VERTICAL
+        'glasgow_cs_eyes': admin.VERTICAL,
+        'glasgow_cs_verbal': admin.VERTICAL,
+        'glasgow_cs_motor': admin.VERTICAL
     }

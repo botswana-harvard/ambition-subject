@@ -305,9 +305,9 @@ week2 = Recipe(
     weight=63,
     medicines='Fluconazole',
     significant_diagnosis='Extension to pain',
-    glasgow_coma_score_eyes='Opens eyes spontaneously',
-    glasgow_coma_score_verbal='Not Applicable',
-    glasgow_coma_score_motor='Extension to pain')
+    glasgow_cs_eyes='Opens eyes spontaneously',
+    glasgow_cs_verbal='Not Applicable',
+    glasgow_cs_motor='Extension to pain')
 
 subjectvisit = Recipe(
     SubjectVisit,
@@ -338,7 +338,7 @@ study_termination_conclusion = Recipe(
     withdrawal_of_consent_reason=None,
     rifampicin_started_since_week4=NO,
     rifampicin_started_study_day=None,
-    arv_regiment='AZT + 3TC + either ATZ/r or Lopinavir/r',
+    arv_regimen='AZT + 3TC + either ATZ/r or Lopinavir/r',
     is_naive=YES,
     date_started_arvs=get_utcnow(),
     date_switched_arvs=None,

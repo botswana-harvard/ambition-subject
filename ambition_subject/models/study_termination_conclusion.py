@@ -76,7 +76,7 @@ class StudyTerminationConclusion(BaseUuidModel):
         null=True,
         validators=[MinValueValidator(1), MaxValueValidator(99)])
 
-    arv_regiment = models.CharField(
+    arv_regimen = models.CharField(
         choices=ARV_REGIMEN,
         max_length=50)
 

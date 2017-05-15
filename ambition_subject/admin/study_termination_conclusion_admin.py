@@ -18,7 +18,7 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
         'readmission_following_initial_discharge': admin.VERTICAL,
         'study_termination_reason': admin.VERTICAL,
         'rifampicin_started_since_week4': admin.VERTICAL,
-        'arv_regiment': admin.VERTICAL,
+        'arv_regimen': admin.VERTICAL,
         'is_naive': admin.VERTICAL,
         'efv_or_nvp': admin.VERTICAL}
 
@@ -40,7 +40,7 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'withdrawal_of_consent_reason',
                 'rifampicin_started_since_week4',
                 'rifampicin_started_study_day',
-                'arv_regiment',
+                'arv_regimen',
                 'is_naive',
                 'date_started_arvs',
                 'date_switched_arvs',
