@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import NOT_APPLICABLE, POS_NEG, YES_NO 
+from edc_constants.choices import NOT_APPLICABLE, POS_NEG, YES_NO
 
 from ..choices import (
     BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM, CULTURE_RESULTS,
