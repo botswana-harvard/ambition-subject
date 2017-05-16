@@ -46,15 +46,16 @@ ARV_REGIMEN = (
      'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
     ('AZT + 3TC + either ATZ/r or Lopinavir/r',
      'AZT + 3TC + either ATZ/r or Lopinavir/r'),
-    (OTHER, 'Other, specify')          
-    )
+    (OTHER, 'Other, specify'))
 
 BIOPSY_RESULTS_ORGANISM = (
+    (NOT_APPLICABLE, 'Not applicable'),
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
     ('mycobacterium_tuberculosis', 'Mycobacterium Tuberculosis'),
     (OTHER, 'If other, please specify'))
 
 BLOOD_CULTURE_RESULTS_ORGANISM = (
+    (NOT_APPLICABLE, 'Not applicable'),
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
     ('e.coli', 'E.coli'),
     ('klebsiella_sp', 'Klebsiella sp'),
@@ -87,6 +88,7 @@ CLINICAL_ASSESSMENT = (
     (NOT_APPLICABLE, 'Not applicable'))
 
 CULTURE_RESULTS = (
+    (NOT_APPLICABLE, 'Not applicable'),
     ('no_growth', 'No growth'),
     (POS, 'Positive'))
 
@@ -257,6 +259,7 @@ TB_SITE_DEATH = (
     ('disseminated', 'Disseminated'))
 
 URINE_CULTURE_RESULTS_ORGANISM = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('e.coli', 'E.coli'),
     ('klebsiella_sp', 'Klebsiella sp.'),
     (OTHER, 'Other, specify:'))
