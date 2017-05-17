@@ -3,7 +3,8 @@ from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_is_future
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import (
     AE_SEVERITY, AE_INTENSITY, PATIENT_TREATMENT_GROUP, RAE_REASON,
@@ -87,9 +88,8 @@ class AdverseEvent(BaseUuidModel):
         verbose_name='Specify action taken for treatment of AE:')
 
     recurrence_cm_symptoms = models.CharField(
-        blank=True,
-        null=True,
-        choices=YES_NO,
+        default=NOT_APPLICABLE,
+        choices=YES_NO_NA,
         help_text='If yes, fill in the Recurrence of Symptoms form',
         max_length=5,
         verbose_name='Was the AE a recurrence of CM symptoms?')
@@ -103,9 +103,8 @@ class AdverseEvent(BaseUuidModel):
         verbose_name='Is this event a SAE?')
 
     sae_event_reason = models.CharField(
-        blank=True,
         choices=RAE_REASON,
-        null=True,
+        default=NOT_APPLICABLE,
         max_length=50,
         verbose_name='If Yes, Reason for SAE:')
 
@@ -116,9 +115,8 @@ class AdverseEvent(BaseUuidModel):
                      '(SUSAR)?')
 
     susar_reported = models.CharField(
-        blank=True,
-        choices=YES_NO,
-        null=True,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         max_length=5,
         verbose_name='If yes, SUSAR must be reported to Principal '
                      'Investigator and TMG immediately, is SUSAR Reported?')

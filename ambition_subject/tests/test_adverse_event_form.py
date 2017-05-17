@@ -2,10 +2,8 @@ from dateutil.relativedelta import relativedelta
 
 from django.test import TestCase
 
-from model_mommy import mommy
-
 from edc_base.utils import get_utcnow
-from edc_constants.constants import NO, YES
+from edc_constants.constants import NOT_APPLICABLE, NO, YES
 
 from ..forms import AdverseEventForm
 
@@ -30,11 +28,11 @@ class TestAdverseEventForm(TestCase):
             'last_implicated_medication_route': 'not_sure_what_goes_here',
             'other_ae_event_cause': NO,
             'action_taken_treatment': 'action treatment',
-            'recurrence_cm_symptoms': None,
+            'recurrence_cm_symptoms': NOT_APPLICABLE,
             'is_sae_event': NO,
-            'sae_event_reason': None,
+            'sae_event_reason': NOT_APPLICABLE,
             'is_susar': NO,
-            'susar_reported': None,
+            'susar_reported': NOT_APPLICABLE,
             'susar_reported_datetime': None,
         }
 
@@ -56,7 +54,7 @@ class TestAdverseEventForm(TestCase):
             other_ae_event_cause is YES.
         """
         self.data.update(other_ae_event_cause=YES,
-                         recurrence_cm_symptoms=None)
+                         recurrence_cm_symptoms=NOT_APPLICABLE)
         form = AdverseEventForm(data=self.data)
         self.assertFalse(form.is_valid())
 
@@ -64,7 +62,7 @@ class TestAdverseEventForm(TestCase):
         """Assert reason was provided for sae event.
         """
         self.data.update(is_sae_event=YES,
-                         sae_event_reason=None)
+                         sae_event_reason=NOT_APPLICABLE)
         form = AdverseEventForm(data=self.data)
         self.assertFalse(form.is_valid())
 
@@ -72,7 +70,7 @@ class TestAdverseEventForm(TestCase):
         """Assert if susar then it is reported.
         """
         self.data.update(is_susar=YES,
-                         susar_reported=None)
+                         susar_reported=NOT_APPLICABLE)
         form = AdverseEventForm(data=self.data)
         self.assertFalse(form.is_valid())
 

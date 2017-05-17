@@ -194,6 +194,7 @@ PROTOCOL_VIOLATION = (
     (OTHER, 'Other'))
 
 RAE_REASON = (
+    (NOT_APPLICABLE, 'Not applicable'),
     ('death', 'Death (Please complete Death form and Study termination form)'),
     ('life_threatening', 'Life-threatening'),
     ('significant_disability', 'Significant disability'),
