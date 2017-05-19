@@ -2,7 +2,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_base.model_validators import date_not_future, datetime_is_future
+from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
@@ -34,57 +34,57 @@ class AdverseEvent(BaseUuidModel):
         max_length=25,
         verbose_name='What is the intensity of the AE?')
 
-    patient_treatment_group = models.CharField(
+    patient_group = models.CharField(
         choices=PATIENT_TREATMENT_GROUP,
         max_length=50,
         verbose_name='Patient’s treatment group')
 
-    incident_study_relationship = models.CharField(
+    incident_study_relation = models.CharField(
         choices=YES_NO,
         max_length=5,
         verbose_name='Is the incident related to patient involvement in the '
                      'study?')
 
-    incident_drug_relationship_ambisome = models.CharField(
+    ambisome_relation = models.CharField(
         choices=STUDY_DRUG_RELATIONSHIP,
         max_length=25,
         verbose_name='Relationship to study drug Ambisome:')
 
-    incident_drug_relationship_fluconozole = models.CharField(
+    fluconozole_relation = models.CharField(
         choices=STUDY_DRUG_RELATIONSHIP,
         max_length=25,
         verbose_name='Relationship to study drug Fluconozole:')
 
-    last_implicated_medication_administered_datetime = models.DateTimeField(
-        validators=[datetime_is_future],
+    med_administered_datetime = models.DateTimeField(
+        validators=[datetime_not_future],
         verbose_name='Date and time of last implicated study medication '
                      'administered')
 
-    last_implicated_medication = models.CharField(
+    implicated_med = models.CharField(
         max_length=50,
         verbose_name='Last implicated study medicine:')
 
-    last_implicated_medication_dose = models.CharField(
+    implicated_med_dose = models.CharField(
         max_length=50,
         verbose_name='Last implicated study medicine dose:')
 
-    last_implicated_medication_route = models.CharField(
+    implicated_med_route = models.CharField(
         max_length=50,
         verbose_name='Last implicated study medicine route:')
 
-    other_ae_event_cause = models.CharField(
+    ae_cause_other = models.CharField(
         choices=YES_NO,
         max_length=5,
         verbose_name='Has a reason other than the specified study drug been '
                      ' identified as the cause of the event(s)?')
 
-    other_ae_event_cause_specify = models.CharField(
+    ae_cause_other_specify = models.CharField(
         blank=True,
         max_length=100,
         null=True,
         verbose_name='If yes, specify')
 
-    action_taken_treatment = models.TextField(
+    action_taken = models.TextField(
         verbose_name='Specify action taken for treatment of AE:')
 
     recurrence_cm_symptoms = models.CharField(
@@ -94,7 +94,7 @@ class AdverseEvent(BaseUuidModel):
         max_length=5,
         verbose_name='Was the AE a recurrence of CM symptoms?')
 
-    is_sae_event = models.CharField(
+    is_sa_event = models.CharField(
         choices=YES_NO,
         help_text='(i.e. results in death, in-patient '
                   'hospitalisation/prolongation, significant disability or is '
@@ -102,7 +102,7 @@ class AdverseEvent(BaseUuidModel):
         max_length=5,
         verbose_name='Is this event a SAE?')
 
-    sae_event_reason = models.CharField(
+    sa_event_reason = models.CharField(
         choices=RAE_REASON,
         default=NOT_APPLICABLE,
         max_length=50,
