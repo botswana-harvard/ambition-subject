@@ -28,6 +28,11 @@ class RadiologyForm(SubjectModelFormMixin):
             YES,
             field='is_ct_performed',
             field_required='is_scanned_with_contrast')
+        
+        self.required_if(
+            YES,
+            field='is_ct_performed',
+            field_required='date_ct_performed')
 
         self.required_if(
             YES,

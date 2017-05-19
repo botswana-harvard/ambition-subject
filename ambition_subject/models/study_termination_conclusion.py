@@ -61,6 +61,12 @@ class StudyTerminationConclusion(BaseUuidModel):
     study_termination_reason = models.CharField(
         choices=REASON_STUDY_TERMINATED,
         max_length=25)
+    
+    study_termination_reason_death =  models.DateField(
+        blank=True,
+        null=True,
+        validators=[date_not_future],
+        verbose_name='if reported to have died')
 
     withdrawal_of_consent_reason = models.CharField(
         blank=True,
@@ -79,6 +85,12 @@ class StudyTerminationConclusion(BaseUuidModel):
     arv_regimen = models.CharField(
         choices=ARV_REGIMEN,
         max_length=50)
+    
+    arv_regimen_other = models.CharField(
+        blank=True,
+        null=True,
+        max_length=50,
+        verbose_name='If in other regimes, please specify:')
 
     is_naive = models.CharField(
         choices=YES_NO,
@@ -99,11 +111,10 @@ class StudyTerminationConclusion(BaseUuidModel):
         max_length=5)
 
     efv_or_nvp = models.CharField(
-        blank=True,
         choices=FIRST_LINE_REGIMEN,
-        max_length=3,
         null=True,
-        verbose_name='If first line, on EFV or NVP?')
+        max_length=3,
+        verbose_name='If first line, on EFV or NVP and or DTG?')
 
     history = HistoricalRecords()
 

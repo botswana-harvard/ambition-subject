@@ -34,6 +34,7 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         ['CT/MRI Brain', {
             'fields': (
                 'is_ct_performed',
+                'date_ct_performed',
                 'is_scanned_with_contrast',
                 'brain_imaging_reason',
                 'brain_imaging_reason_other',
