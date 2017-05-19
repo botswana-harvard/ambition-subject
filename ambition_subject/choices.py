@@ -3,6 +3,7 @@ from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN
 from .constants import N1, A2, AMS_N3, AMS_A4
 
 ABNORMAL_RESULTS_REASON = (
+    (NOT_APPLICABLE,'Not Applicable'),
     ('cerebral_oedema', 'Cerebral oedema'),
     ('hydrocephalus', 'Hydrocephalus'),
     ('cryptococcomus', 'Cryptococcomus'),
@@ -65,6 +66,7 @@ BLOOD_CULTURE_RESULTS_ORGANISM = (
     (OTHER, 'Other, specify'))
 
 BRAIN_IMAGINING_REASON = (
+    (NOT_APPLICABLE,'Not Applicable'),
     ('reduction_in_gcs', 'Reduction in GCS'),
     ('new_neurology', 'New neurology'),
     (OTHER, 'Other, specify'))
@@ -98,6 +100,7 @@ CULTURE_RESULTS = (
     (POS, 'Positive'))
 
 CXR_TYPE = (
+    (NOT_APPLICABLE,'Not Applicable'),
     ('normal', 'Normal'),
     ('hilar_adenopathy', 'Hilar adenopathy'),
     ('miliary_appearance', 'Miliary appearance'),
@@ -143,6 +146,7 @@ GLASGOW_COMA_SCORE_MOTOR = (
     ('obey_commands', 'Obey commands'))
 
 INFILTRATE_LOCATION = (
+    (NOT_APPLICABLE,'Not Applicable'),
     ('lul', 'LUL'),
     ('lll', 'LLL'),
     ('rul', 'RUL'),
