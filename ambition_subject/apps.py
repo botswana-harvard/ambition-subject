@@ -1,5 +1,7 @@
 from django.apps import AppConfig as DjangoApponfig
 
+from edc_visit_tracking.apps import AppConfig as BaseEdcVisitTrackingAppConfig
+
 
 class AppConfig(DjangoApponfig):
     name = 'ambition_subject'
@@ -12,3 +14,8 @@ class AppConfig(DjangoApponfig):
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save
+
+
+class EdcVisitTrackingAppConfig(BaseEdcVisitTrackingAppConfig):
+    visit_models = {
+        'ambition_subject': ('subject_visit', 'ambition_subject.subjectvisit')}
