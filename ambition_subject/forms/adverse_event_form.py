@@ -7,19 +7,20 @@ from .form_mixins import SubjectModelFormMixin
 class AdverseEventForm(SubjectModelFormMixin):
 
     def clean(self):
+        cleaned_data = self.cleaned_data
 
         self.required_if(
             YES,
-            field='other_ae_event_cause',
-            field_required='other_ae_event_cause_specify')
+            field='ae_cause_other',
+            field_required='ae_cause_other_specify')
         self.required_if(
             YES,
-            field='other_ae_event_cause',
+            field='ae_cause_other',
             field_required='recurrence_cm_symptoms')
         self.required_if(
             YES,
-            field='is_sae_event',
-            field_required='sae_event_reason')
+            field='is_sa_event',
+            field_required='sa_event_reason')
         self.required_if(
             YES,
             field='is_susar',
