@@ -5,8 +5,8 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
-from ..choices import ANTIBIOTICS, DR_OPINION, STEROIDS_CHOICES
-from .list_models import Neurological, MeningitisSymptom
+from ..choices import ANTIBIOTICS, DR_OPINION, STEROIDS_CHOICES, CN_PALSY
+from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment 
 from .model_mixins import CrfModelMixin
 
 
@@ -49,19 +49,24 @@ class RecurrenceSymptom(CrfModelMixin):
         choices=YES_NO)
 
     neurological = models.ManyToManyField(
-        Neurological)
-
-    neurological_other = models.CharField(
-        blank=True,
-        max_length=50,
-        null=True,
-        verbose_name='If other neurological, please specify:')
+        Neurological,
+        verbose_name='neurologic:')
 
     focal_neurologic_deficit = models.CharField(
         verbose_name='If focal neurologic deficit chosen, please specify:',
         max_length=15,
         null=True,
         blank=True)
+    
+    cn_palsy = models.CharField(
+        verbose_name='If CN Palsy chosen, please specify:',
+        max_length=15,
+        null=True,
+        blank=True)
+    
+    cn_palsy_counts = models.CharField(
+        max_length=5,
+        choices=CN_PALSY)
 
     lp_completed = models.CharField(
         max_length=5,
@@ -94,15 +99,12 @@ class RecurrenceSymptom(CrfModelMixin):
 
     steroids_choices = models.CharField(
         verbose_name='If Yes:',
-        blank=True,
-        null=True,
         max_length=25,
         choices=STEROIDS_CHOICES)
 
     steroids_choices_other = models.CharField(
         blank=True,
         max_length=50,
-        null=True,
         verbose_name='If other steroids, please specify:')
 
     CD4_count = models.IntegerField(
@@ -111,12 +113,13 @@ class RecurrenceSymptom(CrfModelMixin):
         null=True,
         blank=True,)
 
-    antibiotic_treatment = models.CharField(
-        verbose_name='Antibiotics treatment:',
-        blank=True,
-        null=True,
-        max_length=25,
-        choices=ANTIBIOTICS)
+    antibiotic_treatment = models.ManyToManyField(
+        AntibioticTreatment,
+        verbose_name='Antibiotics treatment:')
+#         blank=True,
+#         null=True,
+#         max_length=25,
+#         choices=ANTIBIOTICS)
 
     antibiotic_treatment_other = models.CharField(
         blank=True,

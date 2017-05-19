@@ -83,6 +83,11 @@ CAUSE_OF_DEATH = (
     (UNKNOWN, 'Unknown'),
     (OTHER, 'Other, specify'))
 
+CN_PALSY = (
+    ('III', 'III'),
+    ('VI', 'VI'),
+    ('VII', 'VII'),
+    ('VIII', 'VIII'))
 
 CLINICAL_ASSESSMENT = (
     (NOT_APPLICABLE, 'Not applicable'))
