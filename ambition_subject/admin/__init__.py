@@ -1,5 +1,7 @@
 from .adverse_event_admin import AdverseEventAdmin
 from .adverse_event_tmg_admin import AdverseEventTMGAdmin
+from .appointment_admin import AppointmentAdmin
+from .blood_result_admin import BloodResultsAdmin
 from .clinic_note_admin import ClinicNoteAdmin
 from .death_admin import DeathAdmin
 from .follow_up_admin import FollowUpAdmin
@@ -15,6 +17,4 @@ from .subject_consent_admin import SubjectConsentAdmin
 from .subject_randomization_admin import SubjectRandomizationAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
-from .week2_form_admin import Week2Admin
-from .appointment_admin import AppointmentAdmin
-from .blood_result_admin import BloodResultsAdmin
+from .week2_admin import Week2Admin

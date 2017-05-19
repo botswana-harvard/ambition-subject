@@ -45,7 +45,7 @@ fake = Faker()
 fake.add_provider(EdcBaseProvider)
 fake.add_provider(DateProvider)
 
-ae_classification = Recipe(AEClassification)
+aeclassification = Recipe(AEClassification)
 
 adverseevent = Recipe(
     AdverseEvent,
@@ -58,7 +58,7 @@ adverseevent = Recipe(
 adverseeventtmg = Recipe(
     AdverseEventTMG)
 
-blood_result = Recipe(
+bloodresult = Recipe(
     BloodResult,
     wbc=0.502,
     platelets=203,
@@ -93,9 +93,9 @@ death = Recipe(
     cause_tb_tmg2_opinion=None,
     narrative_summary='adverse event resulted in death due to cryptococcal meningitis')
 
-significant_new_diagnosis = Recipe(SignificantNewDiagnosis)
+significantnewdiagnosis = Recipe(SignificantNewDiagnosis)
 
-follow_up = Recipe(
+followup = Recipe(
     FollowUp,
     physical_symptoms=YES,
     headache=YES,
@@ -107,7 +107,7 @@ follow_up = Recipe(
     cn_palsy=NO,
     behaviour_change=YES,
     focal_neurology=YES,
-    significant_new_diagnosis=related(significant_new_diagnosis),  # many2many
+    significant_new_diagnosis=related(significantnewdiagnosis),  # many2many
     other_significant_new_diagnosis=None,
     diagnosis_date=get_utcnow().date,
     fluconazole_dose='400mg daily',
@@ -134,7 +134,7 @@ microbiology = Recipe(
     study_day_positive_biopsy_taken=60,
     tissue_biopsy_organism='Cryptococcus neoformans')
 
-missed_visit = Recipe(
+missedvisit = Recipe(
     MissedVisit,
     missed_study_visit_date=get_utcnow,
     visit_missed=2,
@@ -143,7 +143,7 @@ missed_visit = Recipe(
 
 neurological = Recipe(Neurological)
 
-patient_history = Recipe(
+patienthistory = Recipe(
     PatientHistory,
     symptom=None,
     headache_duration=2,
@@ -178,7 +178,7 @@ patient_history = Recipe(
     other_medications=NO,
     specify_medications=None)
 
-protocol_deviation_violation = Recipe(
+protocoldeviationviolation = Recipe(
     ProtocolDeviationViolation,
     participant_safety_impact=NO,
     participant_safety_impact_details=None,
@@ -194,11 +194,11 @@ protocol_deviation_violation = Recipe(
     preventative_action_datetime=get_utcnow(),
     action_required='Participant to remain on trial')
 
-meningitis_symptom = Recipe(MeningitisSymptom)
+meningitissymptom = Recipe(MeningitisSymptom)
 
-recurrence_symtom = Recipe(
+recurrencesymtom = Recipe(
     RecurrenceSymptom,
-    meningitis_symptom=related(meningitis_symptom),
+    meningitis_symptom=related(meningitissymptom),
     meningitis_symptom_other=None,
     patient_readmitted=NO,
     glasgow_coma_score=8,
@@ -225,7 +225,7 @@ recurrence_symtom = Recipe(
     narrative_summary=None,
     dr_opinion='CM Relapse')
 
-subject_screening = Recipe(
+subjectscreening = Recipe(
     SubjectScreening,
     gender='Male',
     age_in_years=40,
@@ -239,7 +239,7 @@ subject_screening = Recipe(
     eligible=True,
     reasons_ineligible=None)
 
-subject_randomization = Recipe(
+subjectrandomization = Recipe(
     SubjectRandomization,
     hospital_admission_date=get_utcnow().date,
     abnormal_mental_status=NO,
@@ -253,46 +253,29 @@ antibiotic = Recipe(Antibiotic)
 week2 = Recipe(
     Week2,
     discharged=NO,
-    discharge_datetime=get_utcnow(),
     died=NO,
-    death_datetime=get_utcnow(),
-    ambisome_start_datetime=get_utcnow(),
-    ambisome_stop_datetime=None,
-    fluconazole_start_datetime=get_utcnow(),
-    fluconazole_stop_datetime=None,
-    drug_doses_missed=NO,
-    ambisome_missed_doses=NO,
-    ambisome_missed_reason='Administered acc to protocol',
-    fluconazole_missed_doses=NO,
-    fluconazole_missed_reason=None,
+    flucon_start_datetime=get_utcnow(),
+    flucon_stop_datetime=None,
     other_drug=None,
     antibiotic=related(antibiotic),
-    blood_receive=NO,
+    blood_received=NO,
     units=None,
-    hiv_status_pos=NO,
-    new_hiv_diagnosis=UNKNOWN,
-    clinic_assessment=NO,
     headache=YES,
     temperature=41.2,
-    glasgow_coma_score=8,
+    glasgow_cs=8,
     seizures_during_admission=NO,
     recent_seizure=NO,
     behaviour_change=YES,
     confusion=NO,
     cn_palsy=YES,
     focal_neurology=NO,
-    weight=63,
-    medicines='Fluconazole',
-    significant_diagnosis='Extension to pain',
-    glasgow_cs_eyes='Opens eyes spontaneously',
-    glasgow_cs_verbal='Not Applicable',
-    glasgow_cs_motor='Extension to pain')
+    medicines='Fluconazole',)
 
 subjectvisit = Recipe(
     SubjectVisit,
     reason=SCHEDULED,)
 
-subject_locator = Recipe(
+subjectlocator = Recipe(
     SubjectLocator,
     alt_contact_cell_number='72200111',
     has_alt_contact=None,
@@ -302,7 +285,7 @@ subject_locator = Recipe(
     other_alt_contact_cell='760000111',
     alt_contact_tel=None)
 
-study_termination_conclusion = Recipe(
+studyterminationconclusion = Recipe(
     StudyTerminationConclusion,
     date_patient_terminated_study=25,
     last_research_termination_date=get_utcnow().date,
@@ -338,7 +321,7 @@ radiology = Recipe(
     abnormal_results_reason_other=None,
     if_infarcts_location=None)
 
-lumbar_puncture_csf = Recipe(
+lumbarpuncturecsf = Recipe(
     LumbarPunctureCsf,
     reason_for_lp='Scheduled per protocol',
     opening_pressure=89,
@@ -357,7 +340,7 @@ lumbar_puncture_csf = Recipe(
     csf_cr_ag_titres=300,
     csf_cr_ag_lfa=YES)
 
-subject_consent = Recipe(
+subjectconsent = Recipe(
     SubjectConsent,
     subject_screening=None,
     subject_identifier=None,

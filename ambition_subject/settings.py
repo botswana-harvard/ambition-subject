@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
     'edc_appointment.apps.AppConfig',
-    'edc_base_test.apps.AppConfig',
     'edc_device.apps.AppConfig',
     'edc_identifier.apps.AppConfig',
     'edc_lab.apps.AppConfig',
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     'edc_visit_schedule.apps.AppConfig',
     'ambition_screening.apps.AppConfig',
     'ambition_subject.apps.AppConfig',
+    'ambition_subject.apps.EdcBaseTestAppConfig',
 
 ]
 

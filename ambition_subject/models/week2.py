@@ -2,11 +2,12 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_fields.custom_fields import OtherCharField
+from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
+from edc_constants.choices import YES_NO
 
-from ..choices import (REASON_DRUG_MISSED, MEDICINES, GLASGOW_COMA_SCORE_EYES,
-                       GLASGOW_COMA_SCORE_VERBAL, GLASGOW_COMA_SCORE_MOTOR)
+from ..choices import (REASON_DRUG_MISSED, MEDICINES, DAYS_MISSED)
 from .list_models import Antibiotic, OtherDrug
 from .model_mixins import CrfModelMixin
 
@@ -18,7 +19,7 @@ class Week2(CrfModelMixin):
         max_length=25,
         choices=YES_NO)
 
-    discharge_datetime = models.DateTimeField(
+    discharge_date = models.DateField(
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -28,15 +29,7 @@ class Week2(CrfModelMixin):
         max_length=25,
         choices=YES_NO)
 
-    death_datetime = models.DateTimeField(
-        validators=[date_not_future],
-        null=True,
-        blank=True)
-
-    ambisome_start_datetime = models.DateTimeField(
-        validators=[date_not_future])
-
-    ambisome_stop_datetime = models.DateTimeField(
+    death_date = models.DateField(
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -50,37 +43,6 @@ class Week2(CrfModelMixin):
         validators=[date_not_future],
         null=True,
         blank=True)
-
-    drug_doses_missed = models.CharField(
-        verbose_name='Were any drug doses missed?',
-        max_length=25,
-        null=True,
-        blank=True,
-        choices=YES_NO)
-
-    ambisome_missed_doses = models.CharField(
-        max_length=25,
-        null=True,
-        blank=True,
-        choices=YES_NO)
-
-    ambisome_missed_reason = models.CharField(
-        verbose_name='Were any drug doses missed?',
-        max_length=25,
-        null=True,
-        blank=True,
-        choices=REASON_DRUG_MISSED)
-
-    flucon_missed_doses = models.CharField(
-        verbose_name='Were any drug doses missed?',
-        max_length=25,
-        choices=YES_NO)
-
-    flucon_missed_reason = models.CharField(
-        verbose_name='Were any drug doses missed?',
-        max_length=25,
-        blank=True,
-        choices=REASON_DRUG_MISSED)
 
     other_drug = models.ManyToManyField(
         OtherDrug,
@@ -100,24 +62,6 @@ class Week2(CrfModelMixin):
         validators=[MinValueValidator(1)],
         null=True,
         blank=True)
-
-    hiv_status_pos = models.CharField(
-        verbose_name='HIV positive?',
-        max_length=25,
-        choices=YES_NO,
-        help_text="Confirm with patient")
-
-    new_hiv_diagnosis = models.CharField(
-        verbose_name='Is this a new HIV diagnosis?',
-        max_length=25,
-        choices=YES_NO_UNKNOWN)
-
-    clinic_assessment = models.CharField(
-        verbose_name='Clinical Assessment',
-        max_length=25,
-        null=True,
-        help_text='Patient died before 2 week assesment',
-        choices=YES_NO)
 
     headache = models.CharField(
         verbose_name='Headache',
@@ -168,7 +112,8 @@ class Week2(CrfModelMixin):
 
     weight = models.IntegerField(
         null=True,
-        blank=True)
+        blank=True,
+        help_text='Weight in Kilograms')
 
     medicines = models.CharField(
         verbose_name='Medicines on Day 14:',
@@ -180,22 +125,60 @@ class Week2(CrfModelMixin):
         max_length=25,
         choices=YES_NO)
 
-    glasgow_cs_eyes = models.CharField(
-        verbose_name='Glasgow Coma Score of eyes',
+    flucon_missed_doses = models.CharField(
+        verbose_name='Were any Fluconazole drug doses missed?',
         max_length=25,
-        choices=GLASGOW_COMA_SCORE_EYES)
+        choices=YES_NO)
 
-    glasgow_cs_verbal = models.CharField(
-        verbose_name='Glasgow Coma Score of verbal',
+    amphotericin_missed_doses = models.CharField(
+        verbose_name='Were any Amphotericin b drug doses missed?',
         max_length=25,
-        choices=GLASGOW_COMA_SCORE_VERBAL)
-
-    glasgow_cs_motor = models.CharField(
-        verbose_name='Glasgow Coma Score of motor',
-        max_length=25,
-        choices=GLASGOW_COMA_SCORE_MOTOR)
+        choices=YES_NO)
 
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
+
+
+class FluconazoleMissedDoses(BaseUuidModel):
+
+    week2 = models.ForeignKey(Week2)
+
+    day_missed = models.IntegerField(
+        verbose_name='Day missed:',
+        choices=DAYS_MISSED
+    )
+
+    flucon_missed_reason = models.CharField(
+        verbose_name='Reason:',
+        max_length=25,
+        blank=True,
+        choices=REASON_DRUG_MISSED)
+
+    flucon_missed_reason_other = OtherCharField()
+
+    class Meta:
+        app_label = 'ambition_subject'
+        unique_together = ('day_missed', 'flucon_missed_reason')
+
+
+class AmphotericinMissedDoses(BaseUuidModel):
+
+    week2 = models.ForeignKey(Week2)
+
+    day_missed = models.IntegerField(
+        verbose_name='Day:',
+        choices=DAYS_MISSED
+    )
+
+    ampho_missed_reason = models.CharField(
+        verbose_name='Were any drug doses missed?',
+        max_length=25,
+        choices=REASON_DRUG_MISSED)
+
+    ampho_missed_reason_other = OtherCharField()
+
+    class Meta:
+        app_label = 'ambition_subject'
+        unique_together = ('day_missed', 'ampho_missed_reason')

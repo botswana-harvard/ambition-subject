@@ -41,8 +41,10 @@ ANTIBIOTICS = (
     (OTHER, 'Other, specify'))
 
 ARV_REGIMEN = (
-    ('TDF +3TC/FTC + either EFZ or NVP', 'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
-    ('AZT + 3-TC + either EFV or NVP', 'AZT + 3-TC + either EFV or NVP or or DTG'),
+    ('TDF +3TC/FTC + either EFZ or NVP',
+     'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
+    ('AZT + 3-TC + either EFV or NVP',
+     'AZT + 3-TC + either EFV or NVP or or DTG'),
     ('TDF + 3TC/FTC + either ATZ/r or Lopinavir/r',
      'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
     ('AZT + 3TC + either ATZ/r or Lopinavir/r',
@@ -161,6 +163,7 @@ LP_REASON = (
 
 MEDICINES = (
     ('fluconazole', 'Fluconazole'),
+    ('amphotericin_b', 'Amphotericin B'),
     ('rifampicin', 'Rifampicin'),
     ('co_trimoxazole', 'Co-trimoxazole'),
     (OTHER, 'Other, specify:'))
@@ -223,12 +226,12 @@ RANDOMIZATION_NUMBER = (
     (AMS_A4, 'AMS_A(4)'))
 
 REASON_DRUG_MISSED = (
-    ('administered_to_protocol', 'Administered acc to protocol'),
+    ('administered_to_protocol', 'Administered according to protocol'),
     ('toxicity', 'Toxicity'),
     ('missed', 'Missed'),
     ('refused', 'Refused'),
-    (OTHER, 'Other'),
-    ('not_required_acc_protocol', 'Not required according to protocol'))
+    ('not_required_acc_protocol', 'Not required according to protocol'),
+    (OTHER, 'Other'),)
 
 REASON_STUDY_TERMINATED = (
     ('10_weeks_completed_followUp', 'Patient completed 10 weeks of follow-up'),
@@ -280,3 +283,8 @@ VISIT_UNSCHEDULED_REASON = (
     ('ill_oncology', 'Ill oncology clinic visit'),
     ('patient_called', 'Patient called to come for visit'),
     (OTHER, 'Other, specify:'))
+
+DAYS_MISSED = (
+    (1, 'Day 1'), (2, 'Day 2'), (3, 'Day 3'), (4, 'Day 4'), (5, 'Day 5'),
+    (6, 'Day 6'), (7, 'Day 7'), (8, 'Day 8'), (9, 'Day 9'), (10, 'Day 10'),
+    (11, 'Day 11'), (12, 'Day 12'), (13, 'Day 13'), (14, 'Day 14'))
