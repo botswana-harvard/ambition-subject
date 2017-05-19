@@ -5,13 +5,13 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import YES, POS, NEG, NO, UNKNOWN
+from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO, UNKNOWN
 from edc_visit_tracking.constants import SCHEDULED
 from ambition_screening.models import SubjectScreening
 
 from .constants import A2
 from .models import (
-    AdverseEvent, BloodResult, Death, Microbiology, FollowUp,
+    AdverseEvent, AdverseEventTMG, BloodResult, Death, Microbiology, FollowUp,
     ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
     SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
     Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
@@ -47,36 +47,16 @@ fake.add_provider(DateProvider)
 
 ae_classification = Recipe(AEClassification)
 
-adverse_event = Recipe(
+adverseevent = Recipe(
     AdverseEvent,
-    ae_awareness_date=get_utcnow().date,
-    description='life-threatening',
-    ae_start_date=get_utcnow().date,
-    ae_severity='death',
-    ae_intensity='very high intensity',
-    patient_treatment_group='inpatient',
-    incident_study_relationship=YES,
-    incident_drug_relationship_ambisome='Not related',
-    incident_drug_relationship_fluconozole='Possibly related',
-    last_implicated_medication_administered_datetime=get_utcnow,
-    last_implicated_medication='ambisome',
-    last_implicated_medication_dose='5g',
-    last_implicated_medication_route='injection',
-    other_ae_event_cause=YES,
-    other_ae_event_cause_specify=None,
-    action_taken_treatment='taken to hospital',
-    recurrence_cm_symptoms=YES,
-    is_sae_event=YES,
-    sae_event_reason='Life-threatening',
-    is_susar=YES,
-    susar_reported=YES,
-    susar_reported_datetime=get_utcnow(),
-    ae_form_received_datetime=get_utcnow(),
-    clinical_review_datetime=get_utcnow(),
-    investigator_comments='good',
-    ae_classification='disease associated with treatment',
-    investigator_ae_description='caused death of a member of the family',
-    regulatory_officials_notified_datetime=get_utcnow())
+    ae_cause_other=NO,
+    ae_cause_other_specify=None,
+    is_sa_event=NO,
+    is_susar=NO,
+    susar_reported=NOT_APPLICABLE)
+
+adverseeventtmg = Recipe(
+    AdverseEventTMG)
 
 blood_result = Recipe(
     BloodResult,
