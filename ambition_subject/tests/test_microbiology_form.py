@@ -2,7 +2,7 @@ from django.test import TestCase
 from model_mommy import mommy
 
 from edc_base.utils import get_utcnow
-from edc_constants.constants import NO, OTHER, POS, YES
+from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, POS, YES
 from edc_visit_tracking.constants import SCHEDULED
 
 from ..constants import HISTOPATHOLOGY_REPORT, VIBRIO
@@ -54,12 +54,12 @@ class TestMicrobiology(TestCase):
         self.assertTrue(form.save())
 
     def test_urine_culture_no_results_invalid(self):
-        self.data.update(urine_culture_results=None)
+        self.data.update(urine_culture_results=NOT_APPLICABLE)
         form = MicrobiologyForm(data=self.data)
         self.assertFalse(form.is_valid())
 
     def test_urine_culture_no_organism_invalid(self):
-        self.data.update(urine_culture_organism=None,
+        self.data.update(urine_culture_organism=NOT_APPLICABLE,
                          urine_culture_organism_other=None)
         form = MicrobiologyForm(data=self.data)
         self.assertFalse(form.is_valid())
@@ -72,24 +72,24 @@ class TestMicrobiology(TestCase):
 
     def test_urine_culture_not_performed_valid(self):
         self.data.update(urine_culture_performed=NO,
-                         urine_culture_results=None,
-                         urine_culture_organism=None,
+                         urine_culture_results=NOT_APPLICABLE,
+                         urine_culture_organism=NOT_APPLICABLE,
                          urine_culture_organism_other=None)
         form = MicrobiologyForm(data=self.data)
         self.assertTrue(form.is_valid())
 
     def test_blood_culture_no_results_invalid(self):
-        self.data.update(blood_culture_results=None)
+        self.data.update(blood_culture_results=NOT_APPLICABLE)
         form = MicrobiologyForm(data=self.data)
         self.assertFalse(form.is_valid())
 
     def test_blood_culture_no_study_day_invalid(self):
-        self.data.update(study_day_positive_blood_taken=None)
+        self.data.update(study_day_positive_blood_taken=NOT_APPLICABLE)
         form = MicrobiologyForm(data=self.data)
         self.assertFalse(form.is_valid())
 
     def test_blood_culture_no_organism_invalid(self):
-        self.data.update(blood_culture_organism=None,
+        self.data.update(blood_culture_organism=NOT_APPLICABLE,
                          blood_culture_organism_other=None)
         form = MicrobiologyForm(data=self.data)
         self.assertFalse(form.is_valid())
@@ -102,8 +102,8 @@ class TestMicrobiology(TestCase):
 
     def test_blood_culture_not_performed_valid(self):
         self.data.update(blood_culture_performed=NO,
-                         blood_culture_results=None,
-                         blood_culture_organism=None,
+                         blood_culture_results=NOT_APPLICABLE,
+                         blood_culture_organism=NOT_APPLICABLE,
                          blood_culture_organism_other=None,
                          study_day_positive_blood_taken=None)
         form = MicrobiologyForm(data=self.data)
@@ -128,8 +128,8 @@ class TestMicrobiology(TestCase):
 
     def test_tissue_biopsy_not_taken_valid(self):
         self.data.update(tissue_biopsy_taken=NO,
-                         tissue_biopsy_results=None,
-                         tissue_biopsy_organism=None,
+                         tissue_biopsy_results=NOT_APPLICABLE,
+                         tissue_biopsy_organism=NOT_APPLICABLE,
                          tissue_biopsy_organism_other=None,
                          study_day_positive_biopsy_taken=None)
         form = MicrobiologyForm(data=self.data)

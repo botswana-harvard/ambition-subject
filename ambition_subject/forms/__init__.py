@@ -1,5 +1,6 @@
 from .adverse_event_form import AdverseEventForm
 from .adverse_event_tmg_form import AdverseEventTMGForm
+from .appointment_form import AppointmentForm
 from .blood_result_form import BloodResultForm
 from .clinic_note_form import ClinicNoteForm
 from .death_form import DeathForm
@@ -16,5 +17,4 @@ from .subject_consent_form import SubjectConsentForm
 from .subject_randomization_form import SubjectRandomizationForm
 from .subject_requisition_form import SubjectRequisitionForm
 from .subject_visit_form import SubjectVisitForm
-from .week2_form import Week2Form
-from .appointment_form import AppointmentForm
+from .week2_form import Week2Form, AmphotericinMissedDosesForm, FluconazoleMissedDosesForm

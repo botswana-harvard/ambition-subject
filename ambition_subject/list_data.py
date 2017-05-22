@@ -58,6 +58,13 @@ list_data = {
         ('CN_VII_palsy', 'Cranial Nerve VII palsy'),
         ('CN_VIII_palsy', 'Cranial Nerve VIII palsy'),
         (OTHER, 'Other CN palsy'),
+    ],        
+    'ambition_subject.antibiotic_treatment': [
+        ('amoxicillin', 'Amoxicillin'),
+        ('flucloxacillin', 'Flucloxacillin'),
+        ('doxycycline', 'Doxycycline'),
+        ('ceftriaxone', 'Ceftriaxone'),
+        ('erythromycin', 'Erythromycin'),
     ],
     'ambition_subject.otherdrug': [
         ('antibiotics', 'Antibiotics'),

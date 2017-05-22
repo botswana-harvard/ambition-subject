@@ -1,3 +1,4 @@
+from dateutil.relativedelta import relativedelta
 from django import forms
 
 from ..models import SubjectConsent
@@ -15,7 +16,19 @@ class SubjectConsentForm(forms.ModelForm):
         return cleaned_data
 
     def validate_with_enrollment_checklist(self):
-        pass
+        dob = self.cleaned_data.get('dob')
+        subject_screening = self.cleaned_data.get(
+            'subject_screening')
+        try:
+            dob_age_at_screening = relativedelta(
+                subject_screening.report_datetime.date(), dob).years
+            if dob_age_at_screening != subject_screening.age_in_years:
+                raise forms.ValidationError(
+                    'The date of birth entered does not match the age at '
+                    'screening.')
+        except subject_screening.DoesNotExist:
+            raise forms.ValidationError(
+                'Complete the Subject screening form before proceeding.')
 
     class Meta:
         model = SubjectConsent

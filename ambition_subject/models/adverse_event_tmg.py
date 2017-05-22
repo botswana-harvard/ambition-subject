@@ -9,7 +9,7 @@ from .list_models import AEClassification
 
 class AdverseEventTMG(BaseUuidModel):
 
-    ae_form_received_datetime = models.DateTimeField(
+    ae_received_datetime = models.DateTimeField(
         blank=True,
         null=True,
         validators=[date_not_future],
@@ -27,20 +27,21 @@ class AdverseEventTMG(BaseUuidModel):
 
     ae_classification = models.ManyToManyField(
         AEClassification,
+        blank=True,
         verbose_name='Classification of AE (Tick all that apply):')
 
-    investigator_ae_description = models.TextField(
+    ae_description = models.TextField(
         blank=True,
         null=True,
         verbose_name='Description of AE:')
 
-    regulatory_officials_notified_datetime = models.DateTimeField(
+    officials_notified = models.DateTimeField(
         blank=True,
         null=True,
         validators=[date_not_future],
         verbose_name='Date and time Regulatory authorities notified (SUSARs)')
 
-    local_investigator_returned_datetime = models.DateTimeField(
+    investigator_returned = models.DateTimeField(
         blank=True,
         null=True,
         validators=[date_not_future],

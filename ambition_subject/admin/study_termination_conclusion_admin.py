@@ -18,14 +18,13 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
         'readmission_following_initial_discharge': admin.VERTICAL,
         'study_termination_reason': admin.VERTICAL,
         'rifampicin_started_since_week4': admin.VERTICAL,
-        'arv_regiment': admin.VERTICAL,
+        'arv_regimen': admin.VERTICAL,
         'is_naive': admin.VERTICAL,
         'efv_or_nvp': admin.VERTICAL}
 
     fieldsets = (
         [None, {
             'fields': (
-                'subject_visit',
                 'date_patient_terminated_study',
                 'termination_study_day',
                 'last_research_termination_date',
@@ -37,10 +36,12 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'date_admitted',
                 'date_discharged',
                 'study_termination_reason',
+                'study_termination_reason_death',
                 'withdrawal_of_consent_reason',
                 'rifampicin_started_since_week4',
                 'rifampicin_started_study_day',
-                'arv_regiment',
+                'arv_regimen',
+                'arv_regimen_other',
                 'is_naive',
                 'date_started_arvs',
                 'date_switched_arvs',

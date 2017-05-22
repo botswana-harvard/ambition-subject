@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO, POS_NEG
+from edc_constants.choices import NOT_APPLICABLE, POS_NEG, YES_NO
 
 from ..choices import (
     BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM, CULTURE_RESULTS,
@@ -17,17 +17,15 @@ class Microbiology(CrfModelMixin):
         max_length=5)
 
     urine_culture_results = models.CharField(
-        blank=True,
         choices=CULTURE_RESULTS,
+        default=NOT_APPLICABLE,
         max_length=10,
-        null=True,
         verbose_name='Urine culture results, if completed')
 
     urine_culture_organism = models.CharField(
-        blank=True,
         choices=URINE_CULTURE_RESULTS_ORGANISM,
+        default=NOT_APPLICABLE,
         max_length=25,
-        null=True,
         verbose_name='If Positive, organism:')
 
     urine_culture_organism_other = models.CharField(
@@ -41,10 +39,9 @@ class Microbiology(CrfModelMixin):
         max_length=5)
 
     blood_culture_results = models.CharField(
-        blank=True,
         choices=CULTURE_RESULTS,
+        default=NOT_APPLICABLE,
         max_length=10,
-        null=True,
         verbose_name='Blood culture results, if completed:')
 
     study_day_positive_blood_taken = models.IntegerField(
@@ -54,10 +51,9 @@ class Microbiology(CrfModelMixin):
         verbose_name='If Positive, Study day positive culture sample taken:')
 
     blood_culture_organism = models.CharField(
-        blank=True,
         choices=BLOOD_CULTURE_RESULTS_ORGANISM,
+        default=NOT_APPLICABLE,
         max_length=50,
-        null=True,
         verbose_name='If growth positive, organism:')
 
     blood_culture_organism_other = models.CharField(
@@ -89,10 +85,9 @@ class Microbiology(CrfModelMixin):
         max_length=5)
 
     tissue_biopsy_results = models.CharField(
-        blank=True,
         choices=CULTURE_RESULTS,
+        default=NOT_APPLICABLE,
         max_length=10,
-        null=True,
         verbose_name='If yes, results:')
 
     study_day_positive_biopsy_taken = models.IntegerField(
@@ -102,10 +97,9 @@ class Microbiology(CrfModelMixin):
         verbose_name='If Positive, Study day positive culture sample taken:')
 
     tissue_biopsy_organism = models.CharField(
-        blank=True,
         choices=BIOPSY_RESULTS_ORGANISM,
+        default=NOT_APPLICABLE,
         max_length=50,
-        null=True,
         verbose_name='If growth positive, organism:')
 
     tissue_biopsy_organism_other = models.CharField(

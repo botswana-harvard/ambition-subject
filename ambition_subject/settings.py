@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,6 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crypto_fields.apps.AppConfig',
+    'django_revision.apps.AppConfig',
+    'edc_appointment.apps.AppConfig',
+    'edc_device.apps.AppConfig',
+    'edc_identifier.apps.AppConfig',
+    'edc_lab.apps.AppConfig',
+    'edc_metadata.apps.AppConfig',
+    'edc_protocol.apps.AppConfig',
+    'ambition_subject.apps.EdcVisitTrackingAppConfig',
+    'edc_visit_schedule.apps.AppConfig',
+    'ambition_screening.apps.AppConfig',
+    'ambition_subject.apps.AppConfig',
+    'ambition_subject.apps.EdcBaseTestAppConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -117,3 +132,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
+
+if 'test' in sys.argv and 'mysql' not in DATABASES.get('default').get('ENGINE'):
+    MIGRATION_MODULES = {
+        "django_crypto_fields": None,
+        "edc_call_manager": None,
+        "edc_appointment": None,
+        "edc_call_manager": None,
+        "edc_consent": None,
+        "edc_death_report": None,
+        "edc_export": None,
+        "edc_identifier": None,
+        "edc_lab": None,
+        "edc_metadata": None,
+        "edc_rule_groups": None,
+        "edc_registration": None,
+        "edc_sync_files": None,
+        "edc_sync": None,
+        "ambition_subject": None}

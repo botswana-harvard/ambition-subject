@@ -1,10 +1,26 @@
 from django.contrib import admin
 
-from ..admin_site import ambition_subject_admin
-from ..forms import Week2Form
-from .modeladmin_mixins import ModelAdminMixin
-from ..models import Week2
+from edc_base.modeladmin_mixins import TabularInlineMixin
 from edc_base.modeladmin_mixins.model_admin_audit_fields_mixin import audit_fieldset_tuple
+
+from ..admin_site import ambition_subject_admin
+from ..forms import Week2Form, AmphotericinMissedDosesForm, FluconazoleMissedDosesForm
+from .modeladmin_mixins import ModelAdminMixin
+from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
+
+
+class AmphotericinMissedDosesInline(TabularInlineMixin, admin.TabularInline):
+
+    model = AmphotericinMissedDoses
+    form = AmphotericinMissedDosesForm
+    extra = 1
+
+
+class FluconazoleMissedDosesInline(TabularInlineMixin, admin.TabularInline):
+
+    model = FluconazoleMissedDoses
+    form = FluconazoleMissedDosesForm
+    extra = 1
 
 
 @admin.register(Week2, site=ambition_subject_admin)
@@ -12,37 +28,30 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week2Form
 
+    inlines = [FluconazoleMissedDosesInline, AmphotericinMissedDosesInline]
+
     fieldsets = (
         ['Admission history', {
             'fields': (
                 'subject_visit',
                 'discharged',
-                'discharge_datetime',
+                'discharge_date',
                 'died',
-                'death_datetime')},
+                'death_date')},
          ],
         ['Induction phase Study medication', {
             'fields': (
-                'ambisome_start_datetime',
-                'ambisome_stop_datetime',
-                'fluconazole_start_datetime',
-                'fluconazole_stop_datetime',
-                'drug_doses_missed',
-                'ambisome_missed_doses',
-                'ambisome_missed_reason',
-                'fluconazole_missed_doses',
-                'fluconazole_missed_reason',
+                'flucon_start_datetime',
+                'flucon_stop_datetime',
+                'antibiotic',
                 'blood_received',
-                'units',
-                'hiv_status_pos',
-                'new_hiv_diagnosis')}
+                'units')}
          ],
         ['Clinical Assessment', {
             'fields': (
-                'clinic_assessment',
                 'headache',
                 'temperature',
-                'glasgow_coma_score',
+                'glasgow_cs',
                 'seizures_during_admission',
                 'recent_seizure',
                 'behaviour_change',
@@ -53,26 +62,21 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'medicines',
                 'significant_diagnosis')}
          ],
-        ['Glasgow Coma Score', {
+        ['Missed Doses', {
             'fields': (
-                'glasgow_coma_score_eyes',
-                'glasgow_coma_score_verbal',
-                'glasgow_coma_score_motor')}],
+                'flucon_missed_doses',
+                'amphotericin_missed_doses')}
+         ],
         audit_fieldset_tuple
     )
 
     radio_fields = {
         'discharged': admin.VERTICAL,
         'died': admin.VERTICAL,
-        'drug_doses_missed': admin.VERTICAL,
-        'ambisome_missed_reason': admin.VERTICAL,
-        'fluconazole_missed_doses': admin.VERTICAL,
-        'fluconazole_missed_reason': admin.VERTICAL,
+        'flucon_missed_doses': admin.VERTICAL,
+        'amphotericin_missed_doses': admin.VERTICAL,
         'blood_received': admin.VERTICAL,
         'blood_received': admin.VERTICAL,
-        'hiv_status_pos': admin.VERTICAL,
-        'new_hiv_diagnosis': admin.VERTICAL,
-        'clinic_assessment': admin.VERTICAL,
         'headache': admin.VERTICAL,
         'seizures_during_admission': admin.VERTICAL,
         'recent_seizure': admin.VERTICAL,
@@ -82,7 +86,5 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'focal_neurology': admin.VERTICAL,
         'medicines': admin.VERTICAL,
         'significant_diagnosis': admin.VERTICAL,
-        'glasgow_coma_score_eyes': admin.VERTICAL,
-        'glasgow_coma_score_verbal': admin.VERTICAL,
-        'glasgow_coma_score_motor': admin.VERTICAL
     }
+    filter_horizontal = ('antibiotic', )
