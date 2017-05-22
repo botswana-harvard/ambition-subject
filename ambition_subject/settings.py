@@ -31,6 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ambition.apps.AppConfig',
+    'ambition.apps.EdcBaseTestAppConfig',
+    'ambition.apps.EdcProtocolAppConfig',
+    'ambition.apps.EdcVisitTrackingAppConfig',
+    'ambition_screening.apps.AppConfig',
+    'ambition_subject.apps.AppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,12 +50,7 @@ INSTALLED_APPS = [
     'edc_identifier.apps.AppConfig',
     'edc_lab.apps.AppConfig',
     'edc_metadata.apps.AppConfig',
-    'edc_protocol.apps.AppConfig',
-    'ambition_subject.apps.EdcVisitTrackingAppConfig',
     'edc_visit_schedule.apps.AppConfig',
-    'ambition_screening.apps.AppConfig',
-    'ambition_subject.apps.AppConfig',
-    'ambition_subject.apps.EdcBaseTestAppConfig',
 
 ]
 

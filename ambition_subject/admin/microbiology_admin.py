@@ -39,20 +39,20 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'blood_culture_performed',
                 'blood_culture_results',
-                'study_day_positive_blood_taken',
+                'day_blood_taken',
                 'blood_culture_organism',
                 'blood_culture_organism_other')}],
         ['Sputum results - Microscopy', {
             'fields': (
                 'sputum_results_afb',
                 'sputum_results_culture',
-                'sputum_results_if_positive',
+                'sputum_results_positive',
                 'sputum_result_genexpert')}],
         ['Biopsy', {
             'fields': (
                 'tissue_biopsy_taken',
                 'tissue_biopsy_results',
-                'study_day_positive_biopsy_taken',
+                'day_biopsy_taken',
                 'tissue_biopsy_organism',
                 'tissue_biopsy_organism_other',
                 'histopathology_report')}],

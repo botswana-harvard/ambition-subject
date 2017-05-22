@@ -2,6 +2,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import NOT_APPLICABLE, POS_NEG, YES_NO
 
 from ..choices import (
@@ -10,7 +11,7 @@ from ..choices import (
 from .model_mixins import CrfModelMixin
 
 
-class Microbiology(CrfModelMixin):
+class Microbiology(BaseUuidModel):
 
     urine_culture_performed = models.CharField(
         choices=YES_NO,
@@ -44,7 +45,7 @@ class Microbiology(CrfModelMixin):
         max_length=10,
         verbose_name='Blood culture results, if completed:')
 
-    study_day_positive_blood_taken = models.IntegerField(
+    day_blood_taken = models.IntegerField(
         blank=True,
         null=True,
         validators=[MinValueValidator(1), MaxValueValidator(70)],
@@ -70,7 +71,7 @@ class Microbiology(CrfModelMixin):
         choices=POS_NEG,
         max_length=10)
 
-    sputum_results_if_positive = models.CharField(
+    sputum_results_positive = models.CharField(
         blank=True,
         max_length=50,
         null=True,
@@ -90,7 +91,7 @@ class Microbiology(CrfModelMixin):
         max_length=10,
         verbose_name='If yes, results:')
 
-    study_day_positive_biopsy_taken = models.IntegerField(
+    day_biopsy_taken = models.IntegerField(
         blank=True,
         null=True,
         validators=[MinValueValidator(1), MaxValueValidator(70)],

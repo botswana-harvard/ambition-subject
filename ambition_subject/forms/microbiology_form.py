@@ -31,7 +31,7 @@ class MicrobiologyForm(SubjectModelFormMixin):
         self.required_if(
             POS,
             field='blood_culture_results',
-            field_required='study_day_positive_blood_taken')
+            field_required='day_blood_taken')
 
         self.required_if(
             POS,
@@ -46,7 +46,7 @@ class MicrobiologyForm(SubjectModelFormMixin):
         self.required_if(
             POS,
             field='sputum_results_culture',
-            field_required='sputum_results_if_positive')
+            field_required='sputum_results_positive')
 
         self.required_if(
             YES,
@@ -56,7 +56,7 @@ class MicrobiologyForm(SubjectModelFormMixin):
         self.required_if(
             POS,
             field='tissue_biopsy_results',
-            field_required='study_day_positive_biopsy_taken')
+            field_required='day_biopsy_taken')
 
         self.required_if(
             POS,

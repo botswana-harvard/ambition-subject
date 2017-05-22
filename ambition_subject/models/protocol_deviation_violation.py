@@ -37,7 +37,7 @@ class ProtocolDeviationViolation(BaseUuidModel):
 
     protocol_violation_type = models.CharField(
         verbose_name='Type of Protocol Violation/Deviation',
-        max_length=25,
+        max_length=70,
         choices=PROTOCOL_VIOLATION)
 
     other_protocol_violation_type = models.CharField(

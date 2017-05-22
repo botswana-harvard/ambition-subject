@@ -118,21 +118,10 @@ followup = Recipe(
 
 microbiology = Recipe(
     Microbiology,
-    urine_culture_performed=YES,
-    urine_culture_results='Positive',
-    urine_culture_organism='Klebsiella sp.',
-    urine_culture_organism_other=None,
-    blood_culture_performed=YES,
-    blood_culture_results='No growth',
-    study_day_positive_blood_taken=55,
-    blood_culture_organism='Mycobacterium Tuberculosis',
-    blood_culture_organism_other=None,
-    sputum_results_afb=POS,
+    urine_culture_performed=NO,
+    blood_culture_performed=NO,
     sputum_results_culture=NEG,
-    sputum_result_genexpert=NEG,
-    tissue_biopsy_taken=NO,
-    study_day_positive_biopsy_taken=60,
-    tissue_biopsy_organism='Cryptococcus neoformans')
+    tissue_biopsy_taken=NO,)
 
 missedvisit = Recipe(
     MissedVisit,
@@ -179,20 +168,7 @@ patienthistory = Recipe(
     specify_medications=None)
 
 protocoldeviationviolation = Recipe(
-    ProtocolDeviationViolation,
-    participant_safety_impact=NO,
-    participant_safety_impact_details=None,
-    study_outcomes_impact=NO,
-    study_outcomes_impact_details=None,
-    date_violation_datetime=get_utcnow(),
-    protocol_violation_type='Failure to obtain informed consent',
-    other_protocol_violation_type=None,
-    violation_description=None,
-    violation_reason=None,
-    corrective_action_datetime=get_utcnow(),
-    corrective_action=None,
-    preventative_action_datetime=get_utcnow(),
-    action_required='Participant to remain on trial')
+    ProtocolDeviationViolation)
 
 meningitissymptom = Recipe(MeningitisSymptom)
 
@@ -225,19 +201,19 @@ recurrencesymtom = Recipe(
     narrative_summary=None,
     dr_opinion='CM Relapse')
 
-subjectscreening = Recipe(
-    SubjectScreening,
-    gender='Male',
-    age_in_years=40,
-    meningitis_dx=YES,
-    will_hiv_test=YES,
-    pregnancy_or_lactation=NO,
-    previous_drug_reaction=NO,
-    contraindicated_meds=NO,
-    received_amphotericin=NO,
-    received_fluconazole=NO,
-    eligible=True,
-    reasons_ineligible=None)
+# subjectscreening = Recipe(
+#     SubjectScreening,
+#     gender='Male',
+#     age_in_years=40,
+#     meningitis_dx=YES,
+#     will_hiv_test=YES,
+#     pregnancy_or_lactation=NO,
+#     previous_drug_reaction=NO,
+#     contraindicated_meds=NO,
+#     received_amphotericin=NO,
+#     received_fluconazole=NO,
+#     eligible=True,
+#     reasons_ineligible=None)
 
 subjectrandomization = Recipe(
     SubjectRandomization,
