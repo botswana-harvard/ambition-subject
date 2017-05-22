@@ -29,8 +29,7 @@ class EnrollmentProxyModelManager(BaseEnrollmentManager):
         )
 
 
-class Enrollment(EnrollmentModelMixin,
-                 CreateAppointmentsMixin, BaseUuidModel):
+class Enrollment(EnrollmentModelMixin, CreateAppointmentsMixin, BaseUuidModel):
 
     """A model used by the system. Auto-completed by subject_consent.
     """

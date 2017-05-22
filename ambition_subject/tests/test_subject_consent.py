@@ -1,65 +1,62 @@
+import re
 from django.apps import apps as django_apps
-from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
 from model_mommy import mommy
 
 from django.test import TestCase, tag
 
 from edc_base.utils import get_utcnow
+from edc_constants.constants import UUID_PATTERN
 
-from ..models import SubjectConsent, Enrollment, Appointment
+from ..models import SubjectConsent, Enrollment
+from edc_registration.models import RegisteredSubject
 
 
-@tag('consent')
 class TestSubjectConsent(TestCase):
+
+    def setUp(self):
+        self.subject_screening = mommy.make_recipe(
+            'ambition_screening.subjectscreening')
 
     def test_cannot_create_consent_without_screening(self):
         """Test adding a consent without Subject screening first raises an
            Exception.
         """
-        try:
-            mommy.make_recipe(
-                'ambition_subject.subject_consent',
-                consent_datetime=get_utcnow,
-            )
-            self.fail('Exception not raised')
-        except (IntegrityError, ValidationError):
-            pass
+        self.assertRaises(IntegrityError, mommy.make_recipe,
+                          'ambition_subject.subjectconsent',
+                          consent_datetime=get_utcnow)
 
     def test_allocated_subject_identifier(self):
-        """Test consent successfully allocates subject identifier on save"""
-
-        screening = mommy.make_recipe('ambition_subject.subject_screening')
+        """Test consent successfully allocates subject identifier on
+        save.
+        """
         options = {
-            'subject_screening': screening,
+            'subject_screening': self.subject_screening,
             'consent_datetime': get_utcnow, }
-        mommy.make_recipe('ambition_subject.subject_consent', **options)
-        RegisteredSubject = django_apps.get_app_config('edc_registration').model
-        rs = RegisteredSubject.objects.all()[0]
-        try:
-            SubjectConsent.objects.get(subject_identifier=rs.subject_identifier)
-        except SubjectConsent.DoesNotExist:
-            self.fail('SubjectConsent.DoesNotExist unexpectedly raised')
+        mommy.make_recipe('ambition_subject.subjectconsent', **options)
+        self.assertFalse(
+            re.match(
+                UUID_PATTERN,
+                SubjectConsent.objects.all()[0].subject_identifier))
 
-    def test_consent_successfully_finds_subject_screening(self):
-        """Test querying of subject consent with subject screening identifier"""
+    @tag('c')
+    def test_consent_creates_registered_subject(self):
+        options = {
+            'subject_screening': self.subject_screening,
+            'consent_datetime': get_utcnow, }
+        self.assertEquals(RegisteredSubject.objects.all().count(), 1)
+        mommy.make_recipe('ambition_subject.subjectconsent', **options)
+        self.assertEquals(RegisteredSubject.objects.all().count(), 1)
 
-        screening = mommy.make_recipe('ambition_subject.subject_screening')
-        mommy.make_recipe(
-            'ambition_subject.subject_consent',
+    @tag('consent')
+    def test_enrollment_created_on_consent(self):
+        subject_consent = mommy.make_recipe(
+            'ambition_subject.subjectconsent',
             consent_datetime=get_utcnow,
-            subject_screening_reference=screening.reference)
-        try:
-            SubjectConsent.objects.get(subject_screening=screening)
-        except SubjectConsent.DoesNotExist:
-            self.fail('SubjectConsent.DoesNotExist unexpectedly raised')
+            subject_screening=self.subject_screening)
 
-    def test_enrollment_successfully_created(self):
-        screening = mommy.make_recipe('ambition_subject.subject_screening')
-        mommy.make_recipe(
-            'ambition_subject.subject_consent',
-            consent_datetime=get_utcnow,
-            subject_screening=screening)
-        enrollment = Enrollment.objects.all()
-        self.assertTrue(enrollment[0].is_eligible)
-        self.assertEqual(enrollment.count(), 1)
+        try:
+            Enrollment.objects.get(
+                consent_identifier=subject_consent.consent_identifier)
+        except Enrollment.DoesNotExist:
+            self.fail('Enrollment.DoesNotExist: was unexpectedly raised.')
