@@ -18,6 +18,9 @@ from .models import (
 from .models.list_models import (
     AEClassification, Neurological, SignificantNewDiagnosis, MeningitisSymptom,
     Antibiotic)
+from ambition_subject.models import subject_visit
+
+        
 
 
 class DateProvider(BaseProvider):
@@ -39,7 +42,7 @@ class DateProvider(BaseProvider):
 
     def yesterday(self):
         return (get_utcnow() - relativedelta(days=1)).date()
-
+    
 
 fake = Faker()
 fake.add_provider(EdcBaseProvider)
@@ -93,28 +96,34 @@ death = Recipe(
     cause_tb_tmg2_opinion=None,
     narrative_summary='adverse event resulted in death due to cryptococcal meningitis')
 
-significantnewdiagnosis = Recipe(SignificantNewDiagnosis)
+
+significantnewdiagnosis = Recipe(
+    SignificantNewDiagnosis,
+    name='significant_new_diagnosis',
+    short_name='significant new diagnosis'
+)
 
 followup = Recipe(
     FollowUp,
-    physical_symptoms=YES,
-    headache=YES,
+    physical_symptoms=NO,
+    headache=NO,
     visual_acuity_left_eye=0.5,
     visual_acuity_right_eye=0.85,
     glasgow_coma_score=8,
-    confusion=YES,
+    confusion=NO,
     recent_seizure_less_72=NO,
     cn_palsy=NO,
-    behaviour_change=YES,
-    focal_neurology=YES,
-    significant_new_diagnosis=related(significantnewdiagnosis),  # many2many
+    behaviour_change=NO,
+    focal_neurology=NO,
+    significant_new_diagnosis=None,  # many2many
     other_significant_new_diagnosis=None,
-    diagnosis_date=get_utcnow().date,
-    fluconazole_dose='400mg daily',
+    diagnosis_date=None,
+    fluconazole_dose='400mg_daily',
     other_fluconazole_dose=None,
-    is_rifampicin_started=YES,
-    study_day_rifampicin_started=15,
+    is_rifampicin_started=NO,
+    study_day_rifampicin_started=None,
     clinical_care_comments=None)
+
 
 microbiology = Recipe(
     Microbiology,
@@ -285,17 +294,18 @@ studyterminationconclusion = Recipe(
 radiology = Recipe(
     Radiology,
     is_cxr_done=NO,
-    cxr_type=None,
-    infiltrate_location=None,
+    cxr_type=NOT_APPLICABLE,
+    infiltrate_location=NOT_APPLICABLE,
     cxr_description=None,
     is_ct_performed=NO,
+    date_ct_performed=None,
     is_scanned_with_contrast=NO,
-    brain_imaging_reason='New neurology',
-    brain_imaging_reason_other=None,
+    brain_imaging_reason=NOT_APPLICABLE,
+    brain_imaging_reason_other=NOT_APPLICABLE,
     are_results_abnormal=NO,
-    abnormal_results_reason=None,
-    abnormal_results_reason_other=None,
-    if_infarcts_location=None)
+    abnormal_results_reason=NOT_APPLICABLE,
+    abnormal_results_reason_other=NOT_APPLICABLE,
+    if_infarcts_location=NOT_APPLICABLE)
 
 lumbarpuncturecsf = Recipe(
     LumbarPunctureCsf,
