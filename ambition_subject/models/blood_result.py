@@ -11,65 +11,67 @@ class BloodResult(CrfModelMixin):
 
     wbc = models.DecimalField(
         decimal_places=1,
-        help_text='units in 10^3/',
-        max_digits=4)
+        max_digits=4,
+        help_text='units in 10^3/')
 
     platelets = models.IntegerField(
-        help_text='units in 10^9/L',
-        validators=[MinValueValidator(1), MaxValueValidator(9999)])
+        validators=[MinValueValidator(1), MaxValueValidator(9999)],
+        help_text='units in 10^9/L')
 
     haemoglobin = models.DecimalField(
         decimal_places=1,
-        help_text='units in g/dL',
-        max_digits=4)
+        max_digits=4,
+        help_text='units in g/dL',)
 
     absolute_neutrophil = models.DecimalField(
         decimal_places=2,
-        help_text='units in 10^3/μL',
-        max_digits=4)
+        max_digits=4,
+        help_text='units in 10^3/μL',)
 
     creatinine = models.DecimalField(
         decimal_places=2,
+        max_digits=4,
         help_text='units in mg/dL',
-        max_digits=4)
+        validators=[MinValueValidator(1), MaxValueValidator(9999)])
 
     sodium = models.IntegerField(
-        help_text='units in mmol/L',
-        validators=[MinValueValidator(1), MaxValueValidator(999)])
+        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        help_text='units in mmol/L')
 
     potassium = models.DecimalField(
         decimal_places=1,
-        help_text='units in mmol/L',
-        max_digits=2)
+        max_digits=2,
+        help_text='units in mmol/L')
 
     magnesium = models.DecimalField(
         decimal_places=3,
-        help_text='units in mg/dL',
-        max_digits=4)
+        max_digits=4,
+        validators=[MinValueValidator(1), MaxValueValidator(9999)],
+        help_text='units in mg/dL')
 
     total_bilirubin = models.DecimalField(
         decimal_places=1,
-        help_text='units in mg/dL',
-        max_digits=4)
+        max_digits=4,
+        help_text='units in mg/dL')
 
     alt = models.IntegerField(
-        help_text='units in U/L',
         validators=[MinValueValidator(1), MaxValueValidator(999)],
-        verbose_name='ALT')
+        verbose_name='ALT',
+        help_text='units in U/L')
 
     crp = models.DecimalField(
         decimal_places=1,
-        help_text='units in U/L',
         max_digits=4,
-        verbose_name='CRP')
+        verbose_name='CRP',
+        help_text='units in U/L',)
 
     urea = models.IntegerField(
-        help_text='units in mg/dL',
-        validators=[MinValueValidator(1), MaxValueValidator(999)])
+        validators=[MinValueValidator(1), MaxValueValidator(9999)],
+        help_text='units in mg/dL')
 
     abs_cd4 = models.IntegerField(
-        help_text='units in /mm^3',
-        validators=[MinValueValidator(1), MaxValueValidator(999)])
+        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        help_text='units in /mm^3',)
 
     proteinuria = models.CharField(
         choices=YES_NO,
@@ -96,3 +98,4 @@ class BloodResult(CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
+
