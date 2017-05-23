@@ -5,7 +5,7 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO, UNKNOWN
+from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
@@ -60,21 +60,21 @@ adverseeventtmg = Recipe(
 
 bloodresult = Recipe(
     BloodResult,
-    wbc=0.502,
+    wbc=200,
     platelets=203,
-    haemoglobin=0.54,
+    haemoglobin=222,
     absolute_neutrophil=1.02,
     creatinine=1.22,
     sodium=88,
     potassium=0.8,
-    magnesium=0.088,
+    magnesium=5,
     total_bilirubin=0.9,
     alt=102,
-    crp=0.89,
+    crp=200,
     urea=33,
     abs_cd4=59,
     proteinuria=YES,
-    urine_cr_ag='Positive',
+    urine_cr_ag='POS',
     are_results_normal=YES,
     abnormal_results_in_ae_range=YES)
 
@@ -93,28 +93,37 @@ death = Recipe(
     cause_tb_tmg2_opinion=None,
     narrative_summary='adverse event resulted in death due to cryptococcal meningitis')
 
-significantnewdiagnosis = Recipe(SignificantNewDiagnosis)
+
+significantnewdiagnosis = Recipe(
+    SignificantNewDiagnosis,
+    name='significant_new_diagnosis',
+    short_name='significant new diagnosis'
+)
 
 followup = Recipe(
     FollowUp,
-    physical_symptoms=YES,
-    headache=YES,
+    physical_symptoms=NO,
+    headache=NO,
     visual_acuity_left_eye=0.5,
     visual_acuity_right_eye=0.85,
     glasgow_coma_score=8,
-    confusion=YES,
+    confusion=NO,
     recent_seizure_less_72=NO,
     cn_palsy=NO,
-    behaviour_change=YES,
-    focal_neurology=YES,
-    significant_new_diagnosis=related(significantnewdiagnosis),  # many2many
+    behaviour_change=NO,
+    focal_neurology=NO,
+    significant_new_diagnosis=None,  # many2many
     other_significant_new_diagnosis=None,
-    diagnosis_date=get_utcnow().date,
-    fluconazole_dose='400mg daily',
+    diagnosis_date=None,
+    fluconazole_dose='400mg_daily',
     other_fluconazole_dose=None,
-    is_rifampicin_started=YES,
-    study_day_rifampicin_started=15,
+    is_rifampicin_started=NO,
+    study_day_rifampicin_started=None,
     clinical_care_comments=None)
+
+subjectvisit = Recipe(
+    SubjectVisit,
+    reason=SCHEDULED,)
 
 microbiology = Recipe(
     Microbiology,
@@ -233,10 +242,6 @@ week2 = Recipe(
     focal_neurology=NO,
     medicines='Fluconazole',)
 
-subjectvisit = Recipe(
-    SubjectVisit,
-    reason=SCHEDULED,)
-
 subjectlocator = Recipe(
     SubjectLocator,
     alt_contact_cell_number='72200111',
@@ -271,17 +276,18 @@ studyterminationconclusion = Recipe(
 radiology = Recipe(
     Radiology,
     is_cxr_done=NO,
-    cxr_type=None,
-    infiltrate_location=None,
+    cxr_type=NOT_APPLICABLE,
+    infiltrate_location=NOT_APPLICABLE,
     cxr_description=None,
     is_ct_performed=NO,
+    date_ct_performed=None,
     is_scanned_with_contrast=NO,
-    brain_imaging_reason='New neurology',
-    brain_imaging_reason_other=None,
+    brain_imaging_reason=NOT_APPLICABLE,
+    brain_imaging_reason_other=NOT_APPLICABLE,
     are_results_abnormal=NO,
-    abnormal_results_reason=None,
-    abnormal_results_reason_other=None,
-    if_infarcts_location=None)
+    abnormal_results_reason=NOT_APPLICABLE,
+    abnormal_results_reason_other=NOT_APPLICABLE,
+    if_infarcts_location=NOT_APPLICABLE)
 
 lumbarpuncturecsf = Recipe(
     LumbarPunctureCsf,
