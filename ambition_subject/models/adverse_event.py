@@ -1,14 +1,14 @@
 from django.db import models
 
+from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_APPLICABLE
+from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
+from edc_constants.constants import NOT_APPLICABLE, UNKNOWN
 
 from ..choices import (
-    AE_SEVERITY, AE_INTENSITY, PATIENT_TREATMENT_GROUP, RAE_REASON,
-    STUDY_DRUG_RELATIONSHIP)
+    AE_SEVERITY, RAE_REASON, STUDY_DRUG_RELATIONSHIP)
 
 
 class AdverseEvent(BaseUuidModel):
@@ -17,43 +17,61 @@ class AdverseEvent(BaseUuidModel):
         verbose_name='AE Awareness date',
         validators=[date_not_future])
 
-    description = models.TextField(
+    ae_description = models.TextField(
         verbose_name='Adverse Event (AE) description')
 
     ae_start_date = models.DateField(
         validators=[date_not_future],
         verbose_name='Actual Start Date of AE')
 
-    ae_severity = models.CharField(
+    ae_severity_grade = models.CharField(
         choices=AE_SEVERITY,
         max_length=25,
         verbose_name='Severity of AE')
 
-    ae_intensity = models.CharField(
-        choices=AE_INTENSITY,
-        max_length=25,
-        verbose_name='What is the intensity of the AE?')
+#     ae_intensity = models.CharField(
+#         choices=AE_INTENSITY,
+#         max_length=25,
+#         verbose_name='What is the intensity of the AE?')
 
-    patient_group = models.CharField(
-        choices=PATIENT_TREATMENT_GROUP,
+    regimen = models.CharField(  # TODO: Get this from the Randomization
+        # choices=PATIENT_TREATMENT_GROUP,
         max_length=50,
-        verbose_name='Patient’s treatment group')
+        verbose_name='Patient’s treatment regimen')
 
-    incident_study_relation = models.CharField(
-        choices=YES_NO,
-        max_length=5,
-        verbose_name='Is the incident related to patient involvement in the '
-                     'study?')
+    ae_study_relation_possibility = models.CharField(
+        choices=YES_NO_UNKNOWN,
+        max_length=10,
+        verbose_name='Is the AE related to the study drug?')
+
+    possiblity_detail = models.TextField(
+        max_length=300,
+        null=True,
+        blank=True,
+        verbose_name='If No or Unknown, please give a short explanation.')
 
     ambisome_relation = models.CharField(
         choices=STUDY_DRUG_RELATIONSHIP,
         max_length=25,
-        verbose_name='Relationship to study drug Ambisome:')
+        verbose_name='Relationship to Ambisome:')
 
-    fluconozole_relation = models.CharField(
+    fluconazole_relation = models.CharField(
         choices=STUDY_DRUG_RELATIONSHIP,
         max_length=25,
-        verbose_name='Relationship to study drug Fluconozole:')
+        verbose_name='Relationship to Fluconozole:')
+
+    amphotericin_b_relation = models.CharField(
+        choices=STUDY_DRUG_RELATIONSHIP,
+        max_length=25,
+        verbose_name='Relationship to Amphotericin B:')
+
+    details_last_study_drug = models.CharField(
+        max_length=100,
+        verbose_name='Details of the last study drug administered.')
+
+    last_drug_admin_datetime = models.DateTimeField(
+        verbose_name='Datetime of the last study drug administration.',
+    )
 
     med_administered_datetime = models.DateTimeField(
         validators=[datetime_not_future],
@@ -72,62 +90,63 @@ class AdverseEvent(BaseUuidModel):
         max_length=50,
         verbose_name='Last implicated study medicine route:')
 
-    ae_cause_other = models.CharField(
+    ae_cause = models.CharField(
         choices=YES_NO,
         max_length=5,
         verbose_name='Has a reason other than the specified study drug been '
                      ' identified as the cause of the event(s)?')
 
-    ae_cause_other_specify = models.CharField(
+    ae_cause_other = OtherCharField(
         blank=True,
         max_length=100,
         null=True,
         verbose_name='If yes, specify')
 
-    action_taken = models.TextField(
+    ae_treatment = models.TextField(
         verbose_name='Specify action taken for treatment of AE:')
 
-    recurrence_cm_symptoms = models.CharField(
-        default=NOT_APPLICABLE,
-        choices=YES_NO_NA,
+    ae_cm_recurrence = models.CharField(  # TODO: If yes Use rule group to open recurrence form
+        default=UNKNOWN,
+        choices=YES_NO_UNKNOWN,
         help_text='If yes, fill in the Recurrence of Symptoms form',
-        max_length=5,
+        max_length=10,
         verbose_name='Was the AE a recurrence of CM symptoms?')
 
-    is_sa_event = models.CharField(
-        choices=YES_NO,
-        help_text='(i.e. results in death, in-patient '
-                  'hospitalisation/prolongation, significant disability or is '
-                  'life-threatening)',
-        max_length=5,
-        verbose_name='Is this event a SAE?')
+#     is_sa_event = models.CharField(
+#         choices=YES_NO,
+#         help_text='(i.e. results in death, in-patient '
+#                   'hospitalisation/prolongation, significant disability or is '
+#                   'life-threatening)',
+#         max_length=5,
+#         verbose_name='Is this event a SAE?')
 
-    sa_event_reason = models.CharField(
+    sae_possibility = models.CharField(  # TODO: If reason == Death Use rule group to open Death form
         choices=RAE_REASON,
         default=NOT_APPLICABLE,
         max_length=50,
         verbose_name='If Yes, Reason for SAE:')
 
-    is_susar = models.CharField(
+    susar_possility = models.CharField(
         choices=YES_NO,
         max_length=5,
-        verbose_name='Is this a Suspected Unexpected Serious Adverse Reaction '
-                     '(SUSAR)?')
+        verbose_name='Is the event expected in the study drug SPC?',
+        help_text='If NO, this is a potential SUSAR. Inform the PI'
+        'and report to TMG immediately')
 
-    susar_reported = models.CharField(
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        max_length=5,
-        verbose_name='If yes, SUSAR must be reported to Principal '
-                     'Investigator and TMG immediately, is SUSAR Reported?')
-
-    susar_reported_datetime = models.DateTimeField(
-        blank=True,
-        help_text='AEs ≥ Grade 3 or SAE must be reported to the Trial '
-                  'Management Group (TMG) within 48hrs (Email to: '
-                  'ambition_tmg@sgul.ac.uk)',
-        null=True,
-        verbose_name='Date and time AE reported')
+#     susar_reported = models.CharField(
+#         choices=YES_NO_NA,
+#         default=NOT_APPLICABLE,
+#         max_length=5,
+#         verbose_name='If yes, SUSAR must be reported to Principal '
+#                      'Investigator and TMG immediately, is SUSAR Reported?')
+#
+#     susar_reported_datetime = models.DateTimeField(
+#         blank=True,
+#         help_text='AEs ≥ Grade 3 or SAE must be reported to the Trial '
+#                   'Management Group (TMG) within 48hrs (Email to: '
+#                   'ambition_tmg@sgul.ac.uk)',
+#         null=True,
+#         verbose_name='Date and time AE reported')
 
     history = HistoricalRecords()
 
