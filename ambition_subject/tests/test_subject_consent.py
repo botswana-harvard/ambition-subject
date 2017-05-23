@@ -1,5 +1,4 @@
 import re
-from django.apps import apps as django_apps
 from django.db.utils import IntegrityError
 from model_mommy import mommy
 
@@ -39,16 +38,14 @@ class TestSubjectConsent(TestCase):
                 UUID_PATTERN,
                 SubjectConsent.objects.all()[0].subject_identifier))
 
-    @tag('c')
     def test_consent_creates_registered_subject(self):
         options = {
             'subject_screening': self.subject_screening,
             'consent_datetime': get_utcnow, }
-        self.assertEquals(RegisteredSubject.objects.all().count(), 1)
+        self.assertEquals(RegisteredSubject.objects.all().count(), 0)
         mommy.make_recipe('ambition_subject.subjectconsent', **options)
         self.assertEquals(RegisteredSubject.objects.all().count(), 1)
 
-    @tag('consent')
     def test_enrollment_created_on_consent(self):
         subject_consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
