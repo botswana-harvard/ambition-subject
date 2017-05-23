@@ -5,9 +5,8 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO, UNKNOWN
+from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO
 from edc_visit_tracking.constants import SCHEDULED
-from ambition_screening.models import SubjectScreening
 
 from .constants import A2
 from .models import (
@@ -18,9 +17,6 @@ from .models import (
 from .models.list_models import (
     AEClassification, Neurological, SignificantNewDiagnosis, MeningitisSymptom,
     Antibiotic)
-from ambition_subject.models import subject_visit
-
-        
 
 
 class DateProvider(BaseProvider):
@@ -42,7 +38,7 @@ class DateProvider(BaseProvider):
 
     def yesterday(self):
         return (get_utcnow() - relativedelta(days=1)).date()
-    
+
 
 fake = Faker()
 fake.add_provider(EdcBaseProvider)
@@ -52,32 +48,33 @@ aeclassification = Recipe(AEClassification)
 
 adverseevent = Recipe(
     AdverseEvent,
-    ae_cause_other=NO,
-    ae_cause_other_specify=None,
-    is_sa_event=NO,
-    is_susar=NO,
-    susar_reported=NOT_APPLICABLE)
+    ae_study_relation_possibility=YES,
+    ambisome_relation='not_related',
+    fluconazole_relation='not_related',
+    amphotericin_b_relation='not_related',
+    ae_cause=NO,
+    ae_cause_other=None)
 
 adverseeventtmg = Recipe(
     AdverseEventTMG)
 
 bloodresult = Recipe(
     BloodResult,
-    wbc=0.502,
+    wbc=200,
     platelets=203,
-    haemoglobin=0.54,
+    haemoglobin=222,
     absolute_neutrophil=1.02,
     creatinine=1.22,
     sodium=88,
     potassium=0.8,
-    magnesium=0.088,
+    magnesium=5,
     total_bilirubin=0.9,
     alt=102,
-    crp=0.89,
+    crp=200,
     urea=33,
     abs_cd4=59,
     proteinuria=YES,
-    urine_cr_ag='Positive',
+    urine_cr_ag='POS',
     are_results_normal=YES,
     abnormal_results_in_ae_range=YES)
 
@@ -124,6 +121,9 @@ followup = Recipe(
     study_day_rifampicin_started=None,
     clinical_care_comments=None)
 
+subjectvisit = Recipe(
+    SubjectVisit,
+    reason=SCHEDULED,)
 
 microbiology = Recipe(
     Microbiology,
@@ -210,20 +210,6 @@ recurrencesymtom = Recipe(
     narrative_summary=None,
     dr_opinion='CM Relapse')
 
-# subjectscreening = Recipe(
-#     SubjectScreening,
-#     gender='Male',
-#     age_in_years=40,
-#     meningitis_dx=YES,
-#     will_hiv_test=YES,
-#     pregnancy_or_lactation=NO,
-#     previous_drug_reaction=NO,
-#     contraindicated_meds=NO,
-#     received_amphotericin=NO,
-#     received_fluconazole=NO,
-#     eligible=True,
-#     reasons_ineligible=None)
-
 subjectrandomization = Recipe(
     SubjectRandomization,
     hospital_admission_date=get_utcnow().date,
@@ -255,10 +241,6 @@ week2 = Recipe(
     cn_palsy=YES,
     focal_neurology=NO,
     medicines='Fluconazole',)
-
-subjectvisit = Recipe(
-    SubjectVisit,
-    reason=SCHEDULED,)
 
 subjectlocator = Recipe(
     SubjectLocator,
