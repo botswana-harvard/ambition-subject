@@ -32,9 +32,12 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'ambition.apps.AppConfig',
+    'ambition.apps.EdcAppointmentAppConfig',
     'ambition.apps.EdcBaseTestAppConfig',
+    'ambition.apps.EdcConsentAppConfig',
     'ambition.apps.EdcProtocolAppConfig',
     'ambition.apps.EdcVisitTrackingAppConfig',
+    'ambition.apps.EdcTimepointAppConfig',
     'ambition_screening.apps.AppConfig',
     'ambition_subject.apps.AppConfig',
     'django.contrib.admin',
@@ -45,10 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
-    'edc_appointment.apps.AppConfig',
     'edc_device.apps.AppConfig',
     'edc_identifier.apps.AppConfig',
     'edc_lab.apps.AppConfig',
+    'edc_registration.apps.AppConfig',
     'edc_metadata.apps.AppConfig',
     'edc_visit_schedule.apps.AppConfig',
 
@@ -131,7 +134,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_subject', 'static')
 STATIC_URL = '/static/'
 
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
