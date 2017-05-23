@@ -40,6 +40,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'blood_culture_performed',
                 'blood_culture_results',
+                'date_blood_taken',
                 'day_blood_taken',
                 'blood_culture_organism',
                 'blood_culture_organism_other',
