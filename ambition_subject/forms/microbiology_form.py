@@ -1,6 +1,8 @@
 from edc_constants.constants import OTHER, POS, YES
 
+from ..constants import BACTERIA
 from ..models import Microbiology
+
 from .form_mixins import SubjectModelFormMixin
 
 
@@ -31,7 +33,7 @@ class MicrobiologyForm(SubjectModelFormMixin):
         self.required_if(
             POS,
             field='blood_culture_results',
-            field_required='day_blood_taken')
+            field_required='date_blood_taken')
 
         self.required_if(
             POS,
@@ -56,7 +58,7 @@ class MicrobiologyForm(SubjectModelFormMixin):
         self.required_if(
             POS,
             field='tissue_biopsy_results',
-            field_required='day_biopsy_taken')
+            field_required='date_biopsy_taken')
 
         self.required_if(
             POS,

@@ -2,11 +2,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_validators import date_not_future
 from edc_constants.choices import NOT_APPLICABLE, POS_NEG, YES_NO
 
 from ..choices import (
-    BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM, CULTURE_RESULTS,
-    POS_NEG_NA, URINE_CULTURE_RESULTS_ORGANISM)
+    BACTERIA_TYPE, BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM,
+    CULTURE_RESULTS, POS_NEG_NA, URINE_CULTURE_RESULTS_ORGANISM)
 from .model_mixins import CrfModelMixin
 
 
@@ -14,7 +15,9 @@ class Microbiology(CrfModelMixin):
 
     urine_culture_performed = models.CharField(
         choices=YES_NO,
-        max_length=5)
+        max_length=5,
+        help_text=(
+            'only for patients with >50 white cells in urine'))
 
     urine_culture_results = models.CharField(
         choices=CULTURE_RESULTS,
@@ -44,6 +47,11 @@ class Microbiology(CrfModelMixin):
         max_length=10,
         verbose_name='Blood culture results, if completed:')
 
+    date_blood_taken = models.DateField(
+        validators=[date_not_future],
+        blank=True,
+        null=True,)
+
     day_blood_taken = models.IntegerField(
         blank=True,
         null=True,
@@ -60,6 +68,16 @@ class Microbiology(CrfModelMixin):
         blank=True,
         max_length=50,
         null=True,
+        verbose_name='If other, specify:')
+
+    bacteria_identified = models.CharField(
+        choices=BACTERIA_TYPE,
+        default=NOT_APPLICABLE,
+        max_length=50,
+        verbose_name='If bacteria, type:')
+
+    bacteria_identified_other = models.CharField(
+        max_length=100,
         verbose_name='If other, specify:')
 
     sputum_results_afb = models.CharField(
@@ -89,6 +107,11 @@ class Microbiology(CrfModelMixin):
         default=NOT_APPLICABLE,
         max_length=10,
         verbose_name='If yes, results:')
+
+    date_biopsy_taken = models.DateField(
+        validators=[date_not_future],
+        blank=True,
+        null=True,)
 
     day_biopsy_taken = models.IntegerField(
         blank=True,
