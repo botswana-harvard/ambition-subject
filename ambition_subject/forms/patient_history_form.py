@@ -10,7 +10,8 @@ class PatientHistoryForm(SubjectModelFormMixin):
     def clean(self):
         cleaned_data = super().clean()
 
-        condition = cleaned_data.get('arvs') and NVP in cleaned_data.get('arvs')
+        condition = cleaned_data.get(
+            'arvs') and NVP in cleaned_data.get('arvs')
 
         self.required_if(YES, field='med_history', field_required='tb_site')
         self.required_if(
