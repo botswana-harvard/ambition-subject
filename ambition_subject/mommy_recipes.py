@@ -5,7 +5,7 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO, UNKNOWN
+from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
@@ -115,6 +115,10 @@ followup = Recipe(
     is_rifampicin_started=YES,
     study_day_rifampicin_started=15,
     clinical_care_comments=None)
+
+subjectvisit = Recipe(
+    SubjectVisit,
+    reason=SCHEDULED,)
 
 microbiology = Recipe(
     Microbiology,
@@ -232,10 +236,6 @@ week2 = Recipe(
     cn_palsy=YES,
     focal_neurology=NO,
     medicines='Fluconazole',)
-
-subjectvisit = Recipe(
-    SubjectVisit,
-    reason=SCHEDULED,)
 
 subjectlocator = Recipe(
     SubjectLocator,

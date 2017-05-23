@@ -51,15 +51,21 @@ ARV_REGIMEN = (
      'AZT + 3TC + either ATZ/r or Lopinavir/r'),
     (OTHER, 'Other, specify'))
 
+BLOOD_CULTURE_RESULTS_ORGANISM = (
+    (NOT_APPLICABLE, 'Not applicable'),
+    ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
+    ('bacteria', 'Bacteria'),
+    (OTHER, 'Other, specify')
+)
+
 BIOPSY_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
     ('mycobacterium_tuberculosis', 'Mycobacterium Tuberculosis'),
     (OTHER, 'If other, please specify'))
 
-BLOOD_CULTURE_RESULTS_ORGANISM = (
+BACTERIA_TYPE = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
     ('e.coli', 'E.coli'),
     ('klebsiella_sp', 'Klebsiella sp'),
     ('streptococcus_pneumoniae', 'Streptococcus pneumoniae'),

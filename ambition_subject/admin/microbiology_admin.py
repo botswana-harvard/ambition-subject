@@ -20,6 +20,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         'blood_culture_performed': admin.VERTICAL,
         'blood_culture_results': admin.VERTICAL,
         'blood_culture_organism': admin.VERTICAL,
+        'bacteria_identified': admin.VERTICAL,
         'sputum_results_afb': admin.VERTICAL,
         'sputum_results_culture': admin.VERTICAL,
         'sputum_result_genexpert': admin.VERTICAL,
@@ -39,9 +40,12 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'blood_culture_performed',
                 'blood_culture_results',
+                'date_blood_taken',
                 'day_blood_taken',
                 'blood_culture_organism',
-                'blood_culture_organism_other')}],
+                'blood_culture_organism_other',
+                'bacteria_identified',
+                'bacteria_identified_other')}],
         ['Sputum results - Microscopy', {
             'fields': (
                 'sputum_results_afb',
@@ -52,6 +56,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'tissue_biopsy_taken',
                 'tissue_biopsy_results',
+                'date_biopsy_taken',
                 'day_biopsy_taken',
                 'tissue_biopsy_organism',
                 'tissue_biopsy_organism_other',

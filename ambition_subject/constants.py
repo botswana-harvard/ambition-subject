@@ -1,3 +1,4 @@
+BACTERIA = 'Bacteria'
 N1 = 'N'
 A2 = 'A'
 AMS_N3 = 'AMS_N'
