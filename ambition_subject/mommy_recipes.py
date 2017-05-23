@@ -60,21 +60,21 @@ adverseeventtmg = Recipe(
 
 bloodresult = Recipe(
     BloodResult,
-    wbc=0.502,
+    wbc=200,
     platelets=203,
-    haemoglobin=0.54,
+    haemoglobin=222,
     absolute_neutrophil=1.02,
     creatinine=1.22,
     sodium=88,
     potassium=0.8,
-    magnesium=0.088,
+    magnesium=5,
     total_bilirubin=0.9,
     alt=102,
-    crp=0.89,
+    crp=200,
     urea=33,
     abs_cd4=59,
     proteinuria=YES,
-    urine_cr_ag='Positive',
+    urine_cr_ag='POS',
     are_results_normal=YES,
     abnormal_results_in_ae_range=YES)
 
