@@ -2,7 +2,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import NOT_APPLICABLE, POS_NEG, YES_NO
 
 from ..choices import (
@@ -11,7 +10,7 @@ from ..choices import (
 from .model_mixins import CrfModelMixin
 
 
-class Microbiology(BaseUuidModel):
+class Microbiology(CrfModelMixin):
 
     urine_culture_performed = models.CharField(
         choices=YES_NO,
