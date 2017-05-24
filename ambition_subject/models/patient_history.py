@@ -4,7 +4,7 @@ from django.db import models
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import (
     ARV_REGIMEN, FIRST_LINE_REGIMEN, MEDICATION_HISTORY, TB_SITE)
@@ -52,7 +52,7 @@ class PatientHistory(CrfModelMixin):
     taking_rifampicin = models.CharField(
         verbose_name='If yes, are you currently also taking Rifampicin?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     rifampicin_started_date = models.DateField(
         verbose_name='If yes, when did you first start taking Rifampicin?',
@@ -88,7 +88,7 @@ class PatientHistory(CrfModelMixin):
         blank=True,
         max_length=50,
         choices=ARV_REGIMEN)
-    
+
     arvs_other = OtherCharField()
 
     first_line_choice = models.CharField(

@@ -28,6 +28,13 @@ list_data = {
         ('ciprofloxacin', 'Ciprofloxacin'),
         (OTHER, ' OTHER, specify')
     ],
+    'ambition_subject.antibiotictreatment': [
+        ('amoxicillin', 'Amoxicillin'),
+        ('flucloxacillin', 'Flucloxacillin'),
+        ('doxycycline', 'Doxycycline'),
+        ('ceftriaxone', 'Ceftriaxone'),
+        ('erythromycin', 'Erythromycin'),
+    ],
     'ambition_subject.meningitissymptom': [
         ('headache', 'Headache'),
         ('vomiting', 'Vomiting'),
@@ -58,24 +65,8 @@ list_data = {
         ('CN_VII_palsy', 'Cranial Nerve VII palsy'),
         ('CN_VIII_palsy', 'Cranial Nerve VIII palsy'),
         (OTHER, 'Other CN palsy'),
-    ],        
-    'ambition_subject.antibiotic_treatment': [
-        ('amoxicillin', 'Amoxicillin'),
-        ('flucloxacillin', 'Flucloxacillin'),
-        ('doxycycline', 'Doxycycline'),
-        ('ceftriaxone', 'Ceftriaxone'),
-        ('erythromycin', 'Erythromycin'),
     ],
-    'ambition_subject.otherdrug': [
-        ('antibiotics', 'Antibiotics'),
-        ('k', 'K'),
-        ('mg', 'Mg'),
-        ('vitamins', 'Vitamins'),
-        ('tmp_smx_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
-        ('anti_convulsants', 'Anti convulsants'),
-        (OTHER, ' OTHER, specify')
-    ],
-    'ambition_subject.significant_diagnosis': [
+    'ambition_subject.significantnewdiagnosis': [
         ('tb_pulmonary', 'TB pulmonary'),
         ('kaposi_sarcoma', 'Kaposi’s sarcoma'),
         ('bacteraemia', 'Bacteraemia'),
@@ -102,6 +93,15 @@ list_data = {
         ('weight_loss', 'Weight Loss'),
         ('skin_lesions_cough', 'Skin Lesions Cough'),
         ('shortness_of_breath', 'Shortness of breath'),
+    ],
+    'ambition_subject.otherdrug': [
+        ('antibiotics', 'Antibiotics'),
+        ('k', 'K'),
+        ('mg', 'Mg'),
+        ('vitamins', 'Vitamins'),
+        ('tmp_smx_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
+        ('anti_convulsants', 'Anti convulsants'),
+        (OTHER, ' OTHER, specify')
     ],
 }
 
