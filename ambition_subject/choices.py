@@ -292,3 +292,13 @@ DAYS_MISSED = (
     (1, 'Day 1'), (2, 'Day 2'), (3, 'Day 3'), (4, 'Day 4'), (5, 'Day 5'),
     (6, 'Day 6'), (7, 'Day 7'), (8, 'Day 8'), (9, 'Day 9'), (10, 'Day 10'),
     (11, 'Day 11'), (12, 'Day 12'), (13, 'Day 13'), (14, 'Day 14'))
+
+AE_OUTCOME = (
+    ('Recovered', 'Recovered'),
+    ('Recovering', 'Recovering'),
+    ('Not Recovered', 'Not Recovered'),
+    ('Unknown', 'Unknown/Lost to follow-up'),
+    ('Recovered with sequelae', 'Recovered with sequelae'),
+    ('Severity worsened to Grade 4', 'Severity worsened to Grade 4'),
+    ('Death', 'Death'),
+)
