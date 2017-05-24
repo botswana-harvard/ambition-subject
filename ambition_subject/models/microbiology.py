@@ -14,128 +14,128 @@ from .model_mixins import CrfModelMixin
 class Microbiology(CrfModelMixin):
 
     urine_culture_performed = models.CharField(
+        max_length=5,
         choices=YES_NO,
-        help_text=(
-            'only for patients with >50 white cells in urine'),
-        max_length=5)
+        help_text='only for patients with >50 white cells in urine')
 
     urine_culture_results = models.CharField(
-        choices=CULTURE_RESULTS,
-        default=NOT_APPLICABLE,
+        verbose_name='Urine culture results, if completed',
         max_length=10,
-        verbose_name='Urine culture results, if completed')
+        choices=CULTURE_RESULTS,
+        default=NOT_APPLICABLE)
 
     urine_culture_organism = models.CharField(
-        choices=URINE_CULTURE_RESULTS_ORGANISM,
-        default=NOT_APPLICABLE,
+        verbose_name='If Positive, organism:',
         max_length=25,
-        verbose_name='If Positive, organism:')
+        choices=URINE_CULTURE_RESULTS_ORGANISM,
+        default=NOT_APPLICABLE)
 
     urine_culture_organism_other = models.CharField(
-        blank=True,
+        verbose_name='If other, please specify:',
         max_length=50,
         null=True,
-        verbose_name='If other, please specify:')
+        blank=True,
+    )
 
     blood_culture_performed = models.CharField(
-        choices=YES_NO,
-        max_length=5)
+        max_length=5,
+        choices=YES_NO)
 
     blood_culture_results = models.CharField(
-        choices=CULTURE_RESULTS,
-        default=NOT_APPLICABLE,
+        verbose_name='Blood culture results, if completed:',
         max_length=10,
-        verbose_name='Blood culture results, if completed:')
+        choices=CULTURE_RESULTS,
+        default=NOT_APPLICABLE)
 
     date_blood_taken = models.DateField(
-        blank=True,
+        validators=[date_not_future],
         null=True,
-        validators=[date_not_future])
+        blank=True)
 
     day_blood_taken = models.IntegerField(
-        blank=True,
-        null=True,
+        verbose_name='If Positive, Study day positive culture sample taken:',
         validators=[MinValueValidator(1), MaxValueValidator(70)],
-        verbose_name='If Positive, Study day positive culture sample taken:')
+        null=True,
+        blank=True)
 
     blood_culture_organism = models.CharField(
-        choices=BLOOD_CULTURE_RESULTS_ORGANISM,
-        default=NOT_APPLICABLE,
+        verbose_name='If growth positive, organism:',
         max_length=50,
-        verbose_name='If growth positive, organism:')
+        choices=BLOOD_CULTURE_RESULTS_ORGANISM,
+        default=NOT_APPLICABLE)
 
     blood_culture_organism_other = models.CharField(
-        blank=True,
+        verbose_name='If other, specify:',
         max_length=50,
         null=True,
-        verbose_name='If other, specify:')
+        blank=True)
 
     bacteria_identified = models.CharField(
-        choices=BACTERIA_TYPE,
-        default=NOT_APPLICABLE,
+        verbose_name='If bacteria, type:',
         max_length=50,
-        verbose_name='If bacteria, type:')
+        choices=BACTERIA_TYPE,
+        default=NOT_APPLICABLE)
 
     bacteria_identified_other = models.CharField(
-        blank=True,
+        verbose_name='If other, specify:',
         max_length=100,
         null=True,
-        verbose_name='If other, specify:')
+        blank=True)
 
     sputum_results_afb = models.CharField(
-        choices=POS_NEG,
-        max_length=10)
+        max_length=10,
+        choices=POS_NEG)
 
     sputum_results_culture = models.CharField(
-        choices=POS_NEG,
-        max_length=10)
+        max_length=10,
+        choices=POS_NEG)
 
     sputum_results_positive = models.CharField(
-        blank=True,
+        verbose_name='If culture is positive, please specify:',
         max_length=50,
         null=True,
-        verbose_name='If culture is positive, please specify:')
+        blank=True)
 
     sputum_result_genexpert = models.CharField(
-        choices=POS_NEG_NA,
-        max_length=15)
+        max_length=15,
+        choices=POS_NEG_NA)
 
     tissue_biopsy_taken = models.CharField(
-        choices=YES_NO,
-        max_length=5)
+        max_length=5,
+        choices=YES_NO)
 
     tissue_biopsy_results = models.CharField(
-        choices=CULTURE_RESULTS,
-        default=NOT_APPLICABLE,
+        verbose_name='If yes, results:',
         max_length=10,
-        verbose_name='If yes, results:')
+        choices=CULTURE_RESULTS,
+        default=NOT_APPLICABLE)
 
     date_biopsy_taken = models.DateField(
-        blank=True,
+        validators=[date_not_future],
         null=True,
-        validators=[date_not_future])
+        blank=True)
 
     day_biopsy_taken = models.IntegerField(
-        blank=True,
-        null=True,
+        verbose_name='If Positive, Study day positive culture sample taken:',
         validators=[MinValueValidator(1), MaxValueValidator(70)],
-        verbose_name='If Positive, Study day positive culture sample taken:')
+        null=True,
+        blank=True)
 
     tissue_biopsy_organism = models.CharField(
-        choices=BIOPSY_RESULTS_ORGANISM,
-        default=NOT_APPLICABLE,
+        verbose_name='If growth positive, organism:',
         max_length=50,
-        verbose_name='If growth positive, organism:')
+        choices=BIOPSY_RESULTS_ORGANISM,
+        default=NOT_APPLICABLE)
 
     tissue_biopsy_organism_other = models.CharField(
-        blank=True,
+        verbose_name='If other, please specify:',
         max_length=50,
         null=True,
-        verbose_name='If other, please specify:')
+        blank=True)
 
     histopathology_report = models.TextField(
-        blank=True,
-        null=True)
+        null=True,
+        blank=True)
 
     history = HistoricalRecords()
 
