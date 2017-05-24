@@ -6,6 +6,7 @@ from edc_base.utils import get_utcnow
 from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, POS, YES
 from edc_visit_tracking.constants import SCHEDULED
 
+from ..constants import BACTERIA
 from ..forms import MicrobiologyForm
 from ..models import Appointment, Microbiology
 
@@ -212,6 +213,56 @@ class TestMicrobiology(TestCase):
                                    blood_culture_performed=YES,
                                    blood_culture_organism=OTHER,
                                    blood_culture_organism_other='blahblah')
+        data = obj.__dict__
+        del data['subject_visit_id']
+        data.update({'subject_visit': self.subject_visit.id})
+        form = MicrobiologyForm(data=data)
+        self.assertFalse(form.is_valid())
+
+    def test_blood_culture_bacteria_specify(self):
+        """ Assert other is specified if bacteria chosen
+        for blood culture organism.
+        """
+        obj = mommy.prepare_recipe(Microbiology._meta.label_lower,
+                                   blood_culture_performed=YES,
+                                   blood_culture_organism=BACTERIA,
+                                   bacteria_identified=None)
+        data = obj.__dict__
+        del data['subject_visit_id']
+        data.update({'subject_visit': self.subject_visit.id})
+        form = MicrobiologyForm(data=data)
+        self.assertFalse(form.is_valid())
+
+        obj = mommy.prepare_recipe(Microbiology._meta.label_lower,
+                                   blood_culture_performed=YES,
+                                   blood_culture_organism=BACTERIA,
+                                   blood_culture_organism_other='e.coli')
+        data = obj.__dict__
+        del data['subject_visit_id']
+        data.update({'subject_visit': self.subject_visit.id})
+        form = MicrobiologyForm(data=data)
+        self.assertFalse(form.is_valid())
+
+    def test_blood_culture_bacteria_other(self):
+        """ Assert other is specified if bacteria chosen for blood
+        culture organism.
+        """
+        obj = mommy.prepare_recipe(Microbiology._meta.label_lower,
+                                   blood_culture_performed=YES,
+                                   blood_culture_organism=BACTERIA,
+                                   bacteria_identified=OTHER,
+                                   bacteria_identified_other=None)
+        data = obj.__dict__
+        del data['subject_visit_id']
+        data.update({'subject_visit': self.subject_visit.id})
+        form = MicrobiologyForm(data=data)
+        self.assertFalse(form.is_valid())
+
+        obj = mommy.prepare_recipe(Microbiology._meta.label_lower,
+                                   blood_culture_performed=YES,
+                                   blood_culture_organism=BACTERIA,
+                                   bacteria_identified=OTHER,
+                                   bacteria_identified_other='blahblah')
         data = obj.__dict__
         del data['subject_visit_id']
         data.update({'subject_visit': self.subject_visit.id})

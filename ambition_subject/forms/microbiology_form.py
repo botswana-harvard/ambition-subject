@@ -46,6 +46,16 @@ class MicrobiologyForm(SubjectModelFormMixin):
             field_required='blood_culture_organism_other')
 
         self.required_if(
+            BACTERIA,
+            field='blood_culture_organism',
+            field_required='bacteria_identified')
+
+        self.required_if(
+            OTHER,
+            field='bacteria_identified',
+            field_required='bacteria_identified_other')
+
+        self.required_if(
             POS,
             field='sputum_results_culture',
             field_required='sputum_results_positive')

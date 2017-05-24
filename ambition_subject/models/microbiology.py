@@ -15,9 +15,9 @@ class Microbiology(CrfModelMixin):
 
     urine_culture_performed = models.CharField(
         choices=YES_NO,
-        max_length=5,
         help_text=(
-            'only for patients with >50 white cells in urine'))
+            'only for patients with >50 white cells in urine'),
+        max_length=5)
 
     urine_culture_results = models.CharField(
         choices=CULTURE_RESULTS,
@@ -48,9 +48,9 @@ class Microbiology(CrfModelMixin):
         verbose_name='Blood culture results, if completed:')
 
     date_blood_taken = models.DateField(
-        validators=[date_not_future],
         blank=True,
-        null=True,)
+        null=True,
+        validators=[date_not_future])
 
     day_blood_taken = models.IntegerField(
         blank=True,
@@ -77,7 +77,9 @@ class Microbiology(CrfModelMixin):
         verbose_name='If bacteria, type:')
 
     bacteria_identified_other = models.CharField(
+        blank=True,
         max_length=100,
+        null=True,
         verbose_name='If other, specify:')
 
     sputum_results_afb = models.CharField(
@@ -109,9 +111,9 @@ class Microbiology(CrfModelMixin):
         verbose_name='If yes, results:')
 
     date_biopsy_taken = models.DateField(
-        validators=[date_not_future],
         blank=True,
-        null=True,)
+        null=True,
+        validators=[date_not_future])
 
     day_biopsy_taken = models.IntegerField(
         blank=True,
