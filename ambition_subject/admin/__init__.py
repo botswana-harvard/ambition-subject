@@ -1,5 +1,6 @@
 from .adverse_event_admin import AdverseEventAdmin
 from .adverse_event_tmg_admin import AdverseEventTMGAdmin
+from .adverse_event_followup_admin import AdverseEventFollowUpAdmin
 from .appointment_admin import AppointmentAdmin
 from .blood_result_admin import BloodResultsAdmin
 from .clinic_note_admin import ClinicNoteAdmin

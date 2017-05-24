@@ -10,7 +10,7 @@ from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
 from .models import (
-    AdverseEvent, AdverseEventTMG, BloodResult, Death, Microbiology, FollowUp,
+    AdverseEvent, AdverseEventTMG, AdverseEventFollowUp, BloodResult, Death, Microbiology, FollowUp,
     ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
     SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
     Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
@@ -120,6 +120,16 @@ followup = Recipe(
     is_rifampicin_started=NO,
     study_day_rifampicin_started=None,
     clinical_care_comments=None)
+
+adverseeventfollowup = Recipe(
+    AdverseEventFollowUp,
+    relevant_history=None,
+    med_name_given=None,
+    med_given_dosage=None,
+    med_given_indication=None,
+    work_up=None,
+    treatment_plan=None,
+    treated=None)
 
 subjectvisit = Recipe(
     SubjectVisit,
