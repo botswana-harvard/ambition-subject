@@ -1,2 +1,3 @@
 from .crf_model_mixin import CrfModelManager, CrfModelMixin
 from .search_slug_model_mixin import SearchSlugModelMixin
+from .clinical_assessment_mixin import ClinicalAssessment
