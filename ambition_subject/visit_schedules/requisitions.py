@@ -26,7 +26,7 @@ requisitions_d1 = (
 requisitions_d3 = (
     Requisition(
         show_order=10, model='ambition_subject.subjectrequisition',
-        panel=chemistry_panel, required=False, additional=False),
+        panel=chemistry_panel),
 )
 
 requisitions_d7 = (
