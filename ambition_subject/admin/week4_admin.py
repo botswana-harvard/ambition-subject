@@ -19,6 +19,7 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ['Clinical Assessment', {
             'fields': (
+                'subject_visit',
                 'physical_symptoms',
                 'headache',
                 'visual_acuity_left_eye',
