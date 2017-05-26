@@ -18,26 +18,26 @@ class StudyTerminationConclusion(BaseUuidModel):
         validators=[MinValueValidator(1), MaxValueValidator(99)])
 
     last_research_termination_date = models.DateField(
+        verbose_name='Date of last research follow-up (if different)',
         blank=True,
         null=True,
-        validators=[date_not_future],
-        verbose_name='Date of last research follow-up (if different):')
+        validators=[date_not_future])
 
     last_research_termination_study_day = models.IntegerField(
+        verbose_name='Last research follow-up study day if different',
         blank=True,
         null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(99)],
-        verbose_name='Last research follow-up study day if different')
+        validators=[MinValueValidator(1), MaxValueValidator(99)])
 
     discharged_after_initial_admission = models.CharField(
-        choices=YES_NO,
-        max_length=5)
+        verbose_name='If yes, date of initial discharge',
+        max_length=5,
+        choices=YES_NO)
 
     initial_discharge_date = models.DateField(
         blank=True,
         null=True,
-        validators=[date_not_future],
-        verbose_name='If yes, date of initial discharge')
+        validators=[date_not_future])
 
     initial_discharge_study_date = models.IntegerField(
         blank=True,
@@ -60,22 +60,22 @@ class StudyTerminationConclusion(BaseUuidModel):
 
     study_termination_reason = models.CharField(
         choices=REASON_STUDY_TERMINATED,
-        max_length=25)
+        max_length=75)
     
     study_termination_reason_death =  models.DateField(
+        verbose_name='if reported to have died',
         blank=True,
         null=True,
-        validators=[date_not_future],
-        verbose_name='if reported to have died')
+        validators=[date_not_future])
 
     withdrawal_of_consent_reason = models.CharField(
+        max_length=75,
         blank=True,
-        null=True,
-        max_length=75)
+        null=True)
 
     rifampicin_started_since_week4 = models.CharField(
-        choices=YES_NO,
-        max_length=5)
+        max_length=5,
+        choices=YES_NO)
 
     rifampicin_started_study_day = models.IntegerField(
         blank=True,
@@ -83,18 +83,18 @@ class StudyTerminationConclusion(BaseUuidModel):
         validators=[MinValueValidator(1), MaxValueValidator(99)])
 
     arv_regimen = models.CharField(
-        choices=ARV_REGIMEN,
-        max_length=50)
+        max_length=50,
+        choices=ARV_REGIMEN)
     
     arv_regimen_other = models.CharField(
-        blank=True,
-        null=True,
+        verbose_name='If in other regimes, please specify',
         max_length=50,
-        verbose_name='If in other regimes, please specify:')
+        blank=True,
+        null=True)
 
     is_naive = models.CharField(
-        choices=YES_NO,
-        max_length=5)
+        max_length=5,
+        choices=YES_NO)
 
     date_started_arvs = models.DateField(
         blank=True,
@@ -107,14 +107,14 @@ class StudyTerminationConclusion(BaseUuidModel):
         validators=[date_not_future])
 
     is_first_line_regimen = models.CharField(
-        choices=YES_NO,
-        max_length=5)
+        max_length=5,
+        choices=YES_NO)
 
     efv_or_nvp = models.CharField(
-        choices=FIRST_LINE_REGIMEN,
-        null=True,
+        verbose_name='If first line, on EFV or NVP and or DTG?',
         max_length=3,
-        verbose_name='If first line, on EFV or NVP and or DTG?')
+        choices=FIRST_LINE_REGIMEN,
+        null=True)
 
     history = HistoricalRecords()
 
