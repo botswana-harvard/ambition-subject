@@ -20,15 +20,13 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
                 'headache',
                 'temperature',
                 'glasgow_cs',
-                'seizures_during_admission',
-                'recent_seizure',
+                'recent_seizure_less_72',
                 'behaviour_change',
                 'confusion',
                 'cn_palsy',
                 'focal_neurology',
                 'weight',
-                'medicines',
-                'significant_diagnosis')}
+                'significant_new_diagnosis')}
          ],
         audit_fieldset_tuple
     )
@@ -36,12 +34,9 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
     radio_fields = {
         'physical_symptoms': admin.VERTICAL,
         'headache': admin.VERTICAL,
-        'seizures_during_admission': admin.VERTICAL,
-        'recent_seizure': admin.VERTICAL,
+        'recent_seizure_less_72': admin.VERTICAL,
         'behaviour_change': admin.VERTICAL,
         'confusion': admin.VERTICAL,
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
-        'medicines': admin.VERTICAL,
-        'significant_diagnosis': admin.VERTICAL,
     }
