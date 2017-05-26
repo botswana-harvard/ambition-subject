@@ -21,7 +21,6 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
         'behaviour_change': admin.VERTICAL,
         'confusion': admin.VERTICAL,
         'lp_completed': admin.VERTICAL,
-        'cn_palsy_counts': admin.VERTICAL,
         'amb_administered': admin.VERTICAL,
         'tb_treatment': admin.VERTICAL,
         'steroids_administered': admin.VERTICAL,
