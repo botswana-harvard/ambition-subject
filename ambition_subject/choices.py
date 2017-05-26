@@ -126,9 +126,8 @@ FIRST_LINE_REGIMEN = (
     ('NVP', 'NVP'))
 
 FLUCONAZOLE_DOSE = (
-    ('400mg_daily', '400mg daily'),
-    ('800mg_daily', '800mg daily'),
-    (OTHER, 'Other, please specify:'))
+    ('800mg_daily', '800mg Daily'),
+    (OTHER, 'Other, specify'))
 
 GLASGOW_COMA_SCORE_EYES = (
     ('does_not_open_eyes', 'Does not open eyes'),
