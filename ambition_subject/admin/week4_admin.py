@@ -14,21 +14,25 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week4Form
 
+    filter_horizontal = ('significant_new_diagnosis',)
+
     fieldsets = (
         ['Clinical Assessment', {
             'fields': (
+                'physical_symptoms',
                 'headache',
-                'temperature',
-                'glasgow_cs',
-                'seizures_during_admission',
-                'recent_seizure',
-                'behaviour_change',
+                'visual_acuity_left_eye',
+                'visual_acuity_right_eye',
+                'glasgow_coma_score',
                 'confusion',
+                'recent_seizure_less_72',
                 'cn_palsy',
+                'behaviour_change',
                 'focal_neurology',
-                'weight',
-                'medicines',
-                'significant_diagnosis')}
+                'significant_new_diagnosis',
+                'other_significant_new_diagnosis',
+                'diagnosis_date'
+            )}
          ],
         audit_fieldset_tuple
     )
@@ -36,12 +40,9 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
     radio_fields = {
         'physical_symptoms': admin.VERTICAL,
         'headache': admin.VERTICAL,
-        'seizures_during_admission': admin.VERTICAL,
-        'recent_seizure': admin.VERTICAL,
+        'recent_seizure_less_72': admin.VERTICAL,
         'behaviour_change': admin.VERTICAL,
         'confusion': admin.VERTICAL,
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
-        'medicines': admin.VERTICAL,
-        'significant_diagnosis': admin.VERTICAL,
     }
