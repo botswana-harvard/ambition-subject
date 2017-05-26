@@ -26,7 +26,6 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ['CXR', {
             'fields': (
-                'subject_visit',
                 'is_cxr_done',
                 'cxr_type',
                 'infiltrate_location',

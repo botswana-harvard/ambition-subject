@@ -3,19 +3,24 @@ from django.utils import timezone
 
 
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA_SPECIFY
 
 from ..choices import (ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON,
                        CXR_TYPE, INFILTRATE_LOCATION)
-from .model_mixins import CrfModelMixin
+from edc_base.model_mixins import BaseUuidModel
 
 
-class Radiology(CrfModelMixin):
+class Radiology(BaseUuidModel):
 
     is_cxr_done = models.CharField(
         choices=YES_NO,
         max_length=5,
         verbose_name='Is CXR done')
+
+    when_cxr_done = models.DateField(
+        verbose_name='If yes, when was CXR done',
+        validators=[date_not_future])
 
     cxr_type = models.CharField(
         blank=False,
@@ -40,11 +45,11 @@ class Radiology(CrfModelMixin):
         choices=YES_NO,
         max_length=5,
         verbose_name='CT/MRI brain scan performed?:')
-    
+
     date_ct_performed = models.DateTimeField(
         default=timezone.now,
         editable=True)
-    
+
     is_scanned_with_contrast = models.CharField(
         blank=False,
         choices=YES_NO_NA_SPECIFY,
@@ -60,7 +65,7 @@ class Radiology(CrfModelMixin):
         verbose_name='Reason for brain imaging:')
 
     brain_imaging_reason_other = models.CharField(
-        blank=False,
+        blank=True,
         max_length=50,
         null=True,
         verbose_name='If other, please specify:')
@@ -93,6 +98,6 @@ class Radiology(CrfModelMixin):
 
     history = HistoricalRecords()
 
-    class Meta(CrfModelMixin.Meta):
+    class Meta(BaseUuidModel.Meta):
         app_label = 'ambition_subject'
         verbose_name_plural = 'Radiology'
