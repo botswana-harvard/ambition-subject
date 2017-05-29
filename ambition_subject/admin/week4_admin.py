@@ -14,7 +14,7 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week4Form
 
-    filter_horizontal = ('significant_new_diagnosis',)
+    # filter_horizontal = ('significant_new_diagnosis',)
 
     fieldsets = (
         ['Clinical Assessment', {
@@ -30,7 +30,7 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
                 'cn_palsy',
                 'behaviour_change',
                 'focal_neurology',
-                'significant_new_diagnosis',
+                # 'significant_new_diagnosis',
                 'other_significant_new_diagnosis',
                 'diagnosis_date'
             )}
