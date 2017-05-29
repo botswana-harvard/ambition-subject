@@ -286,18 +286,19 @@ studyterminationconclusion = Recipe(
 radiology = Recipe(
     Radiology,
     is_cxr_done=NO,
+    when_cxr_done=None,
     cxr_type=NOT_APPLICABLE,
     infiltrate_location=NOT_APPLICABLE,
     cxr_description=None,
-    is_ct_performed=NO,
-    date_ct_performed=None,
+    is_ct_performed=YES,
+    date_ct_performed=get_utcnow(),
     is_scanned_with_contrast=NO,
-    brain_imaging_reason=NOT_APPLICABLE,
-    brain_imaging_reason_other=NOT_APPLICABLE,
-    are_results_abnormal=NO,
+    brain_imaging_reason='reduction_in_gcs',
+    brain_imaging_reason_other=None,
+    are_results_abnormal=NOT_APPLICABLE,
     abnormal_results_reason=NOT_APPLICABLE,
     abnormal_results_reason_other=NOT_APPLICABLE,
-    if_infarcts_location=NOT_APPLICABLE)
+    if_infarcts_location=None)
 
 lumbarpuncturecsf = Recipe(
     LumbarPunctureCsf,

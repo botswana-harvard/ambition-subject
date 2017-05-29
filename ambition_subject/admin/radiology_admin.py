@@ -27,6 +27,7 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         ['CXR', {
             'fields': (
                 'is_cxr_done',
+                'when_cxr_done',
                 'cxr_type',
                 'infiltrate_location',
                 'cxr_description')}],

@@ -1,4 +1,5 @@
-from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN
+from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN,\
+    NORMAL
 
 from .constants import N1, A2, AMS_N3, AMS_A4
 
@@ -109,7 +110,7 @@ CULTURE_RESULTS = (
 
 CXR_TYPE = (
     (NOT_APPLICABLE, 'Not Applicable'),
-    ('normal', 'Normal'),
+    (NORMAL, 'Normal'),
     ('hilar_adenopathy', 'Hilar adenopathy'),
     ('miliary_appearance', 'Miliary appearance'),
     ('pleural_effusion', 'Pleural effusion'),
