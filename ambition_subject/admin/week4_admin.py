@@ -14,8 +14,6 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week4Form
 
-    filter_horizontal = ('significant_new_diagnosis',)
-
     fieldsets = (
         ['Clinical Assessment', {
             'fields': (
