@@ -35,7 +35,8 @@ crfs_d14 = (
     Crf(show_order=3, model='ambition_subject.lumbarpuncturecsf'),)
 
 crfs_w4 = (
-    Crf(show_order=1, model='ambition_subject.week4'),)
+    Crf(show_order=1, model='ambition_subject.week4'),
+    Crf(show_order=2, model='ambition_subject.bloodresult'))
 
 crfs_w6 = (Crf(show_order=1, model='ambition_subject.followup'),)
 
