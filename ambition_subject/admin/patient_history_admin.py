@@ -13,7 +13,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = PatientHistoryForm
 
-    filter_horizontal = ('neurological', 'symptom')
+    filter_horizontal = ('neurological', 'symptom', 'specify_medications')
 
     radio_fields = {
         'med_history': admin.VERTICAL,
@@ -28,7 +28,6 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
         'lung_exam': admin.VERTICAL,
         'cryptococcal_lesions': admin.VERTICAL,
         'other_medications': admin.VERTICAL,
-        'specify_medications': admin.VERTICAL,
     }
 
     fieldsets = (
@@ -45,7 +44,10 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'tb_site',
                 'tb_treatment',
                 'taking_rifampicin',
-                'rifampicin_started_date',
+                'rifampicin_started_date', ]}
+         ),
+        ('Previous Opportunistic Infection', {
+            'fields': [
                 'previous_infection',
                 'infection_date',
                 'taking_arv',

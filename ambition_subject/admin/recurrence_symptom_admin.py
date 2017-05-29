@@ -51,8 +51,7 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'neurological',
                 'antibiotic_treatment',
                 'focal_neurologic_deficit',
-                'cn_palsy',
-                'cn_palsy_counts']}
+                'cn_palsy']}
          ),
         ('Management', {
             'fields': [

@@ -22,7 +22,7 @@ class FollowUpAdmin(ModelAdminMixin, admin.ModelAdmin):
         'behaviour_change': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
         'fluconazole_dose': admin.VERTICAL,
-        'is_rifampicin_started': admin.VERTICAL}
+        'rifampicin_started': admin.VERTICAL}
 
     fieldsets = (
         ('Clinical Assessment', {
@@ -45,7 +45,7 @@ class FollowUpAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'diagnosis_date',
                 'fluconazole_dose',
                 'other_fluconazole_dose',
-                'is_rifampicin_started',
+                'rifampicin_started',
                 'study_day_rifampicin_started',
                 'clinical_care_comments')}),
         audit_fieldset_tuple

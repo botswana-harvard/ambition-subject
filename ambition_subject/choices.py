@@ -127,9 +127,8 @@ FIRST_LINE_REGIMEN = (
     ('NVP', 'NVP'))
 
 FLUCONAZOLE_DOSE = (
-    ('400mg_daily', '400mg daily'),
-    ('800mg_daily', '800mg daily'),
-    (OTHER, 'Other, please specify:'))
+    ('800mg_daily', '800mg Daily'),
+    (OTHER, 'Other, specify'))
 
 GLASGOW_COMA_SCORE_EYES = (
     ('does_not_open_eyes', 'Does not open eyes'),
@@ -173,10 +172,6 @@ MEDICINES = (
     ('amphotericin_b', 'Amphotericin B'),
     ('rifampicin', 'Rifampicin'),
     ('co_trimoxazole', 'Co-trimoxazole'),
-    (OTHER, 'Other, specify:'))
-
-MEDICATION_HISTORY = (
-    ('TMP-SMX', 'TMP-SMX'),
     (OTHER, 'Other, specify:'))
 
 PATIENT_TREATMENT_GROUP = (

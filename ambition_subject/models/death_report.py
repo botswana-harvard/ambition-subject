@@ -10,7 +10,7 @@ from ..choices import CAUSE_OF_DEATH, TB_SITE_DEATH
 
 class Death(BaseUuidModel):
 
-    date_of_death = models.DateTimeField(
+    death_date = models.DateField(
         validators=[date_not_future])
 
     study_day = models.CharField(

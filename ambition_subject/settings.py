@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 import sys
+from pathlib import PurePath
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -138,6 +139,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_subject', 'static')
 STATIC_URL = '/static/'
 
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
+GIT_DIR = BASE_DIR
 
 if 'test' in sys.argv and 'mysql' not in DATABASES.get('default').get('ENGINE'):
     MIGRATION_MODULES = {
@@ -155,4 +157,5 @@ if 'test' in sys.argv and 'mysql' not in DATABASES.get('default').get('ENGINE'):
         "edc_registration": None,
         "edc_sync_files": None,
         "edc_sync": None,
-        "ambition_subject": None}
+        "ambition_subject": None,
+        "ambition_screening": None}

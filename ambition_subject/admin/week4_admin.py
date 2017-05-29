@@ -1,11 +1,10 @@
 from django.contrib import admin
 
-from edc_base.modeladmin_mixins.model_admin_audit_fields_mixin import audit_fieldset_tuple
+from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
 from ..forms import Week4Form
 from ..models import Week4
-
 from .modeladmin_mixins import ModelAdminMixin
 
 
@@ -14,11 +13,10 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week4Form
 
-    filter_horizontal = ('significant_new_diagnosis',)
-
     fieldsets = (
         ['Clinical Assessment', {
             'fields': (
+                'subject_visit',
                 'physical_symptoms',
                 'headache',
                 'visual_acuity_left_eye',
@@ -29,7 +27,6 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
                 'cn_palsy',
                 'behaviour_change',
                 'focal_neurology',
-                'significant_new_diagnosis',
                 'other_significant_new_diagnosis',
                 'diagnosis_date'
             )}

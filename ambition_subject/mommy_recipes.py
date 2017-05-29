@@ -96,30 +96,28 @@ death = Recipe(
 
 significantnewdiagnosis = Recipe(
     SignificantNewDiagnosis,
-    name='significant_new_diagnosis',
-    short_name='significant new diagnosis'
+    name=NOT_APPLICABLE,
+    short_name=NOT_APPLICABLE
 )
 
 followup = Recipe(
     FollowUp,
     physical_symptoms=NO,
     headache=NO,
-    visual_acuity_left_eye=0.5,
-    visual_acuity_right_eye=0.85,
     glasgow_coma_score=8,
     confusion=NO,
-    recent_seizure_less_72=NO,
     cn_palsy=NO,
+    tb_pulmonary_dx=NO,
+    extra_pulmonary_tb_dx=NO,
+    kaposi_sarcoma_dx=NO,
+    malaria_dx=NO,
+    bacteraemia_dx=NO,
+    pneumonia_dx=NO,
+    diarrhoeal_wasting_dx=NO,
     behaviour_change=NO,
     focal_neurology=NO,
-    significant_new_diagnosis=None,  # many2many
-    other_significant_new_diagnosis=None,
-    diagnosis_date=None,
-    fluconazole_dose='400mg_daily',
-    other_fluconazole_dose=None,
-    is_rifampicin_started=NO,
-    study_day_rifampicin_started=None,
-    clinical_care_comments=None)
+    fluconazole_dose='800mg_daily',
+    rifampicin_started=NO)
 
 adverseeventfollowup = Recipe(
     AdverseEventFollowUp,
