@@ -173,10 +173,6 @@ MEDICINES = (
     ('co_trimoxazole', 'Co-trimoxazole'),
     (OTHER, 'Other, specify:'))
 
-MEDICATION_HISTORY = (
-    ('TMP-SMX', 'TMP-SMX'),
-    (OTHER, 'Other, specify:'))
-
 PATIENT_TREATMENT_GROUP = (
     ('regimen_1', 'Regimen 1 (Ambisome 10 mg/kg day 1 (single dose))'),
     ('regimen_2', 'Regimen 2 (Ambisome 10 mg/kg day 1, Ambisome 5 mg/kg day 3 '

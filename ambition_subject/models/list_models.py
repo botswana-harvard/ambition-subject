@@ -31,6 +31,12 @@ class MissedVisitReason(ListModelMixin, BaseUuidModel):
         app_label = 'ambition_subject'
 
 
+class Medication(ListModelMixin, BaseUuidModel):
+
+    class Meta(ListModelMixin.Meta):
+        app_label = 'ambition_subject'
+
+
 class Neurological(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):

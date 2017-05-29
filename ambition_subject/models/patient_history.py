@@ -6,10 +6,9 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 
-from ..choices import (
-    ARV_REGIMEN, FIRST_LINE_REGIMEN, MEDICATION_HISTORY, TB_SITE)
+from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, TB_SITE
 from ..validators import bp_validator
-from .list_models import Neurological, Symptom
+from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
 
 
@@ -64,6 +63,10 @@ class PatientHistory(CrfModelMixin):
         verbose_name='Previous opportunistic infection?',
         max_length=5,
         choices=YES_NO)
+
+    previous_infection_specify = models.CharField(
+        verbose_name='If yes, specify',
+        max_length=50)
 
     infection_date = models.DateField(
         verbose_name='If yes, what was the date of infection?',
@@ -191,11 +194,8 @@ class PatientHistory(CrfModelMixin):
         max_length=5,
         choices=YES_NO)
 
-    specify_medications = models.CharField(
-        verbose_name='If Yes, specify:',
-        max_length=10,
-        choices=MEDICATION_HISTORY,
-        null=True,
+    specify_medications = models.ManyToManyField(
+        Medication,
         blank=True)
 
     specify_medications_other = OtherCharField()
