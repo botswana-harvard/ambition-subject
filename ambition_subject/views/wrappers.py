@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.urls.base import reverse
 
 from edc_appointment.views import AppointmentModelWrapper
-from edc_dashboard.wrappers.model_wrapper import ModelWrapper
+from edc_model_wrapper import ModelWrapper
 
 
 class ModelWrapperMixin(ModelWrapper):
