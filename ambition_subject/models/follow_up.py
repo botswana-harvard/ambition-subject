@@ -1,48 +1,43 @@
-from django.core.validators import MaxValueValidator
 from django.db import models
 
+from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
 
 from ..choices import FLUCONAZOLE_DOSE
 
 from .model_mixins import CrfModelMixin, ClinicalAssessment
+from edc_base.model_fields.custom_fields import OtherCharField
 
 
 class FollowUp(ClinicalAssessment, CrfModelMixin):
 
     fluconazole_dose = models.CharField(
-        choices=FLUCONAZOLE_DOSE,
+        verbose_name='Fluconazole dose (Day prior to visit)',
         max_length=25,
-        verbose_name='Fluconazole dose (Day prior to visit)')
+        choices=FLUCONAZOLE_DOSE)
 
-    other_fluconazole_dose = models.CharField(
-        blank=True,
-        max_length=75,
-        null=True,
-        verbose_name='Please other Fluconazole dose')
+    fluconazole_dose_other = OtherCharField(
+        verbose_name='Other fluconazole',
+        choices=FLUCONAZOLE_DOSE,
+        max_length=25)
 
-    other_fluconazole_dose_reason = models.CharField(
-        blank=True,
-        max_length=150,
-        null=True,
-        verbose_name='Please other Fluconazole dose and reason')
-
-    is_rifampicin_started = models.CharField(
-        choices=YES_NO,
+    rifampicin_started = models.CharField(
+        verbose_name='Rifampicin started since last visit?',
         max_length=5,
-        verbose_name='Rifampicin started since last visit?')
+        choices=YES_NO)
 
-    study_day_rifampicin_started = models.IntegerField(
-        blank=True,
+    rifampicin_start_date = models.DateField(
+        verbose_name='Date rifampicin started',
+        validators=[date_not_future],
         null=True,
-        validators=[MaxValueValidator(70)],
-        verbose_name='Study day started rifampicin?')
+        blank=True,)
 
-    clinical_care_comments = models.TextField(
+    fu_narrative = models.TextField(
+        verbose_name='Narrative',
+        max_length=300,
         blank=True,
-        null=True,
-        verbose_name='Comments on Clinical care/Assessment /Plan:')
+        null=True,)
 
     history = HistoricalRecords()
 
