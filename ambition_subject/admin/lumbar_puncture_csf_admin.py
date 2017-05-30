@@ -4,13 +4,13 @@ from edc_base.modeladmin_mixins import audit_fieldset_tuple
 from edc_base.fieldsets.fieldset import Fieldset
 
 from ..admin_site import ambition_subject_admin
-from ..constants import DAY1
+from ..constants import DAY1, DAY3
 from ..forms import LumbarPunctureCSFForm
 from ..models import LumbarPunctureCsf
 from .modeladmin_mixins import CrfModelAdminMixin
 
-wbc_fieldset = Fieldset(
-    'csf_wbc_cell_count', section='new section')
+wbc_count = Fieldset(
+    'csf_wbc_cell_count', section='WBC Count')
 
 
 @admin.register(LumbarPunctureCsf, site=ambition_subject_admin)
@@ -19,7 +19,8 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = LumbarPunctureCSFForm
 
     conditional_fieldsets = {
-        DAY1: wbc_fieldset, }
+        DAY1: wbc_count,
+        DAY3: wbc_count}
 
     radio_fields = {
         'reason_for_lp': admin.VERTICAL,
