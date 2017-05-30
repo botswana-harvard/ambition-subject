@@ -42,4 +42,5 @@ crfs_w6 = (Crf(show_order=1, model='ambition_subject.followup'),)
 
 crfs_w8 = (Crf(show_order=1, model='ambition_subject.followup'),)
 
-crfs_w10 = (Crf(show_order=1, model='ambition_subject.followup'),)
+crfs_w10 = (Crf(show_order=1, model='ambition_subject.followup'),
+            Crf(show_order=2, model='ambition_subject.studyterminationconclusion'),)

@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import POS_NEG, YES_NO
+from edc_constants.choices import YES_NO
 
 from .model_mixins import CrfModelMixin
 
@@ -31,8 +31,7 @@ class BloodResult(CrfModelMixin):
     creatinine = models.DecimalField(
         decimal_places=2,
         max_digits=4,
-        help_text='units in mg/dL',
-        validators=[MinValueValidator(1), MaxValueValidator(9999)])
+        help_text='units in  mg/dL or umol/L',)
 
     sodium = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
@@ -44,10 +43,9 @@ class BloodResult(CrfModelMixin):
         help_text='units in mmol/L')
 
     magnesium = models.DecimalField(
-        decimal_places=3,
+        decimal_places=2,
         max_digits=4,
-        validators=[MinValueValidator(1), MaxValueValidator(9999)],
-        help_text='units in mg/dL')
+        help_text='units in  mg/dL or umol/L')
 
     total_bilirubin = models.DecimalField(
         decimal_places=1,
@@ -65,9 +63,10 @@ class BloodResult(CrfModelMixin):
         verbose_name='CRP',
         help_text='units in U/L',)
 
-    urea = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(9999)],
-        help_text='units in mg/dL')
+    urea = models.DecimalField(
+        decimal_places=1,
+        max_digits=4,
+        help_text='units in  mg/dL or umol/L')
 
     abs_cd4 = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
@@ -76,11 +75,6 @@ class BloodResult(CrfModelMixin):
     proteinuria = models.CharField(
         choices=YES_NO,
         max_length=5)
-
-    urine_cr_ag = models.CharField(
-        choices=POS_NEG,
-        max_length=10,
-        verbose_name='Urine CrAg')
 
     are_results_normal = models.CharField(
         choices=YES_NO,
@@ -98,4 +92,3 @@ class BloodResult(CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
-
