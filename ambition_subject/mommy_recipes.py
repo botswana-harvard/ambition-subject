@@ -5,7 +5,7 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO
+from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO, UNKNOWN
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
@@ -80,16 +80,16 @@ bloodresult = Recipe(
 
 death = Recipe(
     Death,
-    study_day='Tuesday',
+    study_day=1,
     death_as_inpatient=YES,
-    cause_of_death_study_doctor_opinion='Cryptococcal meningitis',
-    cause_other_study_doctor_opinion=None,
-    cause_tb_study_doctor_opinion='Pulmonary',
-    cause_of_death_tmg1_opinion='Cryptococcal meningitis',
-    cause_other_tmg1_opinion=None,
+    cause_of_death_study_doctor_opinion='art_toxicity',
+    cause_other_study_doctor_opinion='None',
+    cause_tb_study_doctor_opinion=None,
+    cause_of_death_tmg1_opinion='art_toxicity',
+    cause_other_tmg1_opinion='None',
     cause_tb_tmg1_opinion=None,
-    cause_of_death_tmg2_opinion='Cryptococcal meningitis',
-    cause_other_tmg2_opinion=None,
+    cause_of_death_tmg2_opinion='art_toxicity',
+    cause_other_tmg2_opinion='None',
     cause_tb_tmg2_opinion=None,
     narrative_summary='adverse event resulted in death due to cryptococcal meningitis')
 
