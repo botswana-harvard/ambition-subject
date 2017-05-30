@@ -11,7 +11,7 @@ from .modeladmin_mixins import CrfModelAdminMixin
 visual_acuity_fieldset = Fieldset(
     'visual_acuity_left_eye',
     'visual_acuity_right_eye',
-    section='Aisual Acuity')
+    section='Visual Acuity')
 
 
 @admin.register(FollowUp, site=ambition_subject_admin)
