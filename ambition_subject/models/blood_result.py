@@ -92,4 +92,3 @@ class BloodResult(CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
-
