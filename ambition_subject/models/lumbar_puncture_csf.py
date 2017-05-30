@@ -11,82 +11,78 @@ from .model_mixins import CrfModelMixin
 class LumbarPunctureCsf(CrfModelMixin):
 
     reason_for_lp = models.CharField(
-        choices=LP_REASON,
+        verbose_name='Reason for LP',
         max_length=50,
-        verbose_name='Reason for LP')
+        choices=LP_REASON)
 
     opening_pressure = models.IntegerField(
-        help_text='Units cm of H2O',
-        validators=[MinValueValidator(1), MaxValueValidator(99)])
+        validators=[MinValueValidator(1), MaxValueValidator(99)],
+        help_text='Units cm of H2O')
 
     closing_pressure = models.IntegerField(
         blank=True,
-        help_text='Units cm of H2O',
         null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(99)])
+        validators=[MinValueValidator(1), MaxValueValidator(99)],
+        help_text='Units cm of H2O')
 
     csf_amount_removed = models.IntegerField(
-        help_text='Do not remove ≥ 40mL CSF. See management of raised ICP WPD',
-        validators=[MinValueValidator(1), MaxValueValidator(40)])
+        validators=[MinValueValidator(1), MaxValueValidator(40)],
+        help_text='Do not remove ≥ 40mL CSF. See management of raised ICP WPD')
 
     quantitative_culture = models.IntegerField(
         blank=True,
-        help_text='Units CFU/ml',
         null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(9999999)])
+        validators=[MinValueValidator(1), MaxValueValidator(9999999)],
+        help_text='Units CFU/ml')
 
     csf_culture = models.CharField(
-        choices=YES_NO_NA,
+        verbose_name='CSF culture: Other organism (non-crytococcus)',
         max_length=5,
-        verbose_name='CSF culture: Other organism (non-crytococcus)')
+        choices=YES_NO_NA)
 
     other_csf_culture = models.CharField(
-        blank=True,
+        verbose_name='If yes, specify organism:',
         max_length=75,
-        null=True,
-        verbose_name='If yes, specify organism:')
+        blank=True,
+        null=True)
 
     csf_wbc_cell_count = models.IntegerField(
-        help_text='Units in cubic millimeters',
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
-        verbose_name='Total CSF WBC cell count:')
+        verbose_name='Total CSF WBC cell count:',
+        help_text='acceptable units are mm3 or %',
+        validators=[MinValueValidator(1), MaxValueValidator(999)],)
 
     differential_lymphocyte_count = models.IntegerField(
-        help_text='Units in cubic millimeters',
+        verbose_name='Differential lymphocyte cell count:',
         validators=[MinValueValidator(1), MaxValueValidator(999)],
-        verbose_name='Differential lymphocyte cell count:')
+        help_text='acceptable units are mm3 or %')
 
     differential_neutrophil_count = models.IntegerField(
-        help_text='Units in cubic millimeters',
+        verbose_name='Differential neutrophil cell count:',
         validators=[MinValueValidator(1), MaxValueValidator(999)],
-        verbose_name='Differential neutrophil cell count:')
+        help_text='acceptable units are mm3 or %')
 
     india_ink = models.CharField(
-        choices=POS_NEG,
-        max_length=15)
+        max_length=15,
+        choices=POS_NEG)
 
     csf_glucose = models.DecimalField(
-        help_text='Units in mmol/L',
         decimal_places=1,
-        max_digits=3)
+        max_digits=3,
+        help_text='Units in mmol/L or mg/dL')
 
     csf_protein = models.IntegerField(
-        help_text='Units in mg/dL',
-        validators=[MinValueValidator(1), MaxValueValidator(999)])
+        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        help_text='Units in g/dL')
 
     csf_cr_ag = models.CharField(
-        choices=POS_NEG,
+        verbose_name='CSF CrAg:',
         max_length=15,
-        verbose_name='CSF CrAg:')
-
-    csf_cr_ag_titres = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(9999)],
-        verbose_name='CSF CrAg Titres:')
+        choices=POS_NEG)
 
     csf_cr_ag_lfa = models.CharField(
-        choices=YES_NO,
+        verbose_name='CSF CrAG done by CSF CrAG LFA:',
         max_length=5,
-        verbose_name='CSF CrAG done by CSF CrAG LFA:')
+        choices=YES_NO)
 
     history = HistoricalRecords()
 
