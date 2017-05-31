@@ -5,7 +5,7 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO, UNKNOWN
+from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
@@ -300,22 +300,13 @@ radiology = Recipe(
 
 lumbarpuncturecsf = Recipe(
     LumbarPunctureCsf,
-    reason_for_lp='Scheduled per protocol',
-    opening_pressure=89,
-    closing_pressure=70,
-    csf_amount_removed=25,
-    quantitative_culture=None,
     csf_culture=NO,
-    other_csf_culture=None,
-    csf_wbc_cell_count=200,
-    differential_lymphocyte_count=300,
+    opening_pressure=15,
+    csf_amount_removed=5,
+    csf_wbc_cell_count=250,
+    differential_lymphocyte_count=250,
     differential_neutrophil_count=250,
-    india_ink=POS,
-    csf_glucose=1.9,
-    csf_protein=200,
-    csf_cr_ag=POS,
-    csf_cr_ag_titres=300,
-    csf_cr_ag_lfa=YES)
+    csf_protein=10)
 
 subjectconsent = Recipe(
     SubjectConsent,
