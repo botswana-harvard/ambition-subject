@@ -5,11 +5,11 @@ from edc_base.modeladmin_mixins import audit_fieldset_tuple
 from ..admin_site import ambition_subject_admin
 from ..forms import RecurrenceSymptomForm
 from ..models import RecurrenceSymptom
-from .modeladmin_mixins import ModelAdminMixin
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(RecurrenceSymptom, site=ambition_subject_admin)
-class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
+class RecurrenceSymptomAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = RecurrenceSymptomForm
 
