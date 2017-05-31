@@ -4,9 +4,9 @@ from edc_constants.constants import YES
 
 
 class LumbarPunctureCSFForm(SubjectModelFormMixin):
-    
+
     def clean(self):
-        
+
         self.required_if(YES, field='csf_culture',
                          field_required='other_csf_culture')
 

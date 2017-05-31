@@ -49,7 +49,7 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_wbc_cell_count = models.IntegerField(
         verbose_name='Total CSF WBC cell count:',
         help_text='acceptable units are mm3 or %',
-        validators=[MinValueValidator(1), MaxValueValidator(999)],)
+        validators=[MinValueValidator(0), MaxValueValidator(999)],)
 
     differential_lymphocyte_count = models.IntegerField(
         verbose_name='Differential lymphocyte cell count:',
