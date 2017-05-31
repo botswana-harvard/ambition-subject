@@ -54,11 +54,15 @@ class LumbarPunctureCsf(CrfModelMixin):
     differential_lymphocyte_count = models.IntegerField(
         verbose_name='Differential lymphocyte cell count:',
         validators=[MinValueValidator(1), MaxValueValidator(999)],
+        blank=True,
+        null=True,
         help_text='acceptable units are mm3 or %')
 
     differential_neutrophil_count = models.IntegerField(
         verbose_name='Differential neutrophil cell count:',
         validators=[MinValueValidator(1), MaxValueValidator(999)],
+        blank=True,
+        null=True,
         help_text='acceptable units are mm3 or %')
 
     india_ink = models.CharField(
@@ -68,10 +72,15 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_glucose = models.DecimalField(
         decimal_places=1,
         max_digits=3,
+        blank=True,
+        null=True,
         help_text='Units in mmol/L or mg/dL')
 
-    csf_protein = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
+    csf_protein = models.DecimalField(
+        decimal_places=1,
+        max_digits=3,
+        blank=True,
+        null=True,
         help_text='Units in g/dL')
 
     csf_cr_ag = models.CharField(
