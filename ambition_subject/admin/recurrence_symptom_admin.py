@@ -6,10 +6,11 @@ from ..admin_site import ambition_subject_admin
 from ..forms import RecurrenceSymptomForm
 from ..models import RecurrenceSymptom
 from .modeladmin_mixins import CrfModelAdminMixin
+from ambition_subject.admin.modeladmin_mixins import ModelAdminMixin
 
 
 @admin.register(RecurrenceSymptom, site=ambition_subject_admin)
-class RecurrenceSymptomAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = RecurrenceSymptomForm
 

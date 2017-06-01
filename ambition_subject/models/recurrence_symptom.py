@@ -3,6 +3,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
+from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_constants.choices import YES_NO
 
 from ..choices import ANTIBIOTICS, DR_OPINION, STEROIDS_CHOICES, CN_PALSY
@@ -10,17 +11,17 @@ from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment
 from .model_mixins import CrfModelMixin
 
 
-class RecurrenceSymptom(CrfModelMixin):
+
+class RecurrenceSymptom(BaseUuidModel):
 
     meningitis_symptom = models.ManyToManyField(
         MeningitisSymptom,
-        verbose_name='What are your current symptoms?')
+         blank=True,
+         verbose_name='What are your current symptoms?')
 
     meningitis_symptom_other = models.CharField(
         verbose_name='If other symptom, please specify',
-        max_length=50,
-        blank=True,
-        null=True)
+        max_length=50)
 
     patient_readmitted = models.CharField(
         verbose_name=(
@@ -50,6 +51,7 @@ class RecurrenceSymptom(CrfModelMixin):
 
     neurological = models.ManyToManyField(
         Neurological,
+        blank=True,
         verbose_name='neurologic:')
 
     focal_neurologic_deficit = models.CharField(
@@ -67,7 +69,7 @@ class RecurrenceSymptom(CrfModelMixin):
     lp_completed = models.CharField(
         max_length=5,
         choices=YES_NO,
-        help_text='If, yes complete LP form')
+        help_text='If yes, complete LP form')
 
     amb_administered = models.CharField(
         max_length=5,
@@ -107,11 +109,12 @@ class RecurrenceSymptom(CrfModelMixin):
         verbose_name='CD4 count (if available)',
         validators=[MinValueValidator(1)],
         null=True,
-        blank=True,)
+        blank=True)
 
     antibiotic_treatment = models.ManyToManyField(
         AntibioticTreatment,
-        verbose_name='Antibiotics treatment')
+        verbose_name='Antibiotics treatment',
+        blank=True)
 
     antibiotic_treatment_other = models.CharField(
         verbose_name='If other antibiotic treatment, please specify',
@@ -153,5 +156,5 @@ class RecurrenceSymptom(CrfModelMixin):
 
     history = HistoricalRecords()
 
-    class Meta(CrfModelMixin.Meta):
+    class Meta(BaseUuidModel.Meta):
         app_label = 'ambition_subject'

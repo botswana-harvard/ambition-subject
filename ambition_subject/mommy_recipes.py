@@ -5,7 +5,7 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO
+from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
@@ -187,36 +187,45 @@ patienthistory = Recipe(
 protocoldeviationviolation = Recipe(
     ProtocolDeviationViolation)
 
-meningitissymptom = Recipe(MeningitisSymptom)
+meningitissymptom = Recipe(
+    MeningitisSymptom,
+    name=OTHER,
+    short_name='Other'
+)
 
-recurrencesymtom = Recipe(
+neurological = Recipe(
+    Neurological,
+    name='meningismus',
+    short_name='Meningismus'
+)
+
+recurrencesymptom = Recipe(
     RecurrenceSymptom,
-    meningitis_symptom=related(meningitissymptom),
+    meningitis_symptom=[meningitissymptom],
     meningitis_symptom_other=None,
     patient_readmitted=NO,
     glasgow_coma_score=8,
     recent_seizure=NO,
     behaviour_change=YES,
     confusion=YES,
-    neurological=related(neurological),
-    neurological_other=None,
+    neurological=[neurological],
     focal_neurologic_deficit=None,
     lp_completed=NO,
     amb_administered=NO,
-    amb_duration=None,
+    amb_duration=1,
     tb_treatment=YES,
     steroids_administered=NO,
     steroids_duration=None,
-    steroids_choices=None,
+    steroids_choices='oral_prednisolone',
     steroids_choices_other=None,
     CD4_count=50,
-    antibiotic_treatment='Amoxicillin',
+    antibiotic_treatment=None,
     antibiotic_treatment_other=None,
     on_arvs=NO,
     arv_date=None,
     arvs_stopped=NO,
-    narrative_summary=None,
-    dr_opinion='CM Relapse')
+    narrative_summary='description',
+    dr_opinion='cm_release')
 
 subjectrandomization = Recipe(
     SubjectRandomization,
