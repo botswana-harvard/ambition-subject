@@ -16,7 +16,7 @@ from .models import (
     Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
 from .models.list_models import (
     AEClassification, Neurological, SignificantNewDiagnosis, MeningitisSymptom,
-    Antibiotic)
+    Antibiotic, Symptom)
 
 
 class DateProvider(BaseProvider):
@@ -149,23 +149,28 @@ missedvisit = Recipe(
 
 neurological = Recipe(Neurological)
 
+symptom = Recipe(
+    Symptom,
+    name='vomiting',
+    short_name='vomiting')
+
 patienthistory = Recipe(
     PatientHistory,
-    symptom=None,
     headache_duration=2,
     visual_loss_duration=1,
     med_history=YES,
-    tb_site='Pulmonary',
+    tb_site='pulmonary',
     tb_treatment=YES,
     taking_rifampicin=NO,
-    rifampicin_started_date=get_utcnow().date,
+    rifampicin_started_date=None,
     previous_infection=NO,
-    infection_date=get_utcnow().date,
+    previous_infection_specify=None,
+    infection_date=None,
     taking_arv=NO,
-    arvs=None,
+    first_line_arvs=None,
     first_line_choice=None,
     patient_adherence=NO,
-    last_dose=None,
+    last_dose=1,
     last_viral_load=None,
     temp=38,
     heart_rate=88,
@@ -181,7 +186,6 @@ patienthistory = Recipe(
     right_acuity=0.53,
     lung_exam=YES,
     cryptococcal_lesions=NO,
-    other_medications=NO,
     specify_medications=None)
 
 protocoldeviationviolation = Recipe(
