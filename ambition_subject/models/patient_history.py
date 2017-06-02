@@ -39,8 +39,6 @@ class PatientHistory(CrfModelMixin):
 
     tb_site = models.CharField(
         verbose_name='If Yes, site of TB?',
-        null=True,
-        blank=True,
         max_length=15,
         choices=TB_SITE)
 
@@ -95,17 +93,13 @@ class PatientHistory(CrfModelMixin):
 
     first_line_arvs = models.CharField(
         verbose_name='What FirstLine ARV regimen are you currently prescribed?',
-        null=True,
-        blank=True,
         max_length=50,
         choices=ARV_REGIMEN)
 
     first_line_arvs_other = OtherCharField()
 
     second_line_arvs = models.CharField(
-        verbose_name='What FirstLine ARV regimen are you currently prescribed?',
-        null=True,
-        blank=True,
+        verbose_name='What SecondLine ARV regimen are you currently prescribed?',
         max_length=50,
         choices=ARV_REGIMEN)
 
@@ -116,8 +110,7 @@ class PatientHistory(CrfModelMixin):
         'are you on EFV or NVP or DTG?',
         max_length=5,
         choices=FIRST_LINE_REGIMEN,
-        null=True,
-        blank=True)
+        null=True)
 
     patient_adherence = models.CharField(
         verbose_name='Is the patient reportedly adherent?',
@@ -179,7 +172,6 @@ class PatientHistory(CrfModelMixin):
 
     focal_neurologic_deficit = models.TextField(
         verbose_name='If focal neurologic deficit chosen, please specify details:',
-        max_length=15,
         null=True,
         blank=True)
 

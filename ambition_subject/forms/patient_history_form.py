@@ -1,6 +1,5 @@
-from edc_constants.constants import YES, NO
+from edc_constants.constants import YES, NO, OTHER
 
-from ..constants import NVP
 from ..models import PatientHistory
 from .form_mixins import SubjectModelFormMixin
 
@@ -10,8 +9,14 @@ class PatientHistoryForm(SubjectModelFormMixin):
     def clean(self):
         cleaned_data = super().clean()
 
-        condition = cleaned_data.get(
-            'arvs') and NVP in cleaned_data.get('arvs')
+        condition = cleaned_data.get('first_line_arvs') == (
+            'AZT + 3-TC + either EFV or NVP or DTG')
+        self.required_if_true(
+            condition=condition, field_required='first_line_choice')
+
+        self.m2m_required_if(response='focal_neurologic_deficit',
+                             field='focal_neurologic_deficit',
+                             m2m_field='neurological')
 
         self.required_if(
             YES,
@@ -44,11 +49,14 @@ class PatientHistoryForm(SubjectModelFormMixin):
             field_required='arv_date')
 
         self.required_if(
-            YES,
-            field='taking_arv',
-            field_required='arvs')
+            OTHER,
+            field='first_line_arvs',
+            field_required='first_line_arvs_other')
 
-        self.required_if_true(condition, field_required='first_line_choice')
+        self.required_if(
+            OTHER,
+            field='second_line_arvs',
+            field_required='second_line_arvs_other')
 
         self.required_if(
             NO,

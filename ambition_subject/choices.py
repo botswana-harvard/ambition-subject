@@ -42,10 +42,11 @@ ANTIBIOTICS = (
     (OTHER, 'Other, specify'))
 
 ARV_REGIMEN = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('TDF +3TC/FTC + either EFZ or NVP',
      'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
-    ('AZT + 3-TC + either EFV or NVP',
-     'AZT + 3-TC + either EFV or NVP or or DTG'),
+    ('AZT + 3-TC + either EFV or NVP or DTG',
+     'AZT + 3-TC + either EFV or NVP or DTG'),
     ('TDF + 3TC/FTC + either ATZ/r or Lopinavir/r',
      'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
     ('AZT + 3TC + either ATZ/r or Lopinavir/r',
@@ -122,6 +123,7 @@ DR_OPINION = (
     (OTHER, 'Other, specify'))
 
 FIRST_LINE_REGIMEN = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('EFV', 'EFV'),
     ('DTG', 'DTG'),
     ('NVP', 'NVP'))
@@ -263,6 +265,7 @@ STUDY_DRUG_RELATIONSHIP = (
     (NOT_APPLICABLE, 'Not Applicable'))
 
 TB_SITE = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('pulmonary', 'Pulmonary'),
     ('extra_pulmonary', 'Extra pulmonary'))
 
