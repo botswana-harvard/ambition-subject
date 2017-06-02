@@ -1,6 +1,4 @@
-from django import forms
-
-from edc_constants.constants import NO, YES
+from edc_constants.constants import YES, NOT_APPLICABLE, OTHER
 
 from ..constants import CONSENT_WITHDRAWAL
 from ..models import StudyTerminationConclusion
@@ -14,22 +12,17 @@ class StudyTerminationConclusionForm(SubjectModelFormMixin):
         self.required_if(
             YES,
             field='discharged_after_initial_admission',
-            field_required='initial_discharge_date')
+            field_required='date_initial_discharge')
 
         self.required_if(
             YES,
-            field='discharged_after_initial_admission',
-            field_required='initial_discharge_study_date')
-
-        self.required_if(
-            YES,
-            field='readmission_following_initial_discharge',
-            field_required='date_admitted')
+            field='readmission_after_initial_discharge',
+            field_required='date_readmission')
 
         self.required_if(
             CONSENT_WITHDRAWAL,
-            field='study_termination_reason',
-            field_required='withdrawal_of_consent_reason')
+            field='termination_reason',
+            field_required='consent_withdrawal_reason')
 
         self.required_if(
             YES,
@@ -38,35 +31,33 @@ class StudyTerminationConclusionForm(SubjectModelFormMixin):
 
         self.required_if(
             YES,
-            field='is_naive',
-            field_required='date_started_arvs')
-
-        self.required_if(
-            NO,
-            field='is_naive',
-            field_required='date_switched_arvs')
+            field='willing_to_complete_10W_FU',
+            field_required='date_willing_to_complete')
 
         self.required_if(
             YES,
-            field='is_first_line_regimen',
-            field_required='efv_or_nvp')
+            field='willing_to_complete_centre',
+            field_required='date_willing_to_complete')
 
-        cleaned_data = super().clean()
-        self.validate_last_research_termination_date(cleaned_data)
-
-    def validate_last_research_termination_date(self, cleaned_data):
-        if (cleaned_data.get('last_research_termination_date') == cleaned_data.get(
-                'date_patient_terminated_study')):
-            raise forms.ValidationError({
-                'last_research_termination_date':
-                'This field is not applicable as'})
-
-    def validate_last_research_termination_study_day(self, cleaned_data):
-        if (cleaned_data.get('termination_study_day')
-                == cleaned_data.get('last_research_termination_study_day')):
-            raise forms.ValidationError({
-                'last_research_termination_study_day':
-                'This field is not applicable as'})
+        self.required_if(
+            YES,
+            field='late_protocol_exclusion',
+            field_required='rifampicin_started')
+        
+        self.required_if(
+            OTHER,
+            field='first_line_regimen_patients',
+            field_required='first_line_regimen_patients_other')
+        
+        self.required_if(
+            OTHER,
+            field='second_line_regimen_patients',
+            field_required='second_line_regimen_patients_other')
+        
+        self.required_if(
+            NOT_APPLICABLE,
+            field='date_arvs_started_or_switched',
+            field_required='arvs_delay_reason')
 
     class Meta:
         model = StudyTerminationConclusion

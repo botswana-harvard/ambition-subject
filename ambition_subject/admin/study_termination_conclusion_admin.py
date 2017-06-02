@@ -5,26 +5,28 @@ from edc_base.modeladmin_mixins import audit_fieldset_tuple
 from ..admin_site import ambition_subject_admin
 from ..forms import StudyTerminationConclusionForm
 from ..models import StudyTerminationConclusion
-from .modeladmin_mixins import ModelAdminMixin
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(StudyTerminationConclusion, site=ambition_subject_admin)
-class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
+class StudyTerminationConclusionAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = StudyTerminationConclusionForm
 
     radio_fields = {
         'discharged_after_initial_admission': admin.VERTICAL,
-        'readmission_following_initial_discharge': admin.VERTICAL,
-        'study_termination_reason': admin.VERTICAL,
-        'rifampicin_started_since_week4': admin.VERTICAL,
-        'arv_regimen': admin.VERTICAL,
-        'is_naive': admin.VERTICAL,
-        'efv_or_nvp': admin.VERTICAL}
+        'readmission_after_initial_discharge': admin.VERTICAL,
+        'termination_reason': admin.VERTICAL,
+        'rifampicin_started': admin.VERTICAL,
+        'first_line_regimen_patients': admin.VERTICAL,
+        'second_line_regimen_patients': admin.VERTICAL,
+        #'is_naive': admin.VERTICAL,
+        'first_line_env': admin.VERTICAL}
 
     fieldsets = (
         [None, {
             'fields': (
+                'subject_visit',
                 'date_patient_terminated_study',
                 'termination_study_day',
                 'last_research_termination_date',

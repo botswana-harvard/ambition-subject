@@ -13,7 +13,7 @@ from .patient_history_form import PatientHistoryForm
 from .protocol_deviation_violation_form import ProtocolDeviationViolationForm
 from .radiology_form import RadiologyForm
 from .recurrence_symptom_form import RecurrenceSymptomForm
-from .study_termination_conclusion_form import StudyTerminationConclusionForm
+from ambition_subject.forms.study_termination_conclusion_form import StudyTerminationConclusionForm
 from .subject_consent_form import SubjectConsentForm
 from .subject_randomization_form import SubjectRandomizationForm
 from .subject_requisition_form import SubjectRequisitionForm
