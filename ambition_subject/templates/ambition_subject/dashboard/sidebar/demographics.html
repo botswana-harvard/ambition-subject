@@ -9,7 +9,7 @@
     {% endif %}
         <a class="list-group-item"><i class="fa fa-birthday-cake fa-fw"></i>
          {{ consent.dob|date:"Y-m-d" }}
-         {% age_in_years consent.dob %} yrs
+         {% age_in_years consent.object.dob %} yrs
        </a>
         <a class="list-group-item"><i class="fa fa-address-card-o fa-fw"></i>
             {{ consent.identity|default:'?? identity' }}
