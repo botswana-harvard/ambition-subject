@@ -20,7 +20,6 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
         ('Initial Report', {
             'fields': (
                 'ae_awareness_date',
-                'description',
                 'ae_start_date',
                 'med_administered_datetime',
                 'implicated_med',
@@ -28,8 +27,7 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'implicated_med_route',
                 'ae_cause',
                 'ae_cause_other',
-                'action_taken',
-                'susar_reported_datetime')},
+                'action_taken',)},
          ),
         audit_fieldset_tuple
     )
