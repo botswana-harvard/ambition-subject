@@ -6,123 +6,73 @@ from edc_appointment.views import AppointmentModelWrapper
 from edc_model_wrapper import ModelWrapper
 
 
-class ModelWrapperMixin(ModelWrapper):
+class SubjectVisitModelWrapper(ModelWrapper):
 
-    next_url_name = django_apps.get_app_config(
-        'ambition_subject').dashboard_url_name
-    extra_querystring_attrs = {}
-    next_url_attrs = {'ambition_subject.appointment': ['subject_identifier']}
-    url_instance_attrs = ['subject_identifier']
+    model = 'ambition_subject.subjectvisit'
+    url_namespace = 'ambition_subject'
+    next_url_attrs = ['appointment']
+    querystring_attrs = ['subject_identifier']
 
-
-class SubjectVisitModelWrapper(ModelWrapperMixin):
-
-    model_name = 'ambition_subject.subjectvisit'
-    extra_querystring_attrs = {
-        'ambition_subject.subjectvisit': ['subject_identifier']}
-    next_url_attrs = {'ambition_subject.subjectvisit': [
-        'appointment', 'subject_identifier']}
-    url_instance_attrs = ['subject_identifier', 'appointment']
+    @property
+    def appointment(self):
+        return self.object.subject_visit.appointment
 
 
 class AppointmentModelWrapper(AppointmentModelWrapper):
 
-    model_name = 'ambition_subject.appointment'
-    visit_model_wrapper_class = SubjectVisitModelWrapper
     next_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
-    extra_querystring_attrs = {}
-    next_url_attrs = {'ambition_subject.appointment': ['subject_identifier']}
-    url_instance_attrs = ['subject_identifier']
+    next_url_attrs = ['subject_identifier']
+    querystring_attrs = ['subject_identifier']
     dashboard_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
-
-    @property
-    def visit(self):
-        """Returns a wrapped persistent or non-persistent visit
-        instance.
-        """
-        # FIXME: to much overriden from super class
-        # only difference are the options for the visit model
-        try:
-            return self.visit_model_wrapper_class(self._original_object.subjectvisit)
-        except ObjectDoesNotExist:
-            visit_model = django_apps.get_model(
-                *self.visit_model_wrapper_class.model_name.split('.'))
-            return self.visit_model_wrapper_class(
-                visit_model(
-                    appointment=self._original_object,
-                    subject_identifier=self.subject_identifier))
-
-    @property
-    def forms_url(self):
-        """Returns a reversed URL to show forms for this
-        appointment/visit.
-
-        This is standard for edc_dashboard
-        """
-        # FIXME: to much overriden from super class
-        # only difference are the extra kwargs tp reverse
-        kwargs = dict(
-            subject_identifier=self.subject_identifier,
-            appointment=self._original_object.id)
-        return reverse(self.dashboard_url_name, kwargs=kwargs)
 
 
 class CrfModelWrapper(ModelWrapper):
 
     admin_site_name = django_apps.get_app_config(
         'ambition_subject').admin_site_name
-    url_namespace = 'ambition_subject'
     next_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
-    next_url_attrs = dict(crf=[
-        'appointment', 'subject_identifier'])
-    extra_querystring_attrs = {
-        'crf': ['subject_visit']}
-    url_instance_attrs = [
-        'appointment', 'subject_identifier', 'subject_visit']
+    next_url_attrs = ['appointment', 'subject_identifier']
+    querystring_attrs = ['subject_visit']
+
+    @property
+    def subject_visit(self):
+        return self.object.subject_visit
 
     @property
     def appointment(self):
-        return self._original_object.subject_visit.appointment
+        return self.object.subject_visit.appointment
 
 
 class RequisitionModelWrapper(ModelWrapper):
 
     admin_site_name = django_apps.get_app_config(
         'ambition_subject').admin_site_name
-    url_namespace = 'ambition_subject'
     next_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
-    next_url_attrs = dict(requisition=[
-        'appointment', 'subject_identifier'])
-    extra_querystring_attrs = {
-        'requisition': ['subject_visit', 'panel_name']}
-    url_instance_attrs = [
-        'appointment', 'subject_identifier', 'subject_visit', 'panel_name']
+    next_url_attrs = ['appointment', 'subject_identifier']
+    querystring_attrs = ['subject_visit', 'panel_name']
 
     @property
     def subject_visit(self):
-        return self._original_object.subject_visit
+        return self.object.subject_visit
 
     @property
     def appointment(self):
-        return self._original_object.subject_visit.appointment
+        return self.object.subject_visit.appointment
 
 
 class SubjectConsentModelWrapper(ModelWrapper):
 
-    model_name = 'ambition_subject.subjectconsent'
+    model = 'ambition_subject.subjectconsent'
     next_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
-    next_url_attrs = {
-        'ambition_subject.subjectconsent': ['subject_identifier']}
-    extra_querystring_attrs = {
-        'ambition_subject.subjectconsent': ['gender', 'subject_screening', 'first_name', 'initials']}
-    url_instance_attrs = [
-        'subject_identifier', 'gender', 'subject_screening', 'first_name', 'initials']
+    next_url_attrs = ['subject_identifier', ]
+    querystring_attrs = [
+        'gender', 'subject_screening', 'first_name', 'initials', 'modified']
 
     @property
     def subject_screening(self):
-        return str(self._original_object.subject_screening.id)
+        return str(self.object.subject_screening.id)
