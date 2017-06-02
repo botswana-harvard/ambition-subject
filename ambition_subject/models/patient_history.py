@@ -4,7 +4,7 @@ from django.db import models
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA, ECOG_SCORE
+from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, TB_SITE, CN_PALSY
 from ..validators import bp_validator
