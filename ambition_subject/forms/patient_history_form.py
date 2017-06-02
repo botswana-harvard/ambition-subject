@@ -13,20 +13,52 @@ class PatientHistoryForm(SubjectModelFormMixin):
         condition = cleaned_data.get(
             'arvs') and NVP in cleaned_data.get('arvs')
 
-        self.required_if(YES, field='med_history', field_required='tb_site')
         self.required_if(
-            YES, field='tb_treatment', field_required='taking_rifampicin')
+            YES,
+            field='med_history',
+            field_required='tb_site')
+
         self.required_if(
-            YES, field='taking_rifampicin', field_required='rifampicin_started_date')
+            YES,
+            field='tb_treatment',
+            field_required='taking_rifampicin')
+
         self.required_if(
-            YES, field='previous_infection', field_required='infection_date')
-        self.required_if(YES, field='taking_arv', field_required='arv_date')
-        self.required_if(YES, field='taking_arv', field_required='arvs')
+            YES,
+            field='taking_rifampicin',
+            field_required='rifampicin_started_date')
+
+        self.required_if(
+            YES,
+            field='previous_infection',
+            field_required='infection_date')
+
+        self.required_if(
+            YES,
+            field='previous_infection',
+            field_required='previous_infection_specify')
+
+        self.required_if(
+            YES,
+            field='taking_arv',
+            field_required='arv_date')
+
+        self.required_if(
+            YES,
+            field='taking_arv',
+            field_required='arvs')
+
         self.required_if_true(condition, field_required='first_line_choice')
+
         self.required_if(
-            NO, field='patient_adherence', field_required='last_dose')
+            NO,
+            field='patient_adherence',
+            field_required='last_dose')
+
         self.required_if(
-            YES, field='other_medications', field_required='specify_medications')
+            YES,
+            field='other_medications',
+            field_required='specify_medications')
 
     class Meta:
         model = PatientHistory

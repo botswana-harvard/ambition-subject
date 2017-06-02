@@ -5,7 +5,7 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO
+from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
@@ -16,7 +16,7 @@ from .models import (
     Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
 from .models.list_models import (
     AEClassification, Neurological, SignificantNewDiagnosis, MeningitisSymptom,
-    Antibiotic)
+    Antibiotic, Symptom)
 
 
 class DateProvider(BaseProvider):
@@ -149,23 +149,28 @@ missedvisit = Recipe(
 
 neurological = Recipe(Neurological)
 
+symptom = Recipe(
+    Symptom,
+    name='vomiting',
+    short_name='vomiting')
+
 patienthistory = Recipe(
     PatientHistory,
-    symptom=None,
     headache_duration=2,
     visual_loss_duration=1,
     med_history=YES,
-    tb_site='Pulmonary',
+    tb_site='pulmonary',
     tb_treatment=YES,
     taking_rifampicin=NO,
-    rifampicin_started_date=get_utcnow().date,
+    rifampicin_started_date=None,
     previous_infection=NO,
-    infection_date=get_utcnow().date,
+    previous_infection_specify=None,
+    infection_date=None,
     taking_arv=NO,
-    arvs=None,
+    first_line_arvs=None,
     first_line_choice=None,
     patient_adherence=NO,
-    last_dose=None,
+    last_dose=1,
     last_viral_load=None,
     temp=38,
     heart_rate=88,
@@ -181,42 +186,50 @@ patienthistory = Recipe(
     right_acuity=0.53,
     lung_exam=YES,
     cryptococcal_lesions=NO,
-    other_medications=NO,
     specify_medications=None)
 
 protocoldeviationviolation = Recipe(
     ProtocolDeviationViolation)
 
-meningitissymptom = Recipe(MeningitisSymptom)
+meningitissymptom = Recipe(
+    MeningitisSymptom,
+    name=OTHER,
+    short_name='Other'
+)
 
-recurrencesymtom = Recipe(
+neurological = Recipe(
+    Neurological,
+    name='meningismus',
+    short_name='Meningismus'
+)
+
+recurrencesymptom = Recipe(
     RecurrenceSymptom,
-    meningitis_symptom=related(meningitissymptom),
+    meningitis_symptom=[meningitissymptom],
     meningitis_symptom_other=None,
     patient_readmitted=NO,
     glasgow_coma_score=8,
     recent_seizure=NO,
     behaviour_change=YES,
     confusion=YES,
-    neurological=related(neurological),
-    neurological_other=None,
+    neurological=[neurological],
     focal_neurologic_deficit=None,
     lp_completed=NO,
     amb_administered=NO,
-    amb_duration=None,
+    amb_duration=1,
     tb_treatment=YES,
     steroids_administered=NO,
     steroids_duration=None,
-    steroids_choices=None,
+    steroids_choices='oral_prednisolone',
     steroids_choices_other=None,
     CD4_count=50,
-    antibiotic_treatment='Amoxicillin',
+    antibiotic_treatment=None,
     antibiotic_treatment_other=None,
     on_arvs=NO,
     arv_date=None,
     arvs_stopped=NO,
-    narrative_summary=None,
-    dr_opinion='CM Relapse')
+    narrative_summary='description',
+    dr_opinion='cm_release')
 
 subjectrandomization = Recipe(
     SubjectRandomization,

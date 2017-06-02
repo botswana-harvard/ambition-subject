@@ -6,7 +6,7 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 
-from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, TB_SITE
+from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, TB_SITE, CN_PALSY
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
@@ -16,6 +16,7 @@ class PatientHistory(CrfModelMixin):
 
     symptom = models.ManyToManyField(
         Symptom,
+        blank=True,
         related_name='symptoms',
         verbose_name='What are your current symptoms?')
 
@@ -66,6 +67,8 @@ class PatientHistory(CrfModelMixin):
 
     previous_infection_specify = models.CharField(
         verbose_name='If yes, specify',
+        null=True,
+        blank=True,
         max_length=50)
 
     infection_date = models.DateField(
@@ -74,10 +77,15 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    taking_arv = models.CharField(
-        verbose_name='Already taking ARVs?',
+    new_hiv_diagnosis = models.CharField(
+        verbose_name='Is this a new HIV diagnosis?',
         max_length=5,
         choices=YES_NO)
+
+    taking_arv = models.CharField(
+        verbose_name='If Yes,Already taking ARVs?',
+        max_length=5,
+        choices=YES_NO_NA)
 
     arv_date = models.DateField(
         verbose_name='If yes, date ARVs were started.',
@@ -85,17 +93,27 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    arvs = models.CharField(
-        verbose_name='What ARV regimen are you currently prescribed?',
+    first_line_arvs = models.CharField(
+        verbose_name='What FirstLine ARV regimen are you currently prescribed?',
         null=True,
         blank=True,
         max_length=50,
         choices=ARV_REGIMEN)
 
-    arvs_other = OtherCharField()
+    first_line_arvs_other = OtherCharField()
+
+    second_line_arvs = models.CharField(
+        verbose_name='What FirstLine ARV regimen are you currently prescribed?',
+        null=True,
+        blank=True,
+        max_length=50,
+        choices=ARV_REGIMEN)
+
+    second_line_arvs_other = OtherCharField()
 
     first_line_choice = models.CharField(
-        verbose_name='If first line, are you on EFV or NVP?',
+        verbose_name='If first line is EFV or NVP or DTG,'
+        'are you on EFV or NVP or DTG?',
         max_length=5,
         choices=FIRST_LINE_REGIMEN,
         null=True,
@@ -159,11 +177,20 @@ class PatientHistory(CrfModelMixin):
 
     neurological_other = OtherCharField()
 
-    focal_neurologic_deficit = models.CharField(
-        verbose_name='If focal neurologic deficit chosen, please specify:',
+    focal_neurologic_deficit = models.TextField(
+        verbose_name='If focal neurologic deficit chosen, please specify details:',
         max_length=15,
         null=True,
         blank=True)
+
+    cn_palsy = models.CharField(
+        verbose_name='Select other CN Palsy',
+        max_length=15,
+        choices=CN_PALSY,
+        null=True,
+        blank=True)
+
+    cn_palsy_other = OtherCharField()
 
     visual_acuity_day = models.DateField(
         verbose_name='Study day visual acuity recorded?',
@@ -189,16 +216,15 @@ class PatientHistory(CrfModelMixin):
         max_length=5,
         choices=YES_NO)
 
-    other_medications = models.CharField(
-        verbose_name='Other medications:',
-        max_length=5,
+    other_meds_tmp_smx = OtherCharField(
+        verbose_name='Is (Yes) Other medications is TMP-SMX:',
         choices=YES_NO)
+
+    specify_medications_other = OtherCharField()
 
     specify_medications = models.ManyToManyField(
         Medication,
         blank=True)
-
-    specify_medications_other = OtherCharField()
 
     history = HistoricalRecords()
 
