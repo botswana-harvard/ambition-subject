@@ -4,11 +4,11 @@ from django.db.models.deletion import PROTECT
 
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentMixin
-from edc_dashboard.model_mixins import SearchSlugManager
 from edc_lab.model_mixins.requisition import (
     RequisitionModelMixin, RequisitionStatusMixin, RequisitionIdentifierMixin)
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
 from edc_offstudy.model_mixins import OffstudyMixin
+from edc_search.model_mixins import SearchSlugManager
 from edc_visit_tracking.managers import (
     CrfModelManager as VisitTrackingCrfModelManager)
 from edc_visit_tracking.model_mixins import (
@@ -41,11 +41,12 @@ class SubjectRequisition(
             self.study_site_name = edc_protocol_app_config.site_name
         super().save(*args, **kwargs)
 
-    def get_slugs(self):
-        return ([self.subject_visit.subject_identifier,
-                 self.requisition_identifier,
-                 self.human_readable_identifier,
-                 self.identifier_prefix])
+    def get_search_slug_fields(self):
+        fields = super().get_search_slug_fields()
+        fields.extend([
+            'subject_identifier', 'requisition_identifier',
+            'human_readable_identifier', 'identifier_prefix'])
+        return fields
 
     class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'

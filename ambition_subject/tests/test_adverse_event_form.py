@@ -4,8 +4,8 @@ from model_mommy import mommy
 
 from edc_constants.constants import NO, YES
 
-from ..models import AdverseEvent
 from ..forms import AdverseEventForm
+from ..models import AdverseEvent
 
 
 @tag('d')
@@ -15,7 +15,6 @@ class TestAdverseEventForm(TestCase):
         obj = mommy.prepare_recipe(AdverseEvent._meta.label_lower)
         form = AdverseEventForm(data=obj.__dict__)
         self.assertTrue(form.is_valid())
-        self.assertTrue(form.save())
 
     def test_other_a_event_reason(self):
         """Assert cause was specified if other_ae_event_cause is YES.

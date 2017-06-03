@@ -9,10 +9,9 @@ from edc_consent.field_mixins import (
     SampleCollectionFieldsMixin, CitizenFieldsMixin)
 from edc_consent.managers import ConsentManager
 from edc_consent.model_mixins import ConsentModelMixin
-from edc_dashboard.model_mixins import SearchSlugManager
+from edc_search.model_mixins import SearchSlugManager
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
-
 from ambition_screening.models import SubjectScreening
 
 from ..managers import SubjectConsentManager

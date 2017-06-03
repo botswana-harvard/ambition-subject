@@ -4,11 +4,10 @@ from django.utils import timezone
 from model_mommy import mommy
 from edc_base.utils import get_utcnow
 from edc_constants.constants import NO, YES
-
-from ..models import FollowUp
-from ..forms import FollowUpForm
-from ambition_subject.models.appointment import Appointment
 from edc_visit_tracking.constants import SCHEDULED
+
+from ..models import FollowUp, Appointment
+from ..forms import FollowUpForm
 
 
 @tag('t')

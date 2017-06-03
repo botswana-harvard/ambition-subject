@@ -1,15 +1,15 @@
 from django.test import TestCase, tag
-from model_mommy import mommy 
- 
+from model_mommy import mommy
+
 from edc_base.utils import get_utcnow
 from edc_visit_tracking.constants import SCHEDULED
- 
+
 from ..forms import BloodResultForm
-from ambition_subject.models.appointment import Appointment
+from ..models import Appointment
+
 
 class TestBloodResultForm(TestCase):
-    
-    
+
     def setUp(self):
         screening = mommy.make_recipe(
             'ambition_screening.subjectscreening',
@@ -25,7 +25,7 @@ class TestBloodResultForm(TestCase):
             appointment=appointment,
             subject_identifier=consent.subject_identifier,
             reason=SCHEDULED,)
-     
+
     def test_default_mommy_recipe(self):
         """
         Assert that the form will save
@@ -38,4 +38,3 @@ class TestBloodResultForm(TestCase):
         form = BloodResultForm(data=obj.__dict__)
         self.assertTrue(form.is_valid())
         self.assertTrue(form.save())
-
