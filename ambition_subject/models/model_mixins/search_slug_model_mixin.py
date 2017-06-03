@@ -1,11 +1,12 @@
-from edc_dashboard.model_mixins import SearchSlugModelMixin as BaseSearchSlugModelMixin
+from edc_search.model_mixins import SearchSlugModelMixin as Base
 
 
-class SearchSlugModelMixin(BaseSearchSlugModelMixin):
+class SearchSlugModelMixin(Base):
 
-    def get_slugs(self):
-        slugs = super().get_slugs()
-        return slugs + [self.subject_identifier]
+    def get_search_slug_fields(self):
+        fields = super().get_search_slug_fields()
+        fields.append('subject_identifier')
+        return fields
 
     class Meta:
         abstract = True
