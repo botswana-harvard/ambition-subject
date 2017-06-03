@@ -7,7 +7,7 @@ from ..wrappers import AppointmentModelWrapper
 
 class AppointmentViewMixin(BaseAppointmentMixin):
 
-    appointment_model_wrapper_class = AppointmentModelWrapper
+    appointment_model_wrapper_cls = AppointmentModelWrapper
 
     @property
     def appointments(self):
