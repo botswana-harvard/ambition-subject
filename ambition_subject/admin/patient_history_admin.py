@@ -21,13 +21,14 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
         'tb_treatment': admin.VERTICAL,
         'taking_rifampicin': admin.VERTICAL,
         'previous_infection': admin.VERTICAL,
+        'new_hiv_diagnosis': admin.VERTICAL,
         'taking_arv': admin.VERTICAL,
-        'arvs': admin.VERTICAL,
+        'first_line_arvs': admin.VERTICAL,
         'first_line_choice': admin.VERTICAL,
+        'second_line_arvs': admin.VERTICAL,
         'patient_adherence': admin.VERTICAL,
         'lung_exam': admin.VERTICAL,
-        'cryptococcal_lesions': admin.VERTICAL,
-        'other_medications': admin.VERTICAL,
+        'cryptococcal_lesions': admin.VERTICAL
     }
 
     fieldsets = (
@@ -50,11 +51,14 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'previous_infection',
                 'infection_date',
+                'new_hiv_diagnosis',
                 'taking_arv',
                 'arv_date',
-                'arvs',
-                'arvs_other',
+                'first_line_arvs',
+                'first_line_arvs_other',
                 'first_line_choice',
+                'second_line_arvs',
+                'second_line_arvs_other',
                 'patient_adherence',
                 'last_dose',
                 'last_viral_load']}
@@ -73,6 +77,8 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'neurological',
                 'neurological_other',
                 'focal_neurologic_deficit',
+                'cn_palsy',
+                'cn_palsy_other',
                 'visual_acuity_day',
                 'left_acuity',
                 'right_acuity']}
@@ -81,7 +87,6 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'lung_exam',
                 'cryptococcal_lesions',
-                'other_medications',
                 'specify_medications',
                 'specify_medications_other']}
          ), audit_fieldset_tuple)

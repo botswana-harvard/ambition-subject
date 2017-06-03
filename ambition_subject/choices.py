@@ -1,4 +1,5 @@
-from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN
+from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN, \
+    NORMAL
 
 from .constants import N1, A2, AMS_N3, AMS_A4
 
@@ -41,10 +42,11 @@ ANTIBIOTICS = (
     (OTHER, 'Other, specify'))
 
 ARV_REGIMEN = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('TDF +3TC/FTC + either EFZ or NVP',
      'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
-    ('AZT + 3-TC + either EFV or NVP',
-     'AZT + 3-TC + either EFV or NVP or or DTG'),
+    ('AZT + 3-TC + either EFV or NVP or DTG',
+     'AZT + 3-TC + either EFV or NVP or DTG'),
     ('TDF + 3TC/FTC + either ATZ/r or Lopinavir/r',
      'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
     ('AZT + 3TC + either ATZ/r or Lopinavir/r',
@@ -109,7 +111,7 @@ CULTURE_RESULTS = (
 
 CXR_TYPE = (
     (NOT_APPLICABLE, 'Not Applicable'),
-    ('normal', 'Normal'),
+    (NORMAL, 'Normal'),
     ('hilar_adenopathy', 'Hilar adenopathy'),
     ('miliary_appearance', 'Miliary appearance'),
     ('pleural_effusion', 'Pleural effusion'),
@@ -121,6 +123,7 @@ DR_OPINION = (
     (OTHER, 'Other, specify'))
 
 FIRST_LINE_REGIMEN = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('EFV', 'EFV'),
     ('DTG', 'DTG'),
     ('NVP', 'NVP'))
@@ -164,7 +167,7 @@ INFILTRATE_LOCATION = (
 LP_REASON = (
     ('scheduled_per_protocol', 'Scheduled per protocol'),
     ('therapeutic_lp', 'Therapeutic LP'),
-    ('suspected_IRIS_relapse', 'Suspected IRIS relapse'))
+    ('suspected_IRIS_relapse', 'Suspected IRIS/Relapse'))
 
 MEDICINES = (
     ('fluconazole', 'Fluconazole'),
@@ -262,6 +265,7 @@ STUDY_DRUG_RELATIONSHIP = (
     (NOT_APPLICABLE, 'Not Applicable'))
 
 TB_SITE = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('pulmonary', 'Pulmonary'),
     ('extra_pulmonary', 'Extra pulmonary'))
 

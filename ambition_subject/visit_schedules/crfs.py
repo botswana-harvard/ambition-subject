@@ -20,8 +20,8 @@ crfs_d5 = (Crf(show_order=1, model='ambition_subject.clinicnote'),
 
 crfs_d7 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
-    Crf(show_order=2, model='ambition_subject.lumbarpuncturecsf'),
-    Crf(show_order=3, model='ambition_subject.bloodresult'),)
+    Crf(show_order=2, model='ambition_subject.bloodresult'),
+    Crf(show_order=3, model='ambition_subject.lumbarpuncturecsf'),)
 
 crfs_d10 = (Crf(show_order=1, model='ambition_subject.clinicnote'),
             Crf(show_order=2, model='ambition_subject.bloodresult'),)
@@ -42,4 +42,5 @@ crfs_w6 = (Crf(show_order=1, model='ambition_subject.followup'),)
 
 crfs_w8 = (Crf(show_order=1, model='ambition_subject.followup'),)
 
-crfs_w10 = (Crf(show_order=1, model='ambition_subject.followup'),)
+crfs_w10 = (Crf(show_order=1, model='ambition_subject.followup'),
+            Crf(show_order=2, model='ambition_subject.studyterminationconclusion'),)

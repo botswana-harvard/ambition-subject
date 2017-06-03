@@ -5,7 +5,7 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_base_test.faker import EdcBaseProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, POS, NEG, NO
+from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
@@ -16,7 +16,7 @@ from .models import (
     Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
 from .models.list_models import (
     AEClassification, Neurological, SignificantNewDiagnosis, MeningitisSymptom,
-    Antibiotic)
+    Antibiotic, Symptom)
 
 
 class DateProvider(BaseProvider):
@@ -80,16 +80,16 @@ bloodresult = Recipe(
 
 death = Recipe(
     Death,
-    study_day='Tuesday',
+    study_day=1,
     death_as_inpatient=YES,
-    cause_of_death_study_doctor_opinion='Cryptococcal meningitis',
-    cause_other_study_doctor_opinion=None,
-    cause_tb_study_doctor_opinion='Pulmonary',
-    cause_of_death_tmg1_opinion='Cryptococcal meningitis',
-    cause_other_tmg1_opinion=None,
+    cause_of_death_study_doctor_opinion='art_toxicity',
+    cause_other_study_doctor_opinion='None',
+    cause_tb_study_doctor_opinion=None,
+    cause_of_death_tmg1_opinion='art_toxicity',
+    cause_other_tmg1_opinion='None',
     cause_tb_tmg1_opinion=None,
-    cause_of_death_tmg2_opinion='Cryptococcal meningitis',
-    cause_other_tmg2_opinion=None,
+    cause_of_death_tmg2_opinion='art_toxicity',
+    cause_other_tmg2_opinion='None',
     cause_tb_tmg2_opinion=None,
     narrative_summary='adverse event resulted in death due to cryptococcal meningitis')
 
@@ -149,23 +149,31 @@ missedvisit = Recipe(
 
 neurological = Recipe(Neurological)
 
+symptom = Recipe(
+    Symptom,
+    name='vomiting',
+    short_name='vomiting')
+
 patienthistory = Recipe(
     PatientHistory,
-    symptom=None,
     headache_duration=2,
     visual_loss_duration=1,
     med_history=YES,
-    tb_site='Pulmonary',
+    tb_site='pulmonary',
     tb_treatment=YES,
     taking_rifampicin=NO,
-    rifampicin_started_date=get_utcnow().date,
+    rifampicin_started_date=None,
     previous_infection=NO,
-    infection_date=get_utcnow().date,
+    previous_infection_specify=None,
+    infection_date=None,
     taking_arv=NO,
-    arvs=None,
-    first_line_choice=None,
+    first_line_arvs=NOT_APPLICABLE,
+    second_line_arvs=NOT_APPLICABLE,
+    second_line_arvs_other=None,
+    first_line_arvs_other=None,
+    first_line_choice=NOT_APPLICABLE,
     patient_adherence=NO,
-    last_dose=None,
+    last_dose=1,
     last_viral_load=None,
     temp=38,
     heart_rate=88,
@@ -173,7 +181,6 @@ patienthistory = Recipe(
     respiratory_rate=22,
     weight=60,
     glasgow_coma_score=8,
-    neurological=related(neurological),  # many2many
     neurological_other=None,
     focal_neurologic_deficit=None,
     visual_acuity_day=get_utcnow,
@@ -181,42 +188,50 @@ patienthistory = Recipe(
     right_acuity=0.53,
     lung_exam=YES,
     cryptococcal_lesions=NO,
-    other_medications=NO,
     specify_medications=None)
 
 protocoldeviationviolation = Recipe(
     ProtocolDeviationViolation)
 
-meningitissymptom = Recipe(MeningitisSymptom)
+meningitissymptom = Recipe(
+    MeningitisSymptom,
+    name=OTHER,
+    short_name='Other'
+)
 
-recurrencesymtom = Recipe(
+neurological = Recipe(
+    Neurological,
+    name='meningismus',
+    short_name='Meningismus'
+)
+
+recurrencesymptom = Recipe(
     RecurrenceSymptom,
-    meningitis_symptom=related(meningitissymptom),
+    meningitis_symptom=[meningitissymptom],
     meningitis_symptom_other=None,
     patient_readmitted=NO,
     glasgow_coma_score=8,
     recent_seizure=NO,
     behaviour_change=YES,
     confusion=YES,
-    neurological=related(neurological),
-    neurological_other=None,
+    neurological=[neurological],
     focal_neurologic_deficit=None,
     lp_completed=NO,
     amb_administered=NO,
-    amb_duration=None,
+    amb_duration=1,
     tb_treatment=YES,
     steroids_administered=NO,
     steroids_duration=None,
-    steroids_choices=None,
+    steroids_choices='oral_prednisolone',
     steroids_choices_other=None,
     CD4_count=50,
-    antibiotic_treatment='Amoxicillin',
+    antibiotic_treatment=None,
     antibiotic_treatment_other=None,
     on_arvs=NO,
     arv_date=None,
     arvs_stopped=NO,
-    narrative_summary=None,
-    dr_opinion='CM Relapse')
+    narrative_summary='description',
+    dr_opinion='cm_release')
 
 subjectrandomization = Recipe(
     SubjectRandomization,
@@ -284,37 +299,29 @@ studyterminationconclusion = Recipe(
 radiology = Recipe(
     Radiology,
     is_cxr_done=NO,
+    when_cxr_done=None,
     cxr_type=NOT_APPLICABLE,
     infiltrate_location=NOT_APPLICABLE,
     cxr_description=None,
-    is_ct_performed=NO,
-    date_ct_performed=None,
+    is_ct_performed=YES,
+    date_ct_performed=get_utcnow(),
     is_scanned_with_contrast=NO,
-    brain_imaging_reason=NOT_APPLICABLE,
-    brain_imaging_reason_other=NOT_APPLICABLE,
-    are_results_abnormal=NO,
+    brain_imaging_reason='reduction_in_gcs',
+    brain_imaging_reason_other=None,
+    are_results_abnormal=NOT_APPLICABLE,
     abnormal_results_reason=NOT_APPLICABLE,
     abnormal_results_reason_other=NOT_APPLICABLE,
-    if_infarcts_location=NOT_APPLICABLE)
+    if_infarcts_location=None)
 
 lumbarpuncturecsf = Recipe(
     LumbarPunctureCsf,
-    reason_for_lp='Scheduled per protocol',
-    opening_pressure=89,
-    closing_pressure=70,
-    csf_amount_removed=25,
-    quantitative_culture=None,
     csf_culture=NO,
-    other_csf_culture=None,
-    csf_wbc_cell_count=200,
-    differential_lymphocyte_count=300,
+    opening_pressure=15,
+    csf_amount_removed=5,
+    csf_wbc_cell_count=250,
+    differential_lymphocyte_count=250,
     differential_neutrophil_count=250,
-    india_ink=POS,
-    csf_glucose=1.9,
-    csf_protein=200,
-    csf_cr_ag=POS,
-    csf_cr_ag_titres=300,
-    csf_cr_ag_lfa=YES)
+    csf_protein=10)
 
 subjectconsent = Recipe(
     SubjectConsent,

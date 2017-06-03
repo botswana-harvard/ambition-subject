@@ -9,6 +9,7 @@ class AppConfig(DjangoApponfig):
     listboard_url_name = 'ambition_subject:listboard_url'
     dashboard_url_name = 'ambition_subject:dashboard_url'
     admin_site_name = 'ambition_subject_admin'
+    url_namespace = 'ambition_subject'
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save

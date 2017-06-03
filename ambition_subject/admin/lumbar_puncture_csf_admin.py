@@ -4,13 +4,22 @@ from edc_base.modeladmin_mixins import audit_fieldset_tuple
 from edc_base.fieldsets.fieldset import Fieldset
 
 from ..admin_site import ambition_subject_admin
-from ..constants import DAY1
+from ..constants import DAY1, DAY3
 from ..forms import LumbarPunctureCSFForm
 from ..models import LumbarPunctureCsf
 from .modeladmin_mixins import CrfModelAdminMixin
 
-wbc_fieldset = Fieldset(
-    'csf_wbc_cell_count', section='new section')
+wbc_count = Fieldset(
+    'csf_wbc_cell_count', section='WBC Count')
+
+day1_lp = Fieldset('csf_wbc_cell_count',
+                   'differential_lymphocyte_count',
+                   'differential_neutrophil_count',
+                   'india_ink',
+                   'csf_glucose',
+                   'csf_protein',
+                   'csf_cr_ag',
+                   'csf_cr_ag_lfa')
 
 
 @admin.register(LumbarPunctureCsf, site=ambition_subject_admin)
@@ -19,7 +28,8 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = LumbarPunctureCSFForm
 
     conditional_fieldsets = {
-        DAY1: wbc_fieldset, }
+        DAY1: day1_lp,
+        DAY3: wbc_count, }
 
     radio_fields = {
         'reason_for_lp': admin.VERTICAL,
@@ -40,15 +50,5 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'csf_culture',
                 'other_csf_culture')},
          ),
-        ('Complete the following for D1 LP only', {
-            'fields': (
-                'differential_lymphocyte_count',
-                'differential_neutrophil_count',
-                'india_ink',
-                'csf_glucose',
-                'csf_protein',
-                'csf_cr_ag',
-                'csf_cr_ag_titres',
-                'csf_cr_ag_lfa')}),
         audit_fieldset_tuple
     )

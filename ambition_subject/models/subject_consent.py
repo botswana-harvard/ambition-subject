@@ -3,15 +3,15 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_consent.field_mixins import ReviewFieldsMixin, PersonalFieldsMixin, VulnerabilityFieldsMixin
+from edc_consent.field_mixins import SampleCollectionFieldsMixin, CitizenFieldsMixin
 from edc_consent.field_mixins.bw import IdentityFieldsMixin
-from edc_consent.field_mixins import (
-    ReviewFieldsMixin, PersonalFieldsMixin, VulnerabilityFieldsMixin,
-    SampleCollectionFieldsMixin, CitizenFieldsMixin)
 from edc_consent.managers import ConsentManager
 from edc_consent.model_mixins import ConsentModelMixin
-from edc_search.model_mixins import SearchSlugManager
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
+from edc_search.model_mixins import SearchSlugManager
+
 from ambition_screening.models import SubjectScreening
 
 from ..managers import SubjectConsentManager
