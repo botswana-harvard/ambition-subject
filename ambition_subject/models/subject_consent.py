@@ -53,11 +53,11 @@ class SubjectConsent(
         super().save(*args, **kwargs)
 
     def natural_key(self):
-        return (self.subject_identifier, self.version, )
+        return (self.subject_identifier, self.version,)
 
     class Meta(ConsentModelMixin.Meta):
         app_label = 'ambition_subject'
         get_latest_by = 'consent_datetime'
         unique_together = (('subject_identifier', 'version'),
                            ('first_name', 'dob', 'initials', 'version'))
-        ordering = ('-created', )
+        ordering = ('-created',)

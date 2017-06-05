@@ -1,12 +1,14 @@
 from django.apps import apps as django_apps
 
-from edc_appointment.views import AppointmentModelWrapper
+from edc_appointment.views import AppointmentModelWrapper as BaseAppointmentModelWrapper
 from edc_model_wrapper import ModelWrapper
+
+from ..models import SubjectVisit
 
 
 class SubjectVisitModelWrapper(ModelWrapper):
 
-    model = 'ambition_subject.subjectvisit'
+    model = SubjectVisit
     url_namespace = 'ambition_subject'
     next_url_attrs = ['appointment']
     querystring_attrs = ['subject_identifier']
@@ -16,7 +18,9 @@ class SubjectVisitModelWrapper(ModelWrapper):
         return self.object.subject_visit.appointment
 
 
-class AppointmentModelWrapper(AppointmentModelWrapper):
+class AppointmentModelWrapper(BaseAppointmentModelWrapper):
+
+    visit_model_wrapper_cls = SubjectVisitModelWrapper
 
     next_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
@@ -74,3 +78,7 @@ class SubjectConsentModelWrapper(ModelWrapper):
     @property
     def subject_screening(self):
         return str(self.object.subject_screening.id)
+
+    @property
+    def subject_identifier(self):
+        return str(self.object.subject_identifier)
