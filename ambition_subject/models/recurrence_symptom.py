@@ -6,26 +6,24 @@ from edc_base.model_validators import date_not_future
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_constants.choices import YES_NO
 
-from ..choices import ANTIBIOTICS, DR_OPINION, STEROIDS_CHOICES, CN_PALSY
-from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment 
-from .model_mixins import CrfModelMixin
-
+from ..choices import DR_OPINION, STEROIDS_CHOICES
+from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment
 
 
 class RecurrenceSymptom(BaseUuidModel):
 
     meningitis_symptom = models.ManyToManyField(
         MeningitisSymptom,
-         blank=True,
-         verbose_name='What are your current symptoms?')
+        blank=True,
+        verbose_name='What are your current symptoms?')
 
     meningitis_symptom_other = models.CharField(
         verbose_name='If other symptom, please specify',
         max_length=50)
 
     patient_readmitted = models.CharField(
-        verbose_name=(
-            'Has the patient been readmitted due to these recurrent symptoms?'),
+        verbose_name=('Has the patient been readmitted due to these recurrent'
+                      'symptoms?'),
         max_length=5,
         choices=YES_NO,
         help_text='If Yes, complete AE CRF.')
@@ -59,7 +57,7 @@ class RecurrenceSymptom(BaseUuidModel):
         max_length=15,
         null=True,
         blank=True)
-    
+
     cn_palsy = models.CharField(
         verbose_name='If CN Palsy chosen, please specify',
         max_length=15,
