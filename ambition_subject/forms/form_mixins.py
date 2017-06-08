@@ -3,18 +3,20 @@ import arrow
 from django import forms
 
 from edc_base.modelform_mixins import (
-    CommonCleanModelFormMixin, OtherSpecifyValidationMixin,
-    ApplicableValidationMixin, Many2ManyModelValidationMixin,
-    RequiredFieldValidationMixin, JSONModelFormMixin)
+    CommonCleanModelFormMixin, JSONModelFormMixin)
+
+from edc_base.modelform_validators import (
+    OtherSpecifyFieldValidator, ApplicableFieldValidator,
+    ManyToManyFieldValidator, RequiredFieldValidator)
 
 from ..models import SubjectVisit
 
 
 class SubjectModelFormMixin(CommonCleanModelFormMixin,
-                            OtherSpecifyValidationMixin,
-                            ApplicableValidationMixin,
-                            Many2ManyModelValidationMixin,
-                            RequiredFieldValidationMixin,
+                            OtherSpecifyFieldValidator,
+                            ApplicableFieldValidator,
+                            ManyToManyFieldValidator,
+                            RequiredFieldValidator,
                             JSONModelFormMixin,
                             forms.ModelForm):
 

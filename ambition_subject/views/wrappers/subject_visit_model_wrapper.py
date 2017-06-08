@@ -1,3 +1,5 @@
+from django.apps import apps as django_apps
+
 from edc_model_wrapper import ModelWrapper
 
 from ...models import SubjectVisit
@@ -6,10 +8,10 @@ from ...models import SubjectVisit
 class SubjectVisitModelWrapper(ModelWrapper):
 
     model = SubjectVisit
-    url_namespace = 'ambition_subject'
-    next_url_attrs = ['appointment']
-    querystring_attrs = ['subject_identifier']
+    next_url_name = django_apps.get_app_config(
+        'ambition_subject').dashboard_url_name
+    next_url_attrs = ['subject_identifier', 'appointment']
 
     @property
     def appointment(self):
-        return self.object.subject_visit.appointment
+        return self.object.appointment.id

@@ -18,4 +18,4 @@ class CrfModelWrapper(ModelWrapper):
 
     @property
     def appointment(self):
-        return self.object.subject_visit.appointment
+        return self.object.subject_visit.appointment.id

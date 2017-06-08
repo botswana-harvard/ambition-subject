@@ -1,82 +1,103 @@
 from edc_lab import AliquotType, LabProfile, ProcessingProfile, RequisitionPanel
 from edc_lab.site_labs import site_labs
+from edc_lab.lab.processing_profile import Process
+
+from .models import SubjectRequisition
 
 
-lab_profile = LabProfile('ambition_subject')
+lab_profile = LabProfile(
+    name='ambition_subject',
+    requisition_model=SubjectRequisition)
 
-pl = AliquotType('Plasma', 'PL', '36')
-lab_profile.add_aliquot_type(pl)
+pl = AliquotType(name='Plasma', alpha_code='PL', numeric_code='36')
 
-bc = AliquotType('Buffy Coat', 'BC', '12')
-lab_profile.add_aliquot_type(bc)
+bc = AliquotType(name='Buffy Coat', alpha_code='BC', numeric_code='12')
 
-serum = AliquotType('Serum', 'SERUM', '06')
-lab_profile.add_aliquot_type(serum)
+serum = AliquotType(name='Serum', alpha_code='SERUM', numeric_code='06')
 
 # TODO: Get correct sample codes from LIS
-fbc = AliquotType('FBC', 'FBC', '63')
-lab_profile.add_aliquot_type(fbc)
+fbc = AliquotType(name='FBC', alpha_code='FBC', numeric_code='63')
 
 # # TODO: Get correct sample codes from LIS
 # chemistry = AliquotType('Chemistry', 'CHEM' '59')
 # lab_profile.add_aliquot_type(chemistry)
 
-wb = AliquotType('Whole Blood', 'WB', '02')
-wb.add_derivative(bc)
-wb.add_derivative(pl)
-wb.add_derivative(serum)
-wb.add_derivative(fbc)
-lab_profile.add_aliquot_type(wb)
+wb = AliquotType(name='Whole Blood', alpha_code='WB', numeric_code='02')
+wb.add_derivatives(bc, pl, serum, fbc)
 
 # TODO: Get correct sample codes from LIS
-qfc = AliquotType('Quantitative Fungal Culture', 'QFC', '61')
+qfc = AliquotType(
+    name='Quantitative Fungal Culture', alpha_code='QFC', numeric_code='61')
 
 # TODO: Get correct sample codes from LIS
-csf_store = AliquotType('CSF STORE', 'CSF STORE', '62')
+csf_store = AliquotType(
+    name='CSF STORE', alpha_code='CSF', numeric_code='62')
 
 # TODO: Get correct sample codes from LIS
-csf = AliquotType('Cerebro Spinal Fluid', 'csf', '56')
-csf.add_derivative(qfc)
-csf.add_derivative(csf_store)
+csf = AliquotType(
+    name='Cerebro Spinal Fluid', alpha_code='CSF', numeric_code='56')
+csf.add_derivatives(qfc, csf_store)
 
-csf_panel = RequisitionPanel('Spinal Fluid', csf, abbreviation='CSF')
-csf_processing = ProcessingProfile('spinal_fluid', csf)
-csf_processing.add_process(qfc, 10)
-csf_processing.add_process(csf_store, 1)
-csf_panel.processing_profile = csf_processing
-lab_profile.add_processing_profile(csf_processing)
+processing_profile = ProcessingProfile(name='spinal_fluid', aliquot_type=csf)
+process_qfc = Process(aliquot_type=qfc, aliquot_count=10)
+process_csf_store = Process(aliquot_type=csf_store, aliquot_count=1)
+processing_profile.add_processes(process_qfc, process_csf_store)
+
+
+csf_panel = RequisitionPanel(
+    name='Spinal Fluid',
+    model=SubjectRequisition,
+    aliquot_type=csf,
+    processing_profile=processing_profile)
 lab_profile.add_panel(csf_panel)
 
-viral_load_panel = RequisitionPanel('Viral Load', wb, abbreviation='VLD')
-viral_load_processing = ProcessingProfile('viral_load', wb)
-viral_load_processing.add_process(pl, 3)
-viral_load_processing.add_process(bc, 1)
-viral_load_panel.processing_profile = viral_load_processing
-lab_profile.add_processing_profile(viral_load_processing)
+viral_load_processing = ProcessingProfile(name='viral_load', aliquot_type=wb)
+vl_pl_process = Process(aliquot_type=pl, aliquot_count=3)
+vl_bc_process = Process(aliquot_type=bc, aliquot_count=1)
+viral_load_processing.add_processes(vl_pl_process, vl_bc_process)
+
+viral_load_panel = RequisitionPanel(
+    name='Viral Load',
+    model=SubjectRequisition,
+    aliquot_type=wb,
+    processing_profile=viral_load_processing)
 lab_profile.add_panel(viral_load_panel)
 
-cd4_panel = RequisitionPanel('CD4', wb, abbreviation='CD4')
-cd4_processing = ProcessingProfile('cd4', wb)
-cd4_panel.processing_profile = cd4_processing
-lab_profile.add_processing_profile(cd4_processing)
+cd4_processing = ProcessingProfile(name='CD4', aliquot_type=wb)
+
+cd4_panel = RequisitionPanel(
+    name='CD4',
+    model=SubjectRequisition,
+    aliquot_type=wb,
+    processing_profile=cd4_processing)
 lab_profile.add_panel(cd4_panel)
 
-fbc_panel = RequisitionPanel('Full Blood Count', wb, abbreviation='FBC')
-fbc_processing = ProcessingProfile('fbc', wb)
-fbc_panel.processing_profile = fbc_processing
-lab_profile.add_processing_profile(fbc_processing)
+fbc_processing = ProcessingProfile(name='FBC', aliquot_type=wb)
+
+fbc_panel = RequisitionPanel(
+    name='Full Blood Count',
+    model=SubjectRequisition,
+    aliquot_type=wb,
+    processing_profile=fbc_processing)
 lab_profile.add_panel(fbc_panel)
 
-chemistry_alt_panel = RequisitionPanel('Creat, Urea, Elec, ALT', wb, abbreviation='CUEA')
-chemistry_alt_processing = ProcessingProfile('chem + alt', wb)
-chemistry_alt_panel.processing_profile = chemistry_alt_processing
-lab_profile.add_processing_profile(chemistry_alt_processing)
+chemistry_alt_processing = ProcessingProfile(
+    name='chem + alt', aliquot_type=wb)
+
+chemistry_alt_panel = RequisitionPanel(
+    name='Creat, Urea, Elec, ALT',
+    model=SubjectRequisition,
+    aliquot_type=wb,
+    processing_profile=chemistry_alt_processing)
 lab_profile.add_panel(chemistry_alt_panel)
 
-chemistry_panel = RequisitionPanel('Creat, Urea, Elec', wb, abbreviation='CUE')
-chemistry_processing = ProcessingProfile('chem', wb)
-chemistry_panel.processing_profile = chemistry_processing
-lab_profile.add_processing_profile(chemistry_processing)
+chemistry_processing = ProcessingProfile(name='chem', aliquot_type=wb)
+
+chemistry_panel = RequisitionPanel(
+    name='Creat, Urea, Elec',
+    model=SubjectRequisition,
+    aliquot_type=wb,
+    processing_profile=chemistry_processing)
 lab_profile.add_panel(chemistry_panel)
 
-site_labs.register('ambition_subject.subjectrequisition', lab_profile)
+site_labs.register(lab_profile)
