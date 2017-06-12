@@ -22,9 +22,9 @@ class DashboardView(
     navbar_item_selected = 'ambition_subject'
     consent_model_wrapper_class = SubjectConsentModelWrapper
     consent_model = SubjectConsent
-    crf_model_wrapper_class = CrfModelWrapper
-    requisition_model_wrapper_class = RequisitionModelWrapper
-    visit_model_wrapper_class = SubjectVisitModelWrapper
+    crf_model_wrapper_cls = CrfModelWrapper
+    requisition_model_wrapper_cls = RequisitionModelWrapper
+    visit_model_wrapper_cls = SubjectVisitModelWrapper
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -37,7 +37,8 @@ class DashboardView(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         from django.apps import apps as django_apps
-        ambition_subject_dashboard_url_name=django_apps.get_app_config('ambition_subject').dashboard_url_name,
+        ambition_subject_dashboard_url_name = django_apps.get_app_config(
+            'ambition_subject').dashboard_url_name,
         try:
             subject_offstudy = SubjectOffstudy.objects.get(
                 subject_identifier=self.subject_identifier)

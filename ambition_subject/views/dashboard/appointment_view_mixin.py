@@ -9,10 +9,5 @@ class AppointmentViewMixin(BaseAppointmentMixin):
 
     appointment_model_wrapper_cls = AppointmentModelWrapper
 
-    @property
-    def appointments(self):
-        appointments = super().appointments
-        return [obj for obj in appointments if obj.subject_identifier == self.subject_identifier]
-
     def empty_appointment(self, **kwargs):
         return Appointment()
