@@ -2,23 +2,10 @@ import arrow
 
 from django import forms
 
-from edc_base.modelform_mixins import (
-    CommonCleanModelFormMixin, JSONModelFormMixin)
-
-from edc_base.modelform_validators import (
-    OtherSpecifyFieldValidator, ApplicableFieldValidator,
-    ManyToManyFieldValidator, RequiredFieldValidator)
-
 from ..models import SubjectVisit
 
 
-class SubjectModelFormMixin(CommonCleanModelFormMixin,
-                            OtherSpecifyFieldValidator,
-                            ApplicableFieldValidator,
-                            ManyToManyFieldValidator,
-                            RequiredFieldValidator,
-                            JSONModelFormMixin,
-                            forms.ModelForm):
+class SubjectModelFormMixin(forms.ModelForm):
 
     visit_model = SubjectVisit
 

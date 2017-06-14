@@ -6,10 +6,9 @@ from edc_visit_schedule.visit import Crf
 # )
 
 crfs_d1 = (
-    Crf(show_order=1, model='ambition_subject.subjectrandomization'),
-    Crf(show_order=2, model='ambition_subject.bloodresult'),
-    Crf(show_order=3, model='ambition_subject.patienthistory'),
-    Crf(show_order=4, model='ambition_subject.lumbarpuncturecsf'),)
+    Crf(show_order=1, model='ambition_subject.bloodresult'),
+    Crf(show_order=2, model='ambition_subject.patienthistory'),
+    Crf(show_order=3, model='ambition_subject.lumbarpuncturecsf'),)
 
 crfs_d3 = (Crf(show_order=1, model='ambition_subject.clinicnote'),
            Crf(show_order=2, model='ambition_subject.bloodresult'),

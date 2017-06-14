@@ -18,7 +18,7 @@ class Radiology(BaseUuidModel):
         choices=YES_NO,
         max_length=5)
 
-    when_cxr_done = models.DateField(
+    cxr_date = models.DateField(
         verbose_name='If yes, when was CXR done',
         validators=[date_not_future],
         blank=True,

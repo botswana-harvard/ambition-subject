@@ -299,7 +299,7 @@ studyterminationconclusion = Recipe(
 radiology = Recipe(
     Radiology,
     is_cxr_done=NO,
-    when_cxr_done=None,
+    cxr_date=None,
     cxr_type=NOT_APPLICABLE,
     infiltrate_location=NOT_APPLICABLE,
     cxr_description=None,

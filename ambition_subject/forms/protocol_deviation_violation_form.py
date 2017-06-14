@@ -1,4 +1,4 @@
-from edc_constants.constants import YES, OTHER
+from ambition_subject_validations.form_validators import ProtocolDeviationViolationFormValidator
 
 from .form_mixins import SubjectModelFormMixin
 from ..models import ProtocolDeviationViolation
@@ -7,19 +7,10 @@ from ..models import ProtocolDeviationViolation
 class ProtocolDeviationViolationForm(SubjectModelFormMixin):
 
     def clean(self):
-
-        self.required_if(
-            YES,
-            field='participant_safety_impact',
-            field_required='participant_safety_impact_details')
-        self.required_if(
-            YES,
-            field='study_outcomes_impact',
-            field_required='study_outcomes_impact_details')
-        self.required_if(
-            OTHER,
-            field='protocol_violation_type',
-            field_required='other_protocol_violation_type')
+        cleaned_data = super().clean()
+        cleaned_data = ProtocolDeviationViolationFormValidator(
+            cleaned_data=cleaned_data).clean()
+        return cleaned_data
 
     class Meta:
         model = ProtocolDeviationViolation
