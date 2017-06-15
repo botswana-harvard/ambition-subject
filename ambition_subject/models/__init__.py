@@ -1,6 +1,6 @@
 from .adverse_event import AdverseEvent
-from .adverse_event_tmg import AdverseEventTMG
 from .adverse_event_followup import AdverseEventFollowUp
+from .adverse_event_tmg import AdverseEventTMG
 from .appointment import Appointment
 from .blood_result import BloodResult
 from .clinic_note import ClinicNote
@@ -12,6 +12,7 @@ from .lumbar_puncture_csf import LumbarPunctureCsf
 from .microbiology import Microbiology
 from .missed_visit import MissedVisit
 from .patient_history import PatientHistory
+from .prn_model import PrnModel
 from .protocol_deviation_violation import ProtocolDeviationViolation
 from .radiology import Radiology
 from .recurrence_symptom import RecurrenceSymptom

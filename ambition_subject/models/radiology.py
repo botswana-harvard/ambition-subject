@@ -8,10 +8,11 @@ from edc_constants.choices import YES_NO, YES_NO_NA_SPECIFY
 
 from ..choices import (ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON,
                        CXR_TYPE, INFILTRATE_LOCATION)
-from edc_base.model_mixins import BaseUuidModel
+
+from .model_mixins import CrfModelMixin
 
 
-class Radiology(BaseUuidModel):
+class Radiology(CrfModelMixin):
 
     is_cxr_done = models.CharField(
         verbose_name='Is CXR done',
@@ -100,6 +101,6 @@ class Radiology(BaseUuidModel):
 
     history = HistoricalRecords()
 
-    class Meta(BaseUuidModel.Meta):
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         verbose_name_plural = 'Radiology'

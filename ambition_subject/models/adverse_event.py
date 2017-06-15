@@ -2,7 +2,6 @@ from django.db import models
 
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE, UNKNOWN
@@ -10,8 +9,10 @@ from edc_constants.constants import NOT_APPLICABLE, UNKNOWN
 from ..choices import (
     AE_SEVERITY, RAE_REASON, STUDY_DRUG_RELATIONSHIP)
 
+from .model_mixins import CrfModelMixin
 
-class AdverseEvent(BaseUuidModel):
+
+class AdverseEvent(CrfModelMixin):
 
     ae_awareness_date = models.DateField(
         verbose_name='AE Awareness date',
@@ -150,6 +151,6 @@ class AdverseEvent(BaseUuidModel):
 
     history = HistoricalRecords()
 
-    class Meta(BaseUuidModel.Meta):
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         verbose_name = 'Adverse Event'
