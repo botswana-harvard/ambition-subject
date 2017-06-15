@@ -9,12 +9,12 @@ class CrfModelWrapper(ModelWrapper):
         'ambition_subject').admin_site_name
     next_url_name = django_apps.get_app_config(
         'ambition_subject').dashboard_url_name
-    next_url_attrs = ['appointment', 'subject_identifier', 'subject_visit']
+    next_url_attrs = ['appointment', 'subject_identifier']
     querystring_attrs = ['subject_visit']
 
     @property
     def subject_visit(self):
-        return self.object.subject_visit
+        return self.object.subject_visit.id
 
     @property
     def appointment(self):

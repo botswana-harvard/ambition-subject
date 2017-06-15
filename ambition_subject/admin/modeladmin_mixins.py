@@ -43,10 +43,9 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
             appointment=str(obj.subject_visit.appointment.id))
 
     def view_on_site(self, obj):
-        household_member = obj.subject_visit.household_member
         try:
             return reverse(
                 'ambition_subject:dashboard_url', kwargs=dict(
-                    subject_identifier=household_member.subject_identifier))
+                    subject_identifier=obj.subject_visit.appointment.subject_identifier))
         except NoReverseMatch:
             return super().view_on_site(obj)
