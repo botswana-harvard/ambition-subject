@@ -5,11 +5,11 @@ from edc_base.modeladmin_mixins import audit_fieldset_tuple
 from ..admin_site import ambition_subject_admin
 from ..forms import PatientHistoryForm
 from ..models import PatientHistory
-from .modeladmin_mixins import ModelAdminMixin
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(PatientHistory, site=ambition_subject_admin)
-class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
+class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PatientHistoryForm
 
