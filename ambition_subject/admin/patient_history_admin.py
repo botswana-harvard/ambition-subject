@@ -27,6 +27,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
         'first_line_choice': admin.VERTICAL,
         'second_line_arvs': admin.VERTICAL,
         'patient_adherence': admin.VERTICAL,
+        'ecog_score': admin.VERTICAL,
         'lung_exam': admin.VERTICAL,
         'cryptococcal_lesions': admin.VERTICAL
     }
@@ -81,7 +82,8 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'cn_palsy_other',
                 'visual_acuity_day',
                 'left_acuity',
-                'right_acuity']}
+                'right_acuity',
+                'ecog_score']}
          ),
         ('Other', {
             'fields': [

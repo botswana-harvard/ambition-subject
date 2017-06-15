@@ -122,6 +122,18 @@ DR_OPINION = (
     ('cm_iris', 'CM IRIS'),
     (OTHER, 'Other, specify'))
 
+ECOG_SCORE = (
+    ('0', 'Fully active, able to carry on all pre-disease performance without restriction'),
+    ('1', 'Restricted in physically strenuous activity but '
+      'ambulatory and able to carry out work of a light or sedentary nature, e.g., '
+      'light house work, office work'),
+    ('2', 'Ambulatory and capable of all selfcare but unable to carry out any work activities; '
+    'up and about more than 50% of waking hours '),
+    ('3', 'Capable of only limited selfcare; confined to bed or chair more than '
+     '50% of waking hours'),
+    ('4', 'Completely disabled; cannot carry on any selfcare; totally confined to bed or chair'),
+    ('5', 'Dead'))
+
 FIRST_LINE_REGIMEN = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('EFV', 'EFV'),

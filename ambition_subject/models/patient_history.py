@@ -6,7 +6,7 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 
-from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, TB_SITE, CN_PALSY
+from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, TB_SITE, CN_PALSY, ECOG_SCORE
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
@@ -50,7 +50,9 @@ class PatientHistory(CrfModelMixin):
     taking_rifampicin = models.CharField(
         verbose_name='If yes, are you currently also taking Rifampicin?',
         max_length=5,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        null=True,
+        blank=True)
 
     rifampicin_started_date = models.DateField(
         verbose_name='If yes, when did you first start taking Rifampicin?',
@@ -83,7 +85,9 @@ class PatientHistory(CrfModelMixin):
     taking_arv = models.CharField(
         verbose_name='If Yes,Already taking ARVs?',
         max_length=5,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        null=True,
+        blank=True)
 
     arv_date = models.DateField(
         verbose_name='If yes, date ARVs were started.',
@@ -194,9 +198,14 @@ class PatientHistory(CrfModelMixin):
         max_digits=4)
 
     right_acuity = models.DecimalField(
-        verbose_name='Visual acuity Right eye:',
+        verbose_name='ECOG Disability score',
         decimal_places=3,
         max_digits=4)
+    
+    ecog_score = models.CharField(
+        verbose_name='Select other CN Palsy',
+        max_length=15,
+        choices=ECOG_SCORE)
 
     lung_exam = models.CharField(
         verbose_name='Abnormal lung exam:',
@@ -205,6 +214,11 @@ class PatientHistory(CrfModelMixin):
 
     cryptococcal_lesions = models.CharField(
         verbose_name='Cryptococcal related skin lesions:',
+        max_length=5,
+        choices=YES_NO)
+    
+    other_meds = models.CharField(
+        verbose_name='Other medication',
         max_length=5,
         choices=YES_NO)
 
