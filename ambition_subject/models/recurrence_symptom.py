@@ -3,14 +3,15 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_constants.choices import YES_NO
 
 from ..choices import DR_OPINION, STEROIDS_CHOICES
+
 from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment
+from .model_mixins import CrfModelMixin
 
 
-class RecurrenceSymptom(BaseUuidModel):
+class RecurrenceSymptom(CrfModelMixin):
 
     meningitis_symptom = models.ManyToManyField(
         MeningitisSymptom,
@@ -154,5 +155,5 @@ class RecurrenceSymptom(BaseUuidModel):
 
     history = HistoricalRecords()
 
-    class Meta(BaseUuidModel.Meta):
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'

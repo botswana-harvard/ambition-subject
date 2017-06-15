@@ -13,7 +13,7 @@ from .models import (
     AdverseEvent, AdverseEventTMG, AdverseEventFollowUp, BloodResult, Death, Microbiology, FollowUp,
     ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
     SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
-    Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent)
+    Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent, PrnModel)
 from .models.list_models import (
     AEClassification, Neurological, SignificantNewDiagnosis, MeningitisSymptom,
     Antibiotic, Symptom)
@@ -338,3 +338,11 @@ subjectconsent = Recipe(
     confirm_identity=seq('12315678'),
     identity_type='OMANG',
     is_dob_estimated='-',)
+
+prnmodel = Recipe(
+    PrnModel,
+    adverse_event=NO,
+    microbiology=NO,
+    radiology=NO,
+    recurrence_symptom=NO,
+    protocol_deviation=NO)
