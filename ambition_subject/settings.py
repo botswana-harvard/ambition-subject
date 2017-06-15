@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'edc_registration.apps.AppConfig',
     'edc_metadata.apps.AppConfig',
     'edc_visit_schedule.apps.AppConfig',
-
+    'ambition_subject_validations.apps.AppConfig'
 ]
 
 MIDDLEWARE = [

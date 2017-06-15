@@ -1,14 +1,15 @@
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
 from ..choices import PROTOCOL_VIOLATION, ACTION_REQUIRED
 
+from .model_mixins import CrfModelMixin
 
-class ProtocolDeviationViolation(BaseUuidModel):
+
+class ProtocolDeviationViolation(CrfModelMixin):
 
     participant_safety_impact = models.CharField(
         verbose_name='Could this occurrence have an impact on safety of the '
