@@ -23,11 +23,11 @@ class Death(BaseUuidModel):
         verbose_name='Death as inpatient')
 
     cause_of_death_study_doctor_opinion = models.CharField(
-        choices=CAUSE_OF_DEATH,
-        help_text='Tick only 1:(NB. Fill in AE CRF)',
         max_length=50,
+        choices=CAUSE_OF_DEATH,
         verbose_name='Main cause of death (opinion of local study Dr and '
-                     'local PI)')
+                     'local PI)',
+        help_text='Tick only 1:(NB. Fill in AE CRF)')
 
     cause_other_study_doctor_opinion = models.CharField(
         max_length=100,
@@ -36,23 +36,23 @@ class Death(BaseUuidModel):
         verbose_name='If other, please specify:')
 
     cause_tb_study_doctor_opinion = models.CharField(
-        choices=TB_SITE_DEATH,
         max_length=25,
+        choices=TB_SITE_DEATH,
         blank=True,
         null=True,
         verbose_name='If cause of death is TB, specify site of TB disease')
 
     cause_of_death_tmg1_opinion = models.CharField(
-        choices=CAUSE_OF_DEATH,
-        help_text='Tick only 1:(NB. Fill in AE CRF)',
         max_length=50,
-        verbose_name='Main cause of death (opinion of TMG member 1)')
+        choices=CAUSE_OF_DEATH,
+        verbose_name='Main cause of death (opinion of TMG member 1)',
+        help_text='Tick only 1:(NB. Fill in AE CRF)',)
 
     cause_of_death_agreed = models.CharField(
-        choices=YES_NO,
-        help_text='If No, complete Q10 below',
         max_length=5,
-        verbose_name='Cause of death agreed between Study dr and TMG member?')
+        choices=YES_NO,
+        verbose_name='Cause of death agreed between Study dr and TMG member?',
+        help_text='If No, complete Q10 below',)
 
     cause_other_tmg1_opinion = models.CharField(
         max_length=100,
@@ -61,19 +61,19 @@ class Death(BaseUuidModel):
         verbose_name='If other, please specify:')
 
     cause_tb_tmg1_opinion = models.CharField(
-        choices=TB_SITE_DEATH,
         max_length=25,
+        choices=TB_SITE_DEATH,
         blank=True,
         null=True,
         verbose_name='If cause of death is TB, specify site of TB disease')
 
     cause_of_death_tmg2_opinion = models.CharField(
-        choices=CAUSE_OF_DEATH,
-        help_text='Tick only 1:(NB. Fill in AE CRF)',
         max_length=50,
+        choices=CAUSE_OF_DEATH,
         blank=True,
         null=True,
-        verbose_name='Main cause of death (opinion of TMG member 2)')
+        verbose_name='Main cause of death (opinion of TMG member 2)',
+        help_text='Tick only 1:(NB. Fill in AE CRF)',)
 
     cause_other_tmg2_opinion = models.CharField(
         max_length=100,
@@ -82,16 +82,16 @@ class Death(BaseUuidModel):
         verbose_name='If other, please specify:')
 
     cause_tb_tmg2_opinion = models.CharField(
-        choices=TB_SITE_DEATH,
         max_length=25,
+        choices=TB_SITE_DEATH,
         blank=True,
         null=True,
         verbose_name='If cause of death is TB, specify site of TB disease')
 
-    narrative_summary = models.TextField(
+    death_narrative = models.TextField(
         blank=True,
         null=True,
-        verbose_name='Narrative Summary:')
+        verbose_name='Narrative')
 
     history = HistoricalRecords()
 
