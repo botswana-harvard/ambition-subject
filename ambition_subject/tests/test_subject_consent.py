@@ -1,12 +1,14 @@
 import re
+from dateutil.relativedelta import relativedelta
 from django.db.utils import IntegrityError
 from model_mommy import mommy
 
 from django.test import TestCase, tag
 
 from edc_base.utils import get_utcnow
-from edc_constants.constants import UUID_PATTERN
+from edc_constants.constants import UUID_PATTERN, FEMALE
 
+from ..forms import SubjectConsentForm
 from ..models import SubjectConsent, Enrollment
 from edc_registration.models import RegisteredSubject
 
@@ -57,3 +59,37 @@ class TestSubjectConsent(TestCase):
                 consent_identifier=subject_consent.consent_identifier)
         except Enrollment.DoesNotExist:
             self.fail('Enrollment.DoesNotExist: was unexpectedly raised.')
+
+
+class TestSubjectConsentForm(TestCase):
+
+    def setUp(self):
+        self.subject_screening = mommy.make_recipe(
+            'ambition_screening.subjectscreening')
+
+    @tag('f')
+    def test_consent_age_not_match_screening_age(self):
+        obj = mommy.prepare_recipe(
+            'ambition_subject.subjectconsent',
+            consent_datetime=get_utcnow,
+            subject_screening=self.subject_screening,
+            dob=(get_utcnow() - relativedelta(years=25)).date())
+        data = obj.__dict__
+        del data['subject_screening_id']
+        data.update({'subject_screening': self.subject_screening.id})
+        form = SubjectConsentForm(data=obj.__dict__)
+        self.assertFalse(form.is_valid())
+
+    @tag('f')
+    def test_consent_gender_not_match_screening_gender(self):
+        obj = mommy.prepare_recipe(
+            'ambition_subject.subjectconsent',
+            consent_datetime=get_utcnow,
+            subject_screening=self.subject_screening,
+            dob=(get_utcnow() - relativedelta(years=40)).date(),
+            gender=FEMALE)
+        data = obj.__dict__
+        del data['subject_screening_id']
+        data.update({'subject_screening': self.subject_screening.id})
+        form = SubjectConsentForm(data=obj.__dict__)
+        self.assertFalse(form.is_valid())

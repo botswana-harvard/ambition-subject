@@ -337,7 +337,8 @@ subjectconsent = Recipe(
     identity=seq('12315678'),
     confirm_identity=seq('12315678'),
     identity_type='OMANG',
-    is_dob_estimated='-',)
+    is_dob_estimated='-',
+    is_incarcerated=NO,)
 
 prnmodel = Recipe(
     PrnModel,
