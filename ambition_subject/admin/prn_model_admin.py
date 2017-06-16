@@ -24,6 +24,7 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ['PRN', {
             'fields': (
+                'subject_visit',
                 'adverse_event',
                 'microbiology',
                 'radiology',
