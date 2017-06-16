@@ -23,7 +23,7 @@ class AppointmentAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'subject_identifier',
                 'appt_datetime',
-                'appt_type',
+                'appoint_type',
                 'appt_status',
                 'appt_reason',
                 'comment',
@@ -39,7 +39,6 @@ class AppointmentAdmin(ModelAdminMixin, admin.ModelAdmin):
     search_fields = ('subject_identifier', )
 
     radio_fields = {
-        'appt_type': admin.VERTICAL,
         'appt_status': admin.VERTICAL}
 
     def get_readonly_fields(self, request, obj=None):
