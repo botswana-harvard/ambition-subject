@@ -53,6 +53,10 @@ ARV_REGIMEN = (
      'AZT + 3TC + either ATZ/r or Lopinavir/r'),
     (OTHER, 'Other, specify'))
 
+APPOINTMENT_REASON = (
+    ('routine', 'Routine'),
+    ('unscheduled', 'Unscheduled'))
+
 BLOOD_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
