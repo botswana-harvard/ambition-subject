@@ -9,10 +9,10 @@ from edc_constants.choices import YES_NO
 
 from ..choices import (REASON_DRUG_MISSED, MEDICINES, DAYS_MISSED)
 from .list_models import Antibiotic, OtherDrug
-from .model_mixins import CrfModelMixin
+from .model_mixins import CrfModelMixin, ClinicalAssessment
 
 
-class Week2(CrfModelMixin):
+class Week2(ClinicalAssessment, CrfModelMixin):
 
     discharged = models.CharField(
         verbose_name='Discharged?',
@@ -34,13 +34,71 @@ class Week2(CrfModelMixin):
         null=True,
         blank=True)
 
-    flucon_start_datetime = models.DateTimeField(
+    ampho_start_date = models.DateField(
+        verbose_name='Amphotericin B start date: ',
         validators=[date_not_future],
         null=True,
         blank=True)
 
-    flucon_stop_datetime = models.DateTimeField(
+    ampho_end_date = models.DateField(
+        verbose_name='Amphotericin B end date: ',
         validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    ampho_duration = models.IntegerField(
+        verbose_name='Amphotericin B treatment duration',
+        null=True,
+        blank=True)
+
+    flucon_start_date = models.DateField(
+        verbose_name='Fluconazole start date:',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    flucon_stop_date = models.DateField(
+        verbose_name='Fluconazole end date:',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    flucon_duration = models.IntegerField(
+        verbose_name='Fluconazole treatment duration:',
+        null=True,
+        blank=True)
+
+    flucy_start_date = models.DateField(
+        verbose_name='Flucytosine start date:',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    flucy_stop_date = models.DateField(
+        verbose_name='Flucytosine end date:',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    flucy_duration = models.IntegerField(
+        verbose_name='Flucytosine treatment duration:',
+        null=True,
+        blank=True)
+
+    ambi_start_date = models.DateField(
+        verbose_name='Ambisome start date:',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    ambi_stop_date = models.DateField(
+        verbose_name='Ambisome end date:',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    ambi_duration = models.IntegerField(
+        verbose_name='Ambisome treatment duration:',
         null=True,
         blank=True)
 
@@ -50,7 +108,13 @@ class Week2(CrfModelMixin):
 
     antibiotic = models.ManyToManyField(
         Antibiotic,
-        verbose_name="if antibiotics, select the ones given",)
+        verbose_name="Were any of the following antibiotics given?",)
+
+    antibiotic_other = models.CharField(
+        verbose_name='If other, please specify:',
+        max_length=50,
+        null=True,
+        blank=True)
 
     blood_received = models.CharField(
         verbose_name='Blood transfusion received?',
@@ -63,67 +127,35 @@ class Week2(CrfModelMixin):
         null=True,
         blank=True)
 
-    headache = models.CharField(
-        verbose_name='Headache',
-        max_length=25,
-        choices=YES_NO,
-        help_text="Confirm with patient")
-
     temperature = models.FloatField(
         verbose_name='Temperature',
         null=True,
         blank=True,
         default=None)
 
-    glasgow_cs = models.IntegerField(
-        verbose_name='Glasgow Coma Score',
-        null=True,
-        blank=True)
-
-    seizures_during_admission = models.CharField(
-        verbose_name='Seizures during admission',
-        max_length=25,
-        choices=YES_NO)
-
-    recent_seizure = models.CharField(
-        verbose_name='Recent seizure (<72 hrs):',
-        max_length=25,
-        choices=YES_NO)
-
-    behaviour_change = models.CharField(
-        verbose_name='Behaviour change',
-        max_length=25,
-        choices=YES_NO)
-
-    confusion = models.CharField(
-        verbose_name='Confusion',
-        max_length=25,
-        choices=YES_NO)
-
-    cn_palsy = models.CharField(
-        verbose_name='CN palsy',
-        max_length=25,
-        choices=YES_NO)
-
-    focal_neurology = models.CharField(
-        verbose_name='Focal Neurology:',
-        max_length=25,
-        choices=YES_NO)
-
     weight = models.IntegerField(
-        null=True,
-        blank=True,
         help_text='Weight in Kilograms')
 
     medicines = models.CharField(
-        verbose_name='Medicines on Day 14:',
+        verbose_name='Medicines receieved on Day 14:',
         max_length=25,
         choices=MEDICINES)
 
-    significant_diagnosis = models.CharField(
+    medicine_other = models.CharField(
+        verbose_name='If other, please specify:',
+        max_length=50,
+        null=True,
+        blank=True)
+
+    significant_dx = models.CharField(
         verbose_name='Other significant diagnoses since enrolment?',
         max_length=25,
         choices=YES_NO)
+
+    significant_dx_datetime = models.DateTimeField(
+        validators=[date_not_future],
+        null=True,
+        blank=True)
 
     flucon_missed_doses = models.CharField(
         verbose_name='Were any Fluconazole drug doses missed?',

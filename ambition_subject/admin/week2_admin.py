@@ -28,7 +28,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week2Form
 
-    inlines = [FluconazoleMissedDosesInline, AmphotericinMissedDosesInline]
+#     inlines = [FluconazoleMissedDosesInline, AmphotericinMissedDosesInline]
 
     fieldsets = (
         ['Admission history', {
@@ -41,32 +41,54 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
          ],
         ['Induction phase Study medication', {
             'fields': (
-                'flucon_start_datetime',
-                'flucon_stop_datetime',
+                'ampho_start_date',
+                'ampho_end_date',
+                'flucon_start_date',
+                'flucon_stop_date',
+                'flucy_start_date',
+                'flucy_stop_date',
+                'ambi_start_date',
+                'ambi_stop_date',
+                'other_drug',
                 'antibiotic',
+                'antibiotic_other',
                 'blood_received',
                 'units')}
          ],
         ['Clinical Assessment', {
             'fields': (
                 'headache',
-                'temperature',
-                'glasgow_cs',
-                'seizures_during_admission',
-                'recent_seizure',
-                'behaviour_change',
+                'glasgow_coma_score',
                 'confusion',
+                'recent_seizure_less_72',
                 'cn_palsy',
+                'behaviour_change',
                 'focal_neurology',
                 'weight',
                 'medicines',
-                'significant_diagnosis')}
+                'medicine_other',
+                'tb_pulmonary_dx',
+                'tb_pulmonary_dx_date',
+                'extra_pulmonary_tb_dx',
+                'extra_tb_pulmonary_dx_date',
+                'kaposi_sarcoma_dx',
+                'kaposi_sarcoma_dx_date',
+                'malaria_dx',
+                'malaria_dx_date',
+                'bacteraemia_dx',
+                'bacteraemia_dx_date',
+                'pneumonia_dx',
+                'pneumonia_dx_date',
+                'diarrhoeal_wasting_dx',
+                'diarrhoeal_wasting_dx_date',
+                'other_dx',
+                'other_dx_date')}
          ],
-        ['Missed Doses', {
-            'fields': (
-                'flucon_missed_doses',
-                'amphotericin_missed_doses')}
-         ],
+        #         ['Missed Doses', {
+        #             'fields': (
+        #                 'flucon_missed_doses',
+        #                 'amphotericin_missed_doses')}
+        #          ],
         audit_fieldset_tuple
     )
 
@@ -76,15 +98,20 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'flucon_missed_doses': admin.VERTICAL,
         'amphotericin_missed_doses': admin.VERTICAL,
         'blood_received': admin.VERTICAL,
-        'blood_received': admin.VERTICAL,
         'headache': admin.VERTICAL,
-        'seizures_during_admission': admin.VERTICAL,
-        'recent_seizure': admin.VERTICAL,
+        'recent_seizure_less_72': admin.VERTICAL,
         'behaviour_change': admin.VERTICAL,
         'confusion': admin.VERTICAL,
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
         'medicines': admin.VERTICAL,
-        'significant_diagnosis': admin.VERTICAL,
+        'tb_pulmonary_dx': admin.VERTICAL,
+        'extra_pulmonary_tb_dx': admin.VERTICAL,
+        'kaposi_sarcoma_dx': admin.VERTICAL,
+        'malaria_dx': admin.VERTICAL,
+        'bacteraemia_dx': admin.VERTICAL,
+        'pneumonia_dx': admin.VERTICAL,
+        'diarrhoeal_wasting_dx': admin.VERTICAL,
+        'other_dx': admin.VERTICAL,
     }
-    filter_horizontal = ('antibiotic', )
+    filter_horizontal = ('antibiotic', 'other_drug')

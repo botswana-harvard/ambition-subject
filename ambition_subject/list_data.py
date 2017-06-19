@@ -71,13 +71,11 @@ list_data = {
         (OTHER, 'Other CN palsy'),
     ],
     'ambition_subject.otherdrug': [
-        ('antibiotics', 'Antibiotics'),
-        ('k', 'K'),
-        ('mg', 'Mg'),
+        ('potassium', 'Potassium'),
+        ('magnesium', 'Magnesium'),
         ('vitamins', 'Vitamins'),
         ('tmp_smx_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
         ('anti_convulsants', 'Anti convulsants'),
-        (OTHER, ' OTHER, specify')
     ],
     'ambition_subject.significantnewdiagnosis': [
         ('tb_pulmonary', 'TB pulmonary'),

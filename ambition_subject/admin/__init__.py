@@ -4,7 +4,6 @@ from .adverse_event_tmg_admin import AdverseEventTMGAdmin
 from .appointment_admin import AppointmentAdmin
 from .blood_result_admin import BloodResultsAdmin
 from .clinic_note_admin import ClinicNoteAdmin
-from .death_admin import DeathAdmin
 from .follow_up_admin import FollowUpAdmin
 from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin
 from .microbiology_admin import MicrobiologyAdmin

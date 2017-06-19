@@ -64,7 +64,7 @@ class ClinicalAssessment(models.Model):
         choices=YES_NO)
 
     tb_pulmonary_dx_date = models.DateField(
-        verbose_name='Date of pulmonary TB diagnosis',
+        verbose_name='Date of pulmonary TB diagnosis:',
         validators=[date_not_future],
         null=True,
         blank=True,)
@@ -75,7 +75,7 @@ class ClinicalAssessment(models.Model):
         choices=YES_NO)
 
     extra_tb_pulmonary_dx_date = models.DateField(
-        verbose_name='Date of Extra Pulmonary TB diagnosis',
+        verbose_name='Date of Extra Pulmonary TB diagnosis:',
         validators=[date_not_future],
         null=True,
         blank=True,)
@@ -86,7 +86,7 @@ class ClinicalAssessment(models.Model):
         choices=YES_NO)
 
     kaposi_sarcoma_dx_date = models.DateField(
-        verbose_name='Date of Kaposi\'s sarcoma diagnosis ',
+        verbose_name='Date of Kaposi\'s sarcoma diagnosis:',
         validators=[date_not_future],
         null=True,
         blank=True,)
@@ -97,7 +97,7 @@ class ClinicalAssessment(models.Model):
         choices=YES_NO)
 
     malaria_dx_date = models.DateField(
-        verbose_name='Date of malaria diagnosis',
+        verbose_name='Date of malaria diagnosis:',
         validators=[date_not_future],
         null=True,
         blank=True,)
@@ -108,7 +108,7 @@ class ClinicalAssessment(models.Model):
         choices=YES_NO)
 
     bacteraemia_dx_date = models.DateField(
-        verbose_name='Date of bacteraemia diagnosis',
+        verbose_name='Date of bacteraemia diagnosis:',
         validators=[date_not_future],
         null=True,
         blank=True,)
@@ -119,7 +119,7 @@ class ClinicalAssessment(models.Model):
         choices=YES_NO)
 
     pneumonia_dx_date = models.DateField(
-        verbose_name='Date of bacterial pneumonia diagnosis',
+        verbose_name='Date of bacterial pneumonia diagnosis:',
         validators=[date_not_future],
         null=True,
         blank=True,)
@@ -130,14 +130,21 @@ class ClinicalAssessment(models.Model):
         choices=YES_NO)
 
     diarrhoeal_wasting_dx_date = models.DateField(
-        verbose_name='Date of diarrhoeal wasting diagnosis',
+        verbose_name='Date of diarrhoeal wasting diagnosis:',
         validators=[date_not_future],
         null=True,
         blank=True,)
 
     other_dx = models.CharField(
-        verbose_name='Other diagnosis',
-        max_length=50)
+        verbose_name='Other significant diagnosis?',
+        max_length=5,
+        choices=YES_NO)
+
+    other_dx_date = models.DateField(
+        verbose_name='Date of other significant diagnosis:',
+        validators=[date_not_future],
+        null=True,
+        blank=True,)
 
     class Meta():
         abstract = True
