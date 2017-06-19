@@ -3,7 +3,8 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_consent.field_mixins import ReviewFieldsMixin, PersonalFieldsMixin, VulnerabilityFieldsMixin
+from edc_consent.field_mixins import (ReviewFieldsMixin, PersonalFieldsMixin,
+                                      VulnerabilityFieldsMixin)
 from edc_consent.field_mixins import SampleCollectionFieldsMixin, CitizenFieldsMixin
 from edc_consent.field_mixins.bw import IdentityFieldsMixin
 from edc_consent.managers import ConsentManager
@@ -30,6 +31,10 @@ class SubjectConsent(
         VulnerabilityFieldsMixin, SearchSlugModelMixin, BaseUuidModel):
     """ A model completed by the user that captures the ICF.
     """
+
+    hospital_number = models.CharField(
+        max_length=10,
+        unique=True)
 
     subject_screening = models.ForeignKey(
         SubjectScreening, on_delete=models.PROTECT)

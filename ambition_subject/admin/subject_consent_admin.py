@@ -27,6 +27,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminRevisionMixin,
             'fields': (
                 'subject_screening',
                 'subject_identifier',
+                'hospital_number',
                 'first_name',
                 'last_name',
                 'initials',

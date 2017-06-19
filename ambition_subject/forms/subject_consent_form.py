@@ -6,6 +6,12 @@ from ..models import SubjectConsent
 
 class SubjectConsentForm(forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['may_store_samples'].label = (
+            'Does the subject agree that a portion of the blood sample '
+            'that is taken be stored for genetic analysis?')
+
     def clean(self):
         cleaned_data = super().clean()
 

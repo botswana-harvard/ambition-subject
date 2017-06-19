@@ -1,5 +1,6 @@
-from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN, \
-    NORMAL
+from edc_constants.constants import (NEG, OTHER, POS,
+                                     NOT_APPLICABLE, UNKNOWN,
+                                     NORMAL)
 
 from .constants import N1, A2, AMS_N3, AMS_A4
 
@@ -325,4 +326,9 @@ AE_OUTCOME = (
     ('Recovered with sequelae', 'Recovered with sequelae'),
     ('Severity worsened to Grade 4', 'Severity worsened to Grade 4'),
     ('Death', 'Death'),
+)
+
+MG_UMOL_UNITS = (
+    ('mg/dL', 'mg/dL'),
+    ('umol/L', 'umol/L')
 )
