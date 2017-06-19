@@ -25,7 +25,10 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     radio_fields = {
         'proteinuria': admin.VERTICAL,
         'are_results_normal': admin.VERTICAL,
-        'abnormal_results_in_ae_range': admin.VERTICAL}
+        'abnormal_results_in_ae_range': admin.VERTICAL,
+        'creatinine_unit': admin.VERTICAL,
+        'magnesium_unit': admin.VERTICAL,
+        'urea_unit': admin.VERTICAL}
 
     fieldsets = (
         ['Complete Blood Count (CBC)', {
@@ -38,13 +41,14 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         ['Chemistry', {
             'fields': (
                 'creatinine',
+                'creatinine_unit',
                 'sodium',
                 'potassium',
                 'magnesium',
-                'total_bilirubin',
+                'magnesium_unit',
                 'alt',
-                'crp',
-                'urea')}],
+                'urea',
+                'urea_unit')}],
         ['Blood test results', {
             'fields': (
                 'are_results_normal',

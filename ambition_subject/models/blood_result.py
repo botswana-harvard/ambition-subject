@@ -5,6 +5,7 @@ from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
 
 from .model_mixins import CrfModelMixin
+from ..choices import MG_UMOL_UNITS
 
 
 class BloodResult(CrfModelMixin):
@@ -33,6 +34,10 @@ class BloodResult(CrfModelMixin):
         max_digits=4,
         help_text='units in  mg/dL or umol/L',)
 
+    creatinine_unit = models.CharField(
+        choices=MG_UMOL_UNITS,
+        max_length=6)
+
     sodium = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         help_text='units in mmol/L')
@@ -47,26 +52,23 @@ class BloodResult(CrfModelMixin):
         max_digits=4,
         help_text='units in  mg/dL or umol/L')
 
-    total_bilirubin = models.DecimalField(
-        decimal_places=1,
-        max_digits=4,
-        help_text='units in mg/dL')
+    magnesium_unit = models.CharField(
+        choices=MG_UMOL_UNITS,
+        max_length=6)
 
     alt = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         verbose_name='ALT',
         help_text='units in U/L')
 
-    crp = models.DecimalField(
-        decimal_places=1,
-        max_digits=4,
-        verbose_name='CRP',
-        help_text='units in U/L',)
-
     urea = models.DecimalField(
         decimal_places=1,
         max_digits=4,
         help_text='units in  mg/dL or umol/L')
+
+    urea_unit = models.CharField(
+        choices=MG_UMOL_UNITS,
+        max_length=6)
 
     abs_cd4 = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
