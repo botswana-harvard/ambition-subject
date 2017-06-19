@@ -141,9 +141,8 @@ ECOG_SCORE = (
     ('1', 'Restricted in physically strenuous activity but '
      'ambulatory and able to carry out work of a light or sedentary nature, e.g., '
      'light house work, office work'),
-    ('2', ('Ambulatory and capable of all selfcare but unable to carry '
-           'out any work activities;'),
-     'up and about more than 50% of waking hours '),
+    ('2', 'Ambulatory and capable of all selfcare but unable to carry out '
+     'any work activities;up and about more than 50% of waking hours '),
     ('3', 'Capable of only limited selfcare; confined to bed or chair more than '
      '50% of waking hours'),
     ('4',
