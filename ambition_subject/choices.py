@@ -3,6 +3,7 @@ from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, UNKNOWN, \
 
 from .constants import N1, A2, AMS_N3, AMS_A4
 
+
 ABNORMAL_RESULTS_REASON = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('cerebral_oedema', 'Cerebral oedema'),
@@ -139,7 +140,8 @@ ECOG_SCORE = (
     ('1', 'Restricted in physically strenuous activity but '
      'ambulatory and able to carry out work of a light or sedentary nature, e.g., '
      'light house work, office work'),
-    ('2', 'Ambulatory and capable of all selfcare but unable to carry out any work activities; '
+    ('2', ('Ambulatory and capable of all selfcare but unable to carry '
+           'out any work activities;'),
      'up and about more than 50% of waking hours '),
     ('3', 'Capable of only limited selfcare; confined to bed or chair more than '
      '50% of waking hours'),

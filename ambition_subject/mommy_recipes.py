@@ -9,14 +9,15 @@ from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
-from .models import (
-    AdverseEvent, AdverseEventTMG, AdverseEventFollowUp, BloodResult, Death, Microbiology, FollowUp,
-    ProtocolDeviationViolation, MissedVisit, PatientHistory, RecurrenceSymptom,
-    SubjectRandomization, Week2, SubjectVisit, LumbarPunctureCsf,
-    Radiology, StudyTerminationConclusion, SubjectLocator, SubjectConsent, PrnModel)
-from .models.list_models import (
-    AEClassification, Neurological, SignificantNewDiagnosis, MeningitisSymptom,
-    Antibiotic, Symptom)
+from .models import AdverseEvent, AdverseEventTMG, AdverseEventFollowUp
+from .models import BloodResult, Death, Microbiology, FollowUp
+from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory
+from .models import RecurrenceSymptom, SubjectRandomization, Week2, SubjectVisit
+from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
+from .models import SubjectLocator, SubjectConsent, PrnModel
+from .models.list_models import AEClassification, Neurological
+from .models.list_models import SignificantNewDiagnosis, MeningitisSymptom
+from .models.list_models import Antibiotic, Symptom
 
 
 class DateProvider(BaseProvider):
@@ -91,7 +92,8 @@ death = Recipe(
     cause_of_death_tmg2_opinion='art_toxicity',
     cause_other_tmg2_opinion='None',
     cause_tb_tmg2_opinion=None,
-    narrative_summary='adverse event resulted in death due to cryptococcal meningitis')
+    narrative_summary=(
+        'adverse event resulted in death due to cryptococcal meningitis'))
 
 
 significantnewdiagnosis = Recipe(

@@ -20,7 +20,7 @@ class StudyTerminationConclusionAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'rifampicin_started': admin.VERTICAL,
         'first_line_regimen_patients': admin.VERTICAL,
         'second_line_regimen_patients': admin.VERTICAL,
-        #'is_naive': admin.VERTICAL,
+        # 'is_naive': admin.VERTICAL,
         'first_line_env': admin.VERTICAL}
 
     fieldsets = (
