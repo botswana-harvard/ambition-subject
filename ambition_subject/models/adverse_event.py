@@ -121,7 +121,8 @@ class AdverseEvent(CrfModelMixin):
 #         max_length=5,
 #         verbose_name='Is this event a SAE?')
 
-    sae_possibility = models.CharField(  # TODO: If reason == Death Use rule group to open Death form
+    # TODO: If reason == Death Use rule group to open Death form
+    sae_possibility = models.CharField(
         choices=RAE_REASON,
         default=NOT_APPLICABLE,
         max_length=50,

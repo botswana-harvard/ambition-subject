@@ -1,4 +1,5 @@
-from ambition_subject_validations.form_validators import ProtocolDeviationViolationFormValidator
+from ambition_subject_validations.form_validators import \
+    ProtocolDeviationViolationFormValidator
 
 from .form_mixins import SubjectModelFormMixin
 from ..models import ProtocolDeviationViolation

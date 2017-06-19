@@ -201,7 +201,7 @@ class PatientHistory(CrfModelMixin):
         verbose_name='Visual Acuity Right eye',
         decimal_places=3,
         max_digits=4)
-    
+
     ecog_score = models.CharField(
         verbose_name='ECOG Disability score',
         max_length=15,
@@ -216,7 +216,7 @@ class PatientHistory(CrfModelMixin):
         verbose_name='Cryptococcal related skin lesions:',
         max_length=5,
         choices=YES_NO)
-    
+
     other_meds = models.CharField(
         verbose_name='Other medication',
         max_length=5,
