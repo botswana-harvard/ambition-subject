@@ -51,6 +51,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         ('Previous Opportunistic Infection', {
             'fields': [
                 'previous_infection',
+                'previous_infection_specify',
                 'infection_date',
                 'new_hiv_diagnosis',
                 'taking_arv',
