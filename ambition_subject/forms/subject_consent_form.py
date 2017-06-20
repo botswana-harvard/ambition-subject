@@ -12,13 +12,12 @@ class SubjectConsentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         self.fields['guardian_name'].label = (
-            "Guardian\'s Last and first name (unconscious patients only)")
+            'Guardian\'s Last and first name (for patients with Abnormal mental status)')
         self.fields['guardian_name'].help_text = (
-            'Required only if subject is unconscious. Format is \'LASTNAME, '
-            'FIRSTNAME\'. All uppercase separated by a comma then followed by '
-            'a space.')
+            'Required only if subject is unconscious or has an abnormal mental '
+            'status. Format is \'LASTNAME, FIRSTNAME\'. All uppercase separated '
+            'by a comma then followed by a space.')
 
     id_type = forms.ChoiceField(
         label='What type of identity number is this?',

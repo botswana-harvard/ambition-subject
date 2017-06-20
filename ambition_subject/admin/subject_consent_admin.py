@@ -34,7 +34,6 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminRevisionMixin,
                 'is_literate',
                 'witness_name',
                 'consent_datetime',
-                'gender',
                 'dob',
                 'guardian_name',
                 'is_dob_estimated',
@@ -58,7 +57,6 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminRevisionMixin,
         "consent_copy": admin.VERTICAL,
         "consent_reviewed": admin.VERTICAL,
         "gender": admin.VERTICAL,
-        "identity_type": admin.VERTICAL,
         "is_dob_estimated": admin.VERTICAL,
         "is_incarcerated": admin.VERTICAL,
         "is_literate": admin.VERTICAL,
@@ -76,7 +74,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminRevisionMixin,
 
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)
-                + audit_fields)
+                + audit_fields + (('gender'),))
 
     def view_on_site(self, obj):
         try:
