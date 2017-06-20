@@ -32,10 +32,6 @@ class SubjectConsent(
     """ A model completed by the user that captures the ICF.
     """
 
-    hospital_number = models.CharField(
-        max_length=10,
-        unique=True)
-
     subject_screening = models.ForeignKey(
         SubjectScreening, on_delete=models.PROTECT)
 

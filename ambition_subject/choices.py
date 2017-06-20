@@ -182,6 +182,15 @@ GLASGOW_COMA_SCORE_MOTOR = (
     ('localizes_pain', 'Localizes pain'),
     ('obey_commands', 'Obey commands'))
 
+ID_TYPE = (
+    ('OMANG', 'Omang'),
+    ('DRIVERS', 'Driver\'s License'),
+    ('PASSPORT', 'Passport'),
+    ('HOSPITAL_NO', 'Hospital Number'),
+    ('OMANG_RCPT', 'Omang Receipt'),
+    ('OTHER', 'Other'),
+)
+
 INFILTRATE_LOCATION = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('lul', 'LUL'),

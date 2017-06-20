@@ -1,6 +1,10 @@
 from dateutil.relativedelta import relativedelta
 from django import forms
 
+from ambition_subject_validations.form_validators import SubjectConsentFormValidator
+from edc_constants.choices import YES_NO
+
+from ..choices import ID_TYPE
 from ..models import SubjectConsent
 
 
@@ -8,48 +12,30 @@ class SubjectConsentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['may_store_samples'].label = (
-            'Does the subject agree that a portion of the blood sample '
-            'that is taken be stored for genetic analysis?')
+
+        self.fields['guardian_name'].label = (
+            "Guardian\'s Last and first name (unconscious patients only)")
+        self.fields['guardian_name'].help_text = (
+            'Required only if subject is unconscious. Format is \'LASTNAME, '
+            'FIRSTNAME\'. All uppercase separated by a comma then followed by '
+            'a space.')
+
+    id_type = forms.ChoiceField(
+        label='What type of identity number is this?',
+        choices=ID_TYPE,
+        widget=forms.RadioSelect)
+
+    store_genetic_samples = forms.ChoiceField(
+        label=('Does the subject agree that a portion of the blood sample '
+               'that is taken be stored for genetic analysis?'),
+        choices=YES_NO,
+        widget=forms.RadioSelect)
 
     def clean(self):
         cleaned_data = super().clean()
-
-        if 'consent_datetime' in cleaned_data:
-            if not self.cleaned_data.get('consent_datetime'):
-                raise forms.ValidationError(
-                    'Please indicate the consent datetime.')
-        self.validate_age_with_screening(cleaned_data)
-        self.validate_gender_with_screening(cleaned_data)
+        cleaned_data = SubjectConsentFormValidator(
+            cleaned_data=cleaned_data).clean()
         return cleaned_data
-
-    def validate_age_with_screening(self, cleaned_data):
-        dob = cleaned_data.get('dob')
-        subject_screening = cleaned_data.get(
-            'subject_screening')
-        try:
-            dob_age_at_screening = relativedelta(
-                subject_screening.report_datetime.date(), dob).years
-            if dob_age_at_screening != subject_screening.age_in_years:
-                raise forms.ValidationError(
-                    'The date of birth entered does not match the age at '
-                    'screening.')
-        except subject_screening.DoesNotExist:
-            raise forms.ValidationError(
-                'Complete the Subject screening form before proceeding.')
-
-    def validate_gender_with_screening(self, cleaned_data):
-        subject_screening = cleaned_data.get(
-            'subject_screening')
-        consent_gender = cleaned_data.get('gender')
-        try:
-            if subject_screening.gender != cleaned_data.get('gender'):
-                raise forms.ValidationError(
-                    f'Gender mismatch, Screening gender: {subject_screening.gender}, '
-                    f'Consent gender: {consent_gender}')
-        except subject_screening.DoesNotExist:
-            raise forms.ValidationError(
-                'Complete the Subject screening form before proceeding.')
 
     class Meta:
         model = SubjectConsent
