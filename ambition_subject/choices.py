@@ -342,3 +342,8 @@ MG_MMOL_UNITS = (
     ('mg/dL', 'mg/dL'),
     ('mmol/L', 'mmol/L')
 )
+
+MG_UMOL_UNITS = (
+    ('mg/dL', 'mg/dL'),
+    ('mmol/L', 'μmol/L')
+)

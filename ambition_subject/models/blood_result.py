@@ -5,7 +5,7 @@ from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
 
 from .model_mixins import CrfModelMixin
-from ..choices import MG_MMOL_UNITS
+from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS
 
 
 class BloodResult(CrfModelMixin):
@@ -32,10 +32,10 @@ class BloodResult(CrfModelMixin):
     creatinine = models.DecimalField(
         decimal_places=2,
         max_digits=4,
-        help_text='units in  mg/dL or mmol/L',)
+        help_text='units in  mg/dL or μmol/L',)
 
     creatinine_unit = models.CharField(
-        choices=MG_MMOL_UNITS,
+        choices=MG_UMOL_UNITS,
         max_length=6)
 
     sodium = models.IntegerField(
@@ -72,7 +72,9 @@ class BloodResult(CrfModelMixin):
 
     abs_cd4 = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
-        help_text='units in /mm^3',)
+        help_text='units in /mm^3',
+        blank=True,
+        null=True)
 
     proteinuria = models.CharField(
         choices=YES_NO,
@@ -83,12 +85,12 @@ class BloodResult(CrfModelMixin):
         max_length=5)
 
     abnormal_results_in_ae_range = models.CharField(
-        blank=True,
-        choices=YES_NO,
-        max_length=5,
-        null=True,
         verbose_name='If results abnormal, are results within Grade III/IV '
-                     'AE range?')
+                     'AE range?',
+        max_length=5,
+        choices=YES_NO,
+        blank=True,
+        null=True)
 
     history = HistoricalRecords()
 

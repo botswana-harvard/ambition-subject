@@ -4,7 +4,7 @@ from .model_mixins import CrfModelMixin
 
 class ClinicNote(CrfModelMixin):
 
-    comments = models.CharField(
+    comments = models.TextField(
         verbose_name='Patient review',
         max_length=2000,
         help_text=''

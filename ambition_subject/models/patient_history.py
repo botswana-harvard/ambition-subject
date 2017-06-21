@@ -62,7 +62,7 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     previous_infection = models.CharField(
-        verbose_name='Previous opportunistic infection?',
+        verbose_name='Previous opportunistic infection other than TB?',
         max_length=5,
         choices=YES_NO)
 
@@ -176,7 +176,9 @@ class PatientHistory(CrfModelMixin):
 
     visual_acuity_day = models.DateField(
         verbose_name='Study day visual acuity recorded?',
-        validators=[date_not_future])
+        validators=[date_not_future],
+        null=True,
+        blank=True)
 
     left_acuity = models.DecimalField(
         verbose_name='Visual acuity Left eye:',
