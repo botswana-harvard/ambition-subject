@@ -74,7 +74,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminRevisionMixin,
 
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)
-                + audit_fields + (('gender'),))
+                + audit_fields)
 
     def view_on_site(self, obj):
         try:

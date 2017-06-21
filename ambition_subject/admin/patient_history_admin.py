@@ -23,13 +23,12 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'previous_infection': admin.VERTICAL,
         'new_hiv_diagnosis': admin.VERTICAL,
         'taking_arv': admin.VERTICAL,
-        'first_line_arvs': admin.VERTICAL,
+        'arv_regimen': admin.VERTICAL,
         'first_line_choice': admin.VERTICAL,
-        'second_line_arvs': admin.VERTICAL,
         'patient_adherence': admin.VERTICAL,
         'ecog_score': admin.VERTICAL,
         'lung_exam': admin.VERTICAL,
-        'cryptococcal_lesions': admin.VERTICAL
+        'cryptococcal_lesions': admin.VERTICAL,
     }
 
     fieldsets = (
@@ -56,11 +55,9 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'new_hiv_diagnosis',
                 'taking_arv',
                 'arv_date',
-                'first_line_arvs',
-                'first_line_arvs_other',
+                'arv_regimen',
+                'arv_regimen_other',
                 'first_line_choice',
-                'second_line_arvs',
-                'second_line_arvs_other',
                 'patient_adherence',
                 'last_dose',
                 'last_viral_load']}
@@ -79,8 +76,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'neurological',
                 'neurological_other',
                 'focal_neurologic_deficit',
-                'cn_palsy',
-                'cn_palsy_other',
                 'visual_acuity_day',
                 'left_acuity',
                 'right_acuity',

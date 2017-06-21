@@ -338,7 +338,7 @@ AE_OUTCOME = (
     ('Death', 'Death'),
 )
 
-MG_UMOL_UNITS = (
+MG_MMOL_UNITS = (
     ('mg/dL', 'mg/dL'),
-    ('umol/L', 'umol/L')
+    ('mmol/L', 'mmol/L')
 )
