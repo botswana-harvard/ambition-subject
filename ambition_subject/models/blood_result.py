@@ -2,7 +2,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
 
 from .model_mixins import CrfModelMixin
 from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS
@@ -88,9 +89,8 @@ class BloodResult(CrfModelMixin):
         verbose_name='If results abnormal, are results within Grade III/IV '
                      'AE range?',
         max_length=5,
-        choices=YES_NO,
-        blank=True,
-        null=True)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     history = HistoricalRecords()
 

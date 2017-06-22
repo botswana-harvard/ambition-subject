@@ -1,6 +1,6 @@
 from edc_constants.constants import (NEG, OTHER, POS,
                                      NOT_APPLICABLE, UNKNOWN,
-                                     NORMAL)
+                                     NORMAL, IND)
 
 from .constants import N1, A2, AMS_N3, AMS_A4
 
@@ -346,4 +346,11 @@ MG_MMOL_UNITS = (
 MG_UMOL_UNITS = (
     ('mg/dL', 'mg/dL'),
     ('mmol/L', 'μmol/L')
+)
+
+POS_NEG = (
+    (POS, 'Positive'),
+    (NEG, 'Negative'),
+    (IND, 'Indeterminate'),
+    ('not_done', 'Not Done')
 )
