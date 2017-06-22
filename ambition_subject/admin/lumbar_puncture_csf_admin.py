@@ -19,7 +19,7 @@ day1_lp = Fieldset('csf_wbc_cell_count',
                    'csf_glucose',
                    'csf_protein',
                    'csf_cr_ag',
-                   'csf_cr_ag_lfa')
+                   'csf_cr_ag_lfa', section='Day1')
 
 
 @admin.register(LumbarPunctureCsf, site=ambition_subject_admin)
