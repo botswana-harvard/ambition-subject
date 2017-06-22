@@ -27,7 +27,7 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'implicated_med_route',
                 'ae_cause',
                 'ae_cause_other',
-                'action_taken',)},
+                'ae_treatment',)},
          ),
         audit_fieldset_tuple
     )
