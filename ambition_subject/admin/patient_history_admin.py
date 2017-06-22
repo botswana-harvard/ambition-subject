@@ -47,7 +47,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'taking_rifampicin',
                 'rifampicin_started_date', ]}
          ),
-        ('Previous Opportunistic Infection', {
+        ('Previous Opportunistic Infections', {
             'fields': [
                 'previous_infection',
                 'previous_infection_specify',
