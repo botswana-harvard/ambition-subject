@@ -345,7 +345,7 @@ MG_MMOL_UNITS = (
 
 MG_UMOL_UNITS = (
     ('mg/dL', 'mg/dL'),
-    ('mmol/L', 'μmol/L')
+    ('μmol/L', 'μmol/L')
 )
 
 POS_NEG = (

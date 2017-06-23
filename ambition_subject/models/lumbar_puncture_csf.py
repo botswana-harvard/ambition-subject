@@ -2,9 +2,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO, YES_NO_NA, POS_NEG
+from edc_constants.choices import YES_NO, YES_NO_NA
 
-from ..choices import LP_REASON
+from ..choices import LP_REASON, POS_NEG
 from .model_mixins import CrfModelMixin
 
 
@@ -48,7 +48,7 @@ class LumbarPunctureCsf(CrfModelMixin):
 
     csf_wbc_cell_count = models.IntegerField(
         verbose_name='Total CSF WBC cell count:',
-        help_text='acceptable units are mm3 or %',
+        help_text='acceptable units are mm3',
         validators=[MinValueValidator(0), MaxValueValidator(999)],)
 
     differential_lymphocyte_count = models.IntegerField(
