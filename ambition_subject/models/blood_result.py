@@ -32,7 +32,7 @@ class BloodResult(CrfModelMixin):
 
     creatinine = models.DecimalField(
         decimal_places=2,
-        max_digits=4,
+        max_digits=6,
         help_text='units in  mg/dL or μmol/L',)
 
     creatinine_unit = models.CharField(
@@ -50,7 +50,7 @@ class BloodResult(CrfModelMixin):
 
     magnesium = models.DecimalField(
         decimal_places=2,
-        max_digits=4,
+        max_digits=6,
         help_text='units in  mg/dL or mmol/L')
 
     magnesium_unit = models.CharField(
@@ -63,8 +63,8 @@ class BloodResult(CrfModelMixin):
         help_text='units in U/L')
 
     urea = models.DecimalField(
-        decimal_places=1,
-        max_digits=4,
+        decimal_places=2,
+        max_digits=6,
         help_text='units in  mg/dL or mmol/L')
 
     urea_unit = models.CharField(
