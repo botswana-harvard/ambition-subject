@@ -14,7 +14,9 @@ wbc_count = Fieldset(
 
 day1_lp = Fieldset('csf_wbc_cell_count',
                    'differential_lymphocyte_count',
+                   'differential_lymphocyte_unit',
                    'differential_neutrophil_count',
+                   'differential_neutrophil_unit',
                    'india_ink',
                    'csf_glucose',
                    'csf_protein',
@@ -36,7 +38,9 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'csf_culture': admin.VERTICAL,
         'india_ink': admin.VERTICAL,
         'csf_cr_ag': admin.VERTICAL,
-        'csf_cr_ag_lfa': admin.VERTICAL}
+        'csf_cr_ag_lfa': admin.VERTICAL,
+        'differential_lymphocyte_unit': admin.VERTICAL,
+        'differential_neutrophil_unit': admin.VERTICAL}
 
     fieldsets = (
         (None, {

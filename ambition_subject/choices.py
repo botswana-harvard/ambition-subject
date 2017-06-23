@@ -348,6 +348,11 @@ MG_UMOL_UNITS = (
     ('umol/L', 'μmol/L')
 )
 
+MM3_PERC_UNITS = (
+    ('mm3', 'mm3'),
+    ('%', '%')
+)
+
 POS_NEG = (
     (POS, 'Positive'),
     (NEG, 'Negative'),

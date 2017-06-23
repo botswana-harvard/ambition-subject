@@ -4,7 +4,7 @@ from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA
 
-from ..choices import LP_REASON, POS_NEG
+from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from .model_mixins import CrfModelMixin
 
 
@@ -58,12 +58,20 @@ class LumbarPunctureCsf(CrfModelMixin):
         null=True,
         help_text='acceptable units are mm3 or %')
 
+    differential_lymphocyte_unit = models.CharField(
+        choices=MM3_PERC_UNITS,
+        max_length=6)
+
     differential_neutrophil_count = models.IntegerField(
         verbose_name='Differential neutrophil cell count:',
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         blank=True,
         null=True,
         help_text='acceptable units are mm3 or %')
+
+    differential_neutrophil_unit = models.CharField(
+        choices=MM3_PERC_UNITS,
+        max_length=3)
 
     india_ink = models.CharField(
         max_length=15,
@@ -75,6 +83,10 @@ class LumbarPunctureCsf(CrfModelMixin):
         blank=True,
         null=True,
         help_text='Units in mmol/L or mg/dL')
+
+    csf_glucose_units = models.CharField(
+        choices=MG_MMOL_UNITS,
+        max_length=3)
 
     csf_protein = models.DecimalField(
         decimal_places=1,
