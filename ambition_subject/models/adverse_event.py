@@ -6,17 +6,18 @@ from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE, UNKNOWN
 
-from ..choices import (
-    AE_SEVERITY, RAE_REASON, STUDY_DRUG_RELATIONSHIP)
+from ..choices import AE_SEVERITY, RAE_REASON, STUDY_DRUG_RELATIONSHIP
+from ..choices import AE_REPORT_TYPE
 
 from .model_mixins import CrfModelMixin
 
 
 class AdverseEvent(CrfModelMixin):
 
-    ae_awareness_date = models.DateField(
-        verbose_name='AE Awareness date',
-        validators=[date_not_future])
+    report_type = models.CharField(
+        verbose_name='Type of report:',
+        choices=AE_REPORT_TYPE,
+        max_length=15)
 
     ae_description = models.TextField(
         verbose_name='Adverse Event (AE) description')
@@ -29,11 +30,6 @@ class AdverseEvent(CrfModelMixin):
         choices=AE_SEVERITY,
         max_length=25,
         verbose_name='Severity of AE')
-
-#     ae_intensity = models.CharField(
-#         choices=AE_INTENSITY,
-#         max_length=25,
-#         verbose_name='What is the intensity of the AE?')
 
     regimen = models.CharField(  # TODO: Get this from the Randomization
         # choices=PATIENT_TREATMENT_GROUP,
@@ -69,10 +65,6 @@ class AdverseEvent(CrfModelMixin):
     details_last_study_drug = models.CharField(
         max_length=100,
         verbose_name='Details of the last study drug administered.')
-
-    last_drug_admin_datetime = models.DateTimeField(
-        verbose_name='Datetime of the last study drug administration.',
-    )
 
     med_administered_datetime = models.DateTimeField(
         validators=[datetime_not_future],
@@ -113,13 +105,13 @@ class AdverseEvent(CrfModelMixin):
         max_length=10,
         verbose_name='Was the AE a recurrence of CM symptoms?')
 
-#     is_sa_event = models.CharField(
-#         choices=YES_NO,
-#         help_text='(i.e. results in death, in-patient '
-#                   'hospitalisation/prolongation, significant disability or is '
-#                   'life-threatening)',
-#         max_length=5,
-#         verbose_name='Is this event a SAE?')
+    is_sa_event = models.CharField(
+        choices=YES_NO,
+        help_text='(i.e. results in death, in-patient '
+                  'hospitalisation/prolongation, significant disability or is '
+                  'life-threatening)',
+        max_length=5,
+        verbose_name='Is this event a SAE?')
 
     # TODO: If reason == Death Use rule group to open Death form
     sae_possibility = models.CharField(
@@ -134,21 +126,6 @@ class AdverseEvent(CrfModelMixin):
         verbose_name='Is the event expected in the study drug SPC?',
         help_text='If NO, this is a potential SUSAR. Inform the PI'
         'and report to TMG immediately')
-
-#     susar_reported = models.CharField(
-#         choices=YES_NO_NA,
-#         default=NOT_APPLICABLE,
-#         max_length=5,
-#         verbose_name='If yes, SUSAR must be reported to Principal '
-#                      'Investigator and TMG immediately, is SUSAR Reported?')
-#
-#     susar_reported_datetime = models.DateTimeField(
-#         blank=True,
-#         help_text='AEs ≥ Grade 3 or SAE must be reported to the Trial '
-#                   'Management Group (TMG) within 48hrs (Email to: '
-#                   'ambition_tmg@sgul.ac.uk)',
-#         null=True,
-#         verbose_name='Date and time AE reported')
 
     history = HistoricalRecords()
 

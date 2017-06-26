@@ -27,6 +27,11 @@ AE_INTENSITY = (
     ('moderate', 'Moderate'),
     ('severe', 'Severe'))
 
+AE_REPORT_TYPE = (
+    ('initial', 'Initial'),
+    ('follow_up', 'Follow Up'),
+    ('final', 'Final'))
+
 AE_SEVERITY = (
     ('grade_3', 'Grade 3- Severe'),
     ('grade_4', 'Grade 4- Life-threatening'),
