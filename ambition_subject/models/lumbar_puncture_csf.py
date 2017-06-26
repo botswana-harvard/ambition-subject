@@ -86,7 +86,7 @@ class LumbarPunctureCsf(CrfModelMixin):
 
     csf_glucose_units = models.CharField(
         choices=MG_MMOL_UNITS,
-        max_length=3)
+        max_length=6)
 
     csf_protein = models.DecimalField(
         decimal_places=1,
