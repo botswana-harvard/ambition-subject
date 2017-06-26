@@ -18,6 +18,7 @@ class AdverseEventTMGAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         ('For completion by TMG Investigator Only', {
             'fields': (
+                'subject_visit',
                 'ae_received_datetime',
                 'clinical_review_datetime',
                 'investigator_comments',
