@@ -302,6 +302,7 @@ STUDY_DRUG_RELATIONSHIP = (
     ('not_related', 'Not related'),
     ('possibly_related', 'Possibly related'),
     ('definitely_related', 'Definitely related'),
+    ('unlikely_related', 'Unlikely related'),
     (NOT_APPLICABLE, 'Not Applicable'))
 
 TB_SITE = (

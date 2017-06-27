@@ -4,11 +4,11 @@ from django.utils import timezone
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN
+from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE, UNKNOWN
 
 from ..choices import AE_SEVERITY, AE_INTENSITY, RAE_REASON
-from ..choices import STUDY_DRUG_RELATIONSHIP
+from ..choices import STUDY_DRUG_RELATIONSHIP, PATIENT_TREATMENT_GROUP
 
 from .model_mixins import CrfModelMixin
 
@@ -39,12 +39,12 @@ class AdverseEvent(CrfModelMixin):
         verbose_name='What is the intensity AE')
 
     regimen = models.CharField(  # TODO: Get this from the Randomization
-        # choices=PATIENT_TREATMENT_GROUP,
+        choices=PATIENT_TREATMENT_GROUP,
         max_length=50,
         verbose_name='Patient’s treatment regimen')
 
     ae_study_relation_possibility = models.CharField(
-        choices=YES_NO_UNKNOWN,
+        choices=YES_NO,
         max_length=10,
         verbose_name=(
             'Is the incident related to the patient involvement in the study?'))
