@@ -51,7 +51,9 @@ class Radiology(CrfModelMixin):
 
     date_ct_performed = models.DateTimeField(
         default=timezone.now,
-        editable=True)
+        editable=True,
+        blank=True,
+        null=True)
 
     is_scanned_with_contrast = models.CharField(
         verbose_name='CT/MRI brain scan performed with contrast?:',
