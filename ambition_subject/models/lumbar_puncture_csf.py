@@ -6,6 +6,7 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from .model_mixins import CrfModelMixin
+from edc_constants.constants import NOT_APPLICABLE
 
 
 class LumbarPunctureCsf(CrfModelMixin):
@@ -61,8 +62,7 @@ class LumbarPunctureCsf(CrfModelMixin):
     differential_lymphocyte_unit = models.CharField(
         choices=MM3_PERC_UNITS,
         max_length=6,
-        blank=True,
-        null=True,)
+        default=NOT_APPLICABLE)
 
     differential_neutrophil_count = models.IntegerField(
         verbose_name='Differential neutrophil cell count:',
@@ -74,8 +74,7 @@ class LumbarPunctureCsf(CrfModelMixin):
     differential_neutrophil_unit = models.CharField(
         choices=MM3_PERC_UNITS,
         max_length=3,
-        blank=True,
-        null=True,)
+        default=NOT_APPLICABLE)
 
     india_ink = models.CharField(
         max_length=15,
@@ -91,8 +90,7 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_glucose_units = models.CharField(
         max_length=6,
         choices=MG_MMOL_UNITS,
-        blank=True,
-        null=True,)
+        default=NOT_APPLICABLE)
 
     csf_protein = models.DecimalField(
         decimal_places=1,

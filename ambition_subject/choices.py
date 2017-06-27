@@ -345,17 +345,20 @@ AE_OUTCOME = (
 
 MG_MMOL_UNITS = (
     ('mg/dL', 'mg/dL'),
-    ('mmol/L', 'mmol/L')
+    ('mmol/L', 'mmol/L'),
+    (NOT_APPLICABLE, 'Not Applicable')
 )
 
 MG_UMOL_UNITS = (
     ('mg/dL', 'mg/dL'),
-    ('umol/L', 'μmol/L')
+    ('umol/L', 'μmol/L'),
+    (NOT_APPLICABLE, 'Not Applicable')
 )
 
 MM3_PERC_UNITS = (
     ('mm3', 'mm3'),
-    ('%', '%')
+    ('%', '%'),
+    (NOT_APPLICABLE, 'Not Applicable')
 )
 
 POS_NEG = (

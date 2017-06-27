@@ -125,7 +125,7 @@ class PatientHistory(CrfModelMixin):
     last_viral_load = models.DecimalField(
         verbose_name='Last Viral Load, if known?',
         decimal_places=3,
-        max_digits=6,
+        max_digits=8,
         null=True,
         blank=True,
         help_text='copies/mL')
