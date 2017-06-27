@@ -3,21 +3,16 @@ from django.db import models
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
+from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE, UNKNOWN
 
-from ..choices import AE_SEVERITY, RAE_REASON, STUDY_DRUG_RELATIONSHIP
-from ..choices import AE_REPORT_TYPE
+from ..choices import AE_SEVERITY, AE_INTENSITY, RAE_REASON
+from ..choices import STUDY_DRUG_RELATIONSHIP
 
 from .model_mixins import CrfModelMixin
 
 
 class AdverseEvent(CrfModelMixin):
-
-    report_type = models.CharField(
-        verbose_name='Type of report:',
-        choices=AE_REPORT_TYPE,
-        max_length=15)
 
     ae_description = models.TextField(
         verbose_name='Adverse Event (AE) description')
@@ -31,6 +26,11 @@ class AdverseEvent(CrfModelMixin):
         max_length=25,
         verbose_name='Severity of AE')
 
+    ae_intensity = models.CharField(
+        choices=AE_INTENSITY,
+        max_length=25,
+        verbose_name='What is the intensity AE')
+
     regimen = models.CharField(  # TODO: Get this from the Randomization
         # choices=PATIENT_TREATMENT_GROUP,
         max_length=50,
@@ -39,7 +39,8 @@ class AdverseEvent(CrfModelMixin):
     ae_study_relation_possibility = models.CharField(
         choices=YES_NO_UNKNOWN,
         max_length=10,
-        verbose_name='Is the AE related to the study drug?')
+        verbose_name=(
+            'Is the incident related to the patient involvement in the study?'))
 
     possiblity_detail = models.TextField(
         max_length=300,
@@ -61,6 +62,11 @@ class AdverseEvent(CrfModelMixin):
         choices=STUDY_DRUG_RELATIONSHIP,
         max_length=25,
         verbose_name='Relationship to Amphotericin B:')
+
+    flucytosine_relation = models.CharField(
+        choices=STUDY_DRUG_RELATIONSHIP,
+        max_length=25,
+        verbose_name='Relationship to Flucytosine:')
 
     details_last_study_drug = models.CharField(
         max_length=100,
@@ -121,11 +127,25 @@ class AdverseEvent(CrfModelMixin):
         verbose_name='If Yes, Reason for SAE:')
 
     susar_possility = models.CharField(
+        verbose_name=(
+            'Is this a Suspected Unexpected Serious Adverse Reaction (SUSAR)?'),
         choices=YES_NO,
+        max_length=5)
+
+    susar_reported = models.CharField(
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         max_length=5,
-        verbose_name='Is the event expected in the study drug SPC?',
-        help_text='If NO, this is a potential SUSAR. Inform the PI'
-        'and report to TMG immediately')
+        verbose_name='If yes, SUSAR must be reported to Principal '
+                     'Investigator and TMG immediately, is SUSAR Reported?')
+
+    susar_reported_datetime = models.DateTimeField(
+        blank=True,
+        help_text='AEs ≥ Grade 3 or SAE must be reported to the Trial '
+                  'Management Group (TMG) within 48hrs (Email to: '
+                  'ambition_tmg@sgul.ac.uk)',
+        null=True,
+        verbose_name='Date and time AE reported')
 
     history = HistoricalRecords()
 
