@@ -3,7 +3,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import NOT_APPLICABLE, POS_NEG, YES_NO
+from edc_constants.choices import NOT_APPLICABLE, POS_NEG_IND_UNKNOWN, YES_NO
 
 from ..choices import (
     BACTERIA_TYPE, BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM,
@@ -17,6 +17,11 @@ class Microbiology(CrfModelMixin):
         max_length=5,
         choices=YES_NO,
         help_text='only for patients with >50 white cells in urine')
+
+    date_urine_taken = models.DateField(
+        validators=[date_not_future],
+        null=True,
+        blank=True)
 
     urine_culture_results = models.CharField(
         verbose_name='Urine culture results, if completed',
@@ -34,8 +39,7 @@ class Microbiology(CrfModelMixin):
         verbose_name='If other, please specify:',
         max_length=50,
         null=True,
-        blank=True,
-    )
+        blank=True)
 
     blood_culture_performed = models.CharField(
         max_length=5,
@@ -82,17 +86,47 @@ class Microbiology(CrfModelMixin):
         null=True,
         blank=True)
 
+    sputum_afb_performed = models.CharField(
+        max_length=5,
+        choices=YES_NO,
+        help_text='Was sputum afb done?')
+
+    date_sputum_afb_taken = models.DateField(
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
     sputum_results_afb = models.CharField(
         max_length=10,
-        choices=POS_NEG)
+        choices=POS_NEG_NA)
+
+    sputum_performed = models.CharField(
+        max_length=5,
+        choices=YES_NO,
+        help_text='Was sputum done?')
+
+    date_sputum_taken = models.DateField(
+        validators=[date_not_future],
+        null=True,
+        blank=True)
 
     sputum_results_culture = models.CharField(
         max_length=10,
-        choices=POS_NEG)
+        choices=POS_NEG_NA)
 
     sputum_results_positive = models.CharField(
         verbose_name='If culture is positive, please specify:',
         max_length=50,
+        null=True,
+        blank=True)
+
+    sputum_genexpert_performed = models.CharField(
+        max_length=5,
+        choices=YES_NO,
+        help_text='Was sputum gene expert done?')
+
+    date_sputum_genexpert_taken = models.DateField(
+        validators=[date_not_future],
         null=True,
         blank=True)
 

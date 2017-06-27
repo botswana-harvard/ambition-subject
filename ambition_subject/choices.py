@@ -33,7 +33,6 @@ AE_REPORT_TYPE = (
     ('final', 'Final'))
 
 AE_SEVERITY = (
-    ('grade_3', 'Grade 3- Severe'),
     ('grade_4', 'Grade 4- Life-threatening'),
     ('grade_5', 'Grade 5- Death'))
 

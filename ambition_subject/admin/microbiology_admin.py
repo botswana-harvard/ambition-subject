@@ -21,9 +21,12 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         'blood_culture_results': admin.VERTICAL,
         'blood_culture_organism': admin.VERTICAL,
         'bacteria_identified': admin.VERTICAL,
+        'sputum_afb_performed': admin.VERTICAL,
         'sputum_results_afb': admin.VERTICAL,
+        'sputum_performed': admin.VERTICAL,
         'sputum_results_culture': admin.VERTICAL,
         'sputum_result_genexpert': admin.VERTICAL,
+        'sputum_genexpert_performed': admin.VERTICAL,
         'tissue_biopsy_taken': admin.VERTICAL,
         'tissue_biopsy_results': admin.VERTICAL,
         'tissue_biopsy_organism': admin.VERTICAL}
@@ -33,6 +36,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'subject_visit',
                 'urine_culture_performed',
+                'date_urine_taken',
                 'urine_culture_results',
                 'urine_culture_organism',
                 'urine_culture_organism_other')}],
@@ -48,9 +52,15 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'bacteria_identified_other')}],
         ['Sputum results - Microscopy', {
             'fields': (
+                'sputum_afb_performed',
+                'date_sputum_afb_taken',
                 'sputum_results_afb',
+                'sputum_performed',
+                'date_sputum_taken',
                 'sputum_results_culture',
                 'sputum_results_positive',
+                'sputum_genexpert_performed',
+                'date_sputum_genexpert_taken',
                 'sputum_result_genexpert')}],
         ['Biopsy', {
             'fields': (
