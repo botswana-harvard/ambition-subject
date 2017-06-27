@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
@@ -18,10 +19,12 @@ class AdverseEvent(CrfModelMixin):
         verbose_name='Adverse Event (AE) description')
 
     ae_awareness_date = models.DateField(
+        default=timezone.now,
         verbose_name='AE Awareness date',
         validators=[date_not_future])
 
     ae_start_date = models.DateField(
+        default=timezone.now,
         validators=[date_not_future],
         verbose_name='Actual Start Date of AE')
 
