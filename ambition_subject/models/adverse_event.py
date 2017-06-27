@@ -17,6 +17,10 @@ class AdverseEvent(CrfModelMixin):
     ae_description = models.TextField(
         verbose_name='Adverse Event (AE) description')
 
+    ae_awareness_date = models.DateField(
+        verbose_name='AE Awareness date',
+        validators=[date_not_future])
+
     ae_start_date = models.DateField(
         validators=[date_not_future],
         verbose_name='Actual Start Date of AE')
@@ -42,12 +46,6 @@ class AdverseEvent(CrfModelMixin):
         verbose_name=(
             'Is the incident related to the patient involvement in the study?'))
 
-    possiblity_detail = models.TextField(
-        max_length=300,
-        null=True,
-        blank=True,
-        verbose_name='If No or Unknown, please give a short explanation.')
-
     ambisome_relation = models.CharField(
         choices=STUDY_DRUG_RELATIONSHIP,
         max_length=25,
@@ -68,26 +66,16 @@ class AdverseEvent(CrfModelMixin):
         max_length=25,
         verbose_name='Relationship to Flucytosine:')
 
-    details_last_study_drug = models.CharField(
-        max_length=100,
-        verbose_name='Details of the last study drug administered.')
+    details_last_study_drug = models.TextField(
+        max_length=1000,
+        verbose_name='Details of the last implicated drug (name, dose, route):')
 
     med_administered_datetime = models.DateTimeField(
-        validators=[datetime_not_future],
         verbose_name='Date and time of last implicated study medication '
-                     'administered')
-
-    implicated_med = models.CharField(
-        max_length=50,
-        verbose_name='Last implicated study medicine:')
-
-    implicated_med_dose = models.CharField(
-        max_length=50,
-        verbose_name='Last implicated study medicine dose:')
-
-    implicated_med_route = models.CharField(
-        max_length=50,
-        verbose_name='Last implicated study medicine route:')
+                     'administered',
+        validators=[datetime_not_future],
+        null=True,
+        blank=True)
 
     ae_cause = models.CharField(
         choices=YES_NO,
@@ -106,7 +94,7 @@ class AdverseEvent(CrfModelMixin):
 
     ae_cm_recurrence = models.CharField(  # TODO: If yes Use rule group to open recurrence form
         default=UNKNOWN,
-        choices=YES_NO_UNKNOWN,
+        choices=YES_NO,
         help_text='If yes, fill in the Recurrence of Symptoms form',
         max_length=10,
         verbose_name='Was the AE a recurrence of CM symptoms?')
