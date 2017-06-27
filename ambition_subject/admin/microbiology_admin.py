@@ -50,7 +50,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'blood_culture_organism_other',
                 'bacteria_identified',
                 'bacteria_identified_other')}],
-        ['Sputum results - Microscopy', {
+        ['Sputum Microbiology', {
             'fields': (
                 'sputum_afb_performed',
                 'date_sputum_afb_taken',
@@ -62,7 +62,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'sputum_genexpert_performed',
                 'date_sputum_genexpert_taken',
                 'sputum_result_genexpert')}],
-        ['Biopsy', {
+        ['Histopathology', {
             'fields': (
                 'tissue_biopsy_taken',
                 'tissue_biopsy_results',

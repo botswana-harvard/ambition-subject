@@ -87,6 +87,7 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     sputum_afb_performed = models.CharField(
+        verbose_name='afb microscopy performed?',
         max_length=5,
         choices=YES_NO,
         help_text='Was sputum afb done?')
@@ -97,13 +98,15 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     sputum_results_afb = models.CharField(
+        verbose_name='afb results',
         max_length=10,
         choices=POS_NEG_NA)
 
     sputum_performed = models.CharField(
+        verbose_name='Culture performed?',
         max_length=5,
         choices=YES_NO,
-        help_text='Was sputum done?')
+        help_text='Was sputum culture done?')
 
     date_sputum_taken = models.DateField(
         validators=[date_not_future],
@@ -111,6 +114,7 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     sputum_results_culture = models.CharField(
+        verbose_name='Culture results:',
         max_length=10,
         choices=POS_NEG_NA)
 
@@ -131,6 +135,7 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     sputum_result_genexpert = models.CharField(
+        verbose_name='Gene expert results:',
         max_length=15,
         choices=POS_NEG_NA)
 
