@@ -16,6 +16,7 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
     radio_fields = {
         'ae_severity_grade': admin.VERTICAL,
         'ae_intensity': admin.VERTICAL,
+        'regimen': admin.VERTICAL,
         'ae_study_relation_possibility': admin.VERTICAL,
         'ambisome_relation': admin.VERTICAL,
         'fluconazole_relation': admin.VERTICAL,
