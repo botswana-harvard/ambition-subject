@@ -3,7 +3,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import NOT_APPLICABLE, POS_NEG_IND_UNKNOWN, YES_NO
+from edc_constants.choices import NOT_APPLICABLE, YES_NO
 
 from ..choices import (
     BACTERIA_TYPE, BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM,
