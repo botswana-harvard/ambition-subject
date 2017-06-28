@@ -217,13 +217,11 @@ MEDICINES = (
     (OTHER, 'Other, specify:'))
 
 PATIENT_TREATMENT_GROUP = (
-    ('regimen_1', 'Regimen 1 (Ambisome 10 mg/kg day 1 (single dose))'),
-    ('regimen_2', 'Regimen 2 (Ambisome 10 mg/kg day 1, Ambisome 5 mg/kg day 3 '
-                  '(two doses))'),
-    ('regimen_3', 'Regimen 3 (Ambisome 10 mg/kg day 1, Ambisome 5 mg/kg days '
-                  '3, and 7 (three doses))'),
-    ('regimen_4', 'Regimen 4 (Ambisome 3 mg/kg/d for 14 days (standard dose'
-                  ', control arm))'))
+    ('regimen_1', 'Regimen 1 (Ambisome 10 mg/kg day 1 (single dose) +'
+                  ' fluconazole 1200mg/day + flucytosine 100mg/kg/day'
+                  ' for 14 days) '),
+    ('regimen_2', 'Regimen 2 (Amphotericin B 1 mg/kg '
+                  '+ flucytocine 100mg/kg/day for 14 days) '))
 
 POS_NEG_NA = (
     (POS, 'Positive'),
