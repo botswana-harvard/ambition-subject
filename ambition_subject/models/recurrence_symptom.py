@@ -3,7 +3,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import DR_OPINION, STEROIDS_CHOICES
 
@@ -55,12 +55,6 @@ class RecurrenceSymptom(CrfModelMixin):
 
     focal_neurologic_deficit = models.CharField(
         verbose_name='If focal neurologic deficit chosen, please specify',
-        max_length=15,
-        null=True,
-        blank=True)
-
-    cn_palsy = models.CharField(
-        verbose_name='If CN Palsy chosen, please specify',
         max_length=15,
         null=True,
         blank=True)
@@ -134,7 +128,7 @@ class RecurrenceSymptom(CrfModelMixin):
     arvs_stopped = models.CharField(
         verbose_name='ARVs stopped this clinical episode?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     narrative_summary = models.TextField(
         verbose_name='Narrative Summary of recurrence of symptoms:',

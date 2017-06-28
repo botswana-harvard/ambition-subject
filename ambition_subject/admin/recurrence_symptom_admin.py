@@ -13,7 +13,7 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = RecurrenceSymptomForm
 
-    filter_horizontal = ('antibiotic_treatment', )
+    filter_horizontal = ('antibiotic_treatment', 'neurological')
 
     radio_fields = {
         'patient_readmitted': admin.VERTICAL,
@@ -34,6 +34,8 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': [
                 'subject_visit',
+                'meningitis_symptom',
+                'meningitis_symptom_other',
                 'patient_readmitted']}
          ),
         ('Glasgow Coma Score', {
@@ -49,9 +51,7 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
         ('Neurological', {
             'fields': [
                 'neurological',
-                'antibiotic_treatment',
-                'focal_neurologic_deficit',
-                'cn_palsy']}
+                'focal_neurologic_deficit']}
          ),
         ('Management', {
             'fields': [
@@ -64,6 +64,7 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'steroids_choices',
                 'steroids_choices_other',
                 'CD4_count',
+                'antibiotic_treatment',
                 'on_arvs',
                 'arv_date',
                 'arvs_stopped']}
