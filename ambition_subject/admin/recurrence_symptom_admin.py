@@ -13,7 +13,8 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = RecurrenceSymptomForm
 
-    filter_horizontal = ('antibiotic_treatment', 'neurological')
+    filter_horizontal = ('antibiotic_treatment', 'neurological',
+                         'meningitis_symptom')
 
     radio_fields = {
         'patient_readmitted': admin.VERTICAL,

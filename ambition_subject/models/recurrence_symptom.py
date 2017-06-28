@@ -20,7 +20,9 @@ class RecurrenceSymptom(CrfModelMixin):
 
     meningitis_symptom_other = models.CharField(
         verbose_name='If other symptom, please specify',
-        max_length=50)
+        max_length=50,
+        null=True,
+        blank=True)
 
     patient_readmitted = models.CharField(
         verbose_name=('Has the patient been readmitted due to these recurrent'
