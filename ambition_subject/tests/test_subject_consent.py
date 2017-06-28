@@ -1,15 +1,13 @@
 import re
-from dateutil.relativedelta import relativedelta
+from django.apps import apps as django_apps
 from django.db.utils import IntegrityError
 from model_mommy import mommy
-
 from django.test import TestCase, tag
 
 from edc_base.utils import get_utcnow
-from edc_constants.constants import UUID_PATTERN, FEMALE
+from edc_constants.constants import UUID_PATTERN
 
-from ..forms import SubjectConsentForm
-from ..models import SubjectConsent, Enrollment
+from ..models import SubjectConsent, Enrollment, SubjectRandomization, RandomizationItem
 from edc_registration.models import RegisteredSubject
 
 
@@ -60,36 +58,26 @@ class TestSubjectConsent(TestCase):
         except Enrollment.DoesNotExist:
             self.fail('Enrollment.DoesNotExist: was unexpectedly raised.')
 
+    @tag('r')
+    def test_consent_assigns_rando_arm(self):
+        options = {
+            'subject_screening': self.subject_screening,
+            'consent_datetime': get_utcnow, }
+        consent = mommy.make_recipe(
+            'ambition_subject.subjectconsent', **options)
+        randomized = SubjectRandomization.objects.get(
+            subject_identifier=consent.subject_identifier)
+        self.assertEqual(
+            randomized.rx,
+            RandomizationItem.objects.get(name=randomized.sid).field_name)
 
-class TestSubjectConsentForm(TestCase):
-
-    def setUp(self):
-        self.subject_screening = mommy.make_recipe(
+        mommy.make_recipe(
             'ambition_screening.subjectscreening')
+        consent = mommy.make_recipe(
+            'ambition_subject.subjectconsent', **options)
 
-    @tag('f')
-    def test_consent_age_not_match_screening_age(self):
-        obj = mommy.prepare_recipe(
-            'ambition_subject.subjectconsent',
-            consent_datetime=get_utcnow,
-            subject_screening=self.subject_screening,
-            dob=(get_utcnow() - relativedelta(years=25)).date())
-        data = obj.__dict__
-        del data['subject_screening_id']
-        data.update({'subject_screening': self.subject_screening.id})
-        form = SubjectConsentForm(data=obj.__dict__)
-        self.assertFalse(form.is_valid())
-
-    @tag('f')
-    def test_consent_gender_not_match_screening_gender(self):
-        obj = mommy.prepare_recipe(
-            'ambition_subject.subjectconsent',
-            consent_datetime=get_utcnow,
-            subject_screening=self.subject_screening,
-            dob=(get_utcnow() - relativedelta(years=40)).date(),
-            gender=FEMALE)
-        data = obj.__dict__
-        del data['subject_screening_id']
-        data.update({'subject_screening': self.subject_screening.id})
-        form = SubjectConsentForm(data=obj.__dict__)
-        self.assertFalse(form.is_valid())
+        randomized2 = SubjectRandomization.objects.get(
+            subject_identifier=consent.subject_identifier)
+        self.assertNotEqual(
+            randomized.sid,
+            RandomizationItem.objects.get(name=randomized2.sid).name)

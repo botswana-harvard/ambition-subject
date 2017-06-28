@@ -59,3 +59,10 @@ class OtherDrug(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):
         app_label = 'ambition_subject'
+
+
+class RandomizationItem (ListModelMixin, BaseUuidModel):
+
+    class Meta:
+        app_label = 'ambition_subject'
+        unique_together = ('display_index', 'name', 'field_name')

@@ -1,6 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from ..randomization import Randomization
 from .enrollment import Enrollment
 from .subject_consent import SubjectConsent
 
@@ -22,3 +23,4 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                     subject_identifier=instance.subject_identifier,
                     consent_identifier=instance.consent_identifier,
                     is_eligible=instance.subject_screening.eligible)
+            Randomization(obj=instance)
