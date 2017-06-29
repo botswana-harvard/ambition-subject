@@ -87,7 +87,7 @@ class EdcConsentAppConfig(BaseEdcConsentAppConfig):
 
 class EdcDeviceAppConfig(BaseEdcDeviceAppConfig):
     device_role = CENTRAL_SERVER
-    device_id = 99
+    device_id = '99'
 
 
 class EdcVisitTrackingAppConfig(BaseEdcVisitTrackingAppConfig):
