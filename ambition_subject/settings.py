@@ -51,8 +51,6 @@ INSTALLED_APPS = [
     'ambition_subject.apps.EdcTimepointAppConfig',
     'ambition_subject.apps.EdcAppointmentAppConfig',
     'ambition_subject.apps.EdcVisitTrackingAppConfig',
-    #'ambition_subject.apps.EdcSyncAppConfig',
-    #'ambition_subject.apps.EdcSyncFilesAppConfig',
     'ambition_subject.apps.AppConfig',
     'ambition_screening.apps.AppConfig',
     'ambition_subject_validations.apps.AppConfig'

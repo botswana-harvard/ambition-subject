@@ -52,7 +52,7 @@ class EdcProtocolAppConfig(BaseEdcProtocolAppConfig):
         SubjectType('subject', 'Research Subject',
                     Cap(model_name='ambition_subject.subjectconsent', max_subjects=9999)),
     ]
-    study_open_datetime = datetime(2017, 1, 31, 0, 0, 0, tzinfo=gettz('UTC'))
+    study_open_datetime = datetime(2016, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
     study_close_datetime = datetime(2019, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
 
     site_name = 'Gaborone'
