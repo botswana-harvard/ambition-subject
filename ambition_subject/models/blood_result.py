@@ -64,7 +64,8 @@ class BloodResult(CrfModelMixin):
     alt = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         verbose_name='ALT',
-        help_text='units in U/L')
+        help_text='units in U/L',
+        null=True)
 
     urea = models.DecimalField(
         decimal_places=2,
