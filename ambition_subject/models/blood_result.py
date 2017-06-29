@@ -14,20 +14,24 @@ class BloodResult(CrfModelMixin):
     wbc = models.DecimalField(
         decimal_places=1,
         max_digits=4,
+        null=True,
         help_text='units in 10^3/μL')
 
     platelets = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(9999)],
+        null=True,
         help_text='units in 10^9/L')
 
     haemoglobin = models.DecimalField(
         decimal_places=1,
         max_digits=4,
+        null=True,
         help_text='units in g/dL',)
 
     absolute_neutrophil = models.DecimalField(
         decimal_places=2,
         max_digits=4,
+        null=True,
         help_text='units in 10^3/μL',)
 
     creatinine = models.DecimalField(
@@ -60,7 +64,8 @@ class BloodResult(CrfModelMixin):
     alt = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         verbose_name='ALT',
-        help_text='units in U/L')
+        help_text='units in U/L',
+        null=True)
 
     urea = models.DecimalField(
         decimal_places=2,
@@ -79,7 +84,8 @@ class BloodResult(CrfModelMixin):
 
     proteinuria = models.CharField(
         choices=YES_NO,
-        max_length=5)
+        max_length=5,
+        null=True)
 
     are_results_normal = models.CharField(
         choices=YES_NO,

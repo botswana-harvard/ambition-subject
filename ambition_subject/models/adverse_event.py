@@ -19,59 +19,61 @@ class AdverseEvent(CrfModelMixin):
         verbose_name='Adverse Event (AE) description')
 
     ae_awareness_date = models.DateField(
-        default=timezone.now,
         verbose_name='AE Awareness date',
+        default=timezone.now,
         validators=[date_not_future])
 
     ae_start_date = models.DateField(
+        verbose_name='Actual Start Date of AE',
         default=timezone.now,
-        validators=[date_not_future],
-        verbose_name='Actual Start Date of AE')
+        validators=[date_not_future])
 
     ae_severity_grade = models.CharField(
-        choices=AE_SEVERITY,
+        verbose_name='Severity of AE',
         max_length=25,
-        verbose_name='Severity of AE')
+        choices=AE_SEVERITY)
 
     ae_intensity = models.CharField(
-        choices=AE_INTENSITY,
+        verbose_name='What is the intensity AE',
         max_length=25,
-        verbose_name='What is the intensity AE')
+        choices=AE_INTENSITY)
 
     regimen = models.CharField(  # TODO: Get this from the Randomization
-        choices=PATIENT_TREATMENT_GROUP,
+        verbose_name='Patient’s treatment regimen',
         max_length=50,
-        verbose_name='Patient’s treatment regimen')
+        choices=PATIENT_TREATMENT_GROUP)
 
     ae_study_relation_possibility = models.CharField(
-        choices=YES_NO,
-        max_length=10,
         verbose_name=(
-            'Is the incident related to the patient involvement in the study?'))
+            'Is the incident related to the patient involvement in the study?'),
+        max_length=10,
+        choices=YES_NO)
 
     ambisome_relation = models.CharField(
-        choices=STUDY_DRUG_RELATIONSHIP,
+        verbose_name='Relationship to Ambisome:',
         max_length=25,
-        verbose_name='Relationship to Ambisome:')
+        choices=STUDY_DRUG_RELATIONSHIP)
 
     fluconazole_relation = models.CharField(
-        choices=STUDY_DRUG_RELATIONSHIP,
+        verbose_name='Relationship to Fluconozole:',
         max_length=25,
-        verbose_name='Relationship to Fluconozole:')
+        choices=STUDY_DRUG_RELATIONSHIP)
 
     amphotericin_b_relation = models.CharField(
-        choices=STUDY_DRUG_RELATIONSHIP,
+        verbose_name='Relationship to Amphotericin B:',
         max_length=25,
-        verbose_name='Relationship to Amphotericin B:')
+        choices=STUDY_DRUG_RELATIONSHIP)
 
     flucytosine_relation = models.CharField(
-        choices=STUDY_DRUG_RELATIONSHIP,
+        verbose_name='Relationship to Flucytosine:',
         max_length=25,
-        verbose_name='Relationship to Flucytosine:')
+        choices=STUDY_DRUG_RELATIONSHIP)
 
     details_last_study_drug = models.TextField(
+        verbose_name='Details of the last implicated drug (name, dose, route):',
         max_length=1000,
-        verbose_name='Details of the last implicated drug (name, dose, route):')
+        null=True,
+        blank=True)
 
     med_administered_datetime = models.DateTimeField(
         verbose_name='Date and time of last implicated study medication '
@@ -81,41 +83,41 @@ class AdverseEvent(CrfModelMixin):
         blank=True)
 
     ae_cause = models.CharField(
-        choices=YES_NO,
-        max_length=5,
         verbose_name='Has a reason other than the specified study drug been '
-                     ' identified as the cause of the event(s)?')
+                     ' identified as the cause of the event(s)?',
+        choices=YES_NO,
+        max_length=5)
 
     ae_cause_other = OtherCharField(
+        verbose_name='If yes, specify',
+        max_length=250,
         blank=True,
-        max_length=100,
-        null=True,
-        verbose_name='If yes, specify')
+        null=True)
 
     ae_treatment = models.TextField(
         verbose_name='Specify action taken for treatment of AE:')
 
     ae_cm_recurrence = models.CharField(  # TODO: If yes Use rule group to open recurrence form
-        default=UNKNOWN,
-        choices=YES_NO,
-        help_text='If yes, fill in the Recurrence of Symptoms form',
+        verbose_name='Was the AE a recurrence of CM symptoms?',
         max_length=10,
-        verbose_name='Was the AE a recurrence of CM symptoms?')
+        choices=YES_NO,
+        default=UNKNOWN,
+        help_text='If yes, fill in the Recurrence of Symptoms form')
 
     is_sa_event = models.CharField(
+        verbose_name='Is this event a SAE?',
+        max_length=5,
         choices=YES_NO,
         help_text='(i.e. results in death, in-patient '
                   'hospitalisation/prolongation, significant disability or is '
-                  'life-threatening)',
-        max_length=5,
-        verbose_name='Is this event a SAE?')
+                  'life-threatening)')
 
     # TODO: If reason == Death Use rule group to open Death form
     sae_possibility = models.CharField(
-        choices=RAE_REASON,
-        default=NOT_APPLICABLE,
+        verbose_name='If Yes, Reason for SAE:',
         max_length=50,
-        verbose_name='If Yes, Reason for SAE:')
+        choices=RAE_REASON,
+        default=NOT_APPLICABLE)
 
     susar_possility = models.CharField(
         verbose_name=(
@@ -124,19 +126,19 @@ class AdverseEvent(CrfModelMixin):
         max_length=5)
 
     susar_reported = models.CharField(
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        max_length=5,
         verbose_name='If yes, SUSAR must be reported to Principal '
-                     'Investigator and TMG immediately, is SUSAR Reported?')
+                     'Investigator and TMG immediately, is SUSAR Reported?',
+        max_length=5,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,)
 
     susar_reported_datetime = models.DateTimeField(
+        verbose_name='Date and time AE reported',
         blank=True,
+        null=True,
         help_text='AEs ≥ Grade 3 or SAE must be reported to the Trial '
                   'Management Group (TMG) within 48hrs (Email to: '
-                  'ambition_tmg@sgul.ac.uk)',
-        null=True,
-        verbose_name='Date and time AE reported')
+                  'ambition_tmg@sgul.ac.uk)')
 
     history = HistoricalRecords()
 

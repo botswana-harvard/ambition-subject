@@ -50,7 +50,8 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_wbc_cell_count = models.IntegerField(
         verbose_name='Total CSF WBC cell count:',
         help_text='acceptable units are mm3',
-        validators=[MinValueValidator(0), MaxValueValidator(999)],)
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        null=True)
 
     differential_lymphocyte_count = models.IntegerField(
         verbose_name='Differential lymphocyte cell count:',
@@ -78,7 +79,8 @@ class LumbarPunctureCsf(CrfModelMixin):
 
     india_ink = models.CharField(
         max_length=15,
-        choices=POS_NEG)
+        choices=POS_NEG,
+        null=True,)
 
     csf_glucose = models.DecimalField(
         decimal_places=1,
@@ -90,7 +92,9 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_glucose_units = models.CharField(
         max_length=6,
         choices=MG_MMOL_UNITS,
-        default=NOT_APPLICABLE)
+        default=NOT_APPLICABLE,
+        blank=True,
+        null=True,)
 
     csf_protein = models.DecimalField(
         decimal_places=1,
@@ -102,7 +106,8 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_cr_ag = models.CharField(
         verbose_name='CSF CrAg:',
         max_length=15,
-        choices=POS_NEG)
+        choices=POS_NEG,
+        null=True)
 
     csf_cr_ag_lfa = models.CharField(
         verbose_name='CSF CrAG done by CSF CrAG LFA:',

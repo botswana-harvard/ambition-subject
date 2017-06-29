@@ -104,7 +104,6 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'confusion': admin.VERTICAL,
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
-        'medicines': admin.VERTICAL,
         'tb_pulmonary_dx': admin.VERTICAL,
         'extra_pulmonary_tb_dx': admin.VERTICAL,
         'kaposi_sarcoma_dx': admin.VERTICAL,
@@ -114,4 +113,4 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'diarrhoeal_wasting_dx': admin.VERTICAL,
         'other_dx': admin.VERTICAL,
     }
-    filter_horizontal = ('antibiotic', 'other_drug')
+    filter_horizontal = ('antibiotic', 'medicines', 'other_drug')

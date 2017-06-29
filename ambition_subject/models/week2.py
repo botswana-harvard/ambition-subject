@@ -7,8 +7,8 @@ from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
-from ..choices import (REASON_DRUG_MISSED, MEDICINES, DAYS_MISSED)
-from .list_models import Antibiotic, OtherDrug
+from ..choices import (REASON_DRUG_MISSED, DAYS_MISSED)
+from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import CrfModelMixin, ClinicalAssessment
 
 
@@ -136,10 +136,9 @@ class Week2(ClinicalAssessment, CrfModelMixin):
     weight = models.IntegerField(
         help_text='Weight in Kilograms')
 
-    medicines = models.CharField(
-        verbose_name='Medicines receieved on Day 14:',
-        max_length=25,
-        choices=MEDICINES)
+    medicines = models.ManyToManyField(
+        Day14Medication,
+        verbose_name='Medicines receieved on Day 14:')
 
     medicine_other = models.CharField(
         verbose_name='If other, please specify:',
