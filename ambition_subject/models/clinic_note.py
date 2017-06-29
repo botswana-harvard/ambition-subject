@@ -31,14 +31,3 @@ class ClinicNote(CrfModelMixin):
     plan = models.TextField(
         max_length=100,
     )
-""" Subjective:
-
-Examination
-•    Vital signs:
-•    CVS:
-•    Resp:
-•    Neuro:
-
-Assessment:
-
-Plan: """
