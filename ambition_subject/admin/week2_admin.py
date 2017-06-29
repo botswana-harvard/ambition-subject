@@ -28,7 +28,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week2Form
 
-#     inlines = [FluconazoleMissedDosesInline, AmphotericinMissedDosesInline]
+    inlines = [FluconazoleMissedDosesInline, AmphotericinMissedDosesInline]
 
     fieldsets = (
         ['Admission history', {
