@@ -8,6 +8,7 @@ from .death_report import Death
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
 from .follow_up import FollowUp
+from .list_models import RandomizationItem
 from .lumbar_puncture_csf import LumbarPunctureCsf
 from .microbiology import Microbiology
 from .missed_visit import MissedVisit
