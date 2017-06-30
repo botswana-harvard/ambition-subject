@@ -27,8 +27,8 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
                 'cn_palsy',
                 'behaviour_change',
                 'focal_neurology',
-                'other_significant_new_diagnosis',
-                'diagnosis_date'
+                'other_dx',
+                'other_dx_date'
             )}
          ],
         audit_fieldset_tuple

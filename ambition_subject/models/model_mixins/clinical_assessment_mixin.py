@@ -35,7 +35,8 @@ class ClinicalAssessment(models.Model):
     glasgow_coma_score = models.IntegerField(
         verbose_name='Glasgow Coma Score',
         validators=[MaxValueValidator(15), MinValueValidator(3)],
-        null=True)
+        null=True,
+        help_text='/15')
 
     confusion = models.CharField(
         verbose_name='Confusion',
