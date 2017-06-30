@@ -42,4 +42,5 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
         'confusion': admin.VERTICAL,
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
+        'other_dx': admin.VERTICAL
     }
