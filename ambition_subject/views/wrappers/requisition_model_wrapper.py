@@ -5,6 +5,7 @@ from edc_model_wrapper import ModelWrapper
 
 class RequisitionModelWrapper(ModelWrapper):
 
+    model = 'ambition_subject.subjectrequisition'
     admin_site_name = django_apps.get_app_config(
         'ambition_subject').admin_site_name
     next_url_name = django_apps.get_app_config(

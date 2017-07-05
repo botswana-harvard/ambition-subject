@@ -50,6 +50,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'ambi_start_date',
                 'ambi_stop_date',
                 'other_drug',
+                'other_drug_other',
                 'antibiotic',
                 'antibiotic_other',
                 'blood_received',

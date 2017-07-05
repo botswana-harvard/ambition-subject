@@ -34,12 +34,16 @@ class ProtocolDeviationViolation(CrfModelMixin):
 
     date_violation_datetime = models.DateTimeField(
         verbose_name='Date violation occured:',
-        validators=[date_not_future])
+        validators=[date_not_future],
+        null=True,
+        blank=True)
 
     protocol_violation_type = models.CharField(
         verbose_name='Type of Protocol Violation/Deviation',
         max_length=70,
-        choices=PROTOCOL_VIOLATION)
+        choices=PROTOCOL_VIOLATION,
+        null=True,
+        blank=True)
 
     other_protocol_violation_type = models.CharField(
         null=True,
@@ -49,29 +53,41 @@ class ProtocolDeviationViolation(CrfModelMixin):
 
     violation_description = models.TextField(
         verbose_name='Describe the violation fully. How the violation '
-                     'happened, what occurred?')
+                     'happened, what occurred?',
+        null=True,
+        blank=True)
 
     violation_reason = models.TextField(
-        verbose_name='Explain the reason why the violation occurred')
+        verbose_name='Explain the reason why the violation occurred',
+        null=True,
+        blank=True)
 
     corrective_action_datetime = models.DateTimeField(
         validators=[date_not_future])
 
     corrective_action = models.CharField(
         verbose_name='Corrective action taken',
-        max_length=125)
+        max_length=125,
+        null=True,
+        blank=True)
 
     preventative_action_datetime = models.DateTimeField(
-        validators=[date_not_future])
+        validators=[date_not_future],
+        null=True,
+        blank=True)
 
     preventative_action = models.CharField(
         verbose_name='Preventative action taken',
-        max_length=125)
+        max_length=125,
+        null=True,
+        blank=True)
 
     action_required = models.CharField(
         verbose_name='action required',
         max_length=25,
-        choices=ACTION_REQUIRED)
+        choices=ACTION_REQUIRED,
+        null=True,
+        blank=True)
 
     history = HistoricalRecords()
 
