@@ -1,4 +1,5 @@
-from ambition_subject_validations.form_validators import StudyTerminationConclusionFormValidator
+from ambition_subject_validations.form_validators import (
+    StudyTerminationConclusionFormValidator)
 
 from ..models import StudyTerminationConclusion
 from .form_mixins import SubjectModelFormMixin
