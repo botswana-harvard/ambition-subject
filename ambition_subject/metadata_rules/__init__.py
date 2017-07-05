@@ -1,1 +1,1 @@
-from .prn_model_rule_group import PrnModelRuleGroup
+from .prn_model_rule_group import PrnModelCrfRuleGroup
