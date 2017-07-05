@@ -195,6 +195,8 @@ class FluconazoleMissedDoses(BaseUuidModel):
 
     flucon_missed_reason_other = OtherCharField()
 
+    history = HistoricalRecords()
+
     class Meta:
         app_label = 'ambition_subject'
         unique_together = ('day_missed', 'flucon_missed_reason')
@@ -215,6 +217,8 @@ class AmphotericinMissedDoses(BaseUuidModel):
         choices=REASON_DRUG_MISSED)
 
     ampho_missed_reason_other = OtherCharField()
+
+    history = HistoricalRecords()
 
     class Meta:
         app_label = 'ambition_subject'

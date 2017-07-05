@@ -107,7 +107,7 @@ class EdcMetadataAppConfig(BaseEdcMetadataAppConfig):
 
 class EdcAppointmentAppConfig(BaseEdcAppointmentAppConfig):
     app_label = 'ambition_subject'
-    default_appt_type = 'home'
+    default_appt_type = 'clinic'
     facilities = {
         'clinic': Facility(
             name='clinic', days=[MO, TU, WE, TH, FR, SA, SU],

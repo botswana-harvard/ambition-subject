@@ -4,7 +4,7 @@ from .adverse_event_tmg import AdverseEventTMG
 from .appointment import Appointment
 from .blood_result import BloodResult
 from .clinic_note import ClinicNote
-from .death_report import Death
+from .death_report import DeathReport
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
 from .follow_up import FollowUp

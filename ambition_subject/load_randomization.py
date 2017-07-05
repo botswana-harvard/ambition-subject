@@ -9,7 +9,9 @@ from .models import RandomizationItem
 def load_randomization():
 
     f = open(os.path.join(
-        str(PurePath(BASE_DIR).parent), 'ambition-subject/ambition_subject', 'ambition_randomization.csv'))
+        str(PurePath(BASE_DIR).parent),
+        'ambition-subject',
+        'ambition_test_randomization.csv'))
     for index, line in enumerate(f.readlines()):
         if index == 0:
             continue

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
+    'edc_registration.apps.AppConfig',
     'ambition_subject.apps.EdcBaseAppConfig',
     'ambition_subject.apps.EdcBaseTestAppConfig',
     'ambition_subject.apps.EdcLabAppConfig',

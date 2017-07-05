@@ -1,12 +1,17 @@
+import sys
 from django.conf.urls import url
 
 from edc_constants.constants import UUID_PATTERN
 
 from .admin_site import ambition_subject_admin
+from .load_randomization import load_randomization
 from .patterns import subject_identifier
 from .views import ListboardView, DashboardView
 
 app_name = 'ambition_subject'
+
+if 'migrate' not in sys.argv and 'makemigrations' not in sys.argv:
+    load_randomization()
 
 
 def listboard_urls():

@@ -4,7 +4,7 @@ from .adverse_event_tmg_form import AdverseEventTMGForm
 from .appointment_form import AppointmentForm
 from .blood_result_form import BloodResultForm
 from .clinic_note_form import ClinicNoteForm
-from .death_form import DeathForm
+from .death_report_form import DeathReportForm
 from .follow_up import FollowUpForm
 from .lumbar_puncture_csf_form import LumbarPunctureCSFForm
 from .microbiology_form import MicrobiologyForm
