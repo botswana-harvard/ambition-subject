@@ -199,6 +199,11 @@ class PatientHistory(CrfModelMixin):
         max_length=15,
         choices=ECOG_SCORE)
 
+    ecog_score_value = models.CharField(
+        verbose_name='ECOG Score',
+        max_length=15,
+        choices=ECOG_SCORE)
+
     lung_exam = models.CharField(
         verbose_name='Abnormal lung exam:',
         max_length=5,

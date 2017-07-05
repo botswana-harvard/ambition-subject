@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import date_not_future
+from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA_SPECIFY
 
 from ..choices import (ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON,
@@ -51,6 +51,7 @@ class Radiology(CrfModelMixin):
 
     date_ct_performed = models.DateTimeField(
         default=timezone.now,
+        validators=[datetime_not_future],
         editable=True,
         blank=True,
         null=True)
