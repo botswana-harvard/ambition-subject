@@ -10,7 +10,7 @@ from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
 from .models import AdverseEvent, AdverseEventTMG, AdverseEventFollowUp
-from .models import BloodResult, Death, Microbiology, FollowUp
+from .models import BloodResult, DeathReport, Microbiology, FollowUp
 from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory
 from .models import RecurrenceSymptom, SubjectRandomization, Week2, SubjectVisit
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
@@ -79,8 +79,8 @@ bloodresult = Recipe(
     are_results_normal=YES,
     abnormal_results_in_ae_range=YES)
 
-death = Recipe(
-    Death,
+deathreport = Recipe(
+    DeathReport,
     study_day=1,
     death_as_inpatient=YES,
     cause_of_death_study_doctor_opinion='art_toxicity',

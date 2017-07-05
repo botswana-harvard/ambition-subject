@@ -1,9 +1,9 @@
-from ..models import Death
+from ..models import DeathReport
 
 from .form_mixins import SubjectModelFormMixin
 
 
-class DeathForm (SubjectModelFormMixin):
+class DeathReportForm(SubjectModelFormMixin):
 
     def clean(self):
 
@@ -34,5 +34,5 @@ class DeathForm (SubjectModelFormMixin):
                 field_required=field_required)
 
     class Meta:
-        model = Death
+        model = DeathReport
         fields = '__all__'

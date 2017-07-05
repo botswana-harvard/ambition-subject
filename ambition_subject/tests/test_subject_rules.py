@@ -1,3 +1,4 @@
+from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from model_mommy import mommy
 
@@ -10,7 +11,6 @@ from edc_visit_tracking.constants import SCHEDULED
 from ..models import Appointment
 
 
-@tag('s')
 class TestSubjectRules(TestCase):
 
     def setUp(self):
@@ -19,25 +19,31 @@ class TestSubjectRules(TestCase):
         consent = mommy.make_recipe('ambition_subject.subjectconsent',
                                     consent_datetime=get_utcnow(),
                                     subject_screening=screening)
+        self.subject_identifier = consent.subject_identifier
         self.subject_visit = mommy.make_recipe(
             'ambition_subject.subjectvisit',
             appointment=Appointment.objects.get(
-                subject_identifier=consent.subject_identifier, visit_code='1000'),
+                subject_identifier=self.subject_identifier, visit_code='1000'),
             subject_identifier=consent.subject_identifier,
             reason=SCHEDULED,)
 
+    @tag('s')
     def test_adverse_event_required(self):
+        print('>>>>>>>>>>>>>>>>', CrfMetadata.objects.all())
         self.assertEqual(
             CrfMetadata.objects.get(
-                model='ambition_subject.adverseevent').entry_status,
+                model='ambition_subject.adverseevent',
+                subject_identifier=self.subject_identifier).entry_status,
             NOT_REQUIRED)
-        mommy.make_recipe(
+        prnmodel = mommy.make_recipe(
             'ambition_subject.prnmodel',
             subject_visit=self.subject_visit,
             adverse_event=YES)
+        print(prnmodel.__dict__)
         self.assertEqual(
             CrfMetadata.objects.get(
-                model='ambition_subject.adverseevent').entry_status,
+                model='ambition_subject.adverseevent',
+                subject_identifier=self.subject_identifier).entry_status,
             REQUIRED)
 
     def test_microbiology_required(self):

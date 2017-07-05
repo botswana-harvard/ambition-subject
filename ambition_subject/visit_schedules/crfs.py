@@ -1,10 +1,5 @@
 from edc_visit_schedule.visit import Crf
 
-# crfs = (
-#     Crf(show_order=10, model='ambition_subject.someform',
-#         required=False, additional=True),
-# )
-
 crfs_d1 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
     Crf(show_order=2, model='ambition_subject.patienthistory'),
@@ -93,15 +88,14 @@ crfs_w4 = (
     Crf(show_order=2, model='ambition_subject.bloodresult'),
     Crf(show_order=3, model='ambition_subject.recurrencesymptom',
         required=False),
-    Crf(show_order=4, model='ambition_subject.deathreport', required=False)
-)
+    Crf(show_order=4, model='ambition_subject.deathreport', required=False))
 
-crfs_w6 = (Crf(show_order=1, model='ambition_subject.followup'),
-           Crf(show_order=2, model='ambition_subject.recurrencesymptom',
-               required=False),
-           Crf(show_order=3, model='ambition_subject.deathreport',
-               required=False)
-           )
+crfs_w6 = (
+    Crf(show_order=1, model='ambition_subject.followup'),
+    Crf(show_order=2, model='ambition_subject.recurrencesymptom',
+        required=False),
+    Crf(show_order=3, model='ambition_subject.deathreport',
+        required=False))
 
 crfs_w8 = (Crf(show_order=1, model='ambition_subject.followup'),
            Crf(show_order=2, model='ambition_subject.recurrencesymptom',
@@ -110,11 +104,11 @@ crfs_w8 = (Crf(show_order=1, model='ambition_subject.followup'),
                required=False)
            )
 
-crfs_w10 = (Crf(show_order=1, model='ambition_subject.followup'),
-            Crf(show_order=2,
-                model='ambition_subject.studyterminationconclusion'),
-            Crf(show_order=3, model='ambition_subject.recurrencesymptom',
-                required=False),
-            Crf(show_order=4, model='ambition_subject.deathreport',
-                required=False)
-            )
+crfs_w10 = (
+    Crf(show_order=1, model='ambition_subject.followup'),
+    Crf(show_order=2,
+        model='ambition_subject.studyterminationconclusion'),
+    Crf(show_order=3, model='ambition_subject.recurrencesymptom',
+        required=False),
+    Crf(show_order=4, model='ambition_subject.deathreport',
+        required=False))
