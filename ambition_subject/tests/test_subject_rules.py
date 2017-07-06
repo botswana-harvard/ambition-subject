@@ -1,4 +1,3 @@
-from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from model_mommy import mommy
 
@@ -27,19 +26,16 @@ class TestSubjectRules(TestCase):
             subject_identifier=consent.subject_identifier,
             reason=SCHEDULED,)
 
-    @tag('s')
     def test_adverse_event_required(self):
-        print('>>>>>>>>>>>>>>>>', CrfMetadata.objects.all())
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseevent',
                 subject_identifier=self.subject_identifier).entry_status,
             NOT_REQUIRED)
-        prnmodel = mommy.make_recipe(
+        mommy.make_recipe(
             'ambition_subject.prnmodel',
             subject_visit=self.subject_visit,
             adverse_event=YES)
-        print(prnmodel.__dict__)
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseevent',
@@ -74,18 +70,18 @@ class TestSubjectRules(TestCase):
                 model='ambition_subject.radiology').entry_status,
             REQUIRED)
 
-    def test_recurrence_symptom_required(self):
+    def test_lumbar_puncture_required(self):
         self.assertEqual(
             CrfMetadata.objects.get(
-                model='ambition_subject.recurrencesymptom').entry_status,
+                model='ambition_subject.lumbarpuncturecsf').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
             'ambition_subject.prnmodel',
             subject_visit=self.subject_visit,
-            recurrence_symptom=YES)
+            lumbar_puncture=YES)
         self.assertEqual(
             CrfMetadata.objects.get(
-                model='ambition_subject.recurrencesymptom').entry_status,
+                model='ambition_subject.lumbarpuncturecsf').entry_status,
             REQUIRED)
 
     def test_protocol_deviation_required(self):
@@ -101,3 +97,31 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.protocoldeviationviolation').entry_status,
             REQUIRED)
+
+    def test_death_report_required(self):
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport').entry_status,
+            NOT_REQUIRED)
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            death_report=YES)
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport').entry_status,
+            REQUIRED)
+
+    def test_death_report_required_from_adverse_event(self):
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport').entry_status,
+            NOT_REQUIRED)
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            adverse_event=YES)
+        mommy.make_recipe(
+            'ambition_subject.adverseevent',
+            subject_visit=self.subject_visit,
+            ae_severity_grade='grade_5')

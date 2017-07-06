@@ -18,7 +18,7 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'adverse_event': admin.VERTICAL,
         'microbiology': admin.VERTICAL,
         'radiology': admin.VERTICAL,
-        'recurrence_symptom': admin.VERTICAL,
+        'lumbar_puncture': admin.VERTICAL,
         'protocol_deviation': admin.VERTICAL}
 
     fieldsets = (
@@ -28,7 +28,7 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'adverse_event',
                 'microbiology',
                 'radiology',
-                'recurrence_symptom',
-                'protocol_deviation')}],
+                'protocol_deviation',
+                'lumbar_puncture')}],
         audit_fieldset_tuple
     )

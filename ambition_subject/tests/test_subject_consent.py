@@ -1,6 +1,5 @@
 import re
-from django.apps import apps as django_apps
-from django.db.utils import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
 from model_mommy import mommy
 from django.test import TestCase, tag
 
@@ -21,7 +20,7 @@ class TestSubjectConsent(TestCase):
         """Test adding a consent without Subject screening first raises an
            Exception.
         """
-        self.assertRaises(IntegrityError, mommy.make_recipe,
+        self.assertRaises(ObjectDoesNotExist, mommy.make_recipe,
                           'ambition_subject.subjectconsent',
                           consent_datetime=get_utcnow)
 
@@ -71,8 +70,11 @@ class TestSubjectConsent(TestCase):
             randomized.rx,
             RandomizationItem.objects.get(name=randomized.sid).field_name)
 
-        mommy.make_recipe(
+        subject_screening = mommy.make_recipe(
             'ambition_screening.subjectscreening')
+        options = {
+            'subject_screening': subject_screening,
+            'consent_datetime': get_utcnow, }
         consent = mommy.make_recipe(
             'ambition_subject.subjectconsent', **options)
 

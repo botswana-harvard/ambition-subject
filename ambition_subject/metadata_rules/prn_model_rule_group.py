@@ -27,17 +27,23 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=['radiology'])
 
-    recurrence_symptom = CrfRule(
-        predicate=P('recurrence_symptom', 'eq', YES),
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=['recurrencesymptom'])
-
     protocol_deviation = CrfRule(
         predicate=P('protocol_deviation', 'eq', YES),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=['protocoldeviationviolation'])
+
+    lumbar_puncture = CrfRule(
+        predicate=P('lumbar_puncture', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=['lumbarpuncturecsf'])
+
+    death_report = CrfRule(
+        predicate=P('death_report', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=['deathreport'])
 
     class Meta:
         app_label = 'ambition_subject'

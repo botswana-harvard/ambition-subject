@@ -137,6 +137,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_subject', 'static')
 STATIC_URL = '/static/'
 DEVICE_ID = '99'
+EDC_LAB_REQUISITION_MODEL = 'ambition_subject.subjectrequisition'
 # DEVICE_ROLE = 'CentralServer'
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
 GIT_DIR = BASE_DIR
