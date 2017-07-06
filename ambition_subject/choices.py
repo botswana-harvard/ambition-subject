@@ -291,6 +291,16 @@ REGIMEN = (
     ('three_doses', '3 (Three Doses)'),
     ('control', '4 (Control)'))
 
+SIGNIFICANT_DX = (
+    ('pulmonary_tb', 'Pulmonary TB'),
+    ('extra_pulmonary_tb', 'Extra Pulmonary TB'),
+    ('kaposi_sarcoma', 'Kaposi Sarcoma'),
+    ('malaria', 'Malaria'),
+    ('bacteraemia', 'Bacteraemia'),
+    ('pneumonia', 'Pneumonia'),
+    ('diarrhoeal_wasting', 'Diarrhoeal Wasting'),
+    (OTHER, 'Other'))
+
 STEROIDS_CHOICES = (
     ('oral_prednisolone', 'Oral prednisolone'),
     ('iv_dexamethasone', 'IV Dexamethasone used'),
