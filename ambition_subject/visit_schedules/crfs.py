@@ -116,3 +116,5 @@ crfs_w10 = (
         required=False),
     Crf(show_order=4, model='ambition_subject.deathreport',
         required=False))
+
+crfs_w16 = (Crf(show_order=1, model='ambition_subject.week16'),)

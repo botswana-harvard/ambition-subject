@@ -20,3 +20,4 @@ from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
 from .week2_admin import Week2Admin
 from .week4_admin import Week4Admin
+from .week16_admin import Week16Admin

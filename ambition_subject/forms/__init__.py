@@ -22,3 +22,4 @@ from .subject_visit_form import SubjectVisitForm
 from .week2_form import (Week2Form, AmphotericinMissedDosesForm,
                          FluconazoleMissedDosesForm, SignificantDiagnosesForm)
 from .week4_form import Week4Form
+from .week16_form import Week16Form
