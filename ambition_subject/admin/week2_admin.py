@@ -4,9 +4,11 @@ from edc_base.modeladmin_mixins import TabularInlineMixin
 from edc_base.modeladmin_mixins.model_admin_audit_fields_mixin import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..forms import Week2Form, AmphotericinMissedDosesForm, FluconazoleMissedDosesForm, SignificantDiagnosesForm
+from ..forms import (Week2Form, AmphotericinMissedDosesForm,
+                     FluconazoleMissedDosesForm, SignificantDiagnosesForm)
 from .modeladmin_mixins import ModelAdminMixin
-from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses, SignificantDiagnoses
+from ..models import (
+    Week2, FluconazoleMissedDoses, AmphotericinMissedDoses, SignificantDiagnoses)
 
 
 class SignificantDiagnosesInline(TabularInlineMixin, admin.TabularInline):

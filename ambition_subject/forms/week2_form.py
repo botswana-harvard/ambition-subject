@@ -2,7 +2,8 @@ from django import forms
 
 from ambition_subject_validations.form_validators import Week2FormValidator
 
-from ..models import Week2, AmphotericinMissedDoses, FluconazoleMissedDoses, SignificantDiagnoses
+from ..models import (
+    Week2, AmphotericinMissedDoses, FluconazoleMissedDoses, SignificantDiagnoses)
 from .form_mixins import SubjectModelFormMixin
 
 
