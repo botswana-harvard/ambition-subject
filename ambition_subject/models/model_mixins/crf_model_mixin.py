@@ -52,10 +52,10 @@ class CrfModelMixin(VisitTrackingCrfModelMixin, OffstudyMixin,
 
     def natural_key(self):
         return self.subject_visit.natural_key()
-    natural_key.dependencies = ['ambition.subjectvisit']
+    natural_key.dependencies = ['ambition_subject.subjectvisit']
 
     class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentMixin.Meta):
-        consent_model = 'ambition.subjectconsent'
+        consent_model = 'ambition_subject.subjectconsent'
         abstract = True
 
 
@@ -82,8 +82,8 @@ class CrfModelMixinNonUniqueVisit(
 
     def natural_key(self):
         return self.subject_visit.natural_key()
-    natural_key.dependencies = ['ambition.subjectvisit']
+    natural_key.dependencies = ['ambition_subject.subjectvisit']
 
     class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentMixin.Meta):
-        consent_model = 'ambition.subjectconsent'
+        consent_model = 'ambition_subject.subjectconsent'
         abstract = True
