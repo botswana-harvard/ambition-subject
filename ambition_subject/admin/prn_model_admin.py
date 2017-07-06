@@ -19,7 +19,8 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'microbiology': admin.VERTICAL,
         'radiology': admin.VERTICAL,
         'lumbar_puncture': admin.VERTICAL,
-        'protocol_deviation': admin.VERTICAL}
+        'protocol_deviation': admin.VERTICAL,
+        'death_report': admin.VERTICAL}
 
     fieldsets = (
         ['PRN', {
@@ -29,6 +30,7 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'microbiology',
                 'radiology',
                 'protocol_deviation',
-                'lumbar_puncture')}],
+                'lumbar_puncture',
+                'death_report')}],
         audit_fieldset_tuple
     )

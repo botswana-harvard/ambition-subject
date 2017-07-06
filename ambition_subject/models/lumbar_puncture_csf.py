@@ -112,7 +112,8 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_cr_ag_lfa = models.CharField(
         verbose_name='CSF CrAG done by CSF CrAG LFA:',
         max_length=5,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     history = HistoricalRecords()
 
