@@ -25,5 +25,5 @@ from .subject_offstudy import SubjectOffstudy
 from .subject_randomization import SubjectRandomization
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
-from .week2 import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
+from .week2 import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses, SignificantDiagnoses
 from .week4 import Week4

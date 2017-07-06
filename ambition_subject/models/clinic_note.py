@@ -29,5 +29,5 @@ class ClinicNote(CrfModelMixin):
     )
 
     plan = models.TextField(
-        max_length=100,
+        max_length=1000,
     )

@@ -7,7 +7,7 @@ from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
-from ..choices import (REASON_DRUG_MISSED, DAYS_MISSED)
+from ..choices import (REASON_DRUG_MISSED, DAYS_MISSED, SIGNIFICANT_DX)
 from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import CrfModelMixin, ClinicalAssessment
 
@@ -176,6 +176,33 @@ class Week2(ClinicalAssessment, CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
+
+
+class SignificantDiagnoses(BaseUuidModel):
+
+    week2 = models.ForeignKey(Week2)
+
+    possible_diagnoses = models.CharField(
+        verbose_name='Significant diagnoses:',
+        max_length=25,
+        choices=SIGNIFICANT_DX
+    )
+
+    dx_date = models.DateField(
+        verbose_name='Date of diagnosis:',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    dx_other = models.CharField(
+        verbose_name='If other, please specify:',
+        max_length=50,
+        null=True,
+        blank=True)
+
+    class Meta:
+        app_label = 'ambition_subject'
+        unique_together = ('possible_diagnoses', 'dx_date')
 
 
 class FluconazoleMissedDoses(BaseUuidModel):

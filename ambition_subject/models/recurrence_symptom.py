@@ -25,8 +25,8 @@ class RecurrenceSymptom(CrfModelMixin):
         blank=True)
 
     patient_readmitted = models.CharField(
-        verbose_name=('Has the patient been readmitted due to these recurrent'
-                      'symptoms?'),
+        verbose_name=('Has the patient been readmitted due to these recurrent '
+                      ' symptoms?'),
         max_length=5,
         choices=YES_NO,
         help_text='If Yes, complete AE CRF.')
@@ -61,6 +61,12 @@ class RecurrenceSymptom(CrfModelMixin):
         null=True,
         blank=True)
 
+    other_cn_palsy_chosen = models.CharField(
+        verbose_name='If other CN Palsy chosen specify',
+        max_length=15,
+        null=True,
+        blank=True)
+
     lp_completed = models.CharField(
         max_length=5,
         choices=YES_NO,
@@ -77,6 +83,7 @@ class RecurrenceSymptom(CrfModelMixin):
         blank=True)
 
     tb_treatment = models.CharField(
+        verbose_name='TB Treatment:',
         max_length=5,
         choices=YES_NO)
 
@@ -118,6 +125,7 @@ class RecurrenceSymptom(CrfModelMixin):
         null=True)
 
     on_arvs = models.CharField(
+        verbose_name='On ARVS:',
         max_length=5,
         choices=YES_NO)
 

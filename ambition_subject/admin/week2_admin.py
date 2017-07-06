@@ -4,9 +4,16 @@ from edc_base.modeladmin_mixins import TabularInlineMixin
 from edc_base.modeladmin_mixins.model_admin_audit_fields_mixin import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..forms import Week2Form, AmphotericinMissedDosesForm, FluconazoleMissedDosesForm
+from ..forms import Week2Form, AmphotericinMissedDosesForm, FluconazoleMissedDosesForm, SignificantDiagnosesForm
 from .modeladmin_mixins import ModelAdminMixin
-from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
+from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses, SignificantDiagnoses
+
+
+class SignificantDiagnosesInline(TabularInlineMixin, admin.TabularInline):
+
+    model = SignificantDiagnoses
+    form = SignificantDiagnosesForm
+    extra = 1
 
 
 class AmphotericinMissedDosesInline(TabularInlineMixin, admin.TabularInline):
@@ -28,7 +35,8 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week2Form
 
-    inlines = [FluconazoleMissedDosesInline, AmphotericinMissedDosesInline]
+    inlines = [SignificantDiagnosesInline, FluconazoleMissedDosesInline,
+               AmphotericinMissedDosesInline]
 
     fieldsets = (
         ['Admission history', {
@@ -68,22 +76,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'weight',
                 'medicines',
                 'medicine_other',
-                'tb_pulmonary_dx',
-                'tb_pulmonary_dx_date',
-                'extra_pulmonary_tb_dx',
-                'extra_tb_pulmonary_dx_date',
-                'kaposi_sarcoma_dx',
-                'kaposi_sarcoma_dx_date',
-                'malaria_dx',
-                'malaria_dx_date',
-                'bacteraemia_dx',
-                'bacteraemia_dx_date',
-                'pneumonia_dx',
-                'pneumonia_dx_date',
-                'diarrhoeal_wasting_dx',
-                'diarrhoeal_wasting_dx_date',
-                'other_dx',
-                'other_dx_date')}
+            )}
          ],
         #         ['Missed Doses', {
         #             'fields': (
@@ -105,13 +98,5 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'confusion': admin.VERTICAL,
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
-        'tb_pulmonary_dx': admin.VERTICAL,
-        'extra_pulmonary_tb_dx': admin.VERTICAL,
-        'kaposi_sarcoma_dx': admin.VERTICAL,
-        'malaria_dx': admin.VERTICAL,
-        'bacteraemia_dx': admin.VERTICAL,
-        'pneumonia_dx': admin.VERTICAL,
-        'diarrhoeal_wasting_dx': admin.VERTICAL,
-        'other_dx': admin.VERTICAL,
     }
     filter_horizontal = ('antibiotic', 'medicines', 'other_drug')
