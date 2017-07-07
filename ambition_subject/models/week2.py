@@ -12,6 +12,48 @@ from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import CrfModelMixin, ClinicalAssessment
 
 
+class AmphotericinMissedDosesManager(models.Manager):
+    def get_by_natural_key(self, day_missed, ampho_missed_reason,
+                           subject_identifier, visit_schedule_name,
+                           schedule_name, visit_code):
+        return self.get(
+            day_missed=day_missed,
+            ampho_missed_reason=ampho_missed_reason,
+            subject_visit__subject_identifier=subject_identifier,
+            subject_visit__visit_schedule_name=visit_schedule_name,
+            subject_visit__schedule_name=schedule_name,
+            subject_visit__visit_code=visit_code
+        )
+
+
+class FluconazoleMissedDosesManager(models.Manager):
+    def get_by_natural_key(self, day_missed, flucon_missed_reason,
+                           subject_identifier, visit_schedule_name,
+                           schedule_name, visit_code):
+        return self.get(
+            day_missed=day_missed,
+            flucon_missed_reason=flucon_missed_reason,
+            subject_visit__subject_identifier=subject_identifier,
+            subject_visit__visit_schedule_name=visit_schedule_name,
+            subject_visit__schedule_name=schedule_name,
+            subject_visit__visit_code=visit_code
+        )
+
+
+class SignificantDiagnosesManager(models.Manager):
+
+    def get_by_natural_key(self, possible_diagnoses, dx_date, subject_identifier,
+                           visit_schedule_name, schedule_name, visit_code):
+        return self.get(
+            possible_diagnoses=possible_diagnoses,
+            dx_date=dx_date,
+            subject_visit__subject_identifier=subject_identifier,
+            subject_visit__visit_schedule_name=visit_schedule_name,
+            subject_visit__schedule_name=schedule_name,
+            subject_visit__visit_code=visit_code
+        )
+
+
 class Week2(ClinicalAssessment, CrfModelMixin):
 
     discharged = models.CharField(
@@ -200,6 +242,12 @@ class SignificantDiagnoses(BaseUuidModel):
         null=True,
         blank=True)
 
+    objects = SignificantDiagnosesManager()
+
+    def natural_key(self):
+        return (self.possible_diagnoses, self.dx_date) + self.week2.natural_key()
+    natural_key.dependencies = ['ambition_subject.week2']
+
     class Meta:
         app_label = 'ambition_subject'
         unique_together = ('possible_diagnoses', 'dx_date')
@@ -222,7 +270,13 @@ class FluconazoleMissedDoses(BaseUuidModel):
 
     flucon_missed_reason_other = OtherCharField()
 
+    objects = FluconazoleMissedDosesManager()
+
     history = HistoricalRecords()
+
+    def natural_key(self):
+        return (self.day_missed, self.flucon_missed_reason) + self.week2.natural_key()
+    natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
         app_label = 'ambition_subject'
@@ -245,7 +299,13 @@ class AmphotericinMissedDoses(BaseUuidModel):
 
     ampho_missed_reason_other = OtherCharField()
 
+    objects = AmphotericinMissedDosesManager()
+
     history = HistoricalRecords()
+
+    def natural_key(self):
+        return (self.day_missed, self.ampho_missed_reason) + self.week2.natural_key()
+    natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
         app_label = 'ambition_subject'

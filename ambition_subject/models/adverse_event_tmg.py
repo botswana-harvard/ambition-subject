@@ -7,7 +7,18 @@ from edc_base.model_validators import date_not_future
 from .list_models import AEClassification
 
 
+class AdverseEventManager(models.Manager):
+
+    def get_by_natural_key(self, subject_identifier):
+        return self.get(
+            subject_identifier=subject_identifier,)
+
+
 class AdverseEventTMG(BaseUuidModel):
+
+    subject_identifier = models.CharField(
+        verbose_name="Subject Identifier",
+        max_length=50)
 
     ae_received_datetime = models.DateTimeField(
         blank=True,
@@ -48,7 +59,12 @@ class AdverseEventTMG(BaseUuidModel):
         verbose_name=('Date and time form logged in data base and returned'
                       'to Local Investigator'))
 
+    objects = AdverseEventManager()
+
     history = HistoricalRecords()
+
+    def natural_key(self):
+        return (self.subject_identifier,)
 
     class Meta(BaseUuidModel.Meta):
         app_label = 'ambition_subject'
