@@ -4,7 +4,7 @@ from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
-from edc_base_test.faker import EdcBaseProvider
+from edc_consent.tests import EdcConsentProvider
 from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
 from edc_visit_tracking.constants import SCHEDULED
 
@@ -42,7 +42,7 @@ class DateProvider(BaseProvider):
 
 
 fake = Faker()
-fake.add_provider(EdcBaseProvider)
+fake.add_provider(EdcConsentProvider)
 fake.add_provider(DateProvider)
 
 aeclassification = Recipe(AEClassification)
