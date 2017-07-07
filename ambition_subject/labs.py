@@ -2,12 +2,9 @@ from edc_lab import AliquotType, LabProfile, ProcessingProfile, RequisitionPanel
 from edc_lab.site_labs import site_labs
 from edc_lab.lab.processing_profile import Process
 
-from .models import SubjectRequisition
-
 
 lab_profile = LabProfile(
-    name='ambition_subject',
-    requisition_model=SubjectRequisition)
+    name='ambition_subject')
 
 pl = AliquotType(name='Plasma', alpha_code='PL', numeric_code='36')
 
@@ -43,10 +40,8 @@ process_qfc = Process(aliquot_type=qfc, aliquot_count=10)
 process_csf_store = Process(aliquot_type=csf_store, aliquot_count=1)
 processing_profile.add_processes(process_qfc, process_csf_store)
 
-
 csf_panel = RequisitionPanel(
     name='Spinal Fluid',
-    model=SubjectRequisition,
     aliquot_type=csf,
     processing_profile=processing_profile)
 lab_profile.add_panel(csf_panel)
@@ -58,7 +53,6 @@ viral_load_processing.add_processes(vl_pl_process, vl_bc_process)
 
 viral_load_panel = RequisitionPanel(
     name='Viral Load',
-    model=SubjectRequisition,
     aliquot_type=wb,
     processing_profile=viral_load_processing)
 lab_profile.add_panel(viral_load_panel)
@@ -67,7 +61,6 @@ cd4_processing = ProcessingProfile(name='CD4', aliquot_type=wb)
 
 cd4_panel = RequisitionPanel(
     name='CD4',
-    model=SubjectRequisition,
     aliquot_type=wb,
     processing_profile=cd4_processing)
 lab_profile.add_panel(cd4_panel)
@@ -76,7 +69,6 @@ fbc_processing = ProcessingProfile(name='FBC', aliquot_type=wb)
 
 fbc_panel = RequisitionPanel(
     name='Full Blood Count',
-    model=SubjectRequisition,
     aliquot_type=wb,
     processing_profile=fbc_processing)
 lab_profile.add_panel(fbc_panel)
@@ -86,7 +78,6 @@ chemistry_alt_processing = ProcessingProfile(
 
 chemistry_alt_panel = RequisitionPanel(
     name='Creat, Urea, Elec, ALT',
-    model=SubjectRequisition,
     aliquot_type=wb,
     processing_profile=chemistry_alt_processing)
 lab_profile.add_panel(chemistry_alt_panel)
@@ -95,9 +86,9 @@ chemistry_processing = ProcessingProfile(name='chem', aliquot_type=wb)
 
 chemistry_panel = RequisitionPanel(
     name='Creat, Urea, Elec',
-    model=SubjectRequisition,
     aliquot_type=wb,
     processing_profile=chemistry_processing)
 lab_profile.add_panel(chemistry_panel)
 
-site_labs.register(lab_profile)
+site_labs.register(
+    lab_profile, requisition_model='ambition_subject.subjectrequisition')
