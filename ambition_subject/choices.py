@@ -343,12 +343,11 @@ DAYS_MISSED = (
     (11, 'Day 11'), (12, 'Day 12'), (13, 'Day 13'), (14, 'Day 14'))
 
 AE_OUTCOME = (
-    ('Recovered', 'Recovered'),
-    ('Recovering', 'Recovering'),
-    ('Not Recovered', 'Not Recovered'),
+    ('Recovered', 'Recovered/Resolved'),
+    ('Recovering', 'Recovering/Resolving at end of study'),
+    ('Not Recovered', 'Not Recovered/Resolved at end of study'),
     ('Unknown', 'Unknown/Lost to follow-up'),
     ('Recovered with sequelae', 'Recovered with sequelae'),
-    ('Severity worsened to Grade 4', 'Severity worsened to Grade 4'),
     ('Death', 'Death'),
 )
 
