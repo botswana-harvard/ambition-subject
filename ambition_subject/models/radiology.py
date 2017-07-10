@@ -50,7 +50,7 @@ class Radiology(CrfModelMixin):
         max_length=5)
 
     date_ct_performed = models.DateTimeField(
-        default=timezone.now,
+        verbose_name='Date CT performed',
         validators=[datetime_not_future],
         editable=True,
         blank=True,

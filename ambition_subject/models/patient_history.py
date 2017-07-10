@@ -167,7 +167,11 @@ class PatientHistory(CrfModelMixin):
         Neurological,
         blank=True)
 
-    neurological_other = OtherCharField()
+    neurological_other = OtherCharField(
+        verbose_name='If other CN palsy, specify',
+        max_length=250,
+        blank=True,
+        null=True)
 
     focal_neurologic_deficit = models.TextField(
         verbose_name='If focal neurologic deficit chosen, please specify details:',
