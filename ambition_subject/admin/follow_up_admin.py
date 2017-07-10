@@ -30,6 +30,14 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'cn_palsy': admin.VERTICAL,
         'behaviour_change': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
+        'tb_pulmonary_dx': admin.VERTICAL,
+        'extra_pulmonary_tb_dx': admin.VERTICAL,
+        'kaposi_sarcoma_dx': admin.VERTICAL,
+        'malaria_dx': admin.VERTICAL,
+        'bacteraemia_dx': admin.VERTICAL,
+        'pneumonia_dx': admin.VERTICAL,
+        'diarrhoeal_wasting_dx': admin.VERTICAL,
+        'other_dx': admin.VERTICAL,
         'fluconazole_dose': admin.VERTICAL,
         'rifampicin_started': admin.VERTICAL}
 
