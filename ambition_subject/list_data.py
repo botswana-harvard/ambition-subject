@@ -37,10 +37,8 @@ list_data = {
     ],
     'ambition_subject.day14medication': [
         ('fluconazole', ' Fluconazole'),
-        ('amphotericin_b', 'Amphotericin B'),
         ('rifampicin', ' Rifampicin'),
         ('co_trimoxazole', 'Co-trimoxazole'),
-        ('flucytocine', 'Flucytocine'),
         (OTHER, 'Other')
     ],
     'ambition_subject.meningitissymptom': [
