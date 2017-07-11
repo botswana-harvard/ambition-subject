@@ -16,6 +16,8 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {
         'adverse_event': admin.VERTICAL,
+        'adverse_event_tmg': admin.VERTICAL,
+        'adverse_event_followup': admin.VERTICAL,
         'microbiology': admin.VERTICAL,
         'radiology': admin.VERTICAL,
         'lumbar_puncture': admin.VERTICAL,
@@ -27,6 +29,8 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'subject_visit',
                 'adverse_event',
+                'adverse_event_tmg',
+                'adverse_event_followup',
                 'microbiology',
                 'radiology',
                 'protocol_deviation',
