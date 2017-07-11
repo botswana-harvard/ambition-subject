@@ -49,4 +49,5 @@ class TestNaturalKey(TestCase):
                 visit=visit,
                 subject_identifier=visit.subject_identifier)
         })
-        self.sync_test_natural_keys(complete_required_crfs, verbose=True)
+        self.sync_test_helper.sync_test_natural_keys(
+            complete_required_crfs, verbose=True)
