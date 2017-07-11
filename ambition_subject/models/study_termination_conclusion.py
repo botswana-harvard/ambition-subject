@@ -67,12 +67,14 @@ class StudyTerminationConclusion(CrfModelMixin):
         null=True)
 
     willing_to_complete_10W_FU = models.CharField(
-        verbose_name='Is the patient willing to complete the 10 week FU visit only?',
+        verbose_name='Is the patient willing to complete the 10 week FU '
+        'visit only?',
         max_length=12,
         choices=YES_NO_NA)
 
     willing_to_complete_centre = models.CharField(
-        verbose_name='Is the patient willing to complete the 10 week FU visit only at their new care centre?',
+        verbose_name='Is the patient willing to complete the 10 week FU '
+        'visit only at their new care centre?',
         max_length=17,
         choices=YES_NO_NA)
 
@@ -94,7 +96,8 @@ class StudyTerminationConclusion(CrfModelMixin):
         null=True)
 
     first_line_regimen_patients = models.CharField(
-        verbose_name='started for naive patients (or regimen switched for those already on ARVs)',
+        verbose_name='started for naive patients (or regimen switched for '
+        'those already on ARVs)',
         max_length=75,
         choices=ARV_REGIMEN)
 

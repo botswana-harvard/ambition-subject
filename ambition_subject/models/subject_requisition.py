@@ -41,6 +41,7 @@ class SubjectRequisition(
         if not self.id:
             edc_protocol_app_config = django_apps.get_app_config(
                 'edc_protocol')
+            self.protocol_number = edc_protocol_app_config.protocol_number
             self.study_site = edc_protocol_app_config.site_code
             self.study_site_name = edc_protocol_app_config.site_name
         super().save(*args, **kwargs)
