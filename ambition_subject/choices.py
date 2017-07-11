@@ -2,7 +2,7 @@ from edc_constants.constants import (NEG, OTHER, POS,
                                      NOT_APPLICABLE, UNKNOWN,
                                      NORMAL, IND)
 
-from .constants import N1, A2, AMS_N3, AMS_A4
+from .constants import N1, A2, AMS_N3, AMS_A4, DEVIATION, VIOLATION
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -381,4 +381,9 @@ RANKING_SCORE = (
     (3, '3'),
     (4, '4'),
     (5, '5')
+)
+
+DEVIATION_VIOLATION = (
+    (DEVIATION, 'Deviation'),
+    (VIOLATION, 'Violation')
 )

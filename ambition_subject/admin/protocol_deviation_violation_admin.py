@@ -14,6 +14,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
     form = ProtocolDeviationViolationForm
 
     radio_fields = {
+        'deviation_or_violation': admin.VERTICAL,
         'participant_safety_impact': admin.VERTICAL,
         'study_outcomes_impact': admin.VERTICAL,
         'protocol_violation_type': admin.VERTICAL,
@@ -23,6 +24,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
         ('Assessment to confirm violation', {
             'fields': (
                 'subject_visit',
+                'deviation_or_violation',
                 'participant_safety_impact',
                 'participant_safety_impact_details',
                 'study_outcomes_impact',
