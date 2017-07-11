@@ -55,6 +55,14 @@ class EdcProtocolAppConfig(BaseEdcProtocolAppConfig):
     study_open_datetime = datetime(2016, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
     study_close_datetime = datetime(2019, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
 
+    @property
+    def site_name(self):
+        return 'Gaborone'
+
+    @property
+    def site_code(self):
+        return '40'
+
 
 class EdcLabAppConfig(BaseEdcLabAppConfig):
     base_template_name = 'ambition/base.html'
