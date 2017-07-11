@@ -8,6 +8,7 @@ from edc_lab.model_mixins.requisition import (
     RequisitionModelMixin, RequisitionStatusMixin, RequisitionIdentifierMixin)
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
 from edc_offstudy.model_mixins import OffstudyMixin
+from edc_reference.model_mixins import ReferenceModelMixin
 from edc_search.model_mixins import SearchSlugManager
 from edc_visit_tracking.managers import (
     CrfModelManager as VisitTrackingCrfModelManager)
@@ -27,7 +28,7 @@ class SubjectRequisition(
         VisitTrackingCrfModelMixin, OffstudyMixin,
         RequiresConsentMixin, PreviousVisitModelMixin,
         UpdatesRequisitionMetadataModelMixin, SearchSlugModelMixin,
-        BaseUuidModel):
+        ReferenceModelMixin, BaseUuidModel):
 
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=PROTECT)
     search_slug_fields = [

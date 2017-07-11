@@ -20,7 +20,7 @@ visit0 = Visit(
     timepoint=0,
     rbase=relativedelta(days=0),
     rlower=relativedelta(days=0),
-    rupper=relativedelta(days=6),
+    rupper=relativedelta(days=0),
     requisitions=requisitions_d1,
     crfs=crfs_d1)
 
@@ -30,7 +30,7 @@ visit1 = Visit(
     timepoint=1,
     rbase=relativedelta(days=3),
     rlower=relativedelta(days=0),
-    rupper=relativedelta(days=6),
+    rupper=relativedelta(days=0),
     requisitions=requisitions_d3,
     crfs=crfs_d3)
 
@@ -40,7 +40,7 @@ visit2 = Visit(
     timepoint=2,
     rbase=relativedelta(days=5),
     rlower=relativedelta(days=0),
-    rupper=relativedelta(days=6),
+    rupper=relativedelta(days=0),
     requisitions=requisitions_d3,
     crfs=crfs_d5)
 
@@ -50,7 +50,7 @@ visit3 = Visit(
     timepoint=3,
     rbase=relativedelta(days=7),
     rlower=relativedelta(days=0),
-    rupper=relativedelta(days=6),
+    rupper=relativedelta(days=0),
     requisitions=requisitions_d7,
     crfs=crfs_d7)
 
@@ -60,7 +60,7 @@ visit4 = Visit(
     timepoint=4,
     rbase=relativedelta(days=10),
     rlower=relativedelta(days=0),
-    rupper=relativedelta(days=6),
+    rupper=relativedelta(days=0),
     requisitions=requisitions_d3,
     crfs=crfs_d10)
 
@@ -70,7 +70,7 @@ visit5 = Visit(
     timepoint=5,
     rbase=relativedelta(days=12),
     rlower=relativedelta(days=0),
-    rupper=relativedelta(days=6),
+    rupper=relativedelta(days=0),
     requisitions=requisitions_d3,
     crfs=crfs_d12)
 
