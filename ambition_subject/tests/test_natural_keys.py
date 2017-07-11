@@ -4,6 +4,7 @@ from model_mommy import mommy
 from edc_base.utils import get_utcnow
 from edc_sync.tests import SyncTestHelper
 from edc_visit_tracking.constants import SCHEDULED
+from edc_metadata.tests import CrfTestHelper
 
 from ambition_subject.models.appointment import Appointment
 
@@ -12,6 +13,7 @@ from ambition_subject.models.appointment import Appointment
 class TestNaturalKey(TestCase):
 
     sync_test_helper = SyncTestHelper()
+    crf_test_helper = CrfTestHelper()
 
     @tag('natural_key')
     def test_natural_key_attrs(self):
@@ -38,6 +40,13 @@ class TestNaturalKey(TestCase):
             reason=SCHEDULED,)
         return self.subject_visit
 
-    def test_sync_test_natural_keys_by_schedule(self):
-        self.sync_test_helper.sync_test_natural_keys_by_schedule(
-            visits=[self.complete_subject_visit()])
+    def test_sync_test_natural_keys(self):
+        complete_required_crfs = {}
+        visit = self.complete_subject_visit()
+        complete_required_crfs.update({
+            visit.visit_code: self.crf_test_helper.complete_required_crfs(
+                visit_code=visit.visit_code,
+                visit=visit,
+                subject_identifier=visit.subject_identifier)
+        })
+        self.sync_test_natural_keys(complete_required_crfs, verbose=True)
