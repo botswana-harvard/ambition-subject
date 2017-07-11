@@ -5,10 +5,12 @@ from edc_base.modeladmin_mixins.model_admin_audit_fields_mixin import audit_fiel
 
 from ..admin_site import ambition_subject_admin
 from ..forms import (Week2Form, AmphotericinMissedDosesForm,
-                     FluconazoleMissedDosesForm, SignificantDiagnosesForm)
+                     FlucytosineMissedDosesForm, FluconazoleMissedDosesForm,
+                     SignificantDiagnosesForm)
 from .modeladmin_mixins import ModelAdminMixin
 from ..models import (
-    Week2, FluconazoleMissedDoses, AmphotericinMissedDoses, SignificantDiagnoses)
+    Week2, FluconazoleMissedDoses, AmphotericinMissedDoses,
+    SignificantDiagnoses, FlucytosineMissedDoses)
 
 
 class SignificantDiagnosesInline(TabularInlineMixin, admin.TabularInline):
@@ -32,13 +34,20 @@ class FluconazoleMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     extra = 1
 
 
+class FlucytosineMissedDosesInline(TabularInlineMixin, admin.TabularInline):
+
+    model = FlucytosineMissedDoses
+    form = FlucytosineMissedDosesForm
+    extra = 1
+
+
 @admin.register(Week2, site=ambition_subject_admin)
 class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week2Form
 
     inlines = [SignificantDiagnosesInline, FluconazoleMissedDosesInline,
-               AmphotericinMissedDosesInline]
+               AmphotericinMissedDosesInline, FlucytosineMissedDosesInline]
 
     fieldsets = (
         ['Admission history', {
@@ -47,7 +56,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'discharged',
                 'discharge_date',
                 'died',
-                'death_date')},
+                'death_date_time')},
          ],
         ['Induction phase Study medication', {
             'fields': (

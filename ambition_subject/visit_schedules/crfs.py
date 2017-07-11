@@ -25,7 +25,7 @@ crfs_d3 = (
         required=False),
     Crf(show_order=8, model='ambition_subject.lumbarpuncturecsf',
         required=False),
-    Crf(show_order=9, model='ambition_subject.deathreport', required=False))
+    Crf(show_order=9, model='ambition_subject.deathreport'))
 
 crfs_d5 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -38,7 +38,7 @@ crfs_d5 = (
         required=False),
     Crf(show_order=8, model='ambition_subject.lumbarpuncturecsf',
         required=False),
-    Crf(show_order=9, model='ambition_subject.deathreport', required=False))
+    Crf(show_order=9, model='ambition_subject.deathreport'))
 
 crfs_d7 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
