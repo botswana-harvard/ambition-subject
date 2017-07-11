@@ -283,7 +283,9 @@ REASON_STUDY_TERMINATED = (
                                       'participation'),
     ('care_transferred_to_another_institution', 'Care transferred to another '
                                                 'institution'),
-    ('late_exclusion_criteria_met', 'Late exclusion criteria met'))
+    ('late_exclusion_criteria_met', 'Late exclusion criteria met'),
+    ('Included in error', 'Included in error')
+)
 
 REGIMEN = (
     ('single_dose', '1 (Single dose)'),

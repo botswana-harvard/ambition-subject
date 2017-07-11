@@ -2,7 +2,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, REASON_STUDY_TERMINATED
 from .model_mixins.crf_model_mixin import CrfModelMixin
@@ -16,8 +16,10 @@ class StudyTerminationConclusion(CrfModelMixin):
         validators=[date_not_future])
 
     date_last_study_fu = models.DateField(
-        verbose_name='Date of last follow-up as part of the study',
-        validators=[date_not_future])
+        verbose_name='Date of last research follow up',
+        validators=[date_not_future],
+        blank=True,
+        null=True)
 
     discharged_after_initial_admission = models.CharField(
         verbose_name='Was patient discharged after initial admission?',
@@ -65,27 +67,20 @@ class StudyTerminationConclusion(CrfModelMixin):
         null=True)
 
     willing_to_complete_10W_FU = models.CharField(
-        verbose_name='Is the patient willing to complete'
-        'the 10 week FU visit only?',
+        verbose_name='Is the patient willing to complete the 10 week FU visit only?',
         max_length=12,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     willing_to_complete_centre = models.CharField(
-        verbose_name='Is the patient willing to complete the 10 week'
-        'FU visit only at their new care centre?',
+        verbose_name='Is the patient willing to complete the 10 week FU visit only at their new care centre?',
         max_length=17,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     date_willing_to_complete = models.DateField(
         verbose_name=' Date the 10W FU due',
         validators=[date_not_future],
         blank=True,
         null=True)
-
-    late_protocol_exclusion = models.CharField(
-        verbose_name='late protocol exclusion met?',
-        max_length=4,
-        choices=YES_NO)
 
     rifampicin_started = models.CharField(
         verbose_name='Rifampicin started since week 4?',
@@ -99,8 +94,7 @@ class StudyTerminationConclusion(CrfModelMixin):
         null=True)
 
     first_line_regimen_patients = models.CharField(
-        verbose_name='First line ARV regimen started for'
-        'naive patients (or regimen switched for those already on ARVs)',
+        verbose_name='started for naive patients (or regimen switched for those already on ARVs)',
         max_length=75,
         choices=ARV_REGIMEN)
 
@@ -109,14 +103,6 @@ class StudyTerminationConclusion(CrfModelMixin):
         blank=True,
         null=True,
         verbose_name='If other, please specify:')
-
-    second_line_regimen_patients = models.CharField(
-        verbose_name='Second line ARV regimen started for naive patients'
-        '(or regimen switched for those already on ARVs)',
-        max_length=75,
-        choices=ARV_REGIMEN)
-
-    second_line_regimen_patients_other = OtherCharField()
 
     date_arvs_started_or_switched = models.DateField(
         blank=True,
