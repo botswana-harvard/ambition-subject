@@ -19,10 +19,8 @@ class StudyTerminationConclusionAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'termination_reason': admin.VERTICAL,
         'willing_to_complete_10W_FU': admin.VERTICAL,
         'willing_to_complete_centre': admin.VERTICAL,
-        'late_protocol_exclusion': admin.VERTICAL,
         'rifampicin_started': admin.VERTICAL,
         'first_line_regimen_patients': admin.VERTICAL,
-        'second_line_regimen_patients': admin.VERTICAL,
         'first_line_env': admin.VERTICAL}
 
     fieldsets = (
@@ -42,13 +40,10 @@ class StudyTerminationConclusionAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'willing_to_complete_10W_FU',
                 'willing_to_complete_centre',
                 'date_willing_to_complete',
-                'late_protocol_exclusion',
                 'rifampicin_started',
                 'included_in_error',
                 'first_line_regimen_patients',
                 'first_line_regimen_patients_other',
-                'second_line_regimen_patients',
-                'second_line_regimen_patients_other',
                 'date_arvs_started_or_switched',
                 'first_line_env',
                 'arvs_delay_reason')}],
