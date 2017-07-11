@@ -19,12 +19,32 @@ class SignificantDiagnosesInline(TabularInlineMixin, admin.TabularInline):
     form = SignificantDiagnosesForm
     extra = 1
 
+    fieldsets = (
+        ['Admission history', {
+            'fields': (
+                'other_significant_diagnoses',
+                'possible_diagnoses',
+                'dx_date',
+                'dx_other')},
+         ],)
+
+    radio_fields = {
+        'other_significant_diagnoses': admin.VERTICAL}
+
 
 class AmphotericinMissedDosesInline(TabularInlineMixin, admin.TabularInline):
 
     model = AmphotericinMissedDoses
     form = AmphotericinMissedDosesForm
     extra = 1
+
+    fieldsets = (
+        ['Admission history', {
+            'fields': (
+                'ampho_day_missed',
+                'ampho_missed_reason',
+                'missed_reason_other')},
+         ],)
 
 
 class FluconazoleMissedDosesInline(TabularInlineMixin, admin.TabularInline):
@@ -33,12 +53,28 @@ class FluconazoleMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     form = FluconazoleMissedDosesForm
     extra = 1
 
+    fieldsets = (
+        ['Admission history', {
+            'fields': (
+                'flucon_day_missed',
+                'flucon_missed_reason',
+                'missed_reason_other')},
+         ],)
+
 
 class FlucytosineMissedDosesInline(TabularInlineMixin, admin.TabularInline):
 
     model = FlucytosineMissedDoses
     form = FlucytosineMissedDosesForm
     extra = 1
+
+    fieldsets = (
+        ['Admission history', {
+            'fields': (
+                'flucy_day_missed',
+                'flucy_missed_reason',
+                'missed_reason_other')},
+         ],)
 
 
 @admin.register(Week2, site=ambition_subject_admin)

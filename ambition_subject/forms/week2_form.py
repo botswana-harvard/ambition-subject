@@ -1,6 +1,8 @@
 from django import forms
 
-from ambition_subject_validations.form_validators import Week2FormValidator
+from ambition_subject_validations.form_validators import (
+    Week2FormValidator, SignificantDiagnosesFormValidator,
+    FluconazoleMissedDosesFormValidator)
 
 from ..models import (
     Week2, AmphotericinMissedDoses, FluconazoleMissedDoses,
@@ -23,12 +25,24 @@ class Week2Form(SubjectModelFormMixin):
 
 class SignificantDiagnosesForm(forms.ModelForm):
 
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = SignificantDiagnosesFormValidator(
+            cleaned_data=cleaned_data).clean()
+        return cleaned_data
+
     class Meta:
         model = SignificantDiagnoses
         fields = '__all__'
 
 
 class FluconazoleMissedDosesForm(forms.ModelForm):
+
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = FluconazoleMissedDosesFormValidator(
+            cleaned_data=cleaned_data).clean()
+        return cleaned_data
 
     class Meta:
         model = FluconazoleMissedDoses

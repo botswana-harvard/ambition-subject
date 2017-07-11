@@ -1,4 +1,7 @@
 from django.db import models
+
+from edc_base.model_managers import HistoricalRecords
+
 from .model_mixins import CrfModelMixin
 
 
@@ -31,3 +34,8 @@ class ClinicNote(CrfModelMixin):
     plan = models.TextField(
         max_length=1000,
     )
+
+    history = HistoricalRecords()
+
+    class Meta:
+        app_label = 'ambition_subject'

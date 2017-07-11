@@ -241,10 +241,17 @@ class SignificantDiagnoses(BaseUuidModel):
 
     week2 = models.ForeignKey(Week2)
 
+    other_significant_diagnoses = models.CharField(
+        verbose_name='Other significant diagnosis since enrolment?',
+        max_length=5,
+        choices=YES_NO)
+
     possible_diagnoses = models.CharField(
         verbose_name='Significant diagnoses:',
         max_length=25,
-        choices=SIGNIFICANT_DX
+        choices=SIGNIFICANT_DX,
+        blank=True,
+        null=True
     )
 
     dx_date = models.DateField(
@@ -271,14 +278,16 @@ class SignificantDiagnoses(BaseUuidModel):
         unique_together = ('possible_diagnoses', 'dx_date')
 
 
-class MissedDosesMixin:
+class FluconazoleMissedDoses(BaseUuidModel):
 
-    day_missed = models.IntegerField(
+    week2 = models.ForeignKey(Week2)
+
+    flucon_day_missed = models.IntegerField(
         verbose_name='Day missed:',
         choices=DAYS_MISSED
     )
 
-    missed_reason = models.CharField(
+    flucon_missed_reason = models.CharField(
         verbose_name='Reason:',
         max_length=25,
         blank=True,
@@ -291,54 +300,72 @@ class MissedDosesMixin:
     history = HistoricalRecords()
 
     def natural_key(self):
-        return (self.day_missed, self.flucon_missed_reason) + self.week2.natural_key()
-    natural_key.dependencies = ['ambition_subject.week2']
-
-    class Meta:
-        abstract = True
-        unique_together = ('day_missed', 'missed_reason')
-
-
-class FluconazoleMissedDoses(MissedDosesMixin, BaseUuidModel):
-
-    week2 = models.ForeignKey(Week2)
-
-    objects = AmphotericinMissedDosesManager()
-
-    def natural_key(self):
-        return (self.day_missed, self.missed_reason) + self.week2.natural_key()
+        return (self.flucon_day_missed, self.flucon_missed_reason) + self.week2.natural_key()
     natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Fluconazole Missed Doses'
+        unique_together = ('flucon_day_missed', 'flucon_missed_reason')
 
 
-class AmphotericinMissedDoses(MissedDosesMixin, BaseUuidModel):
+class AmphotericinMissedDoses(BaseUuidModel):
 
     week2 = models.ForeignKey(Week2)
 
-    objects = AmphotericinMissedDosesManager()
+    ampho_day_missed = models.IntegerField(
+        verbose_name='Day missed:',
+        choices=DAYS_MISSED
+    )
+
+    ampho_missed_reason = models.CharField(
+        verbose_name='Reason:',
+        max_length=25,
+        blank=True,
+        choices=REASON_DRUG_MISSED)
+
+    missed_reason_other = OtherCharField()
+
+    objects = FluconazoleMissedDosesManager()
+
+    history = HistoricalRecords()
 
     def natural_key(self):
-        return (self.day_missed, self.missed_reason) + self.week2.natural_key()
+        return (self.ampho_day_missed, self.ampho_missed_reason) + self.week2.natural_key()
     natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Amphotericin Missed Doses'
+        unique_together = ('ampho_day_missed', 'ampho_missed_reason')
 
 
-class FlucytosineMissedDoses(MissedDosesMixin, BaseUuidModel):
+class FlucytosineMissedDoses(BaseUuidModel):
 
     week2 = models.ForeignKey(Week2)
 
-    objects = AmphotericinMissedDosesManager()
+    flucy_day_missed = models.IntegerField(
+        verbose_name='Day missed:',
+        choices=DAYS_MISSED
+    )
+
+    flucy_missed_reason = models.CharField(
+        verbose_name='Reason:',
+        max_length=25,
+        blank=True,
+        choices=REASON_DRUG_MISSED)
+
+    missed_reason_other = OtherCharField()
+
+    objects = FluconazoleMissedDosesManager()
+
+    history = HistoricalRecords()
 
     def natural_key(self):
-        return (self.day_missed, self.missed_reason) + self.week2.natural_key()
+        return (self.flucy_day_missed, self.flucy_missed_reason) + self.week2.natural_key()
     natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Flucytosine Missed Doses'
+        unique_together = ('flucy_day_missed', 'flucy_missed_reason')
