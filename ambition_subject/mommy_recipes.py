@@ -4,7 +4,7 @@ from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
-from edc_base_test.faker import EdcBaseProvider
+from edc_consent.tests import EdcConsentProvider
 from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
 from edc_visit_tracking.constants import SCHEDULED
 
@@ -18,6 +18,7 @@ from .models import SubjectLocator, SubjectConsent, PrnModel
 from .models.list_models import AEClassification, Neurological
 from .models.list_models import SignificantNewDiagnosis, MeningitisSymptom
 from .models.list_models import Antibiotic, Symptom
+from ambition_subject.models.clinic_note import ClinicNote
 
 
 class DateProvider(BaseProvider):
@@ -42,7 +43,7 @@ class DateProvider(BaseProvider):
 
 
 fake = Faker()
-fake.add_provider(EdcBaseProvider)
+fake.add_provider(EdcConsentProvider)
 fake.add_provider(DateProvider)
 
 aeclassification = Recipe(AEClassification)
@@ -60,24 +61,7 @@ adverseeventtmg = Recipe(
     AdverseEventTMG)
 
 bloodresult = Recipe(
-    BloodResult,
-    wbc=200,
-    platelets=203,
-    haemoglobin=222,
-    absolute_neutrophil=1.02,
-    creatinine=1.22,
-    sodium=88,
-    potassium=0.8,
-    magnesium=5,
-    total_bilirubin=0.9,
-    alt=102,
-    crp=200,
-    urea=33,
-    abs_cd4=59,
-    proteinuria=YES,
-    urine_cr_ag='POS',
-    are_results_normal=YES,
-    abnormal_results_in_ae_range=YES)
+    BloodResult,)
 
 deathreport = Recipe(
     DeathReport,
@@ -161,36 +145,26 @@ patienthistory = Recipe(
     headache_duration=2,
     visual_loss_duration=1,
     med_history=YES,
+    symptom=related(symptom),
+    neurological=related(neurological),
     tb_site='pulmonary',
     tb_treatment=YES,
     taking_rifampicin=NO,
-    rifampicin_started_date=None,
     previous_infection=NO,
-    previous_infection_specify=None,
-    infection_date=None,
     taking_arv=NO,
-    first_line_arvs=NOT_APPLICABLE,
-    second_line_arvs=NOT_APPLICABLE,
-    second_line_arvs_other=None,
-    first_line_arvs_other=None,
-    first_line_choice=NOT_APPLICABLE,
     patient_adherence=NO,
     last_dose=1,
-    last_viral_load=None,
     temp=38,
     heart_rate=88,
     blood_pressure='120/80',
     respiratory_rate=22,
     weight=60,
     glasgow_coma_score=8,
-    neurological_other=None,
-    focal_neurologic_deficit=None,
     visual_acuity_day=get_utcnow,
     left_acuity=0.52,
     right_acuity=0.53,
     lung_exam=YES,
-    cryptococcal_lesions=NO,
-    specify_medications=None)
+    cryptococcal_lesions=NO,)
 
 protocoldeviationviolation = Recipe(
     ProtocolDeviationViolation)
@@ -350,3 +324,6 @@ prnmodel = Recipe(
     lumbar_puncture=NO,
     protocol_deviation=NO,
     death_report=NO)
+
+clinicnote = Recipe(
+    ClinicNote,)

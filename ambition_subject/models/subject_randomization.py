@@ -6,6 +6,13 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 
 
+class SubjectRandomizationManager(models.Manager):
+
+    def get_by_natural_key(self, subject_identifier):
+        return self.get(
+            subject_identifier=subject_identifier,)
+
+
 class SubjectRandomization(BaseUuidModel):
 
     study_site = models.CharField(
@@ -32,7 +39,12 @@ class SubjectRandomization(BaseUuidModel):
             message=('Ensure initials consist of letters '
                      'only in upper case, no spaces.'))])
 
+    objects = SubjectRandomizationManager()
+
     history = HistoricalRecords()
+
+    def natural_key(self):
+        return (self.subject_identifier,)
 
     def __str__(self):
         return f'{self.subject_identifier} {self.rx} {self.study_site} {self.sid}'
