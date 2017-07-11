@@ -12,6 +12,18 @@ class PrnModel(CrfModelMixin):
         choices=YES_NO
     )
 
+    adverse_event_tmg = models.CharField(
+        verbose_name='Adverse event TMG?',
+        max_length=5,
+        choices=YES_NO
+    )
+
+    adverse_event_followup = models.CharField(
+        verbose_name='Adverse event follow up?',
+        max_length=5,
+        choices=YES_NO
+    )
+
     microbiology = models.CharField(
         verbose_name='Microbiology?',
         max_length=5,

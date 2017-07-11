@@ -10,6 +10,7 @@ from edc_visit_tracking.constants import SCHEDULED
 from ..models import Appointment
 
 
+@tag('rg')
 class TestSubjectRules(TestCase):
 
     def setUp(self):
@@ -39,6 +40,38 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseevent',
+                subject_identifier=self.subject_identifier).entry_status,
+            REQUIRED)
+
+    def test_adverse_event_tmg_required(self):
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.adverseeventtmg',
+                subject_identifier=self.subject_identifier).entry_status,
+            NOT_REQUIRED)
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            adverse_event_tmg=YES)
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.adverseeventtmg',
+                subject_identifier=self.subject_identifier).entry_status,
+            REQUIRED)
+
+    def test_adverse_event_followup_required(self):
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.adverseeventfollowup',
+                subject_identifier=self.subject_identifier).entry_status,
+            NOT_REQUIRED)
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            adverse_event_followup=YES)
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.adverseeventfollowup',
                 subject_identifier=self.subject_identifier).entry_status,
             REQUIRED)
 

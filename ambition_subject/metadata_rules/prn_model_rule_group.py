@@ -15,6 +15,18 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=['adverseevent'])
 
+    adverse_event_tmg = CrfRule(
+        predicate=P('adverse_event_tmg', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=['adverseeventtmg'])
+
+    adverse_event_followup = CrfRule(
+        predicate=P('adverse_event_followup', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=['adverseeventfollowup'])
+
     microbiology = CrfRule(
         predicate=P('microbiology', 'eq', YES),
         consequence=REQUIRED,

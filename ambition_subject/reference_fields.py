@@ -9,8 +9,9 @@ site_reference_fields.register(reference)
 
 reference = ReferenceModelConfig(
     model='ambition_subject.prnmodel',
-    fields=['adverse_event', 'microbiology', 'radiology',
-            'protocol_deviation', 'lumbar_puncture', 'death_report'])
+    fields=['adverse_event', 'adverse_event_tmg', 'adverse_event_followup',
+            'microbiology', 'radiology', 'protocol_deviation',
+            'lumbar_puncture', 'death_report'])
 site_reference_fields.register(reference)
 
 reference = ReferenceModelConfig(
