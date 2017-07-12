@@ -1,10 +1,10 @@
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 
 from .list_models import AEClassification
+from .model_mixins import CrfModelMixin
 
 
 class AdverseEventManager(models.Manager):
@@ -14,7 +14,7 @@ class AdverseEventManager(models.Manager):
             subject_identifier=subject_identifier,)
 
 
-class AdverseEventTMG(BaseUuidModel):
+class AdverseEventTMG(CrfModelMixin):
 
     subject_identifier = models.CharField(
         verbose_name="Subject Identifier",
@@ -66,6 +66,6 @@ class AdverseEventTMG(BaseUuidModel):
     def natural_key(self):
         return (self.subject_identifier,)
 
-    class Meta(BaseUuidModel.Meta):
+    class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         verbose_name_plural = 'Adverse Event TMG'
