@@ -72,6 +72,7 @@ class FlucytosineMissedDosesInline(TabularInlineMixin, admin.TabularInline):
         ['Admission history', {
             'fields': (
                 'flucy_day_missed',
+                'flucy_doses_missed',
                 'flucy_missed_reason',
                 'missed_reason_other')},
          ],)
