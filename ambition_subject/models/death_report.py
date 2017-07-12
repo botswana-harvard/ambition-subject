@@ -10,7 +10,7 @@ from .model_mixins import CrfModelMixin
 
 class DeathReport(CrfModelMixin):
 
-    death_datetime = models.DateField(
+    death_datetime = models.DateTimeField(
         validators=[datetime_not_future],
         verbose_name='Date Time of Death')
 
