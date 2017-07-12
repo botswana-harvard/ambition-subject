@@ -100,13 +100,7 @@ followup = Recipe(
 
 adverseeventfollowup = Recipe(
     AdverseEventFollowUp,
-    relevant_history=None,
-    med_name_given=None,
-    med_given_dosage=None,
-    med_given_indication=None,
-    work_up=None,
-    treatment_plan=None,
-    treated=None)
+    relevant_history=NO,)
 
 subjectvisit = Recipe(
     SubjectVisit,

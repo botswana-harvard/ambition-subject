@@ -50,9 +50,6 @@ class AdverseEventTMG(CrfModelMixin):
 
     history = HistoricalRecords()
 
-    def natural_key(self):
-        return (self.subject_identifier,)
-
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         verbose_name_plural = 'Adverse Event TMG'
