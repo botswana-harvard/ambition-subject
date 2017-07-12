@@ -344,6 +344,9 @@ DAYS_MISSED = (
     (6, 'Day 6'), (7, 'Day 7'), (8, 'Day 8'), (9, 'Day 9'), (10, 'Day 10'),
     (11, 'Day 11'), (12, 'Day 12'), (13, 'Day 13'), (14, 'Day 14'))
 
+DOSES_MISSED = (
+    (1, '1 Dose'), (2, '2 Doses'), (3, '3 Doses'), (4, '4 Doses'))
+
 AE_OUTCOME = (
     ('Recovered', 'Recovered/Resolved'),
     ('Recovering', 'Recovering/Resolving at end of study'),

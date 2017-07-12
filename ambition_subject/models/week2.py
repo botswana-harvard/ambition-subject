@@ -7,7 +7,8 @@ from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO
 
-from ..choices import (REASON_DRUG_MISSED, DAYS_MISSED, SIGNIFICANT_DX)
+from ..choices import (REASON_DRUG_MISSED, DAYS_MISSED,
+                       DOSES_MISSED, SIGNIFICANT_DX)
 from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import CrfModelMixin, ClinicalAssessment
 
@@ -349,6 +350,11 @@ class FlucytosineMissedDoses(BaseUuidModel):
         choices=DAYS_MISSED
     )
 
+    flucy_doses_missed = models.IntegerField(
+        verbose_name='Doses missed:',
+        choices=DOSES_MISSED
+    )
+
     flucy_missed_reason = models.CharField(
         verbose_name='Reason:',
         max_length=25,
@@ -368,4 +374,5 @@ class FlucytosineMissedDoses(BaseUuidModel):
     class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Flucytosine Missed Doses'
-        unique_together = ('flucy_day_missed', 'flucy_missed_reason')
+        unique_together = ('flucy_day_missed',
+                           'flucy_doses_missed', 'flucy_missed_reason')
