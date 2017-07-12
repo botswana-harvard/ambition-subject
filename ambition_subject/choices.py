@@ -1,6 +1,6 @@
 from edc_constants.constants import (NEG, OTHER, POS,
                                      NOT_APPLICABLE, UNKNOWN,
-                                     NORMAL, IND)
+                                     NORMAL, IND, YES, NO)
 
 from .constants import N1, A2, AMS_N3, AMS_A4, DEVIATION, VIOLATION
 
@@ -161,7 +161,8 @@ FIRST_LINE_REGIMEN = (
 
 FLUCONAZOLE_DOSE = (
     ('800mg_daily', '800mg Daily'),
-    (OTHER, 'Other, specify'))
+    (OTHER, 'Other, specify'),
+    ('Not Done', 'Not Done'))
 
 GLASGOW_COMA_SCORE_EYES = (
     ('does_not_open_eyes', 'Does not open eyes'),
@@ -391,4 +392,10 @@ RANKING_SCORE = (
 DEVIATION_VIOLATION = (
     (DEVIATION, 'Deviation'),
     (VIOLATION, 'Violation')
+)
+
+YES_NO_ND = (
+    (YES, 'Yes'),
+    (NO, 'No'),
+    ('Not Done', 'Not Done')
 )
