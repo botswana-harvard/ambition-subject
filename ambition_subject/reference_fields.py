@@ -71,5 +71,5 @@ site_reference_fields.register(reference)
 
 reference = ReferenceModelConfig(
     model='ambition_subject.subjectrequisition',
-    fields=['report_datetime'])
+    fields=['requisition_datetime'])
 site_reference_fields.register(reference)
