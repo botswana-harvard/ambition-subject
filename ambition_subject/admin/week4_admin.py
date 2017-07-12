@@ -19,16 +19,12 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
                 'subject_visit',
                 'physical_symptoms',
                 'headache',
-                'visual_acuity_left_eye',
-                'visual_acuity_right_eye',
                 'glasgow_coma_score',
                 'confusion',
                 'recent_seizure_less_72',
                 'cn_palsy',
                 'behaviour_change',
-                'focal_neurology',
-                'other_dx',
-                'other_dx_date'
+                'focal_neurology'
             )}
          ],
         audit_fieldset_tuple
@@ -42,5 +38,4 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
         'confusion': admin.VERTICAL,
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
-        'other_dx': admin.VERTICAL
     }

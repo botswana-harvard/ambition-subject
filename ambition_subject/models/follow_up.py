@@ -4,7 +4,7 @@ from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
 
-from ..choices import FLUCONAZOLE_DOSE, RANKING_SCORE
+from ..choices import FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND
 
 from .model_mixins import (
     CrfModelMixin, ClinicalAssessment, SignificantDiagnosesMixin)
@@ -39,7 +39,7 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
     rifampicin_started = models.CharField(
         verbose_name='Rifampicin started since last visit?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_ND)
 
     rifampicin_start_date = models.DateField(
         verbose_name='Date rifampicin started',
