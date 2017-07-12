@@ -154,7 +154,7 @@ class ClinicalAssessment(models.Model):
         blank=True,)
 
     other_dx = models.CharField(
-        verbose_name='Other significant diagnosis?',
+        verbose_name='Significant diagnosis since last visit?',
         max_length=5,
         choices=YES_NO,
         null=True)
