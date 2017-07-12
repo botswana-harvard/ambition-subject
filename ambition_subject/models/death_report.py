@@ -1,7 +1,7 @@
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import date_not_future
+from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO
 
 from ..choices import CAUSE_OF_DEATH, TB_SITE_DEATH
@@ -10,8 +10,9 @@ from .model_mixins import CrfModelMixin
 
 class DeathReport(CrfModelMixin):
 
-    death_date = models.DateField(
-        validators=[date_not_future])
+    death_datetime = models.DateField(
+        validators=[datetime_not_future],
+        verbose_name='Date Time of Death')
 
     study_day = models.CharField(
         max_length=2,
