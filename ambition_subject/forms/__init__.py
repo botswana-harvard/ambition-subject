@@ -5,7 +5,7 @@ from .appointment_form import AppointmentForm
 from .blood_result_form import BloodResultForm
 from .clinic_note_form import ClinicNoteForm
 from .death_report_form import DeathReportForm
-from .follow_up import FollowUpForm
+from .follow_up import FollowUpForm, FollowUpDiagnosesForm
 from .lumbar_puncture_csf_form import LumbarPunctureCSFForm
 from .microbiology_form import MicrobiologyForm
 from .missed_visit_form import MissedVisitForm

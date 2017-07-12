@@ -7,7 +7,7 @@ from .clinic_note import ClinicNote
 from .death_report import DeathReport
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
-from .follow_up import FollowUp
+from .follow_up import FollowUp, FollowUpDiagnoses
 from .list_models import RandomizationItem
 from .lumbar_puncture_csf import LumbarPunctureCsf
 from .microbiology import Microbiology

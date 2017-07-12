@@ -1,23 +1,48 @@
 from django.contrib import admin
 
+from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
 from edc_base.fieldsets.fieldset import Fieldset
 
 from ..admin_site import ambition_subject_admin
 from ..constants import WEEK10
-from ..forms import FollowUpForm
-from ..models import FollowUp
+from ..forms import FollowUpForm, FollowUpDiagnosesForm
+from ..models import FollowUp, FollowUpDiagnoses
 from .modeladmin_mixins import CrfModelAdminMixin
 
 visual_acuity_fieldset = Fieldset(
     'visual_acuity_left_eye',
     'visual_acuity_right_eye',
-    section='Visual Acuity')
+    'patient_help',
+    'patient_problems',
+    'ranking_score',
+    section='Week 10')
+
+
+class FollowUpDiagnosesInline(TabularInlineMixin, admin.TabularInline):
+
+    model = FollowUpDiagnoses
+    form = FollowUpDiagnosesForm
+    extra = 1
+
+    fieldsets = (
+        ['Admission history', {
+            'fields': (
+                'other_significant_diagnoses',
+                'possible_diagnoses',
+                'dx_date',
+                'dx_other')},
+         ],)
+
+    radio_fields = {
+        'other_significant_diagnoses': admin.VERTICAL}
 
 
 @admin.register(FollowUp, site=ambition_subject_admin)
 class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = FollowUpForm
+
+    inlines = [FollowUpDiagnosesInline]
 
     conditional_fieldsets = {
         WEEK10: visual_acuity_fieldset, }
@@ -30,14 +55,6 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'cn_palsy': admin.VERTICAL,
         'behaviour_change': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
-        'tb_pulmonary_dx': admin.VERTICAL,
-        'extra_pulmonary_tb_dx': admin.VERTICAL,
-        'kaposi_sarcoma_dx': admin.VERTICAL,
-        'malaria_dx': admin.VERTICAL,
-        'bacteraemia_dx': admin.VERTICAL,
-        'pneumonia_dx': admin.VERTICAL,
-        'diarrhoeal_wasting_dx': admin.VERTICAL,
-        'other_dx': admin.VERTICAL,
         'fluconazole_dose': admin.VERTICAL,
         'rifampicin_started': admin.VERTICAL}
 
@@ -52,28 +69,13 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'recent_seizure_less_72',
                 'cn_palsy',
                 'behaviour_change',
-                'focal_neurology',
-                'tb_pulmonary_dx',
-                'tb_pulmonary_dx_date',
-                'extra_pulmonary_tb_dx',
-                'extra_tb_pulmonary_dx_date',
-                'kaposi_sarcoma_dx',
-                'kaposi_sarcoma_dx_date',
-                'malaria_dx',
-                'malaria_dx_date',
-                'bacteraemia_dx',
-                'bacteraemia_dx_date',
-                'pneumonia_dx',
-                'pneumonia_dx_date',
-                'diarrhoeal_wasting_dx',
-                'diarrhoeal_wasting_dx_date',
-                'other_dx')},
+                'focal_neurology')},
          ),
         ('Drug Treatment', {
             'fields': (
                 'fluconazole_dose',
                 'fluconazole_dose_other',
                 'rifampicin_started',
-                'rifampicin_start_date',
-                'fu_narrative')})
+                'rifampicin_start_date')}),
+        audit_fieldset_tuple
     )

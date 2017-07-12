@@ -2,15 +2,13 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_fields.custom_fields import OtherCharField
-from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO
 
-from ..choices import (REASON_DRUG_MISSED, DAYS_MISSED,
-                       DOSES_MISSED, SIGNIFICANT_DX)
 from .list_models import Antibiotic, Day14Medication, OtherDrug
-from .model_mixins import CrfModelMixin, ClinicalAssessment
+from .model_mixins import (CrfModelMixin, ClinicalAssessment,
+                           FluconazoleMissedDosesMixin, SignificantDiagnosesMixin,
+                           AmphotericinMissedDosesMixin, FlucytosineMissedDosesMixin)
 
 
 class AmphotericinMissedDosesManager(models.Manager):
@@ -238,34 +236,9 @@ class Week2(ClinicalAssessment, CrfModelMixin):
         app_label = 'ambition_subject'
 
 
-class SignificantDiagnoses(BaseUuidModel):
+class SignificantDiagnoses(SignificantDiagnosesMixin):
 
     week2 = models.ForeignKey(Week2)
-
-    other_significant_diagnoses = models.CharField(
-        verbose_name='Other significant diagnosis since enrolment?',
-        max_length=5,
-        choices=YES_NO)
-
-    possible_diagnoses = models.CharField(
-        verbose_name='Significant diagnoses:',
-        max_length=25,
-        choices=SIGNIFICANT_DX,
-        blank=True,
-        null=True
-    )
-
-    dx_date = models.DateField(
-        verbose_name='Date of diagnosis:',
-        validators=[date_not_future],
-        null=True,
-        blank=True)
-
-    dx_other = models.CharField(
-        verbose_name='If other, please specify:',
-        max_length=50,
-        null=True,
-        blank=True)
 
     objects = SignificantDiagnosesManager()
 
@@ -279,26 +252,11 @@ class SignificantDiagnoses(BaseUuidModel):
         unique_together = ('possible_diagnoses', 'dx_date')
 
 
-class FluconazoleMissedDoses(BaseUuidModel):
+class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
 
     week2 = models.ForeignKey(Week2)
 
-    flucon_day_missed = models.IntegerField(
-        verbose_name='Day missed:',
-        choices=DAYS_MISSED
-    )
-
-    flucon_missed_reason = models.CharField(
-        verbose_name='Reason:',
-        max_length=25,
-        blank=True,
-        choices=REASON_DRUG_MISSED)
-
-    missed_reason_other = OtherCharField()
-
     objects = FluconazoleMissedDosesManager()
-
-    history = HistoricalRecords()
 
     def natural_key(self):
         return (self.flucon_day_missed, self.flucon_missed_reason) + self.week2.natural_key()
@@ -310,22 +268,9 @@ class FluconazoleMissedDoses(BaseUuidModel):
         unique_together = ('flucon_day_missed', 'flucon_missed_reason')
 
 
-class AmphotericinMissedDoses(BaseUuidModel):
+class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
 
     week2 = models.ForeignKey(Week2)
-
-    ampho_day_missed = models.IntegerField(
-        verbose_name='Day missed:',
-        choices=DAYS_MISSED
-    )
-
-    ampho_missed_reason = models.CharField(
-        verbose_name='Reason:',
-        max_length=25,
-        blank=True,
-        choices=REASON_DRUG_MISSED)
-
-    missed_reason_other = OtherCharField()
 
     objects = FluconazoleMissedDosesManager()
 
@@ -341,27 +286,9 @@ class AmphotericinMissedDoses(BaseUuidModel):
         unique_together = ('ampho_day_missed', 'ampho_missed_reason')
 
 
-class FlucytosineMissedDoses(BaseUuidModel):
+class FlucytosineMissedDoses(FlucytosineMissedDosesMixin):
 
     week2 = models.ForeignKey(Week2)
-
-    flucy_day_missed = models.IntegerField(
-        verbose_name='Day missed:',
-        choices=DAYS_MISSED
-    )
-
-    flucy_doses_missed = models.IntegerField(
-        verbose_name='Doses missed:',
-        choices=DOSES_MISSED
-    )
-
-    flucy_missed_reason = models.CharField(
-        verbose_name='Reason:',
-        max_length=25,
-        blank=True,
-        choices=REASON_DRUG_MISSED)
-
-    missed_reason_other = OtherCharField()
 
     objects = FluconazoleMissedDosesManager()
 
