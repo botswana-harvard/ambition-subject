@@ -13,7 +13,7 @@ from ...choices import (REASON_DRUG_MISSED, DAYS_MISSED,
 class SignificantDiagnosesMixin(BaseUuidModel):
 
     other_significant_diagnoses = models.CharField(
-        verbose_name='Other significant diagnosis since enrollment?',
+        verbose_name='Other significant diagnosis since last visit?',
         max_length=5,
         choices=YES_NO)
 
