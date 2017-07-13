@@ -70,6 +70,11 @@ reference = ReferenceModelConfig(
 site_reference_fields.register(reference)
 
 reference = ReferenceModelConfig(
+    model='ambition_subject.recurrencesymptom',
+    fields=['report_datetime'])
+site_reference_fields.register(reference)
+
+reference = ReferenceModelConfig(
     model='ambition_subject.subjectrequisition',
     fields=['requisition_datetime'])
 site_reference_fields.register(reference)

@@ -14,8 +14,7 @@ crfs_d1 = (
     Crf(show_order=9, model='ambition_subject.radiology', required=False),
     Crf(show_order=10, model='ambition_subject.protocoldeviationviolation',
         required=False),
-    Crf(show_order=11, model='ambition_subject.lumbarpuncturecsf',
-        required=False),
+    Crf(show_order=11, model='ambition_subject.lumbarpuncturecsf'),
     Crf(show_order=12, model='ambition_subject.deathreport', required=False))
 
 crfs_d3 = (
@@ -33,7 +32,7 @@ crfs_d3 = (
         required=False),
     Crf(show_order=10, model='ambition_subject.lumbarpuncturecsf',
         required=False),
-    Crf(show_order=11, model='ambition_subject.deathreport'))
+    Crf(show_order=11, model='ambition_subject.deathreport', required=False))
 
 crfs_d5 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -50,7 +49,7 @@ crfs_d5 = (
         required=False),
     Crf(show_order=10, model='ambition_subject.lumbarpuncturecsf',
         required=False),
-    Crf(show_order=11, model='ambition_subject.deathreport'))
+    Crf(show_order=11, model='ambition_subject.deathreport', required=False))
 
 crfs_d7 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -65,8 +64,7 @@ crfs_d7 = (
     Crf(show_order=8, model='ambition_subject.radiology', required=False),
     Crf(show_order=9, model='ambition_subject.protocoldeviationviolation',
         required=False),
-    Crf(show_order=10, model='ambition_subject.lumbarpuncturecsf',
-        required=False),
+    Crf(show_order=10, model='ambition_subject.lumbarpuncturecsf'),
     Crf(show_order=11, model='ambition_subject.deathreport', required=False))
 
 crfs_d10 = (
@@ -117,8 +115,7 @@ crfs_d14 = (
     Crf(show_order=9, model='ambition_subject.radiology', required=False),
     Crf(show_order=10, model='ambition_subject.protocoldeviationviolation',
         required=False),
-    Crf(show_order=11, model='ambition_subject.lumbarpuncturecsf',
-        required=False),
+    Crf(show_order=11, model='ambition_subject.lumbarpuncturecsf'),
     Crf(show_order=12, model='ambition_subject.deathreport', required=False))
 
 crfs_w4 = (

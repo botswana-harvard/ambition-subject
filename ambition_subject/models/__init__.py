@@ -27,5 +27,5 @@ from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
 from .week2 import (Week2, FluconazoleMissedDoses, AmphotericinMissedDoses,
                     SignificantDiagnoses, FlucytosineMissedDoses)
-from .week4 import Week4
+from .week4 import Week4, Week4Diagnoses
 from .week16 import Week16

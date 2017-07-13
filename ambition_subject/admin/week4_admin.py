@@ -1,17 +1,50 @@
 from django.contrib import admin
 
-from edc_base.modeladmin_mixins import audit_fieldset_tuple
+from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
 
 from ..admin_site import ambition_subject_admin
-from ..forms import Week4Form
-from ..models import Week4
+from ..forms import Week4Form, Week4DiagnosesForm
+from ..models import Week4, Week4Diagnoses
 from .modeladmin_mixins import ModelAdminMixin
+
+
+class Week4DiagnosesInline(TabularInlineMixin, admin.TabularInline):
+
+    model = Week4Diagnoses
+    form = Week4DiagnosesForm
+    extra = 1
+
+    fieldsets = (
+        ['Admission history', {
+            'fields': (
+                'other_significant_diagnoses',
+                'possible_diagnoses',
+                'dx_date',
+                'dx_other')},
+         ],)
+
+    radio_fields = {
+        'other_significant_diagnoses': admin.VERTICAL}
 
 
 @admin.register(Week4, site=ambition_subject_admin)
 class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
 
     form = Week4Form
+
+    inlines = [Week4DiagnosesInline]
+
+    radio_fields = {
+        'physical_symptoms': admin.VERTICAL,
+        'headache': admin.VERTICAL,
+        'recent_seizure_less_72': admin.VERTICAL,
+        'behaviour_change': admin.VERTICAL,
+        'confusion': admin.VERTICAL,
+        'cn_palsy': admin.VERTICAL,
+        'focal_neurology': admin.VERTICAL,
+        'fluconazole_dose': admin.VERTICAL,
+        'rifampicin_started': admin.VERTICAL
+    }
 
     fieldsets = (
         ['Clinical Assessment', {
@@ -27,15 +60,11 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
                 'focal_neurology'
             )}
          ],
+        ['Drug Treatment', {
+            'fields': (
+                'fluconazole_dose',
+                'fluconazole_dose_other',
+                'rifampicin_started',
+                'rifampicin_start_date')}],
         audit_fieldset_tuple
     )
-
-    radio_fields = {
-        'physical_symptoms': admin.VERTICAL,
-        'headache': admin.VERTICAL,
-        'recent_seizure_less_72': admin.VERTICAL,
-        'behaviour_change': admin.VERTICAL,
-        'confusion': admin.VERTICAL,
-        'cn_palsy': admin.VERTICAL,
-        'focal_neurology': admin.VERTICAL,
-    }

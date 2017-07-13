@@ -26,7 +26,7 @@ list_data = {
         ('doxycycline', 'Doxycycline'),
         ('erythromycin', 'Erythromycin'),
         ('ciprofloxacin', 'Ciprofloxacin'),
-        (OTHER, ' OTHER, specify')
+        (OTHER, 'Other, specify')
     ],
     'ambition_subject.antibiotictreatment': [
         ('amoxicillin', 'Amoxicillin'),
@@ -36,8 +36,8 @@ list_data = {
         ('erythromycin', 'Erythromycin'),
     ],
     'ambition_subject.day14medication': [
-        ('fluconazole', ' Fluconazole'),
-        ('rifampicin', ' Rifampicin'),
+        ('fluconazole', 'Fluconazole'),
+        ('rifampicin', 'Rifampicin'),
         ('co_trimoxazole', 'Co-trimoxazole'),
         (OTHER, 'Other')
     ],
@@ -118,7 +118,7 @@ for list_obj in list_data.keys():
     try:
         model = django_apps.get_app_config(
             list_obj.split('.')[0]).get_model(list_obj.split('.')[1])
-        for tpl in list_data.get(list_obj):
+        for tpl in list_data.get(list_obj).sort():
             short_name, display_value = tpl
             try:
                 obj = model.objects.get(short_name=short_name)
@@ -127,5 +127,6 @@ for list_obj in list_data.keys():
             else:
                 obj.name = display_value
                 obj.save()
+            print(">>>>>>>>>>>>>>>>>", obj, "\n")
     except Exception as e:
         print(e)
