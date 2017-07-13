@@ -48,4 +48,7 @@ class DeathReportAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'cause_other_tmg2_opinion',
                 'cause_tb_tmg2_opinion')}),
         ('Summary', {
-            'fields': 
+            'fields': (
+                'death_narrative',)}),
+        audit_fieldset_tuple
+    )
