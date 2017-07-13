@@ -24,7 +24,7 @@ wb.add_derivatives(bc, pl, serum, fbc)
 
 # TODO: Get correct sample codes from LIS
 qfc = AliquotType(
-    name='Quantitative Fungal Culture', alpha_code='QFC', numeric_code='61')
+    name='Quantitative FC', alpha_code='QFC', numeric_code='61')
 
 # TODO: Get correct sample codes from LIS
 csf_store = AliquotType(
