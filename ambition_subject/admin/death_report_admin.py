@@ -27,7 +27,7 @@ class DeathReportAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'subject_visit',
-                'datetime_of_death',
+                'death_datetime',
                 'study_day',
                 'death_as_inpatient')},
          ),
