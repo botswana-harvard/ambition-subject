@@ -37,7 +37,7 @@ list_data = {
     ],
     'ambition_subject.day14medication': [
         ('fluconazole', 'Fluconazole'),
-        ('rifampicin', 'Rifampicin'),
+        ('rifampicin', ' Rifampicin'),
         ('co_trimoxazole', 'Co-trimoxazole'),
         (OTHER, 'Other')
     ],
