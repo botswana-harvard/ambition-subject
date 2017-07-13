@@ -26,8 +26,8 @@ class DeathReportAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'datetime_of_death'
                 'subject_visit',
+                'datetime_of_death',
                 'study_day',
                 'death_as_inpatient')},
          ),
@@ -48,7 +48,4 @@ class DeathReportAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'cause_other_tmg2_opinion',
                 'cause_tb_tmg2_opinion')}),
         ('Summary', {
-            'fields': (
-                'death_narrative',)}),
-        audit_fieldset_tuple
-    )
+            'fields': 
