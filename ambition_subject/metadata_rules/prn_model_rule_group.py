@@ -39,6 +39,12 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=['radiology'])
 
+    recurrence_symptom = CrfRule(
+        predicate=P('recurrence_symptom', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=['recurrencesymptom'])
+
     protocol_deviation = CrfRule(
         predicate=P('protocol_deviation', 'eq', YES),
         consequence=REQUIRED,

@@ -1,7 +1,6 @@
 from edc_reference.reference_model_config import ReferenceModelConfig
 from edc_reference.site import site_reference_fields
 
-
 reference = ReferenceModelConfig(
     model='ambition_subject.adverseevent',
     fields=['ae_severity_grade'])
@@ -11,7 +10,7 @@ reference = ReferenceModelConfig(
     model='ambition_subject.prnmodel',
     fields=['adverse_event', 'adverse_event_tmg', 'adverse_event_followup',
             'microbiology', 'radiology', 'protocol_deviation',
-            'lumbar_puncture', 'death_report'])
+            'lumbar_puncture', 'recurrence_symptom', 'death_report'])
 site_reference_fields.register(reference)
 
 reference = ReferenceModelConfig(

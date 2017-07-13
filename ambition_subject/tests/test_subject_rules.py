@@ -16,15 +16,15 @@ class TestSubjectRules(TestCase):
     def setUp(self):
         screening = mommy.make_recipe('ambition_screening.subjectscreening',
                                       report_datetime=get_utcnow())
-        consent = mommy.make_recipe('ambition_subject.subjectconsent',
-                                    consent_datetime=get_utcnow(),
-                                    subject_screening=screening)
-        self.subject_identifier = consent.subject_identifier
+        self.consent = mommy.make_recipe('ambition_subject.subjectconsent',
+                                         consent_datetime=get_utcnow(),
+                                         subject_screening=screening)
+        self.subject_identifier = self.consent.subject_identifier
         self.subject_visit = mommy.make_recipe(
             'ambition_subject.subjectvisit',
             appointment=Appointment.objects.get(
-                subject_identifier=self.subject_identifier, visit_code='1000'),
-            subject_identifier=consent.subject_identifier,
+                subject_identifier=self.subject_identifier, visit_code='1028'),
+            subject_identifier=self.consent.subject_identifier,
             reason=SCHEDULED,)
 
     def test_adverse_event_required(self):
@@ -115,6 +115,20 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.lumbarpuncturecsf').entry_status,
+            REQUIRED)
+
+    def test_recurrence_symptom_required(self):
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.recurrencesymptom').entry_status,
+            NOT_REQUIRED)
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            recurrence_symptom=YES)
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.recurrencesymptom').entry_status,
             REQUIRED)
 
     def test_protocol_deviation_required(self):

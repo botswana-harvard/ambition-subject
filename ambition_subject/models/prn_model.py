@@ -36,6 +36,12 @@ class PrnModel(CrfModelMixin):
         choices=YES_NO
     )
 
+    recurrence_symptom = models.CharField(
+        verbose_name='Recurrence of Symptoms?',
+        max_length=5,
+        choices=YES_NO
+    )
+
     protocol_deviation = models.CharField(
         verbose_name='Protocol Deviation?',
         max_length=5,
