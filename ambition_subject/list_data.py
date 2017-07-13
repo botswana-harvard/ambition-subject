@@ -118,7 +118,7 @@ for list_obj in list_data.keys():
     try:
         model = django_apps.get_app_config(
             list_obj.split('.')[0]).get_model(list_obj.split('.')[1])
-        for tpl in list_data.get(list_obj).sort():
+        for tpl in list_data.get(list_obj):
             short_name, display_value = tpl
             try:
                 obj = model.objects.get(short_name=short_name)
@@ -127,6 +127,5 @@ for list_obj in list_data.keys():
             else:
                 obj.name = display_value
                 obj.save()
-            print(">>>>>>>>>>>>>>>>>", obj, "\n")
     except Exception as e:
         print(e)
