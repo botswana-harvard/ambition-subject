@@ -20,9 +20,7 @@ common_fields = ('subject_visit',
                  'protocol_deviation',
                  'death_report')
 
-follow_up = common_fields + ('recurrence_symptom',)
-
-lp = common_fields + ('lumbar_puncture',)
+follow_up = common_fields + ('lumbar_puncture', 'recurrence_symptom',)
 
 
 @admin.register(PrnModel, site=ambition_subject_admin)
@@ -30,9 +28,9 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PrnModelForm
     conditional_fieldsets = {
-        DAY1: Fieldset(*lp, section='PRN'),
-        DAY7: Fieldset(*lp, section='PRN'),
-        DAY14: Fieldset(*lp, section='PRN'),
+        DAY1: Fieldset(*common_fields, section='PRN'),
+        DAY7: Fieldset(*common_fields, section='PRN'),
+        DAY14: Fieldset(*common_fields, section='PRN'),
         WEEK4: Fieldset(*follow_up, section='PRN'),
         WEEK6: Fieldset(*follow_up, section='PRN'),
         WEEK8: Fieldset(*follow_up, section='PRN'),
@@ -58,7 +56,7 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'adverse_event_tmg',
                 'adverse_event_followup',
                 'microbiology',
-                'recurrence_symptom',
+                'lumbar_puncture',
                 'radiology',
                 'protocol_deviation',
                 'death_report')}],
