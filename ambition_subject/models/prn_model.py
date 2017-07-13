@@ -39,7 +39,8 @@ class PrnModel(CrfModelMixin):
     recurrence_symptom = models.CharField(
         verbose_name='Recurrence of Symptoms?',
         max_length=5,
-        choices=YES_NO
+        choices=YES_NO,
+        null=True
     )
 
     protocol_deviation = models.CharField(
@@ -51,7 +52,8 @@ class PrnModel(CrfModelMixin):
     lumbar_puncture = models.CharField(
         verbose_name='Lumbar puncture?',
         max_length=5,
-        choices=YES_NO
+        choices=YES_NO,
+        null=True
     )
 
     death_report = models.CharField(
