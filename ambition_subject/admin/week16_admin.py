@@ -24,6 +24,7 @@ class Week16Admin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'subject_visit',
                 'patient_alive',
+                'death_datetime',
                 'activities_help',
                 'illness_problems',
                 'ranking_score',

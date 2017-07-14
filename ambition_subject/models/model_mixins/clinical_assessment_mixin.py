@@ -19,14 +19,14 @@ class ClinicalAssessment(models.Model):
         null=True)
 
     visual_acuity_left_eye = models.DecimalField(
-        verbose_name='Viscuity Left Eye',
+        verbose_name='Visual acuity Left Eye',
         decimal_places=3,
         max_digits=4,
         null=True,
         blank=True)
 
     visual_acuity_right_eye = models.DecimalField(
-        verbose_name='Viscuity Right Eye',
+        verbose_name='Visual acuity Right Eye',
         decimal_places=3,
         max_digits=4,
         null=True,

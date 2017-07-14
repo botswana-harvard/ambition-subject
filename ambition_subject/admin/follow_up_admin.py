@@ -15,7 +15,7 @@ visual_acuity_fieldset = Fieldset(
     'patient_help',
     'patient_problems',
     'ranking_score',
-    section='Week 10')
+    section='Disability Assessment')
 
 
 class FollowUpDiagnosesInline(TabularInlineMixin, admin.TabularInline):
