@@ -8,13 +8,13 @@ class ClinicalAssessment(models.Model):
 
     physical_symptoms = models.CharField(
         verbose_name='Physical symptoms',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND,
         null=True)
 
     headache = models.CharField(
         verbose_name='Headache',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND,
         null=True)
 
@@ -42,32 +42,32 @@ class ClinicalAssessment(models.Model):
 
     confusion = models.CharField(
         verbose_name='Confusion',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND,
         null=True
     )
 
     recent_seizure_less_72 = models.CharField(
         verbose_name='Recent seizure (<72 hrs)',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND,
         null=True)
 
     cn_palsy = models.CharField(
         verbose_name='CN palsy',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND,
         null=True)
 
     behaviour_change = models.CharField(
         verbose_name='Behaviour change',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND,
         null=True)
 
     focal_neurology = models.CharField(
         verbose_name='Focal neurology',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND,
         null=True)
 

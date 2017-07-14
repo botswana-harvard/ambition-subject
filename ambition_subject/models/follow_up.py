@@ -38,7 +38,7 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
 
     rifampicin_started = models.CharField(
         verbose_name='Rifampicin started since last visit?',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND)
 
     rifampicin_start_date = models.DateField(
