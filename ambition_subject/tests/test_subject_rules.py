@@ -1,4 +1,4 @@
-from django.test import TestCase, tag
+from django.test import TestCase
 from model_mommy import mommy
 
 from edc_base.utils import get_utcnow
@@ -10,7 +10,6 @@ from edc_visit_tracking.constants import SCHEDULED
 from ..models import Appointment
 
 
-@tag('rg')
 class TestSubjectRules(TestCase):
 
     def setUp(self):
