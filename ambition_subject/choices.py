@@ -285,7 +285,7 @@ REASON_STUDY_TERMINATED = (
     ('care_transferred_to_another_institution', 'Care transferred to another '
                                                 'institution'),
     ('late_exclusion_criteria_met', 'Late exclusion criteria met'),
-    ('Included in error', 'Included in error')
+    ('included_in_error', 'Included in error')
 )
 
 REGIMEN = (
