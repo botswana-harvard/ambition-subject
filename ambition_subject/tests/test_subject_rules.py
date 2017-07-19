@@ -27,6 +27,68 @@ class TestSubjectRules(TestCase):
             subject_identifier=self.consent.subject_identifier,
             reason=SCHEDULED,)
 
+    def test_death_report_required_included_in_error(self):
+        screening = mommy.make_recipe('ambition_screening.subjectscreening',
+                                      report_datetime=get_utcnow())
+        consent = mommy.make_recipe('ambition_subject.subjectconsent',
+                                    consent_datetime=get_utcnow(),
+                                    subject_screening=screening)
+        subject_identifier = consent.subject_identifier
+        subject_visit = mommy.make_recipe(
+            'ambition_subject.subjectvisit',
+            appointment=Appointment.objects.get(
+                subject_identifier=subject_identifier, visit_code='1070'),
+            subject_identifier=consent.subject_identifier,
+            reason=SCHEDULED,)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport',
+                subject_identifier=subject_identifier).entry_status,
+            NOT_REQUIRED)
+
+        mommy.make_recipe(
+            'ambition_subject.adverseevent',
+            subject_visit=subject_visit,
+            ae_severity_grade='grade_5')
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport',
+                subject_identifier=subject_identifier).entry_status,
+            REQUIRED)
+
+    def test_protocol_deviation_violation_required_included_in_error(self):
+        screening = mommy.make_recipe('ambition_screening.subjectscreening',
+                                      report_datetime=get_utcnow())
+        consent = mommy.make_recipe('ambition_subject.subjectconsent',
+                                    consent_datetime=get_utcnow(),
+                                    subject_screening=screening)
+        subject_identifier = consent.subject_identifier
+        subject_visit = mommy.make_recipe(
+            'ambition_subject.subjectvisit',
+            appointment=Appointment.objects.get(
+                subject_identifier=subject_identifier, visit_code='1070'),
+            subject_identifier=consent.subject_identifier,
+            reason=SCHEDULED,)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.protocoldeviationviolation',
+                subject_identifier=subject_identifier).entry_status,
+            NOT_REQUIRED)
+
+        mommy.make_recipe(
+            'ambition_subject.studyterminationconclusion',
+            subject_visit=subject_visit,
+            termination_reason='included_in_error')
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.protocoldeviationviolation',
+                subject_identifier=subject_identifier).entry_status,
+            REQUIRED)
+
     def test_adverse_event_required(self):
         self.assertEqual(
             CrfMetadata.objects.get(

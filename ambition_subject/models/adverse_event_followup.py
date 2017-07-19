@@ -1,10 +1,7 @@
 from django.db import models
 from edc_base.model_validators import date_not_future
 
-from edc_constants.choices import YES_NO
 from ..choices import AE_OUTCOME
-
-
 from .model_mixins import CrfModelMixin, ClinicalAssessment
 
 

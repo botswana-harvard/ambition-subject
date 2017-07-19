@@ -239,25 +239,7 @@ subjectlocator = Recipe(
     alt_contact_tel=None)
 
 studyterminationconclusion = Recipe(
-    StudyTerminationConclusion,
-    date_patient_terminated_study=25,
-    last_research_termination_date=get_utcnow().date,
-    last_research_termination_study_day=30,
-    discharged_after_initial_admission=YES,
-    initial_discharge_date=get_utcnow().date,
-    initial_discharge_study_date=25,
-    readmission_following_initial_discharge=YES,
-    date_admitted=get_utcnow(),
-    date_discharged=get_utcnow().date,
-    study_termination_reason='Patient lost to follow-up',
-    withdrawal_of_consent_reason=None,
-    rifampicin_started_since_week4=NO,
-    rifampicin_started_study_day=None,
-    arv_regimen='AZT + 3TC + either ATZ/r or Lopinavir/r',
-    is_naive=YES,
-    date_started_arvs=get_utcnow(),
-    date_switched_arvs=None,
-    efv_or_nvp=None)
+    StudyTerminationConclusion)
 
 radiology = Recipe(
     Radiology,

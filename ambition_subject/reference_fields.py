@@ -95,5 +95,5 @@ site_reference_fields.register(reference)
 
 reference = ReferenceModelConfig(
     model='ambition_subject.studyterminationconclusion',
-    fields=['report_datetime'])
+    fields=['report_datetime', 'termination_reason'])
 site_reference_fields.register(reference)
