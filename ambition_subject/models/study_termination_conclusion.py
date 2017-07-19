@@ -6,7 +6,6 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, REASON_STUDY_TERMINATED
 from .model_mixins.crf_model_mixin import CrfModelMixin
-from edc_base.model_fields.custom_fields import OtherCharField
 
 
 class StudyTerminationConclusion(CrfModelMixin):
@@ -16,7 +15,7 @@ class StudyTerminationConclusion(CrfModelMixin):
         validators=[date_not_future])
 
     date_last_study_fu = models.DateField(
-        verbose_name='Date of last research follow up',
+        verbose_name='Date of last research follow up (if different):',
         validators=[date_not_future],
         blank=True,
         null=True)
@@ -52,7 +51,9 @@ class StudyTerminationConclusion(CrfModelMixin):
     termination_reason = models.CharField(
         verbose_name='Reason for study termination',
         max_length=75,
-        choices=REASON_STUDY_TERMINATED)
+        choices=REASON_STUDY_TERMINATED,
+        help_text=(
+            'If included in error, be sure to fill in protocol deviation form.'))
 
     death_date = models.DateField(
         verbose_name='Date of Death',
@@ -84,16 +85,23 @@ class StudyTerminationConclusion(CrfModelMixin):
         blank=True,
         null=True)
 
+    included_in_error_date = models.DateField(
+        verbose_name='If included in error, date',
+        validators=[date_not_future],
+        blank=True,
+        null=True)
+
+    included_in_error = models.TextField(
+        verbose_name='If included in error, narrative:',
+        max_length=300,
+        blank=True,
+        null=True
+    )
+
     rifampicin_started = models.CharField(
         verbose_name='Rifampicin started since week 4?',
         max_length=5,
         choices=YES_NO)
-
-    included_in_error = models.CharField(
-        verbose_name='Included in error',
-        max_length=75,
-        blank=True,
-        null=True)
 
     first_line_regimen_patients = models.CharField(
         verbose_name='started for naive patients (or regimen switched for '
