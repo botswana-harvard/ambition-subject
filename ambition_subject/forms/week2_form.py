@@ -25,6 +25,11 @@ class Week2Form(SubjectModelFormMixin):
 
 class SignificantDiagnosesForm(forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['other_significant_diagnoses'].label = (
+            'Other significant diagnosis since enrollment?')
+
     def clean(self):
         cleaned_data = super().clean()
         cleaned_data = SignificantDiagnosesFormValidator(

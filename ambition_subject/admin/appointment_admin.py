@@ -34,7 +34,8 @@ class AppointmentAdmin(ModelAdminMixin, admin.ModelAdmin):
     list_display = (
         'subject_identifier', 'visit_code', 'appt_datetime', 'appt_status')
 
-    list_filter = ('visit_code', 'appt_datetime', 'appt_status', 'appt_type')
+    list_filter = (
+        'visit_code', 'appt_datetime', 'appt_status', 'appt_type')
 
     search_fields = ('subject_identifier', )
 

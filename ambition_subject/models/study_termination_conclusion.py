@@ -104,8 +104,8 @@ class StudyTerminationConclusion(CrfModelMixin):
         choices=YES_NO)
 
     first_line_regimen_patients = models.CharField(
-        verbose_name='started for naive patients (or regimen switched for '
-        'those already on ARVs)',
+        verbose_name='ART regimen started for naive patients (or regimen'
+        ' switched for those already on ARVs)',
         max_length=75,
         choices=ARV_REGIMEN)
 
