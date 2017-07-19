@@ -13,7 +13,7 @@ class AdverseEventFollowUp(ClinicalAssessment, CrfModelMixin):
     outcome = models.CharField(
         blank=False,
         null=False,
-        max_length=5,
+        max_length=25,
         choices=AE_OUTCOME)
 
     outcome_date = models.DateField(
@@ -23,7 +23,6 @@ class AdverseEventFollowUp(ClinicalAssessment, CrfModelMixin):
     relevant_history = models.TextField(
         verbose_name='Description Summary Of Adverse Event Outcome',
         max_length=1000,
-        choices=YES_NO,
         blank=False,
         null=False,
         help_text='Indicate Adverse Event, Clinical results,'
