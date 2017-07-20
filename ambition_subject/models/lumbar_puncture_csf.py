@@ -38,7 +38,7 @@ class LumbarPunctureCsf(CrfModelMixin):
         help_text='Units CFU/ml')
 
     csf_culture = models.CharField(
-        verbose_name='Other organism (non-crytococcus)',
+        verbose_name='Other organism (non-cryptococcus)',
         max_length=5,
         choices=YES_NO_NA)
 
