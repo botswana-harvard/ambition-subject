@@ -291,6 +291,7 @@ prnmodel = Recipe(
     microbiology=NO,
     radiology=NO,
     lumbar_puncture=NO,
+    recurrence_symptom=NO,
     protocol_deviation=NO,
     death_report=NO)
 

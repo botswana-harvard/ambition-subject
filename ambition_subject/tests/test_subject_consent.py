@@ -57,7 +57,6 @@ class TestSubjectConsent(TestCase):
         except Enrollment.DoesNotExist:
             self.fail('Enrollment.DoesNotExist: was unexpectedly raised.')
 
-    @tag('r')
     def test_consent_assigns_rando_arm(self):
         options = {
             'subject_screening': self.subject_screening,
@@ -83,3 +82,19 @@ class TestSubjectConsent(TestCase):
         self.assertNotEqual(
             randomized.sid,
             RandomizationItem.objects.get(name=randomized2.sid).name)
+
+    @tag('r')
+    def test_rando_follows_all_sequences(self):
+        rando_list = RandomizationItem.objects.all()
+        for rando in rando_list:
+            self.subject_screening = mommy.make_recipe(
+                'ambition_screening.subjectscreening')
+            options = {
+                'subject_screening': self.subject_screening,
+                'consent_datetime': get_utcnow, }
+            mommy.make_recipe(
+                'ambition_subject.subjectconsent', **options)
+
+        for rando in rando_list:
+            self.assertEqual(
+                int(rando.name), SubjectRandomization.objects.get(sid=rando.name).sid)
