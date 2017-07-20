@@ -35,9 +35,7 @@ class Week16(CrfModelMixin):
 
     ranking_score = models.IntegerField(
         verbose_name='Modified Ranking score:',
-        choices=RANKING_SCORE,
-        null=True,
-        blank=True)
+        choices=RANKING_SCORE)
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
