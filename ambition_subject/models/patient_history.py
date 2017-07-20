@@ -34,7 +34,7 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     med_history = models.CharField(
-        verbose_name='Previous medical history of Tubercolosis?',
+        verbose_name='Previous medical history of Tuberculosis?',
         max_length=5,
         choices=YES_NO)
 
