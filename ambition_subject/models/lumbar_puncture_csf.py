@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO_NA
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from .model_mixins import CrfModelMixin
@@ -27,6 +27,7 @@ class LumbarPunctureCsf(CrfModelMixin):
         help_text='Units cm of H2O')
 
     csf_amount_removed = models.IntegerField(
+        verbose_name='CSF amount removed',
         validators=[MinValueValidator(1), MaxValueValidator(40)],
         help_text='Do not remove ≥ 40mL CSF. See management of raised ICP WPD')
 
@@ -37,7 +38,7 @@ class LumbarPunctureCsf(CrfModelMixin):
         help_text='Units CFU/ml')
 
     csf_culture = models.CharField(
-        verbose_name='CSF culture: Other organism (non-crytococcus)',
+        verbose_name='Other organism (non-crytococcus)',
         max_length=5,
         choices=YES_NO_NA)
 
@@ -83,6 +84,7 @@ class LumbarPunctureCsf(CrfModelMixin):
         null=True,)
 
     csf_glucose = models.DecimalField(
+        verbose_name='CSF glucose:',
         decimal_places=1,
         max_digits=3,
         blank=True,
@@ -90,12 +92,14 @@ class LumbarPunctureCsf(CrfModelMixin):
         help_text='Units in mmol/L or mg/dL')
 
     csf_glucose_units = models.CharField(
+        verbose_name='CSF glucose units:',
         max_length=6,
         choices=MG_MMOL_UNITS,
         blank=True,
         null=True,)
 
     csf_protein = models.DecimalField(
+        verbose_name='CSF protein:',
         decimal_places=1,
         max_digits=3,
         blank=True,
