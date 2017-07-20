@@ -350,11 +350,11 @@ DOSES_MISSED = (
     (1, '1 Dose'), (2, '2 Doses'), (3, '3 Doses'), (4, '4 Doses'))
 
 AE_OUTCOME = (
-    ('Recovered', 'Recovered/Resolved'),
-    ('Recovering', 'Recovering/Resolving at end of study'),
-    ('Not Recovered', 'Not Recovered/Resolved at end of study'),
-    ('Unknown', 'Unknown/Lost to follow-up'),
-    ('Recovered with sequelae', 'Recovered with sequelae'),
+    ('recovered', 'Recovered/Resolved'),
+    ('recovering', 'Recovering/Resolving at end of study'),
+    ('not_recovered', 'Not Recovered/Resolved at end of study'),
+    ('unknown', 'Unknown/Lost to follow-up'),
+    ('recovered_with_sequelae', 'Recovered with sequelae'),
     ('Death', 'Death'),
 )
 
@@ -388,7 +388,8 @@ RANKING_SCORE = (
     (3, '3'),
     (4, '4'),
     (5, '5'),
-    (6, '6')
+    (6, '6'),
+    ('not_done', 'Not Done')
 )
 
 DEVIATION_VIOLATION = (
@@ -399,5 +400,5 @@ DEVIATION_VIOLATION = (
 YES_NO_ND = (
     (YES, 'Yes'),
     (NO, 'No'),
-    ('Not Done', 'Not Done')
+    ('not_done', 'Not Done')
 )

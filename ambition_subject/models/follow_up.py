@@ -51,7 +51,7 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
         verbose_name=('Does the patient require help from'
                       ' anybody for everyday activities? '),
         max_length=5,
-        choices=YES_NO,
+        choices=YES_NO_ND,
         null=True,
         help_text=('For example eating, drinking, washing,'
                    ' brushing teeth, going to the toilet'))
@@ -59,7 +59,7 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
     patient_problems = models.CharField(
         verbose_name='Has the illness left the patient with any other problems?',
         max_length=5,
-        choices=YES_NO,
+        choices=YES_NO_ND,
         null=True)
 
     ranking_score = models.IntegerField(
