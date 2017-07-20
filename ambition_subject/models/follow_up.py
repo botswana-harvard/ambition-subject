@@ -2,7 +2,6 @@ from django.db import models
 
 from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO
 
 from ..choices import FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND
 
@@ -52,15 +51,13 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
                       ' anybody for everyday activities? '),
         max_length=5,
         choices=YES_NO_ND,
-        null=True,
         help_text=('For example eating, drinking, washing,'
                    ' brushing teeth, going to the toilet'))
 
     patient_problems = models.CharField(
         verbose_name='Has the illness left the patient with any other problems?',
         max_length=5,
-        choices=YES_NO_ND,
-        null=True)
+        choices=YES_NO_ND)
 
     ranking_score = models.IntegerField(
         verbose_name='Modified Ranking score:',
