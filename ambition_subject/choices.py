@@ -305,6 +305,7 @@ SIGNIFICANT_DX = (
     (OTHER, 'Other'))
 
 STEROIDS_CHOICES = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('oral_prednisolone', 'Oral prednisolone'),
     ('iv_dexamethasone', 'IV Dexamethasone used'),
     (OTHER, 'Other, specify:'))
