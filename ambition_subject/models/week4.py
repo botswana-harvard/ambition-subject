@@ -4,7 +4,7 @@ from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO
 
-from ..choices import FLUCONAZOLE_DOSE, YES_NO_ND
+from ..choices import FLUCONAZOLE_DOSE, YES_NO_ALREADY_ND
 from .model_mixins import (
     CrfModelMixin, ClinicalAssessment, SignificantDiagnosesMixin)
 
@@ -36,8 +36,8 @@ class Week4(ClinicalAssessment, CrfModelMixin):
 
     rifampicin_started = models.CharField(
         verbose_name='Rifampicin started since last visit?',
-        max_length=10,
-        choices=YES_NO_ND)
+        max_length=25,
+        choices=YES_NO_ALREADY_ND)
 
     rifampicin_start_date = models.DateField(
         verbose_name='Date rifampicin started',

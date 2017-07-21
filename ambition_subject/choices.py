@@ -402,6 +402,13 @@ YES_NO_ND = (
     ('not_done', 'Not Done')
 )
 
+YES_NO_ALREADY_ND = (
+    (YES, 'Yes'),
+    (NO, 'No'),
+    ('already_on_rifampicin', 'Already on Rifampicin'),
+    ('not_done', 'Not Done')
+)
+
 YES_NO_ALREADY = (
     (YES, 'Yes'),
     (NO, 'No'),

@@ -3,7 +3,8 @@ from django.db import models
 from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
 
-from ..choices import FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND
+from ..choices import (FLUCONAZOLE_DOSE, RANKING_SCORE,
+                       YES_NO_ND, YES_NO_ALREADY_ND)
 
 from .model_mixins import (
     CrfModelMixin, ClinicalAssessment, SignificantDiagnosesMixin)
@@ -37,8 +38,8 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
 
     rifampicin_started = models.CharField(
         verbose_name='Rifampicin started since last visit?',
-        max_length=10,
-        choices=YES_NO_ND)
+        max_length=25,
+        choices=YES_NO_ALREADY_ND)
 
     rifampicin_start_date = models.DateField(
         verbose_name='Date rifampicin started',
@@ -49,14 +50,14 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
     patient_help = models.CharField(
         verbose_name=('Does the patient require help from'
                       ' anybody for everyday activities? '),
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND,
         help_text=('For example eating, drinking, washing,'
                    ' brushing teeth, going to the toilet'))
 
     patient_problems = models.CharField(
         verbose_name='Has the illness left the patient with any other problems?',
-        max_length=5,
+        max_length=10,
         choices=YES_NO_ND)
 
     ranking_score = models.IntegerField(
