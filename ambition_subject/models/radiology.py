@@ -1,6 +1,4 @@
 from django.db import models
-from django.utils import timezone
-
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
@@ -26,14 +24,14 @@ class Radiology(CrfModelMixin):
         null=True)
 
     cxr_type = models.CharField(
-        verbose_name='If yes, specify CXR type:',
+        verbose_name='If yes, result:',
         blank=False,
         choices=CXR_TYPE,
         max_length=75,
         null=True)
 
     infiltrate_location = models.CharField(
-        verbose_name='If CXR type is Infiltrate, please specify location:',
+        verbose_name='If Infiltrates, specify location:',
         blank=False,
         choices=INFILTRATE_LOCATION,
         max_length=10,
