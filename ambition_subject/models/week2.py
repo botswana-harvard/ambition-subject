@@ -249,7 +249,8 @@ class SignificantDiagnoses(SignificantDiagnosesMixin):
     class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Significant Diagnoses'
-        unique_together = ('possible_diagnoses', 'dx_date')
+        unique_together = (
+            'week2', 'possible_diagnoses', 'dx_date', 'dx_other')
 
 
 class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
@@ -265,7 +266,8 @@ class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
     class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Fluconazole Missed Doses'
-        unique_together = ('flucon_day_missed', 'flucon_missed_reason')
+        unique_together = (
+            'week2', 'flucon_day_missed', 'flucon_missed_reason')
 
 
 class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
@@ -283,7 +285,7 @@ class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
     class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Amphotericin Missed Doses'
-        unique_together = ('ampho_day_missed', 'ampho_missed_reason')
+        unique_together = ('week2', 'ampho_day_missed', 'ampho_missed_reason')
 
 
 class FlucytosineMissedDoses(FlucytosineMissedDosesMixin):
@@ -301,5 +303,5 @@ class FlucytosineMissedDoses(FlucytosineMissedDosesMixin):
     class Meta:
         app_label = 'ambition_subject'
         verbose_name_plural = 'Flucytosine Missed Doses'
-        unique_together = ('flucy_day_missed',
+        unique_together = ('week2', 'flucy_day_missed',
                            'flucy_doses_missed', 'flucy_missed_reason')

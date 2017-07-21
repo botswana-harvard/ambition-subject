@@ -68,4 +68,4 @@ class Week4Diagnoses(SignificantDiagnosesMixin):
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         verbose_name_plural = 'Significant Diagnoses'
-        unique_together = ('possible_diagnoses', 'dx_date')
+        unique_together = ('week4', 'possible_diagnoses', 'dx_date')
