@@ -9,15 +9,25 @@ from ..forms import BloodResultForm
 from ..models import BloodResult
 from .modeladmin_mixins import CrfModelAdminMixin
 
+
 blood_count = Fieldset(
     'wbc',
     'platelets',
     'haemoglobin',
     'absolute_neutrophil',
-    'proteinuria',
-    'abs_cd4',
-    'alt',
     section='Complete Blood Count (CBC)')
+
+alt = Fieldset(
+    'alt',
+    section='ALT')
+
+urine_chemistry = Fieldset(
+    'proteinuria',
+    section='Urine Chemistry')
+
+immunology = Fieldset(
+    'abs_cd4',
+    section='Immunology')
 
 
 @admin.register(BloodResult, site=ambition_subject_admin)
@@ -25,7 +35,7 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = BloodResultForm
     conditional_fieldsets = {
-        DAY1: blood_count}
+        DAY1: (alt, urine_chemistry, blood_count, immunology)}
 
     radio_fields = {
         'proteinuria': admin.VERTICAL,
@@ -39,7 +49,7 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         [None, {
             'fields': (
                 'subject_visit',)}],
-        ['Chemistry', {
+        ['Renal Functions Tests', {
             'fields': (
                 'creatinine',
                 'creatinine_unit',
