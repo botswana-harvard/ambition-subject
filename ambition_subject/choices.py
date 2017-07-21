@@ -81,7 +81,7 @@ BIOPSY_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
     ('mycobacterium_tuberculosis', 'Mycobacterium Tuberculosis'),
-    (OTHER, 'If other, please specify'))
+    (OTHER, 'Other, specify'))
 
 BACTERIA_TYPE = (
     (NOT_APPLICABLE, 'Not applicable'),
