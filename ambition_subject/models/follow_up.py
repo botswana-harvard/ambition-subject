@@ -33,7 +33,7 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
         choices=FLUCONAZOLE_DOSE)
 
     fluconazole_dose_other = OtherCharField(
-        verbose_name='Other fluconazole, specify',
+        verbose_name='If other, specify dose',
         max_length=25)
 
     rifampicin_started = models.CharField(
