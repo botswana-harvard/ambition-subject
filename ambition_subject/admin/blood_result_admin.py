@@ -4,7 +4,7 @@ from edc_base.fieldsets.fieldset import Fieldset
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..constants import DAY1
+from ..constants import DAY1, DAY7, DAY14, WEEK4
 from ..forms import BloodResultForm
 from ..models import BloodResult
 from .modeladmin_mixins import CrfModelAdminMixin
@@ -19,7 +19,7 @@ blood_count = Fieldset(
 
 alt = Fieldset(
     'alt',
-    section='ALT')
+    section='Liver Function Tests')
 
 urine_chemistry = Fieldset(
     'proteinuria',
@@ -35,7 +35,10 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = BloodResultForm
     conditional_fieldsets = {
-        DAY1: (alt, urine_chemistry, blood_count, immunology)}
+        DAY1: (alt, urine_chemistry, blood_count, immunology),
+        DAY7: (alt, blood_count),
+        DAY14: (alt, blood_count),
+        WEEK4: (alt, blood_count)}
 
     radio_fields = {
         'proteinuria': admin.VERTICAL,
@@ -49,7 +52,7 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         [None, {
             'fields': (
                 'subject_visit',)}],
-        ['Renal Functions Tests', {
+        ['Renal Function Tests', {
             'fields': (
                 'creatinine',
                 'creatinine_unit',
