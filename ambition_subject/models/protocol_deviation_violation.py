@@ -12,14 +12,14 @@ from .model_mixins import CrfModelMixin
 class ProtocolDeviationViolation(CrfModelMixin):
 
     deviation_or_violation = models.CharField(
-        verbose_name='Is this a protocol deviation or violation',
+        verbose_name='Is this a protocol deviation or violation?',
         max_length=5,
         choices=DEVIATION_VIOLATION
     )
 
     participant_safety_impact = models.CharField(
         verbose_name='Could this occurrence have an impact on safety of the '
-                     'participant',
+                     'participant?',
         max_length=5,
         choices=YES_NO)
 
@@ -29,7 +29,7 @@ class ProtocolDeviationViolation(CrfModelMixin):
         blank=True)
 
     study_outcomes_impact = models.CharField(
-        verbose_name='Could this occurrence have an impact on Study outcomes',
+        verbose_name='Could this occurrence have an impact on Study outcomes?',
         max_length=5,
         choices=YES_NO)
 
@@ -45,7 +45,7 @@ class ProtocolDeviationViolation(CrfModelMixin):
         blank=True)
 
     protocol_violation_type = models.CharField(
-        verbose_name='Type of Protocol Violation/Deviation',
+        verbose_name='Type of Protocol Violation/Deviation:',
         max_length=70,
         choices=PROTOCOL_VIOLATION,
         null=True,
@@ -54,7 +54,7 @@ class ProtocolDeviationViolation(CrfModelMixin):
     other_protocol_violation_type = models.CharField(
         null=True,
         blank=True,
-        verbose_name='If other, please specify',
+        verbose_name='If other, please specify:',
         max_length=50)
 
     violation_description = models.TextField(
@@ -64,32 +64,35 @@ class ProtocolDeviationViolation(CrfModelMixin):
         blank=True)
 
     violation_reason = models.TextField(
-        verbose_name='Explain the reason why the violation occurred',
+        verbose_name='Explain the reason why the violation occurred:',
         null=True,
         blank=True)
 
     corrective_action_datetime = models.DateTimeField(
-        validators=[date_not_future])
+        verbose_name='Corrective action date and time:',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
 
     corrective_action = models.CharField(
-        verbose_name='Corrective action taken',
+        verbose_name='Corrective action taken:',
         max_length=125,
         null=True,
         blank=True)
 
     preventative_action_datetime = models.DateTimeField(
+        verbose_name='Preventative action date and time:',
         validators=[date_not_future],
         null=True,
         blank=True)
 
     preventative_action = models.CharField(
-        verbose_name='Preventative action taken',
+        verbose_name='Preventative action taken:',
         max_length=125,
         null=True,
         blank=True)
 
     action_required = models.CharField(
-        verbose_name='action required',
         max_length=25,
         choices=ACTION_REQUIRED,
         null=True,
@@ -99,3 +102,5 @@ class ProtocolDeviationViolation(CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
+        verbose_name = 'Protocol Deviation Violation'
+        verbose_name_plural = 'Protocol Deviation Violations'
