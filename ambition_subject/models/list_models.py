@@ -13,6 +13,12 @@ class Antibiotic(ListModelMixin, BaseUuidModel):
         app_label = 'ambition_subject'
 
 
+class AntibioticTreatment(ListModelMixin, BaseUuidModel):
+
+    class Meta(ListModelMixin.Meta):
+        app_label = 'ambition_subject'
+
+
 class Day14Medication(ListModelMixin, BaseUuidModel):
 
     class Meta(ListModelMixin.Meta):

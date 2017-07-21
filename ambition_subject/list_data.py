@@ -28,6 +28,15 @@ list_data = {
         ('ciprofloxacin', 'Ciprofloxacin'),
         (OTHER, 'Other, specify')
     ],
+    'ambition_subject.antibiotictreatment': [
+        ('amoxicillin', 'Amoxicillin'),
+        ('flucloxacillin', 'Flucloxacillin'),
+        ('doxycycline', 'Doxycycline'),
+        ('ceftriaxone', 'Ceftriaxone'),
+        ('erythromycin', 'Erythromycin'),
+        ('ciprofloxacin', 'Ciprofloxacin'),
+        (OTHER, 'Other, specify')
+    ],
     'ambition_subject.day14medication': [
         ('fluconazole', 'Fluconazole'),
         ('rifampicin', ' Rifampicin'),
