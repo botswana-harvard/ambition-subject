@@ -13,7 +13,7 @@ class ProtocolDeviationViolation(CrfModelMixin):
 
     deviation_or_violation = models.CharField(
         verbose_name='Is this a protocol deviation or violation?',
-        max_length=5,
+        max_length=10,
         choices=DEVIATION_VIOLATION
     )
 
