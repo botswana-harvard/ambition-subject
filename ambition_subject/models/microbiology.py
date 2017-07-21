@@ -125,7 +125,7 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     sputum_genexpert_performed = models.CharField(
-        verbose_name='Sputum gene expert performed.',
+        verbose_name='Sputum gene expert performed:',
         max_length=5,
         choices=YES_NO,
         help_text='Was sputum gene expert done?')

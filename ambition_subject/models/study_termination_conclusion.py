@@ -4,14 +4,15 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 
-from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, REASON_STUDY_TERMINATED
+from ..choices import (ARV_REGIMEN, FIRST_LINE_REGIMEN,
+                       REASON_STUDY_TERMINATED, YES_NO_ALREADY)
 from .model_mixins.crf_model_mixin import CrfModelMixin
 
 
 class StudyTerminationConclusion(CrfModelMixin):
 
     date_patient_terminated = models.DateField(
-        verbose_name='Date patient terminated study',
+        verbose_name='Date patient terminated on study:',
         validators=[date_not_future])
 
     date_last_study_fu = models.DateField(
@@ -21,7 +22,7 @@ class StudyTerminationConclusion(CrfModelMixin):
         null=True)
 
     discharged_after_initial_admission = models.CharField(
-        verbose_name='Was patient discharged after initial admission?',
+        verbose_name='Was the patient discharged after initial admission?',
         max_length=6,
         choices=YES_NO)
 
@@ -32,7 +33,7 @@ class StudyTerminationConclusion(CrfModelMixin):
         null=True)
 
     readmission_after_initial_discharge = models.CharField(
-        verbose_name='Was the patient readmitted following intial discharge?',
+        verbose_name='Was the patient readmitted following initial discharge?',
         max_length=7,
         choices=YES_NO)
 
@@ -101,7 +102,7 @@ class StudyTerminationConclusion(CrfModelMixin):
     rifampicin_started = models.CharField(
         verbose_name='Rifampicin started since week 4?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_ALREADY)
 
     first_line_regimen_patients = models.CharField(
         verbose_name='ART regimen started for naive patients (or regimen'
@@ -137,3 +138,5 @@ class StudyTerminationConclusion(CrfModelMixin):
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
         consent_model = 'ambition_subject.subjectconsent'
+        verbose_name = 'Study Termination/Conclusion'
+        verbose_name_plural = 'Study Terminations/Conclusions'
