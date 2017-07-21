@@ -132,7 +132,7 @@ CXR_TYPE = (
     ('hilar_adenopathy', 'Hilar adenopathy'),
     ('miliary_appearance', 'Miliary appearance'),
     ('pleural_effusion', 'Pleural effusion'),
-    ('infiltrates_location', 'Infiltrates-Location'))
+    ('infiltrates', 'Infiltrates'))
 
 DR_OPINION = (
     ('cm_release', 'CM Relapse'),
