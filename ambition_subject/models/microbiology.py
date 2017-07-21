@@ -131,6 +131,7 @@ class Microbiology(CrfModelMixin):
         help_text='Was sputum gene expert done?')
 
     date_sputum_genexpert_taken = models.DateField(
+        verbose_name='Date sputum gene expert taken:',
         validators=[date_not_future],
         null=True,
         blank=True)
