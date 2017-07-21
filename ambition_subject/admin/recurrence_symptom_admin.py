@@ -67,6 +67,7 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'steroids_choices_other',
                 'CD4_count',
                 'antibiotic_treatment',
+                'antibiotic_treatment_other',
                 'on_arvs',
                 'arv_date',
                 'arvs_stopped']}

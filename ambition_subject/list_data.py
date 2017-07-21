@@ -28,13 +28,6 @@ list_data = {
         ('ciprofloxacin', 'Ciprofloxacin'),
         (OTHER, 'Other, specify')
     ],
-    'ambition_subject.antibiotictreatment': [
-        ('amoxicillin', 'Amoxicillin'),
-        ('flucloxacillin', 'Flucloxacillin'),
-        ('doxycycline', 'Doxycycline'),
-        ('ceftriaxone', 'Ceftriaxone'),
-        ('erythromycin', 'Erythromycin'),
-    ],
     'ambition_subject.day14medication': [
         ('fluconazole', 'Fluconazole'),
         ('rifampicin', ' Rifampicin'),
@@ -67,7 +60,7 @@ list_data = {
     ],
     'ambition_subject.neurological': [
         ('meningismus', 'Meningismus'),
-        ('papilloedema', 'Papilloedema'),
+        ('papilloedema', ' Papilloedema'),
         ('focal_neurologic_deficit', 'Focal neurologic deficit'),
         ('CN_VI_palsy', 'Cranial Nerve VI palsy'),
         ('CN_III_palsy', 'Cranial Nerve III palsy'),

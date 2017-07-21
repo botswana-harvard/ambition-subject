@@ -7,7 +7,7 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import DR_OPINION, STEROIDS_CHOICES
 
-from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment
+from .list_models import Neurological, MeningitisSymptom, Antibiotic
 from .model_mixins import CrfModelMixin
 
 
@@ -114,7 +114,7 @@ class RecurrenceSymptom(CrfModelMixin):
         blank=True)
 
     antibiotic_treatment = models.ManyToManyField(
-        AntibioticTreatment,
+        Antibiotic,
         verbose_name='Antibiotics treatment',
         blank=True)
 
@@ -161,3 +161,5 @@ class RecurrenceSymptom(CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
+        verbose_name = 'Recurrence of Symptoms'
+        verbose_name_plural = 'Recurrence of Symptoms'
