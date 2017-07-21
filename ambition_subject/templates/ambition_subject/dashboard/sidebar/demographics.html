@@ -14,4 +14,7 @@
         <a class="list-group-item"><i class="fa fa-address-card-o fa-fw"></i>
             {{ consent.identity|default:'?? identity' }}
         </a>
+        <a class="list-group-item"><i class="fa fa-medkit fa-fw"></i>
+            {{ consent.randomization_arm|default:'?? medication' }}
+        </a>
     </div>
