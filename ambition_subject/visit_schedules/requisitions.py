@@ -40,6 +40,15 @@ requisitions_d7 = (
         show_order=30, model='ambition_subject.subjectrequisition',
         panel=csf_panel, required=True, additional=False),
 )
+
+requisitions_w4 = (
+    Requisition(
+        show_order=10, model='ambition_subject.subjectrequisition',
+        panel=fbc_panel, required=True, additional=False),
+    Requisition(
+        show_order=20, model='ambition_subject.subjectrequisition',
+        panel=chemistry_alt_panel, required=True, additional=False),
+)
 # TODO: Add day 5 Chemistry requisition, Only form required
 # TODO: Add day 7 FBC, ALT, CSF,and Chemistry requisitions
 # TODO: Add day 10 Chemistry requisition, Only form required
