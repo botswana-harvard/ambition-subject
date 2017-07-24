@@ -10,7 +10,8 @@ reference = ReferenceModelConfig(
     model='ambition_subject.prnmodel',
     fields=['adverse_event', 'adverse_event_tmg', 'adverse_event_followup',
             'microbiology', 'radiology', 'protocol_deviation', 'blood_result',
-            'lumbar_puncture', 'recurrence_symptom', 'death_report'])
+            'lumbar_puncture', 'recurrence_symptom', 'death_report',
+            'death_report_tmg1', 'death_report_tmg2'])
 site_reference_fields.register(reference)
 
 reference = ReferenceModelConfig(
@@ -35,6 +36,16 @@ site_reference_fields.register(reference)
 
 reference = ReferenceModelConfig(
     model='ambition_subject.deathreport',
+    fields=['report_datetime'])
+site_reference_fields.register(reference)
+
+reference = ReferenceModelConfig(
+    model='ambition_subject.deathreporttmg1',
+    fields=['report_datetime'])
+site_reference_fields.register(reference)
+
+reference = ReferenceModelConfig(
+    model='ambition_subject.deathreporttmg2',
     fields=['report_datetime'])
 site_reference_fields.register(reference)
 

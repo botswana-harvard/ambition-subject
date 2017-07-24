@@ -69,6 +69,18 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=['deathreport'])
 
+    death_report_tmg1 = CrfRule(
+        predicate=P('death_report_tmg1', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=['deathreporttmg1'])
+
+    death_report_tmg2 = CrfRule(
+        predicate=P('death_report_tmg2', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=['deathreporttmg2'])
+
     class Meta:
         app_label = 'ambition_subject'
         source_model = 'ambition_subject.prnmodel'

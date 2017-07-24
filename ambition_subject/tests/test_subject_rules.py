@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, tag
 from model_mommy import mommy
 
 from edc_base.utils import get_utcnow
@@ -10,6 +10,7 @@ from edc_visit_tracking.constants import SCHEDULED
 from ..models import Appointment
 
 
+@tag('rg')
 class TestSubjectRules(TestCase):
 
     def setUp(self):
@@ -249,6 +250,34 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreport').entry_status,
+            REQUIRED)
+
+    def test_death_report_tmg1_required(self):
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreporttmg1').entry_status,
+            NOT_REQUIRED)
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            death_report_tmg1=YES)
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreporttmg1').entry_status,
+            REQUIRED)
+
+    def test_death_report_tmg2_required(self):
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreporttmg2').entry_status,
+            NOT_REQUIRED)
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            death_report_tmg2=YES)
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreporttmg2').entry_status,
             REQUIRED)
 
     def test_death_report_required_from_adverse_event(self):
