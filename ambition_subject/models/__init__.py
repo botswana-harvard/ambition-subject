@@ -5,6 +5,8 @@ from .appointment import Appointment
 from .blood_result import BloodResult
 from .clinic_note import ClinicNote
 from .death_report import DeathReport
+from .death_report_tmg1 import DeathReportTMG1
+from .death_report_tmg2 import DeathReportTMG2
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
 from .follow_up import FollowUp, FollowUpDiagnoses
