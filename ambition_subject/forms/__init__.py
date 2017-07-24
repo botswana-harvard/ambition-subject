@@ -16,6 +16,7 @@ from .radiology_form import RadiologyForm
 from .recurrence_symptom_form import RecurrenceSymptomForm
 from .study_termination_conclusion_form import StudyTerminationConclusionForm
 from .subject_consent_form import SubjectConsentForm
+from .subject_locator_form import SubjectLocatorForm
 from .subject_randomization_form import SubjectRandomizationForm
 from .subject_requisition_form import SubjectRequisitionForm
 from .subject_visit_form import SubjectVisitForm
