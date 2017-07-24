@@ -88,6 +88,37 @@ class TestSubjectRules(TestCase):
                 subject_identifier=subject_identifier).entry_status,
             REQUIRED)
 
+    def test_blood_result_required_prn_form(self):
+        screening = mommy.make_recipe('ambition_screening.subjectscreening',
+                                      report_datetime=get_utcnow())
+        consent = mommy.make_recipe('ambition_subject.subjectconsent',
+                                    consent_datetime=get_utcnow(),
+                                    subject_screening=screening)
+        subject_identifier = consent.subject_identifier
+        subject_visit = mommy.make_recipe(
+            'ambition_subject.subjectvisit',
+            appointment=Appointment.objects.get(
+                subject_identifier=subject_identifier, visit_code='1070'),
+            subject_identifier=consent.subject_identifier,
+            reason=SCHEDULED,)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.bloodresult',
+                subject_identifier=subject_identifier).entry_status,
+            NOT_REQUIRED)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=subject_visit,
+            blood_result=YES)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.bloodresult',
+                subject_identifier=subject_identifier).entry_status,
+            REQUIRED)
+
     def test_adverse_event_required(self):
         self.assertEqual(
             CrfMetadata.objects.get(

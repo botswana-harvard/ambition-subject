@@ -27,6 +27,12 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=['adverseeventfollowup'])
 
+    blood_result = CrfRule(
+        predicate=P('blood_result', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=['bloodresult'])
+
     microbiology = CrfRule(
         predicate=P('microbiology', 'eq', YES),
         consequence=REQUIRED,
