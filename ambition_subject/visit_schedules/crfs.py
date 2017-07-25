@@ -18,7 +18,10 @@ crfs_d1 = (
     Crf(show_order=13, model='ambition_subject.deathreport', required=False),
     Crf(show_order=14, model='ambition_subject.deathreporttmg1',
         required=False),
-    Crf(show_order=15, model='ambition_subject.deathreporttmg2', required=False))
+    Crf(show_order=15, model='ambition_subject.deathreporttmg2',
+        required=False),
+    Crf(show_order=16, model='ambition_subject.recurrencesymptom',
+        required=False),)
 
 crfs_d3 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -38,7 +41,10 @@ crfs_d3 = (
     Crf(show_order=11, model='ambition_subject.deathreport', required=False),
     Crf(show_order=12, model='ambition_subject.deathreporttmg1',
         required=False),
-    Crf(show_order=13, model='ambition_subject.deathreporttmg2', required=False))
+    Crf(show_order=13, model='ambition_subject.deathreporttmg2',
+        required=False),
+    Crf(show_order=14, model='ambition_subject.recurrencesymptom',
+        required=False),)
 
 crfs_d5 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -58,7 +64,10 @@ crfs_d5 = (
     Crf(show_order=11, model='ambition_subject.deathreport', required=False),
     Crf(show_order=12, model='ambition_subject.deathreporttmg1',
         required=False),
-    Crf(show_order=13, model='ambition_subject.deathreporttmg2', required=False))
+    Crf(show_order=13, model='ambition_subject.deathreporttmg2',
+        required=False),
+    Crf(show_order=14, model='ambition_subject.recurrencesymptom',
+        required=False),)
 
 crfs_d7 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -77,7 +86,10 @@ crfs_d7 = (
     Crf(show_order=11, model='ambition_subject.deathreport', required=False),
     Crf(show_order=12, model='ambition_subject.deathreporttmg1',
         required=False),
-    Crf(show_order=13, model='ambition_subject.deathreporttmg2', required=False))
+    Crf(show_order=13, model='ambition_subject.deathreporttmg2',
+        required=False),
+    Crf(show_order=14, model='ambition_subject.recurrencesymptom',
+        required=False),)
 
 crfs_d10 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -97,7 +109,10 @@ crfs_d10 = (
     Crf(show_order=11, model='ambition_subject.deathreport', required=False),
     Crf(show_order=12, model='ambition_subject.deathreporttmg1',
         required=False),
-    Crf(show_order=13, model='ambition_subject.deathreporttmg2', required=False))
+    Crf(show_order=13, model='ambition_subject.deathreporttmg2',
+        required=False),
+    Crf(show_order=14, model='ambition_subject.recurrencesymptom',
+        required=False),)
 
 crfs_d12 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -117,7 +132,10 @@ crfs_d12 = (
     Crf(show_order=11, model='ambition_subject.deathreport', required=False),
     Crf(show_order=12, model='ambition_subject.deathreporttmg1',
         required=False),
-    Crf(show_order=13, model='ambition_subject.deathreporttmg2', required=False))
+    Crf(show_order=13, model='ambition_subject.deathreporttmg2',
+        required=False),
+    Crf(show_order=14, model='ambition_subject.recurrencesymptom',
+        required=False),)
 
 crfs_d14 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
@@ -137,7 +155,10 @@ crfs_d14 = (
     Crf(show_order=12, model='ambition_subject.deathreport', required=False),
     Crf(show_order=13, model='ambition_subject.deathreporttmg1',
         required=False),
-    Crf(show_order=14, model='ambition_subject.deathreporttmg2', required=False))
+    Crf(show_order=14, model='ambition_subject.deathreporttmg2',
+        required=False),
+    Crf(show_order=15, model='ambition_subject.recurrencesymptom',
+        required=False),)
 
 crfs_w4 = (
     Crf(show_order=1, model='ambition_subject.clinicnote'),
