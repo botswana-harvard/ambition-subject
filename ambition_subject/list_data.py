@@ -96,6 +96,7 @@ list_data = {
         (OTHER, 'Other, please specify:'),
     ],
     'ambition_subject.symptom': [
+        ('cough', 'Cough'),
         ('headache', 'Headache'),
         ('double_vision', 'Double vision'),
         ('visual_loss', 'Visual loss'),
