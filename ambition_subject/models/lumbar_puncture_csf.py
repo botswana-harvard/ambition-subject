@@ -101,7 +101,7 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_protein = models.DecimalField(
         verbose_name='CSF protein:',
         decimal_places=2,
-        max_digits=3,
+        max_digits=4,
         blank=True,
         null=True,
         help_text='Units in g/dL')
