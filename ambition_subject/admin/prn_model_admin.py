@@ -18,7 +18,9 @@ common_fields = ('subject_visit',
                  'microbiology',
                  'radiology',
                  'protocol_deviation',
-                 'death_report')
+                 'death_report',
+                 'death_report_tmg1',
+                 'death_report_tmg2')
 
 week4 = common_fields + ('lumbar_puncture', 'recurrence_symptom',)
 
@@ -50,7 +52,9 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'protocol_deviation': admin.VERTICAL,
         'recurrence_symptom': admin.VERTICAL,
         'blood_result': admin.VERTICAL,
-        'death_report': admin.VERTICAL}
+        'death_report': admin.VERTICAL,
+        'death_report_tmg1': admin.VERTICAL,
+        'death_report_tmg2': admin.VERTICAL}
 
     fieldsets = (
         ['PRN', {
@@ -63,6 +67,8 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'lumbar_puncture',
                 'radiology',
                 'protocol_deviation',
-                'death_report')}],
+                'death_report',
+                'death_report_tmg1',
+                'death_report_tmg2')}],
         audit_fieldset_tuple
     )
