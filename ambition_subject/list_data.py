@@ -84,6 +84,7 @@ list_data = {
         ('vitamins', 'Vitamins'),
         ('tmp_smx_Cotrimoxazole', 'TMP-SMX/Cotrimoxazole'),
         ('anti_convulsants', 'Anti convulsants'),
+        (OTHER, 'Other, specify')
     ],
     'ambition_subject.significantnewdiagnosis': [
         ('tb_pulmonary', 'TB pulmonary'),
