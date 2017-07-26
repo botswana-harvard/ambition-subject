@@ -12,6 +12,7 @@ from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS
 class BloodResult(CrfModelMixin):
 
     wbc = models.DecimalField(
+        verbose_name='WBC',
         decimal_places=1,
         max_digits=4,
         null=True,
@@ -77,6 +78,7 @@ class BloodResult(CrfModelMixin):
         max_length=6)
 
     abs_cd4 = models.IntegerField(
+        verbose_name='abs CD4',
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         help_text='units in /mm^3',
         blank=True,
