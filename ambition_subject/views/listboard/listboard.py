@@ -4,14 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 
-from ...models import SubjectConsent
 from ..wrappers import SubjectConsentModelWrapper
 from .base_listboard import BaseListboardView
 
 
 class ListboardView(BaseListboardView):
 
-    model = SubjectConsent
+    model = 'ambition_subject.subject_consent'
     model_wrapper_class = SubjectConsentModelWrapper
 
     @method_decorator(login_required)
