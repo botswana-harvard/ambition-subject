@@ -234,6 +234,8 @@ class Week2(ClinicalAssessment, CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         app_label = 'ambition_subject'
+        verbose_name = 'Week 2'
+        verbose_name_plural = 'Week 2'
 
 
 class SignificantDiagnoses(SignificantDiagnosesMixin):
