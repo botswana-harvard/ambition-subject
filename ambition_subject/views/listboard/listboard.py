@@ -10,8 +10,8 @@ from .base_listboard import BaseListboardView
 
 class ListboardView(BaseListboardView):
 
-    model = 'ambition_subject.subject_consent'
-    model_wrapper_class = SubjectConsentModelWrapper
+    model = 'ambition_subject.subjectconsent'
+    model_wrapper_cls = SubjectConsentModelWrapper
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
