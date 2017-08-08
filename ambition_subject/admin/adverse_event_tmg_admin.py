@@ -24,6 +24,7 @@ class AdverseEventTMGAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'investigator_comments',
                 'ae_description',
                 'ae_classification',
+                'ae_classification_other',
                 'officials_notified',
                 'investigator_returned')}),
         audit_fieldset_tuple
