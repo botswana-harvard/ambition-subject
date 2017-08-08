@@ -33,8 +33,9 @@ class Week16(CrfModelMixin):
         max_length=5,
         choices=YES_NO_NA)
 
-    ranking_score = models.IntegerField(
+    ranking_score = models.CharField(
         verbose_name='Modified Ranking score:',
+        max_length=10,
         choices=RANKING_SCORE)
 
     class Meta(CrfModelMixin.Meta):
