@@ -151,7 +151,9 @@ patienthistory = Recipe(
     left_acuity=0.52,
     right_acuity=0.53,
     lung_exam=YES,
-    cryptococcal_lesions=NO,)
+    cryptococcal_lesions=NO,
+    cd4_date=None,
+    viral_load_date=None,)
 
 protocoldeviationviolation = Recipe(
     ProtocolDeviationViolation)

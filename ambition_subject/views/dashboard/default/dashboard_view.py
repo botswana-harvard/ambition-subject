@@ -6,7 +6,7 @@ from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import (
     DashboardViewMixin as EdcDashboardViewMixin, AppConfigViewMixin)
 
-from ....models import SubjectConsent, SubjectOffstudy
+from ....models import SubjectOffstudy
 from ...wrappers import (
     CrfModelWrapper, SubjectVisitModelWrapper, RequisitionModelWrapper,
     SubjectConsentModelWrapper)
@@ -19,10 +19,10 @@ class DashboardView(
         TemplateView):
 
     app_config_name = 'ambition_subject'
-    navbar_item_selected = 'ambition_subject'
+    consent_model = 'bcpp_subject.subjectconsent'
     consent_model_wrapper_cls = SubjectConsentModelWrapper
-    consent_model = SubjectConsent
     crf_model_wrapper_cls = CrfModelWrapper
+    navbar_item_selected = 'ambition_subject'
     requisition_model_wrapper_cls = RequisitionModelWrapper
     visit_model_wrapper_cls = SubjectVisitModelWrapper
 

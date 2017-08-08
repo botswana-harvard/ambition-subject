@@ -10,7 +10,7 @@ from .base_listboard import BaseListboardView
 
 class ListboardView(BaseListboardView):
 
-    model = 'ambition_subject.subject_consent'
+    model = 'ambition_subject.subjectconsent'
     model_wrapper_cls = SubjectConsentModelWrapper
 
     @method_decorator(login_required)

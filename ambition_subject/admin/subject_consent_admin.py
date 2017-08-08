@@ -34,7 +34,8 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminRevisionMixin,
             try:
                 redirect_url = reverse(url_name, kwargs=options)
             except NoReverseMatch as e:
-                raise ModelAdminNextUrlRedirectError(f'{e}. Got url_name={url_name}, kwargs={options}.')
+                raise ModelAdminNextUrlRedirectError(
+                    f'{e}. Got url_name={url_name}, kwargs={options}.')
         return redirect_url
 
 
