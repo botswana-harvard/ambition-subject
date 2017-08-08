@@ -20,7 +20,7 @@ class DashboardView(
 
     app_config_name = 'ambition_subject'
     navbar_item_selected = 'ambition_subject'
-    consent_model_wrapper_class = SubjectConsentModelWrapper
+    consent_model_wrapper_cls = SubjectConsentModelWrapper
     consent_model = SubjectConsent
     crf_model_wrapper_cls = CrfModelWrapper
     requisition_model_wrapper_cls = RequisitionModelWrapper

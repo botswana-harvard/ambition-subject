@@ -1,3 +1,6 @@
+from ambition_subject_validators.constants import DEVIATION, VIOLATION
+
+
 BACTERIA = 'Bacteria'
 CONTROL = 'control'
 A2 = 'A'
@@ -28,5 +31,3 @@ WEEK6 = '1042'
 WEEK8 = '1056'
 WEEK10 = '1070'
 RANDOMIZED = 'RANDOMIZED'
-DEVIATION = 'DEVIATION'
-VIOLATION = 'VIOLATION'
