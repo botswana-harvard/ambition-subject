@@ -101,7 +101,7 @@ class StudyTerminationConclusion(CrfModelMixin):
 
     rifampicin_started = models.CharField(
         verbose_name='Rifampicin started since week 4?',
-        max_length=5,
+        max_length=30,
         choices=YES_NO_ALREADY)
 
     first_line_regimen_patients = models.CharField(
