@@ -387,7 +387,7 @@ RANKING_SCORE = (
     (3, '3'),
     (4, '4'),
     (5, '5'),
-    ('nil', 'Nil')
+    ('nil', 'Nil'),
     ('not_done', 'Not Done')
 )
 
