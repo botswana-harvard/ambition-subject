@@ -2,6 +2,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
+from edc_base.model_fields import OtherCharField
 
 from .list_models import AEClassification
 from .model_mixins import CrfModelMixin
@@ -29,6 +30,13 @@ class AdverseEventTMG(CrfModelMixin):
         AEClassification,
         blank=True,
         verbose_name='Classification of AE (Tick all that apply):')
+
+    ae_classification_other = OtherCharField(
+        verbose_name='If Other, Specify',
+        max_length=250,
+        blank=True,
+        null=True,
+    )
 
     ae_description = models.TextField(
         blank=True,
