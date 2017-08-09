@@ -38,7 +38,6 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
 
     def save(self, *args, **kwargs):
         self.info_source = 'subject'
-        self.reason = SCHEDULED
         super().save(*args, **kwargs)
 
     @property

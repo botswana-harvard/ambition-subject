@@ -15,7 +15,7 @@ from edc_base_test.apps import AppConfig as BaseEdcBaseTestAppConfig
 from edc_constants.constants import FAILED_ELIGIBILITY
 from edc_consent.apps import AppConfig as BaseEdcConsentAppConfig
 from edc_device.apps import AppConfig as BaseEdcDeviceAppConfig
-from edc_device.constants import CENTRAL_SERVER, SERVER
+from edc_device.constants import CENTRAL_SERVER
 from edc_identifier.apps import AppConfig as BaseEdcIdentifierAppConfig
 from edc_lab.apps import AppConfig as BaseEdcLabAppConfig
 from edc_label.apps import AppConfig as BaseEdcLabelAppConfig
@@ -31,13 +31,7 @@ from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
 
 class AppConfig(DjangoApponfig):
     name = 'ambition_subject'
-    listboard_template_name = 'ambition_subject/listboard.html'
-    dashboard_template_name = 'ambition_subject/dashboard.html'
-    base_template_name = 'edc_base/base.html'
-    listboard_url_name = 'ambition_subject:listboard_url'
-    dashboard_url_name = 'ambition_subject:dashboard_url'
     admin_site_name = 'ambition_subject_admin'
-    url_namespace = 'ambition_subject'
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save
