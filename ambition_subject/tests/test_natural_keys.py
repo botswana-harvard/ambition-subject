@@ -5,22 +5,18 @@ from edc_base.utils import get_utcnow
 from edc_sync.tests import SyncTestHelper
 from edc_visit_tracking.constants import SCHEDULED
 from edc_metadata.tests import CrfTestHelper
-
 from ambition_subject.models.appointment import Appointment
 
 
-@tag('TestNaturalKey')
 class TestNaturalKey(TestCase):
 
     sync_test_helper = SyncTestHelper()
     crf_test_helper = CrfTestHelper()
 
-    @tag('natural_key')
     def test_natural_key_attrs(self):
         self.sync_test_helper.sync_test_natural_key_attr(
             'ambition_subject')
 
-    @tag('natural_key')
     def test_get_by_natural_key_attr(self):
         self.sync_test_helper.sync_test_get_by_natural_key_attr(
             'ambition_subject')

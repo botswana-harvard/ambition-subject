@@ -5,7 +5,8 @@ from edc_visit_schedule.model_mixins import DisenrollmentModelMixin
 from ..managers import DisenrollmentManager
 
 
-class Disenrollment(DisenrollmentModelMixin, RequiresConsentMixin, BaseUuidModel):
+class Disenrollment(DisenrollmentModelMixin, RequiresConsentMixin,
+                    BaseUuidModel):
 
     ADMIN_SITE_NAME = 'ambition_subject_admin'
 

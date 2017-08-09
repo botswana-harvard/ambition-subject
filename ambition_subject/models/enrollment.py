@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-
 from edc_appointment.model_mixins import CreateAppointmentsMixin
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
@@ -29,7 +28,8 @@ class EnrollmentProxyModelManager(BaseEnrollmentManager):
         )
 
 
-class Enrollment(EnrollmentModelMixin, CreateAppointmentsMixin, BaseUuidModel):
+class Enrollment(EnrollmentModelMixin, CreateAppointmentsMixin,
+                 BaseUuidModel):
 
     """A model used by the system. Auto-completed by subject_consent.
     """

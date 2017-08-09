@@ -151,22 +151,15 @@ EDC_LAB_REQUISITION_MODEL = 'ambition_subject.subjectrequisition'
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
 GIT_DIR = BASE_DIR
 
-if 'test' in sys.argv and 'mysql' not in DATABASES.get('default').get('ENGINE'):
-    MIGRATION_MODULES = {
-        "django_crypto_fields": None,
-        "edc_call_manager": None,
-        "edc_appointment": None,
-        "edc_call_manager": None,
-        "edc_consent": None,
-        "edc_death_report": None,
-        "edc_export": None,
-        "edc_identifier": None,
-        "edc_lab": None,
-        "edc_metadata": None,
-        "edc_rule_groups": None,
-        "edc_reference": None,
-        "edc_registration": None,
-        "edc_sync_files": None,
-        "edc_sync": None,
-        "ambition_subject": None,
-        "ambition_screening": None}
+if 'test' in sys.argv:
+
+    class DisableMigrations:
+        def __contains__(self, item):
+            return True
+
+        def __getitem__(self, item):
+            return None
+
+    MIGRATION_MODULES = DisableMigrations()
+    PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher', )
+    DEFAULT_FILE_STORAGE = 'inmemorystorage.InMemoryStorage'

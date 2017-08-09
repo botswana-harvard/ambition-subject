@@ -1,13 +1,13 @@
 import re
-from django.core.exceptions import ObjectDoesNotExist
-from model_mommy import mommy
-from django.test import TestCase, tag
 
+from django.core.exceptions import ObjectDoesNotExist
+from django.test import TestCase, tag
 from edc_base.utils import get_utcnow
 from edc_constants.constants import UUID_PATTERN
+from edc_registration.models import RegisteredSubject
+from model_mommy import mommy
 
 from ..models import SubjectConsent, Enrollment, SubjectRandomization, RandomizationItem
-from edc_registration.models import RegisteredSubject
 
 
 class TestSubjectConsent(TestCase):
@@ -83,7 +83,6 @@ class TestSubjectConsent(TestCase):
             randomized.sid,
             RandomizationItem.objects.get(name=randomized2.sid).name)
 
-    @tag('r')
     def test_rando_follows_all_sequences(self):
         rando_list = RandomizationItem.objects.all()
         for rando in rando_list:
