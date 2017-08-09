@@ -1,4 +1,4 @@
-from ambition_subject_validations.form_validators import MicrobiologyFormValidator
+from ambition_subject_validators import MicrobiologyFormValidator
 
 from ..models import Microbiology
 

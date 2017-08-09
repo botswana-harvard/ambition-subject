@@ -1,4 +1,4 @@
-from ambition_subject_validations.form_validators import DeathFormValidator
+from ambition_subject_validators import DeathFormValidator
 
 from ..models import DeathReportTMG2
 

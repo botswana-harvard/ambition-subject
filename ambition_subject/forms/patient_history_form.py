@@ -1,4 +1,4 @@
-from ambition_subject_validations.form_validators import PatientHistoryFormValidator
+from ambition_subject_validators import PatientHistoryFormValidator
 
 from ..models import PatientHistory
 from .form_mixins import SubjectModelFormMixin

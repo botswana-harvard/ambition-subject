@@ -1,4 +1,4 @@
-from ambition_subject_validations.form_validators import RadiologyFormValidator
+from ambition_subject_validators import RadiologyFormValidator
 
 from ..models import Radiology
 from .form_mixins import SubjectModelFormMixin

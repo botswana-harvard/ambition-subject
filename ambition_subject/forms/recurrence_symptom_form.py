@@ -1,4 +1,4 @@
-from ambition_subject_validations.form_validators import RecurrenceSymptomFormValidator
+from ambition_subject_validators import RecurrenceSymptomFormValidator
 
 from ..models import RecurrenceSymptom
 from .form_mixins import SubjectModelFormMixin

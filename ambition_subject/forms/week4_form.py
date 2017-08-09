@@ -1,6 +1,6 @@
 from django import forms
 
-from ambition_subject_validations.form_validators import (
+from ambition_subject_validators import (
     SignificantDiagnosesFormValidator)
 
 from ..models import Week4, Week4Diagnoses

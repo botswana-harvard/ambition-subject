@@ -1,6 +1,6 @@
 from django import forms
 
-from ambition_subject_validations.form_validators import SubjectConsentFormValidator
+from ambition_subject_validators import SubjectConsentFormValidator
 from edc_constants.choices import YES_NO
 
 from ..choices import ID_TYPE
