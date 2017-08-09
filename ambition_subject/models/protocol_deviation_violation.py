@@ -93,7 +93,7 @@ class ProtocolDeviationViolation(CrfModelMixin):
         blank=True)
 
     action_required = models.CharField(
-        max_length=25,
+        max_length=45,
         choices=ACTION_REQUIRED,
         null=True,
         blank=True)
