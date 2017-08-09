@@ -40,6 +40,4 @@ class DeathReportTMG1(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
-        verbose_name = 'Death report tmg1'
         verbose_name_plural = 'Death reports tmg1'

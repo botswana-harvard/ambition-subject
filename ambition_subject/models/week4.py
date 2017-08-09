@@ -51,9 +51,6 @@ class Week4(ClinicalAssessment, CrfModelMixin):
         choices=YES_NO,
         help_text='If yes, ensure LP CRF completed.')
 
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
-
 
 class Week4Diagnoses(SignificantDiagnosesMixin):
 
@@ -66,6 +63,5 @@ class Week4Diagnoses(SignificantDiagnosesMixin):
     natural_key.dependencies = ['ambition_subject.week4']
 
     class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
         verbose_name_plural = 'Significant Diagnoses'
         unique_together = ('week4', 'possible_diagnoses', 'dx_date')

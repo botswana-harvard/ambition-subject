@@ -1,10 +1,8 @@
 import arrow
 
-from dateutil.tz import gettz
 from datetime import datetime
-
+from dateutil.tz import gettz
 from django.apps import apps as django_apps
-
 from edc_consent.consent import Consent
 from edc_consent.site_consents import site_consents
 from edc_constants.constants import MALE, FEMALE
@@ -24,4 +22,5 @@ v1 = Consent(
     age_is_adult=18,
     age_max=64,
     gender=[MALE, FEMALE])
+
 site_consents.register(v1)

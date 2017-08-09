@@ -67,9 +67,6 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
 
     history = HistoricalRecords()
 
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
-
 
 class FollowUpDiagnoses(SignificantDiagnosesMixin):
 
@@ -82,6 +79,5 @@ class FollowUpDiagnoses(SignificantDiagnosesMixin):
     natural_key.dependencies = ['ambition_subject.followup']
 
     class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
-        verbose_name_plural = 'Significant Diagnoses'
+        verbose_name_plural = 'Follow Up Diagnoses'
         unique_together = ('follow_up', 'possible_diagnoses', 'dx_date')

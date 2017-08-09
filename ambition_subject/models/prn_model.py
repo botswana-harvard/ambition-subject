@@ -80,5 +80,5 @@ class PrnModel(CrfModelMixin):
         choices=YES_NO)
 
     class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
-        verbose_name = 'PRN Forms'
+        verbose_name = 'PRN Form'
+        verbose_name_plural = 'PRN Forms'

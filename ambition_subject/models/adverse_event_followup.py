@@ -24,6 +24,3 @@ class AdverseEventFollowUp(ClinicalAssessment, CrfModelMixin):
         null=False,
         help_text='Indicate Adverse Event, Clinical results,'
         'medications given, dosage,treatment plan and outcomes.')
-
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'

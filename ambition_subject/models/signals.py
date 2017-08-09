@@ -23,4 +23,4 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                     subject_identifier=instance.subject_identifier,
                     consent_identifier=instance.consent_identifier,
                     is_eligible=instance.subject_screening.eligible)
-            Randomization(obj=instance)
+            Randomization(subject_consent=instance)

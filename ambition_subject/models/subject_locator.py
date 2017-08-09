@@ -144,5 +144,4 @@ class SubjectLocator(LocatorModelMixin, RequiresConsentMixin, BaseUuidModel):
         return info
 
     class Meta(RequiresConsentMixin.Meta):
-        app_label = 'ambition_subject'
         consent_model = 'ambition_subject.subjectconsent'

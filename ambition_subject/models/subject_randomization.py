@@ -48,6 +48,3 @@ class SubjectRandomization(BaseUuidModel):
 
     def __str__(self):
         return f'{self.subject_identifier} {self.rx} {self.study_site} {self.sid}'
-
-    class Meta():
-        app_label = 'ambition_subject'

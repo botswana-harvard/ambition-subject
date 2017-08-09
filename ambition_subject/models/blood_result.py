@@ -101,6 +101,3 @@ class BloodResult(CrfModelMixin):
         default=NOT_APPLICABLE)
 
     history = HistoricalRecords()
-
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'

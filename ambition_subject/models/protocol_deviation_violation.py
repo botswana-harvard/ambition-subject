@@ -99,8 +99,3 @@ class ProtocolDeviationViolation(CrfModelMixin):
         blank=True)
 
     history = HistoricalRecords()
-
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
-        verbose_name = 'Protocol Deviation Violation'
-        verbose_name_plural = 'Protocol Deviation Violations'

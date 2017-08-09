@@ -13,12 +13,14 @@ from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
 
-from ..managers import SubjectConsentManager
 from .model_mixins import SearchSlugModelMixin
 
 
-class Manager(SubjectConsentManager, SearchSlugManager):
-    pass
+class SubjectConsentManager(SearchSlugManager, models.Manager):
+
+    def get_by_natural_key(self, subject_identifier, version):
+        return self.get(
+            subject_identifier=subject_identifier, version=version)
 
 
 class SubjectConsent(
@@ -35,7 +37,7 @@ class SubjectConsent(
 
     is_signed = models.BooleanField(default=False, editable=False)
 
-    objects = Manager()
+    objects = SubjectConsentManager()
 
     consent = ConsentManager()
 
@@ -56,7 +58,6 @@ class SubjectConsent(
         return (self.subject_identifier, self.version,)
 
     class Meta(ConsentModelMixin.Meta):
-        app_label = 'ambition_subject'
         get_latest_by = 'consent_datetime'
         unique_together = (('subject_identifier', 'version'),
                            ('first_name', 'dob', 'initials', 'version'))

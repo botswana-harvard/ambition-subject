@@ -158,8 +158,3 @@ class RecurrenceSymptom(CrfModelMixin):
         null=True)
 
     history = HistoricalRecords()
-
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
-        verbose_name = 'Recurrence of Symptoms'
-        verbose_name_plural = 'Recurrence of Symptoms'
