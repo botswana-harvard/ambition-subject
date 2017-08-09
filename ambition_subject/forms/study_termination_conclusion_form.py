@@ -7,11 +7,7 @@ from .form_mixins import SubjectModelFormMixin
 
 class StudyTerminationConclusionForm(SubjectModelFormMixin):
 
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data = StudyTerminationConclusionFormValidator(
-            cleaned_data).clean()
-        return cleaned_data
+    form_validator_cls = StudyTerminationConclusionFormValidator
 
     class Meta:
         model = StudyTerminationConclusion

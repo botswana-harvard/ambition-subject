@@ -6,11 +6,7 @@ from .form_mixins import SubjectModelFormMixin
 
 class AdverseEventForm(SubjectModelFormMixin):
 
-    def clean(self):
-        cleaned_data = super().clean()
-        adverse_event_validator = AdverseEventFormValidator(
-            cleaned_data=cleaned_data)
-        return adverse_event_validator.clean()
+    form_validator_cls = AdverseEventFormValidator
 
     class Meta:
         model = AdverseEvent

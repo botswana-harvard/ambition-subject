@@ -1,18 +1,15 @@
 from django import forms
 
-from ambition_subject_validators import (
-    FollowUpFormValidator, SignificantDiagnosesFormValidator)
-from .form_mixins import SubjectModelFormMixin
+from ambition_subject_validators import FollowUpFormValidator
+from ambition_subject_validators import SignificantDiagnosesFormValidator
 
+from .form_mixins import SubjectModelFormMixin
 from ..models import FollowUp, FollowUpDiagnoses
 
 
 class FollowUpForm(SubjectModelFormMixin):
 
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data = FollowUpFormValidator(cleaned_data=cleaned_data).clean()
-        return cleaned_data
+    form_validator_cls = FollowUpFormValidator
 
     class Meta:
         model = FollowUp
@@ -21,11 +18,7 @@ class FollowUpForm(SubjectModelFormMixin):
 
 class FollowUpDiagnosesForm(forms.ModelForm):
 
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data = SignificantDiagnosesFormValidator(
-            cleaned_data=cleaned_data).clean()
-        return cleaned_data
+    form_validator_cls = SignificantDiagnosesFormValidator
 
     class Meta:
         model = FollowUpDiagnoses

@@ -1,5 +1,4 @@
-from ambition_subject_validators import \
-    ProtocolDeviationViolationFormValidator
+from ambition_subject_validators import ProtocolDeviationViolationFormValidator
 
 from .form_mixins import SubjectModelFormMixin
 from ..models import ProtocolDeviationViolation
@@ -7,11 +6,7 @@ from ..models import ProtocolDeviationViolation
 
 class ProtocolDeviationViolationForm(SubjectModelFormMixin):
 
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data = ProtocolDeviationViolationFormValidator(
-            cleaned_data=cleaned_data).clean()
-        return cleaned_data
+    form_validator_cls = ProtocolDeviationViolationFormValidator
 
     class Meta:
         model = ProtocolDeviationViolation

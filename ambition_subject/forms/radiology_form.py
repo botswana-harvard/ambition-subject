@@ -6,10 +6,7 @@ from .form_mixins import SubjectModelFormMixin
 
 class RadiologyForm(SubjectModelFormMixin):
 
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data = RadiologyFormValidator(cleaned_data).clean()
-        return cleaned_data
+    form_validator_cls = RadiologyFormValidator
 
     class Meta:
         model = Radiology

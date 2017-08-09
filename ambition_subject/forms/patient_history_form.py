@@ -6,11 +6,7 @@ from .form_mixins import SubjectModelFormMixin
 
 class PatientHistoryForm(SubjectModelFormMixin):
 
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data = PatientHistoryFormValidator(
-            cleaned_data=cleaned_data).clean()
-        return cleaned_data
+    form_validator_cls = PatientHistoryFormValidator
 
     class Meta:
         model = PatientHistory

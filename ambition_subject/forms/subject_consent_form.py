@@ -1,13 +1,15 @@
-from django import forms
-
 from ambition_subject_validators import SubjectConsentFormValidator
+from django import forms
+from edc_base.modelform_validators import FormValidatorMixin
 from edc_constants.choices import YES_NO
 
 from ..choices import ID_TYPE
 from ..models import SubjectConsent
 
 
-class SubjectConsentForm(forms.ModelForm):
+class SubjectConsentForm(FormValidatorMixin, forms.ModelForm):
+
+    form_validator_cls = SubjectConsentFormValidator
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -28,12 +30,6 @@ class SubjectConsentForm(forms.ModelForm):
                'that is taken be stored for genetic analysis?'),
         choices=YES_NO,
         widget=forms.RadioSelect)
-
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data = SubjectConsentFormValidator(
-            cleaned_data=cleaned_data).clean()
-        return cleaned_data
 
     class Meta:
         model = SubjectConsent
