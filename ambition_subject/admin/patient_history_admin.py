@@ -29,6 +29,8 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'ecog_score': admin.VERTICAL,
         'lung_exam': admin.VERTICAL,
         'cryptococcal_lesions': admin.VERTICAL,
+        'vl_date_estimated': admin.VERTICAL,
+        'cd4_date_estimated': admin.VERTICAL
     }
 
     fieldsets = (
@@ -60,7 +62,11 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'first_line_choice',
                 'patient_adherence',
                 'last_dose',
-                'last_viral_load']}
+                'last_viral_load',
+                'viral_load_date',
+                'vl_date_estimated',
+                'cd4_date',
+                'cd4_date_estimated']}
          ),
         ('Vital Signs', {
             'fields': [

@@ -23,8 +23,8 @@ class Manager(SubjectConsentManager, SearchSlugManager):
 
 class SubjectConsent(
         ConsentModelMixin, UpdatesOrCreatesRegistrationModelMixin,
-        NonUniqueSubjectIdentifierModelMixin,
-        IdentityFieldsMixin, ReviewFieldsMixin, PersonalFieldsMixin,
+        NonUniqueSubjectIdentifierModelMixin, IdentityFieldsMixin,
+        ReviewFieldsMixin, PersonalFieldsMixin,
         SampleCollectionFieldsMixin, CitizenFieldsMixin,
         VulnerabilityFieldsMixin, SearchSlugModelMixin, BaseUuidModel):
     """ A model completed by the user that captures the ICF.

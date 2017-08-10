@@ -1,4 +1,5 @@
 from django.db import models
+from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentMixin
@@ -10,6 +11,7 @@ from edc_visit_tracking.model_mixins import VisitModelMixin, PreviousVisitError
 
 from ..choices import VISIT_UNSCHEDULED_REASON
 from .appointment import Appointment
+from .list_models import MissedVisitReason
 
 
 class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMixin,
@@ -30,6 +32,22 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
         blank=True,
         null=True,
         choices=VISIT_UNSCHEDULED_REASON,
+    )
+
+    reason_unscheduled_other = OtherCharField(
+        verbose_name='If Other, Specify',
+        max_length=25,
+        blank=True,
+        null=True,
+    )
+
+    reason_missed = models.CharField(
+        verbose_name=(
+            'If \'Missed\' above, provide reason for '
+            'the unscheduled visit'),
+        max_length=25,
+        blank=True,
+        null=True,
     )
 
     objects = VisitModelManager()
