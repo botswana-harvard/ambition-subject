@@ -17,14 +17,12 @@ from .patient_history import PatientHistory
 from .prn_model import PrnModel
 from .protocol_deviation_violation import ProtocolDeviationViolation
 from .radiology import Radiology
-from .randomization import RandomizationItem
 from .recurrence_symptom import RecurrenceSymptom
 from .result import ResultItem, Result
 from .study_termination_conclusion import StudyTerminationConclusion
 from .subject_consent import SubjectConsent
 from .subject_locator import SubjectLocator
 from .subject_offstudy import SubjectOffstudy
-from .subject_randomization import SubjectRandomization
 from .subject_requisition import SubjectRequisition
 from .subject_screening import SubjectScreening
 from .subject_visit import SubjectVisit
