@@ -1,4 +1,5 @@
 import os
+import sys
 
 from datetime import datetime
 from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
@@ -33,6 +34,10 @@ class AppConfig(DjangoApponfig):
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save
+        from .load_randomization import load_randomization
+
+        # if 'migrate' not in sys.argv and 'makemigrations' not in sys.argv:
+        #    load_randomization()
 
 
 class EdcProtocolAppConfig(BaseEdcProtocolAppConfig):

@@ -1,4 +1,4 @@
-from ambition_subject_validators import Week2FormValidator
+from ambition_validators import Week2FormValidator
 
 from ..models import Week2
 from .form_mixins import SubjectModelFormMixin

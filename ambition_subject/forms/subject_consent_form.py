@@ -1,4 +1,4 @@
-from ambition_subject_validators import SubjectConsentFormValidator
+from ambition_validators import SubjectConsentFormValidator
 from django import forms
 from edc_base.modelform_validators import FormValidatorMixin
 from edc_constants.choices import YES_NO

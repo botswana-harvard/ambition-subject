@@ -1,4 +1,4 @@
-from ambition_subject_validators import (
+from ambition_validators import (
     StudyTerminationConclusionFormValidator)
 
 from ..models import StudyTerminationConclusion

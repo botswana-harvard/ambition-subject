@@ -1,4 +1,4 @@
-from ambition_subject_validators import AdverseEventFormValidator
+from ambition_validators import AdverseEventFormValidator
 
 from ..models import AdverseEvent
 from .form_mixins import SubjectModelFormMixin

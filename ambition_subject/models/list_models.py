@@ -54,9 +54,3 @@ class Symptom(ListModelMixin, BaseUuidModel):
 class OtherDrug(ListModelMixin, BaseUuidModel):
 
     pass
-
-
-class RandomizationItem (ListModelMixin, BaseUuidModel):
-
-    class Meta:
-        unique_together = ('display_index', 'name', 'field_name')

@@ -1,4 +1,4 @@
-from ambition_subject_validators.constants import DEVIATION, VIOLATION
+from ambition_validators.constants import DEVIATION, VIOLATION
 
 
 BACTERIA = 'Bacteria'

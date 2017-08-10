@@ -1,4 +1,4 @@
-from ambition_subject_validators import SignificantDiagnosesFormValidator
+from ambition_validators import SignificantDiagnosesFormValidator
 
 from ..models import SignificantDiagnoses
 from .form_mixins import SubjectModelFormMixin
