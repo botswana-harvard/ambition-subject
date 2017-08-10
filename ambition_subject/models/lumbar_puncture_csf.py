@@ -121,6 +121,5 @@ class LumbarPunctureCsf(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
         verbose_name = 'Lumbar Puncture/Cerebrospinal Fluid'
         verbose_name_plural = 'Lumbar Puncture/Cerebrospinal Fluid'

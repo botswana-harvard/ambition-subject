@@ -37,6 +37,3 @@ class Week16(CrfModelMixin):
         verbose_name='Modified Ranking score:',
         max_length=10,
         choices=RANKING_SCORE)
-
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'

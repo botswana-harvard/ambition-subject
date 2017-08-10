@@ -46,6 +46,3 @@ class MissedVisit(BaseUuidModel):
 
     def natural_key(self):
         return (self.subject_identifier,)
-
-    class Meta:
-        app_label = 'ambition_subject'

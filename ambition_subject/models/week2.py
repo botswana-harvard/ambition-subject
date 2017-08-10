@@ -233,7 +233,6 @@ class Week2(ClinicalAssessment, CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
         verbose_name = 'Week 2'
         verbose_name_plural = 'Week 2'
 
@@ -249,7 +248,6 @@ class SignificantDiagnoses(SignificantDiagnosesMixin):
     natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
-        app_label = 'ambition_subject'
         verbose_name_plural = 'Significant Diagnoses'
         unique_together = (
             'week2', 'possible_diagnoses', 'dx_date', 'dx_other')
@@ -266,7 +264,6 @@ class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
     natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
-        app_label = 'ambition_subject'
         verbose_name_plural = 'Fluconazole Missed Doses'
         unique_together = (
             'week2', 'flucon_day_missed', 'flucon_missed_reason')
@@ -285,7 +282,6 @@ class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
     natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
-        app_label = 'ambition_subject'
         verbose_name_plural = 'Amphotericin Missed Doses'
         unique_together = ('week2', 'ampho_day_missed', 'ampho_missed_reason')
 
@@ -303,7 +299,6 @@ class FlucytosineMissedDoses(FlucytosineMissedDosesMixin):
     natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
-        app_label = 'ambition_subject'
         verbose_name_plural = 'Flucytosine Missed Doses'
         unique_together = ('week2', 'flucy_day_missed',
                            'flucy_doses_missed', 'flucy_missed_reason')

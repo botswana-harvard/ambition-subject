@@ -47,6 +47,3 @@ class DeathReport(CrfModelMixin):
         verbose_name='Narrative')
 
     history = HistoricalRecords()
-
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'

@@ -141,7 +141,3 @@ class AdverseEvent(CrfModelMixin):
                   'ambition_tmg@sgul.ac.uk)')
 
     history = HistoricalRecords()
-
-    class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
-        verbose_name = 'Adverse Event'

@@ -136,7 +136,6 @@ class StudyTerminationConclusion(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        app_label = 'ambition_subject'
         consent_model = 'ambition_subject.subjectconsent'
         verbose_name = 'Study Termination/Conclusion'
         verbose_name_plural = 'Study Terminations/Conclusions'

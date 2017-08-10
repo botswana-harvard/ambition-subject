@@ -9,6 +9,3 @@ class Appointment(AppointmentModelMixin, BaseUuidModel):
     objects = AppointmentManager()
 
     history = HistoricalRecords()
-
-    class Meta(AppointmentModelMixin.Meta):
-        app_label = 'ambition_subject'

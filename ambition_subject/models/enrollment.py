@@ -5,27 +5,15 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_visit_schedule.model_mixins import EnrollmentModelMixin
 
-from ..managers import EnrollmentManager as BaseEnrollmentManager
 
+class EnrollmentManager(models.Manager):
 
-class EnrollmentManager(BaseEnrollmentManager):
-
-    def get_enrollment_model_class(self, survey_object):
-        """Returns the proxy model class for the given survey name.
-        """
-        return Enrollment
-
-
-class EnrollmentProxyModelManager(BaseEnrollmentManager):
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        visit_schedule_name = qs.model._meta.visit_schedule_name.split('.')[0]
-        schedule_name = qs.model._meta.visit_schedule_name.split('.')[1]
-        return qs.filter(
+    def get_by_natural_key(self, subject_identifier,
+                           visit_schedule_name, schedule_name):
+        return self.get(
+            subject_identifier=subject_identifier,
             visit_schedule_name=visit_schedule_name,
-            schedule_name=schedule_name,
-        )
+            schedule_name=schedule_name)
 
 
 class Enrollment(EnrollmentModelMixin, CreateAppointmentsMixin,
@@ -55,7 +43,5 @@ class Enrollment(EnrollmentModelMixin, CreateAppointmentsMixin,
         super().save(*args, **kwargs)
 
     class Meta(EnrollmentModelMixin.Meta):
-        app_label = 'ambition_subject'
         consent_model = 'ambition_subject.subjectconsent'
-        verbose_name = 'Enrollment'
         visit_schedule_name = 'visit_schedule1.schedule1'
