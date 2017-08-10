@@ -27,6 +27,3 @@ class Result(ResultModelMixin, BaseUuidModel):
     def natural_key(self):
         return (
             self.report_datetime, self.requisition.requisition_identifier,)
-
-    class Meta:
-        app_label = 'edc_lab'

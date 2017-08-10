@@ -27,6 +27,3 @@ class ResultItem(ResultItemModelMixin, BaseUuidModel):
     def natural_key(self):
         return (self.report_datetime,) + self.result.natural_key()
     natural_key.dependencies = ['ambition_subject.result']
-
-    class Meta:
-        app_label = 'ambition_subject'
