@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from ..models import SubjectScreening
 from ..admin_site import ambition_subject_admin
+from ..forms import SubjectScreeningForm
+from ..models import SubjectScreening
+from .modeladmin_mixins import ModelAdminMixin
 
 
 @admin.register(SubjectScreening, site=ambition_subject_admin)
@@ -39,6 +41,3 @@ class SubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'received_fluconazole')
         }),
     )
-
-    def get_readonly_fields(self, request, obj=None):
-        return (super().get_readonly_fields(request, obj=obj))
