@@ -33,7 +33,7 @@ class AgeEvaluator:
 
     def __init__(self, age=None, adult_lower=None,
                  adult_upper=None):
-        app_config = django_apps.get_app_config('ambition_screening')
+        app_config = django_apps.get_app_config('ambition_subject')
         adult_lower = adult_lower or app_config.screening_age_adult_lower
         adult_upper = adult_upper or app_config.screening_age_adult_upper
 

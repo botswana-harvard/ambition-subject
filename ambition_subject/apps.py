@@ -1,5 +1,4 @@
 import os
-import sys
 
 from datetime import datetime
 from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
@@ -32,6 +31,9 @@ class AppConfig(DjangoApponfig):
     name = 'ambition_subject'
     admin_site_name = 'ambition_subject_admin'
 
+    screening_age_adult_upper = 99
+    screening_age_adult_lower = 18
+
     def ready(self):
         from .models.signals import subject_consent_on_post_save
         from .load_randomization import load_randomization
@@ -40,112 +42,102 @@ class AppConfig(DjangoApponfig):
         #    load_randomization()
 
 
-class EdcProtocolAppConfig(BaseEdcProtocolAppConfig):
-    protocol = 'BHP092'
-    protocol_number = '092'
-    protocol_name = 'Ambition'
-    protocol_title = ''
-    subject_types = [
-        SubjectType('subject', 'Research Subject',
-                    Cap(model_name='ambition_subject.subjectconsent', max_subjects=9999)),
-    ]
-    study_open_datetime = datetime(2016, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
-    study_close_datetime = datetime(2019, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
+if settings.APP_NAME == 'ambition_subject':
+    class EdcProtocolAppConfig(BaseEdcProtocolAppConfig):
+        protocol = 'BHP092'
+        protocol_number = '092'
+        protocol_name = 'Ambition'
+        protocol_title = ''
+        subject_types = [
+            SubjectType('subject', 'Research Subject',
+                        Cap(model_name='ambition_subject.subjectconsent', max_subjects=9999)),
+        ]
+        study_open_datetime = datetime(
+            2016, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
+        study_close_datetime = datetime(
+            2019, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
 
-    @property
-    def site_name(self):
-        return 'Gaborone'
+        @property
+        def site_name(self):
+            return 'Gaborone'
 
-    @property
-    def site_code(self):
-        return '40'
+        @property
+        def site_code(self):
+            return '40'
 
+    class EdcLabAppConfig(BaseEdcLabAppConfig):
+        base_template_name = 'ambition/base.html'
+        requisition_model = 'ambition_subject.subjectrequisition'
+        result_model = 'edc_lab.result'
 
-class EdcLabAppConfig(BaseEdcLabAppConfig):
-    base_template_name = 'ambition/base.html'
-    requisition_model = 'ambition_subject.subjectrequisition'
-    result_model = 'edc_lab.result'
+        @property
+        def site_name(self):
+            return 'Gaborone'
 
-    @property
-    def site_name(self):
-        return 'Gaborone'
+        @property
+        def site_code(self):
+            return '40'
 
-    @property
-    def site_code(self):
-        return '40'
+    class EdcBaseAppConfig(BaseEdcBaseAppConfig):
+        project_name = 'Ambition'
+        institution = 'Botswana-Harvard AIDS Institute'
+        copyright = '2017-{}'.format(get_utcnow().year)
+        license = None
 
+    class EdcBaseTestAppConfig(BaseEdcBaseTestAppConfig):
+        consent_model = 'ambition_subject.subjectconsent'
 
-class EdcBaseAppConfig(BaseEdcBaseAppConfig):
-    project_name = 'Ambition'
-    institution = 'Botswana-Harvard AIDS Institute'
-    copyright = '2017-{}'.format(get_utcnow().year)
-    license = None
+    class EdcConsentAppConfig(BaseEdcConsentAppConfig):
+        pass
 
+    class EdcDeviceAppConfig(BaseEdcDeviceAppConfig):
+        device_role = CENTRAL_SERVER
+        device_id = '99'
 
-class EdcBaseTestAppConfig(BaseEdcBaseTestAppConfig):
-    consent_model = 'ambition_subject.subjectconsent'
+    class EdcVisitTrackingAppConfig(BaseEdcVisitTrackingAppConfig):
+        visit_models = {
+            'ambition_subject': ('subject_visit', 'ambition_subject.subjectvisit')}
 
+    class EdcIdentifierAppConfig(BaseEdcIdentifierAppConfig):
+        identifier_prefix = '092'
 
-class EdcConsentAppConfig(BaseEdcConsentAppConfig):
-    pass
+    class EdcMetadataAppConfig(BaseEdcMetadataAppConfig):
+        reason_field = {'ambition_subject.subjectvisit': 'reason'}
+        create_on_reasons = [SCHEDULED, UNSCHEDULED]
+        delete_on_reasons = [LOST_VISIT, FAILED_ELIGIBILITY]
 
+    class EdcAppointmentAppConfig(BaseEdcAppointmentAppConfig):
+        app_label = 'ambition_subject'
+        default_appt_type = 'clinic'
+        facilities = {
+            'clinic': Facility(
+                name='clinic', days=[MO, TU, WE, TH, FR, SA, SU],
+                slots=[99999, 99999, 99999, 99999, 99999, 99999, 99999])}
 
-class EdcDeviceAppConfig(BaseEdcDeviceAppConfig):
-    device_role = CENTRAL_SERVER
-    device_id = '99'
+    class EdcTimepointAppConfig(BaseEdcTimepointAppConfig):
+        timepoints = [
+            Timepoint(
+                model='ambition_subject.appointment',
+                datetime_field='appt_datetime',
+                status_field='appt_status',
+                closed_status='DONE'
+            ),
+            Timepoint(
+                model='ambition_subject.historicalappointment',
+                datetime_field='appt_datetime',
+                status_field='appt_status',
+                closed_status='DONE'
+            ),
+        ]
 
+    class EdcSyncAppConfig(BaseEdcSyncAppConfig):
+        edc_sync_files_using = True
+        role = CENTRAL_SERVER
 
-class EdcVisitTrackingAppConfig(BaseEdcVisitTrackingAppConfig):
-    visit_models = {
-        'ambition_subject': ('subject_visit', 'ambition_subject.subjectvisit')}
+    class EdcLabelAppConfig(BaseEdcLabelAppConfig):
+        template_folder = os.path.join(
+            settings.STATIC_ROOT, 'ambition', 'label_templates')
 
-
-class EdcIdentifierAppConfig(BaseEdcIdentifierAppConfig):
-    identifier_prefix = '092'
-
-
-class EdcMetadataAppConfig(BaseEdcMetadataAppConfig):
-    reason_field = {'ambition_subject.subjectvisit': 'reason'}
-    create_on_reasons = [SCHEDULED, UNSCHEDULED]
-    delete_on_reasons = [LOST_VISIT, FAILED_ELIGIBILITY]
-
-
-class EdcAppointmentAppConfig(BaseEdcAppointmentAppConfig):
-    app_label = 'ambition_subject'
-    default_appt_type = 'clinic'
-    facilities = {
-        'clinic': Facility(
-            name='clinic', days=[MO, TU, WE, TH, FR, SA, SU],
-            slots=[99999, 99999, 99999, 99999, 99999, 99999, 99999])}
-
-
-class EdcTimepointAppConfig(BaseEdcTimepointAppConfig):
-    timepoints = [
-        Timepoint(
-            model='ambition_subject.appointment',
-            datetime_field='appt_datetime',
-            status_field='appt_status',
-            closed_status='DONE'
-        ),
-        Timepoint(
-            model='ambition_subject.historicalappointment',
-            datetime_field='appt_datetime',
-            status_field='appt_status',
-            closed_status='DONE'
-        ),
-    ]
-
-
-class EdcSyncAppConfig(BaseEdcSyncAppConfig):
-    edc_sync_files_using = True
-    role = CENTRAL_SERVER
-
-
-class EdcLabelAppConfig(BaseEdcLabelAppConfig):
-    template_folder = os.path.join(
-        settings.STATIC_ROOT, 'ambition', 'label_templates')
-
-
-class EdcSyncFilesAppConfig(BaseEdcSyncFilesAppConfig):
-    edc_sync_files_using = True
-    role = CENTRAL_SERVER
+    class EdcSyncFilesAppConfig(BaseEdcSyncFilesAppConfig):
+        edc_sync_files_using = True
+        role = CENTRAL_SERVER
