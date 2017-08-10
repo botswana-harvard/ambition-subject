@@ -16,7 +16,8 @@ class Randomization:
         self.study_site = None
         registered_subject = RegisteredSubject.objects.get(
             subject_identifier=subject_consent.subject_identifier)
-        if SubjectRandomization.objects.filter(study_site=subject_consent.study_site).count() == 0:
+        if SubjectRandomization.objects.filter(
+                study_site=subject_consent.study_site).count() == 0:
             next_to_pick = 1
         else:
             next_to_pick = SubjectRandomization.objects.filter(
