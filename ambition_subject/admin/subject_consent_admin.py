@@ -2,8 +2,6 @@ from django.contrib import admin
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
-
-from ambition_screening.models import SubjectScreening
 from edc_base.modeladmin_mixins import (
     ModelAdminInstitutionMixin, audit_fieldset_tuple, audit_fields,
     ModelAdminNextUrlRedirectMixin, ModelAdminNextUrlRedirectError)
@@ -12,7 +10,7 @@ from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectConsentForm
-from ..models import SubjectConsent
+from ..models import SubjectConsent, SubjectScreening
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminRevisionMixin,

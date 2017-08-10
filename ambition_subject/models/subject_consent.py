@@ -1,4 +1,3 @@
-from ambition_screening.models import SubjectScreening
 from django.apps import apps as django_apps
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
@@ -14,6 +13,7 @@ from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
 
 from .model_mixins import SearchSlugModelMixin
+from .subject_screening import SubjectScreening
 
 
 class SubjectConsentManager(SearchSlugManager, models.Manager):
