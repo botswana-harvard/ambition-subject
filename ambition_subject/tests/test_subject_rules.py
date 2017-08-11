@@ -1,6 +1,7 @@
 from django.test import TestCase, tag
 from model_mommy import mommy
 
+from ambition_rando.import_randomization_list import import_randomization_list
 from edc_base.utils import get_utcnow
 from edc_constants.constants import YES
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
@@ -13,6 +14,7 @@ from ..models import Appointment
 class TestSubjectRules(TestCase):
 
     def setUp(self):
+        import_randomization_list()
         screening = mommy.make_recipe('ambition_subject.subjectscreening',
                                       report_datetime=get_utcnow())
         self.consent = mommy.make_recipe('ambition_subject.subjectconsent',

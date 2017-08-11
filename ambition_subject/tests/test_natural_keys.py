@@ -1,11 +1,13 @@
 from django.test import TestCase, tag
 from model_mommy import mommy
 
+from ambition_rando.import_randomization_list import import_randomization_list
 from edc_base.utils import get_utcnow
+from edc_metadata.tests import CrfTestHelper
 from edc_sync.tests import SyncTestHelper
 from edc_visit_tracking.constants import SCHEDULED
-from edc_metadata.tests import CrfTestHelper
-from ambition_subject.models.appointment import Appointment
+
+from ..models import Appointment
 
 
 class TestNaturalKey(TestCase):
@@ -22,6 +24,7 @@ class TestNaturalKey(TestCase):
             'ambition_subject')
 
     def complete_subject_visit(self):
+        import_randomization_list()
         screening = mommy.make_recipe('ambition_subject.subjectscreening',
                                       report_datetime=get_utcnow())
         consent = mommy.make_recipe('ambition_subject.subjectconsent',
