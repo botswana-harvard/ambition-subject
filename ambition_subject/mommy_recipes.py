@@ -5,14 +5,14 @@ from model_mommy.recipe import Recipe, related, seq
 
 from edc_base.utils import get_utcnow
 from edc_consent.tests import EdcConsentProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
+from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER, MALE, NORMAL
 from edc_visit_tracking.constants import SCHEDULED
 
 from .constants import A2
 from .models import AdverseEvent, AdverseEventTMG, AdverseEventFollowUp
 from .models import BloodResult, DeathReport, Microbiology, FollowUp
 from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory
-from .models import RecurrenceSymptom, SubjectRandomization, Week2, SubjectVisit
+from .models import RecurrenceSymptom, Week2, SubjectVisit, SubjectScreening
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
 from .models import SubjectLocator, SubjectConsent, PrnModel
 from .models.list_models import AEClassification, Neurological
@@ -198,15 +198,6 @@ recurrencesymptom = Recipe(
     narrative_summary='description',
     dr_opinion='cm_release')
 
-subjectrandomization = Recipe(
-    SubjectRandomization,
-    hospital_admission_date=get_utcnow().date,
-    abnormal_mental_status=NO,
-    on_arvs=NO,
-    arv_start_date=None,
-    rando_category=A2,
-    regimen=None)
-
 antibiotic = Recipe(Antibiotic)
 
 week2 = Recipe(
@@ -299,3 +290,20 @@ prnmodel = Recipe(
 
 clinicnote = Recipe(
     ClinicNote,)
+
+subjectscreening = Recipe(
+    SubjectScreening,
+    gender=MALE,
+    age_in_years=40,
+    meningitis_dx=YES,
+    will_hiv_test=YES,
+    consent_ability=YES,
+    mental_status=NORMAL,
+    pregnancy_or_lactation=NOT_APPLICABLE,
+    breast_feeding=NOT_APPLICABLE,
+    previous_drug_reaction=NO,
+    contraindicated_meds=NO,
+    received_amphotericin=NO,
+    received_fluconazole=NO,
+    eligible=True,
+    reasons_ineligible=None)

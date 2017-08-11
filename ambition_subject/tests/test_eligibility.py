@@ -15,9 +15,9 @@ class TestSubjectScreening(TestCase):
 
     def setUp(self):
         django_apps.app_configs[
-            'ambition_screening'].screening_age_adult_upper = 99
+            'ambition_subject'].screening_age_adult_upper = 99
         django_apps.app_configs[
-            'ambition_screening'].screening_age_adult_lower = 18
+            'ambition_subject'].screening_age_adult_lower = 18
 
     def test_eligibility_invalid_age_in_years(self):
         age_evaluator = AgeEvaluator(age=17)
@@ -109,21 +109,21 @@ class TestSubjectScreening(TestCase):
         """Asserts mommy recipe default criteria is eligible.
         """
         subject_screening = mommy.prepare_recipe(
-            'ambition_screening.subjectscreening')
+            'ambition_subject.subjectscreening')
         self.assertTrue(subject_screening.eligible)
 
     def test_subject_invalid_age_in_years_lower(self):
         """Asserts mommy recipe default criteria is eligible.
         """
         subject_screening = mommy.prepare_recipe(
-            'ambition_screening.subjectscreening', age_in_years=17)
+            'ambition_subject.subjectscreening', age_in_years=17)
         subject_screening.verify_eligibility()
         self.assertFalse(subject_screening.eligible)
 
     def test_subject_age_minor_invalid_reason(self):
         options = {'age_in_years': 17}
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening', **options)
+            'ambition_subject.subjectscreening', **options)
         self.assertFalse(subject_screening.eligible)
         self.assertIn(
             subject_screening.reasons_ineligible, 'age<18')
@@ -131,7 +131,7 @@ class TestSubjectScreening(TestCase):
     def test_subject_age_valid_no_reason(self):
         options = {'age_in_years': 18}
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening', **options)
+            'ambition_subject.subjectscreening', **options)
         self.assertTrue(subject_screening.eligible)
         self.assertEqual(subject_screening.reasons_ineligible, '')
 
@@ -140,7 +140,7 @@ class TestSubjectScreening(TestCase):
         """
         options = {'gender': FEMALE, 'pregnancy_or_lactation': YES}
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening', **options)
+            'ambition_subject.subjectscreening', **options)
         self.assertFalse(subject_screening.eligible)
 
     def test_subject_ineligible_previous_adverse_drug_reaction(self):
@@ -149,7 +149,7 @@ class TestSubjectScreening(TestCase):
         """
         options = {'previous_drug_reaction': YES}
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening', **options)
+            'ambition_subject.subjectscreening', **options)
         self.assertFalse(subject_screening.eligible)
 
     def test_subject_ineligible_taking_concomitant_medication(self):
@@ -158,7 +158,7 @@ class TestSubjectScreening(TestCase):
         """
         options = {'contraindicated_meds': YES}
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening', **options)
+            'ambition_subject.subjectscreening', **options)
         self.assertFalse(subject_screening.eligible)
 
     def test_subject_ineligible_took_two_days_amphotricin_b(self):
@@ -167,7 +167,7 @@ class TestSubjectScreening(TestCase):
         """
         options = {'received_amphotericin': YES}
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening', **options)
+            'ambition_subject.subjectscreening', **options)
         self.assertFalse(subject_screening.eligible)
 
     def test_subject_ineligible_took_received_fluconazole(self):
@@ -176,7 +176,7 @@ class TestSubjectScreening(TestCase):
         """
         options = {'received_fluconazole': YES}
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening', **options)
+            'ambition_subject.subjectscreening', **options)
         self.assertFalse(subject_screening.eligible)
 
     def test_successful_screening_id_not_regenerated_on_resave(self):
@@ -185,7 +185,7 @@ class TestSubjectScreening(TestCase):
         """
         options = {'age_in_years': 18}
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening', **options)
+            'ambition_subject.subjectscreening', **options)
         self.assertTrue(subject_screening.eligible)
         screening_id = subject_screening.screening_identifier
         subject_screening.save()
@@ -216,31 +216,31 @@ class TestSubjectScreening(TestCase):
 
     def test_eligible_mental_status_normal(self):
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening')
+            'ambition_subject.subjectscreening')
         self.assertIn(subject_screening.mental_status, NORMAL)
         self.assertTrue(subject_screening.eligible)
 
     def test_ineligible_mental_abnormal(self):
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening',
+            'ambition_subject.subjectscreening',
             mental_status=ABNORMAL, consent_ability=NO)
         self.assertFalse(subject_screening.eligible)
 
     def test_eligible_mental_abnormal_with_consent_ability(self):
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening',
+            'ambition_subject.subjectscreening',
             mental_status=ABNORMAL,
             consent_ability=YES)
         self.assertTrue(subject_screening.eligible)
 
     def test_ineligible_breastfeeding(self):
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening',
+            'ambition_subject.subjectscreening',
             gender=FEMALE, pregnancy_or_lactation=NO, breast_feeding=YES)
         self.assertFalse(subject_screening.eligible)
 
     def test_eligible_breastfeeding_recipe(self):
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening',
+            'ambition_subject.subjectscreening',
             gender=FEMALE, pregnancy_or_lactation=NO, breast_feeding=NO)
         self.assertTrue(subject_screening.eligible)

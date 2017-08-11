@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'ambition_subject.apps.EdcAppointmentAppConfig',
     'ambition_subject.apps.EdcVisitTrackingAppConfig',
     'ambition_subject.apps.AppConfig',
+    'ambition_rando.apps.AppConfig',
     'ambition_validators.apps.AppConfig',
     'ambition_labs.apps.AppConfig',
     'ambition_reference.apps.AppConfig',
@@ -153,6 +154,7 @@ GIT_DIR = BASE_DIR
 if 'test' in sys.argv:
 
     class DisableMigrations:
+
         def __contains__(self, item):
             return True
 

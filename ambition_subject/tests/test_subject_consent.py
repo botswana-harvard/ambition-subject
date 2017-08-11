@@ -14,7 +14,7 @@ class TestSubjectConsent(TestCase):
 
     def setUp(self):
         self.subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening')
+            'ambition_subject.subjectscreening')
 
     def test_cannot_create_consent_without_screening(self):
         """Test adding a consent without Subject screening first raises an
@@ -70,7 +70,7 @@ class TestSubjectConsent(TestCase):
             RandomizationItem.objects.get(name=randomized.sid).field_name)
 
         subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening')
+            'ambition_subject.subjectscreening')
         options = {
             'subject_screening': subject_screening,
             'consent_datetime': get_utcnow, }
@@ -87,7 +87,7 @@ class TestSubjectConsent(TestCase):
         rando_list = RandomizationItem.objects.all()
         for rando in rando_list:
             self.subject_screening = mommy.make_recipe(
-                'ambition_screening.subjectscreening')
+                'ambition_subject.subjectscreening')
             options = {
                 'subject_screening': self.subject_screening,
                 'consent_datetime': get_utcnow, }

@@ -22,7 +22,7 @@ class TestNaturalKey(TestCase):
             'ambition_subject')
 
     def complete_subject_visit(self):
-        screening = mommy.make_recipe('ambition_screening.subjectscreening',
+        screening = mommy.make_recipe('ambition_subject.subjectscreening',
                                       report_datetime=get_utcnow())
         consent = mommy.make_recipe('ambition_subject.subjectconsent',
                                     consent_datetime=get_utcnow(),
