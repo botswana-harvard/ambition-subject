@@ -2,7 +2,7 @@ from django.test import TestCase, tag
 
 from model_mommy import mommy
 
-from ..identifier import ScreeningIdentifier
+from ..screening_identifier import ScreeningIdentifier
 from ..models import IdentifierHistory
 
 

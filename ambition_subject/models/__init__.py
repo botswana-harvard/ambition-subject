@@ -10,6 +10,7 @@ from .death_report_tmg2 import DeathReportTMG2
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
 from .follow_up import FollowUp, FollowUpDiagnoses
+from .identifier_history import IdentifierHistory
 from .lumbar_puncture_csf import LumbarPunctureCsf
 from .microbiology import Microbiology
 from .missed_visit import MissedVisit
