@@ -1,5 +1,6 @@
 from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE
 from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN
+from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
 
 from .constants import N1, A2, AMS_N3, AMS_A4, DEVIATION, VIOLATION
 
@@ -394,6 +395,10 @@ DEVIATION_VIOLATION = (
     (DEVIATION, 'Deviation'),
     (VIOLATION, 'Violation')
 )
+
+VISIT_REASON = ((SCHEDULED, 'Scheduled'),
+                (UNSCHEDULED, 'Not scheduled'),
+                (MISSED_VISIT, 'Missed'))
 
 YES_NO_ND = (
     (YES, 'Yes'),

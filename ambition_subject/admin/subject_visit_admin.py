@@ -20,12 +20,18 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, admin.ModelAdmin)
 
     requisition_model = SubjectRequisition
 
+    radio_fields = {
+        'reason_unscheduled': admin.VERTICAL}
+
     fieldsets = (
         (None, {
             'fields': [
                 'appointment',
                 'report_datetime',
                 'reason',
+                'reason_missed',
+                'reason_unscheduled',
+                'reason_unscheduled_other',
                 'comments']}),
         visit_schedule_fieldset_tuple,
         audit_fieldset_tuple)

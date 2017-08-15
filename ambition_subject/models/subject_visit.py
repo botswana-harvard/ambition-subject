@@ -39,15 +39,6 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
         null=True,
     )
 
-    reason_missed = models.CharField(
-        verbose_name=(
-            'If \'Missed\' above, provide reason for '
-            'the unscheduled visit'),
-        max_length=25,
-        blank=True,
-        null=True,
-    )
-
     objects = VisitModelManager()
 
     history = HistoricalRecords()

@@ -4,8 +4,8 @@ from edc_base.modelform_mixins import CommonCleanModelFormMixin
 from edc_base.modelform_validators import FormValidatorMixin
 from edc_consent.modelform_mixins import RequiresConsentModelFormMixin
 
+from ..choices import VISIT_REASON
 from ..models import SubjectVisit
-from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
 
 
 class SubjectVisitForm (FormValidatorMixin, RequiresConsentModelFormMixin,
@@ -15,7 +15,7 @@ class SubjectVisitForm (FormValidatorMixin, RequiresConsentModelFormMixin,
 
     reason = forms.ChoiceField(
         label='What is the reason for this visit?',
-        choices=((SCHEDULED, 'Scheduled'), (UNSCHEDULED, 'Not scheduled')),
+        choices=VISIT_REASON,
         widget=forms.RadioSelect)
 
     class Meta:
