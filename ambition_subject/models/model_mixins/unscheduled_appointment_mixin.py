@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from ambition_visit_schedule.visit_schedule.schedule import visit_unscheduled
+from ambition_visit_schedule.visit_schedules.schedule import visit_unscheduled
 from edc_appointment.model_mixins import CreateAppointmentsMixin
 from edc_base.utils import get_utcnow
 from edc_visit_schedule import site_visit_schedules
