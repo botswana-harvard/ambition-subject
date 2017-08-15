@@ -5,13 +5,11 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentMixin
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
-from edc_visit_tracking.constants import SCHEDULED
 from edc_visit_tracking.managers import VisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin, PreviousVisitError
 
 from ..choices import VISIT_UNSCHEDULED_REASON
 from .appointment import Appointment
-from .list_models import MissedVisitReason
 
 
 class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMixin,
