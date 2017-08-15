@@ -65,9 +65,8 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, admin.ModelAdmin)
     def view_on_site(self, obj):
         try:
             return reverse(
-                'ambition_subject:dashboard_url', kwargs=dict(
+                'ambition_dashboard:dashboard_url', kwargs=dict(
                     subject_identifier=obj.subject_identifier,
                     appointment=str(obj.appointment.id)))
-        except NoReverseMatch as e:
-            print(e)
+        except NoReverseMatch:
             return super().view_on_site(obj)

@@ -30,7 +30,7 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
                          FormAsJSONModelAdminMixin,
                          admin.ModelAdmin):
 
-    post_url_on_delete_name = 'ambition_subject:dashboard_url'
+    post_url_on_delete_name = 'ambition_dashboard:dashboard_url'
     instructions = (
         'Please complete the questions below. Required questions are in bold. '
         'When all required questions are complete click SAVE. '
@@ -39,13 +39,13 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
 
     def post_url_on_delete_kwargs(self, request, obj):
         return dict(
-            subject_identifier=obj.subject_identifier,
+            subject_identifier=obj.subject_visit.subject_identifier,
             appointment=str(obj.subject_visit.appointment.id))
 
     def view_on_site(self, obj):
         try:
             return reverse(
-                'ambition_subject:dashboard_url', kwargs=dict(
-                    subject_identifier=obj.subject_visit.appointment.subject_identifier))
+                'ambition_dashboard:dashboard_url', kwargs=dict(
+                    subject_identifier=obj.subject_visit.subject_identifier))
         except NoReverseMatch:
             return super().view_on_site(obj)
