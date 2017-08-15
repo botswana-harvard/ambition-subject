@@ -17,10 +17,10 @@ class TestSubjectRules(TestCase):
         import_randomization_list()
         screening = mommy.make_recipe('ambition_subject.subjectscreening',
                                       report_datetime=get_utcnow())
-        self.consent = mommy.make_recipe('ambition_subject.subjectconsent',
-                                         consent_datetime=get_utcnow(),
-                                         subject_screening=screening)
-        self.subject_identifier = self.consent.subject_identifier
+        self.consent = mommy.make_recipe(
+            'ambition_subject.subjectconsent',
+            consent_datetime=get_utcnow(),
+            screening_identifier=screening.screening_identifier)
 
         visit_code = '1070'
 
@@ -37,7 +37,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreport',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
 
@@ -49,7 +49,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreport',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -57,7 +57,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.protocoldeviationviolation',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
 
@@ -69,7 +69,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.protocoldeviationviolation',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -77,7 +77,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.bloodresult',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
 
@@ -89,7 +89,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.bloodresult',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -97,7 +97,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseevent',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
 
@@ -109,7 +109,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseevent',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -118,7 +118,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseeventtmg',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
 
@@ -130,7 +130,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseeventtmg',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -139,7 +139,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseeventfollowup',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
 
@@ -151,7 +151,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.adverseeventfollowup',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -159,7 +159,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.microbiology',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
@@ -169,7 +169,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.microbiology',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -177,7 +177,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.radiology',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
@@ -187,7 +187,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.radiology',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -195,7 +195,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.lumbarpuncturecsf',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
@@ -205,7 +205,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.lumbarpuncturecsf',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -213,7 +213,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.recurrencesymptom',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
@@ -223,7 +223,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.recurrencesymptom',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -231,7 +231,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.protocoldeviationviolation',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
@@ -241,7 +241,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.protocoldeviationviolation',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -249,7 +249,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreport',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
@@ -259,7 +259,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreport',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -267,7 +267,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreporttmg1',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
@@ -277,7 +277,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreporttmg1',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -285,7 +285,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreporttmg2',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
@@ -295,7 +295,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreporttmg2',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
 
@@ -303,7 +303,7 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreport',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
 
@@ -315,6 +315,6 @@ class TestSubjectRules(TestCase):
         self.assertEqual(
             CrfMetadata.objects.get(
                 model='ambition_subject.deathreport',
-                subject_identifier=self.subject_identifier,
+                subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)

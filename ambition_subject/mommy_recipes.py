@@ -263,7 +263,7 @@ lumbarpuncturecsf = Recipe(
 
 subjectconsent = Recipe(
     SubjectConsent,
-    subject_screening=None,
+    screening_identifier=None,
     subject_identifier=None,
     study_site='40',
     consent_datetime=get_utcnow(),
