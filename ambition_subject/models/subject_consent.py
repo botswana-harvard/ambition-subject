@@ -13,7 +13,6 @@ from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
 
 from .model_mixins import SearchSlugModelMixin
-from .subject_screening import SubjectScreening
 
 
 class SubjectConsentManager(SearchSlugManager, models.Manager):
@@ -32,8 +31,9 @@ class SubjectConsent(
     """ A model completed by the user that captures the ICF.
     """
 
-    subject_screening = models.ForeignKey(
-        SubjectScreening, on_delete=models.PROTECT)
+    screening_identifier = models.CharField(
+        verbose_name='Screening Identifier',
+        max_length=50)
 
     is_signed = models.BooleanField(default=False, editable=False)
 
@@ -48,7 +48,7 @@ class SubjectConsent(
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.registration_identifier = self.subject_screening.screening_identifier
+            self.registration_identifier = self.screening_identifier
             edc_protocol_app_config = django_apps.get_app_config(
                 'edc_protocol')
             self.study_site = edc_protocol_app_config.site_code
@@ -60,5 +60,6 @@ class SubjectConsent(
     class Meta(ConsentModelMixin.Meta):
         get_latest_by = 'consent_datetime'
         unique_together = (('subject_identifier', 'version'),
+                           ('subject_identifier', 'screening_identifier'),
                            ('first_name', 'dob', 'initials', 'version'))
         ordering = ('-created',)

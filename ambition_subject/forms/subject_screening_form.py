@@ -1,6 +1,7 @@
-from ambition_subject.models.subject_screening import SubjectScreening
 from ambition_validators import SubjectScreeningFormValidator
 from django import forms
+
+from ..models.subject_screening import SubjectScreening
 
 
 class SubjectScreeningForm(forms.ModelForm):

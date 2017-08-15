@@ -20,12 +20,16 @@ class SubjectConsentForm(FormValidatorMixin, forms.ModelForm):
             'status. Format is \'LASTNAME, FIRSTNAME\'. All uppercase separated '
             'by a comma then followed by a space.')
 
-    id_type = forms.ChoiceField(
+    screening_identifier = forms.CharField(
+        label='Screening identifier',
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+
+    identity_type = forms.ChoiceField(
         label='What type of identity number is this?',
         choices=ID_TYPE,
         widget=forms.RadioSelect)
 
-    store_genetic_samples = forms.ChoiceField(
+    may_store_samples = forms.ChoiceField(
         label=('Does the subject agree that a portion of the blood sample '
                'that is taken be stored for genetic analysis?'),
         choices=YES_NO,

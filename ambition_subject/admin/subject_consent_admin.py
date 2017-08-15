@@ -10,7 +10,7 @@ from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectConsentForm
-from ..models import SubjectConsent, SubjectScreening
+from ..models import SubjectConsent
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminRevisionMixin,
@@ -46,7 +46,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
     fieldsets = (
         (None, {
             'fields': (
-                'subject_screening',
+                'screening_identifier',
                 'subject_identifier',
                 'first_name',
                 'last_name',
@@ -59,11 +59,10 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
                 'guardian_name',
                 'is_dob_estimated',
                 'identity',
-                'id_type',
+                'identity_type',
                 'confirm_identity',
                 'is_incarcerated',
                 'may_store_samples',
-                'store_genetic_samples',
                 'comment',
                 'consent_reviewed',
                 'study_questions',
@@ -71,7 +70,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
                 'consent_copy')}),
         audit_fieldset_tuple)
 
-    search_fields = ('subject_identifier', )
+    search_fields = ('subject_identifier', 'screening_identifier')
 
     radio_fields = {
         "assessment_score": admin.VERTICAL,
@@ -83,15 +82,9 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
         "is_literate": admin.VERTICAL,
         "language": admin.VERTICAL,
         "may_store_samples": admin.VERTICAL,
+        "identity_type": admin.VERTICAL,
         "study_questions": admin.VERTICAL,
     }
-
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == "subject_screening":
-            kwargs["queryset"] = SubjectScreening.objects.filter(
-                id__exact=request.GET.get('subject_screening'))
-        return super().formfield_for_foreignkey(
-            db_field, request, **kwargs)
 
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)
@@ -100,7 +93,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
     def view_on_site(self, obj):
         try:
             return reverse(
-                'ambition_subject:dashboard_url', kwargs=dict(
+                'ambition_dashboard:dashboard_url', kwargs=dict(
                     subject_identifier=obj.subject_identifier))
         except NoReverseMatch:
             return super().view_on_site(obj)
