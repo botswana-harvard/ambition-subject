@@ -23,7 +23,7 @@ class AppointmentAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'subject_identifier',
                 'appt_datetime',
-                'appoint_type',
+                'appt_type',
                 'appt_status',
                 'appt_reason',
                 'comment',

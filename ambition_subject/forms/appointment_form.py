@@ -8,7 +8,7 @@ from ..choices import APPOINTMENT_REASON, AMB_APPT_TYPE
 
 class AppointmentForm(AppointmentFormMixin, forms.ModelForm):
 
-    appoint_type = forms.ChoiceField(
+    appt_type = forms.ChoiceField(
         label='Appointment type',
         choices=AMB_APPT_TYPE,
         widget=forms.RadioSelect)
