@@ -8,10 +8,12 @@ from edc_consent.field_mixins import VulnerabilityFieldsMixin
 from edc_consent.field_mixins.bw import IdentityFieldsMixin
 from edc_consent.managers import ConsentManager
 from edc_consent.model_mixins import ConsentModelMixin
+from edc_constants.choices import YES_NO
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
 
+from ..choices import ID_TYPE
 from .model_mixins import SearchSlugModelMixin
 
 
@@ -36,6 +38,17 @@ class SubjectConsent(
         max_length=50)
 
     is_signed = models.BooleanField(default=False, editable=False)
+
+    may_store_samples = models.CharField(
+        verbose_name=('Does the subject agree that a portion of the blood sample '
+                      'that is taken be stored for genetic analysis?'),
+        max_length=25,
+        choices=YES_NO)
+
+    identity_type = models.CharField(
+        verbose_name='What type of identity number is this?',
+        max_length=25,
+        choices=ID_TYPE)
 
     objects = SubjectConsentManager()
 

@@ -78,6 +78,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
         "consent_reviewed": admin.VERTICAL,
         "gender": admin.VERTICAL,
         "is_dob_estimated": admin.VERTICAL,
+        'identity_type': admin.VERTICAL,
         "is_incarcerated": admin.VERTICAL,
         "is_literate": admin.VERTICAL,
         "language": admin.VERTICAL,
@@ -88,7 +89,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
 
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)
-                + audit_fields)
+                + ('screening_identifier',) + audit_fields)
 
     def view_on_site(self, obj):
         try:
