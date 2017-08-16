@@ -7,6 +7,7 @@ from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import VisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin, PreviousVisitError
+from ..choices import VISIT_REASON
 
 from ..choices import VISIT_UNSCHEDULED_REASON
 from .appointment import Appointment
@@ -21,6 +22,11 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
     """
 
     appointment = models.OneToOneField(Appointment, on_delete=models.PROTECT)
+
+    reason = models.CharField(
+        verbose_name='What is the reason for this visit?',
+        max_length=25,
+        choices=VISIT_REASON)
 
     reason_unscheduled = models.CharField(
         verbose_name=(

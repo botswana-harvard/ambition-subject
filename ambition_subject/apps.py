@@ -25,6 +25,7 @@ from edc_timepoint.apps import AppConfig as BaseEdcTimepointAppConfig
 from edc_timepoint.timepoint import Timepoint
 from edc_visit_tracking.apps import AppConfig as BaseEdcVisitTrackingAppConfig
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
+from edc_visit_tracking.constants import MISSED_VISIT
 
 
 class AppConfig(DjangoApponfig):
@@ -104,7 +105,7 @@ if settings.APP_NAME == 'ambition_subject':
     class EdcMetadataAppConfig(BaseEdcMetadataAppConfig):
         reason_field = {'ambition_subject.subjectvisit': 'reason'}
         create_on_reasons = [SCHEDULED, UNSCHEDULED]
-        delete_on_reasons = [LOST_VISIT, FAILED_ELIGIBILITY]
+        delete_on_reasons = [LOST_VISIT, FAILED_ELIGIBILITY, MISSED_VISIT]
 
     class EdcAppointmentAppConfig(BaseEdcAppointmentAppConfig):
         app_label = 'ambition_subject'
