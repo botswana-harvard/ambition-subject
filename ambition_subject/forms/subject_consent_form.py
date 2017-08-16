@@ -17,6 +17,7 @@ class SubjectConsentForm(FormValidatorMixin, forms.ModelForm):
             'Required only if subject is unconscious or has an abnormal mental '
             'status. Format is \'LASTNAME, FIRSTNAME\'. All uppercase separated '
             'by a comma then followed by a space.')
+        self.fields['screening_identifier'].disabled = True
 
     class Meta:
         model = SubjectConsent

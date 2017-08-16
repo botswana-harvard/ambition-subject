@@ -89,7 +89,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
 
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)
-                + ('screening_identifier',) + audit_fields)
+                + audit_fields)
 
     def view_on_site(self, obj):
         try:
