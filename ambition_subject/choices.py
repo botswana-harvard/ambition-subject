@@ -65,6 +65,14 @@ FIRST_ARV_REGIMEN = (
      'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
     ('AZT+3-TC+ either EFV or NVP or DTG',
       'AZT+3-TC+ either EFV or NVP or DTG'), 
+     ('Other', 'Other'))
+
+SECOND_ARV_REGIMEN = (
+    (NOT_APPLICABLE, 'Not Applicable'),
+    ('TDF+3TC/FTC+ either ATZ/r or Lopinavir/r',
+     'TDF+3TC/FTC+ either ATZ/r or Lopinavir/r'),
+    ('AZT+3-TC+ either ATZ/r or Lopinavir/r',
+      'AZT+3-TC+ either ATZ/r or Lopinavir/r'), 
      ('Other', 'Other, Specify'))
 
 APPOINTMENT_REASON = (
