@@ -7,7 +7,7 @@ from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
-from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, TB_SITE, ECOG_SCORE
+from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE, ECOG_SCORE
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
@@ -102,7 +102,15 @@ class PatientHistory(CrfModelMixin):
         default=NOT_APPLICABLE)
 
     arv_regimen_other = OtherCharField()
-
+    
+    first_arv_regimen = models.CharField(
+        verbose_name='First line arv regimen',
+        max_length=50,
+        choices=FIRST_ARV_REGIMEN,
+        default=NOT_APPLICABLE)
+    
+    first_arv_regimen_other = OtherCharField()
+    
     first_line_choice = models.CharField(
         verbose_name='If first line:',
         max_length=5,
