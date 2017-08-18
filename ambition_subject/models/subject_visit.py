@@ -59,3 +59,4 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
 
     class Meta(VisitModelMixin.Meta, RequiresConsentMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
+        rulegroup_app_label = 'ambition_metadata_rules'

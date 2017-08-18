@@ -10,7 +10,6 @@ from ..eligibility import (
     MentalStatusEvaluatorError)
 
 
-@tag('rg')
 class TestSubjectScreening(TestCase):
 
     def setUp(self):
