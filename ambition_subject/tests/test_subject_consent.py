@@ -1,7 +1,6 @@
 import re
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_base.utils import get_utcnow
 from edc_constants.constants import UUID_PATTERN
 from edc_registration.models import RegisteredSubject
@@ -18,20 +17,12 @@ class TestSubjectConsent(TestCase):
         self.subject_screening = mommy.make_recipe(
             'ambition_subject.subjectscreening')
 
-    def test_cannot_create_consent_without_screening(self):
-        """Test adding a consent without Subject screening first raises an
-           Exception.
-        """
-        self.assertRaises(ObjectDoesNotExist, mommy.make_recipe,
-                          'ambition_subject.subjectconsent',
-                          consent_datetime=get_utcnow)
-
     def test_allocated_subject_identifier(self):
         """Test consent successfully allocates subject identifier on
         save.
         """
         options = {
-            'subject_screening': self.subject_screening,
+            'screening_identifier': self.subject_screening.screening_identifier,
             'consent_datetime': get_utcnow, }
         mommy.make_recipe('ambition_subject.subjectconsent', **options)
         self.assertFalse(
@@ -41,7 +32,7 @@ class TestSubjectConsent(TestCase):
 
     def test_consent_creates_registered_subject(self):
         options = {
-            'subject_screening': self.subject_screening,
+            'screening_identifier': self.subject_screening.screening_identifier,
             'consent_datetime': get_utcnow, }
         self.assertEquals(RegisteredSubject.objects.all().count(), 0)
         mommy.make_recipe('ambition_subject.subjectconsent', **options)
@@ -51,7 +42,7 @@ class TestSubjectConsent(TestCase):
         subject_consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
             consent_datetime=get_utcnow,
-            subject_screening=self.subject_screening)
+            screening_identifier=self.subject_screening.screening_identifier)
 
         try:
             Enrollment.objects.get(

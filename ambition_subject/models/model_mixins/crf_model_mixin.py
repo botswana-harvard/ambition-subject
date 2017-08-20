@@ -13,6 +13,8 @@ from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
 from edc_visit_tracking.model_mixins import (
     CrfModelMixin as VisitTrackingCrfModelMixin, PreviousVisitModelMixin)
+from edc_metadata.rules.site import site_metadata_rules
+from edc_metadata.model_mixins.rules.metadata_rules_model_mixin import MetadataRulesModelMixin
 
 from ..subject_visit import SubjectVisit
 
@@ -31,7 +33,7 @@ class CrfModelManager(VisitTrackingCrfModelManager):
 
 class CrfModelMixin(VisitTrackingCrfModelMixin, OffstudyMixin,
                     RequiresConsentMixin, PreviousVisitModelMixin,
-                    UpdatesCrfMetadataModelMixin,
+                    UpdatesCrfMetadataModelMixin, MetadataRulesModelMixin,
                     FormAsJSONModelMixin, ReferenceModelMixin, BaseUuidModel):
 
     """ Base model for all scheduled models (adds key to :class:`SubjectVisit`).
@@ -51,10 +53,19 @@ class CrfModelMixin(VisitTrackingCrfModelMixin, OffstudyMixin,
 
     history = HistoricalRecords()
 
+    def run_metadata_rules(self):
+        """Runs the rule groups for this .
+        Gets called in the signal.
+        """
+        for rule_group in site_metadata_rules.registry.get(self._meta.rulegroup_app_label, []):
+            if rule_group._meta.source_model == self._meta.label_lower:
+                rule_group.evaluate_rules(visit=self)
+
     def natural_key(self):
         return self.subject_visit.natural_key()
     natural_key.dependencies = ['ambition_subject.subjectvisit']
 
     class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
+        rulegroup_app_label = 'ambition_metadata_rules'
         abstract = True
