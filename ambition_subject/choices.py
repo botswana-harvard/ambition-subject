@@ -77,7 +77,7 @@ SECOND_ARV_REGIMEN = (
 
 APPOINTMENT_REASON = (
     ('routine', 'Routine'),
-    ('unscheduled', 'Unscheduled'))
+    (UNSCHEDULED, 'Unscheduled'))
 
 AMB_APPT_TYPE = (
     ('clinic', 'In clinic'),
