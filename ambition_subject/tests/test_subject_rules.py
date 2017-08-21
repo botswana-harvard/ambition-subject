@@ -113,7 +113,6 @@ class TestSubjectRules(TestCase):
                 visit_code='1070').entry_status,
             REQUIRED)
 
-    @tag('rg')
     def test_adverse_event_tmg_required(self):
         self.assertEqual(
             CrfMetadata.objects.get(
@@ -134,7 +133,6 @@ class TestSubjectRules(TestCase):
                 visit_code='1070').entry_status,
             REQUIRED)
 
-    @tag('rg')
     def test_adverse_event_followup_required(self):
         self.assertEqual(
             CrfMetadata.objects.get(
