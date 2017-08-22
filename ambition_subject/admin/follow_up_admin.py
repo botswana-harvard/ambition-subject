@@ -47,17 +47,6 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     conditional_fieldsets = {
         WEEK10: visual_acuity_fieldset, }
 
-    radio_fields = {
-        'physical_symptoms': admin.VERTICAL,
-        'headache': admin.VERTICAL,
-        'confusion': admin.VERTICAL,
-        'recent_seizure_less_72': admin.VERTICAL,
-        'cn_palsy': admin.VERTICAL,
-        'behaviour_change': admin.VERTICAL,
-        'focal_neurology': admin.VERTICAL,
-        'fluconazole_dose': admin.VERTICAL,
-        'rifampicin_started': admin.VERTICAL}
-
     fieldsets = (
         ('Clinical Assessment', {
             'fields': (
@@ -79,3 +68,14 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'rifampicin_start_date')}),
         audit_fieldset_tuple
     )
+
+    radio_fields = {
+        'physical_symptoms': admin.VERTICAL,
+        'headache': admin.VERTICAL,
+        'confusion': admin.VERTICAL,
+        'recent_seizure_less_72': admin.VERTICAL,
+        'cn_palsy': admin.VERTICAL,
+        'behaviour_change': admin.VERTICAL,
+        'focal_neurology': admin.VERTICAL,
+        'fluconazole_dose': admin.VERTICAL,
+        'rifampicin_started': admin.VERTICAL}

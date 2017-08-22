@@ -43,14 +43,6 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         WEEK8: (blood_count,),
         WEEK10: (blood_count,)}
 
-    radio_fields = {
-        'proteinuria': admin.VERTICAL,
-        'are_results_normal': admin.VERTICAL,
-        'abnormal_results_in_ae_range': admin.VERTICAL,
-        'creatinine_unit': admin.VERTICAL,
-        'magnesium_unit': admin.VERTICAL,
-        'urea_unit': admin.VERTICAL}
-
     fieldsets = (
         [None, {
             'fields': (
@@ -71,3 +63,11 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'abnormal_results_in_ae_range')}],
         audit_fieldset_tuple
     )
+
+    radio_fields = {
+        'proteinuria': admin.VERTICAL,
+        'are_results_normal': admin.VERTICAL,
+        'abnormal_results_in_ae_range': admin.VERTICAL,
+        'creatinine_unit': admin.VERTICAL,
+        'magnesium_unit': admin.VERTICAL,
+        'urea_unit': admin.VERTICAL}

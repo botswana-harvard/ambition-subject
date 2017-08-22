@@ -2,7 +2,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_fields import OtherCharField, IsDateEstimatedField
-from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
@@ -127,7 +126,6 @@ class PatientHistory(CrfModelMixin):
         verbose_name='If first line:',
         max_length=5,
         choices=FIRST_LINE_REGIMEN,
-        null=True,
         default=NOT_APPLICABLE)
 
     patient_adherence = models.CharField(
@@ -170,15 +168,15 @@ class PatientHistory(CrfModelMixin):
     )
 
     cd4_date_estimated = IsDateEstimatedField(
+        verbose_name=("Is the subject's CD4 date estimated?"),
         blank=True,
-        null=True,
-        verbose_name=("Is the subject's CD4 date estimated?"))
+        null=True)
 
     temp = models.DecimalField(
         verbose_name='Temperature:',
         decimal_places=1,
         max_digits=3,
-        help_text='°C')
+        help_text='in degrees Celcius')
 
     heart_rate = models.IntegerField(
         verbose_name='Heart Rate:',
@@ -281,8 +279,6 @@ class PatientHistory(CrfModelMixin):
         Medication,
         blank=True)
 
-    history = HistoricalRecords()
-
     personal_he_spend = models.DecimalField(
         verbose_name='Over that last 4 weeks, how much have you'
         'spent on activities relating to your health?',
@@ -325,20 +321,21 @@ class PatientHistory(CrfModelMixin):
         blank=True,
         null=True)
 
-    transport_taken = models.CharField(
+    transport_form = models.CharField(
         verbose_name='Which form of transport did you take to reach there?',
         max_length=5,
         choices=TRANSPORT)
 
-    cost_transport = models.DecimalField(
+    transport_cost = models.DecimalField(
         verbose_name='How much did you spend on the transport?',
         decimal_places=2,
         max_digits=4,
         null=True,
         blank=True)
 
-    duration_transport = models.CharField(
+    transport_duration = models.CharField(
         verbose_name='How long did it take you to reach there?',
+        max_length=25,
         null=True,
         blank=True)
 
@@ -354,12 +351,12 @@ class PatientHistory(CrfModelMixin):
         blank=True,
         null=True)
 
-    payment_for_treatment = models.CharField(
+    paid_treatment = models.CharField(
         verbose_name='Did you pay for treatment of your present condition?',
         max_length=5,
         choices=YES_NO)
 
-    amount_paid = models.DecimalField(
+    paid_treatment_amount = models.DecimalField(
         verbose_name=' How much did you pay for the treatment of your present condition?',
         decimal_places=2,
         max_digits=4,
@@ -367,7 +364,7 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     other_place_visited = models.CharField(
-        verbose_name='Before this,did you go to another place'
+        verbose_name='Before this, did you go to another place'
         'for the treatment of the present situation?',
         max_length=5,
         choices=YES_NO)

@@ -13,24 +13,6 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = MicrobiologyForm
 
-    radio_fields = {
-        'urine_culture_performed': admin.VERTICAL,
-        'urine_culture_results': admin.VERTICAL,
-        'urine_culture_organism': admin.VERTICAL,
-        'blood_culture_performed': admin.VERTICAL,
-        'blood_culture_results': admin.VERTICAL,
-        'blood_culture_organism': admin.VERTICAL,
-        'bacteria_identified': admin.VERTICAL,
-        'sputum_afb_performed': admin.VERTICAL,
-        'sputum_results_afb': admin.VERTICAL,
-        'sputum_performed': admin.VERTICAL,
-        'sputum_results_culture': admin.VERTICAL,
-        'sputum_result_genexpert': admin.VERTICAL,
-        'sputum_genexpert_performed': admin.VERTICAL,
-        'tissue_biopsy_taken': admin.VERTICAL,
-        'tissue_biopsy_results': admin.VERTICAL,
-        'tissue_biopsy_organism': admin.VERTICAL}
-
     fieldsets = (
         ['Urine Culture (Only for patients with >50 white cells in urine)', {
             'fields': (
@@ -73,3 +55,21 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'histopathology_report')}],
         audit_fieldset_tuple
     )
+
+    radio_fields = {
+        'urine_culture_performed': admin.VERTICAL,
+        'urine_culture_results': admin.VERTICAL,
+        'urine_culture_organism': admin.VERTICAL,
+        'blood_culture_performed': admin.VERTICAL,
+        'blood_culture_results': admin.VERTICAL,
+        'blood_culture_organism': admin.VERTICAL,
+        'bacteria_identified': admin.VERTICAL,
+        'sputum_afb_performed': admin.VERTICAL,
+        'sputum_results_afb': admin.VERTICAL,
+        'sputum_performed': admin.VERTICAL,
+        'sputum_results_culture': admin.VERTICAL,
+        'sputum_result_genexpert': admin.VERTICAL,
+        'sputum_genexpert_performed': admin.VERTICAL,
+        'tissue_biopsy_taken': admin.VERTICAL,
+        'tissue_biopsy_results': admin.VERTICAL,
+        'tissue_biopsy_organism': admin.VERTICAL}
