@@ -10,7 +10,8 @@ from edc_constants.constants import NOT_APPLICABLE
 from ..choices import (ARV_REGIMEN, FIRST_LINE_REGIMEN,
                        FIRST_ARV_REGIMEN, TB_SITE,
                        ECOG_SCORE, SECOND_ARV_REGIMEN, LOCATION_CARE,
-                       TRANSPORT_TO_LOCATION_CARE)
+                       TRANSPORT_TO_LOCATION_CARE,
+                       CARE_PROVIDER_BEFORE_HOSPITAL)
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
@@ -321,13 +322,41 @@ class PatientHistory(CrfModelMixin):
         blank=True,
         null=True)
 
-    transport_taken_location_care_before_hospital = models.CharField(
+    transport_taken_to_location_care_before_hospital = models.CharField(
         verbose_name='Which form of transport did you take to reach there?',
         max_length=5,
         choices=TRANSPORT_TO_LOCATION_CARE)
 
-    cost_transport_taken_location_care_before_hospital = models.IntegerField(
+    cost_transport_taken_to_location_care_before_hospital = models.IntegerField(
         verbose_name='How much did you spend on the transport?',
+        validators=[MinValueValidator(1)],
+        null=True,
+        blank=True)
+
+    duration_transport_taken_to_location_care_before_hospital = models.CharField(
+        verbose_name='How long did it take you to reach there?',
+        null=True,
+        blank=True)
+
+    care_provider_before_hospital = models.CharField(
+        verbose_name='Who provided treatment or care for your'
+        ' present condition, before coming to the hospital?',
+        max_length=5,
+        choices=CARE_PROVIDER_BEFORE_HOSPITAL)
+
+    care_provider_before_hospital_other = models.CharField(
+        verbose_name='If Other Specify:',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    payment_for_treatment_present_condition = models.CharField(
+        verbose_name='Did you pay for treatment of your present condition?',
+        max_length=5,
+        choices=YES_NO)
+
+    amount_paid_treatment_present_condition = models.IntegerField(
+        verbose_name=' How much did you pay for the treatment of your present condition?',
         validators=[MinValueValidator(1)],
         null=True,
         blank=True)
