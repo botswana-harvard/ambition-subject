@@ -122,11 +122,11 @@ BRAIN_IMAGINING_REASON = (
     ('new_neurology', 'New neurology'),
     (OTHER, 'Other, specify'))
 
-CARE_PROVIDER_BEFORE_HOSPITAL = (
+CARE_PROVIDER = (
     ('DOCTOR', 'Doctor'),
     ('NURSE', 'Nurse'),
     ('TRADITIONAL HEALER', 'Tradiiotnal Healer'),
-    ('SPIRITUAL HEALER', 'SPIRITUSL HEALER'),
+    ('SPIRITUAL HEALER', 'SPIRITUAL HEALER'),
     ('FAMILY/FRIEND'),
     ('Other, Other'))
 
@@ -368,7 +368,7 @@ TB_SITE_DEATH = (
     ('pulmonary', 'Pulmonary'),
     ('disseminated', 'Disseminated'))
 
-TRANSPORT_TO_LOCATION_CARE = (
+TRANSPORT = (
     ('BUS', 'Bus'),
     ('TRAIN', 'TRAIN'),
     ('OWN CAR', 'Own Car'),
