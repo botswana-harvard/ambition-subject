@@ -29,7 +29,7 @@ ACTIVITIES_MISSED = (
     ('Caring for Children', 'Caring for children'),
     ('Maintaining the house', 'Maintaining the house'),
     ('Nothing', 'Nothing'),
-    (OTHER, 'Other')
+    (OTHER, 'Other'),
 )
 
 AE_INTENSITY = (
@@ -89,7 +89,8 @@ SECOND_ARV_REGIMEN = (
      'TDF+3TC/FTC+ either ATZ/r or Lopinavir/r'),
     ('AZT+3-TC+ either ATZ/r or Lopinavir/r',
      'AZT+3-TC+ either ATZ/r or Lopinavir/r'),
-    (OTHER, 'Other, specify'))
+    (OTHER, 'Other, specify'),
+)
 
 APPOINTMENT_REASON = (
     ('routine', 'Routine'),
@@ -137,9 +138,9 @@ BRAIN_IMAGINING_REASON = (
 CARE_PROVIDER = (
     ('DOCTOR', 'Doctor'),
     ('NURSE', 'Nurse'),
-    ('TRADITIONAL HEALER', 'Tradiiotnal Healer'),
+    ('TRADITIONAL HEALER', 'Traditional Healer'),
     ('SPIRITUAL HEALER', 'SPIRITUAL HEALER'),
-    ('FAMILY/FRIEND'),
+    ('FAMILY/FRIEND', 'FAMILY/FRIEND'),
     (OTHER, 'Other'),
 )
 

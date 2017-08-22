@@ -93,7 +93,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'transport_cost',
                 'transport_duration',
                 'care_provider',
-                'care_provider',
                 'paid_treatment_present_condition',
                 'other_place_visited',
                 'duration_present_condition']}

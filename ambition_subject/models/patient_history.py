@@ -335,6 +335,7 @@ class PatientHistory(CrfModelMixin):
 
     transport_duration = models.CharField(
         verbose_name='How long did it take you to reach there?',
+        max_length=25,
         null=True,
         blank=True)
 
