@@ -1,4 +1,4 @@
-from ambition_validators.constants import DEVIATION, VIOLATION, TUBERCULOSIS
+from ambition_validators.constants import DEVIATION, VIOLATION, TUBERCULOSIS, HEADACHE, VISUAL_LOSS
 
 BACTERIA = 'Bacteria'
 CONTROL = 'control'

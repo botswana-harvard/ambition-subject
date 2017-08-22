@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from edc_base.model_fields import OtherCharField, IsDateEstimatedField
+from edc_base.model_fields import OtherCharField, IsDateEstimatedFieldNa
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
@@ -36,7 +36,7 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    med_history = models.CharField(
+    tb_history = models.CharField(
         verbose_name='Previous medical history of Tuberculosis?',
         max_length=5,
         choices=YES_NO)
@@ -64,18 +64,18 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    previous_infection = models.CharField(
+    previous_non_tb_oi = models.CharField(
         verbose_name='Previous opportunistic infection other than TB?',
         max_length=5,
         choices=YES_NO)
 
-    previous_infection_specify = models.CharField(
+    previous_non_tb_oi_name = models.CharField(
         verbose_name='If yes, specify',
         null=True,
         blank=True,
         max_length=50)
 
-    infection_date = models.DateField(
+    previous_non_tb_oi_date = models.DateField(
         verbose_name='If yes, what was the date of infection?',
         validators=[date_not_future],
         null=True,
@@ -87,10 +87,11 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO)
 
     taking_arv = models.CharField(
-        verbose_name='If Yes,Already taking ARVs?',
+        verbose_name='If Yes, already taking ARVs?',
         max_length=5,
         choices=YES_NO_NA,
-        default=NOT_APPLICABLE)
+        default=NOT_APPLICABLE,
+        help_text='(If Yes, new hiv diagnosis)')
 
     arv_date = models.DateField(
         verbose_name='If yes, date ARVs were started.',
@@ -155,10 +156,8 @@ class PatientHistory(CrfModelMixin):
         blank=True
     )
 
-    vl_date_estimated = IsDateEstimatedField(
-        blank=True,
-        null=True,
-        verbose_name=("Is the subject's viral load date estimated?"))
+    vl_date_estimated = IsDateEstimatedFieldNa(
+        verbose_name="Is the subject's viral load date estimated?")
 
     cd4_date = models.DateField(
         verbose_name='CD4 date',
@@ -167,10 +166,8 @@ class PatientHistory(CrfModelMixin):
         blank=True
     )
 
-    cd4_date_estimated = IsDateEstimatedField(
-        verbose_name=("Is the subject's CD4 date estimated?"),
-        blank=True,
-        null=True)
+    cd4_date_estimated = IsDateEstimatedFieldNa(
+        verbose_name="Is the subject's CD4 date estimated?")
 
     temp = models.DecimalField(
         verbose_name='Temperature:',

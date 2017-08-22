@@ -131,7 +131,7 @@ patienthistory = Recipe(
     PatientHistory,
     headache_duration=2,
     visual_loss_duration=1,
-    med_history=YES,
+    tb_history=YES,
     symptom=related(symptom),
     neurological=related(neurological),
     tb_site='pulmonary',

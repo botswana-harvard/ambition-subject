@@ -25,7 +25,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
          ),
         ('Previous Medical History', {
             'fields': [
-                'med_history',
+                'tb_history',
                 'tb_site',
                 'tb_treatment',
                 'taking_rifampicin',
@@ -33,9 +33,9 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
          ),
         ('Previous Opportunistic Infections', {
             'fields': [
-                'previous_infection',
-                'previous_infection_specify',
-                'infection_date',
+                'previous_non_tb_oi',
+                'previous_non_tb_oi_name',
+                'previous_non_tb_oi_date',
                 'new_hiv_diagnosis',
                 'taking_arv',
                 'arv_date',
@@ -93,7 +93,8 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'transport_cost',
                 'transport_duration',
                 'care_provider',
-                'paid_treatment_present_condition',
+                'paid_treatment',
+                'paid_treatment_amount',
                 'other_place_visited',
                 'duration_present_condition']}
          ), audit_fieldset_tuple)
@@ -107,13 +108,14 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'ecog_score': admin.VERTICAL,
         'first_arv_regimen': admin.VERTICAL,
         'first_line_choice': admin.VERTICAL,
+        'location_care': admin.VERTICAL,
         'lung_exam': admin.VERTICAL,
-        'med_history': admin.VERTICAL,
+        'tb_history': admin.VERTICAL,
         'new_hiv_diagnosis': admin.VERTICAL,
         'other_place_visited': admin.VERTICAL,
         'patient_adherence': admin.VERTICAL,
         'paid_treatment': admin.VERTICAL,
-        'previous_infection': admin.VERTICAL,
+        'previous_non_tb_oi': admin.VERTICAL,
         'second_arv_regimen': admin.VERTICAL,
         'taking_arv': admin.VERTICAL,
         'taking_rifampicin': admin.VERTICAL,

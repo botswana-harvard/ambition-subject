@@ -3,6 +3,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from edc_constants.constants import OTHER, UNKNOWN
 
+from .constants import HEADACHE, VISUAL_LOSS
+
 list_data = {
     'ambition_subject.aeclassification': [
         ('anaemia', 'Anaemia'),
@@ -99,9 +101,9 @@ list_data = {
     ],
     'ambition_subject.symptom': [
         ('cough', 'Cough'),
-        ('headache', 'Headache'),
+        (HEADACHE, 'Headache'),
         ('double_vision', 'Double vision'),
-        ('visual_loss', 'Visual loss'),
+        (VISUAL_LOSS, 'Visual loss'),
         ('fever', 'Fever'),
         ('hearing_loss', 'Hearing loss'),
         ('confusion', 'Confusion'),
@@ -120,17 +122,14 @@ list_data = {
 
 
 for list_obj in list_data.keys():
-    try:
-        model = django_apps.get_app_config(
-            list_obj.split('.')[0]).get_model(list_obj.split('.')[1])
-        for tpl in list_data.get(list_obj):
-            short_name, display_value = tpl
-            try:
-                obj = model.objects.get(short_name=short_name)
-            except ObjectDoesNotExist:
-                model.objects.create(short_name=short_name, name=display_value)
-            else:
-                obj.name = display_value
-                obj.save()
-    except Exception as e:
-        print(e)
+    model = django_apps.get_app_config(
+        list_obj.split('.')[0]).get_model(list_obj.split('.')[1])
+    for tpl in list_data.get(list_obj):
+        short_name, display_value = tpl
+        try:
+            obj = model.objects.get(short_name=short_name)
+        except ObjectDoesNotExist:
+            model.objects.create(short_name=short_name, name=display_value)
+        else:
+            obj.name = display_value
+            obj.save()
