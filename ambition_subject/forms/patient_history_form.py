@@ -1,5 +1,4 @@
 from ambition_validators import PatientHistoryFormValidator
-from django import forms
 
 from ..models import PatientHistory
 from .form_mixins import SubjectModelFormMixin
