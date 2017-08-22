@@ -22,6 +22,14 @@ ACTION_REQUIRED = (
     ('patient_remains_on_study', 'Patient remains on study but data analysis '
      'will be modified'))
 
+ACTIVITIES_MISSED = (
+    ('Working', 'Working'),
+    ('Studying', 'Studying'),
+    ('Caring for Children', 'Caring for children'),
+    ('Maintaining the house', 'Maintaining the house'),
+    ('Nothing', 'Nothing'),
+    ('Other', 'Other'))
+
 AE_INTENSITY = (
     ('mild', 'Mild'),
     ('moderate', 'Moderate'),
@@ -120,7 +128,7 @@ CARE_PROVIDER_BEFORE_HOSPITAL = (
     ('TRADITIONAL HEALER', 'Tradiiotnal Healer'),
     ('SPIRITUAL HEALER', 'SPIRITUSL HEALER'),
     ('FAMILY/FRIEND'),
-    ('Other, Other')),
+    ('Other, Other'))
 
 CAUSE_OF_DEATH = (
     ('cryptococcal_meningitis', 'Cryptococcal meningitis'),

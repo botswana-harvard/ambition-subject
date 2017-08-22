@@ -11,7 +11,7 @@ from ..choices import (ARV_REGIMEN, FIRST_LINE_REGIMEN,
                        FIRST_ARV_REGIMEN, TB_SITE,
                        ECOG_SCORE, SECOND_ARV_REGIMEN, LOCATION_CARE,
                        TRANSPORT_TO_LOCATION_CARE,
-                       CARE_PROVIDER_BEFORE_HOSPITAL)
+                       CARE_PROVIDER_BEFORE_HOSPITAL, ACTIVITIES_MISSED)
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
@@ -338,28 +338,46 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    care_provider_before_hospital = models.CharField(
+    care_provider = models.CharField(
         verbose_name='Who provided treatment or care for your'
         ' present condition, before coming to the hospital?',
         max_length=5,
         choices=CARE_PROVIDER_BEFORE_HOSPITAL)
 
-    care_provider_before_hospital_other = models.CharField(
+    care_provider_other = OtherCharField(
         verbose_name='If Other Specify:',
         max_length=25,
         blank=True,
         null=True)
 
-    payment_for_treatment_present_condition = models.CharField(
+    payment_for_treatment = models.CharField(
         verbose_name='Did you pay for treatment of your present condition?',
         max_length=5,
         choices=YES_NO)
 
-    amount_paid_treatment_present_condition = models.IntegerField(
+    amount_paid = models.IntegerField(
         verbose_name=' How much did you pay for the treatment of your present condition?',
         validators=[MinValueValidator(1)],
         null=True,
         blank=True)
+
+    other_place_visited = models.CharField(
+        verbose_name='Before this,did you go to another place'
+        'for the treatment of the present situation?',
+        max_length=5,
+        choices=YES_NO)
+
+    duration_present_condition = models.CharField(
+        verbose_name='How long have you been sick with your current condition?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    activities_missed = models.CharField(
+        verbose_name='What would you have been doing'
+        'if you were not sick with your present condition',
+        max_length=5,
+        choices=ACTIVITIES_MISSED)
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Patients History'
