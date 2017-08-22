@@ -6,7 +6,6 @@ from ..screening_identifier import ScreeningIdentifier
 from ..models import IdentifierHistory
 
 
-@tag('identifier')
 class TestIdentifiers(TestCase):
 
     def test_identifier(self):

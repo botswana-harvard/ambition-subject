@@ -22,15 +22,14 @@ class TestSubjectRules(TestCase):
             consent_datetime=get_utcnow(),
             screening_identifier=screening.screening_identifier)
 
-        visit_code = '1070'
+        self.visit_code = '1070'
 
-        for app in Appointment.objects.all():
+        for appointment in Appointment.objects.all().order_by('timepoint'):
             self.subject_visit = mommy.make_recipe(
                 'ambition_subject.subjectvisit',
-                appointment=app,
-                subject_identifier=self.consent.subject_identifier,
-                reason=SCHEDULED,)
-            if app.visit_code == visit_code:
+                appointment=appointment,
+                reason=SCHEDULED)
+            if appointment.visit_code == self.visit_code:
                 break
 
     def test_death_report_required_included_in_error(self):
@@ -93,7 +92,6 @@ class TestSubjectRules(TestCase):
                 visit_code='1070').entry_status,
             REQUIRED)
 
-    @tag('2')
     def test_adverse_event_required(self):
         self.assertEqual(
             CrfMetadata.objects.get(
