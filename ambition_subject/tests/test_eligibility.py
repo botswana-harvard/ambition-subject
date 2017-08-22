@@ -10,6 +10,7 @@ from ..eligibility import (
     MentalStatusEvaluatorError)
 
 
+@tag('screening')
 class TestSubjectScreening(TestCase):
 
     def setUp(self):
@@ -68,6 +69,7 @@ class TestSubjectScreening(TestCase):
         obj = Eligibility(
             age=18, gender=FEMALE, pregnant=False,
             consent_ability=True,
+            will_hiv_test=True,
             meningitis_dx=True,
             no_drug_reaction=True,
             no_concomitant_meds=True,
@@ -81,6 +83,7 @@ class TestSubjectScreening(TestCase):
         obj = Eligibility(
             age=18, gender=FEMALE, pregnant=False,
             mental_status=NORMAL,
+            will_hiv_test=False,
             meningitis_dx=True,
             no_drug_reaction=True,
             no_concomitant_meds=True,
@@ -94,10 +97,12 @@ class TestSubjectScreening(TestCase):
             age=18, gender=FEMALE,
             mental_status=ABNORMAL,
             consent_ability=False,
+            will_hiv_test=False,
             pregnant=False)
         reasons = ['Previous adverse drug reaction the study medication',
                    'Patient on Contraindicated Meds', 'Unable to consent.',
                    'Previous Hx of Cryptococcal Meningitis',
+                   'HIV unknown, not willing to consent',
                    '> 48hrs of Amphotericin B', '> 48hrs of Fluconazole']
         reasons.sort()
         reasons1 = obj.reasons
@@ -224,6 +229,18 @@ class TestSubjectScreening(TestCase):
             'ambition_subject.subjectscreening',
             mental_status=ABNORMAL, consent_ability=NO)
         self.assertFalse(subject_screening.eligible)
+
+    def test_ineligible_not_willing_to_hiv_test(self):
+        subject_screening = mommy.make_recipe(
+            'ambition_subject.subjectscreening',
+            will_hiv_test=NO)
+        self.assertFalse(subject_screening.eligible)
+
+    def test_eligible_willing_to_hiv_test(self):
+        subject_screening = mommy.make_recipe(
+            'ambition_subject.subjectscreening',
+            will_hiv_test=YES)
+        self.assertTrue(subject_screening.eligible)
 
     def test_eligible_mental_abnormal_with_consent_ability(self):
         subject_screening = mommy.make_recipe(

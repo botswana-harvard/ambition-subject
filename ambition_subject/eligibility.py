@@ -77,7 +77,7 @@ class Eligibility:
     """
 
     def __init__(self, age=None, consent_ability=None, gender=None, pregnant=None,
-                 meningitis_dx=None, no_drug_reaction=None,
+                 meningitis_dx=None, no_drug_reaction=None, will_hiv_test=None,
                  no_concomitant_meds=None, no_amphotericin=None,
                  no_fluconazole=None, mental_status=None, breast_feeding=None):
         age_evaluator = AgeEvaluator(age=age)
@@ -92,6 +92,7 @@ class Eligibility:
             no_amphotericin=no_amphotericin,
             no_fluconazole=no_fluconazole,
             meningitis_dx=meningitis_dx,
+            will_hiv_test=will_hiv_test,
             age=age_evaluator.eligible,
             gender=gender_evaluator.eligible,
             consent_ability=consent_ability_evaluator.eligible)
@@ -123,3 +124,6 @@ class Eligibility:
         if not no_fluconazole:
             self.reasons.pop(self.reasons.index('no_fluconazole'))
             self.reasons.append('> 48hrs of Fluconazole')
+        if not will_hiv_test:
+            self.reasons.pop(self.reasons.index('will_hiv_test'))
+            self.reasons.append('HIV unknown, not willing to consent')
