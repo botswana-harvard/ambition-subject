@@ -13,22 +13,6 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = AdverseEventForm
 
-    radio_fields = {
-        'ae_severity_grade': admin.VERTICAL,
-        'ae_intensity': admin.VERTICAL,
-        'regimen': admin.VERTICAL,
-        'ae_study_relation_possibility': admin.VERTICAL,
-        'ambisome_relation': admin.VERTICAL,
-        'fluconazole_relation': admin.VERTICAL,
-        'amphotericin_b_relation': admin.VERTICAL,
-        'flucytosine_relation': admin.VERTICAL,
-        'ae_cause': admin.VERTICAL,
-        'ae_cm_recurrence': admin.VERTICAL,
-        'is_sa_event': admin.VERTICAL,
-        'sae_possibility': admin.VERTICAL,
-        'susar_possility': admin.VERTICAL,
-        'susar_reported': admin.VERTICAL}
-
     fieldsets = (
         ('Initial Report', {
             'fields': (
@@ -58,3 +42,19 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
          ),
         audit_fieldset_tuple
     )
+
+    radio_fields = {
+        'ae_severity_grade': admin.VERTICAL,
+        'ae_intensity': admin.VERTICAL,
+        'regimen': admin.VERTICAL,
+        'ae_study_relation_possibility': admin.VERTICAL,
+        'ambisome_relation': admin.VERTICAL,
+        'fluconazole_relation': admin.VERTICAL,
+        'amphotericin_b_relation': admin.VERTICAL,
+        'flucytosine_relation': admin.VERTICAL,
+        'ae_cause': admin.VERTICAL,
+        'ae_cm_recurrence': admin.VERTICAL,
+        'is_sa_event': admin.VERTICAL,
+        'sae_possibility': admin.VERTICAL,
+        'susar_possility': admin.VERTICAL,
+        'susar_reported': admin.VERTICAL}

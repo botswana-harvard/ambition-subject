@@ -12,10 +12,6 @@ from .modeladmin_mixins import ModelAdminMixin
 class AdverseEventFollowUpAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = AdverseEventFollowUpForm
-
-    radio_fields = {
-        'outcome': admin.VERTICAL}
-
     fieldsets = (
         ('Clinical Assessment', {
             'fields': (
@@ -26,3 +22,6 @@ class AdverseEventFollowUpAdmin(ModelAdminMixin, admin.ModelAdmin):
          ),
         audit_fieldset_tuple
     )
+
+    radio_fields = {
+        'outcome': admin.VERTICAL}

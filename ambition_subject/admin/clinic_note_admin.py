@@ -29,8 +29,6 @@ class ClinicNoteAdmin(ModelAdminMixin, admin.ModelAdmin):
         ('Assessment', {
             'fields': (
                 'assessment',)}),
-        ('Plan', {
-            'fields': (
-                'plan',)}),
+        ('Plan', {'fields': ('plan',)}),
         audit_fieldset_tuple
     )

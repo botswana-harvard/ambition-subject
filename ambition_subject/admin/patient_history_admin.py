@@ -15,30 +15,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     filter_horizontal = ('neurological', 'symptom', 'specify_medications')
 
-    radio_fields = {
-        'med_history': admin.VERTICAL,
-        'tb_site': admin.VERTICAL,
-        'tb_treatment': admin.VERTICAL,
-        'taking_rifampicin': admin.VERTICAL,
-        'previous_infection': admin.VERTICAL,
-        'new_hiv_diagnosis': admin.VERTICAL,
-        'taking_arv': admin.VERTICAL,
-        'arv_regimen': admin.VERTICAL,
-        'first_arv_regimen': admin.VERTICAL,
-        'second_arv_regimen': admin.VERTICAL,
-        'first_line_choice': admin.VERTICAL,
-        'patient_adherence': admin.VERTICAL,
-        'ecog_score': admin.VERTICAL,
-        'lung_exam': admin.VERTICAL,
-        'cryptococcal_lesions': admin.VERTICAL,
-        'vl_date_estimated': admin.VERTICAL,
-        'cd4_date_estimated': admin.VERTICAL,
-        'care_before_hospital': admin.VERTICAL,
-        'transport_taken': admin.VERTICAL,
-        'care_provider': admin.VERTICAL,
-        'payment_for_treatment': admin.VERTICAL,
-        'other_place_visited': admin.VERTICAL}
-
     fieldsets = (
         ('Current Symptoms', {
             'fields': [
@@ -113,12 +89,36 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'care_before_hospital',
                 'location_care',
                 'location_care_other',
-                'transport_taken',
-                'cost_transport',
-                'duration_transport',
+                'transport_form',
+                'transport_cost',
+                'transport_duration',
                 'care_provider',
                 'care_provider',
-                'payment_for_treatment_present_condition',
+                'paid_treatment_present_condition',
                 'other_place_visited',
                 'duration_present_condition']}
          ), audit_fieldset_tuple)
+
+    radio_fields = {
+        'arv_regimen': admin.VERTICAL,
+        'care_before_hospital': admin.VERTICAL,
+        'care_provider': admin.VERTICAL,
+        'cd4_date_estimated': admin.VERTICAL,
+        'cryptococcal_lesions': admin.VERTICAL,
+        'ecog_score': admin.VERTICAL,
+        'first_arv_regimen': admin.VERTICAL,
+        'first_line_choice': admin.VERTICAL,
+        'lung_exam': admin.VERTICAL,
+        'med_history': admin.VERTICAL,
+        'new_hiv_diagnosis': admin.VERTICAL,
+        'other_place_visited': admin.VERTICAL,
+        'patient_adherence': admin.VERTICAL,
+        'paid_treatment': admin.VERTICAL,
+        'previous_infection': admin.VERTICAL,
+        'second_arv_regimen': admin.VERTICAL,
+        'taking_arv': admin.VERTICAL,
+        'taking_rifampicin': admin.VERTICAL,
+        'tb_site': admin.VERTICAL,
+        'tb_treatment': admin.VERTICAL,
+        'transport_form': admin.VERTICAL,
+        'vl_date_estimated': admin.VERTICAL}
