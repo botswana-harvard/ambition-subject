@@ -114,6 +114,14 @@ BRAIN_IMAGINING_REASON = (
     ('new_neurology', 'New neurology'),
     (OTHER, 'Other, specify'))
 
+CARE_PROVIDER_BEFORE_HOSPITAL = (
+    ('DOCTOR', 'Doctor'),
+    ('NURSE', 'Nurse'),
+    ('TRADITIONAL HEALER', 'Tradiiotnal Healer'),
+    ('SPIRITUAL HEALER', 'SPIRITUSL HEALER'),
+    ('FAMILY/FRIEND'),
+    ('Other, Other')),
+
 CAUSE_OF_DEATH = (
     ('cryptococcal_meningitis', 'Cryptococcal meningitis'),
     ('Cryptococcal_meningitis_relapse_IRIS', 'Cryptococcal meningitis '
