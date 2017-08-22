@@ -352,6 +352,16 @@ TB_SITE_DEATH = (
     ('pulmonary', 'Pulmonary'),
     ('disseminated', 'Disseminated'))
 
+TRANSPORT_TO_LOCATION_CARE = (
+    ('BUS', 'Bus'),
+    ('TRAIN', 'TRAIN'),
+    ('OWN CAR', 'Own Car'),
+    ('Own Motorbike', 'Own Motorbike'),
+    ('TAXI', 'Taxi'),
+    ('AMBULANCE', 'Ambulance'),
+    ('BICYCLE', 'Bicycle'),
+    ('FOOT', 'Foot'))
+
 URINE_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('e.coli', 'E.coli'),

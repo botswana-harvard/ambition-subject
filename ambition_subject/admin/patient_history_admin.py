@@ -34,7 +34,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'vl_date_estimated': admin.VERTICAL,
         'cd4_date_estimated': admin.VERTICAL,
         'care_before_hospital': admin.VERTICAL,
-        'location_care_before_hospital_other': admin.VERTICAL
+        'transport_taken_location_care_before_hospital': admin.VERTICAL
     }
 
     fieldsets = (
@@ -110,5 +110,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'he_spend_last_4weeks',
                 'care_before_hospital',
                 'location_care_before_hospital',
-                'location_care_before_hospital_other', ]}
+                'location_care_before_hospital_other',
+                'transport_taken_location_care_before_hospital',
+                'cost_transport_taken_location_care_before_hospital', ]}
          ), audit_fieldset_tuple)

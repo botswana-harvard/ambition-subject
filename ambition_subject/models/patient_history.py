@@ -9,7 +9,8 @@ from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import (ARV_REGIMEN, FIRST_LINE_REGIMEN,
                        FIRST_ARV_REGIMEN, TB_SITE,
-                       ECOG_SCORE, SECOND_ARV_REGIMEN, LOCATION_CARE)
+                       ECOG_SCORE, SECOND_ARV_REGIMEN, LOCATION_CARE,
+                       TRANSPORT_TO_LOCATION_CARE)
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
@@ -319,6 +320,17 @@ class PatientHistory(CrfModelMixin):
         max_length=25,
         blank=True,
         null=True)
+
+    transport_taken_location_care_before_hospital = models.CharField(
+        verbose_name='Which form of transport did you take to reach there?',
+        max_length=5,
+        choices=TRANSPORT_TO_LOCATION_CARE)
+
+    cost_transport_taken_location_care_before_hospital = models.IntegerField(
+        verbose_name='How much did you spend on the transport?',
+        validators=[MinValueValidator(1)],
+        null=True,
+        blank=True)
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Patients History'
