@@ -28,7 +28,7 @@ ACTIVITIES_MISSED = (
     ('Caring for Children', 'Caring for children'),
     ('Maintaining the house', 'Maintaining the house'),
     ('Nothing', 'Nothing'),
-    ('Other', 'Other'))
+    (OTHER, 'Other'))
 
 AE_INTENSITY = (
     ('mild', 'Mild'),
@@ -73,7 +73,7 @@ FIRST_ARV_REGIMEN = (
      'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
     ('AZT+3-TC+ either EFV or NVP or DTG',
      'AZT+3-TC+ either EFV or NVP or DTG'),
-    ('Other', 'Other'))
+    (OTHER, 'Other'))
 
 SECOND_ARV_REGIMEN = (
     (NOT_APPLICABLE, 'Not Applicable'),
@@ -81,7 +81,7 @@ SECOND_ARV_REGIMEN = (
      'TDF+3TC/FTC+ either ATZ/r or Lopinavir/r'),
     ('AZT+3-TC+ either ATZ/r or Lopinavir/r',
      'AZT+3-TC+ either ATZ/r or Lopinavir/r'),
-    ('Other', 'Other, Specify'))
+    (OTHER, 'Other, Specify'))
 
 APPOINTMENT_REASON = (
     ('routine', 'Routine'),
@@ -125,10 +125,10 @@ BRAIN_IMAGINING_REASON = (
 CARE_PROVIDER = (
     ('DOCTOR', 'Doctor'),
     ('NURSE', 'Nurse'),
-    ('TRADITIONAL HEALER', 'Tradiiotnal Healer'),
+    ('TRADITIONAL HEALER', 'Traditional Healer'),
     ('SPIRITUAL HEALER', 'SPIRITUAL HEALER'),
-    ('FAMILY/FRIEND'),
-    ('Other, Other'))
+    ('FAMILY/FRIEND', 'FAMILY/FRIEND'),
+    (OTHER, 'Other'))
 
 CAUSE_OF_DEATH = (
     ('cryptococcal_meningitis', 'Cryptococcal meningitis'),
@@ -225,7 +225,7 @@ ID_TYPE = (
     ('PASSPORT', 'Passport'),
     ('HOSPITAL_NO', 'Hospital Number'),
     ('OMANG_RCPT', 'Omang Receipt'),
-    ('OTHER', 'Other'),
+    (OTHER, 'Other'),
 )
 
 INFILTRATE_LOCATION = (
@@ -248,7 +248,7 @@ LOCATION_CARE = (
     ('NGO HEALTHCARE', 'NGO Healthcare'),
     ('PHARMACY', 'Pharmacy'),
     ('HOME', 'Home'),
-    ('Other', 'Other'))
+    (OTHER, 'Other'))
 
 MEDICINES = (
     ('fluconazole', 'Fluconazole'),
