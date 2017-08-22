@@ -13,8 +13,8 @@ from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
 from edc_visit_tracking.model_mixins import (
     CrfModelMixin as VisitTrackingCrfModelMixin, PreviousVisitModelMixin)
-from edc_metadata.rules.site import site_metadata_rules
-from edc_metadata.model_mixins.rules.metadata_rules_model_mixin import MetadataRulesModelMixin
+from edc_metadata_rules import site_metadata_rules
+from edc_metadata_rules.model_mixins import MetadataRulesModelMixin
 
 from ..subject_visit import SubjectVisit
 
@@ -57,7 +57,7 @@ class CrfModelMixin(VisitTrackingCrfModelMixin, OffstudyMixin,
         """Runs the rule groups for this .
         Gets called in the signal.
         """
-        for rule_group in site_metadata_rules.registry.get(self._meta.rulegroup_app_label, []):
+        for rule_group in site_metadata_rules.registry.get(self._meta.app_label, []):
             if rule_group._meta.source_model == self._meta.label_lower:
                 rule_group.evaluate_rules(visit=self)
 
@@ -67,5 +67,5 @@ class CrfModelMixin(VisitTrackingCrfModelMixin, OffstudyMixin,
 
     class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
-        rulegroup_app_label = 'ambition_metadata_rules'
+        # rulegroup_app_label = 'ambition_metadata_rules'
         abstract = True

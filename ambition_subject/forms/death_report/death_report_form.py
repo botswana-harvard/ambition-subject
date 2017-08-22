@@ -1,8 +1,8 @@
 from ambition_validators import DeathFormValidator
 
-from ..models import DeathReport
+from ...models import DeathReport
 
-from .form_mixins import SubjectModelFormMixin
+from ..form_mixins import SubjectModelFormMixin
 
 
 class DeathReportForm(SubjectModelFormMixin):

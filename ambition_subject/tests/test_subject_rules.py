@@ -14,7 +14,7 @@ from ..models import Appointment
 class TestSubjectRules(TestCase):
 
     def setUp(self):
-        import_randomization_list()
+        import_randomization_list(verbose=False)
         screening = mommy.make_recipe('ambition_subject.subjectscreening',
                                       report_datetime=get_utcnow())
         self.consent = mommy.make_recipe(

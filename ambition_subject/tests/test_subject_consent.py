@@ -13,7 +13,7 @@ from ..models import SubjectConsent, Enrollment
 class TestSubjectConsent(TestCase):
 
     def setUp(self):
-        import_randomization_list()
+        import_randomization_list(verbose=False)
         self.subject_screening = mommy.make_recipe(
             'ambition_subject.subjectscreening')
 

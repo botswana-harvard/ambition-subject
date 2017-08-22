@@ -4,14 +4,12 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentMixin
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
+from edc_metadata_rules.model_mixins import MetadataRulesModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import VisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin, PreviousVisitError
-from edc_metadata.rules.site import site_metadata_rules
-from edc_metadata.model_mixins.rules.metadata_rules_model_mixin import MetadataRulesModelMixin
-from ..choices import VISIT_REASON
 
-from ..choices import VISIT_UNSCHEDULED_REASON
+from ..choices import VISIT_UNSCHEDULED_REASON, VISIT_REASON
 from .appointment import Appointment
 
 
@@ -51,13 +49,13 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
 
     history = HistoricalRecords()
 
-    def run_metadata_rules(self):
-        """Runs the rule groups for this .
-        Gets called in the signal.
-        """
-        for rule_group in site_metadata_rules.registry.get(self._meta.rulegroup_app_label, []):
-            if rule_group._meta.source_model == self._meta.label_lower:
-                rule_group.evaluate_rules(visit=self)
+#     def run_metadata_rules(self):
+#         """Runs the rule groups for this .
+#         Gets called in the signal.
+#         """
+#         for rule_group in site_metadata_rules.registry.get(self._meta.app_label, []):
+#             if rule_group._meta.source_model == self._meta.label_lower:
+#                 rule_group.evaluate_rules(visit=self)
 
     def save(self, *args, **kwargs):
         self.info_source = 'subject'
@@ -69,4 +67,4 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
 
     class Meta(VisitModelMixin.Meta, RequiresConsentMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
-        rulegroup_app_label = 'ambition_metadata_rules'
+        # rulegroup_app_label = 'ambition_metadata_rules'

@@ -24,7 +24,7 @@ class TestNaturalKey(TestCase):
             'ambition_subject')
 
     def complete_subject_visit(self):
-        import_randomization_list()
+        import_randomization_list(verbose=False)
         screening = mommy.make_recipe('ambition_subject.subjectscreening',
                                       report_datetime=get_utcnow())
         consent = mommy.make_recipe('ambition_subject.subjectconsent',

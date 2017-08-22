@@ -2,10 +2,10 @@ from django.contrib import admin
 
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
-from ..admin_site import ambition_subject_admin
-from ..forms import DeathReportForm
-from ..models import DeathReport
-from .modeladmin_mixins import CrfModelAdminMixin
+from ...admin_site import ambition_subject_admin
+from ...forms import DeathReportForm
+from ...models import DeathReport
+from ..modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(DeathReport, site=ambition_subject_admin)
@@ -15,8 +15,8 @@ class DeathReportAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {
         'death_as_inpatient': admin.VERTICAL,
-        'cause_of_death_study_doctor_opinion': admin.VERTICAL,
-        'cause_tb_study_doctor_opinion': admin.VERTICAL}
+        'cause_of_death': admin.VERTICAL,
+        'tb_site': admin.VERTICAL}
 
     fieldsets = (
         (None, {
@@ -28,9 +28,9 @@ class DeathReportAdmin(CrfModelAdminMixin, admin.ModelAdmin):
          ),
         ('Opinion of Local Study Doctor', {
             'fields': (
-                'cause_of_death_study_doctor_opinion',
-                'cause_other_study_doctor_opinion',
-                'cause_tb_study_doctor_opinion')}),
+                'cause_of_death',
+                'cause_of_death_other',
+                'tb_site')}),
         ('Summary', {
             'fields': (
                 'death_narrative',)}),

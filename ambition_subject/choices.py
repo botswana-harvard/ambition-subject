@@ -346,7 +346,7 @@ TB_SITE_DEATH = (
 
 URINE_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not Applicable'),
-    ('e.coli', 'E.coli'),
+    ('e_coli', 'E.coli'),
     ('klebsiella_sp', 'Klebsiella sp.'),
     (OTHER, 'Other, specify:'))
 

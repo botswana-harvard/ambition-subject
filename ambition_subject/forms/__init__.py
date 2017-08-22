@@ -5,9 +5,9 @@ from .amphotericin_missed_doses_form import AmphotericinMissedDosesForm
 from .appointment_form import AppointmentForm
 from .blood_result_form import BloodResultForm
 from .clinic_note_form import ClinicNoteForm
-from .death_report_form import DeathReportForm
-from .death_report_tmg1_form import DeathReportTMG1Form
-from .death_report_tmg2_form import DeathReportTMG2Form
+from .death_report import DeathReportForm
+from .death_report import DeathReportTmg1Form
+from .death_report import DeathReportTmg2Form
 from .fluconazole_missed_doses_form import FluconazoleMissedDosesForm
 from .flucytosine_missed_doses_form import FlucytosineMissedDosesForm
 from .follow_up_form import FollowUpForm, FollowUpDiagnosesForm

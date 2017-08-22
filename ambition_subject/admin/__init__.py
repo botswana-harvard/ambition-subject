@@ -4,9 +4,9 @@ from .adverse_event_tmg_admin import AdverseEventTMGAdmin
 from .appointment_admin import AppointmentAdmin
 from .blood_result_admin import BloodResultsAdmin
 from .clinic_note_admin import ClinicNoteAdmin
-from .death_report_admin import DeathReportAdmin
-from .death_report_tmg1_admin import DeathReportTMG1Admin
-from .death_report_tmg2_admin import DeathReportTMG2Admin
+from .death_report import DeathReportAdmin
+from .death_report import DeathReportTmg1Admin
+from .death_report import DeathReportTmg2Admin
 from .follow_up_admin import FollowUpAdmin
 from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin
 from .microbiology_admin import MicrobiologyAdmin
