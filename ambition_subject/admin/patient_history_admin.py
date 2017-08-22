@@ -96,7 +96,9 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'paid_treatment',
                 'paid_treatment_amount',
                 'other_place_visited',
-                'duration_present_condition']}
+                'duration_present_condition',
+                'activities_missed',
+                'activities_missed_other']}
          ), audit_fieldset_tuple)
 
     radio_fields = {
