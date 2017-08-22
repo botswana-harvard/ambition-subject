@@ -34,16 +34,6 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         DAY1: day1_lp
     }
 
-    radio_fields = {
-        'reason_for_lp': admin.VERTICAL,
-        'csf_culture': admin.VERTICAL,
-        'india_ink': admin.VERTICAL,
-        'csf_cr_ag': admin.VERTICAL,
-        'csf_cr_ag_lfa': admin.VERTICAL,
-        'differential_lymphocyte_unit': admin.VERTICAL,
-        'differential_neutrophil_unit': admin.VERTICAL,
-        'csf_glucose_units': admin.VERTICAL}
-
     fieldsets = (
         (None, {
             'fields': (
@@ -58,3 +48,13 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
          ),
         audit_fieldset_tuple
     )
+
+    radio_fields = {
+        'reason_for_lp': admin.VERTICAL,
+        'csf_culture': admin.VERTICAL,
+        'india_ink': admin.VERTICAL,
+        'csf_cr_ag': admin.VERTICAL,
+        'csf_cr_ag_lfa': admin.VERTICAL,
+        'differential_lymphocyte_unit': admin.VERTICAL,
+        'differential_neutrophil_unit': admin.VERTICAL,
+        'csf_glucose_units': admin.VERTICAL}

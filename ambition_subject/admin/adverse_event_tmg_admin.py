@@ -13,8 +13,6 @@ class AdverseEventTMGAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = AdverseEventTMGForm
 
-    filter_horizontal = ('ae_classification',)
-
     fieldsets = (
         ('For completion by TMG Investigator Only', {
             'fields': (
@@ -29,3 +27,5 @@ class AdverseEventTMGAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'investigator_returned')}),
         audit_fieldset_tuple
     )
+
+    filter_horizontal = ('ae_classification',)
