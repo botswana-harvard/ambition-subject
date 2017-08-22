@@ -4,7 +4,7 @@ from edc_base.fieldsets.fieldset import Fieldset
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..constants import DAY1, DAY7, DAY14, WEEK4
+from ..constants import DAY1, DAY7, DAY14, WEEK4, WEEK6, WEEK8, WEEK10
 from ..forms import BloodResultForm
 from ..models import BloodResult
 from .modeladmin_mixins import CrfModelAdminMixin
@@ -38,7 +38,10 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         DAY1: (alt, urine_chemistry, blood_count, immunology),
         DAY7: (alt, blood_count),
         DAY14: (alt, blood_count),
-        WEEK4: (alt, blood_count)}
+        WEEK4: (alt, blood_count),
+        WEEK6: (blood_count,),
+        WEEK8: (blood_count,),
+        WEEK10: (blood_count,)}
 
     radio_fields = {
         'proteinuria': admin.VERTICAL,

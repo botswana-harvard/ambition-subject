@@ -173,6 +173,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         eligibility = Eligibility(
             age=self.age_in_years,
             gender=self.gender,
+            will_hiv_test=if_yes(self.will_hiv_test),
             consent_ability=if_yes(self.consent_ability),
             mental_status=self.mental_status,
             meningitis_dx=if_yes(self.meningitis_dx),

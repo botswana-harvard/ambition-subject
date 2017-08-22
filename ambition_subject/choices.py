@@ -22,6 +22,14 @@ ACTION_REQUIRED = (
     ('patient_remains_on_study', 'Patient remains on study but data analysis '
      'will be modified'))
 
+ACTIVITIES_MISSED = (
+    ('Working', 'Working'),
+    ('Studying', 'Studying'),
+    ('Caring for Children', 'Caring for children'),
+    ('Maintaining the house', 'Maintaining the house'),
+    ('Nothing', 'Nothing'),
+    ('Other', 'Other'))
+
 AE_INTENSITY = (
     ('mild', 'Mild'),
     ('moderate', 'Moderate'),
@@ -113,6 +121,14 @@ BRAIN_IMAGINING_REASON = (
     ('reduction_in_gcs', 'Reduction in GCS'),
     ('new_neurology', 'New neurology'),
     (OTHER, 'Other, specify'))
+
+CARE_PROVIDER_BEFORE_HOSPITAL = (
+    ('DOCTOR', 'Doctor'),
+    ('NURSE', 'Nurse'),
+    ('TRADITIONAL HEALER', 'Tradiiotnal Healer'),
+    ('SPIRITUAL HEALER', 'SPIRITUSL HEALER'),
+    ('FAMILY/FRIEND'),
+    ('Other, Other'))
 
 CAUSE_OF_DEATH = (
     ('cryptococcal_meningitis', 'Cryptococcal meningitis'),
