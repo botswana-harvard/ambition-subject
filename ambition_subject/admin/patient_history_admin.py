@@ -32,7 +32,9 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'lung_exam': admin.VERTICAL,
         'cryptococcal_lesions': admin.VERTICAL,
         'vl_date_estimated': admin.VERTICAL,
-        'cd4_date_estimated': admin.VERTICAL
+        'cd4_date_estimated': admin.VERTICAL,
+        'care_before_hospital': admin.VERTICAL,
+        'transport_taken_location_care_before_hospital': admin.VERTICAL
     }
 
     fieldsets = (
@@ -99,4 +101,16 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'cryptococcal_lesions',
                 'specify_medications',
                 'specify_medications_other']}
+         ),
+
+        ('Medical Expenses', {
+            'fields': [
+                'personal_he_spend',
+                'proxy_he_spend',
+                'he_spend_last_4weeks',
+                'care_before_hospital',
+                'location_care_before_hospital',
+                'location_care_before_hospital_other',
+                'transport_taken_location_care_before_hospital',
+                'cost_transport_taken_location_care_before_hospital', ]}
          ), audit_fieldset_tuple)

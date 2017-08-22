@@ -93,6 +93,7 @@ class TestSubjectRules(TestCase):
                 visit_code='1070').entry_status,
             REQUIRED)
 
+    @tag('2')
     def test_adverse_event_required(self):
         self.assertEqual(
             CrfMetadata.objects.get(

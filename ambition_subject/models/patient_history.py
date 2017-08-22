@@ -9,7 +9,8 @@ from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import (ARV_REGIMEN, FIRST_LINE_REGIMEN,
                        FIRST_ARV_REGIMEN, TB_SITE,
-                       ECOG_SCORE, SECOND_ARV_REGIMEN)
+                       ECOG_SCORE, SECOND_ARV_REGIMEN, LOCATION_CARE,
+                       TRANSPORT_TO_LOCATION_CARE)
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
@@ -280,6 +281,56 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     history = HistoricalRecords()
+
+    personal_he_spend = models.IntegerField(
+        verbose_name='Over that last 4 weeks, how much have you'
+        'spent on activities relating to your health?',
+        validators=[MinValueValidator(1)],
+        null=True,
+        blank=True)
+
+    proxy_he_spend = models.IntegerField(
+        verbose_name='Over that last 4 weeks, how much'
+        ' has someone else spent on activities relating to your health?',
+        validators=[MinValueValidator(1)],
+        null=True,
+        blank=True)
+
+    he_spend_last_4weeks = models.IntegerField(
+        verbose_name='How much in total has been spent'
+        'on your healthcare in the last 4 weeks?',
+        validators=[MinValueValidator(1)],
+        null=True,
+        blank=True)
+
+    care_before_hospital = models.CharField(
+        verbose_name='Have you received any treatment or care'
+        'for your present condition, before coming to the hospital?',
+        max_length=5,
+        choices=YES_NO)
+
+    location_care_before_hospital = models.CharField(
+        verbose_name='Where did you receive treatment or care'
+        'for your present condition, before coming to the hospital?',
+        max_length=5,
+        choices=LOCATION_CARE)
+
+    location_care_before_hospital_other = OtherCharField(
+        verbose_name='If Other Specify:',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    transport_taken_location_care_before_hospital = models.CharField(
+        verbose_name='Which form of transport did you take to reach there?',
+        max_length=5,
+        choices=TRANSPORT_TO_LOCATION_CARE)
+
+    cost_transport_taken_location_care_before_hospital = models.IntegerField(
+        verbose_name='How much did you spend on the transport?',
+        validators=[MinValueValidator(1)],
+        null=True,
+        blank=True)
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Patients History'

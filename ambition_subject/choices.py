@@ -77,7 +77,7 @@ SECOND_ARV_REGIMEN = (
 
 APPOINTMENT_REASON = (
     ('routine', 'Routine'),
-    ('unscheduled', 'Unscheduled'))
+    (UNSCHEDULED, 'Unscheduled'))
 
 AMB_APPT_TYPE = (
     ('clinic', 'In clinic'),
@@ -226,6 +226,14 @@ LP_REASON = (
     ('therapeutic_lp', 'Therapeutic LP'),
     ('suspected_IRIS_relapse', 'Suspected IRIS/Relapse'))
 
+LOCATION_CARE = (
+    ('GOVERNMENT HEALTHCARE', 'Government Healthcare'),
+    ('PRIVATE HEALTHCARE', 'Private Healthcare'),
+    ('NGO HEALTHCARE', 'NGO Healthcare'),
+    ('PHARMACY', 'Pharmacy'),
+    ('HOME', 'Home'),
+    ('Other', 'Other'))
+
 MEDICINES = (
     ('fluconazole', 'Fluconazole'),
     ('amphotericin_b', 'Amphotericin B'),
@@ -343,6 +351,16 @@ TB_SITE_DEATH = (
     ('meningitis', 'Meningitis'),
     ('pulmonary', 'Pulmonary'),
     ('disseminated', 'Disseminated'))
+
+TRANSPORT_TO_LOCATION_CARE = (
+    ('BUS', 'Bus'),
+    ('TRAIN', 'TRAIN'),
+    ('OWN CAR', 'Own Car'),
+    ('Own Motorbike', 'Own Motorbike'),
+    ('TAXI', 'Taxi'),
+    ('AMBULANCE', 'Ambulance'),
+    ('BICYCLE', 'Bicycle'),
+    ('FOOT', 'Foot'))
 
 URINE_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not Applicable'),
