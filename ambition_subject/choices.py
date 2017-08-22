@@ -226,6 +226,14 @@ LP_REASON = (
     ('therapeutic_lp', 'Therapeutic LP'),
     ('suspected_IRIS_relapse', 'Suspected IRIS/Relapse'))
 
+LOCATION_CARE = (
+    ('GOVERNMENT HEALTHCARE', 'Government Healthcare'),
+    ('PRIVATE HEALTHCARE', 'Private Healthcare'),
+    ('NGO HEALTHCARE', 'NGO Healthcare'),
+    ('PHARMACY', 'Pharmacy'),
+    ('HOME', 'Home'),
+    ('Other', 'Other'))
+
 MEDICINES = (
     ('fluconazole', 'Fluconazole'),
     ('amphotericin_b', 'Amphotericin B'),
