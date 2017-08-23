@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from edc_base.model_fields import OtherCharField, IsDateEstimatedFieldNa
+from edc_base.model_fields import OtherCharField, IsDateEstimatedField
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
@@ -87,11 +87,10 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO)
 
     taking_arv = models.CharField(
-        verbose_name='If Yes, already taking ARVs?',
+        verbose_name='If Yes,Already taking ARVs?',
         max_length=5,
         choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        help_text='(If Yes, new hiv diagnosis)')
+        default=NOT_APPLICABLE)
 
     arv_date = models.DateField(
         verbose_name='If yes, date ARVs were started.',
@@ -156,8 +155,10 @@ class PatientHistory(CrfModelMixin):
         blank=True
     )
 
-    vl_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="Is the subject's viral load date estimated?")
+    vl_date_estimated = IsDateEstimatedField(
+        blank=True,
+        null=True,
+        verbose_name=("Is the subject's viral load date estimated?"))
 
     cd4_date = models.DateField(
         verbose_name='CD4 date',
@@ -166,8 +167,10 @@ class PatientHistory(CrfModelMixin):
         blank=True
     )
 
-    cd4_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="Is the subject's CD4 date estimated?")
+    cd4_date_estimated = IsDateEstimatedField(
+        verbose_name=("Is the subject's CD4 date estimated?"),
+        blank=True,
+        null=True)
 
     temp = models.DecimalField(
         verbose_name='Temperature:',
@@ -377,6 +380,94 @@ class PatientHistory(CrfModelMixin):
         'if you were not sick with your present condition',
         max_length=5,
         choices=ACTIVITIES_MISSED)
+
+    activities_missed_other = OtherCharField(
+        verbose_name='If Other, Specify',
+        max_length=5,
+        blank=True,
+        null=True)
+
+    time_off_work = models.CharField(
+        verbose_name='How much time did you take off work?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    carer_time_off = models.CharField(
+        verbose_name='How much time did a caring family member take off work'
+        'to accompany you to the hospital?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    loss_of_earnings = models.CharField(
+        verbose_name='Did you lose earnings as a result?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    earnings_lost_amount = models.DecimalField(
+        verbose_name='How much did you lose?',
+        decimal_places=2,
+        max_digits=4,
+        blank=True,
+        null=True)
+
+    household_head = models.CharField(
+        verbose_name='Are you head of the household?',
+        max_length=5,
+        choices=YES_NO)
+
+    profession = models.CharField(
+        verbose_name='What is your profession?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    education_years = models.IntegerField(
+        verbose_name='How many years of education did you complete?',
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True)
+
+    education_certificate = models.CharField(
+        verbose_name='What is your highest education certificate?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    elementary_school = models.CharField(
+        verbose_name='Did you go to elementary school?',
+        max_length=5,
+        choices=YES_NO)
+
+    attendance_in_years = models.IntegerField(
+        verbose_name='If YES,for how many years?',
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True)
+
+    secondary_school = models.CharField(
+        verbose_name='Did you go to secondary school?',
+        max_length=5,
+        choices=YES_NO)
+
+    secondary_attendance_years = models.IntegerField(
+        verbose_name='If YES,for how many years?',
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True)
+
+    higher_education = models.CharField(
+        verbose_name='Did you go to higher education?',
+        max_length=5,
+        choices=YES_NO)
+
+    higher_attendance_years = models.IntegerField(
+        verbose_name='If YES,for how many years?',
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True)
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Patients History'
