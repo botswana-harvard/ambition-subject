@@ -430,10 +430,11 @@ URINE_CULTURE_RESULTS_ORGANISM = (
 )
 
 VISIT_UNSCHEDULED_REASON = (
-    ('routine_oncology',
-     'Routine oncology clinic visit (i.e. planned chemo, follow-up)'),
-    ('ill_oncology', 'Ill oncology clinic visit'),
-    ('patient_called', 'Patient called to come for visit'),
+    ('patient_unwell', 'Patient unwell'),
+    ('recurrence_symptoms', 'Recurrence of symptoms'),
+    ('raised_icp_management', 'Raised ICP Management'),
+    ('art_initiation', 'ART initiation'),
+    ('patient_hospitalised', 'Patient hospitalised'),
     (OTHER, 'Other, specify'),
 )
 
