@@ -36,7 +36,7 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    med_history = models.CharField(
+    tb_history = models.CharField(
         verbose_name='Previous medical history of Tuberculosis?',
         max_length=5,
         choices=YES_NO)
@@ -64,18 +64,18 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    previous_infection = models.CharField(
+    previous_non_tb_oi = models.CharField(
         verbose_name='Previous opportunistic infection other than TB?',
         max_length=5,
         choices=YES_NO)
 
-    previous_infection_specify = models.CharField(
+    previous_non_tb_oi_name = models.CharField(
         verbose_name='If yes, specify',
         null=True,
         blank=True,
         max_length=50)
 
-    infection_date = models.DateField(
+    previous_non_tb_oi_date = models.DateField(
         verbose_name='If yes, what was the date of infection?',
         validators=[date_not_future],
         null=True,
@@ -380,6 +380,94 @@ class PatientHistory(CrfModelMixin):
         'if you were not sick with your present condition',
         max_length=5,
         choices=ACTIVITIES_MISSED)
+
+    activities_missed_other = OtherCharField(
+        verbose_name='If Other, Specify',
+        max_length=5,
+        blank=True,
+        null=True)
+
+    time_off_work = models.CharField(
+        verbose_name='How much time did you take off work?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    carer_time_off = models.CharField(
+        verbose_name='How much time did a caring family member take off work'
+        'to accompany you to the hospital?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    loss_of_earnings = models.CharField(
+        verbose_name='Did you lose earnings as a result?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    earnings_lost_amount = models.DecimalField(
+        verbose_name='How much did you lose?',
+        decimal_places=2,
+        max_digits=4,
+        blank=True,
+        null=True)
+
+    household_head = models.CharField(
+        verbose_name='Are you head of the household?',
+        max_length=5,
+        choices=YES_NO)
+
+    profession = models.CharField(
+        verbose_name='What is your profession?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    education_years = models.IntegerField(
+        verbose_name='How many years of education did you complete?',
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True)
+
+    education_certificate = models.CharField(
+        verbose_name='What is your highest education certificate?',
+        max_length=25,
+        blank=True,
+        null=True)
+
+    elementary_school = models.CharField(
+        verbose_name='Did you go to elementary school?',
+        max_length=5,
+        choices=YES_NO)
+
+    attendance_in_years = models.IntegerField(
+        verbose_name='If YES,for how many years?',
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True)
+
+    secondary_school = models.CharField(
+        verbose_name='Did you go to secondary school?',
+        max_length=5,
+        choices=YES_NO)
+
+    secondary_attendance_years = models.IntegerField(
+        verbose_name='If YES,for how many years?',
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True)
+
+    higher_education = models.CharField(
+        verbose_name='Did you go to higher education?',
+        max_length=5,
+        choices=YES_NO)
+
+    higher_attendance_years = models.IntegerField(
+        verbose_name='If YES,for how many years?',
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True)
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Patients History'
