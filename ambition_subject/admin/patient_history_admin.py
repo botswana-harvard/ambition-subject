@@ -112,7 +112,16 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'secondary_school',
                 'secondary_attendance_years',
                 'higher_education',
-                'higher_attendance_years']}
+                'higher_attendance_years',
+                'head_profession',
+                'head_education_years',
+                'head_education_certificate',
+                'head_elementary',
+                'head_attendance_years',
+                'head_secondary',
+                'head_secondary_years',
+                'head_higher_education',
+                'head_higher_years']}
          ), audit_fieldset_tuple)
 
     radio_fields = {
@@ -127,7 +136,10 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'first_arv_regimen': admin.VERTICAL,
         'first_line_choice': admin.VERTICAL,
         'higher_education': admin.VERTICAL,
+        'head_elementary': admin.VERTICAL,
+        'head_secondary': admin.VERTICAL,
         'household_head': admin.VERTICAL,
+        'head_higher_education': admin.VERTICAL,
         'location_care': admin.VERTICAL,
         'lung_exam': admin.VERTICAL,
         'tb_history': admin.VERTICAL,
