@@ -102,7 +102,12 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'time_off_work',
                 'carer_time_off',
                 'loss_of_earnings',
-                'earnings_lost_amount',
+                'earnings_lost_amount'
+            ]}
+         ),
+
+        ('Educational Background', {
+            'fields': [
                 'household_head',
                 'profession',
                 'education_years',
@@ -149,6 +154,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'paid_treatment': admin.VERTICAL,
         'previous_non_tb_oi': admin.VERTICAL,
         'second_arv_regimen': admin.VERTICAL,
+        'secondary_school': admin.VERTICAL,
         'taking_arv': admin.VERTICAL,
         'taking_rifampicin': admin.VERTICAL,
         'tb_site': admin.VERTICAL,
