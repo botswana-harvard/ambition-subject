@@ -115,7 +115,7 @@ list_data = {
         ('nausea', 'Nausea'),
         ('vomiting', 'Vomiting'),
         ('weight_loss', 'Weight Loss'),
-        ('skin_lesions_cough', 'Skin Lesions Cough'),
+        ('skin_lesions', 'Skin Lesions'),
         ('shortness_of_breath', 'Shortness of breath'),
     ],
 }
