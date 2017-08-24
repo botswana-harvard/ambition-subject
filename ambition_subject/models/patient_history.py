@@ -6,11 +6,9 @@ from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
-from ..choices import (ARV_REGIMEN, FIRST_LINE_REGIMEN,
-                       FIRST_ARV_REGIMEN, TB_SITE,
+from ..choices import (FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE,
                        ECOG_SCORE, SECOND_ARV_REGIMEN, LOCATION_CARE,
-                       TRANSPORT,
-                       CARE_PROVIDER, ACTIVITIES_MISSED)
+                       TRANSPORT, CARE_PROVIDER, ACTIVITIES_MISSED)
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
@@ -252,24 +250,15 @@ class PatientHistory(CrfModelMixin):
         max_length=5,
         choices=YES_NO)
 
-    other_meds = models.CharField(
-        verbose_name='Other medication',
-        max_length=5,
-        choices=YES_NO)
-
-    other_meds_tmp_smx = OtherCharField(
-        verbose_name='Is (Yes) Other medications is TMP-SMX:',
-        choices=YES_NO)
+    specify_medications = models.ManyToManyField(
+        Medication,
+        blank=True)
 
     specify_medications_other = models.TextField(
         verbose_name='...if "Other", specify',
         max_length=150,
         blank=True,
         null=True)
-
-    specify_medications = models.ManyToManyField(
-        Medication,
-        blank=True)
 
     personal_he_spend = models.DecimalField(
         verbose_name='Over that last 4 weeks, how much have you'
@@ -289,21 +278,20 @@ class PatientHistory(CrfModelMixin):
 
     he_spend_last_4weeks = models.DecimalField(
         verbose_name='How much in total has been spent'
-        'on your healthcare in the last 4 weeks?',
+        ' on your healthcare in the last 4 weeks?',
         decimal_places=2,
         max_digits=4,
         null=True,
         blank=True)
 
     care_before_hospital = models.CharField(
-        verbose_name='Have you received any treatment or care'
+        verbose_name='Have you received any treatment or care '
         'for your present condition, before coming to the hospital?',
         max_length=5,
         choices=YES_NO)
 
     location_care = models.CharField(
-        verbose_name='Where did you receive treatment or care'
-        'for your present condition, before coming to the hospital?',
+        verbose_name='If Yes, where did you receive treatment or care?',
         max_length=5,
         choices=LOCATION_CARE)
 
@@ -349,14 +337,15 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO)
 
     paid_treatment_amount = models.DecimalField(
-        verbose_name=' How much did you pay for the treatment of your present condition?',
+        verbose_name=(
+            'How much did you pay for the treatment of your present condition?'),
         decimal_places=2,
         max_digits=4,
         null=True,
         blank=True)
 
     other_place_visited = models.CharField(
-        verbose_name='Before this, did you go to another place'
+        verbose_name='Before this, did you go to another place '
         'for the treatment of the present situation?',
         max_length=5,
         choices=YES_NO)
@@ -368,7 +357,7 @@ class PatientHistory(CrfModelMixin):
         null=True)
 
     activities_missed = models.CharField(
-        verbose_name='What would you have been doing'
+        verbose_name='What would you have been doing '
         'if you were not sick with your present condition',
         max_length=5,
         choices=ACTIVITIES_MISSED)
@@ -387,14 +376,15 @@ class PatientHistory(CrfModelMixin):
 
     carer_time_off = models.CharField(
         verbose_name='How much time did a caring family member take off work'
-        'to accompany you to the hospital?',
+        ' to accompany you to the hospital?',
         max_length=25,
         blank=True,
         null=True)
 
     loss_of_earnings = models.CharField(
         verbose_name='Did you lose earnings as a result?',
-        max_length=25,
+        max_length=5,
+        choices=YES_NO,
         blank=True,
         null=True)
 
@@ -433,7 +423,7 @@ class PatientHistory(CrfModelMixin):
         max_length=5,
         choices=YES_NO)
 
-    attendance_in_years = models.IntegerField(
+    elementary_attendance_years = models.IntegerField(
         verbose_name='If YES,for how many years?',
         validators=[MinValueValidator(1)],
         blank=True,
@@ -462,26 +452,27 @@ class PatientHistory(CrfModelMixin):
         null=True)
 
     head_profession = models.CharField(
-        verbose_name='What is head of household profession?',
+        verbose_name='What is the head of household profession?',
         max_length=25,
         blank=True,
         null=True)
 
     head_education_years = models.IntegerField(
-        verbose_name='How many years of education did'
+        verbose_name='How many years of education did '
         'head of houesehold complete?',
         validators=[MinValueValidator(1)],
         blank=True,
         null=True)
 
     head_education_certificate = models.CharField(
-        verbose_name='What is head of household highest education certificate?',
+        verbose_name=(
+            'What is the head of household highest education certificate?'),
         max_length=25,
         blank=True,
         null=True)
 
     head_elementary = models.CharField(
-        verbose_name='Did head of household go to elementary school?',
+        verbose_name='Did the head of household go to elementary school?',
         max_length=5,
         choices=YES_NO)
 
