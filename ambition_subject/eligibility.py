@@ -110,7 +110,7 @@ class Eligibility:
         if not no_drug_reaction:
             self.reasons.pop(self.reasons.index('no_drug_reaction'))
             self.reasons.append(
-                'Previous adverse drug reaction the study medication')
+                'Previous adverse drug reaction to the study medication')
         if not no_concomitant_meds:
             self.reasons.pop(self.reasons.index('no_concomitant_meds'))
             self.reasons.append(
