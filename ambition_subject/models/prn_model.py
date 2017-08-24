@@ -1,5 +1,5 @@
 from django.db import models
-from edc_constants.constants import NO
+from edc_constants.constants import NO, YES
 from edc_constants.choices import YES_NO
 
 from .model_mixins import CrfModelMixin
@@ -32,7 +32,7 @@ class PrnModel(CrfModelMixin):
         verbose_name='Blood result?',
         max_length=5,
         choices=YES_NO,
-        default=NO
+        default=YES
     )
 
     microbiology = models.CharField(
@@ -68,7 +68,7 @@ class PrnModel(CrfModelMixin):
         verbose_name='Lumbar puncture?',
         max_length=5,
         choices=YES_NO,
-        default=NO,
+        default=YES,
         null=True
     )
 
