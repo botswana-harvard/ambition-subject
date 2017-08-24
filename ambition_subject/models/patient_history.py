@@ -98,14 +98,6 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    arv_regimen = models.CharField(
-        verbose_name='What ARV regimen are you currently prescribed?',
-        max_length=50,
-        choices=ARV_REGIMEN,
-        default=NOT_APPLICABLE)
-
-    arv_regimen_other = OtherCharField()
-
     first_arv_regimen = models.CharField(
         verbose_name='First line arv regimen',
         max_length=50,

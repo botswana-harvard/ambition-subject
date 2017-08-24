@@ -39,8 +39,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'new_hiv_diagnosis',
                 'taking_arv',
                 'arv_date',
-                'arv_regimen',
-                'arv_regimen_other',
                 'first_arv_regimen',
                 'first_arv_regimen_other',
                 'second_arv_regimen',
@@ -131,7 +129,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {
         'activities_missed': admin.VERTICAL,
-        'arv_regimen': admin.VERTICAL,
         'care_before_hospital': admin.VERTICAL,
         'care_provider': admin.VERTICAL,
         'cd4_date_estimated': admin.VERTICAL,
