@@ -39,7 +39,7 @@ class SubjectConsent(
 
     is_signed = models.BooleanField(default=False, editable=False)
 
-    may_store_samples = models.CharField(
+    may_store_genetic_samples = models.CharField(
         verbose_name=('Does the subject agree that a portion of the blood sample '
                       'that is taken be stored for genetic analysis?'),
         max_length=25,
