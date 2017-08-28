@@ -257,7 +257,7 @@ GLASGOW_COMA_SCORE_MOTOR = (
 )
 
 ID_TYPE = (
-    ('OMANG', 'Omang'),
+    ('COUNTRY_ID', 'County ID Number'),
     ('DRIVERS', 'Driver\'s License'),
     ('PASSPORT', 'Passport'),
     ('HOSPITAL_NO', 'Hospital Number'),

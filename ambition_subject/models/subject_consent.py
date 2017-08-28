@@ -1,5 +1,8 @@
 from django.apps import apps as django_apps
 from django.db import models
+from django.core.validators import RegexValidator
+from django_crypto_fields.fields import (
+    FirstnameField, LastnameField, EncryptedCharField)
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.field_mixins import ReviewFieldsMixin, PersonalFieldsMixin
@@ -12,6 +15,7 @@ from edc_constants.choices import YES_NO
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
+
 
 from ..choices import ID_TYPE
 from .model_mixins import SearchSlugModelMixin
@@ -32,6 +36,19 @@ class SubjectConsent(
         VulnerabilityFieldsMixin, SearchSlugModelMixin, BaseUuidModel):
     """ A model completed by the user that captures the ICF.
     """
+
+    first_name = FirstnameField()
+
+    last_name = LastnameField(
+        verbose_name="Last name",
+    )
+
+    initials = EncryptedCharField(
+        validators=[RegexValidator(
+            regex=r'^[A-Z]{2,3}$',
+            message=('Ensure initials consist of letters '
+                     'only in upper case, no spaces.')), ],
+    )
 
     screening_identifier = models.CharField(
         verbose_name='Screening Identifier',
