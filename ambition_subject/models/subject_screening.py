@@ -118,8 +118,8 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         'Terfenadine, Quinidine, Astemizole, Erythromycin')
 
     received_amphotericin = models.CharField(
-        verbose_name='Has received >48 hours of Amphotericin B (AmB) therapy '
-                     'prior to screening.',
+        verbose_name='Has received > 0.7mg/kg of Amphotericin B (AmB) '
+        'dose prior to screening.',
         max_length=5,
         choices=YES_NO,
 
