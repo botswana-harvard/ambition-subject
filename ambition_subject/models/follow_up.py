@@ -156,6 +156,21 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
         null=True,
         blank=True)
 
+    medication_bought = models.CharField(
+        verbose_name=(
+            'did you buy other medication '
+            ' for the treatment of your present condition?'),
+        max_length=5,
+        choices=YES_NO)
+
+    medication_payment = models.DecimalField(
+        verbose_name=(
+            'How much did you pay?'),
+        decimal_places=2,
+        max_digits=4,
+        null=True,
+        blank=True)
+
     other_place_visited = models.CharField(
         verbose_name='Before this, did you go to another place '
         'for the treatment of the present situation?',
