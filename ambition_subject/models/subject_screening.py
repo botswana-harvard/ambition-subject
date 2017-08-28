@@ -88,8 +88,8 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         max_length=5,
         choices=YES_NO)
 
-    pregnancy_or_lactation = models.CharField(
-        verbose_name='Pregnancy or lactation (Urine βhCG)',
+    pregnancy = models.CharField(
+        verbose_name='Pregnancy (Urine βhCG)',
         max_length=15,
         choices=YES_NO_NA)
 
@@ -177,7 +177,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
             consent_ability=if_yes(self.consent_ability),
             mental_status=self.mental_status,
             meningitis_dx=if_yes(self.meningitis_dx),
-            pregnant=if_yes(self.pregnancy_or_lactation),
+            pregnant=if_yes(self.pregnancy),
             breast_feeding=if_yes(self.breast_feeding),
             no_drug_reaction=if_no(self.previous_drug_reaction),
             no_concomitant_meds=if_no(self.contraindicated_meds),
