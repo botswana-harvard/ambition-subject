@@ -66,8 +66,33 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'fluconazole_dose_other',
                 'rifampicin_started',
                 'rifampicin_start_date')}),
-        audit_fieldset_tuple
-    )
+
+        ('Medical Expenses', {
+            'fields': [
+                'personal_he_spend',
+                'proxy_he_spend',
+                'he_spend_last_4weeks',
+                'care_before_hospital',
+                'location_care',
+                'location_care_other',
+                'transport_form',
+                'transport_cost',
+                'transport_duration',
+                'care_provider',
+                'care_provider_other',
+                'paid_treatment',
+                'paid_treatment_amount',
+                'other_place_visited',
+                'duration_present_condition',
+                'activities_missed',
+                'activities_missed_other',
+                'time_off_work',
+                'carer_time_off',
+                'loss_of_earnings',
+                'earnings_lost_amount'
+            ]}
+         ),
+        audit_fieldset_tuple)
 
     radio_fields = {
         'physical_symptoms': admin.VERTICAL,
