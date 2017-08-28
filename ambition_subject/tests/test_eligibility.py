@@ -103,7 +103,7 @@ class TestSubjectScreening(TestCase):
                    'Patient on Contraindicated Meds', 'Unable to consent.',
                    'Previous Hx of Cryptococcal Meningitis',
                    'HIV unknown, not willing to consent',
-                   '> 48hrs of Amphotericin B', '> 48hrs of Fluconazole']
+                   '> 0.7mg/kg of Amphotericin B', '> 48hrs of Fluconazole']
         reasons.sort()
         reasons1 = obj.reasons
         reasons1.sort()

@@ -212,9 +212,7 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
     loss_of_earnings = models.CharField(
         verbose_name='Did you lose earnings as a result?',
         max_length=5,
-        choices=YES_NO,
-        blank=True,
-        null=True)
+        choices=YES_NO)
 
     earnings_lost_amount = models.DecimalField(
         verbose_name='How much did you lose?',

@@ -12,6 +12,7 @@ from uuid import uuid4
 
 from ..eligibility import Eligibility
 from ..screening_identifier import ScreeningIdentifier
+from ..choices import PREG_YES_NO_NA
 
 
 class SubjectScreeningManager(SearchSlugManager, models.Manager):
@@ -91,7 +92,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
     pregnancy = models.CharField(
         verbose_name='Pregnancy (Urine or serum βhCG)',
         max_length=15,
-        choices=YES_NO_NA)
+        choices=PREG_YES_NO_NA)
 
     preg_test_date = models.DateTimeField(
         verbose_name="Pregnancy test date",
