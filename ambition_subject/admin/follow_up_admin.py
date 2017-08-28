@@ -83,7 +83,7 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'paid_treatment',
                 'paid_treatment_amount',
                 'medication_bought',
-                'medication_payment'
+                'medication_payment',
                 'other_place_visited',
                 'duration_present_condition',
                 'activities_missed',
