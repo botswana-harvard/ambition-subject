@@ -534,3 +534,9 @@ YES_NO_ALREADY = (
     (NO, 'No'),
     ('already_on_rifampicin', 'Already on Rifampicin'),
 )
+
+PREG_YES_NO_NA = (
+    (YES, 'Yes'),
+    (NO, 'No'),
+    (NOT_APPLICABLE, 'Not Applicable: e.g. male, post-menopausal'),
+)
