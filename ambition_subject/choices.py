@@ -511,6 +511,11 @@ VISIT_REASON = (
     (MISSED_VISIT, 'Missed'),
 )
 
+YES_NO = (
+    (YES, 'Yes'),
+    (NO, 'No'),
+)
+
 YES_NO_ND = (
     (YES, 'Yes'),
     (NO, 'No'),
