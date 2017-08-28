@@ -322,7 +322,7 @@ class PatientHistory(CrfModelMixin):
     care_provider = models.CharField(
         verbose_name='Who provided treatment or care for your'
         ' present condition, before coming to the hospital?',
-        max_length=5,
+        max_length=35,
         choices=CARE_PROVIDER)
 
     care_provider_other = OtherCharField(
