@@ -89,7 +89,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         choices=YES_NO)
 
     pregnancy = models.CharField(
-        verbose_name='Pregnancy (Urine βhCG)',
+        verbose_name='Pregnancy (Urine or serum βhCG)',
         max_length=15,
         choices=YES_NO_NA)
 
@@ -114,12 +114,12 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
                      'with any study drug',
         max_length=5,
         choices=YES_NO,
-        help_text='Contraindicated Meds: Cisapride Pimozide,'
+        help_text='Contraindicated Meds: Cisapride, Pimozide,'
         'Terfenadine, Quinidine, Astemizole, Erythromycin')
 
     received_amphotericin = models.CharField(
-        verbose_name='Has received > 0.7mg/kg of Amphotericin B (AmB) '
-        'dose prior to screening.',
+        verbose_name='Has received >48 hours of Amphotericin B '
+        '(>0.7mg/kg daily dose) prior to screening',
         max_length=5,
         choices=YES_NO,
 
