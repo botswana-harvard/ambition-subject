@@ -115,7 +115,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         max_length=5,
         choices=YES_NO,
         help_text='Contraindicated Meds: Cisapride Pimozide,'
-        'Terfenadine Quinidine, Astemizole Erythromycin')
+        'Terfenadine, Quinidine, Astemizole, Erythromycin')
 
     received_amphotericin = models.CharField(
         verbose_name='Has received >48 hours of Amphotericin B (AmB) therapy '
