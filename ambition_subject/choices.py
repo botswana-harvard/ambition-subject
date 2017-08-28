@@ -271,6 +271,7 @@ LP_REASON = (
 )
 
 LOCATION_CARE = (
+    (NOT_APPLICABLE, 'Not Applicable'),
     ('GOVERNMENT HEALTHCARE', 'Government Healthcare'),
     ('PRIVATE HEALTHCARE', 'Private Healthcare'),
     ('NGO HEALTHCARE', 'NGO Healthcare'),
