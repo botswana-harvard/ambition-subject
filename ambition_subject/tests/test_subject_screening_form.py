@@ -18,14 +18,14 @@ class TestSubjectScreeningForm(TestCase):
         obj = mommy.prepare_recipe(
             'ambition_subject.subjectscreening',
             gender=FEMALE,
-            pregnancy_or_lactation=NO)
+            pregnancy=NO)
         form = SubjectScreeningForm(data=obj.__dict__)
         self.assertFalse(form.is_valid())
 
     def test_male_pregnancy_yes(self):
         obj = mommy.prepare_recipe(
             'ambition_subject.subjectscreening',
-            pregnancy_or_lactation=YES)
+            pregnancy=YES)
         form = SubjectScreeningForm(data=obj.__dict__)
         self.assertFalse(form.is_valid())
 
@@ -33,6 +33,6 @@ class TestSubjectScreeningForm(TestCase):
         obj = mommy.prepare_recipe(
             'ambition_subject.subjectscreening',
             gender=FEMALE,
-            pregnancy_or_lactation=NOT_APPLICABLE)
+            pregnancy=NOT_APPLICABLE)
         form = SubjectScreeningForm(data=obj.__dict__)
         self.assertFalse(form.is_valid())

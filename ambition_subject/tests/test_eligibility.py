@@ -142,7 +142,7 @@ class TestSubjectScreening(TestCase):
     def test_subject_ineligible_female_pregnant(self):
         """Assert not eligible if pregnant.
         """
-        options = {'gender': FEMALE, 'pregnancy_or_lactation': YES}
+        options = {'gender': FEMALE, 'pregnancy': YES}
         subject_screening = mommy.make_recipe(
             'ambition_subject.subjectscreening', **options)
         self.assertFalse(subject_screening.eligible)
@@ -252,11 +252,11 @@ class TestSubjectScreening(TestCase):
     def test_ineligible_breastfeeding(self):
         subject_screening = mommy.make_recipe(
             'ambition_subject.subjectscreening',
-            gender=FEMALE, pregnancy_or_lactation=NO, breast_feeding=YES)
+            gender=FEMALE, pregnancy=NO, breast_feeding=YES)
         self.assertFalse(subject_screening.eligible)
 
     def test_eligible_breastfeeding_recipe(self):
         subject_screening = mommy.make_recipe(
             'ambition_subject.subjectscreening',
-            gender=FEMALE, pregnancy_or_lactation=NO, breast_feeding=NO)
+            gender=FEMALE, pregnancy=NO, breast_feeding=NO)
         self.assertTrue(subject_screening.eligible)
