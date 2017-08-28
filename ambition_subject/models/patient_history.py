@@ -261,10 +261,10 @@ class PatientHistory(CrfModelMixin):
         null=True)
 
     personal_he_spend = models.DecimalField(
-        verbose_name='Over that last 4 weeks, how much have you'
+        verbose_name='Over that last 4 weeks, how much have you '
         'spent on activities relating to your health?',
         decimal_places=2,
-        max_digits=4,
+        max_digits=15,
         null=True,
         blank=True)
 
@@ -272,7 +272,7 @@ class PatientHistory(CrfModelMixin):
         verbose_name='Over that last 4 weeks, how much'
         ' has someone else spent on activities relating to your health?',
         decimal_places=2,
-        max_digits=4,
+        max_digits=15,
         null=True,
         blank=True)
 
@@ -292,7 +292,7 @@ class PatientHistory(CrfModelMixin):
 
     location_care = models.CharField(
         verbose_name='If Yes, where did you receive treatment or care?',
-        max_length=5,
+        max_length=35,
         choices=LOCATION_CARE)
 
     location_care_other = OtherCharField(
@@ -359,12 +359,12 @@ class PatientHistory(CrfModelMixin):
     activities_missed = models.CharField(
         verbose_name='What would you have been doing '
         'if you were not sick with your present condition',
-        max_length=5,
+        max_length=15,
         choices=ACTIVITIES_MISSED)
 
     activities_missed_other = OtherCharField(
         verbose_name='If Other, Specify',
-        max_length=5,
+        max_length=25,
         blank=True,
         null=True)
 
