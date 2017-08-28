@@ -10,6 +10,15 @@ class SubjectConsentForm(FormValidatorMixin, ConsentModelFormMixin, forms.ModelF
 
     form_validator_cls = SubjectConsentFormValidator
 
+    def clean_gender_of_consent(self):
+        return None
+
+    def clean_guardian_and_dob(self):
+        return None
+
+    def clean_identity_with_unique_fields(self):
+        return None
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['guardian_name'].label = (

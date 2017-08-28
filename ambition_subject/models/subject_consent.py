@@ -19,6 +19,7 @@ from edc_search.model_mixins import SearchSlugManager
 
 from ..choices import ID_TYPE
 from .model_mixins import SearchSlugModelMixin
+from .subject_screening import SubjectScreening
 
 
 class SubjectConsentManager(SearchSlugManager, models.Manager):
@@ -37,10 +38,12 @@ class SubjectConsent(
     """ A model completed by the user that captures the ICF.
     """
 
-    first_name = FirstnameField()
+    first_name = FirstnameField(
+        blank=False)
 
     last_name = LastnameField(
         verbose_name="Last name",
+        blank=False
     )
 
     initials = EncryptedCharField(
@@ -48,6 +51,7 @@ class SubjectConsent(
             regex=r'^[A-Z]{2,3}$',
             message=('Ensure initials consist of letters '
                      'only in upper case, no spaces.')), ],
+        blank=False
     )
 
     screening_identifier = models.CharField(
@@ -77,6 +81,9 @@ class SubjectConsent(
         return f'{self.subject_identifier} V{self.version}'
 
     def save(self, *args, **kwargs):
+        subject_screening = SubjectScreening.objects.get(
+            screening_identifier=self.screening_identifier)
+        self.gender = subject_screening.gender
         if not self.id:
             self.registration_identifier = self.screening_identifier
             edc_protocol_app_config = django_apps.get_app_config(
