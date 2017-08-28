@@ -120,7 +120,7 @@ class Eligibility:
             self.reasons.append('Previous Hx of Cryptococcal Meningitis')
         if not no_amphotericin:
             self.reasons.pop(self.reasons.index('no_amphotericin'))
-            self.reasons.append('> 48hrs of Amphotericin B')
+            self.reasons.append('> 0.7mg/kg of Amphotericin B')
         if not no_fluconazole:
             self.reasons.pop(self.reasons.index('no_fluconazole'))
             self.reasons.append('> 48hrs of Fluconazole')
