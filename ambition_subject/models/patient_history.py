@@ -257,7 +257,7 @@ class PatientHistory(CrfModelMixin):
         Medication,
         blank=True)
 
-    specify_medications_other = models.TextField(
+    specify_medications_other = OtherCharField(
         verbose_name='...if "Other", specify',
         max_length=150,
         blank=True,
@@ -428,7 +428,7 @@ class PatientHistory(CrfModelMixin):
     elementary_school = models.CharField(
         verbose_name='Did you go to elementary school?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     elementary_attendance_years = models.IntegerField(
         verbose_name='If YES, for how many years?',
@@ -439,7 +439,7 @@ class PatientHistory(CrfModelMixin):
     secondary_school = models.CharField(
         verbose_name='Did you go to secondary school?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     secondary_attendance_years = models.IntegerField(
         verbose_name='If YES, for how many years?',
@@ -450,7 +450,7 @@ class PatientHistory(CrfModelMixin):
     higher_education = models.CharField(
         verbose_name='Did you go to higher education?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     higher_attendance_years = models.IntegerField(
         verbose_name='If YES, for how many years?',
@@ -482,7 +482,7 @@ class PatientHistory(CrfModelMixin):
         verbose_name='Did the head of household go to elementary '
         'school?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     head_attendance_years = models.IntegerField(
         verbose_name='If YES, for how many years?',
@@ -493,7 +493,7 @@ class PatientHistory(CrfModelMixin):
     head_secondary = models.CharField(
         verbose_name='Did head of household go to secondary school?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     head_secondary_years = models.IntegerField(
         verbose_name='If YES, for how many years?',
@@ -504,7 +504,7 @@ class PatientHistory(CrfModelMixin):
     head_higher_education = models.CharField(
         verbose_name='Did head of household go to higher education?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO_NA)
 
     head_higher_years = models.IntegerField(
         verbose_name='If YES, for how many years?',

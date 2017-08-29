@@ -158,4 +158,5 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'tb_site': admin.VERTICAL,
         'tb_treatment': admin.VERTICAL,
         'transport_form': admin.VERTICAL,
-        'vl_date_estimated': admin.VERTICAL}
+        'vl_date_estimated': admin.VERTICAL,
+        'loss_of_earnings': admin.VERTICAL, }

@@ -1,3 +1,4 @@
+from ambition_validators.constants import WORKING
 from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE
 from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN, NONE
 from edc_visit_tracking.constants import (
@@ -34,7 +35,7 @@ ACTION_REQUIRED = (
 )
 
 ACTIVITIES_MISSED = (
-    ('Working', 'Working'),
+    (WORKING, 'Working'),
     ('Studying', 'Studying'),
     ('Caring for Children', 'Caring for children'),
     ('Maintaining the house', 'Maintaining the house'),
