@@ -265,6 +265,17 @@ ID_TYPE = (
     (OTHER, 'Other'),
 )
 
+
+INFECTION = (
+    ('Kaposi_sarcoma', 'Kaposi Sarcoma'),
+    ('Herpes_zoster_virus', 'Herpes Zoster Virus'),
+    ('Oesophageal_candidiasis', 'Oesophageal Candidiasis'),
+    ('PCP', 'PCP'),
+    ('Cytomegalovirus', 'Cytomegalovirus'),
+    ('Other', 'Other')
+)
+
+
 INFILTRATE_LOCATION = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('lul', 'LUL'),
