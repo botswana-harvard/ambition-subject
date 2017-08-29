@@ -8,7 +8,7 @@ from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import VisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin, PreviousVisitError
 
-from ..choices import VISIT_UNSCHEDULED_REASON, VISIT_REASON
+from ..choices import INFO_SOURCE, VISIT_UNSCHEDULED_REASON, VISIT_REASON
 from .appointment import Appointment
 
 
@@ -43,6 +43,11 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
         blank=True,
         null=True,
     )
+
+    info_source = models.CharField(
+        verbose_name='What is the main source of this information?',
+        max_length=25,
+        choices=INFO_SOURCE)
 
     objects = VisitModelManager()
 

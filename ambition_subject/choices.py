@@ -257,11 +257,11 @@ GLASGOW_COMA_SCORE_MOTOR = (
 )
 
 ID_TYPE = (
-    ('COUNTRY_ID', 'County ID Number'),
-    ('DRIVERS', 'Driver\'s License'),
-    ('PASSPORT', 'Passport'),
-    ('HOSPITAL_NO', 'Hospital Number'),
-    ('OMANG_RCPT', 'Omang Receipt'),
+    ('country_id', 'Country ID Number'),
+    ('drivers', 'Driver\'s License'),
+    ('passport', 'Passport'),
+    ('hospital_no', 'Hospital Number'),
+    ('omang_rcpt', 'Omang Receipt'),
     (OTHER, 'Other'),
 )
 
@@ -275,6 +275,15 @@ INFILTRATE_LOCATION = (
     ('diffuse', 'Diffuse'),
 )
 
+INFO_SOURCE = (
+    ('hospital_notes', 'Hospital Notes'),
+    ('outpatient_cards', 'Outpatient Cards'),
+    ('patient', 'Patient'),
+    ('collateral_history_from_relative/guardian',
+     'Collateral History from relative/guardian'),
+    (OTHER, 'Other'),
+)
+
 LP_REASON = (
     ('scheduled_per_protocol', 'Scheduled per protocol'),
     ('therapeutic_lp', 'Therapeutic LP'),
@@ -283,11 +292,11 @@ LP_REASON = (
 
 LOCATION_CARE = (
     (NOT_APPLICABLE, 'Not Applicable'),
-    ('GOVERNMENT HEALTHCARE', 'Government Healthcare'),
-    ('PRIVATE HEALTHCARE', 'Private Healthcare'),
-    ('NGO HEALTHCARE', 'NGO Healthcare'),
-    ('PHARMACY', 'Pharmacy'),
-    ('HOME', 'Home'),
+    ('government_healthcare', 'Government Healthcare'),
+    ('private_healthcare', 'Private Healthcare'),
+    ('ngo_healthcare', 'NGO Healthcare'),
+    ('pharmacy', 'Pharmacy'),
+    ('home', 'Home'),
     (OTHER, 'Other'),
 )
 
@@ -415,6 +424,7 @@ TB_SITE = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('pulmonary', 'Pulmonary'),
     ('extra_pulmonary', 'Extra pulmonary'),
+    ('both', 'Both')
 )
 
 TB_SITE_DEATH = (

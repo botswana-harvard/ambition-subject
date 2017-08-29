@@ -21,7 +21,8 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, admin.ModelAdmin)
 
     radio_fields = {
         'reason': admin.VERTICAL,
-        'reason_unscheduled': admin.VERTICAL}
+        'reason_unscheduled': admin.VERTICAL,
+        'info_source': admin.VERTICAL}
 
     fieldsets = (
         (None, {
