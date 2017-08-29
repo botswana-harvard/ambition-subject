@@ -85,7 +85,7 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO)
 
     taking_arv = models.CharField(
-        verbose_name='If Yes, Already taking ARVs?',
+        verbose_name='If No, Already taking ARVs?',
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
