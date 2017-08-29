@@ -24,7 +24,7 @@ ABNORMAL_RESULTS_REASON = (
     ('enhancing_mass_lesions',
      'Enhancing mass lesions DD Toxoplasmosis, TB, lymphoma'),
     ('infarcts', 'Infarcts'),
-    (OTHER, 'Other, specify'))
+    (OTHER, 'Other'))
 
 ACTION_REQUIRED = (
     ('participant_to_remain', 'Participant to remain on trial'),
@@ -68,28 +68,28 @@ ANTIBIOTICS = (
      'Erythromycin (contra-indicated with concomitant high dose fluconazole)'),
     ('ciprofloxacin',
      'Ciprofloxacin (avoid with concomitant high dose fluconazole)'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 ARV_REGIMEN = (
     (NOT_APPLICABLE, 'Not Applicable'),
-    ('TDF +3TC/FTC + either EFZ or NVP',
-     'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
-    ('AZT + 3-TC + either EFV or NVP or DTG',
-     'AZT + 3-TC + either EFV or NVP or DTG'),
+    ('TDF +3TC/FTC + either EFV or NVP',
+     'TDF +3TC/FTC + either EFV or NVP or DTG'),
+    ('AZT + 3TC + either EFV or NVP or DTG',
+     'AZT + 3TC + either EFV or NVP or DTG'),
     ('TDF + 3TC/FTC + either ATZ/r or Lopinavir/r',
      'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
     ('AZT + 3TC + either ATZ/r or Lopinavir/r',
      'AZT + 3TC + either ATZ/r or Lopinavir/r'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 FIRST_ARV_REGIMEN = (
     (NOT_APPLICABLE, 'Not Applicable'),
-    ('TDF +3TC/FTC + either EFZ or NVP',
-     'TDF +3TC/FTC + either EFZ or NVP or or DTG'),
-    ('AZT+3-TC+ either EFV or NVP or DTG',
-     'AZT+3-TC+ either EFV or NVP or DTG'),
+    ('TDF +3TC/FTC + either EFV or NVP',
+     'TDF +3TC/FTC + either EFV or NVP or DTG'),
+    ('AZT+3TC+ either EFV or NVP or DTG',
+     'AZT+3TC+ either EFV or NVP or DTG'),
     (OTHER, 'Other'),
 )
 
@@ -97,9 +97,9 @@ SECOND_ARV_REGIMEN = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('TDF+3TC/FTC+ either ATZ/r or Lopinavir/r',
      'TDF+3TC/FTC+ either ATZ/r or Lopinavir/r'),
-    ('AZT+3-TC+ either ATZ/r or Lopinavir/r',
-     'AZT+3-TC+ either ATZ/r or Lopinavir/r'),
-    (OTHER, 'Other, specify'),
+    ('AZT+3TC+ either ATZ/r or Lopinavir/r',
+     'AZT+3TC+ either ATZ/r or Lopinavir/r'),
+    (OTHER, 'Other'),
 )
 
 APPOINTMENT_REASON = (
@@ -118,14 +118,14 @@ BLOOD_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
     ('bacteria', 'Bacteria'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 BIOPSY_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
     ('mycobacterium_tuberculosis', 'Mycobacterium Tuberculosis'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 BACTERIA_TYPE = (
@@ -135,14 +135,14 @@ BACTERIA_TYPE = (
     ('streptococcus_pneumoniae', 'Streptococcus pneumoniae'),
     ('staphylococus_aureus', '(Sensitive) Staphylococus aureus'),
     ('mrsa', 'MRSA'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 BRAIN_IMAGINING_REASON = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('reduction_in_gcs', 'Reduction in GCS'),
     ('new_neurology', 'New neurology'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 CARE_PROVIDER = (
@@ -167,7 +167,7 @@ CAUSE_OF_DEATH = (
     ('IRIS_non_CM', 'IRIS non-CM'),
     ('diarrhea_wasting', 'Diarrhea/wasting'),
     (UNKNOWN, 'Unknown'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 CN_PALSY = (
@@ -199,7 +199,7 @@ CXR_TYPE = (
 DR_OPINION = (
     ('cm_release', 'CM Relapse'),
     ('cm_iris', 'CM IRIS'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 ECOG_SCORE = (
@@ -226,7 +226,7 @@ FIRST_LINE_REGIMEN = (
 
 FLUCONAZOLE_DOSE = (
     ('800mg_daily', '800mg Daily'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
     ('Not Done', 'Not Done'),
 )
 
@@ -296,7 +296,7 @@ MEDICINES = (
     ('amphotericin_b', 'Amphotericin B'),
     ('rifampicin', 'Rifampicin'),
     ('co_trimoxazole', 'Co-trimoxazole'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 PATIENT_TREATMENT_GROUP = (
@@ -399,7 +399,7 @@ STEROIDS_CHOICES = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('oral_prednisolone', 'Oral prednisolone'),
     ('iv_dexamethasone', 'IV Dexamethasone used'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 STUDY_DRUG_RELATIONSHIP = (
@@ -438,7 +438,7 @@ URINE_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('e_coli', 'E.coli'),
     ('klebsiella_sp', 'Klebsiella sp.'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 VISIT_UNSCHEDULED_REASON = (
@@ -447,7 +447,7 @@ VISIT_UNSCHEDULED_REASON = (
     ('raised_icp_management', 'Raised ICP Management'),
     ('art_initiation', 'ART initiation'),
     ('patient_hospitalised', 'Patient hospitalised'),
-    (OTHER, 'Other, specify'),
+    (OTHER, 'Other'),
 )
 
 DAYS_MISSED = (
