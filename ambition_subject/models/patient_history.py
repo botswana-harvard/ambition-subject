@@ -6,8 +6,9 @@ from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
-from ..choices import (FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE,
-                       ECOG_SCORE, SECOND_ARV_REGIMEN, LOCATION_CARE,
+from ..choices import (FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN,
+                       TB_SITE, INFECTION, ECOG_SCORE,
+                       SECOND_ARV_REGIMEN, LOCATION_CARE,
                        TRANSPORT, CARE_PROVIDER, ACTIVITIES_MISSED)
 from ..validators import bp_validator
 from .list_models import Medication, Neurological, Symptom
@@ -65,7 +66,7 @@ class PatientHistory(CrfModelMixin):
     previous_non_tb_oi = models.CharField(
         verbose_name='Previous opportunistic infection other than TB?',
         max_length=5,
-        choices=YES_NO)
+        choices=INFECTION)
 
     previous_non_tb_oi_name = models.CharField(
         verbose_name='If yes, specify',
@@ -85,7 +86,7 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO)
 
     taking_arv = models.CharField(
-        verbose_name='If Yes, Already taking ARVs?',
+        verbose_name='If No, Already taking ARVs?',
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
