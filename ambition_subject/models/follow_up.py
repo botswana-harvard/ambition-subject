@@ -157,9 +157,8 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
         blank=True)
 
     medication_bought = models.CharField(
-        verbose_name=(
-            'did you buy other medication '
-            ' for the treatment of your present condition?'),
+        verbose_name='Did you buy other medication '
+        'for the treatment of your present condition?',
         max_length=5,
         choices=YES_NO)
 
@@ -212,7 +211,9 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
     loss_of_earnings = models.CharField(
         verbose_name='Did you lose earnings as a result?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO,
+        blank=True,
+        null=True)
 
     earnings_lost_amount = models.DecimalField(
         verbose_name='How much did you lose?',
