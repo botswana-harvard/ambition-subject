@@ -99,7 +99,7 @@ class TestSubjectScreening(TestCase):
             consent_ability=False,
             will_hiv_test=False,
             pregnant=False)
-        reasons = ['Previous adverse drug reaction the study medication',
+        reasons = ['Previous adverse drug reaction to the study medication',
                    'Patient on Contraindicated Meds', 'Unable to consent.',
                    'Previous Hx of Cryptococcal Meningitis',
                    'HIV unknown, not willing to consent',
