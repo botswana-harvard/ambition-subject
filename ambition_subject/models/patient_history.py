@@ -327,7 +327,7 @@ class PatientHistory(CrfModelMixin):
         choices=TRANSPORT)
 
     transport_cost = models.DecimalField(
-        verbose_name='How much did you spend on the transport?',
+        verbose_name='How much did you spend on the transport (each way)?',
         decimal_places=2,
         max_digits=4,
         null=True,
