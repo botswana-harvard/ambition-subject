@@ -84,6 +84,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
         ('Medical Expenses', {
             'fields': [
+                'currency',
                 'personal_he_spend',
                 'proxy_he_spend',
                 'he_spend_last_4weeks',

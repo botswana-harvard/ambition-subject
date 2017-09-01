@@ -9,7 +9,7 @@ from edc_constants.constants import NOT_APPLICABLE
 from ..choices import (FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN,
                        TB_SITE, ECOG_SCORE, ACTIVITIES_MISSED,
                        SECOND_ARV_REGIMEN, LOCATION_CARE,
-                       TRANSPORT, CARE_PROVIDER)
+                       TRANSPORT, CARE_PROVIDER, CURRENCY)
 from ..validators import bp_validator
 from .list_models import Medication, Neurological
 from .list_models import PreviousOpportunisticInfection, Symptom
@@ -186,13 +186,13 @@ class PatientHistory(CrfModelMixin):
 
     sys_blood_pressure = models.CharField(
         verbose_name='Blood Pressure: systolic',
-        validators=[bp_validator],
+        validators=[MinValueValidator(50), MaxValueValidator(220)],
         max_length=6,
         help_text='in mmHg. format SYS/DIA, e.g. 120/80')
 
     dia_blood_pressure = models.CharField(
         verbose_name='Blood Pressure: diastolic',
-        validators=[bp_validator],
+        validators=[MinValueValidator(20), MaxValueValidator(150)],
         max_length=6,
         help_text='in mmHg. format SYS/DIA, e.g. 120/80')
 
@@ -278,6 +278,11 @@ class PatientHistory(CrfModelMixin):
         max_length=150,
         blank=True,
         null=True)
+
+    currency = models.CharField(
+        verbose_name='Which currency do you use?',
+        max_length=20,
+        choices=CURRENCY)
 
     personal_he_spend = models.DecimalField(
         verbose_name='Over that last 4 weeks, how much have you '

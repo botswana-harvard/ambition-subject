@@ -188,6 +188,15 @@ CULTURE_RESULTS = (
     (POS, 'Positive'),
 )
 
+CURRENCY = (
+    ('botswana_pula', 'Botswana Pula'),
+    ('malawian_kwacha', 'Malawian Kwacha'),
+    ('south_african_rand', 'South African Rand'),
+    ('ugandan_shilling', 'Ugandan Shilling'),
+    ('us_dollar', 'US Dollar'),
+    ('zimbabwean_dollar', 'Zimbabwean Dollar'),
+)
+
 CXR_TYPE = (
     (NOT_APPLICABLE, 'Not Applicable'),
     (NORMAL, 'Normal'),
