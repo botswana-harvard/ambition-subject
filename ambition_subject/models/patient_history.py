@@ -178,10 +178,16 @@ class PatientHistory(CrfModelMixin):
         validators=[MinValueValidator(30), MaxValueValidator(200)],
         help_text='bpm')
 
-    blood_pressure = models.CharField(
-        verbose_name='Blood Pressure:',
+    sys_blood_pressure = models.CharField(
+        verbose_name='Blood Pressure: systolic',
+        validators=[MinValueValidator(50), MaxValueValidator(220)],
         max_length=6,
-        validators=[bp_validator],
+        help_text='in mmHg. format SYS/DIA, e.g. 120/80')
+
+    dia_blood_pressure = models.CharField(
+        verbose_name='Blood Pressure: diastolic',
+        validators=[MinValueValidator(20), MaxValueValidator(150)],
+        max_length=6,
         help_text='in mmHg. format SYS/DIA, e.g. 120/80')
 
     respiratory_rate = models.IntegerField(
@@ -191,6 +197,7 @@ class PatientHistory(CrfModelMixin):
 
     weight = models.DecimalField(
         verbose_name='Weight:',
+        validators=[MinValueValidator(20), MaxValueValidator(150)],
         decimal_places=1,
         max_digits=4,
         help_text='Kg')
