@@ -182,14 +182,12 @@ class PatientHistory(CrfModelMixin):
         verbose_name='Blood Pressure: systolic',
         validators=[MinValueValidator(50), MaxValueValidator(220)],
         max_length=6,
-        validators=[bp_validator],
         help_text='in mmHg. format SYS/DIA, e.g. 120/80')
 
     dia_blood_pressure = models.CharField(
         verbose_name='Blood Pressure: diastolic',
         validators=[MinValueValidator(20), MaxValueValidator(150)],
         max_length=6,
-        validators=[bp_validator],
         help_text='in mmHg. format SYS/DIA, e.g. 120/80')
 
     respiratory_rate = models.IntegerField(
