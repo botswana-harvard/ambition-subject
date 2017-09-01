@@ -154,6 +154,7 @@ CARE_PROVIDER = (
     ('family/friend', 'Family/Friend'),
     ('pharmacist', 'pharmacist'),
     (OTHER, 'Other'),
+    (NOT_APPLICABLE, 'Not Applicable')
 )
 
 CAUSE_OF_DEATH = (
@@ -465,6 +466,7 @@ TRANSPORT = (
     ('own_motorbike', 'Own Motorbike'),
     ('bicycle', 'Bicycle'),
     ('foot', 'Foot'),
+    (NOT_APPLICABLE, 'Not Applicable')
 )
 
 URINE_CULTURE_RESULTS_ORGANISM = (

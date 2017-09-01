@@ -362,8 +362,8 @@ class PatientHistory(CrfModelMixin):
         verbose_name=(
             'Did you pay for the treatment '
             'you received during that visit'),
-        max_length=5,
-        choices=YES_NO)
+        max_length=15,
+        choices=YES_NO_NA)
 
     paid_treatment_amount = models.DecimalField(
         verbose_name=(
@@ -375,8 +375,8 @@ class PatientHistory(CrfModelMixin):
 
     medication_bought = models.CharField(
         verbose_name='Did you buy other medication for relief?',
-        max_length=5,
-        choices=YES_NO)
+        max_length=15,
+        choices=YES_NO_NA)
 
     medication_payment = models.DecimalField(
         verbose_name=(
@@ -389,8 +389,8 @@ class PatientHistory(CrfModelMixin):
     other_place_visited = models.CharField(
         verbose_name='Before this, did you go to another place '
         'for the treatment of the present situation?',
-        max_length=5,
-        choices=YES_NO)
+        max_length=15,
+        choices=YES_NO_NA)
 
     duration_present_condition = models.CharField(
         verbose_name='How long have you been sick with your current '
