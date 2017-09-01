@@ -351,8 +351,9 @@ class PatientHistory(CrfModelMixin):
         null=True)
 
     paid_treatment = models.CharField(
-        verbose_name='Did you pay for treatment of your present '
-        'condition?',
+        verbose_name=(
+            'Did you pay for the treatment '
+            'you received during that visit'),
         max_length=5,
         choices=YES_NO)
 
