@@ -449,10 +449,11 @@ TB_SITE_DEATH = (
 TRANSPORT = (
     ('bus', 'Bus'),
     ('train', 'Train'),
+    ('ambulance', 'Ambulance'),
+    ('private_taxi', 'Private Taxi'),
+    ('hired_motorbike', 'Hired Motorbike'),
     ('own_car', 'Own Car'),
     ('own_motorbike', 'Own Motorbike'),
-    ('taxi', 'Taxi'),
-    ('ambulance', 'Ambulance'),
     ('bicycle', 'Bicycle'),
     ('foot', 'Foot'),
 )

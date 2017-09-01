@@ -323,11 +323,11 @@ class PatientHistory(CrfModelMixin):
     transport_form = models.CharField(
         verbose_name='Which form of transport did you take to reach '
         'there?',
-        max_length=5,
+        max_length=15,
         choices=TRANSPORT)
 
     transport_cost = models.DecimalField(
-        verbose_name='How much did you spend on the transport?',
+        verbose_name='How much did you spend on the transport (each way)?',
         decimal_places=2,
         max_digits=4,
         null=True,
@@ -340,8 +340,7 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     care_provider = models.CharField(
-        verbose_name='Who provided treatment or care for your'
-        ' present condition, before coming to the hospital?',
+        verbose_name='Who provided treatment or care during that visit?',
         max_length=35,
         choices=CARE_PROVIDER)
 
@@ -352,23 +351,22 @@ class PatientHistory(CrfModelMixin):
         null=True)
 
     paid_treatment = models.CharField(
-        verbose_name='Did you pay for treatment of your present '
-        'condition?',
+        verbose_name=(
+            'Did you pay for the treatment '
+            'you received during that visit'),
         max_length=5,
         choices=YES_NO)
 
     paid_treatment_amount = models.DecimalField(
         verbose_name=(
-            'How much did you pay for the treatment of your present '
-            'condition?'),
+            'How much did you pay for this visit?'),
         decimal_places=2,
         max_digits=4,
         null=True,
         blank=True)
 
     medication_bought = models.CharField(
-        verbose_name='Did you buy other medication '
-        'for the treatment of your present condition?',
+        verbose_name='Did you buy other medication for relief?',
         max_length=5,
         choices=YES_NO)
 
