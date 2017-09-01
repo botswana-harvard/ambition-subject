@@ -100,7 +100,7 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     first_arv_regimen = models.CharField(
-        verbose_name='First line arv regimen',
+        verbose_name='Drug used in first line arv regimen',
         max_length=50,
         choices=FIRST_ARV_REGIMEN,
         default=NOT_APPLICABLE)
@@ -168,13 +168,14 @@ class PatientHistory(CrfModelMixin):
 
     temp = models.DecimalField(
         verbose_name='Temperature:',
+        validators=[MinValueValidator(30), MaxValueValidator(45)],
         decimal_places=1,
         max_digits=3,
         help_text='in degrees Celcius')
 
     heart_rate = models.IntegerField(
         verbose_name='Heart Rate:',
-        validators=[MinValueValidator(1)],
+        validators=[MinValueValidator(30), MaxValueValidator(200)],
         help_text='bpm')
 
     blood_pressure = models.CharField(
@@ -185,7 +186,7 @@ class PatientHistory(CrfModelMixin):
 
     respiratory_rate = models.IntegerField(
         verbose_name='Respiratory Rate:',
-        validators=[MinValueValidator(1)],
+        validators=[MinValueValidator(6), MaxValueValidator(50)],
         help_text='breaths/min')
 
     weight = models.DecimalField(
@@ -196,7 +197,7 @@ class PatientHistory(CrfModelMixin):
 
     glasgow_coma_score = models.IntegerField(
         verbose_name='Glasgow Coma Score:',
-        validators=[MinValueValidator(1), MaxValueValidator(15)],
+        validators=[MinValueValidator(3), MaxValueValidator(15)],
         help_text='/15')
 
     neurological = models.ManyToManyField(
