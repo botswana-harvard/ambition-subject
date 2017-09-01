@@ -274,7 +274,7 @@ INFECTION = (
     ('Oesophageal_candidiasis', 'Oesophageal Candidiasis'),
     ('PCP', 'PCP'),
     ('Cytomegalovirus', 'Cytomegalovirus'),
-    ('Other', 'Other')
+    (OTHER, 'Other')
 )
 
 
@@ -465,7 +465,7 @@ URINE_CULTURE_RESULTS_ORGANISM = (
 )
 
 VISIT_UNSCHEDULED_REASON = (
-    ('patient_unwell', 'Patient unwell'),
+    ('patient_unwell_outpatient', 'Patient unwell (outpatient)'),
     ('recurrence_symptoms', 'Recurrence of symptoms'),
     ('raised_icp_management', 'Raised ICP Management'),
     ('art_initiation', 'ART initiation'),
