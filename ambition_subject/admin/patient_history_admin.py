@@ -47,6 +47,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'first_line_choice',
                 'patient_adherence',
                 'last_dose',
+                'treatment_missed',
                 'last_viral_load',
                 'viral_load_date',
                 'vl_date_estimated',
