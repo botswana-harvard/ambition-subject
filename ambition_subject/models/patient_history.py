@@ -323,7 +323,7 @@ class PatientHistory(CrfModelMixin):
     transport_form = models.CharField(
         verbose_name='Which form of transport did you take to reach '
         'there?',
-        max_length=5,
+        max_length=15,
         choices=TRANSPORT)
 
     transport_cost = models.DecimalField(
