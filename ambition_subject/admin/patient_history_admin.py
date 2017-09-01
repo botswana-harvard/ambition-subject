@@ -57,7 +57,8 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'temp',
                 'heart_rate',
-                'blood_pressure',
+                'sys_blood_pressure',
+                'dia_blood_pressure',
                 'respiratory_rate',
                 'weight',
                 'glasgow_coma_score']}
