@@ -10,7 +10,6 @@ from ..choices import (FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN,
                        TB_SITE, ECOG_SCORE, ACTIVITIES_MISSED,
                        SECOND_ARV_REGIMEN, LOCATION_CARE,
                        TRANSPORT, CARE_PROVIDER, CURRENCY)
-from ..validators import bp_validator
 from .list_models import Medication, Neurological
 from .list_models import PreviousOpportunisticInfection, Symptom
 from .model_mixins import CrfModelMixin
