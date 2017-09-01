@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 
-from edc_constants.constants import OTHER, UNKNOWN
+from edc_constants.constants import NONE, OTHER, UNKNOWN
 
 from .constants import HEADACHE, VISUAL_LOSS
 
@@ -90,7 +90,7 @@ list_data = {
         (OTHER, 'Other, specify')
     ],
     'ambition_subject.previousopportunisticinfection': [
-        ('None', 'None'),
+        (NONE, 'None'),
         ('Kaposi_sarcoma', 'Kaposi Sarcoma'),
         ('Herpes_zoster_virus', 'Herpes Zoster Virus'),
         ('Oesophageal_candidiasis', 'Oesophageal Candidiasis'),
