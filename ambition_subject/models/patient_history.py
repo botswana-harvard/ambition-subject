@@ -133,6 +133,12 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
+    days_missed = models.IntegerField(
+        verbose_name='If no, how many days of treatment missed this month?',
+        validators=[MinValueValidator(0), MaxValueValidator(31)],
+        null=True,
+        blank=True)
+
     last_viral_load = models.DecimalField(
         verbose_name='Last Viral Load, if known?',
         decimal_places=3,
@@ -396,7 +402,7 @@ class PatientHistory(CrfModelMixin):
     activities_missed = models.CharField(
         verbose_name='What would you have been doing '
         'if you were not sick with your present condition',
-        max_length=15,
+        max_length=25,
         choices=ACTIVITIES_MISSED)
 
     activities_missed_other = OtherCharField(
