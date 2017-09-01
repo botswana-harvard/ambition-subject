@@ -100,7 +100,7 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     first_arv_regimen = models.CharField(
-        verbose_name='First line arv regimen',
+        verbose_name='Drug used in first line arv regimen',
         max_length=50,
         choices=FIRST_ARV_REGIMEN,
         default=NOT_APPLICABLE)
