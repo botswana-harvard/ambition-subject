@@ -140,6 +140,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'care_provider': admin.VERTICAL,
         'cd4_date_estimated': admin.VERTICAL,
         'cryptococcal_lesions': admin.VERTICAL,
+        'currency': admin.VERTICAL,
         'ecog_score': admin.VERTICAL,
         'elementary_school': admin.VERTICAL,
         'first_arv_regimen': admin.VERTICAL,
