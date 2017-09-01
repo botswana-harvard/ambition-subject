@@ -7,11 +7,12 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import (FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN,
-                       TB_SITE, INFECTION, ECOG_SCORE,
+                       TB_SITE, ECOG_SCORE, ACTIVITIES_MISSED,
                        SECOND_ARV_REGIMEN, LOCATION_CARE,
-                       TRANSPORT, CARE_PROVIDER, ACTIVITIES_MISSED)
+                       TRANSPORT, CARE_PROVIDER)
 from ..validators import bp_validator
-from .list_models import Medication, Neurological, Symptom
+from .list_models import Medication, Neurological
+from .list_models import PreviousOpportunisticInfection, Symptom
 from .model_mixins import CrfModelMixin
 
 
@@ -63,13 +64,14 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
-    previous_non_tb_oi = models.CharField(
-        verbose_name='Previous opportunistic infection other than TB?',
-        max_length=5,
-        choices=INFECTION)
+    previous_non_tb_oi = models.ManyToManyField(
+        PreviousOpportunisticInfection,
+        blank=True,
+        related_name='previousopportunisticinfection',
+        verbose_name='Previous opportunistic infection other than TB?',)
 
-    previous_non_tb_oi_name = models.CharField(
-        verbose_name='If yes, specify',
+    previous_non_tb_oi_other = models.CharField(
+        verbose_name='If other, please specify',
         null=True,
         blank=True,
         max_length=50)

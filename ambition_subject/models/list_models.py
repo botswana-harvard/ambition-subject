@@ -41,6 +41,11 @@ class Neurological(ListModelMixin, BaseUuidModel):
     pass
 
 
+class PreviousOpportunisticInfection(ListModelMixin, BaseUuidModel):
+
+    pass
+
+
 class SignificantNewDiagnosis(ListModelMixin, BaseUuidModel):
 
     pass

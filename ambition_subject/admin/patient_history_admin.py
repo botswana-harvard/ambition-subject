@@ -13,7 +13,8 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PatientHistoryForm
 
-    filter_horizontal = ('neurological', 'symptom', 'specify_medications')
+    filter_horizontal = ('neurological', 'symptom', 'specify_medications',
+                         'previous_non_tb_oi')
 
     fieldsets = (
         ('Current Symptoms', {
@@ -34,8 +35,8 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         ('Previous Opportunistic Infections', {
             'fields': [
                 'previous_non_tb_oi',
-                'previous_non_tb_oi_name',
-                'previous_non_tb_oi_date',
+                'previous_non_tb_oi_other',
+                #                 'previous_non_tb_oi_date',
                 'new_hiv_diagnosis',
                 'taking_arv',
                 'arv_date',
@@ -153,7 +154,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'other_place_visited': admin.VERTICAL,
         'patient_adherence': admin.VERTICAL,
         'paid_treatment': admin.VERTICAL,
-        'previous_non_tb_oi': admin.VERTICAL,
         'second_arv_regimen': admin.VERTICAL,
         'secondary_school': admin.VERTICAL,
         'taking_arv': admin.VERTICAL,

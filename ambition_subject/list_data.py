@@ -89,6 +89,15 @@ list_data = {
         ('antibiotics', 'Antibiotics'),
         (OTHER, 'Other, specify')
     ],
+    'ambition_subject.previousopportunisticinfection': [
+        ('None', 'None'),
+        ('Kaposi_sarcoma', 'Kaposi Sarcoma'),
+        ('Herpes_zoster_virus', 'Herpes Zoster Virus'),
+        ('Oesophageal_candidiasis', 'Oesophageal Candidiasis'),
+        ('PCP', 'PCP'),
+        ('Cytomegalovirus', 'Cytomegalovirus'),
+        (OTHER, 'Other')
+    ],
     'ambition_subject.significantnewdiagnosis': [
         ('tb_pulmonary', 'TB pulmonary'),
         ('kaposi_sarcoma', 'Kaposi’s sarcoma'),
