@@ -186,7 +186,6 @@ class PatientHistory(CrfModelMixin):
     sys_blood_pressure = models.IntegerField(
         verbose_name='Blood Pressure: systolic',
         validators=[MinValueValidator(50), MaxValueValidator(220)],
-        max_length=6,
         help_text='in mmHg. format SYS/DIA, e.g. 120/80')
 
     dia_blood_pressure = models.IntegerField(
