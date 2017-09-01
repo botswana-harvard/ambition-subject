@@ -147,11 +147,11 @@ BRAIN_IMAGINING_REASON = (
 )
 
 CARE_PROVIDER = (
-    ('DOCTOR', 'Doctor'),
-    ('NURSE', 'Nurse'),
-    ('TRADITIONAL HEALER', 'Traditional Healer'),
-    ('SPIRITUAL HEALER', 'SPIRITUAL HEALER'),
-    ('FAMILY/FRIEND', 'FAMILY/FRIEND'),
+    ('Doctor', 'Doctor'),
+    ('Nurse', 'Nurse'),
+    ('Traditional_healer', 'Traditional Healer'),
+    ('Spiritual_healer', 'Spiritualhealer'),
+    ('Family/Friend', 'Family/Friend'),
     (NONE, 'None'),
     (OTHER, 'Other'),
 )
