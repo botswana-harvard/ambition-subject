@@ -268,6 +268,7 @@ ID_TYPE = (
 
 
 INFECTION = (
+    ('None', 'None'),
     ('Kaposi_sarcoma', 'Kaposi Sarcoma'),
     ('Herpes_zoster_virus', 'Herpes Zoster Virus'),
     ('Oesophageal_candidiasis', 'Oesophageal Candidiasis'),
