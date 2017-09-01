@@ -27,6 +27,11 @@ class SubjectConsentForm(FormValidatorMixin, ConsentModelFormMixin, forms.ModelF
             'Required only if subject is unconscious or has an abnormal mental '
             'status. Format is \'LASTNAME, FIRSTNAME\'. All uppercase separated '
             'by a comma then followed by a space.')
+        self.fields['identity'].label = (
+            'Identity number (Country ID Number, etc)')
+        self.fields['identity'].help_text = (
+            'Use Country ID Number, Passport number, driver\'s license '
+            'number or Country ID receipt number')
 
     screening_identifier = forms.CharField(
         label='Screening identifier',

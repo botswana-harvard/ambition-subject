@@ -262,7 +262,7 @@ ID_TYPE = (
     ('drivers', 'Driver\'s License'),
     ('passport', 'Passport'),
     ('hospital_no', 'Hospital Number'),
-    ('omang_rcpt', 'Omang Receipt'),
+    ('country_id_rcpt', 'Country ID Receipt'),
     (OTHER, 'Other'),
 )
 
