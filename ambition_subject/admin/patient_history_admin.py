@@ -50,6 +50,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'last_viral_load',
                 'viral_load_date',
                 'vl_date_estimated',
+                'last_cd4',
                 'cd4_date',
                 'cd4_date_estimated']}
          ),

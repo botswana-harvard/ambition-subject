@@ -154,6 +154,12 @@ class PatientHistory(CrfModelMixin):
         null=True,
         verbose_name=("Is the subject's viral load date estimated?"))
 
+    last_cd4 = models.IntegerField(
+        verbose_name='Last CD4, if known?',
+        validators=[MinValueValidator(1), MaxValueValidator(2500)],
+        null=True,
+        blank=True)
+
     cd4_date = models.DateField(
         verbose_name='CD4 date',
         validators=[date_not_future],
