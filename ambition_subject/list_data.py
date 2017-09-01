@@ -70,7 +70,7 @@ list_data = {
         (OTHER, 'Other, specify;')
     ],
     'ambition_subject.neurological': [
-        ('meningismus', 'Meningismus'),
+        ('meningism', 'Meningism'),
         ('papilloedema', ' Papilloedema'),
         ('focal_neurologic_deficit', 'Focal neurologic deficit'),
         ('CN_VI_palsy', 'Cranial Nerve VI palsy'),
