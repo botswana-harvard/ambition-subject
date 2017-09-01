@@ -402,7 +402,7 @@ class PatientHistory(CrfModelMixin):
     activities_missed = models.CharField(
         verbose_name='What would you have been doing '
         'if you were not sick with your present condition',
-        max_length=15,
+        max_length=25,
         choices=ACTIVITIES_MISSED)
 
     activities_missed_other = OtherCharField(
