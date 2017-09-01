@@ -447,14 +447,14 @@ TB_SITE_DEATH = (
 )
 
 TRANSPORT = (
-    ('BUS', 'Bus'),
-    ('TRAIN', 'TRAIN'),
-    ('OWN CAR', 'Own Car'),
-    ('Own Motorbike', 'Own Motorbike'),
-    ('TAXI', 'Taxi'),
-    ('AMBULANCE', 'Ambulance'),
-    ('BICYCLE', 'Bicycle'),
-    ('FOOT', 'Foot'),
+    ('bus', 'Bus'),
+    ('train', 'Train'),
+    ('own_car', 'Own Car'),
+    ('own_motorbike', 'Own Motorbike'),
+    ('taxi', 'Taxi'),
+    ('ambulance', 'Ambulance'),
+    ('bicycle', 'Bicycle'),
+    ('foot', 'Foot'),
 )
 
 URINE_CULTURE_RESULTS_ORGANISM = (
