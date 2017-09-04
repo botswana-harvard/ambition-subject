@@ -10,6 +10,7 @@ from ..choices import (FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN,
                        TB_SITE, ECOG_SCORE, ACTIVITIES_MISSED,
                        SECOND_ARV_REGIMEN, LOCATION_CARE,
                        TRANSPORT, CARE_PROVIDER, CURRENCY)
+from ..validators import hm_validator
 from .list_models import Medication, Neurological
 from .list_models import PreviousOpportunisticInfection, Symptom
 from .model_mixins import CrfModelMixin
@@ -413,9 +414,9 @@ class PatientHistory(CrfModelMixin):
 
     time_off_work = models.CharField(
         verbose_name='How much time did you take off work?',
-        max_length=25,
-        blank=True,
-        null=True)
+        validators=[hm_validator],
+        max_length=6,
+        help_text='in hours:minutes format')
 
     carer_time_off = models.CharField(
         verbose_name='How much time did a caring family member take '
