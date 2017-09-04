@@ -421,9 +421,9 @@ class PatientHistory(CrfModelMixin):
     carer_time_off = models.CharField(
         verbose_name='How much time did a caring family member take '
         'off work to accompany you to the hospital?',
-        max_length=25,
-        blank=True,
-        null=True)
+        validators=[hm_validator],
+        max_length=6,
+        help_text='in hours:minutes format')
 
     loss_of_earnings = models.CharField(
         verbose_name='Did you lose earnings as a result?',
