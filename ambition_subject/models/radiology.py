@@ -12,7 +12,7 @@ from .model_mixins import CrfModelMixin
 
 class Radiology(CrfModelMixin):
 
-    is_cxr_done = models.CharField(
+    cxr_done = models.CharField(
         verbose_name='Is CXR done',
         choices=YES_NO,
         max_length=5)
@@ -42,19 +42,19 @@ class Radiology(CrfModelMixin):
         blank=True,
         null=True)
 
-    is_ct_performed = models.CharField(
+    ct_performed = models.CharField(
         verbose_name='CT/MRI brain scan performed?:',
         choices=YES_NO,
         max_length=5)
 
-    date_ct_performed = models.DateTimeField(
+    ct_performed_date = models.DateTimeField(
         verbose_name='Date CT performed',
         validators=[datetime_not_future],
         editable=True,
         blank=True,
         null=True)
 
-    is_scanned_with_contrast = models.CharField(
+    scanned_with_contrast = models.CharField(
         verbose_name='CT/MRI brain scan performed with contrast?:',
         blank=False,
         choices=YES_NO_NA_SPECIFY,
@@ -93,7 +93,7 @@ class Radiology(CrfModelMixin):
         max_length=50,
         null=True)
 
-    if_infarcts_location = models.CharField(
+    infarcts_location = models.CharField(
         verbose_name='If results are abnormal because of Infarcts, what is '
                      'the location?',
         blank=True,
