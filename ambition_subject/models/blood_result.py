@@ -98,6 +98,7 @@ class BloodResult(CrfModelMixin):
                      'AE range?',
         max_length=5,
         choices=YES_NO_NA,
-        default=NOT_APPLICABLE)
+        default=NOT_APPLICABLE,
+        help_text='If YES, this value will open Adverse Event Form.')
 
     history = HistoricalRecords()

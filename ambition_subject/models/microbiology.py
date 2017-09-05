@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
+from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import NOT_APPLICABLE, YES_NO
@@ -18,7 +19,7 @@ class Microbiology(CrfModelMixin):
         choices=YES_NO,
         help_text='only for patients with >50 white cells in urine')
 
-    date_urine_taken = models.DateField(
+    urine_taken_date = models.DateField(
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -35,7 +36,7 @@ class Microbiology(CrfModelMixin):
         choices=URINE_CULTURE_RESULTS_ORGANISM,
         default=NOT_APPLICABLE)
 
-    urine_culture_organism_other = models.CharField(
+    urine_culture_organism_other = OtherCharField(
         verbose_name='If other, please specify:',
         max_length=50,
         null=True,
@@ -51,7 +52,7 @@ class Microbiology(CrfModelMixin):
         choices=CULTURE_RESULTS,
         default=NOT_APPLICABLE)
 
-    date_blood_taken = models.DateField(
+    blood_taken_date = models.DateField(
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -68,7 +69,7 @@ class Microbiology(CrfModelMixin):
         choices=BLOOD_CULTURE_RESULTS_ORGANISM,
         default=NOT_APPLICABLE)
 
-    blood_culture_organism_other = models.CharField(
+    blood_culture_organism_other = OtherCharField(
         verbose_name='If other, specify:',
         max_length=50,
         null=True,
@@ -80,7 +81,7 @@ class Microbiology(CrfModelMixin):
         choices=BACTERIA_TYPE,
         default=NOT_APPLICABLE)
 
-    bacteria_identified_other = models.CharField(
+    bacteria_identified_other = OtherCharField(
         verbose_name='If other, specify:',
         max_length=100,
         null=True,
@@ -92,7 +93,7 @@ class Microbiology(CrfModelMixin):
         choices=YES_NO,
         help_text='Was sputum afb done?')
 
-    date_sputum_afb_taken = models.DateField(
+    sputum_afb_date = models.DateField(
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -108,7 +109,7 @@ class Microbiology(CrfModelMixin):
         choices=YES_NO,
         help_text='Was sputum culture done?')
 
-    date_sputum_taken = models.DateField(
+    sputum_taken_date = models.DateField(
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -130,7 +131,7 @@ class Microbiology(CrfModelMixin):
         choices=YES_NO,
         help_text='Was sputum gene expert done?')
 
-    date_sputum_genexpert_taken = models.DateField(
+    sputum_genexpert_date = models.DateField(
         verbose_name='Date sputum gene expert taken:',
         validators=[date_not_future],
         null=True,
@@ -151,7 +152,7 @@ class Microbiology(CrfModelMixin):
         choices=CULTURE_RESULTS,
         default=NOT_APPLICABLE)
 
-    date_biopsy_taken = models.DateField(
+    biopsy_date = models.DateField(
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -168,7 +169,7 @@ class Microbiology(CrfModelMixin):
         choices=BIOPSY_RESULTS_ORGANISM,
         default=NOT_APPLICABLE)
 
-    tissue_biopsy_organism_other = models.CharField(
+    tissue_biopsy_organism_other = OtherCharField(
         verbose_name='If other, please specify:',
         max_length=50,
         null=True,

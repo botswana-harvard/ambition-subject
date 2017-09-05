@@ -18,7 +18,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'subject_visit',
                 'urine_culture_performed',
-                'date_urine_taken',
+                'urine_taken_date',
                 'urine_culture_results',
                 'urine_culture_organism',
                 'urine_culture_organism_other')}],
@@ -26,7 +26,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'blood_culture_performed',
                 'blood_culture_results',
-                'date_blood_taken',
+                'blood_taken_date',
                 'day_blood_taken',
                 'blood_culture_organism',
                 'blood_culture_organism_other',
@@ -35,20 +35,20 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         ['Sputum Microbiology', {
             'fields': (
                 'sputum_afb_performed',
-                'date_sputum_afb_taken',
+                'sputum_afb_date',
                 'sputum_results_afb',
                 'sputum_performed',
-                'date_sputum_taken',
+                'sputum_taken_date',
                 'sputum_results_culture',
                 'sputum_results_positive',
                 'sputum_genexpert_performed',
-                'date_sputum_genexpert_taken',
+                'sputum_genexpert_date',
                 'sputum_result_genexpert')}],
         ['Histopathology', {
             'fields': (
                 'tissue_biopsy_taken',
                 'tissue_biopsy_results',
-                'date_biopsy_taken',
+                'biopsy_date',
                 'day_biopsy_taken',
                 'tissue_biopsy_organism',
                 'tissue_biopsy_organism_other',
