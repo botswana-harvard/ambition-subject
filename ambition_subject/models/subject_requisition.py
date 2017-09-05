@@ -1,19 +1,17 @@
 from django.apps import apps as django_apps
 from django.db import models
 from django.db.models.deletion import PROTECT
-
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentMixin
-from edc_lab.model_mixins.requisition import (
-    RequisitionModelMixin, RequisitionStatusMixin, RequisitionIdentifierMixin)
+from edc_lab.model_mixins.requisition import RequisitionIdentifierMixin
+from edc_lab.model_mixins.requisition import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
 from edc_offstudy.model_mixins import OffstudyMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_search.model_mixins import SearchSlugManager
-from edc_visit_tracking.managers import (
-    CrfModelManager as VisitTrackingCrfModelManager)
-from edc_visit_tracking.model_mixins import (
-    CrfModelMixin as VisitTrackingCrfModelMixin, PreviousVisitModelMixin)
+from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
+from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfModelMixin
+from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
 from .model_mixins import SearchSlugModelMixin
 from .subject_visit import SubjectVisit
@@ -27,8 +25,8 @@ class SubjectRequisition(
         RequisitionModelMixin, RequisitionStatusMixin, RequisitionIdentifierMixin,
         VisitTrackingCrfModelMixin, OffstudyMixin,
         RequiresConsentMixin, PreviousVisitModelMixin,
-        UpdatesRequisitionMetadataModelMixin, SearchSlugModelMixin,
-        ReferenceModelMixin, BaseUuidModel):
+        ReferenceModelMixin, UpdatesRequisitionMetadataModelMixin,
+        SearchSlugModelMixin, BaseUuidModel):
 
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=PROTECT)
     search_slug_fields = [
