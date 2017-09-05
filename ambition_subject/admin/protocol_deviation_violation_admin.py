@@ -34,7 +34,7 @@ class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'date_violation_datetime',
                 'protocol_violation_type',
-                'other_protocol_violation_type',
+                'protocol_violation_type_other',
                 'violation_description',
                 'violation_reason')}
          ),
