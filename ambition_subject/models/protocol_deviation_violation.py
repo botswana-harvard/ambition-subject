@@ -51,7 +51,7 @@ class ProtocolDeviationViolation(CrfModelMixin):
         null=True,
         blank=True)
 
-    other_protocol_violation_type = models.CharField(
+    protocol_violation_type_other = models.CharField(
         null=True,
         blank=True,
         verbose_name='If other, please specify:',
