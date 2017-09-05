@@ -119,6 +119,7 @@ BLOOD_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
     ('bacteria', 'Bacteria'),
+    ('bacteria_and_cryptococcus', 'Bacteria and Cryptococcus')
     (OTHER, 'Other'),
 )
 
