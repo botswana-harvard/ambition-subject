@@ -1,7 +1,5 @@
-from django import forms
-
-from ambition_validators import (
-    SignificantDiagnosesFormValidator)
+from edc_base.modelform_validators import FormValidatorMixin
+from ambition_validators import SignificantDiagnosesFormValidator, Week4FormValidator
 
 from ..models import Week4, Week4Diagnoses
 from .form_mixins import SubjectModelFormMixin
@@ -9,18 +7,16 @@ from .form_mixins import SubjectModelFormMixin
 
 class Week4Form(SubjectModelFormMixin):
 
+    form_validator_cls = Week4FormValidator
+
     class Meta:
         model = Week4
         fields = '__all__'
 
 
-class Week4DiagnosesForm(forms.ModelForm):
+class Week4DiagnosesForm(FormValidatorMixin):
 
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data = SignificantDiagnosesFormValidator(
-            cleaned_data=cleaned_data).clean()
-        return cleaned_data
+    form_validator_cls = SignificantDiagnosesFormValidator
 
     class Meta:
         model = Week4Diagnoses

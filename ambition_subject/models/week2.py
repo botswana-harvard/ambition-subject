@@ -160,11 +160,11 @@ class Week2(ClinicalAssessment, CrfModelMixin):
         null=True,
         blank=True)
 
-    other_drug = models.ManyToManyField(
+    drug_intervention = models.ManyToManyField(
         OtherDrug,
         verbose_name="Other drugs/interventions given during first 14 days",)
 
-    other_drug_other = models.CharField(
+    drug_intervention_other = models.CharField(
         verbose_name='If other, please specify:',
         blank=True,
         max_length=50,

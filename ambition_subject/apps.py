@@ -97,7 +97,6 @@ if settings.APP_NAME == 'ambition_subject':
     class EdcVisitTrackingAppConfig(BaseEdcVisitTrackingAppConfig):
         visit_models = {
             'ambition_subject': ('subject_visit', 'ambition_subject.subjectvisit')}
-        reason_field = {'ambition_subject.subjectvisit': 'reason'}
 
     class EdcIdentifierAppConfig(BaseEdcIdentifierAppConfig):
         identifier_prefix = '092'

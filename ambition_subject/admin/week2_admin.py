@@ -105,8 +105,8 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'flucy_stop_date',
                 'ambi_start_date',
                 'ambi_stop_date',
-                'other_drug',
-                'other_drug_other',
+                'drug_intervention',
+                'drug_intervention_other',
                 'antibiotic',
                 'antibiotic_other',
                 'blood_received',
@@ -147,4 +147,4 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
     }
-    filter_horizontal = ('antibiotic', 'medicines', 'other_drug')
+    filter_horizontal = ('antibiotic', 'medicines', 'drug_intervention')
