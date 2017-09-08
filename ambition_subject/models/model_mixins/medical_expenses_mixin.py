@@ -48,11 +48,7 @@ class MedicalExpensesMixin(models.Model):
         max_length=35,
         choices=LOCATION_CARE)
 
-    location_care_other = OtherCharField(
-        verbose_name='If Other Specify:',
-        max_length=25,
-        blank=True,
-        null=True)
+    location_care_other = OtherCharField()
 
     transport_form = models.CharField(
         verbose_name='Which form of transport did you take to reach '
