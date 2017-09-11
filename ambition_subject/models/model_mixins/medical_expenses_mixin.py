@@ -1,7 +1,7 @@
 from django.db import models
 from ambition_subject.choices import LOCATION_CARE, CURRENCY
 from ambition_subject.choices import YES_NO, ACTIVITIES_MISSED, CARE_PROVIDER, TRANSPORT
-from ambition_subject.validators import hm_validator
+from ambition_subject.validators import hm_validator, span_validator
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_constants.choices import YES_NO_NA
 
@@ -117,9 +117,9 @@ class MedicalExpensesMixin(models.Model):
     duration_present_condition = models.CharField(
         verbose_name='How long have you been sick with your current '
         'condition?',
-        max_length=25,
-        blank=True,
-        null=True)
+        validators=[span_validator],
+        max_length=8,
+        help_text='in days/weeks/months')
 
     activities_missed = models.CharField(
         verbose_name='What would you have been doing '
