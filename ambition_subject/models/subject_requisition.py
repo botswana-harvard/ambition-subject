@@ -29,9 +29,6 @@ class SubjectRequisition(
         SearchSlugModelMixin, BaseUuidModel):
 
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=PROTECT)
-    search_slug_fields = [
-        'subject_identifier', 'requisition_identifier',
-        'human_readable_identifier', 'identifier_prefix']
 
     objects = Manager()
 
