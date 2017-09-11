@@ -32,7 +32,7 @@ class MedicalExpensesMixin(models.Model):
     he_spend_last_4weeks = models.DecimalField(
         verbose_name='How much in total has been spent'
         ' on your healthcare in the last 4 weeks?',
-        decimal_places=2,
+        decimal_places=4,
         max_digits=8,
         null=True,
         blank=True)
