@@ -32,8 +32,8 @@ class MedicalExpensesMixin(models.Model):
     he_spend_last_4weeks = models.DecimalField(
         verbose_name='How much in total has been spent'
         ' on your healthcare in the last 4 weeks?',
-        decimal_places=2,
-        max_digits=4,
+        decimal_places=4,
+        max_digits=8,
         null=True,
         blank=True)
 
@@ -48,11 +48,7 @@ class MedicalExpensesMixin(models.Model):
         max_length=35,
         choices=LOCATION_CARE)
 
-    location_care_other = OtherCharField(
-        verbose_name='If Other Specify:',
-        max_length=25,
-        blank=True,
-        null=True)
+    location_care_other = OtherCharField()
 
     transport_form = models.CharField(
         verbose_name='Which form of transport did you take to reach '
@@ -63,7 +59,7 @@ class MedicalExpensesMixin(models.Model):
     transport_cost = models.DecimalField(
         verbose_name='How much did you spend on the transport (each way)?',
         decimal_places=2,
-        max_digits=4,
+        max_digits=8,
         null=True,
         blank=True)
 
@@ -95,7 +91,7 @@ class MedicalExpensesMixin(models.Model):
         verbose_name=(
             'How much did you pay for this visit?'),
         decimal_places=2,
-        max_digits=4,
+        max_digits=8,
         null=True,
         blank=True)
 
@@ -108,7 +104,7 @@ class MedicalExpensesMixin(models.Model):
         verbose_name=(
             'How much did you pay?'),
         decimal_places=2,
-        max_digits=4,
+        max_digits=8,
         null=True,
         blank=True)
 
@@ -160,7 +156,7 @@ class MedicalExpensesMixin(models.Model):
     earnings_lost_amount = models.DecimalField(
         verbose_name='How much did you lose?',
         decimal_places=2,
-        max_digits=4,
+        max_digits=8,
         blank=True,
         null=True)
 
