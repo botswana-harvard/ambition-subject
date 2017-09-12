@@ -306,6 +306,8 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
     elementary_school = models.CharField(
         verbose_name='Did you go to elementary school?',
         max_length=5,
+        blank=True,
+        null=True,
         choices=YES_NO)
 
     elementary_attendance_years = models.IntegerField(
@@ -317,6 +319,8 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
     secondary_school = models.CharField(
         verbose_name='Did you go to secondary school?',
         max_length=5,
+        blank=True,
+        null=True,
         choices=YES_NO)
 
     secondary_attendance_years = models.IntegerField(
@@ -328,6 +332,8 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
     higher_education = models.CharField(
         verbose_name='Did you go to higher education?',
         max_length=5,
+        blank=True,
+        null=True,
         choices=YES_NO)
 
     higher_attendance_years = models.IntegerField(
@@ -360,6 +366,8 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
         verbose_name='Did the head of household go to elementary '
         'school?',
         max_length=5,
+        blank=True,
+        null=True,
         choices=YES_NO)
 
     head_attendance_years = models.IntegerField(
@@ -371,6 +379,8 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
     head_secondary = models.CharField(
         verbose_name='Did head of household go to secondary school?',
         max_length=5,
+        blank=True,
+        null=True,
         choices=YES_NO)
 
     head_secondary_years = models.IntegerField(
@@ -382,7 +392,9 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
     head_higher_education = models.CharField(
         verbose_name='Did head of household go to higher education?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO,
+        blank=True,
+        null=True)
 
     head_higher_years = models.IntegerField(
         verbose_name='If YES, for how many years?',
