@@ -90,12 +90,12 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         choices=YES_NO)
 
     pregnancy = models.CharField(
-        verbose_name='Pregnancy (Urine or serum βhCG)',
+        verbose_name='Is the patient pregnant?',
         max_length=15,
         choices=PREG_YES_NO_NA)
 
     preg_test_date = models.DateTimeField(
-        verbose_name="Pregnancy test date",
+        verbose_name="Pregnancy test (Urine or serum βhCG) date",
         blank=True,
         null=True)
 
