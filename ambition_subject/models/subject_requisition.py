@@ -44,7 +44,7 @@ class SubjectRequisition(
     def get_search_slug_fields(self):
         fields = super().get_search_slug_fields()
         fields.extend([
-            'subject_identifier', 'requisition_identifier',
+            'requisition_identifier',
             'human_readable_identifier', 'identifier_prefix'])
         return fields
 
