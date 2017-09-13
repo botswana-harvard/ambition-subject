@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from ambition_subject.choices import LOCATION_CARE, CURRENCY
 from ambition_subject.choices import YES_NO, ACTIVITIES_MISSED, CARE_PROVIDER, TRANSPORT
@@ -114,14 +115,22 @@ class MedicalExpensesMixin(models.Model):
         max_length=15,
         choices=YES_NO_NA)
 
-    duration_present_condition = models.CharField(
+#     duration_present_condition = models.CharField(
+#         verbose_name='How long have you been sick with your current '
+#         'condition?',
+#         validators=[span_validator],
+#         max_length=8,
+#         null=True,
+#         blank=True,
+#         help_text='in days/weeks/months')
+
+    duration_present_condition = models.IntegerField(
         verbose_name='How long have you been sick with your current '
         'condition?',
-        validators=[span_validator],
-        max_length=8,
+        validators=[MinValueValidator(1)],
         null=True,
         blank=True,
-        help_text='in days/weeks/months')
+        help_text='in days')
 
     activities_missed = models.CharField(
         verbose_name='What would you have been doing '
