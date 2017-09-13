@@ -61,7 +61,7 @@ class RecurrenceSymptom(CrfModelMixin):
         null=True,
         blank=True)
 
-    other_cn_palsy_chosen = models.CharField(
+    cn_palsy_chosen_other = models.CharField(
         verbose_name='If other CN Palsy',
         max_length=15,
         null=True,
