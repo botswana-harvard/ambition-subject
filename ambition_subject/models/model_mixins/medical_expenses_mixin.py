@@ -127,7 +127,7 @@ class MedicalExpensesMixin(models.Model):
     duration_present_condition = models.IntegerField(
         verbose_name='How long have you been sick with your current '
         'condition?',
-        validators=[MinValueValidator(1)],
+        validators=[MinValueValidator(0.5)],
         null=True,
         blank=True,
         help_text='in days')
