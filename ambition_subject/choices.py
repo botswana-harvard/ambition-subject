@@ -6,14 +6,7 @@ from edc_visit_tracking.constants import (
     SCHEDULED,
     UNSCHEDULED)
 
-from .constants import (
-    N1,
-    A2,
-    AMS_N3,
-    AMS_A4,
-    DEVIATION,
-    VIOLATION,
-    TUBERCULOSIS)
+from .constants import (DEVIATION, VIOLATION, TUBERCULOSIS)
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -378,14 +371,6 @@ RAE_REASON = (
      'Medically important event (e.g. Severe thrombophlebitis, Bacteraemia, '
      'recurrence of symptoms not requiring admission, Hospital acquired '
      'pneumonia)'),
-)
-
-
-RANDOMIZATION_NUMBER = (
-    (N1, 'N(1)'),
-    (A2, 'A(2)'),
-    (AMS_N3, 'AMS_N(3)'),
-    (AMS_A4, 'AMS_A(4)'),
 )
 
 REASON_DRUG_MISSED = (
