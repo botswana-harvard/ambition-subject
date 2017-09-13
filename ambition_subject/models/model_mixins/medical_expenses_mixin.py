@@ -138,14 +138,26 @@ class MedicalExpensesMixin(models.Model):
     time_off_work = models.CharField(
         verbose_name='How much time did you take off work?',
         validators=[hm_validator],
+<<<<<<< HEAD
+        max_length=6,
+        blank=True,
+        null=True,
+=======
         max_length=5,
+>>>>>>> 3e989c719d04265973d8ccdd1af07976c3b78a91
         help_text='in hours:minutes format')
 
     carer_time_off = models.CharField(
         verbose_name='How much time did a caring family member take '
         'off work to accompany you to the hospital?',
         validators=[hm_validator],
+<<<<<<< HEAD
+        max_length=6,
+        blank=True,
+        null=True,
+=======
         max_length=5,
+>>>>>>> 3e989c719d04265973d8ccdd1af07976c3b78a91
         help_text='in hours:minutes format')
 
     loss_of_earnings = models.CharField(
