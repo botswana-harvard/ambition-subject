@@ -119,6 +119,8 @@ class MedicalExpensesMixin(models.Model):
         'condition?',
         validators=[span_validator],
         max_length=8,
+        null=True,
+        blank=True,
         help_text='in days/weeks/months')
 
     activities_missed = models.CharField(

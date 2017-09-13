@@ -7,15 +7,18 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from ..choices import (ARV_REGIMEN, FIRST_LINE_REGIMEN,
                        REASON_STUDY_TERMINATED, YES_NO_ALREADY)
 from .model_mixins.crf_model_mixin import CrfModelMixin
+from edc_base.model_fields.custom_fields import OtherCharField
+from ambition_subject.choices import SECOND_ARV_REGIMEN
+from edc_constants.constants import NOT_APPLICABLE
 
 
 class StudyTerminationConclusion(CrfModelMixin):
 
-    date_patient_terminated = models.DateField(
+    patient_terminated_date = models.DateField(
         verbose_name='Date patient terminated on study:',
         validators=[date_not_future])
 
-    date_last_study_fu = models.DateField(
+    last_study_fu_date = models.DateField(
         verbose_name='Date of last research follow up (if different):',
         validators=[date_not_future],
         blank=True,
@@ -26,7 +29,7 @@ class StudyTerminationConclusion(CrfModelMixin):
         max_length=6,
         choices=YES_NO)
 
-    date_initial_discharge = models.DateField(
+    initial_discharge_date = models.DateField(
         verbose_name='Date of initial discharge',
         validators=[date_not_future],
         blank=True,
@@ -37,13 +40,13 @@ class StudyTerminationConclusion(CrfModelMixin):
         max_length=7,
         choices=YES_NO)
 
-    date_readmission = models.DateField(
+    readmission_date = models.DateField(
         verbose_name='Date of readmission',
         validators=[date_not_future],
         blank=True,
         null=True)
 
-    date_discharged = models.DateField(
+    discharged_date = models.DateField(
         verbose_name='Date discharged',
         validators=[date_not_future],
         blank=True,
@@ -68,7 +71,7 @@ class StudyTerminationConclusion(CrfModelMixin):
         blank=True,
         null=True)
 
-    willing_to_complete_10W_FU = models.CharField(
+    willing_to_complete_10w = models.CharField(
         verbose_name='Is the patient willing to complete the 10 week FU '
         'visit only?',
         max_length=12,
@@ -80,7 +83,7 @@ class StudyTerminationConclusion(CrfModelMixin):
         max_length=17,
         choices=YES_NO_NA)
 
-    date_willing_to_complete = models.DateField(
+    willing_to_complete_date = models.DateField(
         verbose_name=' Date the 10W FU due',
         validators=[date_not_future],
         blank=True,
@@ -104,19 +107,27 @@ class StudyTerminationConclusion(CrfModelMixin):
         max_length=30,
         choices=YES_NO_ALREADY)
 
-    first_line_regimen_patients = models.CharField(
+    first_line_regimen = models.CharField(
         verbose_name='ART regimen started for naive patients (or regimen'
         ' switched for those already on ARVs)',
         max_length=75,
         choices=ARV_REGIMEN)
 
-    first_line_regimen_patients_other = models.CharField(
+    first_line_regimen_other = OtherCharField(
         max_length=100,
         blank=True,
         null=True,
         verbose_name='If other, please specify:')
 
-    date_arvs_started_or_switched = models.DateField(
+    second_line_regimen = models.CharField(
+        verbose_name='Second line arv regimen',
+        max_length=50,
+        choices=SECOND_ARV_REGIMEN,
+        default=NOT_APPLICABLE)
+
+    second_line_regimen_other = OtherCharField()
+
+    arvs_started_switch_date = models.DateField(
         blank=True,
         null=True,
         validators=[date_not_future])
