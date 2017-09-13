@@ -406,7 +406,7 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
 
 class PreviousOpportunisticInfection(BaseUuidModel):
 
-    patientHistory = models.ForeignKey(PatientHistory)
+    patient_history = models.ForeignKey(PatientHistory)
 
     previous_non_tb_oi = models.CharField(
         verbose_name='Previous opportunistic infection other than TB?',
@@ -431,10 +431,10 @@ class PreviousOpportunisticInfection(BaseUuidModel):
     def natural_key(self):
         return (
             (self.previous_non_tb_oi, self.previous_non_tb_oi_date)
-            + self.patientHistory.natural_key())
-    natural_key.dependencies = ['ambition_subject.patientHistory']
+            + self.patient_history.natural_key())
+    natural_key.dependencies = ['ambition_subject.patienthistory']
 
     class Meta:
         verbose_name_plural = 'Previous Opportunistic Infection'
         unique_together = (
-            'patientHistory', 'previous_non_tb_oi', 'previous_non_tb_oi_date')
+            'patient_history', 'previous_non_tb_oi', 'previous_non_tb_oi_date')
