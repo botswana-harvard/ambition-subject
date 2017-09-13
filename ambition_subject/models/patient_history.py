@@ -2,15 +2,31 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_fields import OtherCharField, IsDateEstimatedField
+from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
-from ..choices import (
-    FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE, ECOG_SCORE, SECOND_ARV_REGIMEN)
+from ..choices import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE
+from ..choices import INFECTION, ECOG_SCORE, SECOND_ARV_REGIMEN
 from .list_models import Medication, Neurological
-from .list_models import PreviousOpportunisticInfection, Symptom
+from .list_models import Symptom
 from .model_mixins import CrfModelMixin, MedicalExpensesMixin
+
+
+class PreviousOpportunisticInfectionManager(models.Manager):
+
+    def get_by_natural_key(self, previous_non_tb_oi, previous_non_tb_oi_date,
+                           subject_identifier, visit_schedule_name,
+                           schedule_name, visit_code):
+        return self.get(
+            previous_non_tb_oi=previous_non_tb_oi,
+            previous_non_tb_oi_date=previous_non_tb_oi_date,
+            subject_visit__subject_identifier=subject_identifier,
+            subject_visit__visit_schedule_name=visit_schedule_name,
+            subject_visit__schedule_name=schedule_name,
+            subject_visit__visit_code=visit_code
+        )
 
 
 class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
@@ -57,24 +73,6 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
 
     rifampicin_started_date = models.DateField(
         verbose_name='If yes, when did you first start taking Rifampicin?',
-        validators=[date_not_future],
-        null=True,
-        blank=True)
-
-    previous_non_tb_oi = models.ManyToManyField(
-        PreviousOpportunisticInfection,
-        blank=True,
-        related_name='previousopportunisticinfection',
-        verbose_name='Previous opportunistic infection other than TB?',)
-
-    previous_non_tb_oi_other = models.CharField(
-        verbose_name='If other, please specify',
-        null=True,
-        blank=True,
-        max_length=50)
-
-    previous_non_tb_oi_date = models.DateField(
-        verbose_name='If yes, what was the date of infection?',
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -404,3 +402,39 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Patients History'
+
+
+class PreviousOpportunisticInfection(BaseUuidModel):
+
+    patientHistory = models.ForeignKey(PatientHistory)
+
+    previous_non_tb_oi = models.CharField(
+        verbose_name='Previous opportunistic infection other than TB?',
+        max_length=25,
+        choices=INFECTION,
+        blank=True)
+
+    previous_non_tb_oi_other = models.CharField(
+        verbose_name='If other, please specify',
+        null=True,
+        blank=True,
+        max_length=50)
+
+    previous_non_tb_oi_date = models.DateField(
+        verbose_name='If infection, what was the date?',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
+    objects = PreviousOpportunisticInfectionManager()
+
+    def natural_key(self):
+        return (
+            (self.previous_non_tb_oi, self.previous_non_tb_oi_date)
+            + self.patientHistory.natural_key())
+    natural_key.dependencies = ['ambition_subject.patientHistory']
+
+    class Meta:
+        verbose_name_plural = 'Previous Opportunistic Infection'
+        unique_together = (
+            'patientHistory', 'previous_non_tb_oi', 'previous_non_tb_oi_date')

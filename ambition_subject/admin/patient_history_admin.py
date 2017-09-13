@@ -1,11 +1,26 @@
 from django.contrib import admin
 
-from edc_base.modeladmin_mixins import audit_fieldset_tuple
+from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
 
 from ..admin_site import ambition_subject_admin
-from ..forms import PatientHistoryForm
-from ..models import PatientHistory
+from ..forms import PatientHistoryForm, PreviousOpportunisticInfectionForm
+from ..models import PatientHistory, PreviousOpportunisticInfection
 from .modeladmin_mixins import CrfModelAdminMixin
+
+
+class PreviousOpportunisticInfectionInline(TabularInlineMixin, admin.TabularInline):
+
+    model = PreviousOpportunisticInfection
+    form = PreviousOpportunisticInfectionForm
+    extra = 1
+
+    fieldsets = (
+        ['Previous Opportunistic Infection', {
+            'fields': (
+                'previous_non_tb_oi',
+                'previous_non_tb_oi_other',
+                'previous_non_tb_oi_date')},
+         ],)
 
 
 @admin.register(PatientHistory, site=ambition_subject_admin)
@@ -13,8 +28,9 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PatientHistoryForm
 
-    filter_horizontal = ('neurological', 'symptom', 'specify_medications',
-                         'previous_non_tb_oi')
+    inlines = [PreviousOpportunisticInfectionInline]
+
+    filter_horizontal = ('neurological', 'symptom', 'specify_medications')
 
     fieldsets = (
         ('Current Symptoms', {
@@ -34,9 +50,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
          ),
         ('Previous Opportunistic Infections', {
             'fields': [
-                'previous_non_tb_oi',
-                'previous_non_tb_oi_other',
-                #                 'previous_non_tb_oi_date',
                 'new_hiv_diagnosis',
                 'taking_arv',
                 'arv_date',
