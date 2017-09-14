@@ -37,3 +37,9 @@ class Week16(CrfModelMixin):
         verbose_name='Modified Ranking score:',
         max_length=10,
         choices=RANKING_SCORE)
+
+    week16_narrative = models.TextField(
+        max_length=1000,
+        null=True,
+        blank=True
+    )
