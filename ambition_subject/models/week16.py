@@ -15,7 +15,7 @@ class Week16(CrfModelMixin):
         choices=YES_NO)
 
     death_datetime = models.DateTimeField(
-        verbose_name='If dead, date and time of death:',
+        verbose_name='If dead, date and time of death',
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -34,11 +34,12 @@ class Week16(CrfModelMixin):
         choices=YES_NO_NA)
 
     ranking_score = models.CharField(
-        verbose_name='Modified Ranking score:',
+        verbose_name='Modified Ranking score',
         max_length=10,
         choices=RANKING_SCORE)
 
     week16_narrative = models.TextField(
+        verbose_name='Narrative',
         max_length=1000,
         null=True,
         blank=True
