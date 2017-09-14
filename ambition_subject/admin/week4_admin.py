@@ -17,14 +17,10 @@ class Week4DiagnosesInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Admission history', {
             'fields': (
-                'other_significant_diagnoses',
                 'possible_diagnoses',
                 'dx_date',
                 'dx_other')},
          ],)
-
-    radio_fields = {
-        'other_significant_diagnoses': admin.VERTICAL}
 
 
 @admin.register(Week4, site=ambition_subject_admin)
@@ -43,7 +39,8 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
         'fluconazole_dose': admin.VERTICAL,
-        'rifampicin_started': admin.VERTICAL
+        'rifampicin_started': admin.VERTICAL,
+        'other_significant_dx': admin.VERTICAL
     }
 
     fieldsets = (
@@ -65,6 +62,7 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
                 'fluconazole_dose',
                 'fluconazole_dose_other',
                 'rifampicin_started',
-                'rifampicin_start_date')}],
+                'rifampicin_start_date',
+                'other_significant_dx',)}],
         audit_fieldset_tuple
     )

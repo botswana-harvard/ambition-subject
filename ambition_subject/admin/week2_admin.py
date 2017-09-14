@@ -22,14 +22,10 @@ class SignificantDiagnosesInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Admission history', {
             'fields': (
-                'other_significant_diagnoses',
                 'possible_diagnoses',
                 'dx_date',
                 'dx_other')},
          ],)
-
-    radio_fields = {
-        'other_significant_diagnoses': admin.VERTICAL}
 
 
 class AmphotericinMissedDosesInline(TabularInlineMixin, admin.TabularInline):
@@ -124,6 +120,7 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'weight',
                 'medicines',
                 'medicine_other',
+                'other_significant_dx'
             )}
          ],
         #         ['Missed Doses', {
@@ -146,5 +143,6 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
         'confusion': admin.VERTICAL,
         'cn_palsy': admin.VERTICAL,
         'focal_neurology': admin.VERTICAL,
+        'other_significant_dx': admin.VERTICAL
     }
     filter_horizontal = ('antibiotic', 'medicines', 'drug_intervention')

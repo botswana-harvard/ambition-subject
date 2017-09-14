@@ -27,14 +27,10 @@ class FollowUpDiagnosesInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Admission history', {
             'fields': (
-                'other_significant_diagnoses',
                 'possible_diagnoses',
                 'dx_date',
                 'dx_other')},
          ],)
-
-    radio_fields = {
-        'other_significant_diagnoses': admin.VERTICAL}
 
 
 @admin.register(FollowUp, site=ambition_subject_admin)
@@ -91,7 +87,8 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'time_off_work',
                 'carer_time_off',
                 'loss_of_earnings',
-                'earnings_lost_amount'
+                'earnings_lost_amount',
+                'other_significant_dx',
             ]}
          ),
         audit_fieldset_tuple
@@ -116,4 +113,5 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'focal_neurology': admin.VERTICAL,
         'transport_form': admin.VERTICAL,
         'fluconazole_dose': admin.VERTICAL,
-        'rifampicin_started': admin.VERTICAL}
+        'rifampicin_started': admin.VERTICAL,
+        'other_significant_dx': admin.VERTICAL}

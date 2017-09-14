@@ -2,6 +2,7 @@ from django.db import models
 
 from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
+from edc_constants.choices import YES_NO_NA
 
 from ..choices import (
     FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND, YES_NO_ALREADY_ND)
@@ -64,6 +65,11 @@ class FollowUp(ClinicalAssessment, MedicalExpensesMixin, CrfModelMixin):
         verbose_name='Modified Ranking score:',
         choices=RANKING_SCORE,
         null=True)
+
+    other_significant_dx = models.CharField(
+        verbose_name='Other significant diagnosis since last visit?',
+        max_length=5,
+        choices=YES_NO_NA)
 
     history = HistoricalRecords()
 

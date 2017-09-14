@@ -3,7 +3,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
 
 from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import (CrfModelMixin, ClinicalAssessment,
@@ -229,6 +229,11 @@ class Week2(ClinicalAssessment, CrfModelMixin):
         verbose_name='Were any Amphotericin b drug doses missed?',
         max_length=25,
         choices=YES_NO)
+
+    other_significant_dx = models.CharField(
+        verbose_name='Other significant diagnosis since enrollment?',
+        max_length=5,
+        choices=YES_NO_NA)
 
     history = HistoricalRecords()
 
