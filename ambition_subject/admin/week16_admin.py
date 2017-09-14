@@ -28,6 +28,7 @@ class Week16Admin(ModelAdminMixin, admin.ModelAdmin):
                 'activities_help',
                 'illness_problems',
                 'ranking_score',
+                'week16_narrative',
             )},
          ),
         audit_fieldset_tuple)

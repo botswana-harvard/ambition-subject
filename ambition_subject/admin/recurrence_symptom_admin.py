@@ -53,7 +53,7 @@ class RecurrenceSymptomAdmin(ModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'neurological',
                 'focal_neurologic_deficit',
-                'other_cn_palsy_chosen']}
+                'cn_palsy_chosen_other']}
          ),
         ('Management', {
             'fields': [
