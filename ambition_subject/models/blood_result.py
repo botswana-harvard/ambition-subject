@@ -56,10 +56,14 @@ class BloodResult(CrfModelMixin):
     magnesium = models.DecimalField(
         decimal_places=2,
         max_digits=6,
+        null=True,
+        blank=True,
         help_text='units in  mg/dL or mmol/L')
 
     magnesium_unit = models.CharField(
         choices=MG_MMOL_UNITS,
+        null=True,
+        blank=True,
         max_length=6)
 
     alt = models.IntegerField(
