@@ -4,11 +4,11 @@ from django.utils import timezone
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE, UNKNOWN
 
 from ..choices import AE_SEVERITY, AE_INTENSITY, RAE_REASON
-from ..choices import STUDY_DRUG_RELATIONSHIP, PATIENT_TREATMENT_GROUP
+from ..choices import STUDY_DRUG_RELATIONSHIP
 
 from .model_mixins import CrfModelMixin
 
@@ -41,13 +41,15 @@ class AdverseEvent(CrfModelMixin):
     regimen = models.CharField(  # TODO: Get this from the Randomization
         verbose_name='Patient’s treatment regimen',
         max_length=50,
-        choices=PATIENT_TREATMENT_GROUP)
+        help_text='Single Dose: (Ambisome 10 mg/kg day 1 (single dose) + '
+        'fluconazole 1200mg/day + flucytosine 100mg/kg/day for 14 days); '
+        'Control: (Amphotericin B 1 mg/kg + flucytocine 100mg/kg/day for 14 days)')
 
     ae_study_relation_possibility = models.CharField(
         verbose_name=(
             'Is the incident related to the patient involvement in the study?'),
         max_length=10,
-        choices=YES_NO)
+        choices=YES_NO_UNKNOWN)
 
     ambisome_relation = models.CharField(
         verbose_name='Relationship to Ambisome:',
@@ -104,7 +106,7 @@ class AdverseEvent(CrfModelMixin):
         default=UNKNOWN,
         help_text='If yes, fill in the Recurrence of Symptoms form')
 
-    is_sa_event = models.CharField(
+    sa_event = models.CharField(
         verbose_name='Is this event a SAE?',
         max_length=5,
         choices=YES_NO,
@@ -112,7 +114,6 @@ class AdverseEvent(CrfModelMixin):
                   'hospitalisation/prolongation, significant disability or is '
                   'life-threatening)')
 
-    # TODO: If reason == Death Use rule group to open Death form
     sae_possibility = models.CharField(
         verbose_name='If Yes, Reason for SAE:',
         max_length=50,
