@@ -341,7 +341,8 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
         null=True)
 
     head_profession = models.CharField(
-        verbose_name='What is the head of household profession?',
+        verbose_name=('If you are not the head of household,'
+                      ' what is the head of household profession?'),
         max_length=25,
         blank=True,
         null=True)

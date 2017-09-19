@@ -34,7 +34,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     def get_formsets_with_inlines(self, request, obj=None):
         for inline in self.get_inline_instances(request, obj):
             if (isinstance(inline, PreviousOpportunisticInfectionInline)
-                    and obj.__dict__.get('previous_oi') in [None, NO]):
+                    and obj and obj.__dict__.get('previous_oi') in [None, NO]):
                 continue
             yield inline.get_formset(request, obj), inline
 
@@ -63,9 +63,9 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'arv_date',
                 'first_arv_regimen',
                 'first_arv_regimen_other',
+                'first_line_choice',
                 'second_arv_regimen',
                 'second_arv_regimen_other',
-                'first_line_choice',
                 'patient_adherence',
                 'last_dose',
                 'days_missed',

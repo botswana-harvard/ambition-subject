@@ -104,8 +104,7 @@ class MedicalExpensesMixin(models.Model):
         choices=YES_NO_NA)
 
     medication_payment = models.DecimalField(
-        verbose_name=(
-            'How much did you pay?'),
+        verbose_name='How much did you pay?',
         decimal_places=2,
         max_digits=8,
         null=True,
@@ -116,15 +115,6 @@ class MedicalExpensesMixin(models.Model):
         'for the treatment of the present situation?',
         max_length=15,
         choices=YES_NO_NA)
-
-#     duration_present_condition = models.CharField(
-#         verbose_name='How long have you been sick with your current '
-#         'condition?',
-#         validators=[span_validator],
-#         max_length=8,
-#         null=True,
-#         blank=True,
-#         help_text='in days/weeks/months')
 
     duration_present_condition = models.IntegerField(
         verbose_name='How long have you been sick with your current '
@@ -146,8 +136,10 @@ class MedicalExpensesMixin(models.Model):
         blank=True,
         null=True)
 
-    time_off_work = models.IntegerField(
+    time_off_work = models.DecimalField(
         verbose_name='How much time did you take off work?',
+        max_digits=4,
+        decimal_places=1,
         validators=[MinValueValidator(0.5)],
         null=True,
         blank=True,
