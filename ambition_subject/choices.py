@@ -235,6 +235,13 @@ FLUCONAZOLE_DOSE = (
     ('Not Done', 'Not Done'),
 )
 
+FLUCYTOSINE_DOSE_MISSED = (
+    ('dose_1', 'Dose 1'),
+    ('dose_2', 'Dose 2'),
+    ('dose_3', 'Dose 3'),
+    ('dose_4', 'Dose 4')
+)
+
 GLASGOW_COMA_SCORE_EYES = (
     ('does_not_open_eyes', 'Does not open eyes'),
     ('opens_eyes_to_pain_only', 'Opens eyes to pain only'),
