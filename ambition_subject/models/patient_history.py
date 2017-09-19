@@ -400,6 +400,11 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
         blank=True,
         null=True)
 
+    previous_oi = models.CharField(
+        verbose_name='Previous opportunistic infection other than TB?',
+        max_length=5,
+        choices=YES_NO)
+
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Patients History'
 
@@ -409,7 +414,7 @@ class PreviousOpportunisticInfection(BaseUuidModel):
     patient_history = models.ForeignKey(PatientHistory)
 
     previous_non_tb_oi = models.CharField(
-        verbose_name='Previous opportunistic infection other than TB?',
+        verbose_name='If other previous opportunistic infection, please specify.',
         max_length=25,
         choices=INFECTION,
         blank=True)
