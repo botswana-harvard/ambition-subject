@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from ambition_subject.choices import LOCATION_CARE, CURRENCY
 from ambition_subject.choices import YES_NO, ACTIVITIES_MISSED, CARE_PROVIDER, TRANSPORT
-from ambition_subject.validators import hm_validator, span_validator
+from ambition_subject.validators import hm_validator
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_constants.choices import YES_NO_NA
 
@@ -66,9 +66,11 @@ class MedicalExpensesMixin(models.Model):
 
     transport_duration = models.CharField(
         verbose_name='How long did it take you to reach there?',
-        max_length=25,
+        validators=[hm_validator],
+        max_length=8,
         null=True,
-        blank=True)
+        blank=True,
+        help_text='in hours:minutes')
 
     care_provider = models.CharField(
         verbose_name='Who provided treatment or care during that visit?',
@@ -127,7 +129,7 @@ class MedicalExpensesMixin(models.Model):
     duration_present_condition = models.IntegerField(
         verbose_name='How long have you been sick with your current '
         'condition?',
-        validators=[MinValueValidator(0.5)],
+        validators=[MinValueValidator(1)],
         null=True,
         blank=True,
         help_text='in days')
@@ -144,22 +146,20 @@ class MedicalExpensesMixin(models.Model):
         blank=True,
         null=True)
 
-    time_off_work = models.CharField(
+    time_off_work = models.IntegerField(
         verbose_name='How much time did you take off work?',
-        validators=[hm_validator],
-        max_length=5,
-        blank=True,
+        validators=[MinValueValidator(0.5)],
         null=True,
-        help_text='in hours:minutes format')
+        blank=True,
+        help_text='in days')
 
-    carer_time_off = models.CharField(
+    carer_time_off = models.IntegerField(
         verbose_name='How much time did a caring family member take '
         'off work to accompany you to the hospital?',
-        validators=[hm_validator],
-        max_length=5,
-        blank=True,
+        validators=[MinValueValidator(0.5)],
         null=True,
-        help_text='in hours:minutes format')
+        blank=True,
+        help_text='in days')
 
     loss_of_earnings = models.CharField(
         verbose_name='Did you lose earnings as a result?',

@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
+from edc_constants.constants import NO
 
 from ..admin_site import ambition_subject_admin
 from ..forms import PatientHistoryForm, PreviousOpportunisticInfectionForm
@@ -29,6 +30,13 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = PatientHistoryForm
 
     inlines = [PreviousOpportunisticInfectionInline]
+
+    def get_formsets_with_inlines(self, request, obj=None):
+        for inline in self.get_inline_instances(request, obj):
+            if (isinstance(inline, PreviousOpportunisticInfectionInline)
+                    and obj.__dict__.get('previous_oi') in [None, NO]):
+                continue
+            yield inline.get_formset(request, obj), inline
 
     filter_horizontal = ('neurological', 'symptom', 'specify_medications')
 
@@ -146,6 +154,10 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'head_secondary_years',
                 'head_higher_education',
                 'head_higher_years']}
+         ),
+        ('Previous Infection', {
+            'fields': [
+                'previous_oi']}
          ), audit_fieldset_tuple)
 
     radio_fields = {
@@ -180,4 +192,5 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'tb_treatment': admin.VERTICAL,
         'transport_form': admin.VERTICAL,
         'vl_date_estimated': admin.VERTICAL,
-        'loss_of_earnings': admin.VERTICAL, }
+        'loss_of_earnings': admin.VERTICAL,
+        'previous_oi': admin.VERTICAL, }

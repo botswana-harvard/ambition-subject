@@ -2,7 +2,7 @@ from django.db import models
 
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import FLUCONAZOLE_DOSE, YES_NO_ALREADY_ND
 from .model_mixins import (
@@ -50,6 +50,11 @@ class Week4(ClinicalAssessment, CrfModelMixin):
         max_length=5,
         choices=YES_NO,
         help_text='If yes, ensure LP CRF completed.')
+
+    other_significant_dx = models.CharField(
+        verbose_name='Other significant diagnosis since last visit?',
+        max_length=5,
+        choices=YES_NO_NA)
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Week4'
