@@ -81,20 +81,20 @@ class PkDkCrf(CrfModelMixin):
         verbose_name='Was the dose of flucytosine given?',
         null=True)
 
-    flucytosine_dose_one_swallowed_time = models.TimeField(
+    flucytosine_dose_one_time = models.TimeField(
         verbose_name='Time flucytosine DOSE 1 was swallowed?',
         max_length=5,
         null=True)
 
-    flucytosine_dose_two_swallowed_time = models.IntegerField(
+    flucytosine_dose_two_time = models.IntegerField(
         verbose_name='Time flucytosine DOSE 2 was swallowed?',
         null=True)
 
-    flucytosine_dose_three_swallowed_time = models.IntegerField(
+    flucytosine_dose_three_time = models.IntegerField(
         verbose_name='Time flucytosine DOSE 3 was swallowed?',
         null=True)
 
-    flucytosine_dose_four_swallowed_time = models.IntegerField(
+    flucytosine_dose_four_time = models.IntegerField(
         verbose_name='Time flucytosine DOSE 4 was swallowed?',
         null=True)
 
@@ -104,12 +104,7 @@ class PkDkCrf(CrfModelMixin):
         max_length=5,
         null=True)
 
-    actual_fluconazole_dose_missed = models.TimeField(
-        verbose_name='Time flucytosine DOSE 1 was swallowed?',
-        max_length=5,
-        null=True)
-
-    actual_flucytosine_dose_missed = models.CharField(
+    flucytosine_dose_missed = models.CharField(
         verbose_name='Which dose(s) was/were missed?',
         choices=FLUCYTOSINE_DOSE_MISSED,
         max_length=5,
@@ -144,31 +139,31 @@ class PkDkCrf(CrfModelMixin):
         blank=True,
         null=True)
 
-    time_blood_sample_one_taken_day_one = models.TimeField(
+    blood_sample_one_day_one = models.TimeField(
         verbose_name='Time blood sample 1 taken?',
         max_length=5,
         blank=True,
         null=True)
 
-    time_blood_sample_two_taken_day_one = models.TimeField(
+    blood_sample_two_day_one = models.TimeField(
         verbose_name='Time blood sample 2 taken?',
         max_length=5,
         blank=True,
         null=True)
 
-    time_blood_sample_three_taken_day_one = models.TimeField(
+    blood_sample_three_day_one = models.TimeField(
         verbose_name='Time blood sample 3 taken?',
         max_length=5,
         blank=True,
         null=True)
 
-    time_blood_sample_four_taken_day_one = models.TimeField(
+    blood_sample_four_day_one = models.TimeField(
         verbose_name='Time blood sample 4 taken?',
         max_length=5,
         blank=True,
         null=True)
 
-    time_blood_sample_five_taken_day_one = models.TimeField(
+    blood_sample_five_day_one = models.TimeField(
         verbose_name='Time blood sample 5 taken?',
         max_length=5,
         blank=True,
@@ -180,38 +175,38 @@ class PkDkCrf(CrfModelMixin):
         max_length=5,
         null=True)
 
-    reason_missed_blood_sample_day_one = models.CharField(
+    reason_day_one_missed = models.CharField(
         verbose_name='Why was/were the blood sample(s) missed??',
         max_length=75,
         blank=True,
         null=True)
 
-    time_blood_sample_one_taken_day_seven = models.TimeField(
+    blood_sample_one_day_seven = models.TimeField(
         verbose_name='Time blood sample 1 taken?',
         max_length=5,
         null=True)
 
-    time_blood_sample_two_taken_day_seven = models.TimeField(
+    blood_sample_two_day_seven = models.TimeField(
         verbose_name='Time blood sample 2 taken?',
         max_length=5,
         null=True)
 
-    time_blood_sample_three_taken_day_seven = models.TimeField(
+    blood_sample_three_day_seven = models.TimeField(
         verbose_name='Time blood sample 3 taken?',
         max_length=5,
         null=True)
 
-    time_blood_sample_four_taken_day_seven = models.TimeField(
+    blood_sample_four_day_seven = models.TimeField(
         verbose_name='Time blood sample 4 taken?',
         max_length=5,
         null=True)
 
-    time_blood_sample_five_taken_day_seven = models.TimeField(
+    blood_sample_five_day_seven = models.TimeField(
         verbose_name='Time blood sample 5 taken?',
         max_length=5,
         null=True)
 
-    time_blood_sample_six_taken_day_seven = models.TimeField(
+    blood_sample_six_day_seven = models.TimeField(
         verbose_name='Time blood sample 6 taken?',
         max_length=5,
         null=True)
@@ -222,7 +217,7 @@ class PkDkCrf(CrfModelMixin):
         max_length=5,
         null=True)
 
-    reason_missed_blood_sample_day_seven = models.CharField(
+    reason_day_seven_missed = models.CharField(
         verbose_name='Why was/were the blood sample(s) missed?',
         max_length=75,
         null=True,
