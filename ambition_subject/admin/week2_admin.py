@@ -123,11 +123,6 @@ class Week2Admin(ModelAdminMixin, admin.ModelAdmin):
                 'other_significant_dx'
             )}
          ],
-        #         ['Missed Doses', {
-        #             'fields': (
-        #                 'flucon_missed_doses',
-        #                 'amphotericin_missed_doses')}
-        #          ],
         audit_fieldset_tuple
     )
 
