@@ -12,6 +12,7 @@ from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin
 from .microbiology_admin import MicrobiologyAdmin
 from .missed_visit_admin import MissedVisitAdmin
 from .patient_history_admin import PatientHistory
+from .pk_dk_crf_admin import PkDkCrfAdmin
 from .prn_model_admin import PrnModelAdmin
 from .protocol_deviation_violation_admin import ProtocolDeviationViolation
 from .radiology_admin import RadiologyAdmin

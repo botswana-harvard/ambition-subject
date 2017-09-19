@@ -16,6 +16,7 @@ from .microbiology_form import MicrobiologyForm
 from .missed_visit_form import MissedVisitForm
 from .patient_history_form import PatientHistoryForm
 from .previous_opportunistic_infection_form import PreviousOpportunisticInfectionForm
+from .pk_dk_crf_form import PkDkCrfForm
 from .prn_model_form import PrnModelForm
 from .protocol_deviation_violation_form import ProtocolDeviationViolationForm
 from .radiology_form import RadiologyForm
