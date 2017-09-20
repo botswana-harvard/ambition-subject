@@ -10,7 +10,7 @@ from ..choices import FLUCYTOSINE_DOSE_MISSED
 from .model_mixins import CrfModelMixin
 
 
-class PkDkCrf(CrfModelMixin):
+class PkPdCrf(CrfModelMixin):
 
     weight = models.IntegerField(
         verbose_name='Patient weight',

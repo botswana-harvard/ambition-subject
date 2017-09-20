@@ -15,7 +15,7 @@ from .lumbar_puncture_csf import LumbarPunctureCsf
 from .microbiology import Microbiology
 from .missed_visit import MissedVisit
 from .patient_history import PatientHistory, PreviousOpportunisticInfection
-from .pk_dk_crf import PkDkCrf
+from .pk_pd_crf import PkPdCrf
 from .prn_model import PrnModel
 from .protocol_deviation_violation import ProtocolDeviationViolation
 from .radiology import Radiology

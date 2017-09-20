@@ -4,17 +4,31 @@ from django.contrib import admin
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..forms import PkDkCrfForm
-from ..models import PkDkCrf
+from ..forms import PkPdCrfForm
+from ..models import PkPdCrf
 
 from .modeladmin_mixins import CrfModelAdminMixin
 from ambition_subject.constants import DAY1, DAY7, DAY14
 
 
-@admin.register(PkDkCrf, site=ambition_subject_admin)
-class PkDkCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+common_fields = ('flucytosine_dose',
+                 'flucytosine_dose_one_time',
+                 'flucytosine_dose_two_time',
+                 'flucytosine_dose_three_time',
+                 'flucytosine_dose_four_time',
+                 'flucytosine_doses_missed',
+                 'flucytosine_dose_missed',
+                 'reason_flucytosine_dose_missed',
+                 'fluconazole_dose_given',
+                 'time_fluconazole_dose_given',
+                 'fluconazole_dose_missed',
+                 'reason_fluconazole_dose_missed')
 
-    form = PkDkCrfForm
+
+@admin.register(PkPdCrf, site=ambition_subject_admin)
+class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+
+    form = PkPdCrfForm
 
     radio_fields = {
         'on_art': admin.VERTICAL,
