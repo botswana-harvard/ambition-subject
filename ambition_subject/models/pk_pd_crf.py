@@ -99,7 +99,7 @@ class PkPdCrf(CrfModelMixin):
         verbose_name='Time flucytosine DOSE 4 was swallowed?',
         null=True)
 
-    flucytosine_days_missed = models.CharField(
+    flucytosine_doses_missed = models.CharField(
         verbose_name='Were any flucytosine doses missed?',
         choices=YES_NO,
         max_length=5,
