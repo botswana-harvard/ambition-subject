@@ -31,12 +31,12 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     inlines = [PreviousOpportunisticInfectionInline]
 
-    def get_formsets_with_inlines(self, request, obj=None):
-        for inline in self.get_inline_instances(request, obj):
-            if (isinstance(inline, PreviousOpportunisticInfectionInline)
-                    and obj and obj.__dict__.get('previous_oi') in [None, NO]):
-                continue
-            yield inline.get_formset(request, obj), inline
+#     def get_formsets_with_inlines(self, request, obj=None):
+#         for inline in self.get_inline_instances(request, obj):
+#             if (isinstance(inline, PreviousOpportunisticInfectionInline)
+#                     and obj and obj.__dict__.get('previous_oi') in [None, NO]):
+#                 continue
+#             yield inline.get_formset(request, obj), inline
 
     filter_horizontal = ('neurological', 'symptom', 'specify_medications')
 
