@@ -22,10 +22,10 @@ class PreviousOpportunisticInfectionManager(models.Manager):
         return self.get(
             previous_non_tb_oi=previous_non_tb_oi,
             previous_non_tb_oi_date=previous_non_tb_oi_date,
-            subject_visit__subject_identifier=subject_identifier,
-            subject_visit__visit_schedule_name=visit_schedule_name,
-            subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
+            patient_history__subject_visit__subject_identifier=subject_identifier,
+            patient_history__subject_visit__visit_schedule_name=visit_schedule_name,
+            patient_history__subject_visit__schedule_name=schedule_name,
+            patient_history__subject_visit__visit_code=visit_code
         )
 
 
@@ -435,9 +435,8 @@ class PreviousOpportunisticInfection(BaseUuidModel):
     objects = PreviousOpportunisticInfectionManager()
 
     def natural_key(self):
-        return (
-            (self.previous_non_tb_oi, self.previous_non_tb_oi_date)
-            + self.patient_history.natural_key())
+        return ((self.previous_non_tb_oi, self.previous_non_tb_oi_date,) +
+                self.patient_history.natural_key())
     natural_key.dependencies = ['ambition_subject.patienthistory']
 
     class Meta:
