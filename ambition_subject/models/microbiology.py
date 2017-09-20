@@ -31,13 +31,13 @@ class Microbiology(CrfModelMixin):
         default=NOT_APPLICABLE)
 
     urine_culture_organism = models.CharField(
-        verbose_name='If Positive, organism:',
+        verbose_name='If Positive, organism',
         max_length=25,
         choices=URINE_CULTURE_RESULTS_ORGANISM,
         default=NOT_APPLICABLE)
 
     urine_culture_organism_other = OtherCharField(
-        verbose_name='If other, please specify:',
+        verbose_name='If other, please specify',
         max_length=50,
         null=True,
         blank=True)
@@ -47,7 +47,7 @@ class Microbiology(CrfModelMixin):
         choices=YES_NO)
 
     blood_culture_results = models.CharField(
-        verbose_name='Blood culture results, if completed:',
+        verbose_name='Blood culture results, if completed',
         max_length=10,
         choices=CULTURE_RESULTS,
         default=NOT_APPLICABLE)
@@ -58,31 +58,31 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     day_blood_taken = models.IntegerField(
-        verbose_name='If Positive, Study day positive culture sample taken:',
+        verbose_name='If Positive, Study day positive culture sample taken',
         validators=[MinValueValidator(1), MaxValueValidator(70)],
         null=True,
         blank=True)
 
     blood_culture_organism = models.CharField(
-        verbose_name='If growth positive, organism:',
+        verbose_name='If growth positive, organism',
         max_length=50,
         choices=BLOOD_CULTURE_RESULTS_ORGANISM,
         default=NOT_APPLICABLE)
 
     blood_culture_organism_other = OtherCharField(
-        verbose_name='If other, specify:',
+        verbose_name='If other, specify',
         max_length=50,
         null=True,
         blank=True)
 
     bacteria_identified = models.CharField(
-        verbose_name='If bacteria, type:',
+        verbose_name='If bacteria, type',
         max_length=50,
         choices=BACTERIA_TYPE,
         default=NOT_APPLICABLE)
 
     bacteria_identified_other = OtherCharField(
-        verbose_name='If other, specify:',
+        verbose_name='If other, specify',
         max_length=100,
         null=True,
         blank=True)
@@ -115,7 +115,7 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     sputum_results_culture = models.CharField(
-        verbose_name='Culture results:',
+        verbose_name='Culture results',
         max_length=10,
         choices=POS_NEG_NA)
 
@@ -126,19 +126,19 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     sputum_genexpert_performed = models.CharField(
-        verbose_name='Sputum gene expert performed:',
+        verbose_name='Sputum gene expert performed',
         max_length=5,
         choices=YES_NO,
         help_text='Was sputum gene expert done?')
 
     sputum_genexpert_date = models.DateField(
-        verbose_name='Date sputum gene expert taken:',
+        verbose_name='Date sputum gene expert taken',
         validators=[date_not_future],
         null=True,
         blank=True)
 
     sputum_result_genexpert = models.CharField(
-        verbose_name='Gene expert results:',
+        verbose_name='Gene expert results',
         max_length=15,
         choices=POS_NEG_NA)
 
@@ -147,7 +147,7 @@ class Microbiology(CrfModelMixin):
         choices=YES_NO)
 
     tissue_biopsy_results = models.CharField(
-        verbose_name='If yes, results:',
+        verbose_name='If yes, results',
         max_length=10,
         choices=CULTURE_RESULTS,
         default=NOT_APPLICABLE)
@@ -158,19 +158,19 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     day_biopsy_taken = models.IntegerField(
-        verbose_name='If Positive, Study day positive culture sample taken:',
+        verbose_name='If Positive, Study day positive culture sample taken',
         validators=[MinValueValidator(1), MaxValueValidator(70)],
         null=True,
         blank=True)
 
     tissue_biopsy_organism = models.CharField(
-        verbose_name='If growth positive, organism:',
+        verbose_name='If growth positive, organism',
         max_length=50,
         choices=BIOPSY_RESULTS_ORGANISM,
         default=NOT_APPLICABLE)
 
     tissue_biopsy_organism_other = OtherCharField(
-        verbose_name='If other, please specify:',
+        verbose_name='If other, please specify',
         max_length=50,
         null=True,
         blank=True)
