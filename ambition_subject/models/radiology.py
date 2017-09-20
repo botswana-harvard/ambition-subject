@@ -25,7 +25,7 @@ class Radiology(CrfModelMixin):
         null=True)
 
     cxr_type = models.CharField(
-        verbose_name='If yes, result:',
+        verbose_name='If yes, result',
         blank=False,
         choices=CXR_TYPE,
         default=NOT_APPLICABLE,
@@ -33,7 +33,7 @@ class Radiology(CrfModelMixin):
         null=True)
 
     infiltrate_location = models.CharField(
-        verbose_name='If Infiltrates, specify location:',
+        verbose_name='If Infiltrates, specify location',
         blank=False,
         choices=INFILTRATE_LOCATION,
         default=NOT_APPLICABLE,
@@ -41,12 +41,12 @@ class Radiology(CrfModelMixin):
         null=True)
 
     cxr_description = models.TextField(
-        verbose_name='Description/Comments:',
+        verbose_name='Description/Comments',
         blank=True,
         null=True)
 
     ct_performed = models.CharField(
-        verbose_name='CT/MRI brain scan performed?:',
+        verbose_name='CT/MRI brain scan performed?',
         choices=YES_NO,
         max_length=5)
 
@@ -58,14 +58,14 @@ class Radiology(CrfModelMixin):
         null=True)
 
     scanned_with_contrast = models.CharField(
-        verbose_name='CT/MRI brain scan performed with contrast?:',
+        verbose_name='CT/MRI brain scan performed with contrast?',
         blank=False,
         choices=YES_NO_NA,
         max_length=5,
         null=False)
 
     brain_imaging_reason = models.CharField(
-        verbose_name='Reason for brain imaging:',
+        verbose_name='Reason for brain imaging',
         blank=False,
         choices=BRAIN_IMAGINING_REASON,
         default=NOT_APPLICABLE,
@@ -73,7 +73,7 @@ class Radiology(CrfModelMixin):
         null=True)
 
     brain_imaging_reason_other = models.CharField(
-        verbose_name='If other, please specify:',
+        verbose_name='If other, please specify',
         blank=True,
         max_length=50,
         null=True)
@@ -85,7 +85,7 @@ class Radiology(CrfModelMixin):
         max_length=5)
 
     abnormal_results_reason = models.CharField(
-        verbose_name='If results are abnormal, what is the reason?:',
+        verbose_name='If results are abnormal, what is the reason?',
         blank=False,
         choices=ABNORMAL_RESULTS_REASON,
         default=NOT_APPLICABLE,
@@ -93,7 +93,7 @@ class Radiology(CrfModelMixin):
         null=True)
 
     abnormal_results_reason_other = models.CharField(
-        verbose_name='If other, please specify reason:',
+        verbose_name='If other, please specify reason',
         blank=True,
         max_length=50,
         null=True)
