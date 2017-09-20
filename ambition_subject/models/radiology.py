@@ -2,7 +2,7 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA_SPECIFY
+from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import (ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON,
                        CXR_TYPE, INFILTRATE_LOCATION)
@@ -57,7 +57,7 @@ class Radiology(CrfModelMixin):
     scanned_with_contrast = models.CharField(
         verbose_name='CT/MRI brain scan performed with contrast?:',
         blank=False,
-        choices=YES_NO_NA_SPECIFY,
+        choices=YES_NO_NA,
         max_length=5,
         null=False)
 
@@ -76,7 +76,7 @@ class Radiology(CrfModelMixin):
 
     are_results_abnormal = models.CharField(
         blank=False,
-        choices=YES_NO_NA_SPECIFY,
+        choices=YES_NO_NA,
         null=False,
         max_length=5)
 
