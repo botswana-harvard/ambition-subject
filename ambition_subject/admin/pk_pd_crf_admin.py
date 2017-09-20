@@ -24,6 +24,26 @@ common_fields = ('flucytosine_dose',
                  'fluconazole_dose_missed',
                  'reason_fluconazole_dose_missed')
 
+DAY1 = ('blood_sample_one_day_one',
+        'blood_sample_two_day_one',
+        'blood_sample_three_day_one',
+        'blood_sample_four_day_one',
+        'blood_sample_five_day_one',
+        'any_day_one_sample_missed',
+        'reason_day_one_missed')
+
+DAY7 = ('blood_sample_one_day_seven',
+        'blood_sample_two_day_seven',
+        'blood_sample_three_day_seven',
+        'blood_sample_four_day_seven',
+        'blood_sample_five_day_seven',
+        'blood_sample_six_day_seven',
+        'any_day_seven_sample_missed',
+        'reason_day_seven_missed',
+        'pre_dose_lp',
+        'post_dose_lp',
+        'time_csf_sample_taken')
+
 
 @admin.register(PkPdCrf, site=ambition_subject_admin)
 class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
@@ -35,7 +55,7 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'other_medication': admin.VERTICAL,
         'full_ambisome_dose_given': admin.VERTICAL,
         'flucytosine_dose_missed': admin.VERTICAL,
-        'flucytosine_days_missed': admin.VERTICAL,
+        'flucytosine_doses_missed': admin.VERTICAL,
         'fluconazole_dose_missed': admin.VERTICAL,
         'any_day_one_sample_missed': admin.VERTICAL,
         'any_day_seven_sample_missed': admin.VERTICAL,
@@ -64,7 +84,7 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'flucytosine_dose_two_time',
                 'flucytosine_dose_three_time',
                 'flucytosine_dose_four_time',
-                'flucytosine_days_missed',
+                'flucytosine_doses_missed',
                 'flucytosine_dose_missed',
                 'reason_flucytosine_dose_missed',
                 'fluconazole_dose_given',
