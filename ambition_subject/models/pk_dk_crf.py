@@ -3,6 +3,7 @@ from django.db import models
 
 # from edc_base.model_fields import OtherCharField
 # from edc_base.model_mixins import BaseUuidModel
+from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO
 
 from ..choices import FLUCYTOSINE_DOSE_MISSED
@@ -250,6 +251,7 @@ class PkDkCrf(CrfModelMixin):
     extra_csf_samples_date = models.DateField(
         verbose_name='If any further CSF samples were taken,'
         ' please add here the exact date sample was taken',
+        validators=[datetime_not_future],
         max_length=5,
         null=True)
 
@@ -262,6 +264,7 @@ class PkDkCrf(CrfModelMixin):
     extra_blood_samples_date = models.DateField(
         verbose_name='If any further blood samples were taken,'
         ' please add here the exact date sample was taken',
+        validators=[datetime_not_future],
         max_length=5,
         null=True)
 
