@@ -8,6 +8,7 @@ from ..choices import (ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON,
                        CXR_TYPE, INFILTRATE_LOCATION)
 
 from .model_mixins import CrfModelMixin
+from edc_constants.constants import NOT_APPLICABLE
 
 
 class Radiology(CrfModelMixin):
@@ -27,6 +28,7 @@ class Radiology(CrfModelMixin):
         verbose_name='If yes, result:',
         blank=False,
         choices=CXR_TYPE,
+        default=NOT_APPLICABLE,
         max_length=75,
         null=True)
 
@@ -34,6 +36,7 @@ class Radiology(CrfModelMixin):
         verbose_name='If Infiltrates, specify location:',
         blank=False,
         choices=INFILTRATE_LOCATION,
+        default=NOT_APPLICABLE,
         max_length=10,
         null=True)
 
@@ -65,6 +68,7 @@ class Radiology(CrfModelMixin):
         verbose_name='Reason for brain imaging:',
         blank=False,
         choices=BRAIN_IMAGINING_REASON,
+        default=NOT_APPLICABLE,
         max_length=25,
         null=True)
 
@@ -84,6 +88,7 @@ class Radiology(CrfModelMixin):
         verbose_name='If results are abnormal, what is the reason?:',
         blank=False,
         choices=ABNORMAL_RESULTS_REASON,
+        default=NOT_APPLICABLE,
         max_length=50,
         null=True)
 
