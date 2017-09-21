@@ -31,8 +31,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     inlines = [PreviousOpportunisticInfectionInline]
 
-   yield inline.get_formset(request, obj), inline
-
     filter_horizontal = ('neurological', 'symptom', 'specify_medications')
 
     fieldsets = (
