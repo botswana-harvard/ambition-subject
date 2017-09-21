@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
-from edc_constants.constants import NO
 
 from ..admin_site import ambition_subject_admin
 from ..forms import PatientHistoryForm, PreviousOpportunisticInfectionForm
