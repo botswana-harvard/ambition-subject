@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from edc_base.model_fields import OtherCharField, IsDateEstimatedField
+from edc_base.model_fields import OtherCharField, IsDateEstimatedFieldNa
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
@@ -150,10 +150,9 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
         blank=True
     )
 
-    vl_date_estimated = IsDateEstimatedField(
-        blank=True,
-        null=True,
-        verbose_name=("Is the subject's viral load date estimated?"))
+    vl_date_estimated = IsDateEstimatedFieldNa(
+        verbose_name=("Is the subject's viral load date estimated?"),
+        default=NOT_APPLICABLE)
 
     last_cd4 = models.IntegerField(
         verbose_name='Last CD4, if known?',
@@ -168,10 +167,9 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
         blank=True
     )
 
-    cd4_date_estimated = IsDateEstimatedField(
+    cd4_date_estimated = IsDateEstimatedFieldNa(
         verbose_name=("Is the subject's CD4 date estimated?"),
-        blank=True,
-        null=True)
+        default=NOT_APPLICABLE)
 
     temp = models.DecimalField(
         verbose_name='Temperature:',

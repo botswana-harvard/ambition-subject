@@ -236,6 +236,18 @@ class PkPdCrf(CrfModelMixin):
         max_length=5,
         null=True)
 
+    second_pre_dose_lp = models.CharField(
+        verbose_name='Is this a pre-dose LP?',
+        choices=YES_NO,
+        max_length=5,
+        null=True)
+
+    second_post_dose_lp = models.CharField(
+        verbose_name='Is this a post-dose LP?',
+        choices=YES_NO,
+        max_length=5,
+        null=True)
+
     time_csf_sample_taken = models.TimeField(
         verbose_name='What time was the CSF sample taken?',
         choices=YES_NO,
