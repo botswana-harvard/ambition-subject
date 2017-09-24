@@ -3,7 +3,9 @@ from django.contrib import admin
 from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
 
 from ..admin_site import ambition_subject_admin
+from ..forms import MedicalExpensesForm
 from ..forms import PatientHistoryForm, PreviousOpportunisticInfectionForm
+from ..models import MedicalExpenses
 from ..models import PatientHistory, PreviousOpportunisticInfection
 from .modeladmin_mixins import CrfModelAdminMixin
 
@@ -23,12 +25,49 @@ class PreviousOpportunisticInfectionInline(TabularInlineMixin, admin.TabularInli
          ],)
 
 
+class MedicalExpensesInline(TabularInlineMixin, admin.StackedInline):
+
+    model = MedicalExpenses
+    form = MedicalExpensesForm
+    extra = 1
+
+    list_display = ('care_before_hospital', 'location_care',
+                    'location_care_other', 'transport_form')
+
+    fieldsets = (
+        ['Medical Expenses Continued..', {
+            'fields': (
+                'care_before_hospital',
+                'location_care',
+                'location_care_other',
+                'transport_form',
+                'transport_cost',
+                'transport_duration',
+                'care_provider',
+                'care_provider_other',
+                'paid_treatment',
+                'paid_treatment_amount',
+                'medication_bought',
+                'medication_payment',
+                'other_place_visited')},
+         ],)
+
+    radio_fields = {
+        'care_before_hospital': admin.VERTICAL,
+        'care_provider': admin.VERTICAL,
+        'medication_bought': admin.VERTICAL,
+        'location_care': admin.VERTICAL,
+        'other_place_visited': admin.VERTICAL,
+        'paid_treatment': admin.VERTICAL,
+        'transport_form': admin.VERTICAL}
+
+
 @admin.register(PatientHistory, site=ambition_subject_admin)
 class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PatientHistoryForm
 
-    inlines = [PreviousOpportunisticInfectionInline]
+    inlines = [MedicalExpensesInline, PreviousOpportunisticInfectionInline]
 
     filter_horizontal = ('neurological', 'symptom', 'specify_medications')
 
@@ -102,19 +141,6 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'personal_he_spend',
                 'proxy_he_spend',
                 'he_spend_last_4weeks',
-                'care_before_hospital',
-                'location_care',
-                'location_care_other',
-                'transport_form',
-                'transport_cost',
-                'transport_duration',
-                'care_provider',
-                'care_provider_other',
-                'paid_treatment',
-                'paid_treatment_amount',
-                'medication_bought',
-                'medication_payment',
-                'other_place_visited',
                 'duration_present_condition',
                 'activities_missed',
                 'activities_missed_other',

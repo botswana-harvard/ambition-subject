@@ -14,6 +14,7 @@ from .identifier_history import IdentifierHistory
 from .lumbar_puncture_csf import LumbarPunctureCsf
 from .microbiology import Microbiology
 from .missed_visit import MissedVisit
+from .patient_history import MedicalExpenses
 from .patient_history import PatientHistory, PreviousOpportunisticInfection
 from .pk_pd_crf import PkPdCrf
 from .prn_model import PrnModel

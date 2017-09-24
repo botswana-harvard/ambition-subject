@@ -12,6 +12,7 @@ from .fluconazole_missed_doses_form import FluconazoleMissedDosesForm
 from .flucytosine_missed_doses_form import FlucytosineMissedDosesForm
 from .follow_up_form import FollowUpForm, FollowUpDiagnosesForm
 from .lumbar_puncture_csf_form import LumbarPunctureCSFForm
+from .medical_expenses_form import MedicalExpensesForm
 from .microbiology_form import MicrobiologyForm
 from .missed_visit_form import MissedVisitForm
 from .patient_history_form import PatientHistoryForm
