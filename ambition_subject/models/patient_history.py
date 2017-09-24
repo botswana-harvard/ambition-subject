@@ -412,17 +412,8 @@ class MedicalExpenses(BaseUuidModel, MedicalExpensesMixin):
 
     patient_history = models.ForeignKey(PatientHistory)
 
-#     objects = PreviousOpportunisticInfectionManager()
-
-#     def natural_key(self):
-#         return ((self.previous_non_tb_oi, self.previous_non_tb_oi_date,) +
-#                 self.patient_history.natural_key())
-#     natural_key.dependencies = ['ambition_subject.patienthistory']
-
     class Meta:
         verbose_name_plural = 'Medical Expenses'
-#         unique_together = (
-#             'patient_history', 'previous_non_tb_oi', 'previous_non_tb_oi_date')
 
 
 class PreviousOpportunisticInfection(BaseUuidModel):
