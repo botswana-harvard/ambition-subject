@@ -5,6 +5,7 @@ from ambition_subject.choices import YES_NO, ACTIVITIES_MISSED, CARE_PROVIDER, T
 from ambition_subject.validators import hm_validator
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_constants.choices import YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
 
 
 class MedicalExpensesMixin(models.Model):
@@ -47,7 +48,8 @@ class MedicalExpensesMixin(models.Model):
     location_care = models.CharField(
         verbose_name='If Yes, where did you receive treatment or care?',
         max_length=35,
-        choices=LOCATION_CARE)
+        choices=LOCATION_CARE,
+        default=NOT_APPLICABLE)
 
     location_care_other = OtherCharField()
 
@@ -55,7 +57,8 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='Which form of transport did you take to reach '
         'there?',
         max_length=20,
-        choices=TRANSPORT)
+        choices=TRANSPORT,
+        default=NOT_APPLICABLE)
 
     transport_cost = models.DecimalField(
         verbose_name='How much did you spend on the transport (each way)?',
@@ -75,7 +78,8 @@ class MedicalExpensesMixin(models.Model):
     care_provider = models.CharField(
         verbose_name='Who provided treatment or care during that visit?',
         max_length=35,
-        choices=CARE_PROVIDER)
+        choices=CARE_PROVIDER,
+        default=NOT_APPLICABLE)
 
     care_provider_other = OtherCharField(
         verbose_name='If Other Specify:',
@@ -88,7 +92,8 @@ class MedicalExpensesMixin(models.Model):
             'Did you pay for the treatment '
             'you received during that visit'),
         max_length=15,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     paid_treatment_amount = models.DecimalField(
         verbose_name=(
@@ -101,7 +106,8 @@ class MedicalExpensesMixin(models.Model):
     medication_bought = models.CharField(
         verbose_name='Did you buy other medication for relief?',
         max_length=15,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     medication_payment = models.DecimalField(
         verbose_name='How much did you pay?',
@@ -114,7 +120,8 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='Before this, did you go to another place '
         'for the treatment of the present situation?',
         max_length=15,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     duration_present_condition = models.IntegerField(
         verbose_name='How long have you been sick with your current '

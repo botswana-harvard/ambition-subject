@@ -37,7 +37,6 @@ class MedicalExpensesInline(TabularInlineMixin, admin.StackedInline):
     fieldsets = (
         ['Medical Expenses Continued..', {
             'fields': (
-                'care_before_hospital',
                 'location_care',
                 'location_care_other',
                 'transport_form',
@@ -53,7 +52,6 @@ class MedicalExpensesInline(TabularInlineMixin, admin.StackedInline):
          ],)
 
     radio_fields = {
-        'care_before_hospital': admin.VERTICAL,
         'care_provider': admin.VERTICAL,
         'medication_bought': admin.VERTICAL,
         'location_care': admin.VERTICAL,
@@ -141,6 +139,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'personal_he_spend',
                 'proxy_he_spend',
                 'he_spend_last_4weeks',
+                'care_before_hospital',
                 'duration_present_condition',
                 'activities_missed',
                 'activities_missed_other',
@@ -179,6 +178,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
          ), audit_fieldset_tuple)
 
     radio_fields = {
+        'care_before_hospital': admin.VERTICAL,
         'activities_missed': admin.VERTICAL,
         'care_before_hospital': admin.VERTICAL,
         'care_provider': admin.VERTICAL,
