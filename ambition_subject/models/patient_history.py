@@ -14,6 +14,19 @@ from .list_models import Symptom
 from .model_mixins import CrfModelMixin, MedicalExpensesMixin
 
 
+class MedicalExpensesManager(models.Manager):
+
+    def get_by_natural_key(self, location_care, subject_identifier,
+                           visit_schedule_name, schedule_name, visit_code):
+        return self.get(
+            location_care=location_care,
+            patient_history__subject_visit__subject_identifier=subject_identifier,
+            patient_history__subject_visit__visit_schedule_name=visit_schedule_name,
+            patient_history__subject_visit__schedule_name=schedule_name,
+            patient_history__subject_visit__visit_code=visit_code
+        )
+
+
 class PreviousOpportunisticInfectionManager(models.Manager):
 
     def get_by_natural_key(self, previous_non_tb_oi, previous_non_tb_oi_date,
@@ -412,8 +425,15 @@ class MedicalExpenses(BaseUuidModel, MedicalExpensesMixin):
 
     patient_history = models.ForeignKey(PatientHistory)
 
+    objects = PreviousOpportunisticInfectionManager()
+
+    def natural_key(self):
+        return ((self.location_care,) + self.patient_history.natural_key())
+    natural_key.dependencies = ['ambition_subject.patienthistory']
+
     class Meta:
         verbose_name_plural = 'Medical Expenses'
+        unique_together = ('patient_history', 'location_care')
 
 
 class PreviousOpportunisticInfection(BaseUuidModel):
