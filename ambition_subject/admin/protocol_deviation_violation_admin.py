@@ -9,7 +9,7 @@ from .modeladmin_mixins import ModelAdminMixin
 
 
 @admin.register(ProtocolDeviationViolation, site=ambition_subject_admin)
-class PatientHistoryAdmin(ModelAdminMixin, admin.ModelAdmin):
+class ProtocolDeviationViolationAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = ProtocolDeviationViolationForm
 
