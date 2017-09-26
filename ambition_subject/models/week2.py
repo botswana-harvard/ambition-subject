@@ -233,7 +233,7 @@ class Week2(ClinicalAssessment, CrfModelMixin):
     other_significant_dx = models.CharField(
         verbose_name='Other significant diagnosis since enrollment?',
         max_length=5,
-        choices=YES_NO_NA)
+        choices=YES_NO)
 
     history = HistoricalRecords()
 

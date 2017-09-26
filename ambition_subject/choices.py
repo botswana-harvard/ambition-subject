@@ -518,13 +518,14 @@ POS_NEG = (
 )
 
 RANKING_SCORE = (
-    (1, '1'),
-    (2, '2'),
-    (3, '3'),
-    (4, '4'),
-    (5, '5'),
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
     ('nil', 'Nil'),
     ('not_done', 'Not Done'),
+    (NOT_APPLICABLE, 'Not Applicable')
 )
 
 DEVIATION_VIOLATION = (
