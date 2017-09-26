@@ -89,6 +89,11 @@ class StudyTerminationConclusion(CrfModelMixin):
         blank=True,
         null=True)
 
+    protocol_exclusion_criterion = models.CharField(
+        verbose_name='Late protocol exclusion met?',
+        max_length=12,
+        choices=YES_NO)
+
     included_in_error_date = models.DateField(
         verbose_name='If included in error, date',
         validators=[date_not_future],
