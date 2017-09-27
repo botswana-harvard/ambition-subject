@@ -45,7 +45,23 @@ second_sample = ('blood_sample_one_day_seven',
                  'post_dose_lp',
                  'time_csf_sample_taken')
 
-day1 = common_fields + first_sample
+day1 = common_fields + first_sample + ('albumin',
+                                       'creatine_clearance',
+                                       'magnesium',
+                                       'haemoglobin')
+
+day7 = common_fields + second_sample + ('albumin',
+                                        'creatine',
+                                        'magnesium',
+                                        'haemoglobin')
+
+day14 = common_fields + ('albumin',
+                         'creatine',
+                         'magnesium',
+                         'haemoglobin',
+                         'pre_dose_lp',
+                         'post_dose_lp',
+                         'time_csf_sample_taken')
 
 
 @admin.register(PkPdCrf, site=ambition_subject_admin)
@@ -53,7 +69,8 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PkPdCrfForm
     conditional_fieldsets = {
-        DAY1: Fieldset(*day1, section='Pk and DK Crf'),
+        DAY1: Fieldset(*day1, section='Pk and Dk Crf'),
+        DAY7: Fieldset(*day7, section='Pk and Dk Crf'),
     }
     radio_fields = {
         'on_art': admin.VERTICAL,
