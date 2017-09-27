@@ -1,14 +1,14 @@
 from django.contrib import admin
 
-# from edc_base.fieldsets.fieldset import Fieldset
+from edc_base.fieldsets.fieldset import Fieldset
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
+from ..constants import DAY1, DAY7, DAY14
 from ..forms import PkPdCrfForm
 from ..models import PkPdCrf
 
 from .modeladmin_mixins import CrfModelAdminMixin
-from ambition_subject.constants import DAY1, DAY7, DAY14
 
 
 common_fields = ('flucytosine_dose',
@@ -24,32 +24,37 @@ common_fields = ('flucytosine_dose',
                  'fluconazole_dose_missed',
                  'reason_fluconazole_dose_missed')
 
-DAY1 = ('blood_sample_one_day_one',
-        'blood_sample_two_day_one',
-        'blood_sample_three_day_one',
-        'blood_sample_four_day_one',
-        'blood_sample_five_day_one',
-        'any_day_one_sample_missed',
-        'reason_day_one_missed')
+first_sample = ('ambisome_dose',
+                'ambisome_dose_time_started',
+                'ambisome_dose_time_ended',
+                'full_ambisome_dose_given',
+                'blood_sample_one_day_one',
+                'blood_sample_two_day_one',
+                'blood_sample_three_day_one',
+                'blood_sample_four_day_one')
 
-DAY7 = ('blood_sample_one_day_seven',
-        'blood_sample_two_day_seven',
-        'blood_sample_three_day_seven',
-        'blood_sample_four_day_seven',
-        'blood_sample_five_day_seven',
-        'blood_sample_six_day_seven',
-        'any_day_seven_sample_missed',
-        'reason_day_seven_missed',
-        'pre_dose_lp',
-        'post_dose_lp',
-        'time_csf_sample_taken')
+second_sample = ('blood_sample_one_day_seven',
+                 'blood_sample_two_day_seven',
+                 'blood_sample_three_day_seven',
+                 'blood_sample_four_day_seven',
+                 'blood_sample_five_day_seven',
+                 'blood_sample_six_day_seven',
+                 'any_day_seven_sample_missed',
+                 'reason_day_seven_missed',
+                 'pre_dose_lp',
+                 'post_dose_lp',
+                 'time_csf_sample_taken')
+
+day1 = common_fields + first_sample
 
 
 @admin.register(PkPdCrf, site=ambition_subject_admin)
 class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PkPdCrfForm
-
+    conditional_fieldsets = {
+        DAY1: Fieldset(*day1, section='Pk and DK Crf'),
+    }
     radio_fields = {
         'on_art': admin.VERTICAL,
         'other_medication': admin.VERTICAL,
@@ -64,7 +69,7 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'time_csf_sample_taken': admin.VERTICAL}
 
     fieldsets = (
-        (None, {
+        ('Pk and DK Crf', {
             'fields': (
                 'weight',
                 'cd4_cell_count',
