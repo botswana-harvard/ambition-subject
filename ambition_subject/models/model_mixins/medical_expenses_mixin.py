@@ -127,8 +127,6 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='How long have you been sick with your current '
         'condition?',
         validators=[MinValueValidator(1)],
-        null=True,
-        blank=True,
         help_text='in days')
 
     activities_missed = models.CharField(

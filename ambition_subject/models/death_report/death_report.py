@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
@@ -14,8 +15,8 @@ class DeathReport(CrfModelMixin):
         validators=[datetime_not_future],
         verbose_name='Date and Time of Death')
 
-    study_day = models.CharField(
-        max_length=2,
+    study_day = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(80)],
         verbose_name='Study Day')
 
     death_as_inpatient = models.CharField(

@@ -4,6 +4,7 @@ from django.db import models
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
+from edc_protocol.validators import date_not_before_study_start
 from edc_constants.choices import NOT_APPLICABLE, YES_NO
 
 from ..choices import (
@@ -20,7 +21,7 @@ class Microbiology(CrfModelMixin):
         help_text='only for patients with >50 white cells in urine')
 
     urine_taken_date = models.DateField(
-        validators=[date_not_future],
+        validators=[date_not_before_study_start, date_not_future],
         null=True,
         blank=True)
 
@@ -53,7 +54,7 @@ class Microbiology(CrfModelMixin):
         default=NOT_APPLICABLE)
 
     blood_taken_date = models.DateField(
-        validators=[date_not_future],
+        validators=[date_not_before_study_start, date_not_future],
         null=True,
         blank=True)
 
@@ -94,7 +95,7 @@ class Microbiology(CrfModelMixin):
         help_text='Was sputum afb done?')
 
     sputum_afb_date = models.DateField(
-        validators=[date_not_future],
+        validators=[date_not_before_study_start, date_not_future],
         null=True,
         blank=True)
 
@@ -110,7 +111,7 @@ class Microbiology(CrfModelMixin):
         help_text='Was sputum culture done?')
 
     sputum_taken_date = models.DateField(
-        validators=[date_not_future],
+        validators=[date_not_before_study_start, date_not_future],
         null=True,
         blank=True)
 
@@ -133,7 +134,7 @@ class Microbiology(CrfModelMixin):
 
     sputum_genexpert_date = models.DateField(
         verbose_name='Date sputum gene expert taken',
-        validators=[date_not_future],
+        validators=[date_not_before_study_start, date_not_future],
         null=True,
         blank=True)
 
@@ -153,7 +154,7 @@ class Microbiology(CrfModelMixin):
         default=NOT_APPLICABLE)
 
     biopsy_date = models.DateField(
-        validators=[date_not_future],
+        validators=[date_not_before_study_start, date_not_future],
         null=True,
         blank=True)
 
