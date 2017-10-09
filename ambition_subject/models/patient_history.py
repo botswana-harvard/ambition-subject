@@ -425,7 +425,7 @@ class MedicalExpenses(BaseUuidModel, MedicalExpensesMixin):
 
     patient_history = models.ForeignKey(PatientHistory)
 
-    objects = PreviousOpportunisticInfectionManager()
+    objects = MedicalExpensesManager()
 
     def natural_key(self):
         return ((self.location_care,) + self.patient_history.natural_key())
