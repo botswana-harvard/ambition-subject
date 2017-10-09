@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'edc_metadata_rules.apps.AppConfig',
     'edc_registration.apps.AppConfig',
     'edc_sync_files.apps.AppConfig',
+    'edc_pharma.apps.AppConfig',
     'ambition_subject.apps.EdcBaseAppConfig',
     'ambition_subject.apps.EdcBaseTestAppConfig',
     'ambition_subject.apps.EdcLabAppConfig',

@@ -78,18 +78,6 @@ class PrnModel(CrfModelMixin):
         choices=YES_NO,
         default=NO)
 
-    death_report_tmg1 = models.CharField(
-        verbose_name='Death Report TMG1?',
-        max_length=5,
-        choices=YES_NO,
-        default=NO)
-
-    death_report_tmg2 = models.CharField(
-        verbose_name='Death Report TMG2?',
-        max_length=5,
-        choices=YES_NO,
-        default=NO)
-
     class Meta(CrfModelMixin.Meta):
         verbose_name = 'PRN Form'
         verbose_name_plural = 'PRN Forms'
