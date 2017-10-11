@@ -10,11 +10,12 @@ from .death_report import DeathReportTmg2
 from .disenrollment import Disenrollment
 from .enrollment import Enrollment
 from .follow_up import FollowUp, FollowUpDiagnoses
+from .health_economics_questionnaire import HealthEconomicsQuestionnaire
+from .health_economics_questionnaire import MedicalExpenses
 from .identifier_history import IdentifierHistory
 from .lumbar_puncture_csf import LumbarPunctureCsf
 from .microbiology import Microbiology
 from .missed_visit import MissedVisit
-from .patient_history import MedicalExpenses
 from .patient_history import PatientHistory, PreviousOpportunisticInfection
 from .pk_pd_crf import PkPdCrf
 from .prn_model import PrnModel

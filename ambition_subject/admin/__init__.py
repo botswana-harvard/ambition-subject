@@ -8,6 +8,7 @@ from .death_report import DeathReportAdmin
 from .death_report import DeathReportTmg1Admin
 from .death_report import DeathReportTmg2Admin
 from .follow_up_admin import FollowUpAdmin
+from .health_economics_questionnaire_admin import HealthEconomicsQuestionnaire
 from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin
 from .microbiology_admin import MicrobiologyAdmin
 from .missed_visit_admin import MissedVisitAdmin
