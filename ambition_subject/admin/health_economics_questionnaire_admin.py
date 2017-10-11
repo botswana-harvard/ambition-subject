@@ -14,8 +14,7 @@ class MedicalExpensesInline(TabularInlineMixin, admin.StackedInline):
     form = MedicalExpensesForm
     extra = 1
 
-    list_display = ('care_before_hospital', 'location_care',
-                    'location_care_other', 'transport_form')
+    list_display = ('location_care', 'location_care_other', 'transport_form')
 
     fieldsets = (
         ['Medical Expenses Continued..', {
