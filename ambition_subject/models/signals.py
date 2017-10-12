@@ -33,5 +33,5 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                              randomization_datetime=get_utcnow())
             subject_screening.subject_identifier = instance.subject_identifier
             subject_screening.save_base(update_fields=['subject_identifier'])
-            DispensePlanScheduler(
-                obj.history_obj, arm=obj.history_obj.rx).create_schedules()
+            #DispensePlanScheduler(
+            #    obj, arm=obj.rx).create_schedules()
