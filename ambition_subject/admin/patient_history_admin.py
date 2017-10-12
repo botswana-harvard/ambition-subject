@@ -3,9 +3,7 @@ from django.contrib import admin
 from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
 
 from ..admin_site import ambition_subject_admin
-from ..forms import MedicalExpensesForm
 from ..forms import PatientHistoryForm, PreviousOpportunisticInfectionForm
-from ..models import MedicalExpenses
 from ..models import PatientHistory, PreviousOpportunisticInfection
 from .modeladmin_mixins import CrfModelAdminMixin
 
@@ -25,47 +23,12 @@ class PreviousOpportunisticInfectionInline(TabularInlineMixin, admin.TabularInli
          ],)
 
 
-class MedicalExpensesInline(TabularInlineMixin, admin.StackedInline):
-
-    model = MedicalExpenses
-    form = MedicalExpensesForm
-    extra = 1
-
-    list_display = ('care_before_hospital', 'location_care',
-                    'location_care_other', 'transport_form')
-
-    fieldsets = (
-        ['Medical Expenses Continued..', {
-            'fields': (
-                'location_care',
-                'location_care_other',
-                'transport_form',
-                'transport_cost',
-                'transport_duration',
-                'care_provider',
-                'care_provider_other',
-                'paid_treatment',
-                'paid_treatment_amount',
-                'medication_bought',
-                'medication_payment',
-                'other_place_visited')},
-         ],)
-
-    radio_fields = {
-        'care_provider': admin.VERTICAL,
-        'medication_bought': admin.VERTICAL,
-        'location_care': admin.VERTICAL,
-        'other_place_visited': admin.VERTICAL,
-        'paid_treatment': admin.VERTICAL,
-        'transport_form': admin.VERTICAL}
-
-
 @admin.register(PatientHistory, site=ambition_subject_admin)
 class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PatientHistoryForm
 
-    inlines = [MedicalExpensesInline, PreviousOpportunisticInfectionInline]
+    inlines = [PreviousOpportunisticInfectionInline]
 
     filter_horizontal = ('neurological', 'symptom', 'specify_medications')
 
@@ -132,83 +95,25 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'specify_medications',
                 'specify_medications_other']}
          ),
-
-        ('Medical Expenses', {
-            'fields': [
-                'currency',
-                'personal_he_spend',
-                'proxy_he_spend',
-                'he_spend_last_4weeks',
-                'care_before_hospital',
-                'duration_present_condition',
-                'activities_missed',
-                'activities_missed_other',
-                'time_off_work',
-                'carer_time_off',
-                'loss_of_earnings',
-                'earnings_lost_amount'
-            ]}
-         ),
-
-        ('Educational Background', {
-            'fields': [
-                'household_head',
-                'profession',
-                'education_years',
-                'education_certificate',
-                'elementary_school',
-                'elementary_attendance_years',
-                'secondary_school',
-                'secondary_attendance_years',
-                'higher_education',
-                'higher_attendance_years',
-                'head_profession',
-                'head_education_years',
-                'head_education_certificate',
-                'head_elementary',
-                'head_attendance_years',
-                'head_secondary',
-                'head_secondary_years',
-                'head_higher_education',
-                'head_higher_years']}
-         ),
         ('Previous Infection', {
             'fields': [
                 'previous_oi']}
          ), audit_fieldset_tuple)
 
     radio_fields = {
-        'care_before_hospital': admin.VERTICAL,
-        'activities_missed': admin.VERTICAL,
-        'care_before_hospital': admin.VERTICAL,
-        'care_provider': admin.VERTICAL,
         'cd4_date_estimated': admin.VERTICAL,
         'cryptococcal_lesions': admin.VERTICAL,
-        'currency': admin.VERTICAL,
         'ecog_score': admin.VERTICAL,
-        'elementary_school': admin.VERTICAL,
         'first_arv_regimen': admin.VERTICAL,
         'first_line_choice': admin.VERTICAL,
-        'higher_education': admin.VERTICAL,
-        'head_elementary': admin.VERTICAL,
-        'head_secondary': admin.VERTICAL,
-        'household_head': admin.VERTICAL,
-        'head_higher_education': admin.VERTICAL,
-        'location_care': admin.VERTICAL,
         'lung_exam': admin.VERTICAL,
         'tb_history': admin.VERTICAL,
         'new_hiv_diagnosis': admin.VERTICAL,
-        'medication_bought': admin.VERTICAL,
-        'other_place_visited': admin.VERTICAL,
         'patient_adherence': admin.VERTICAL,
-        'paid_treatment': admin.VERTICAL,
         'second_arv_regimen': admin.VERTICAL,
-        'secondary_school': admin.VERTICAL,
         'taking_arv': admin.VERTICAL,
         'taking_rifampicin': admin.VERTICAL,
         'tb_site': admin.VERTICAL,
         'tb_treatment': admin.VERTICAL,
-        'transport_form': admin.VERTICAL,
         'vl_date_estimated': admin.VERTICAL,
-        'loss_of_earnings': admin.VERTICAL,
         'previous_oi': admin.VERTICAL, }

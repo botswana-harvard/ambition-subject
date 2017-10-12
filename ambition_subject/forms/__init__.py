@@ -11,6 +11,7 @@ from .death_report import DeathReportTmg2Form
 from .fluconazole_missed_doses_form import FluconazoleMissedDosesForm
 from .flucytosine_missed_doses_form import FlucytosineMissedDosesForm
 from .follow_up_form import FollowUpForm, FollowUpDiagnosesForm
+from .health_economics_questionnaire_form import HealthEconomicsQuestionnaireForm
 from .lumbar_puncture_csf_form import LumbarPunctureCSFForm
 from .medical_expenses_form import MedicalExpensesForm
 from .microbiology_form import MicrobiologyForm

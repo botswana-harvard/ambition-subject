@@ -11,20 +11,7 @@ from ..choices import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE
 from ..choices import INFECTION, ECOG_SCORE, SECOND_ARV_REGIMEN
 from .list_models import Medication, Neurological
 from .list_models import Symptom
-from .model_mixins import CrfModelMixin, MedicalExpensesMixin
-
-
-class MedicalExpensesManager(models.Manager):
-
-    def get_by_natural_key(self, location_care, subject_identifier,
-                           visit_schedule_name, schedule_name, visit_code):
-        return self.get(
-            location_care=location_care,
-            patient_history__subject_visit__subject_identifier=subject_identifier,
-            patient_history__subject_visit__visit_schedule_name=visit_schedule_name,
-            patient_history__subject_visit__schedule_name=schedule_name,
-            patient_history__subject_visit__visit_code=visit_code
-        )
+from .model_mixins import CrfModelMixin
 
 
 class PreviousOpportunisticInfectionManager(models.Manager):
@@ -42,7 +29,7 @@ class PreviousOpportunisticInfectionManager(models.Manager):
         )
 
 
-class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
+class PatientHistory(CrfModelMixin):
 
     symptom = models.ManyToManyField(
         Symptom,
@@ -289,129 +276,6 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
         blank=True,
         null=True)
 
-    household_head = models.CharField(
-        verbose_name='Are you head of the household?',
-        max_length=5,
-        choices=YES_NO)
-
-    profession = models.CharField(
-        verbose_name='What is your profession?',
-        max_length=25,
-        blank=True,
-        null=True)
-
-    education_years = models.IntegerField(
-        verbose_name='How many years of education did you complete?',
-        validators=[MinValueValidator(1)],
-        blank=True,
-        null=True)
-
-    education_certificate = models.CharField(
-        verbose_name='What is your highest education certificate?',
-        max_length=25,
-        blank=True,
-        null=True)
-
-    elementary_school = models.CharField(
-        verbose_name='Did you go to elementary school?',
-        max_length=5,
-        blank=True,
-        null=True,
-        choices=YES_NO)
-
-    elementary_attendance_years = models.IntegerField(
-        verbose_name='If YES, for how many years?',
-        validators=[MinValueValidator(1)],
-        blank=True,
-        null=True)
-
-    secondary_school = models.CharField(
-        verbose_name='Did you go to secondary school?',
-        max_length=5,
-        blank=True,
-        null=True,
-        choices=YES_NO)
-
-    secondary_attendance_years = models.IntegerField(
-        verbose_name='If YES, for how many years?',
-        validators=[MinValueValidator(1)],
-        blank=True,
-        null=True)
-
-    higher_education = models.CharField(
-        verbose_name='Did you go to higher education?',
-        max_length=5,
-        blank=True,
-        null=True,
-        choices=YES_NO)
-
-    higher_attendance_years = models.IntegerField(
-        verbose_name='If YES, for how many years?',
-        validators=[MinValueValidator(1)],
-        blank=True,
-        null=True)
-
-    head_profession = models.CharField(
-        verbose_name=('If you are not the head of household,'
-                      ' what is the head of household profession?'),
-        max_length=25,
-        blank=True,
-        null=True)
-
-    head_education_years = models.IntegerField(
-        verbose_name='How many years of education did '
-        'head of houesehold complete?',
-        validators=[MinValueValidator(1)],
-        blank=True,
-        null=True)
-
-    head_education_certificate = models.CharField(
-        verbose_name='What is the head of household highest education '
-        'certificate?',
-        max_length=25,
-        blank=True,
-        null=True)
-
-    head_elementary = models.CharField(
-        verbose_name='Did the head of household go to elementary '
-        'school?',
-        max_length=5,
-        blank=True,
-        null=True,
-        choices=YES_NO)
-
-    head_attendance_years = models.IntegerField(
-        verbose_name='If YES, for how many years?',
-        validators=[MinValueValidator(1)],
-        blank=True,
-        null=True)
-
-    head_secondary = models.CharField(
-        verbose_name='Did head of household go to secondary school?',
-        max_length=5,
-        blank=True,
-        null=True,
-        choices=YES_NO)
-
-    head_secondary_years = models.IntegerField(
-        verbose_name='If YES, for how many years?',
-        validators=[MinValueValidator(1)],
-        blank=True,
-        null=True)
-
-    head_higher_education = models.CharField(
-        verbose_name='Did head of household go to higher education?',
-        max_length=5,
-        choices=YES_NO,
-        blank=True,
-        null=True)
-
-    head_higher_years = models.IntegerField(
-        verbose_name='If YES, for how many years?',
-        validators=[MinValueValidator(1)],
-        blank=True,
-        null=True)
-
     previous_oi = models.CharField(
         verbose_name='Previous opportunistic infection other than TB?',
         max_length=5,
@@ -419,21 +283,6 @@ class PatientHistory(MedicalExpensesMixin, CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Patients History'
-
-
-class MedicalExpenses(BaseUuidModel, MedicalExpensesMixin):
-
-    patient_history = models.ForeignKey(PatientHistory)
-
-    objects = PreviousOpportunisticInfectionManager()
-
-    def natural_key(self):
-        return ((self.location_care,) + self.patient_history.natural_key())
-    natural_key.dependencies = ['ambition_subject.patienthistory']
-
-    class Meta:
-        verbose_name_plural = 'Medical Expenses'
-        unique_together = ('patient_history', 'location_care')
 
 
 class PreviousOpportunisticInfection(BaseUuidModel):
