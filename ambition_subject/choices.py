@@ -1,5 +1,5 @@
 from ambition_validators.constants import WORKING
-from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE
+from edc_constants.constants import DECLINED, NEG, OTHER, POS, NOT_APPLICABLE
 from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN, NONE
 from edc_visit_tracking.constants import (
     MISSED_VISIT,
@@ -7,7 +7,6 @@ from edc_visit_tracking.constants import (
     UNSCHEDULED)
 
 from .constants import (DEVIATION, VIOLATION, TUBERCULOSIS)
-
 
 ABNORMAL_RESULTS_REASON = (
     (NOT_APPLICABLE, 'Not Applicable'),
@@ -561,6 +560,12 @@ YES_NO_ALREADY = (
     (YES, 'Yes'),
     (NO, 'No'),
     ('already_on_rifampicin', 'Already on Rifampicin'),
+)
+
+YES_NO_DECLINED = (
+    (YES, YES),
+    (NO, NO),
+    (DECLINED, 'Yes, but participant declined copy'),
 )
 
 PREG_YES_NO_NA = (
