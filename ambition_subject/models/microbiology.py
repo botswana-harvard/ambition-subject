@@ -106,7 +106,7 @@ class Microbiology(CrfModelMixin):
 
     sputum_performed = models.CharField(
         verbose_name='Culture performed?',
-        max_length=5,
+        max_length=15,
         choices=YES_NO_NA,
         help_text='Was sputum culture done?')
 
@@ -128,7 +128,7 @@ class Microbiology(CrfModelMixin):
 
     sputum_genexpert_performed = models.CharField(
         verbose_name='Sputum gene expert performed',
-        max_length=5,
+        max_length=15,
         choices=YES_NO_NA,
         help_text='Was sputum gene expert done?')
 
