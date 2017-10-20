@@ -24,7 +24,7 @@ class SubjectConsentForm(FormValidatorMixin, ConsentModelFormMixin, forms.ModelF
         self.fields['guardian_name'].label = (
             'Guardian\'s Last and first name (for patients with Abnormal mental status)')
         self.fields['guardian_name'].help_text = (
-            'Required only if subject is unconscious or has an abnormal mental '
+            'Required only if participant is unconscious or has an abnormal mental '
             'status. Format is \'LASTNAME, FIRSTNAME\'. All uppercase separated '
             'by a comma then followed by a space.')
         self.fields['identity'].label = (
@@ -32,6 +32,10 @@ class SubjectConsentForm(FormValidatorMixin, ConsentModelFormMixin, forms.ModelF
         self.fields['identity'].help_text = (
             'Use Country ID Number, Passport number, driver\'s license '
             'number or Country ID receipt number')
+        self.fields['witness_name'].help_text = (
+            'Required only if participant is illiterate. '
+            'Format is \'LASTNAME, FIRSTNAME\'. '
+            'All uppercase separated by a comma.'),
 
     screening_identifier = forms.CharField(
         label='Screening identifier',

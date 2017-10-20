@@ -3,8 +3,9 @@ from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
 from edc_base.modeladmin_mixins import (
-    ModelAdminInstitutionMixin, audit_fieldset_tuple, audit_fields,
-    ModelAdminNextUrlRedirectMixin, ModelAdminNextUrlRedirectError)
+    ModelAdminFormAutoNumberMixin, ModelAdminInstitutionMixin,
+    audit_fieldset_tuple, audit_fields, ModelAdminNextUrlRedirectMixin,
+    ModelAdminNextUrlRedirectError)
 from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 
 
@@ -13,8 +14,8 @@ from ..forms import SubjectConsentForm
 from ..models import SubjectConsent
 
 
-class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminRevisionMixin,
-                      ModelAdminInstitutionMixin):
+class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMixin,
+                      ModelAdminRevisionMixin, ModelAdminInstitutionMixin):
 
     list_per_page = 10
     date_hierarchy = 'modified'

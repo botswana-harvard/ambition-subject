@@ -5,7 +5,7 @@ from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_protocol.validators import date_not_before_study_start
-from edc_constants.choices import NOT_APPLICABLE, YES_NO
+from edc_constants.choices import NOT_APPLICABLE, YES_NO, YES_NO_NA
 
 from ..choices import (
     BACTERIA_TYPE, BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM,
@@ -106,8 +106,8 @@ class Microbiology(CrfModelMixin):
 
     sputum_performed = models.CharField(
         verbose_name='Culture performed?',
-        max_length=5,
-        choices=YES_NO,
+        max_length=15,
+        choices=YES_NO_NA,
         help_text='Was sputum culture done?')
 
     sputum_taken_date = models.DateField(
@@ -128,8 +128,8 @@ class Microbiology(CrfModelMixin):
 
     sputum_genexpert_performed = models.CharField(
         verbose_name='Sputum gene expert performed',
-        max_length=5,
-        choices=YES_NO,
+        max_length=15,
+        choices=YES_NO_NA,
         help_text='Was sputum gene expert done?')
 
     sputum_genexpert_date = models.DateField(
