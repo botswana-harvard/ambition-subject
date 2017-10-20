@@ -158,7 +158,8 @@ class PatientHistory(CrfModelMixin):
         verbose_name='Last CD4, if known?',
         validators=[MinValueValidator(1), MaxValueValidator(2500)],
         null=True,
-        blank=True)
+        blank=True,
+        help_text='acceptable units are mm3')
 
     cd4_date = models.DateField(
         verbose_name='CD4 date',
