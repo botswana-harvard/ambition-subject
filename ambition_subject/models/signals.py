@@ -3,9 +3,11 @@ from ambition_rando.randomizer import Randomizer
 from ambition_subject.constants import CONTROL, SINGLE_DOSE
 from ambition_subject.models.patient_history import PatientHistory
 from edc_base.utils import get_utcnow
-from edc_pharma import DispenseAppointmentDescribe
+from edc_pharma import AppointmentDescriber
 from edc_pharma.dispense import PrescriptionCreator
-from edc_pharma.scheduler import DispenseScheduler
+from edc_pharma.models.worklist import WorkList
+from edc_pharma.scheduler import Scheduler
+from edc_registration.models import RegisteredSubject
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -51,14 +53,29 @@ def patient_history_on_post_save(sender, instance, raw, created, **kwargs):
             subject_randomization = SubjectRandomization.objects.get(
                 subject_identifier=instance.subject_identifier)
             if subject_randomization.rx in [CONTROL, SINGLE_DOSE]:
-                scheduler = DispenseScheduler(
+                scheduler = Scheduler(
                     subject_identifier=subject_randomization.subject_identifier,
                     randomization_datetime=subject_randomization.randomization_datetime,
                     arm=subject_randomization.rx
                 )
-                options = dict(weight=instance.weight)
+                appt = scheduler.dispense_appointments[0]
+                try:
+                    WorkList.objects.get(
+                        subject_identifier=subject_randomization.subject_identifier)
+                except WorkList.DoesNotExist:
+                    WorkList.objects.create(
+                        subject_identifier=subject_randomization.subject_identifier,
+                        report_datetime=instance.created,
+                        next_dispensing_datetime=appt.appt_datetime,
+                        enrollment_datetime=subject_randomization.created,
+                    )
+                reg = RegisteredSubject.objects.get(
+                    subject_identifier=subject_randomization.subject_identifier)
+                options = dict(weight=instance.weight,
+                               initials=reg.initials,
+                               clinician_initials=appt.user_created[0:2].upper())
                 for appointment in scheduler.dispense_appointments:
-                    describer = DispenseAppointmentDescribe(
+                    describer = AppointmentDescriber(
                         dispense_appointment=appointment)
                     options.update({'duration': describer.duration})
                     PrescriptionCreator(
