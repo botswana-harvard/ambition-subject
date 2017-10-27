@@ -1,4 +1,4 @@
-from django.test import TestCase, tag
+from django.test import TestCase
 from model_mommy import mommy
 
 from ambition_rando.import_randomization_list import import_randomization_list
@@ -260,46 +260,10 @@ class TestSubjectRules(TestCase):
                 visit_code='1070').entry_status,
             REQUIRED)
 
-    def test_death_report_tmg1_required(self):
+    def test_recurrence_symptom_required_from_adverse_event(self):
         self.assertEqual(
             CrfMetadata.objects.get(
-                model='ambition_subject.deathreporttmg1',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            NOT_REQUIRED)
-        mommy.make_recipe(
-            'ambition_subject.prnmodel',
-            subject_visit=self.subject_visit,
-            death_report_tmg1=YES)
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.deathreporttmg1',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            REQUIRED)
-
-    def test_death_report_tmg2_required(self):
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.deathreporttmg2',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            NOT_REQUIRED)
-        mommy.make_recipe(
-            'ambition_subject.prnmodel',
-            subject_visit=self.subject_visit,
-            death_report_tmg2=YES)
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.deathreporttmg2',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            REQUIRED)
-
-    def test_death_report_required_from_adverse_event(self):
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.deathreport',
+                model='ambition_subject.recurrencesymptom',
                 subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             NOT_REQUIRED)
@@ -307,11 +271,11 @@ class TestSubjectRules(TestCase):
         mommy.make_recipe(
             'ambition_subject.adverseevent',
             subject_visit=self.subject_visit,
-            ae_severity_grade='grade_5')
+            ae_cm_recurrence=YES)
 
         self.assertEqual(
             CrfMetadata.objects.get(
-                model='ambition_subject.deathreport',
+                model='ambition_subject.recurrencesymptom',
                 subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
             REQUIRED)
