@@ -61,6 +61,7 @@ class Radiology(CrfModelMixin):
         verbose_name='CT/MRI brain scan performed with contrast?',
         blank=False,
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         max_length=5,
         null=False)
 
@@ -81,6 +82,7 @@ class Radiology(CrfModelMixin):
     are_results_abnormal = models.CharField(
         blank=False,
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         null=False,
         max_length=5)
 
