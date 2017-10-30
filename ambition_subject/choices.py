@@ -534,8 +534,7 @@ DEVIATION_VIOLATION = (
 
 VISIT_REASON = (
     (SCHEDULED, 'Scheduled'),
-    (UNSCHEDULED, 'Not scheduled'),
-    (MISSED_VISIT, 'Missed'),
+    (UNSCHEDULED, 'Not scheduled')
 )
 
 YES_NO = (
