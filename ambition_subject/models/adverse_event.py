@@ -43,7 +43,9 @@ class AdverseEvent(CrfModelMixin):
         max_length=50,
         help_text='Single Dose: (Ambisome 10 mg/kg day 1 (single dose) + '
         'fluconazole 1200mg/day + flucytosine 100mg/kg/day for 14 days); '
-        'Control: (Amphotericin B 1 mg/kg + flucytocine 100mg/kg/day for 14 days)')
+        'Control: (Amphotericin B 1 mg/kg for 7 days followed by fluconazole '
+        '1200mg/day for 7 days, both given with flucytosine 100mg/kg/day for '
+        '14 days)')
 
     ae_study_relation_possibility = models.CharField(
         verbose_name=(
