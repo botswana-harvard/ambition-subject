@@ -63,8 +63,6 @@ def patient_history_on_post_save(sender, instance, raw, created, **kwargs):
             subject_identifier=subject_randomization.subject_identifier,
             rando_sid=subject_randomization.sid)
         prescription.weight = instance.weight
-        prescription.verified = False
-        prescription.verified_datetime = None
         prescription.save()
 
 
