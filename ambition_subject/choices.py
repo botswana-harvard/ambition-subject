@@ -309,7 +309,7 @@ INFO_SOURCE = (
 LP_REASON = (
     ('scheduled_per_protocol', 'Scheduled per protocol'),
     ('therapeutic_lp', 'Therapeutic LP'),
-    ('clincal_deterioration', 'Clinic Deterioration'),
+    ('clincal_deterioration', 'Clinical Deterioration'),
 )
 
 LOCATION_CARE = (
