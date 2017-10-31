@@ -6,7 +6,7 @@ from dateutil.tz import gettz
 from django.apps import AppConfig as DjangoApponfig
 from django.conf import settings
 from edc_appointment.apps import AppConfig as BaseEdcAppointmentAppConfig
-from edc_appointment.facility import Facility
+from edc_facility import Facility
 from edc_base.apps import AppConfig as BaseEdcBaseAppConfig
 from edc_base.utils import get_utcnow
 from edc_base_test.apps import AppConfig as BaseEdcBaseTestAppConfig
