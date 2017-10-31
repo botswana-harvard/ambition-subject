@@ -10,6 +10,7 @@ from edc_base.utils import get_utcnow
 from .enrollment import Enrollment
 from .subject_consent import SubjectConsent
 from .subject_screening import SubjectScreening
+from edc_registration.models import RegisteredSubject
 
 
 @receiver(post_save, weak=False, sender=SubjectConsent,
@@ -31,10 +32,21 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                     subject_identifier=instance.subject_identifier,
                     consent_identifier=instance.consent_identifier,
                     is_eligible=subject_screening.eligible)
-            Randomizer(subject_consent=instance,
-                       randomization_datetime=get_utcnow())
             subject_screening.subject_identifier = instance.subject_identifier
             subject_screening.save_base(update_fields=['subject_identifier'])
+
+            # randomize
+            randomizer = Randomizer(
+                subject_consent=instance,
+                randomization_datetime=get_utcnow())
+
+            # create prescription
+            prescription_model_cls = django_apps.get_model(
+                'edc_pharmacy.prescription')
+            prescription_model_cls.objects.create(
+                subject_identifier=instance.subject_identifier,
+                rando_sid=randomizer.history_obj.sid,
+                rando_arm=randomizer.history_obj.arm)
 
 
 @receiver(post_save, weak=False, sender=PatientHistory,
@@ -44,22 +56,16 @@ def patient_history_on_post_save(sender, instance, raw, created, **kwargs):
         # subject_randomization must exist
         subject_randomization = SubjectRandomization.objects.get(
             subject_identifier=instance.subject_identifier)
+        # update weight on prescription
         prescription_model_cls = django_apps.get_model(
             'edc_pharmacy.prescription')
-        # create a prescription if one does not exist
-        try:
-            prescription = prescription_model_cls.objects.get(
-                subject_identifier=subject_randomization.subject_identifier,
-                rando_sid=subject_randomization.sid)
-        except ObjectDoesNotExist:
-            prescription_model_cls.objects.create(
-                subject_identifier=subject_randomization.subject_identifier,
-                weight=instance.weight,
-                rando_sid=subject_randomization.sid,
-                rando_arm=subject_randomization.arm)
-        else:
-            prescription.weight = instance.weight
-            prescription.save()
+        prescription = prescription_model_cls.objects.get(
+            subject_identifier=subject_randomization.subject_identifier,
+            rando_sid=subject_randomization.sid)
+        prescription.weight = instance.weight
+        prescription.verified = False
+        prescription.verified_datetime = None
+        prescription.save()
 
 
 # @receiver(post_save, weak=False, sender=PatientHistory,
