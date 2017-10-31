@@ -61,6 +61,14 @@ class SubjectConsent(
 
     is_signed = models.BooleanField(default=False, editable=False)
 
+    is_literate = models.CharField(
+        verbose_name='Is the participant/next of kin LITERATE?',
+        max_length=3,
+        choices=YES_NO,
+        help_text=('If \'No\' provide witness\'s name on this '
+                   'form and signature on the paper document.'),
+    )
+
     may_store_genetic_samples = models.CharField(
         verbose_name=('Does the participant/next of kin agree that a portion of'
                       ' the blood sample that is taken be stored for genetic'
@@ -82,7 +90,7 @@ class SubjectConsent(
     )
 
     consent_reviewed = models.CharField(
-        verbose_name='I have reviewed the consent with the participant',
+        verbose_name='I have reviewed the consent with the participant/next of kin',
         max_length=3,
         choices=YES_NO,
         validators=[eligible_if_yes, ],
@@ -91,8 +99,8 @@ class SubjectConsent(
         help_text='If no, INELIGIBLE',
     )
     study_questions = models.CharField(
-        verbose_name=(
-            'I have answered all questions the participant had about the study'),
+        verbose_name=('I have answered all questions the participant/next of '
+                      'kin had about the study'),
         max_length=3,
         choices=YES_NO,
         validators=[eligible_if_yes, ],
@@ -102,7 +110,7 @@ class SubjectConsent(
     )
     assessment_score = models.CharField(
         verbose_name=(
-            'I have asked the participant questions about this study and '
+            'I have asked the participant/next of kin questions about this study and '
             'they have demonstrated understanding'),
         max_length=3,
         choices=YES_NO,
@@ -113,7 +121,8 @@ class SubjectConsent(
     )
 
     consent_signature = models.CharField(
-        verbose_name=('The participant has signed the consent form?'),
+        verbose_name=(
+            'The participant/next of kin has signed the consent form?'),
         max_length=3,
         choices=YES_NO,
         validators=[eligible_if_yes, ],
@@ -124,7 +133,7 @@ class SubjectConsent(
 
     consent_copy = models.CharField(
         verbose_name=(
-            'I have provided the participant with a copy of their '
+            'I have provided the participant/next of kin with a copy of their '
             'signed informed consent'),
         max_length=20,
         choices=YES_NO_DECLINED,
