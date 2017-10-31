@@ -23,7 +23,7 @@ class LumbarPunctureCsf(CrfModelMixin):
     closing_pressure = models.IntegerField(
         blank=True,
         null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(99)],
+        validators=[MinValueValidator(0), MaxValueValidator(99)],
         help_text='Units cm of H2O')
 
     csf_amount_removed = models.IntegerField(
@@ -34,7 +34,7 @@ class LumbarPunctureCsf(CrfModelMixin):
     quantitative_culture = models.IntegerField(
         blank=True,
         null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(9999999)],
+        validators=[MinValueValidator(0), MaxValueValidator(9999999)],
         help_text='Units CFU/ml')
 
     csf_culture = models.CharField(
@@ -56,7 +56,7 @@ class LumbarPunctureCsf(CrfModelMixin):
 
     differential_lymphocyte_count = models.IntegerField(
         verbose_name='Differential lymphocyte cell count:',
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
         blank=True,
         null=True,
         help_text='acceptable units are mm3 or %')
@@ -68,7 +68,7 @@ class LumbarPunctureCsf(CrfModelMixin):
 
     differential_neutrophil_count = models.IntegerField(
         verbose_name='Differential neutrophil cell count:',
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
         blank=True,
         null=True,
         help_text='acceptable units are mm3 or %')
