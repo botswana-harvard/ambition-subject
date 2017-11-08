@@ -34,7 +34,7 @@ class RecurrenceSymptom(CrfModelMixin):
 
     glasgow_coma_score = models.IntegerField(
         verbose_name='Score:',
-        validators=[MinValueValidator(1), MaxValueValidator(15)],
+        validators=[MinValueValidator(3), MaxValueValidator(15)],
         help_text='/15')
 
     recent_seizure = models.CharField(
