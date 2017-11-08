@@ -1,16 +1,17 @@
+from ambition_subject.models.patient_history import PatientHistory
+from edc_base.utils import get_utcnow
+from edc_registration.models import RegisteredSubject
+
 from ambition_rando.models import SubjectRandomization
 from ambition_rando.randomizer import Randomizer
-from ambition_subject.models.patient_history import PatientHistory
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from edc_base.utils import get_utcnow
 
 from .enrollment import Enrollment
 from .subject_consent import SubjectConsent
 from .subject_screening import SubjectScreening
-from edc_registration.models import RegisteredSubject
 
 
 @receiver(post_save, weak=False, sender=SubjectConsent,
@@ -46,7 +47,7 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
             prescription_model_cls.objects.create(
                 subject_identifier=instance.subject_identifier,
                 rando_sid=randomizer.history_obj.sid,
-                rando_arm=randomizer.history_obj.arm)
+                rando_arm=randomizer.history_obj.rx)
 
 
 @receiver(post_save, weak=False, sender=PatientHistory,
