@@ -88,11 +88,6 @@ class BloodResult(CrfModelMixin):
         blank=True,
         null=True)
 
-    proteinuria = models.CharField(
-        choices=YES_NO,
-        max_length=5,
-        null=True)
-
     are_results_normal = models.CharField(
         choices=YES_NO,
         max_length=5)
