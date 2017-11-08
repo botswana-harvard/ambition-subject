@@ -13,6 +13,9 @@ class AppointmentForm(AppointmentFormMixin, forms.ModelForm):
         choices=APPOINTMENT_REASON,
         widget=forms.RadioSelect)
 
+    def validate_appt_new_or_complete(self, appt_status=None):
+        return None
+
     class Meta:
         model = Appointment
         fields = '__all__'
