@@ -10,6 +10,7 @@ from .model_mixins.crf_model_mixin import CrfModelMixin
 from edc_base.model_fields.custom_fields import OtherCharField
 from ambition_subject.choices import SECOND_ARV_REGIMEN
 from edc_constants.constants import NOT_APPLICABLE
+from django.template.defaultfilters import default
 
 
 class StudyTerminationConclusion(CrfModelMixin):
@@ -116,7 +117,8 @@ class StudyTerminationConclusion(CrfModelMixin):
         verbose_name='ART regimen started for naive patients (or regimen'
         ' switched for those already on ARVs)',
         max_length=75,
-        choices=ARV_REGIMEN)
+        choices=ARV_REGIMEN,
+        default=NOT_APPLICABLE)
 
     first_line_regimen_other = OtherCharField(
         max_length=100,
@@ -138,7 +140,7 @@ class StudyTerminationConclusion(CrfModelMixin):
         validators=[date_not_future])
 
     first_line_env = models.CharField(
-        verbose_name='If first line, on EFV or NVP and or DTG?',
+        verbose_name='If first line, on EFV or NVP or DTG?',
         max_length=3,
         choices=FIRST_LINE_REGIMEN,
         null=True)
