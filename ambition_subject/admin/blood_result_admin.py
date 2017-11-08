@@ -31,7 +31,7 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = BloodResultForm
     conditional_fieldsets = {
-        DAY1: (alt, urine_chemistry, blood_count, immunology),
+        DAY1: (alt, blood_count, immunology),
         DAY7: (alt, blood_count),
         DAY14: (alt, blood_count),
         WEEK4: (alt, blood_count),
