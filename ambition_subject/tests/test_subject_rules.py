@@ -1,12 +1,12 @@
-from django.test import TestCase
-from model_mommy import mommy
-
 from ambition_rando.import_randomization_list import import_randomization_list
 from edc_base.utils import get_utcnow
-from edc_constants.constants import YES
+from edc_constants.constants import YES, NO
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
 from edc_metadata.models import CrfMetadata
 from edc_visit_tracking.constants import SCHEDULED
+
+from django.test import TestCase, tag
+from model_mommy import mommy
 
 from ..models import Appointment
 
@@ -278,4 +278,69 @@ class TestSubjectRules(TestCase):
                 model='ambition_subject.recurrencesymptom',
                 subject_identifier=self.consent.subject_identifier,
                 visit_code='1070').entry_status,
+            REQUIRED)
+
+    @tag('death_report')
+    def test_death_report_required_on_prn(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1112')
+        self.subject_visit = mommy.make_recipe(
+            'ambition_subject.subjectvisit',
+            appointment=appointment,
+            reason=SCHEDULED)
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1112').entry_status,
+            NOT_REQUIRED)
+
+        mommy.make_recipe(
+            'ambition_subject.week16',
+            subject_visit=self.subject_visit,
+            patient_alive=NO)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1112').entry_status,
+            REQUIRED)
+
+    @tag('death_report')
+    def test_death_report_required_on_prn_1(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1112')
+        self.subject_visit = mommy.make_recipe(
+            'ambition_subject.subjectvisit',
+            appointment=appointment,
+            reason=SCHEDULED)
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1112').entry_status,
+            NOT_REQUIRED)
+
+        week16 = mommy.make_recipe(
+            'ambition_subject.week16',
+            subject_visit=self.subject_visit,
+            patient_alive=YES)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1112').entry_status,
+            NOT_REQUIRED)
+
+        week16.patient_alive = NO
+        week16.save()
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.deathreport',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1112').entry_status,
             REQUIRED)
