@@ -172,6 +172,8 @@ class Week2(ClinicalAssessment, CrfModelMixin):
 
     antibiotic = models.ManyToManyField(
         Antibiotic,
+        null=True,
+        blank=True,
         verbose_name="Were any of the following antibiotics given?",)
 
     antibiotic_other = models.CharField(
