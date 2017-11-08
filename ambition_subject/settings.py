@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'edc_metadata_rules.apps.AppConfig',
     'edc_registration.apps.AppConfig',
     'edc_sync_files.apps.AppConfig',
-    'edc_pharma.apps.AppConfig',
+    'edc_facility.apps.AppConfig',
+    'edc_pharmacy.apps.AppConfig',
     'ambition_subject.apps.EdcBaseAppConfig',
     'ambition_subject.apps.EdcBaseTestAppConfig',
     'ambition_subject.apps.EdcLabAppConfig',
@@ -149,6 +150,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_subject', 'static')
 STATIC_URL = '/static/'
 DEVICE_ID = '99'
 EDC_LAB_REQUISITION_MODEL = 'ambition_subject.subjectrequisition'
+
+COUNTRY = 'botswana'
+HOLIDAY_FILE = os.path.join(BASE_DIR, APP_NAME, 'holidays.csv')
+
+DEFAULT_APPOINTMENT_MODEL = 'ambition_subject.appointment'
 # DEVICE_ROLE = 'CentralServer'
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
 GIT_DIR = BASE_DIR

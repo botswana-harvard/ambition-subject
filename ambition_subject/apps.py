@@ -1,12 +1,5 @@
-import os
-
 from datetime import datetime
-from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
-from dateutil.tz import gettz
-from django.apps import AppConfig as DjangoApponfig
-from django.conf import settings
 from edc_appointment.apps import AppConfig as BaseEdcAppointmentAppConfig
-from edc_facility import Facility
 from edc_base.apps import AppConfig as BaseEdcBaseAppConfig
 from edc_base.utils import get_utcnow
 from edc_base_test.apps import AppConfig as BaseEdcBaseTestAppConfig
@@ -24,8 +17,16 @@ from edc_sync_files.apps import AppConfig as BaseEdcSyncFilesAppConfig
 from edc_timepoint.apps import AppConfig as BaseEdcTimepointAppConfig
 from edc_timepoint.timepoint import Timepoint
 from edc_visit_tracking.apps import AppConfig as BaseEdcVisitTrackingAppConfig
-from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
 from edc_visit_tracking.constants import MISSED_VISIT
+from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
+import os
+
+from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
+from dateutil.tz import gettz
+from django.apps import AppConfig as DjangoApponfig
+from django.conf import settings
+from edc_appointment.appointment_config import AppointmentConfig
+from edc_facility import Facility
 
 
 class AppConfig(DjangoApponfig):
@@ -108,7 +109,12 @@ if settings.APP_NAME == 'ambition_subject':
 
     class EdcAppointmentAppConfig(BaseEdcAppointmentAppConfig):
         app_label = 'ambition_subject'
-        default_appt_type = 'clinic'
+        default_appt_type = 'hospital'
+        configurations = [
+            AppointmentConfig(
+                model='ambition_subject.appointment',
+                related_visit_model='ambition_subject.subjectvisit')
+        ]
         facilities = {
             'clinic': Facility(
                 name='clinic', days=[MO, TU, WE, TH, FR, SA, SU],
