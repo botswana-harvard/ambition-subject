@@ -1,9 +1,9 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO
 
 from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import (CrfModelMixin, ClinicalAssessment,
@@ -197,8 +197,12 @@ class Week2(ClinicalAssessment, CrfModelMixin):
         blank=True,
         default=None)
 
-    weight = models.IntegerField(
-        help_text='Weight in Kilograms')
+    weight = models.DecimalField(
+        verbose_name='Weight:',
+        validators=[MinValueValidator(20), MaxValueValidator(150)],
+        decimal_places=1,
+        max_digits=4,
+        help_text='Kg')
 
     medicines = models.ManyToManyField(
         Day14Medication,
