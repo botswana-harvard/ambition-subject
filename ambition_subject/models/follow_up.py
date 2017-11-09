@@ -79,7 +79,7 @@ class FollowUp(ClinicalAssessment, MedicalExpensesMixin, CrfModelMixin):
 
 class FollowUpDiagnoses(SignificantDiagnosesMixin):
 
-    follow_up = models.ForeignKey(FollowUp)
+    follow_up = models.ForeignKey(FollowUp, on_delete=models.CASCADE)
 
     objects = FollowUpDiagnosesManager()
 

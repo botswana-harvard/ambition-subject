@@ -250,7 +250,7 @@ class Week2(ClinicalAssessment, CrfModelMixin):
 
 class SignificantDiagnoses(SignificantDiagnosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=models.CASCADE)
 
     objects = SignificantDiagnosesManager()
 
@@ -266,7 +266,7 @@ class SignificantDiagnoses(SignificantDiagnosesMixin):
 
 class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=models.CASCADE)
 
     objects = FluconazoleMissedDosesManager()
 
@@ -282,7 +282,7 @@ class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
 
 class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=models.CASCADE)
 
     objects = FluconazoleMissedDosesManager()
 
@@ -299,7 +299,7 @@ class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
 
 class FlucytosineMissedDoses(FlucytosineMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=models.CASCADE)
 
     objects = FluconazoleMissedDosesManager()
 

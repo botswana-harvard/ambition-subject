@@ -150,7 +150,7 @@ class HealthEconomicsQuestionnaire(MedicalExpensesMixin, CrfModelMixin):
 class MedicalExpenses(BaseUuidModel, MedicalExpensesMixin):
 
     health_economics_questionnaire = models.ForeignKey(
-        HealthEconomicsQuestionnaire)
+        HealthEconomicsQuestionnaire, on_delete=models.CASCADE)
 
     objects = MedicalExpensesManager()
 

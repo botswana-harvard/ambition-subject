@@ -288,7 +288,8 @@ class PatientHistory(CrfModelMixin):
 
 class PreviousOpportunisticInfection(BaseUuidModel):
 
-    patient_history = models.ForeignKey(PatientHistory)
+    patient_history = models.ForeignKey(
+        PatientHistory, on_delete=models.CASCADE)
 
     previous_non_tb_oi = models.CharField(
         verbose_name='If other previous opportunistic infection, please specify.',

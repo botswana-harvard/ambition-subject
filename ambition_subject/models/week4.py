@@ -62,7 +62,7 @@ class Week4(ClinicalAssessment, CrfModelMixin):
 
 class Week4Diagnoses(SignificantDiagnosesMixin):
 
-    week4 = models.ForeignKey(Week4)
+    week4 = models.ForeignKey(Week4, on_delete=models.CASCADE)
 
     objects = Week4DiagnosesManager()
 
