@@ -35,6 +35,7 @@ class AppConfig(DjangoApponfig):
 
     screening_age_adult_upper = 99
     screening_age_adult_lower = 18
+    include_in_administration_section = False
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save
