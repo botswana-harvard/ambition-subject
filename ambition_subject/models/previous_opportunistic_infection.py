@@ -23,7 +23,8 @@ class PreviousOpportunisticInfectionManager(models.Manager):
 
 class PreviousOpportunisticInfection(BaseUuidModel):
 
-    patient_history = models.ForeignKey(PatientHistory, on_delete=PROTECT)
+    patient_history = models.ForeignKey(
+        PatientHistory, on_delete=PROTECT)
 
     previous_non_tb_oi = models.CharField(
         verbose_name='If other previous opportunistic infection, please specify.',

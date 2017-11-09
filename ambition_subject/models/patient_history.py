@@ -2,7 +2,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_fields import OtherCharField, IsDateEstimatedFieldNa
-from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE

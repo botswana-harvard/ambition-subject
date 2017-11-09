@@ -22,8 +22,7 @@ class AmphotericinMissedDosesManager(models.Manager):
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
+            subject_visit__visit_code=visit_code)
 
 
 class FluconazoleMissedDosesManager(models.Manager):
@@ -37,8 +36,7 @@ class FluconazoleMissedDosesManager(models.Manager):
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
+            subject_visit__visit_code=visit_code)
 
 
 class FlucytosineMissedDosesManager(models.Manager):
@@ -52,8 +50,7 @@ class FlucytosineMissedDosesManager(models.Manager):
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
+            subject_visit__visit_code=visit_code)
 
 
 class SignificantDiagnosesManager(models.Manager):
@@ -66,8 +63,7 @@ class SignificantDiagnosesManager(models.Manager):
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
+            subject_visit__visit_code=visit_code)
 
 
 class Week2(ClinicalAssessment, CrfModelMixin):
