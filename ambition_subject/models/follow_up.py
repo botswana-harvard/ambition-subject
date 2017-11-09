@@ -1,15 +1,14 @@
 from django.db import models
-
-from edc_base.model_validators import date_not_future
+from django.db.models.deletion import PROTECT
+from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO_NA
 
 from ..choices import (
     FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND, YES_NO_ALREADY_ND)
-
 from .model_mixins import (
     CrfModelMixin, ClinicalAssessment, SignificantDiagnosesMixin, MedicalExpensesMixin)
-from edc_base.model_fields.custom_fields import OtherCharField
 
 
 class FollowUpDiagnosesManager(models.Manager):
@@ -79,7 +78,7 @@ class FollowUp(ClinicalAssessment, MedicalExpensesMixin, CrfModelMixin):
 
 class FollowUpDiagnoses(SignificantDiagnosesMixin):
 
-    follow_up = models.ForeignKey(FollowUp)
+    follow_up = models.ForeignKey(FollowUp, on_delete=PROTECT)
 
     objects = FollowUpDiagnosesManager()
 

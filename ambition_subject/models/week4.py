@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.db.models.deletion import PROTECT
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
@@ -62,7 +62,7 @@ class Week4(ClinicalAssessment, CrfModelMixin):
 
 class Week4Diagnoses(SignificantDiagnosesMixin):
 
-    week4 = models.ForeignKey(Week4)
+    week4 = models.ForeignKey(Week4, on_delete=PROTECT)
 
     objects = Week4DiagnosesManager()
 

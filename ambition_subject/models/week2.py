@@ -1,6 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-
+from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO
@@ -172,7 +172,6 @@ class Week2(ClinicalAssessment, CrfModelMixin):
 
     antibiotic = models.ManyToManyField(
         Antibiotic,
-        null=True,
         blank=True,
         verbose_name="Were any of the following antibiotics given?",)
 
@@ -250,7 +249,7 @@ class Week2(ClinicalAssessment, CrfModelMixin):
 
 class SignificantDiagnoses(SignificantDiagnosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = SignificantDiagnosesManager()
 
@@ -266,7 +265,7 @@ class SignificantDiagnoses(SignificantDiagnosesMixin):
 
 class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = FluconazoleMissedDosesManager()
 
@@ -282,7 +281,7 @@ class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
 
 class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = FluconazoleMissedDosesManager()
 
@@ -299,7 +298,7 @@ class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
 
 class FlucytosineMissedDoses(FlucytosineMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = FluconazoleMissedDosesManager()
 
