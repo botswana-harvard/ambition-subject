@@ -1,8 +1,10 @@
-from .model_mixins import CrfModelMixin, MedicalExpensesMixin
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.db.models.deletion import PROTECT
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_constants.choices import YES_NO
+
+from .model_mixins import CrfModelMixin, MedicalExpensesMixin
 
 
 class MedicalExpensesManager(models.Manager):
@@ -150,7 +152,7 @@ class HealthEconomicsQuestionnaire(MedicalExpensesMixin, CrfModelMixin):
 class MedicalExpenses(BaseUuidModel, MedicalExpensesMixin):
 
     health_economics_questionnaire = models.ForeignKey(
-        HealthEconomicsQuestionnaire)
+        HealthEconomicsQuestionnaire, on_delete=PROTECT)
 
     objects = MedicalExpensesManager()
 

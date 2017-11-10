@@ -9,6 +9,7 @@ from ..choices import DR_OPINION, STEROIDS_CHOICES
 
 from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment
 from .model_mixins import CrfModelMixin
+from edc_constants.constants import NOT_APPLICABLE
 
 
 class RecurrenceSymptom(CrfModelMixin):
@@ -33,7 +34,7 @@ class RecurrenceSymptom(CrfModelMixin):
 
     glasgow_coma_score = models.IntegerField(
         verbose_name='Score:',
-        validators=[MinValueValidator(1), MaxValueValidator(15)],
+        validators=[MinValueValidator(3), MaxValueValidator(15)],
         help_text='/15')
 
     recent_seizure = models.CharField(
@@ -100,6 +101,7 @@ class RecurrenceSymptom(CrfModelMixin):
     steroids_choices = models.CharField(
         verbose_name='If Yes',
         max_length=25,
+        default=NOT_APPLICABLE,
         choices=STEROIDS_CHOICES)
 
     steroids_choices_other = models.CharField(

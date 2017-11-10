@@ -21,10 +21,6 @@ alt = Fieldset(
     'alt',
     section='Liver Function Tests')
 
-urine_chemistry = Fieldset(
-    'proteinuria',
-    section='Urine Chemistry')
-
 immunology = Fieldset(
     'abs_cd4',
     section='Immunology')
@@ -35,7 +31,7 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = BloodResultForm
     conditional_fieldsets = {
-        DAY1: (alt, urine_chemistry, blood_count, immunology),
+        DAY1: (alt, blood_count, immunology),
         DAY7: (alt, blood_count),
         DAY14: (alt, blood_count),
         WEEK4: (alt, blood_count),
@@ -65,7 +61,6 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     )
 
     radio_fields = {
-        'proteinuria': admin.VERTICAL,
         'are_results_normal': admin.VERTICAL,
         'abnormal_results_in_ae_range': admin.VERTICAL,
         'creatinine_unit': admin.VERTICAL,

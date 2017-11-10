@@ -20,7 +20,8 @@ class Appointment(AppointmentModelMixin, BaseUuidModel):
     appt_reason = models.CharField(
         verbose_name='Reason for appointment:',
         max_length=25,
-        choices=APPOINTMENT_REASON)
+        choices=APPOINTMENT_REASON,
+        default='routine')
 
     objects = AppointmentManager()
 

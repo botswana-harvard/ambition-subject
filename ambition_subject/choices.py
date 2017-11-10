@@ -380,7 +380,6 @@ RAE_REASON = (
 )
 
 REASON_DRUG_MISSED = (
-    ('administered_to_protocol', 'Administered according to protocol'),
     ('toxicity', 'Toxicity'),
     ('missed', 'Missed'),
     ('refused', 'Refused'),

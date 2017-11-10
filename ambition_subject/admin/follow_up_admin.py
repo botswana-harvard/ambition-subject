@@ -114,4 +114,7 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'transport_form': admin.VERTICAL,
         'fluconazole_dose': admin.VERTICAL,
         'rifampicin_started': admin.VERTICAL,
-        'other_significant_dx': admin.VERTICAL}
+        'other_significant_dx': admin.VERTICAL,
+        'patient_help': admin.VERTICAL,
+        'patient_problems': admin.VERTICAL,
+        'ranking_score': admin.VERTICAL, }

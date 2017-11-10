@@ -65,7 +65,7 @@ class BloodResult(CrfModelMixin):
         max_length=6)
 
     alt = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        validators=[MinValueValidator(1), MaxValueValidator(2999)],
         verbose_name='ALT',
         help_text='units in U/L',
         null=True)
@@ -84,11 +84,6 @@ class BloodResult(CrfModelMixin):
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         help_text='units in /mm^3',
         blank=True,
-        null=True)
-
-    proteinuria = models.CharField(
-        choices=YES_NO,
-        max_length=5,
         null=True)
 
     are_results_normal = models.CharField(

@@ -1,9 +1,9 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-
+from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO
 
 from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import (CrfModelMixin, ClinicalAssessment,
@@ -22,8 +22,7 @@ class AmphotericinMissedDosesManager(models.Manager):
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
+            subject_visit__visit_code=visit_code)
 
 
 class FluconazoleMissedDosesManager(models.Manager):
@@ -37,8 +36,7 @@ class FluconazoleMissedDosesManager(models.Manager):
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
+            subject_visit__visit_code=visit_code)
 
 
 class FlucytosineMissedDosesManager(models.Manager):
@@ -52,8 +50,7 @@ class FlucytosineMissedDosesManager(models.Manager):
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
+            subject_visit__visit_code=visit_code)
 
 
 class SignificantDiagnosesManager(models.Manager):
@@ -66,8 +63,7 @@ class SignificantDiagnosesManager(models.Manager):
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
+            subject_visit__visit_code=visit_code)
 
 
 class Week2(ClinicalAssessment, CrfModelMixin):
@@ -172,6 +168,7 @@ class Week2(ClinicalAssessment, CrfModelMixin):
 
     antibiotic = models.ManyToManyField(
         Antibiotic,
+        blank=True,
         verbose_name="Were any of the following antibiotics given?",)
 
     antibiotic_other = models.CharField(
@@ -197,8 +194,12 @@ class Week2(ClinicalAssessment, CrfModelMixin):
         blank=True,
         default=None)
 
-    weight = models.IntegerField(
-        help_text='Weight in Kilograms')
+    weight = models.DecimalField(
+        verbose_name='Weight:',
+        validators=[MinValueValidator(20), MaxValueValidator(150)],
+        decimal_places=1,
+        max_digits=4,
+        help_text='Kg')
 
     medicines = models.ManyToManyField(
         Day14Medication,
@@ -244,7 +245,7 @@ class Week2(ClinicalAssessment, CrfModelMixin):
 
 class SignificantDiagnoses(SignificantDiagnosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = SignificantDiagnosesManager()
 
@@ -260,7 +261,7 @@ class SignificantDiagnoses(SignificantDiagnosesMixin):
 
 class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = FluconazoleMissedDosesManager()
 
@@ -276,7 +277,7 @@ class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
 
 class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = FluconazoleMissedDosesManager()
 
@@ -293,7 +294,7 @@ class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
 
 class FlucytosineMissedDoses(FlucytosineMissedDosesMixin):
 
-    week2 = models.ForeignKey(Week2)
+    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = FluconazoleMissedDosesManager()
 
