@@ -526,6 +526,11 @@ RANKING_SCORE = (
     (NOT_APPLICABLE, 'Not Applicable')
 )
 
+WEIGHT_DETERMINATION = (
+    ('estimated', 'Estimated'),
+    ('measured', 'Measured')
+)
+
 DEVIATION_VIOLATION = (
     (DEVIATION, 'Deviation'),
     (VIOLATION, 'Violation'),
