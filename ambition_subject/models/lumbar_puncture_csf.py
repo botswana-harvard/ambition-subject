@@ -21,8 +21,6 @@ class LumbarPunctureCsf(CrfModelMixin):
         help_text='Units cm of H2O')
 
     closing_pressure = models.IntegerField(
-        blank=True,
-        null=True,
         validators=[MinValueValidator(0), MaxValueValidator(99)],
         help_text='Units cm of H2O')
 
