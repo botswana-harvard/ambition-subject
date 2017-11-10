@@ -67,7 +67,7 @@ class BloodResult(CrfModelMixin):
         max_length=6)
 
     alt = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        validators=[MinValueValidator(1), MaxValueValidator(2999)],
         verbose_name='ALT',
         help_text='units in U/L',
         null=True)
