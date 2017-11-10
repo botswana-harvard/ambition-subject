@@ -1,11 +1,12 @@
-from ambition_rando.import_randomization_list import import_randomization_list
 from edc_base.utils import get_utcnow
-from edc_constants.constants import YES, NO
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
 from edc_metadata.models import CrfMetadata
-from edc_visit_tracking.constants import SCHEDULED
 
+from ambition_rando.import_randomization_list import import_randomization_list
+from ambition_subject.models.subject_visit import SubjectVisit
 from django.test import TestCase, tag
+from edc_constants.constants import YES, NO
+from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 from ..models import Appointment
@@ -280,7 +281,6 @@ class TestSubjectRules(TestCase):
                 visit_code='1070').entry_status,
             REQUIRED)
 
-    @tag('death_report')
     def test_death_report_required_on_prn(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
@@ -308,7 +308,6 @@ class TestSubjectRules(TestCase):
                 visit_code='1112').entry_status,
             REQUIRED)
 
-    @tag('death_report')
     def test_death_report_required_on_prn_1(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
@@ -343,4 +342,135 @@ class TestSubjectRules(TestCase):
                 model='ambition_subject.deathreport',
                 subject_identifier=self.consent.subject_identifier,
                 visit_code='1112').entry_status,
+            REQUIRED)
+
+    @tag('recurrence_form')
+    def test_recurrence_form(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1005')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.adverseevent',
+            subject_visit=self.subject_visit,
+            ae_cm_recurrence=YES)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.recurrencesymptom',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1005').entry_status,
+            REQUIRED)
+
+    def test_recurrence_form_1(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1005')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.adverseevent',
+            subject_visit=self.subject_visit,
+            ae_cm_recurrence=NO)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.recurrencesymptom',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1005').entry_status,
+            NOT_REQUIRED)
+
+    def test_recurrence_form_2(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1005')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.adverseevent',
+            subject_visit=self.subject_visit,
+            ae_cm_recurrence=NO)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            recurrence_symptom=NO)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.recurrencesymptom',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1005').entry_status,
+            NOT_REQUIRED)
+
+    def test_recurrence_form_3(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1005')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.adverseevent',
+            subject_visit=self.subject_visit,
+            ae_cm_recurrence=NO)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            recurrence_symptom=YES)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.recurrencesymptom',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1005').entry_status,
+            REQUIRED)
+
+    @tag('result_rule')
+    def test_blood_result_rule_not_required(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1000')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.bloodresult',
+            subject_visit=self.subject_visit,
+            absolute_neutrophil=55,
+            alt=199,
+            platelets=5451)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.subjectoffstudy',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1000').entry_status,
+            NOT_REQUIRED)
+
+    @tag('result_rule')
+    def test_blood_result_rule_required(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1000')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.bloodresult',
+            subject_visit=self.subject_visit,
+            absolute_neutrophil=55,
+            alt=201,
+            platelets=5451)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.subjectoffstudy',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1000').entry_status,
             REQUIRED)
