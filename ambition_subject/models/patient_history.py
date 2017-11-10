@@ -1,13 +1,12 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from django.db.models.deletion import PROTECT
 from edc_base.model_fields import OtherCharField, IsDateEstimatedFieldNa
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE
-from ..choices import ECOG_SCORE, SECOND_ARV_REGIMEN
+from ..choices import ECOG_SCORE, SECOND_ARV_REGIMEN, WEIGHT_DETERMINATION
 from .list_models import Medication, Neurological
 from .list_models import Symptom
 from .model_mixins import CrfModelMixin
@@ -189,6 +188,11 @@ class PatientHistory(CrfModelMixin):
         decimal_places=1,
         max_digits=4,
         help_text='Kg')
+
+    weight_determination = models.CharField(
+        verbose_name='Is weight estimated or measured?',
+        max_length=15,
+        choices=WEIGHT_DETERMINATION)
 
     glasgow_coma_score = models.IntegerField(
         verbose_name='Glasgow Coma Score:',
