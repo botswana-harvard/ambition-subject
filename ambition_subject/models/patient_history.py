@@ -109,7 +109,7 @@ class PatientHistory(CrfModelMixin):
     last_dose = models.IntegerField(
         verbose_name='If no, how many months since the last dose '
         'was taken?',
-        validators=[MinValueValidator(1)],
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
