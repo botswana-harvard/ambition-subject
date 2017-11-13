@@ -7,7 +7,7 @@ from edc_constants.constants import FEMALE, YES, MALE, ABNORMAL, NORMAL, NO
 
 from ..eligibility import (
     AgeEvaluator, GenderEvaluator, Eligibility, ConsentAbilityEvaluator,
-    MentalStatusEvaluatorError)
+    MentalStatusEvaluatorError, EarlyWithdrawalCriteriaEvaluator)
 
 
 @tag('screening')
@@ -54,6 +54,27 @@ class TestSubjectScreening(TestCase):
         gender_evaluator = GenderEvaluator(
             gender=FEMALE, pregnant=False, breast_feeding=False)
         self.assertTrue(gender_evaluator.eligible)
+
+    @tag('a')
+    def test_early_withdrawal_criteria_no(self):
+        withdrawal_criteria = EarlyWithdrawalCriteriaEvaluator(
+            withdrawal_criteria=NO
+        )
+        self.assertTrue(withdrawal_criteria.eligible)
+
+    @tag('a')
+    def test_early_withdrawal_criteria_na(self):
+        withdrawal_criteria = EarlyWithdrawalCriteriaEvaluator(
+            withdrawal_criteria='Not applicable - Results unavailable'
+        )
+        self.assertTrue(withdrawal_criteria.eligible)
+
+    @tag('a')
+    def test_early_withdrawal_criteria_yes(self):
+        withdrawal_criteria = EarlyWithdrawalCriteriaEvaluator(
+            withdrawal_criteria=YES
+        )
+        self.assertFalse(withdrawal_criteria.eligible)
 
     def test_eligibility_gender_reasons(self):
         gender_evaluator = GenderEvaluator()
