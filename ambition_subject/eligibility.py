@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 
 from edc_constants.choices import NORMAL_ABNORMAL
-from edc_constants.constants import MALE, FEMALE
+from edc_constants.constants import MALE, FEMALE, YES, NO
 
 
 class MentalStatusEvaluatorError(Exception):
@@ -69,6 +69,21 @@ class GenderEvaluator:
                 self.reason = 'breastfeeding'
             if gender not in [MALE, FEMALE]:
                 self.reason = 'invalid gender'
+
+
+class EarlyWithdrawalCriteriaEvaluator:
+    """Eligible if early withdrawal criteria is yes.
+    """
+
+    def __init__(self, withdrawal_criteria=None):
+        self.eligible = False
+        self.reason = None
+        options = [NO, 'Not applicable - Results unavailable']
+        for option in options:
+            if withdrawal_criteria in option:
+                self.eligible = True
+            else:
+                self.reason = 'meets early withdrawal criteria'
 
 
 class Eligibility:
