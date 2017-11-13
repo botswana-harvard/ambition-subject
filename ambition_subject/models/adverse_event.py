@@ -137,7 +137,7 @@ class AdverseEvent(CrfModelMixin):
         verbose_name='Date and time AE reported',
         blank=True,
         null=True,
-        help_text='AEs ≥ Grade 3 or SAE must be reported to the Trial '
+        help_text='AEs ≥ Grade 4 or SAE must be reported to the Trial '
                   'Management Group (TMG) within 48hrs (Email to: '
                   'ambition_tmg@sgul.ac.uk)')
 
