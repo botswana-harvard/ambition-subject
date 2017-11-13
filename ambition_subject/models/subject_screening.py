@@ -12,7 +12,7 @@ from uuid import uuid4
 
 from ..eligibility import Eligibility
 from ..screening_identifier import ScreeningIdentifier
-from ..choices import PREG_YES_NO_NA
+from ..choices import PREG_YES_NO_NA, WITHDRAWAL_CRITERIA_YES_NO_NA
 
 
 class SubjectScreeningManager(SearchSlugManager, models.Manager):
@@ -142,6 +142,12 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         max_length=150,
         null=True,
         editable=False)
+
+    withdrawal_criteria = models.CharField(
+        verbose_name='Does the patient meet an early withdrawal criteria?',
+        max_length=150,
+        choices=WITHDRAWAL_CRITERIA_YES_NO_NA,
+    )
 
     objects = SubjectScreeningManager()
 
