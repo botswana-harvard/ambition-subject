@@ -576,3 +576,9 @@ PREG_YES_NO_NA = (
     (NO, 'No'),
     (NOT_APPLICABLE, 'Not Applicable: e.g. male, post-menopausal'),
 )
+
+WITHDRAWAL_CRITERIA_YES_NO_NA = (
+    (YES, YES),
+    (NO, NO),
+    (NOT_APPLICABLE, 'Not applicable - Results unavailable'),
+)
