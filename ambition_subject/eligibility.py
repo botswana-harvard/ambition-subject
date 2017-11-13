@@ -94,13 +94,16 @@ class Eligibility:
     def __init__(self, age=None, consent_ability=None, gender=None, pregnant=None,
                  meningitis_dx=None, no_drug_reaction=None, will_hiv_test=None,
                  no_concomitant_meds=None, no_amphotericin=None,
-                 no_fluconazole=None, mental_status=None, breast_feeding=None):
+                 no_fluconazole=None, mental_status=None, breast_feeding=None,
+                 withdrawal_criteria=None):
         age_evaluator = AgeEvaluator(age=age)
         gender_evaluator = GenderEvaluator(
             gender=gender, pregnant=pregnant, breast_feeding=breast_feeding)
         consent_ability_evaluator = ConsentAbilityEvaluator(
             mental_status=mental_status,
             consent_ability=consent_ability)
+        withdrawal_criteria_evaluator = EarlyWithdrawalCriteriaEvaluator(
+            withdrawal_criteria=withdrawal_criteria)
         criteria = dict(
             no_drug_reaction=no_drug_reaction,
             no_concomitant_meds=no_concomitant_meds,
@@ -110,7 +113,8 @@ class Eligibility:
             will_hiv_test=will_hiv_test,
             age=age_evaluator.eligible,
             gender=gender_evaluator.eligible,
-            consent_ability=consent_ability_evaluator.eligible)
+            consent_ability=consent_ability_evaluator.eligible,
+            withdrawal_criteria=withdrawal_criteria_evaluator.eligible)
         self.eligible = all(criteria.values())
         self.reasons = [k for k, v in criteria.items() if not v]
         if consent_ability_evaluator.reason:
@@ -142,3 +146,6 @@ class Eligibility:
         if not will_hiv_test:
             self.reasons.pop(self.reasons.index('will_hiv_test'))
             self.reasons.append('HIV unknown, not willing to consent')
+        if not withdrawal_criteria:
+            self.reasons.pop(self.reasons.index('withdrawal_criteria'))
+            self.reasons.append('meets early withdrawal criteria')
