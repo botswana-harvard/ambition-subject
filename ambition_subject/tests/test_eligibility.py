@@ -5,6 +5,8 @@ from django.test import TestCase, tag
 
 from edc_constants.constants import FEMALE, YES, MALE, ABNORMAL, NORMAL, NO
 
+from ..choices import WITHDRAWAL_CRITERIA_YES_NO_NA
+
 from ..eligibility import (
     AgeEvaluator, GenderEvaluator, Eligibility, ConsentAbilityEvaluator,
     MentalStatusEvaluatorError, EarlyWithdrawalCriteriaEvaluator)
@@ -63,7 +65,7 @@ class TestSubjectScreening(TestCase):
 
     def test_early_withdrawal_criteria_na(self):
         withdrawal_criteria = EarlyWithdrawalCriteriaEvaluator(
-            withdrawal_criteria='Not applicable - Results unavailable'
+            withdrawal_criteria=WITHDRAWAL_CRITERIA_YES_NO_NA
         )
         self.assertTrue(withdrawal_criteria.eligible)
 
