@@ -191,6 +191,6 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
             no_concomitant_meds=if_no(self.contraindicated_meds),
             no_amphotericin=if_no(self.received_amphotericin),
             no_fluconazole=if_no(self.received_fluconazole),
-            withdrawal_criteria=if_yes(self.withdrawal_criteria))
+            withdrawal_criteria=self.withdrawal_criteria)
         self.reasons_ineligible = ','.join(eligibility.reasons)
         self.eligible = eligibility.eligible

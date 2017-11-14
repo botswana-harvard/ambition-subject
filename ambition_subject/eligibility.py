@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 
 from edc_constants.choices import NORMAL_ABNORMAL
-from edc_constants.constants import MALE, FEMALE, NO
+from edc_constants.constants import MALE, FEMALE, NO, YES
 from .constants import RESULTS_UNKNOWN
 
 

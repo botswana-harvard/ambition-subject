@@ -114,7 +114,6 @@ class TestSubjectScreening(TestCase):
         self.assertFalse(obj.eligible)
         self.assertIsNotNone(obj.reasons)
 
-    @tag('a')
     def test_eligibility_reasons(self):
         obj = Eligibility(
             age=18, gender=FEMALE,
