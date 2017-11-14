@@ -2,6 +2,7 @@ from django.apps import apps as django_apps
 
 from edc_constants.choices import NORMAL_ABNORMAL
 from edc_constants.constants import MALE, FEMALE, YES, NO
+from .choices import WITHDRAWAL_CRITERIA_YES_NO_NA
 
 
 class MentalStatusEvaluatorError(Exception):
@@ -78,9 +79,9 @@ class EarlyWithdrawalCriteriaEvaluator:
     def __init__(self, withdrawal_criteria=None):
         self.eligible = False
         self.reason = None
-        options = [NO, 'Not applicable - Results unavailable']
+        options = [NO, WITHDRAWAL_CRITERIA_YES_NO_NA]
         for option in options:
-            if withdrawal_criteria in option:
+            if withdrawal_criteria == option:
                 self.eligible = True
             else:
                 self.reason = 'meets early withdrawal criteria'
