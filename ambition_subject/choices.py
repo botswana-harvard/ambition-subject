@@ -143,9 +143,9 @@ CARE_PROVIDER = (
     ('doctor', 'Doctor'),
     ('nurse', 'Nurse'),
     ('traditional_healer', 'Traditional Healer'),
-    ('spiritual_healer', 'Spiritualhealer'),
+    ('spiritual_healer', 'Spiritual Healer'),
     ('family/friend', 'Family/Friend'),
-    ('pharmacist', 'pharmacist'),
+    ('pharmacist', 'Pharmacist'),
     (OTHER, 'Other'),
     (NOT_APPLICABLE, 'Not Applicable')
 )
