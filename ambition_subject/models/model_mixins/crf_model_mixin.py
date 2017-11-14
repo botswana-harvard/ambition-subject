@@ -61,9 +61,8 @@ class OffstudyMixin(BaseOffstudyMixin):
         super(OffstudyMixin, self).save(*args, **kwargs)
         if not self.is_eligible_after_blood_result():
             raise OffstudyError(
-                'Participant was reported off study on \'{0}\'. '
-                'Data reported after this date'
-                ' cannot be captured.')
+                'Participant is ineligible based on blood result. '
+                'Data reported cannot be captured.')
 
     class Meta:
         abstract = True
