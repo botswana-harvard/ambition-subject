@@ -20,6 +20,7 @@ class MedicalExpensesMixin(models.Model):
         'spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -28,14 +29,16 @@ class MedicalExpensesMixin(models.Model):
         ' has someone else spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
     he_spend_last_4weeks = models.DecimalField(
         verbose_name='How much in total has been spent'
         ' on your healthcare in the last 4 weeks?',
-        decimal_places=4,
-        max_digits=8,
+        decimal_places=2,
+        max_digits=16,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -63,7 +66,8 @@ class MedicalExpensesMixin(models.Model):
     transport_cost = models.DecimalField(
         verbose_name='How much did you spend on the transport (each way)?',
         decimal_places=2,
-        max_digits=8,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -99,7 +103,8 @@ class MedicalExpensesMixin(models.Model):
         verbose_name=(
             'How much did you pay for this visit?'),
         decimal_places=2,
-        max_digits=8,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -112,7 +117,8 @@ class MedicalExpensesMixin(models.Model):
     medication_payment = models.DecimalField(
         verbose_name='How much did you pay?',
         decimal_places=2,
-        max_digits=8,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -170,7 +176,8 @@ class MedicalExpensesMixin(models.Model):
     earnings_lost_amount = models.DecimalField(
         verbose_name='How much did you lose?',
         decimal_places=2,
-        max_digits=8,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
         blank=True,
         null=True)
 
