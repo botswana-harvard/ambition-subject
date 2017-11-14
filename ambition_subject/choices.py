@@ -6,7 +6,7 @@ from edc_visit_tracking.constants import (
     SCHEDULED,
     UNSCHEDULED)
 
-from .constants import (DEVIATION, VIOLATION, TUBERCULOSIS)
+from .constants import (DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN)
 
 ABNORMAL_RESULTS_REASON = (
     (NOT_APPLICABLE, 'Not Applicable'),
@@ -577,8 +577,8 @@ PREG_YES_NO_NA = (
     (NOT_APPLICABLE, 'Not Applicable: e.g. male, post-menopausal'),
 )
 
-WITHDRAWAL_CRITERIA_YES_NO_NA = (
+WITHDRAWAL_CRITERIA_YES_NO_UNKNOWN = (
     (YES, YES),
     (NO, NO),
-    (NOT_APPLICABLE, 'Not applicable - Results unavailable'),
+    (RESULTS_UNKNOWN, RESULTS_UNKNOWN),
 )
