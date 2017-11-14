@@ -8,6 +8,7 @@ from .clinic_note_form import ClinicNoteForm
 from .death_report import DeathReportForm
 from .death_report import DeathReportTmg1Form
 from .death_report import DeathReportTmg2Form
+from .educational_background_form import EducationalBackgroundForm
 from .fluconazole_missed_doses_form import FluconazoleMissedDosesForm
 from .flucytosine_missed_doses_form import FlucytosineMissedDosesForm
 from .follow_up_form import FollowUpForm, FollowUpDiagnosesForm

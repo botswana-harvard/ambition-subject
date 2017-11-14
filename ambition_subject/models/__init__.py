@@ -8,6 +8,7 @@ from .death_report import DeathReport
 from .death_report import DeathReportTmg1
 from .death_report import DeathReportTmg2
 from .disenrollment import Disenrollment
+from .educational_background import EducationalBackground
 from .enrollment import Enrollment
 from .follow_up import FollowUp, FollowUpDiagnoses
 from .health_economics_questionnaire import HealthEconomicsQuestionnaire

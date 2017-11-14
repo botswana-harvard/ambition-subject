@@ -7,6 +7,7 @@ from .clinic_note_admin import ClinicNoteAdmin
 from .death_report import DeathReportAdmin
 from .death_report import DeathReportTmg1Admin
 from .death_report import DeathReportTmg2Admin
+from .educational_background_admin import EducationalBackgroundAdmin
 from .follow_up_admin import FollowUpAdmin
 from .health_economics_questionnaire_admin import HealthEconomicsQuestionnaire
 from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin
