@@ -169,9 +169,7 @@ class MedicalExpensesMixin(models.Model):
     loss_of_earnings = models.CharField(
         verbose_name='Did you lose earnings as a result?',
         max_length=5,
-        choices=YES_NO_NA,
-        blank=True,
-        null=True)
+        choices=YES_NO_NA)
 
     earnings_lost_amount = models.DecimalField(
         verbose_name='How much did you lose?',
