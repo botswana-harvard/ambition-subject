@@ -145,6 +145,8 @@ HOLIDAY_FILE = os.path.join(BASE_DIR, APP_NAME, 'holidays.csv')
 DEFAULT_APPOINTMENT_MODEL = 'ambition_subject.appointment'
 # DEVICE_ROLE = 'CentralServer'
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
+
+ETC_DIR = os.path.join(BASE_DIR, 'etc')
 GIT_DIR = BASE_DIR
 
 

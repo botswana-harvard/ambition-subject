@@ -1,21 +1,21 @@
 from decimal import Decimal
+from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel, FormAsJSONModelMixin
-from edc_base.model_validators import datetime_not_future
 from edc_base.utils import get_utcnow
 from edc_consent.model_mixins import RequiresConsentMixin
-from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
-from edc_reference.model_mixins import ReferenceModelMixin
-
-from django.apps import apps as django_apps
-from django.db import models
-from django.db.models.deletion import PROTECT
-from edc_base.model_managers import HistoricalRecords
 from edc_offstudy.model_mixins import (
     OffstudyMixin as BaseOffstudyMixin, OffstudyError)
 from edc_protocol.validators import datetime_not_before_study_start
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
 from edc_visit_tracking.model_mixins import (
     CrfModelMixin as VisitTrackingCrfModelMixin, PreviousVisitModelMixin)
+
+from django.apps import apps as django_apps
+from django.db import models
+from django.db.models.deletion import PROTECT
+from edc_base.model_validators import datetime_not_future
+from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
+from edc_reference.model_mixins import ReferenceModelMixin
 
 from ..subject_visit import SubjectVisit
 
@@ -48,7 +48,7 @@ class OffstudyMixin(BaseOffstudyMixin):
                 BloodResult = django_apps.get_app_config(
                     'ambition_subject').get_model('bloodresult')
                 obj = BloodResult.objects.get(
-                    subject_visit=self.subject_visit,
+                    subject_visit__subject_identifier=self.subject_visit.subject_identifier,
                     subject_visit__visit_code='1000')
                 if any((self.neutrophils_result(obj=obj), self.platelets_result(obj=obj),
                         self.alt_result(obj=obj))):

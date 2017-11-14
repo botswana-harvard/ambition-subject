@@ -1,10 +1,12 @@
+from ambition_subject.models.clinic_note import ClinicNote
 from edc_base.utils import get_utcnow
-from edc_consent.tests import EdcConsentProvider
+from edc_consent.site_consents import site_consents
+from edc_consent.tests import EdcConsentProvider as EdcConsentProviderBase
+from random import choice
+
+from dateutil.relativedelta import relativedelta
 from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER, MALE, NORMAL
 from edc_visit_tracking.constants import SCHEDULED
-
-from ambition_subject.models.clinic_note import ClinicNote
-from dateutil.relativedelta import relativedelta
 from faker import Faker
 from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
@@ -40,6 +42,16 @@ class DateProvider(BaseProvider):
 
     def yesterday(self):
         return (get_utcnow() - relativedelta(days=1)).date()
+
+
+class EdcConsentProvider(EdcConsentProviderBase):
+
+    def dob_for_consenting_adult(self):
+        consent = site_consents.get_consent(
+            report_datetime=get_utcnow(),
+            consent_model='ambition_subject.subjectconsent')
+        years = choice(range(consent.age_is_adult, consent.age_max + 1))
+        return (get_utcnow() - relativedelta(years=years)).date()
 
 
 fake = Faker()
