@@ -40,44 +40,53 @@ class TestOffStudyMixin(TestCase):
         self.assertTrue(obj)
         self.assertTrue(obj.is_eligible_after_blood_result())
 
-    def test_is_eligible_after_blood_result_1(self):
+    def test_is_ineligible_after_blood_result_1(self):
+        """Assert participant results are abnormal and require for them to
+         be taken offstudy.
+        """
         self.subject_visit = SubjectVisit.objects.get(
             subject_identifier=self.consent.subject_identifier,
             visit_code='1000')
         obj = mommy.make_recipe(
             'ambition_subject.bloodresult',
             subject_visit=self.subject_visit,
-            absolute_neutrophil=55,
-            alt=199,
-            platelets=5451)
+            absolute_neutrophil=0.4,
+            alt=2001,
+            platelets=10)
+        self.assertTrue(obj.neutrophils_result(obj=obj))
+        self.assertTrue(obj.platelets_result(obj=obj))
+        self.assertTrue(obj.alt_result(obj=obj))
+
+    def test_is_eligible_after_blood_result_neutrophils(self):
+        """Assert participant results are normal and does not require for them
+         to be taken offstudy.
+        """
+        self.subject_visit = SubjectVisit.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1000')
+        obj = mommy.make_recipe(
+            'ambition_subject.bloodresult',
+            subject_visit=self.subject_visit,
+            absolute_neutrophil=0.8,
+            alt=150,
+            platelets=60)
         self.assertFalse(obj.neutrophils_result(obj=obj))
         self.assertFalse(obj.platelets_result(obj=obj))
         self.assertFalse(obj.alt_result(obj=obj))
 
-    def test_is_eligible_after_blood_result_neutrophils(self):
-        self.subject_visit = SubjectVisit.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code='1000')
-        obj = mommy.make_recipe(
-            'ambition_subject.bloodresult',
-            subject_visit=self.subject_visit,
-            absolute_neutrophil=50,
-            alt=201,
-            platelets=5000)
-        self.assertTrue(obj.neutrophils_result(obj=obj))
-        self.assertTrue(obj.platelets_result(obj=obj))
-        self.assertTrue(obj.alt_result(obj=obj))
+#     def test_is_eligible_after_blood_result_neutrophils_1(self):
+#         self.subject_visit = SubjectVisit.objects.get(
+#             subject_identifier=self.consent.subject_identifier,
+#             visit_code='1000')
+#         obj = mommy.make_recipe(
+#             'ambition_subject.bloodresult',
+#             subject_visit=self.subject_visit,
+#             absolute_neutrophil=0.8,
+#             alt=150,
+#             platelets=60)
+#         self.assertTrue(obj.neutrophils_result(obj=obj))
+#         self.assertTrue(obj.platelets_result(obj=obj))
+#         self.assertTrue(obj.alt_result(obj=obj))
 
-    def test_is_eligible_after_blood_result_neutrophils_1(self):
-        self.subject_visit = SubjectVisit.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code='1000')
-        obj = mommy.make_recipe(
-            'ambition_subject.bloodresult',
-            subject_visit=self.subject_visit,
-            absolute_neutrophil=50,
-            alt=201,
-            platelets=5000)
-        self.assertTrue(obj.neutrophils_result(obj=obj))
-        self.assertTrue(obj.platelets_result(obj=obj))
-        self.assertTrue(obj.alt_result(obj=obj))
+# add offstudy
+# number of appointment .. eq 0

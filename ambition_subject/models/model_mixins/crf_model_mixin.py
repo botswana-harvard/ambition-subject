@@ -23,22 +23,22 @@ from ..subject_visit import SubjectVisit
 class OffstudyMixin(BaseOffstudyMixin):
 
     def neutrophils_result(self, obj=None):
-        """ if absolute_neutrophil < (0.5 x 109/L ) eq 54.5 then participant is 
+        """ if absolute_neutrophil < (0.5 x 10^9/L )then participant is
         ineligible, take offstudy."""
-        neutrophils_allowed_limit = 0.5 * 109
+        neutrophils_allowed_limit = 0.5
         return (Decimal(obj.absolute_neutrophil or 0) <
                 Decimal(neutrophils_allowed_limit))
 
     def platelets_result(self, obj=None):
-        """ if  platelets < (50 x 109/L) then participant is ineligible. 
-        take offstudy."""
-        platelets_allowed_limit = 50 * 109
+        """ if  platelets < (50 x 10^9/L) then participant is ineligible.
+        Take offstudy."""
+        platelets_allowed_limit = 50
         return (Decimal(obj.platelets or 0) <
                 Decimal(platelets_allowed_limit))
 
     def alt_result(self, obj=None):
-        """ if  ALT > 200 IU/mL then participant is ineligible. 
-        take offstudy."""
+        """ if  ALT > 200 IU/mL then participant is ineligible.
+        Take offstudy."""
         return Decimal(obj.alt or 0) > Decimal('200')
 
     def is_eligible_after_blood_result(self):
