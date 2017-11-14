@@ -5,7 +5,7 @@ from django.test import TestCase, tag
 
 from edc_constants.constants import FEMALE, YES, MALE, ABNORMAL, NORMAL, NO
 
-from ..choices import WITHDRAWAL_CRITERIA_YES_NO_NA
+from ..constants import RESULTS_UNKNOWN
 
 from ..eligibility import (
     AgeEvaluator, GenderEvaluator, Eligibility, ConsentAbilityEvaluator,
@@ -65,7 +65,7 @@ class TestSubjectScreening(TestCase):
 
     def test_early_withdrawal_criteria_na(self):
         withdrawal_criteria = EarlyWithdrawalCriteriaEvaluator(
-            withdrawal_criteria=WITHDRAWAL_CRITERIA_YES_NO_NA
+            withdrawal_criteria=RESULTS_UNKNOWN
         )
         self.assertTrue(withdrawal_criteria.eligible)
 
@@ -114,18 +114,20 @@ class TestSubjectScreening(TestCase):
         self.assertFalse(obj.eligible)
         self.assertIsNotNone(obj.reasons)
 
+    @tag('a')
     def test_eligibility_reasons(self):
         obj = Eligibility(
             age=18, gender=FEMALE,
             mental_status=ABNORMAL,
             consent_ability=False,
             will_hiv_test=False,
-            pregnant=False)
+            pregnant=False,)
         reasons = ['Previous adverse drug reaction to the study medication',
                    'Patient on Contraindicated Meds', 'Unable to consent.',
                    'Previous Hx of Cryptococcal Meningitis',
                    'HIV unknown, not willing to consent',
-                   '> 0.7mg/kg of Amphotericin B', '> 48hrs of Fluconazole']
+                   '> 0.7mg/kg of Amphotericin B', '> 48hrs of Fluconazole',
+                   'Meets early withdrawal criteria']
         reasons.sort()
         reasons1 = obj.reasons
         reasons1.sort()
