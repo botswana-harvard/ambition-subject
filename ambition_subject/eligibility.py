@@ -1,8 +1,8 @@
 from django.apps import apps as django_apps
 
 from edc_constants.choices import NORMAL_ABNORMAL
-from edc_constants.constants import MALE, FEMALE, YES, NO
-from .choices import WITHDRAWAL_CRITERIA_YES_NO_NA
+from edc_constants.constants import MALE, FEMALE, NO
+from .constants import RESULTS_UNKNOWN
 
 
 class MentalStatusEvaluatorError(Exception):
@@ -73,18 +73,17 @@ class GenderEvaluator:
 
 
 class EarlyWithdrawalCriteriaEvaluator:
-    """Eligible if early withdrawal criteria is yes.
+    """Eligible if early withdrawal criteria is NO or
+    UNKNOWN.
     """
 
     def __init__(self, withdrawal_criteria=None):
         self.eligible = False
         self.reason = None
-        options = [NO, WITHDRAWAL_CRITERIA_YES_NO_NA]
-        for option in options:
-            if withdrawal_criteria == option:
-                self.eligible = True
-            else:
-                self.reason = 'meets early withdrawal criteria'
+        if withdrawal_criteria in [NO, RESULTS_UNKNOWN]:
+            self.eligible = True
+        else:
+            self.reason = 'Meets early withdrawal criteria'
 
 
 class Eligibility:
@@ -127,6 +126,9 @@ class Eligibility:
         if gender_evaluator.reason:
             self.reasons.pop(self.reasons.index('gender'))
             self.reasons.append(gender_evaluator.reason)
+        if withdrawal_criteria_evaluator.reason:
+            self.reasons.pop(self.reasons.index('withdrawal_criteria'))
+            self.reasons.append(withdrawal_criteria_evaluator.reason)
         if not no_drug_reaction:
             self.reasons.pop(self.reasons.index('no_drug_reaction'))
             self.reasons.append(
@@ -147,6 +149,3 @@ class Eligibility:
         if not will_hiv_test:
             self.reasons.pop(self.reasons.index('will_hiv_test'))
             self.reasons.append('HIV unknown, not willing to consent')
-        if not withdrawal_criteria:
-            self.reasons.pop(self.reasons.index('withdrawal_criteria'))
-            self.reasons.append('meets early withdrawal criteria')
