@@ -8,7 +8,7 @@ from edc_base.modeladmin_mixins import (
     ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
     ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
     FormAsJSONModelAdminMixin, ModelAdminRedirectOnDeleteMixin)
-from edc_base.fieldsets import FieldsetsModelAdminMixin
+from edc_fieldsets import FieldsetsModelAdminMixin
 from edc_visit_tracking.modeladmin_mixins import (
     CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin)
 
