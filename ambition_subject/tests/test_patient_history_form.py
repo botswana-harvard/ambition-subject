@@ -1,12 +1,12 @@
-from ..forms import PatientHistoryForm
-from ..models import Appointment
 from ambition_rando.import_randomization_list import import_randomization_list
-from django.core.exceptions import ValidationError
 from django.test import TestCase, tag
+from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
-from edc_constants.constants import NO, YES, NOT_APPLICABLE
+from edc_constants.constants import NO
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
+
+from ..forms import PatientHistoryForm
 
 
 @tag('ph')

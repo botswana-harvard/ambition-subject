@@ -1,16 +1,13 @@
-from model_mommy import mommy
-
 from django.apps import apps as django_apps
 from django.test import TestCase, tag
-
 from edc_constants.constants import FEMALE, YES, MALE, ABNORMAL, NORMAL, NO
+from model_mommy import mommy
 
 from ..eligibility import (
     AgeEvaluator, GenderEvaluator, Eligibility, ConsentAbilityEvaluator,
     MentalStatusEvaluatorError)
 
 
-@tag('screening')
 class TestSubjectScreening(TestCase):
 
     def setUp(self):

@@ -1,12 +1,12 @@
 import re
 
+from ambition_rando.import_randomization_list import import_randomization_list
 from django.test import TestCase
 from edc_base.utils import get_utcnow
 from edc_constants.constants import UUID_PATTERN
 from edc_registration.models import RegisteredSubject
 from model_mommy import mommy
 
-from ambition_rando.import_randomization_list import import_randomization_list
 from ..models import SubjectConsent, Enrollment
 
 

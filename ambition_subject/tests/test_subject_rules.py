@@ -1,15 +1,13 @@
-from edc_base.utils import get_utcnow
-from edc_metadata.constants import NOT_REQUIRED, REQUIRED
-from edc_metadata.models import CrfMetadata
-
 from ambition_rando.import_randomization_list import import_randomization_list
 from ambition_subject.models.subject_visit import SubjectVisit
 from django.test import TestCase, tag
+from edc_appointment.models import Appointment
+from edc_base.utils import get_utcnow
 from edc_constants.constants import YES, NO
+from edc_metadata.constants import NOT_REQUIRED, REQUIRED
+from edc_metadata.models import CrfMetadata
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
-
-from ..models import Appointment
 
 
 class TestSubjectRules(TestCase):
