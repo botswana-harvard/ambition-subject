@@ -4,6 +4,8 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP_NAME = 'ambition_subject'
+
+ETC_DIR = os.path.join(BASE_DIR, 'etc')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -29,32 +31,31 @@ INSTALLED_APPS = [
     'django_revision.apps.AppConfig',
     'rest_framework',
     'rest_framework.authtoken',
-    'edc_sync.apps.AppConfig',
-    'edc_reference.apps.AppConfig',
-    'edc_metadata_rules.apps.AppConfig',
-    'edc_registration.apps.AppConfig',
-    'edc_sync_files.apps.AppConfig',
+    'edc_base.apps.AppConfig',
     'edc_facility.apps.AppConfig',
     'edc_pharmacy.apps.AppConfig',
-    'ambition_subject.apps.EdcBaseAppConfig',
-    'ambition_subject.apps.EdcBaseTestAppConfig',
+    'edc_reference.apps.AppConfig',
+    'edc_metadata_rules.apps.AppConfig',
+    'edc_consent.apps.AppConfig',
+    'edc_timepoint.apps.AppConfig',
+    'edc_device.apps.AppConfig',
+    'edc_registration.apps.AppConfig',
+    'edc_sync.apps.AppConfig',
+    'edc_sync_files.apps.AppConfig',
+    'ambition_labs.apps.AppConfig',
+    'ambition_rando.apps.AppConfig',
+    'ambition_reference.apps.AppConfig',
+    'ambition_metadata_rules.apps.AppConfig',
+    'ambition_validators.apps.AppConfig',
+    'ambition_visit_schedule.apps.AppConfig',
     'ambition_subject.apps.EdcLabAppConfig',
     'ambition_subject.apps.EdcLabelAppConfig',
     'ambition_subject.apps.EdcMetadataAppConfig',
     'ambition_subject.apps.EdcIdentifierAppConfig',
     'ambition_subject.apps.EdcProtocolAppConfig',
-    'ambition_subject.apps.EdcConsentAppConfig',
-    'ambition_subject.apps.EdcDeviceAppConfig',
-    'ambition_subject.apps.EdcTimepointAppConfig',
     'ambition_subject.apps.EdcAppointmentAppConfig',
     'ambition_subject.apps.EdcVisitTrackingAppConfig',
     'ambition_subject.apps.AppConfig',
-    'ambition_rando.apps.AppConfig',
-    'ambition_validators.apps.AppConfig',
-    'ambition_labs.apps.AppConfig',
-    'ambition_reference.apps.AppConfig',
-    'ambition_metadata_rules.apps.AppConfig',
-    'ambition_visit_schedule.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,10 +142,6 @@ EDC_LAB_REQUISITION_MODEL = 'ambition_subject.subjectrequisition'
 
 COUNTRY = 'botswana'
 HOLIDAY_FILE = os.path.join(BASE_DIR, APP_NAME, 'holidays.csv')
-
-DEFAULT_APPOINTMENT_MODEL = 'ambition_subject.appointment'
-# DEVICE_ROLE = 'CentralServer'
-KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
 GIT_DIR = BASE_DIR
 
 
