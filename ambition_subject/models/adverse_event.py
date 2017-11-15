@@ -38,7 +38,8 @@ class AdverseEvent(CrfModelMixin):
         max_length=25,
         choices=AE_INTENSITY)
 
-    regimen = models.CharField(  # TODO: Get this from the Randomization
+    # TODO: Get this from the Randomization
+    regimen = models.CharField(
         verbose_name='Patient’s treatment regimen',
         max_length=50,
         help_text='Control: (Amphotericin B 1 mg/kg for 7 days with '
@@ -99,7 +100,8 @@ class AdverseEvent(CrfModelMixin):
     ae_treatment = models.TextField(
         verbose_name='Specify action taken for treatment of AE:')
 
-    ae_cm_recurrence = models.CharField(  # TODO: If yes Use rule group to open recurrence form
+    # TODO: If yes Use rule group to open recurrence form
+    ae_cm_recurrence = models.CharField(
         verbose_name='Was the AE a recurrence of CM symptoms?',
         max_length=10,
         choices=YES_NO,
