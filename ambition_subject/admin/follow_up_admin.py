@@ -1,7 +1,6 @@
 from django.contrib import admin
-
 from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
-from edc_base.fieldsets.fieldset import Fieldset
+from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
 from ..constants import WEEK10
