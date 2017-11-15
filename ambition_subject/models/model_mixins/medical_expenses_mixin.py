@@ -20,27 +20,21 @@ class MedicalExpensesMixin(models.Model):
         'spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)],
-        null=True,
-        blank=True)
+        validators=[MinValueValidator(0)])
 
     proxy_he_spend = models.DecimalField(
         verbose_name='Over that last 4 weeks, how much'
         ' has someone else spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)],
-        null=True,
-        blank=True)
+        validators=[MinValueValidator(0)])
 
     he_spend_last_4weeks = models.DecimalField(
         verbose_name='How much in total has been spent'
         ' on your healthcare in the last 4 weeks?',
         decimal_places=2,
         max_digits=16,
-        validators=[MinValueValidator(0)],
-        null=True,
-        blank=True)
+        validators=[MinValueValidator(0)])
 
     care_before_hospital = models.CharField(
         verbose_name='Have you received any treatment or care '
@@ -66,16 +60,12 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='How much did you spend on the transport (each way)?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)],
-        null=True,
-        blank=True)
+        validators=[MinValueValidator(0)])
 
     transport_duration = models.CharField(
         verbose_name='How long did it take you to reach there?',
         validators=[hm_validator],
         max_length=8,
-        null=True,
-        blank=True,
         help_text='in hours:minutes')
 
     care_provider = models.CharField(
@@ -101,9 +91,7 @@ class MedicalExpensesMixin(models.Model):
             'How much did you pay for this visit?'),
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)],
-        null=True,
-        blank=True)
+        validators=[MinValueValidator(0)])
 
     medication_bought = models.CharField(
         verbose_name='Did you buy other medication for relief?',
@@ -149,16 +137,12 @@ class MedicalExpensesMixin(models.Model):
         max_digits=4,
         decimal_places=1,
         validators=[MinValueValidator(0.5)],
-        null=True,
-        blank=True,
         help_text='in days')
 
     carer_time_off = models.IntegerField(
         verbose_name='How much time did a caring family member take '
         'off work to accompany you to the hospital?',
         validators=[MinValueValidator(0.5)],
-        null=True,
-        blank=True,
         help_text='in days')
 
     loss_of_earnings = models.CharField(
@@ -170,9 +154,7 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='How much did you lose?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)],
-        blank=True,
-        null=True)
+        validators=[MinValueValidator(0)])
 
     class Meta:
         abstract = True
