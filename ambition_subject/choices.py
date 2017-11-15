@@ -146,8 +146,7 @@ CARE_PROVIDER = (
     ('spiritual_healer', 'Spiritual Healer'),
     ('family/friend', 'Family/Friend'),
     ('pharmacist', 'Pharmacist'),
-    (OTHER, 'Other'),
-    (NOT_APPLICABLE, 'Not Applicable')
+    (OTHER, 'Other')
 )
 
 CAUSE_OF_DEATH = (
@@ -313,7 +312,6 @@ LP_REASON = (
 )
 
 LOCATION_CARE = (
-    (NOT_APPLICABLE, 'Not Applicable'),
     ('government_healthcare', 'Government Healthcare'),
     ('private_healthcare', 'Private Healthcare'),
     ('ngo_healthcare', 'NGO Healthcare'),

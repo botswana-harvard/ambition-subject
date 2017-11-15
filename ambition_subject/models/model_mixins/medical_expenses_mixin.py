@@ -51,8 +51,7 @@ class MedicalExpensesMixin(models.Model):
     location_care = models.CharField(
         verbose_name='If Yes, where did you receive treatment or care?',
         max_length=35,
-        choices=LOCATION_CARE,
-        default=NOT_APPLICABLE)
+        choices=LOCATION_CARE)
 
     location_care_other = OtherCharField()
 
@@ -82,8 +81,7 @@ class MedicalExpensesMixin(models.Model):
     care_provider = models.CharField(
         verbose_name='Who provided treatment or care during that visit?',
         max_length=35,
-        choices=CARE_PROVIDER,
-        default=NOT_APPLICABLE)
+        choices=CARE_PROVIDER)
 
     care_provider_other = OtherCharField(
         verbose_name='If Other Specify:',
@@ -96,8 +94,7 @@ class MedicalExpensesMixin(models.Model):
             'Did you pay for the treatment '
             'you received during that visit'),
         max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE)
+        choices=YES_NO)
 
     paid_treatment_amount = models.DecimalField(
         verbose_name=(
@@ -111,8 +108,7 @@ class MedicalExpensesMixin(models.Model):
     medication_bought = models.CharField(
         verbose_name='Did you buy other medication for relief?',
         max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE)
+        choices=YES_NO)
 
     medication_payment = models.DecimalField(
         verbose_name='How much did you pay?',
@@ -126,8 +122,7 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='Before this, did you go to another place '
         'for the treatment of the present situation?',
         max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE)
+        choices=YES_NO)
 
     duration_present_condition = models.IntegerField(
         verbose_name='How long have you been sick with your current '

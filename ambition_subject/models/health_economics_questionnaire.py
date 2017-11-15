@@ -5,7 +5,7 @@ from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from .model_mixins import CrfModelMixin, MedicalExpensesMixin
 
 
-class MedicalExpensesManager(models.Manager):
+class HealthEconomicsQuestionnaire2Manager(models.Manager):
 
     def get_by_natural_key(self, location_care, subject_identifier,
                            visit_schedule_name, schedule_name, visit_code):
@@ -18,18 +18,18 @@ class MedicalExpensesManager(models.Manager):
         )
 
 
-class HealthEconomicsQuestionnaire(MedicalExpensesMixin, CrfModelMixin):
+class HealthEconomicsQuestionnaire(CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Health Economics Questionnaires'
 
 
-class MedicalExpenses(BaseUuidModel, MedicalExpensesMixin):
+class HealthEconomicsQuestionnaire2(BaseUuidModel, MedicalExpensesMixin):
 
     health_economics_questionnaire = models.ForeignKey(
         HealthEconomicsQuestionnaire, on_delete=PROTECT)
 
-    objects = MedicalExpensesManager()
+    objects = HealthEconomicsQuestionnaire2Manager()
 
     def natural_key(self):
         return ((self.location_care,) + self.health_economics_questionnaire.natural_key())
@@ -37,5 +37,5 @@ class MedicalExpenses(BaseUuidModel, MedicalExpensesMixin):
         'ambition_subject.healtheconomicsquestionnaire']
 
     class Meta:
-        verbose_name_plural = 'Medical Expenses'
+        verbose_name_plural = 'Health Economics Questionnaire Inlines'
         unique_together = ('health_economics_questionnaire', 'location_care')

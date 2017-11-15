@@ -3,17 +3,15 @@ from django.contrib import admin
 from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
 
 from ..admin_site import ambition_subject_admin
-from ..forms import HealthEconomicsQuestionnaireForm
-from ..forms import HealthEconomicsQuestionnaire2Form
-from ..models import HealthEconomicsQuestionnaire
-from ..models import HealthEconomicsQuestionnaire2
+from ..forms import MedicalExpenses2Form, MedicalExpenses2InlineForm
+from ..models import HealthEconomicsQuestionnaire, MedicalExpenses
 from .modeladmin_mixins import CrfModelAdminMixin
 
 
-class HealthEconomicsQuestionnaire2Inline(TabularInlineMixin, admin.StackedInline):
+class MedicalExpenses2Inline(TabularInlineMixin, admin.StackedInline):
 
-    model = HealthEconomicsQuestionnaire2
-    form = HealthEconomicsQuestionnaire2Form
+    model = MedicalExpenses
+    form = MedicalExpensesForm
     extra = 1
 
     list_display = ('location_care', 'location_care_other', 'transport_form')
@@ -45,15 +43,38 @@ class HealthEconomicsQuestionnaire2Inline(TabularInlineMixin, admin.StackedInlin
 
 
 @admin.register(HealthEconomicsQuestionnaire, site=ambition_subject_admin)
-class HealthEconomicsQuestionnaireAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class MedicalExpenses2Admin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = HealthEconomicsQuestionnaireForm
 
-    inlines = [HealthEconomicsQuestionnaire2Inline]
+    inlines = [MedicalExpensesInline]
 
     fieldsets = (
-        ('Health Economics Questionnaire', {
+        ('Medical Expenses', {
             'fields': [
                 'subject_visit',
+                'currency',
+                'personal_he_spend',
+                'proxy_he_spend',
+                'he_spend_last_4weeks',
+                'duration_present_condition',
+                'activities_missed',
+                'activities_missed_other',
+                'time_off_work',
+                'carer_time_off',
+                'loss_of_earnings',
+                'earnings_lost_amount',
+                'care_before_hospital'
             ]}
          ), audit_fieldset_tuple)
+
+    radio_fields = {
+        'activities_missed': admin.VERTICAL,
+        'care_before_hospital': admin.VERTICAL,
+        'care_provider': admin.VERTICAL,
+        'currency': admin.VERTICAL,
+        'location_care': admin.VERTICAL,
+        'medication_bought': admin.VERTICAL,
+        'other_place_visited': admin.VERTICAL,
+        'transport_form': admin.VERTICAL,
+        'loss_of_earnings': admin.VERTICAL}
