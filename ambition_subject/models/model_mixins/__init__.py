@@ -4,3 +4,4 @@ from .inline_models_mixin import FlucytosineMissedDosesMixin, FluconazoleMissedD
 from .inline_models_mixin import SignificantDiagnosesMixin, AmphotericinMissedDosesMixin
 from .search_slug_model_mixin import SearchSlugModelMixin
 from .medical_expenses_mixin import MedicalExpensesMixin
+from .off_study_model_mixin import OffstudyModelMixin

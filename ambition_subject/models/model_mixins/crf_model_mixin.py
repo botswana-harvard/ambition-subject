@@ -1,73 +1,19 @@
-from decimal import Decimal
+from django.db import models
+from django.db.models.deletion import PROTECT
+from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel, FormAsJSONModelMixin
 from edc_base.model_validators import datetime_not_future
 from edc_base.utils import get_utcnow
 from edc_consent.model_mixins import RequiresConsentMixin
 from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
-from edc_reference.model_mixins import ReferenceModelMixin
-
-from django.apps import apps as django_apps
-from django.db import models
-from django.db.models.deletion import PROTECT
-from edc_base.model_managers import HistoricalRecords
-from edc_offstudy.model_mixins import (
-    OffstudyMixin as BaseOffstudyMixin, OffstudyError)
 from edc_protocol.validators import datetime_not_before_study_start
+from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
-from edc_visit_tracking.model_mixins import (
-    CrfModelMixin as VisitTrackingCrfModelMixin, PreviousVisitModelMixin)
+from edc_visit_tracking.model_mixins import CrfModelMixin as BaseCrfModelMixin
+from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
 from ..subject_visit import SubjectVisit
-
-
-class OffstudyMixin(BaseOffstudyMixin):
-
-    def neutrophils_result(self, obj=None):
-        """ if absolute_neutrophil < (0.5 x 109/L ) eq 54.5 then participant is 
-        ineligible, take offstudy."""
-        neutrophils_allowed_limit = 0.5 * 109
-        return (Decimal(obj.absolute_neutrophil or 0) <
-                Decimal(neutrophils_allowed_limit))
-
-    def platelets_result(self, obj=None):
-        """ if  platelets < (50 x 109/L) then participant is ineligible. 
-        take offstudy."""
-        platelets_allowed_limit = 50 * 109
-        return (Decimal(obj.platelets or 0) <
-                Decimal(platelets_allowed_limit))
-
-    def alt_result(self, obj=None):
-        """ if  ALT > 200 IU/mL then participant is ineligible. 
-        take offstudy."""
-        return Decimal(obj.alt or 0) > Decimal('200')
-
-    def is_eligible_after_blood_result(self):
-        try:
-            if not (self._meta.model_name == 'bloodresult' and
-                    self.subject_visit.visit_code == '1000'):
-                BloodResult = django_apps.get_app_config(
-                    'ambition_subject').get_model('bloodresult')
-                obj = BloodResult.objects.get(
-                    subject_visit=self.subject_visit,
-                    subject_visit__visit_code='1000')
-                if any((self.neutrophils_result(obj=obj), self.platelets_result(obj=obj),
-                        self.alt_result(obj=obj))):
-                    return False
-        except BloodResult.DoesNotExist or TypeError:
-            return True
-        return True
-
-    def save(self, *args, **kwargs):
-        super(OffstudyMixin, self).save(*args, **kwargs)
-        if not self.is_eligible_after_blood_result():
-            raise OffstudyError(
-                'Participant was reported off study on \'{0}\'. '
-                'Data reported after this date'
-                ' cannot be captured.')
-
-    class Meta:
-        abstract = True
-        consent_model = None
+from .off_study_model_mixin import OffstudyModelMixin
 
 
 class CrfModelManager(VisitTrackingCrfModelManager):
@@ -82,7 +28,7 @@ class CrfModelManager(VisitTrackingCrfModelManager):
         )
 
 
-class CrfModelMixin(VisitTrackingCrfModelMixin, OffstudyMixin,
+class CrfModelMixin(BaseCrfModelMixin, OffstudyModelMixin,
                     RequiresConsentMixin, PreviousVisitModelMixin,
                     UpdatesCrfMetadataModelMixin,
                     FormAsJSONModelMixin, ReferenceModelMixin, BaseUuidModel):
@@ -108,6 +54,6 @@ class CrfModelMixin(VisitTrackingCrfModelMixin, OffstudyMixin,
         return self.subject_visit.natural_key()
     natural_key.dependencies = ['ambition_subject.subjectvisit']
 
-    class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentMixin.Meta):
+    class Meta(BaseCrfModelMixin.Meta, RequiresConsentMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
         abstract = True
