@@ -6,7 +6,7 @@ from edc_consent.model_mixins import RequiresConsentMixin
 from edc_lab.model_mixins.requisition import RequisitionIdentifierMixin
 from edc_lab.model_mixins.requisition import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
-from edc_offstudy.model_mixins import OffstudyMixin
+from edc_offstudy.model_mixins import OffstudyModelMixin
 from edc_reference.model_mixins import RequisitionReferenceModelMixin
 from edc_search.model_mixins import SearchSlugManager
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
@@ -23,7 +23,7 @@ class Manager(VisitTrackingCrfModelManager, SearchSlugManager):
 
 class SubjectRequisition(
         RequisitionModelMixin, RequisitionStatusMixin, RequisitionIdentifierMixin,
-        VisitTrackingCrfModelMixin, OffstudyMixin,
+        VisitTrackingCrfModelMixin, OffstudyModelMixin,
         RequiresConsentMixin, PreviousVisitModelMixin,
         RequisitionReferenceModelMixin, UpdatesRequisitionMetadataModelMixin,
         SearchSlugModelMixin, BaseUuidModel):
