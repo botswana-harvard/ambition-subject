@@ -42,8 +42,12 @@ class DateProvider(BaseProvider):
         return (get_utcnow() - relativedelta(days=1)).date()
 
 
+class MyEdcConsentProvider(EdcConsentProvider):
+    consent_model = 'ambition_subject.subjectconsent'
+
+
 fake = Faker()
-fake.add_provider(EdcConsentProvider)
+fake.add_provider(MyEdcConsentProvider)
 fake.add_provider(DateProvider)
 
 aeclassification = Recipe(AEClassification)
