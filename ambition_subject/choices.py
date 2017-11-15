@@ -6,7 +6,7 @@ from edc_visit_tracking.constants import (
     SCHEDULED,
     UNSCHEDULED)
 
-from .constants import (DEVIATION, VIOLATION, TUBERCULOSIS)
+from .constants import (DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN)
 
 ABNORMAL_RESULTS_REASON = (
     (NOT_APPLICABLE, 'Not Applicable'),
@@ -143,11 +143,10 @@ CARE_PROVIDER = (
     ('doctor', 'Doctor'),
     ('nurse', 'Nurse'),
     ('traditional_healer', 'Traditional Healer'),
-    ('spiritual_healer', 'Spiritualhealer'),
+    ('spiritual_healer', 'Spiritual Healer'),
     ('family/friend', 'Family/Friend'),
-    ('pharmacist', 'pharmacist'),
-    (OTHER, 'Other'),
-    (NOT_APPLICABLE, 'Not Applicable')
+    ('pharmacist', 'Pharmacist'),
+    (OTHER, 'Other')
 )
 
 CAUSE_OF_DEATH = (
@@ -313,7 +312,6 @@ LP_REASON = (
 )
 
 LOCATION_CARE = (
-    (NOT_APPLICABLE, 'Not Applicable'),
     ('government_healthcare', 'Government Healthcare'),
     ('private_healthcare', 'Private Healthcare'),
     ('ngo_healthcare', 'NGO Healthcare'),
@@ -577,8 +575,8 @@ PREG_YES_NO_NA = (
     (NOT_APPLICABLE, 'Not Applicable: e.g. male, post-menopausal'),
 )
 
-WITHDRAWAL_CRITERIA_YES_NO_NA = (
+WITHDRAWAL_CRITERIA_YES_NO_UNKNOWN = (
     (YES, YES),
     (NO, NO),
-    (NOT_APPLICABLE, 'Not applicable - Results unavailable'),
+    (RESULTS_UNKNOWN, RESULTS_UNKNOWN),
 )

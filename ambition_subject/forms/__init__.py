@@ -8,12 +8,14 @@ from .clinic_note_form import ClinicNoteForm
 from .death_report import DeathReportForm
 from .death_report import DeathReportTmg1Form
 from .death_report import DeathReportTmg2Form
+from .educational_background_form import EducationalBackgroundForm
 from .fluconazole_missed_doses_form import FluconazoleMissedDosesForm
 from .flucytosine_missed_doses_form import FlucytosineMissedDosesForm
 from .follow_up_form import FollowUpForm, FollowUpDiagnosesForm
 from .health_economics_questionnaire_form import HealthEconomicsQuestionnaireForm
+from .health_economics_questionnaire2_form import HealthEconomicsQuestionnaire2Form
 from .lumbar_puncture_csf_form import LumbarPunctureCSFForm
-from .medical_expenses_form import MedicalExpensesForm
+from .medical_expenses import MedicalExpensesForm
 from .microbiology_form import MicrobiologyForm
 from .missed_visit_form import MissedVisitForm
 from .patient_history_form import PatientHistoryForm

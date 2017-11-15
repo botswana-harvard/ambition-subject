@@ -12,7 +12,7 @@ from uuid import uuid4
 
 from ..eligibility import Eligibility
 from ..screening_identifier import ScreeningIdentifier
-from ..choices import PREG_YES_NO_NA, WITHDRAWAL_CRITERIA_YES_NO_NA
+from ..choices import PREG_YES_NO_NA, WITHDRAWAL_CRITERIA_YES_NO_UNKNOWN
 
 
 class SubjectScreeningManager(SearchSlugManager, models.Manager):
@@ -146,7 +146,8 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
     withdrawal_criteria = models.CharField(
         verbose_name='Does the patient meet an early withdrawal criteria?',
         max_length=150,
-        choices=WITHDRAWAL_CRITERIA_YES_NO_NA,
+        choices=WITHDRAWAL_CRITERIA_YES_NO_UNKNOWN,
+        help_text='ALT>200 IU/mL, PMNs<500x106/L, Platelets<50,000x106/L'
     )
 
     objects = SubjectScreeningManager()
@@ -189,6 +190,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
             no_drug_reaction=if_no(self.previous_drug_reaction),
             no_concomitant_meds=if_no(self.contraindicated_meds),
             no_amphotericin=if_no(self.received_amphotericin),
-            no_fluconazole=if_no(self.received_fluconazole))
+            no_fluconazole=if_no(self.received_fluconazole),
+            withdrawal_criteria=self.withdrawal_criteria)
         self.reasons_ineligible = ','.join(eligibility.reasons)
         self.eligible = eligibility.eligible

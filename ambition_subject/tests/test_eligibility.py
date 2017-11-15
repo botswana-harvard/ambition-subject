@@ -3,9 +3,11 @@ from django.test import TestCase, tag
 from edc_constants.constants import FEMALE, YES, MALE, ABNORMAL, NORMAL, NO
 from model_mommy import mommy
 
+from ..constants import RESULTS_UNKNOWN
+
 from ..eligibility import (
     AgeEvaluator, GenderEvaluator, Eligibility, ConsentAbilityEvaluator,
-    MentalStatusEvaluatorError)
+    MentalStatusEvaluatorError, EarlyWithdrawalCriteriaEvaluator)
 
 
 class TestSubjectScreening(TestCase):
@@ -52,6 +54,24 @@ class TestSubjectScreening(TestCase):
             gender=FEMALE, pregnant=False, breast_feeding=False)
         self.assertTrue(gender_evaluator.eligible)
 
+    def test_early_withdrawal_criteria_no(self):
+        withdrawal_criteria = EarlyWithdrawalCriteriaEvaluator(
+            withdrawal_criteria=NO
+        )
+        self.assertTrue(withdrawal_criteria.eligible)
+
+    def test_early_withdrawal_criteria_na(self):
+        withdrawal_criteria = EarlyWithdrawalCriteriaEvaluator(
+            withdrawal_criteria=RESULTS_UNKNOWN
+        )
+        self.assertTrue(withdrawal_criteria.eligible)
+
+    def test_early_withdrawal_criteria_yes(self):
+        withdrawal_criteria = EarlyWithdrawalCriteriaEvaluator(
+            withdrawal_criteria=YES
+        )
+        self.assertFalse(withdrawal_criteria.eligible)
+
     def test_eligibility_gender_reasons(self):
         gender_evaluator = GenderEvaluator()
         self.assertIn('invalid gender', gender_evaluator.reason)
@@ -72,7 +92,8 @@ class TestSubjectScreening(TestCase):
             no_concomitant_meds=True,
             no_amphotericin=True,
             no_fluconazole=True,
-            mental_status=NORMAL)
+            mental_status=NORMAL,
+            withdrawal_criteria=NO)
         self.assertTrue(obj.eligible)
         self.assertIsNone(obj.reasons or None)
 
@@ -85,7 +106,8 @@ class TestSubjectScreening(TestCase):
             no_drug_reaction=True,
             no_concomitant_meds=True,
             no_amphotericin=False,
-            no_fluconazole=True)
+            no_fluconazole=True,
+            withdrawal_criteria=YES)
         self.assertFalse(obj.eligible)
         self.assertIsNotNone(obj.reasons)
 
@@ -95,12 +117,13 @@ class TestSubjectScreening(TestCase):
             mental_status=ABNORMAL,
             consent_ability=False,
             will_hiv_test=False,
-            pregnant=False)
+            pregnant=False,)
         reasons = ['Previous adverse drug reaction to the study medication',
                    'Patient on Contraindicated Meds', 'Unable to consent.',
                    'Previous Hx of Cryptococcal Meningitis',
                    'HIV unknown, not willing to consent',
-                   '> 0.7mg/kg of Amphotericin B', '> 48hrs of Fluconazole']
+                   '> 0.7mg/kg of Amphotericin B', '> 48hrs of Fluconazole',
+                   'Meets early withdrawal criteria']
         reasons.sort()
         reasons1 = obj.reasons
         reasons1.sort()

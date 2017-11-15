@@ -20,6 +20,7 @@ class MedicalExpensesMixin(models.Model):
         'spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -28,14 +29,16 @@ class MedicalExpensesMixin(models.Model):
         ' has someone else spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
     he_spend_last_4weeks = models.DecimalField(
         verbose_name='How much in total has been spent'
         ' on your healthcare in the last 4 weeks?',
-        decimal_places=4,
-        max_digits=8,
+        decimal_places=2,
+        max_digits=16,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -48,8 +51,7 @@ class MedicalExpensesMixin(models.Model):
     location_care = models.CharField(
         verbose_name='If Yes, where did you receive treatment or care?',
         max_length=35,
-        choices=LOCATION_CARE,
-        default=NOT_APPLICABLE)
+        choices=LOCATION_CARE)
 
     location_care_other = OtherCharField()
 
@@ -63,7 +65,8 @@ class MedicalExpensesMixin(models.Model):
     transport_cost = models.DecimalField(
         verbose_name='How much did you spend on the transport (each way)?',
         decimal_places=2,
-        max_digits=8,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -78,8 +81,7 @@ class MedicalExpensesMixin(models.Model):
     care_provider = models.CharField(
         verbose_name='Who provided treatment or care during that visit?',
         max_length=35,
-        choices=CARE_PROVIDER,
-        default=NOT_APPLICABLE)
+        choices=CARE_PROVIDER)
 
     care_provider_other = OtherCharField(
         verbose_name='If Other Specify:',
@@ -92,27 +94,27 @@ class MedicalExpensesMixin(models.Model):
             'Did you pay for the treatment '
             'you received during that visit'),
         max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE)
+        choices=YES_NO)
 
     paid_treatment_amount = models.DecimalField(
         verbose_name=(
             'How much did you pay for this visit?'),
         decimal_places=2,
-        max_digits=8,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
     medication_bought = models.CharField(
         verbose_name='Did you buy other medication for relief?',
         max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE)
+        choices=YES_NO)
 
     medication_payment = models.DecimalField(
         verbose_name='How much did you pay?',
         decimal_places=2,
-        max_digits=8,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
@@ -120,8 +122,7 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='Before this, did you go to another place '
         'for the treatment of the present situation?',
         max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE)
+        choices=YES_NO)
 
     duration_present_condition = models.IntegerField(
         verbose_name='How long have you been sick with your current '
@@ -163,14 +164,13 @@ class MedicalExpensesMixin(models.Model):
     loss_of_earnings = models.CharField(
         verbose_name='Did you lose earnings as a result?',
         max_length=5,
-        choices=YES_NO,
-        blank=True,
-        null=True)
+        choices=YES_NO_NA)
 
     earnings_lost_amount = models.DecimalField(
         verbose_name='How much did you lose?',
         decimal_places=2,
-        max_digits=8,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
         blank=True,
         null=True)
 

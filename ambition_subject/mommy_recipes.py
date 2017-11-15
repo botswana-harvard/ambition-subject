@@ -1,15 +1,13 @@
+from ambition_subject.models.clinic_note import ClinicNote
+from dateutil.relativedelta import relativedelta
 from edc_base.utils import get_utcnow
 from edc_consent.tests import EdcConsentProvider
 from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER, MALE, NORMAL
 from edc_visit_tracking.constants import SCHEDULED
-
-from ambition_subject.models.clinic_note import ClinicNote
-from dateutil.relativedelta import relativedelta
 from faker import Faker
 from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
 
-from .constants import A2
 from .models import AdverseEvent, AdverseEventTMG, AdverseEventFollowUp
 from .models import BloodResult, DeathReport, Microbiology, FollowUp
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion

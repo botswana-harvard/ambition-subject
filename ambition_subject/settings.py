@@ -4,7 +4,6 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP_NAME = 'ambition_subject'
-
 ETC_DIR = os.path.join(BASE_DIR, 'etc')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -141,9 +140,8 @@ DEVICE_ID = '99'
 EDC_LAB_REQUISITION_MODEL = 'ambition_subject.subjectrequisition'
 
 COUNTRY = 'botswana'
-HOLIDAY_FILE = os.path.join(BASE_DIR, APP_NAME, 'holidays.csv')
+HOLIDAY_FILE = os.path.join(BASE_DIR, 'holidays.csv')
 GIT_DIR = BASE_DIR
-
 
 EDC_SYNC_SERVER_IP = None
 EDC_SYNC_FILES_REMOTE_HOST = None

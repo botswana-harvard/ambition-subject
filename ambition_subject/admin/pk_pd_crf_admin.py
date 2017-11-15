@@ -3,7 +3,7 @@ from edc_base.modeladmin_mixins import audit_fieldset_tuple
 from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
-from ..constants import DAY1, DAY7, DAY14
+from ..constants import DAY1, DAY7
 from ..forms import PkPdCrfForm
 from ..models import PkPdCrf
 

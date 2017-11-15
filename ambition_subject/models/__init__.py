@@ -8,12 +8,14 @@ from .death_report import DeathReport
 from .death_report import DeathReportTmg1
 from .death_report import DeathReportTmg2
 from .disenrollment import Disenrollment
+from .educational_background import EducationalBackground
 from .enrollment import Enrollment
 from .follow_up import FollowUp, FollowUpDiagnoses
 from .health_economics_questionnaire import HealthEconomicsQuestionnaire
-from .health_economics_questionnaire import MedicalExpenses
+from .health_economics_questionnaire import HealthEconomicsQuestionnaire2
 from .identifier_history import IdentifierHistory
 from .lumbar_puncture_csf import LumbarPunctureCsf
+from .medical_expenses import MedicalExpenses
 from .microbiology import Microbiology
 from .missed_visit import MissedVisit
 from .patient_history import PatientHistory
