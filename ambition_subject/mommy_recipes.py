@@ -293,6 +293,7 @@ clinicnote = Recipe(
 
 subjectscreening = Recipe(
     SubjectScreening,
+    report_datetime=get_utcnow(),
     gender=MALE,
     age_in_years=40,
     meningitis_dx=YES,

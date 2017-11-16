@@ -39,6 +39,8 @@ class SubjectConsent(
     """ A model completed by the user that captures the ICF.
     """
 
+    subject_screening_model_cls = SubjectScreening
+
     first_name = FirstnameField(
         blank=False)
 
@@ -152,14 +154,14 @@ class SubjectConsent(
         return f'{self.subject_identifier} V{self.version}'
 
     def save(self, *args, **kwargs):
-        subject_screening = SubjectScreening.objects.get(
+        # screening must exist
+        subject_screening = self.subject_screening_model_cls.objects.get(
             screening_identifier=self.screening_identifier)
         self.gender = subject_screening.gender
         if not self.id:
             self.registration_identifier = self.screening_identifier
-            edc_protocol_app_config = django_apps.get_app_config(
-                'edc_protocol')
-            self.study_site = edc_protocol_app_config.site_code
+            edc_protocol = django_apps.get_app_config('edc_protocol')
+            self.study_site = edc_protocol.site_code
         super().save(*args, **kwargs)
 
     def natural_key(self):

@@ -1,19 +1,13 @@
 from ambition_rando.import_randomization_list import import_randomization_list
-from ambition_subject.forms.patient_history_form import PatientHistoryForm
-from ambition_subject.forms.previous_opportunistic_infection_form import PreviousOpportunisticInfectionForm
-from ambition_subject.models import (
-    SubjectVisit, PatientHistory, PreviousOpportunisticInfection)
-from edc_base.utils import get_utcnow
-from edc_metadata.constants import NOT_REQUIRED, REQUIRED
-from edc_metadata.models import CrfMetadata
-
+from ambition_subject.forms import PreviousOpportunisticInfectionForm
+from ambition_subject.models import PatientHistory, PreviousOpportunisticInfection
 from django.forms import inlineformset_factory
 from django.test import TestCase, tag
-from edc_constants.constants import YES, NO, NOT_APPLICABLE
+from edc_appointment.models import Appointment
+from edc_base.utils import get_utcnow
+from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
-
-from ..models import Appointment
 
 
 class TestSyncInlineOrder(TestCase):

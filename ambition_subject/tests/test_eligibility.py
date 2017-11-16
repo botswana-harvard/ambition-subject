@@ -10,7 +10,7 @@ from ..eligibility import (
     MentalStatusEvaluatorError, EarlyWithdrawalCriteriaEvaluator)
 
 
-class TestSubjectScreening(TestCase):
+class TestEligibility(TestCase):
 
     def setUp(self):
         django_apps.app_configs[
@@ -84,7 +84,9 @@ class TestSubjectScreening(TestCase):
 
     def test_eligibility(self):
         obj = Eligibility(
-            age=18, gender=FEMALE, pregnant=False,
+            age=18,
+            gender=FEMALE,
+            pregnant=False,
             consent_ability=True,
             will_hiv_test=True,
             meningitis_dx=True,
@@ -99,7 +101,9 @@ class TestSubjectScreening(TestCase):
 
     def test_not_eligible(self):
         obj = Eligibility(
-            age=18, gender=FEMALE, pregnant=False,
+            age=18,
+            gender=FEMALE,
+            pregnant=False,
             mental_status=NORMAL,
             will_hiv_test=False,
             meningitis_dx=True,
