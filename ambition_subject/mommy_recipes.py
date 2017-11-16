@@ -10,10 +10,11 @@ from model_mommy.recipe import Recipe, related, seq
 
 from .models import AdverseEvent, AdverseEventTMG, AdverseEventFollowUp
 from .models import BloodResult, DeathReport, Microbiology, FollowUp
+from .models import EducationalBackground
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
 from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory, Week16
-from .models import RecurrenceSymptom, Week2, SubjectVisit, SubjectScreening
-from .models import SubjectLocator, SubjectConsent, PrnModel
+from .models import RecurrenceSymptom, Week2, SubjectVisit, SubjectScreening, MedicalExpenses
+from .models import SubjectLocator, SubjectConsent, PrnModel, HealthEconomicsQuestionnaire
 from .models.list_models import AEClassification, Neurological
 from .models.list_models import Antibiotic, Symptom
 from .models.list_models import SignificantNewDiagnosis, MeningitisSymptom
@@ -309,5 +310,10 @@ subjectscreening = Recipe(
     eligible=True,
     reasons_ineligible=None)
 
-week16 = Recipe(
-    Week16)
+week16 = Recipe(Week16)
+
+medicalexpenses = Recipe(MedicalExpenses)
+
+healtheconomicsquestionnaire = Recipe(HealthEconomicsQuestionnaire)
+
+educationalbackground = Recipe(EducationalBackground)

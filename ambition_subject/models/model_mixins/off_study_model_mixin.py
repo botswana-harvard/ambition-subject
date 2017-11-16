@@ -43,13 +43,14 @@ class OffstudyModelMixin(BaseOffstudyMixin):
             return True
         return True
 
-    def save(self, *args, **kwargs):
-        if not self.is_eligible_after_blood_result():
-            raise OffstudyError(
-                'Participant was reported off study on \'{0}\'. '
-                'Data reported after this date'
-                ' cannot be captured.')
-        super().save(*args, **kwargs)
+# TODO: confused? what is the plan here??
+#     def save(self, *args, **kwargs):
+#         if not self.is_eligible_after_blood_result():
+#             raise OffstudyError(
+#                 f'Participant was reported off study on \'{0}\'. '
+#                 f'Data reported after this date'
+#                 f' cannot be captured.')
+#         super().save(*args, **kwargs)
 
     class Meta:
         abstract = True

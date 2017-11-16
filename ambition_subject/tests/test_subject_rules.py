@@ -451,7 +451,6 @@ class TestSubjectRules(TestCase):
                 visit_code='1000').entry_status,
             NOT_REQUIRED)
 
-    @tag('result_rule')
     def test_blood_result_rule_required(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,

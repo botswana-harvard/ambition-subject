@@ -35,4 +35,5 @@ class TestSubjectScreeningForm(TestCase):
             gender=FEMALE,
             pregnancy=NOT_APPLICABLE)
         form = SubjectScreeningForm(data=obj.__dict__)
+
         self.assertFalse(form.is_valid())

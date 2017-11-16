@@ -569,14 +569,14 @@ YES_NO_DECLINED = (
     (DECLINED, 'Yes, but participant declined copy'),
 )
 
+YES_NO_RESULTS_UNKNOWN = (
+    (YES, YES),
+    (NO, NO),
+    (RESULTS_UNKNOWN, 'Results unknown'),
+)
+
 PREG_YES_NO_NA = (
     (YES, 'Yes'),
     (NO, 'No'),
     (NOT_APPLICABLE, 'Not Applicable: e.g. male, post-menopausal'),
-)
-
-WITHDRAWAL_CRITERIA_YES_NO_UNKNOWN = (
-    (YES, YES),
-    (NO, NO),
-    (RESULTS_UNKNOWN, RESULTS_UNKNOWN),
 )

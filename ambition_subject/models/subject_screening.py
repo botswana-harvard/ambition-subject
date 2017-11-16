@@ -5,14 +5,14 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.utils import get_utcnow
 from edc_constants.choices import GENDER, YES_NO, YES_NO_NA, NO, YES, NORMAL_ABNORMAL
-from edc_constants.constants import UUID_PATTERN
+from edc_constants.constants import UUID_PATTERN, NORMAL
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_search.model_mixins import SearchSlugManager, SearchSlugModelMixin
 from uuid import uuid4
 
 from ..eligibility import Eligibility
 from ..screening_identifier import ScreeningIdentifier
-from ..choices import PREG_YES_NO_NA, WITHDRAWAL_CRITERIA_YES_NO_UNKNOWN
+from ..choices import PREG_YES_NO_NA, YES_NO_RESULTS_UNKNOWN
 
 
 class SubjectScreeningManager(SearchSlugManager, models.Manager):
@@ -143,12 +143,25 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         null=True,
         editable=False)
 
-    withdrawal_criteria = models.CharField(
-        verbose_name='Does the patient meet an early withdrawal criteria?',
-        max_length=150,
-        choices=WITHDRAWAL_CRITERIA_YES_NO_UNKNOWN,
-        help_text='ALT>200 IU/mL, PMNs<500x106/L, Platelets<50,000x106/L'
-    )
+    alt_result = models.IntegerField(
+        verbose_name='ALT result?',
+        null=True,
+        blank=True,
+        help_text=('Leave blank if unknown. Units: "IU/mL". '
+                   'Ineligible if > 200 IU/mL'))
+
+    pmn_result = models.IntegerField(
+        verbose_name='PMNs result?',
+        null=True,
+        blank=True,
+        help_text=('Leave blank if unknown. Units: " x 10e6/L". '
+                   'Ineligible if < 500 x 10e6/L'))
+
+    platelets_result = models.IntegerField(
+        null=True,
+        blank=True,
+        help_text=('Leave blank if unknown. Units: " x 10e6/L". '
+                   'Ineligible if < 50,000 x 10e6/L'))
 
     objects = SubjectScreeningManager()
 
@@ -158,7 +171,15 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         return (self.screening_identifier,)
 
     def save(self, *args, **kwargs):
-        self.verify_eligibility()
+        eligibility_obj = self.verify_eligibility()
+        self.eligible = eligibility_obj.eligible
+        if not self.eligible:
+            reasons_ineligible = [
+                v for v in eligibility_obj.reasons_ineligible.values() if v]
+            reasons_ineligible.sort()
+            self.reasons_ineligible = ','.join(reasons_ineligible)
+        else:
+            self.reasons_ineligible = None
         if not self.id:
             self.screening_identifier = ScreeningIdentifier().identifier
         super().save(*args, **kwargs)
@@ -170,27 +191,32 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         return ['screening_identifier', 'subject_identifier', 'reference']
 
     def verify_eligibility(self):
-        """Verifies eligibility criteria and sets model attrs.
+        """Returns an eligibility object instantiated with model attrs.
         """
         def if_yes(value):
+            if value == NORMAL:
+                return True
             return value == YES
 
         def if_no(value):
             return value == NO
 
-        eligibility = Eligibility(
+        def if_normal(value):
+            return value == NORMAL
+
+        return Eligibility(
             age=self.age_in_years,
             gender=self.gender,
+            alt=self.alt_result,
+            pmn=self.pmn_result,
+            platlets=self.platelets_result,
             will_hiv_test=if_yes(self.will_hiv_test),
             consent_ability=if_yes(self.consent_ability),
-            mental_status=self.mental_status,
+            mentally_normal=if_normal(self.mental_status),
             meningitis_dx=if_yes(self.meningitis_dx),
             pregnant=if_yes(self.pregnancy),
             breast_feeding=if_yes(self.breast_feeding),
             no_drug_reaction=if_no(self.previous_drug_reaction),
             no_concomitant_meds=if_no(self.contraindicated_meds),
             no_amphotericin=if_no(self.received_amphotericin),
-            no_fluconazole=if_no(self.received_fluconazole),
-            withdrawal_criteria=self.withdrawal_criteria)
-        self.reasons_ineligible = ','.join(eligibility.reasons)
-        self.eligible = eligibility.eligible
+            no_fluconazole=if_no(self.received_fluconazole))

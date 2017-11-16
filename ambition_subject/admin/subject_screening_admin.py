@@ -22,8 +22,7 @@ class SubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
         'previous_drug_reaction': admin.VERTICAL,
         'contraindicated_meds': admin.VERTICAL,
         'received_amphotericin': admin.VERTICAL,
-        'received_fluconazole': admin.VERTICAL,
-        'withdrawal_criteria': admin.VERTICAL}
+        'received_fluconazole': admin.VERTICAL}
 
     fieldsets = (
         (None, {
@@ -41,7 +40,12 @@ class SubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'previous_drug_reaction',
                 'contraindicated_meds',
                 'received_amphotericin',
-                'received_fluconazole',
-                'withdrawal_criteria')
+                'received_fluconazole',)
+        }),
+        ('Blood Results', {
+            'fields': (
+                'alt_result',
+                'pmns_result',
+                'platlets_result')
         }),
     )
