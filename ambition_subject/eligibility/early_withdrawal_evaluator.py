@@ -8,10 +8,10 @@ class EarlyWithdrawalEvaluator:
             reasons_ineligible.update(alt='ALT>200 IU/mL.')
             self.eligible = False
         if pmns and pmns < 500:
-            reasons_ineligible.update(pmns='PMNs<500x106/L.')
+            reasons_ineligible.update(pmns='PMNs<500x10^6/L.')
             self.eligible = False
-        if platlets and platlets < 500:
-            reasons_ineligible.update(platlets='Platelets<50,000x106/L.')
+        if platlets and platlets < 50:
+            reasons_ineligible.update(platlets='Platelets<50x10^9/L.')
             self.eligible = False
         if reasons_ineligible:
             self.reasons_ineligible = ','.join([v for v in reasons_ineligible])

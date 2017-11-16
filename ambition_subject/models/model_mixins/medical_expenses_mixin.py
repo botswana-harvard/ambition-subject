@@ -39,11 +39,13 @@ class MedicalExpensesMixin(models.Model):
         null=True,
         validators=[MinValueValidator(0)])
 
+    # TODO: this Q triggers a metadata rule for medical expenses part 2
     care_before_hospital = models.CharField(
         verbose_name='Have you received any treatment or care '
         'for your present condition, before coming to the hospital?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO,
+        help_text="If Yes, pleaae complete medical expenses part 2")
 
     location_care = models.CharField(
         verbose_name='If Yes, where did you receive treatment or care?',
