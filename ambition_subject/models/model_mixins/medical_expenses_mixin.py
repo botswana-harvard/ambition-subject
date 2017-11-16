@@ -154,6 +154,7 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='How much time did a caring family member take '
         'off work to accompany you to the hospital?',
         validators=[MinValueValidator(0.5)],
+        null=True,
         help_text='in days')
 
     loss_of_earnings = models.CharField(
