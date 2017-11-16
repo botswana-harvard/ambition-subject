@@ -143,6 +143,8 @@ class MedicalExpensesMixin(models.Model):
         max_digits=4,
         decimal_places=1,
         validators=[MinValueValidator(0.5)],
+        blank=True,
+        null=True,
         help_text='in days')
 
     carer_time_off = models.IntegerField(
