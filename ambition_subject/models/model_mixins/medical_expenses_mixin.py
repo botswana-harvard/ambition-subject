@@ -60,13 +60,17 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='How much did you spend on the transport (each way)?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(0)],
+        null=True,
+        blank=True)
 
     transport_duration = models.CharField(
         verbose_name='How long did it take you to reach there?',
         validators=[hm_validator],
         max_length=8,
-        help_text='in hours:minutes')
+        help_text='in hours:minutes',
+        null=True,
+        blank=True)
 
     care_provider = models.CharField(
         verbose_name='Who provided treatment or care during that visit?',
@@ -91,7 +95,9 @@ class MedicalExpensesMixin(models.Model):
             'How much did you pay for this visit?'),
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(0)],
+        null=True,
+        blank=True)
 
     medication_bought = models.CharField(
         verbose_name='Did you buy other medication for relief?',
@@ -154,7 +160,9 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='How much did you lose?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(0)],
+        null=True,
+        blank=True)
 
     class Meta:
         abstract = True
