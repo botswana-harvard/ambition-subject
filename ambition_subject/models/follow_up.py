@@ -8,7 +8,7 @@ from edc_constants.choices import YES_NO_NA
 from ..choices import (
     FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND, YES_NO_ALREADY_ND)
 from .model_mixins import (
-    CrfModelMixin, ClinicalAssessment, SignificantDiagnosesMixin, MedicalExpensesMixin)
+    CrfModelMixin, ClinicalAssessment, SignificantDiagnosesMixin)
 
 
 class FollowUpDiagnosesManager(models.Manager):
@@ -25,7 +25,7 @@ class FollowUpDiagnosesManager(models.Manager):
         )
 
 
-class FollowUp(ClinicalAssessment, MedicalExpensesMixin, CrfModelMixin):
+class FollowUp(ClinicalAssessment, CrfModelMixin):
 
     fluconazole_dose = models.CharField(
         verbose_name='Fluconazole dose (Day prior to visit)',
