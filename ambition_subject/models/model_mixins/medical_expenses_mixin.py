@@ -20,6 +20,7 @@ class MedicalExpensesMixin(models.Model):
         'spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
+        null=True,
         validators=[MinValueValidator(0)])
 
     proxy_he_spend = models.DecimalField(
@@ -27,6 +28,7 @@ class MedicalExpensesMixin(models.Model):
         ' has someone else spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
+        null=True,
         validators=[MinValueValidator(0)])
 
     he_spend_last_4weeks = models.DecimalField(
@@ -34,6 +36,7 @@ class MedicalExpensesMixin(models.Model):
         ' on your healthcare in the last 4 weeks?',
         decimal_places=2,
         max_digits=16,
+        null=True,
         validators=[MinValueValidator(0)])
 
     care_before_hospital = models.CharField(
