@@ -31,7 +31,7 @@ class BloodResult(CrfModelMixin):
         decimal_places=2,
         max_digits=4,
         null=True,
-        help_text='units in 10^3/μL',)
+        help_text='units in 10^6/L',)
 
     creatinine = models.DecimalField(
         decimal_places=2,
