@@ -1,15 +1,12 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
 from ..choices import DR_OPINION, STEROIDS_CHOICES
-
 from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment
 from .model_mixins import CrfModelMixin
-from edc_constants.constants import NOT_APPLICABLE
 
 
 class RecurrenceSymptom(CrfModelMixin):
@@ -160,3 +157,6 @@ class RecurrenceSymptom(CrfModelMixin):
         null=True)
 
     history = HistoricalRecords()
+
+    class Meta(CrfModelMixin.Meta):
+        pass

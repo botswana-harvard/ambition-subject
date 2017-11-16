@@ -144,3 +144,6 @@ class AdverseEvent(CrfModelMixin):
                   'ambition_tmg@sgul.ac.uk)')
 
     history = HistoricalRecords()
+
+    class Meta(CrfModelMixin.Meta):
+        pass

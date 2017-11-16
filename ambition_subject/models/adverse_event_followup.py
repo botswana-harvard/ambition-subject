@@ -1,11 +1,12 @@
 from django.db import models
 from edc_base.model_validators import date_not_future
+from edc_base.model_managers import HistoricalRecords
 
 from ..choices import AE_OUTCOME
-from .model_mixins import CrfModelMixin, ClinicalAssessment
+from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
 
 
-class AdverseEventFollowUp(ClinicalAssessment, CrfModelMixin):
+class AdverseEventFollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
 
     outcome = models.CharField(
         blank=False,
@@ -24,3 +25,8 @@ class AdverseEventFollowUp(ClinicalAssessment, CrfModelMixin):
         null=False,
         help_text='Indicate Adverse Event, Clinical results,'
         'medications given, dosage,treatment plan and outcomes.')
+
+    history = HistoricalRecords()
+
+    class Meta(CrfModelMixin.Meta):
+        pass

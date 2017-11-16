@@ -1,8 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-
-# from edc_base.model_fields import OtherCharField
-# from edc_base.model_mixins import BaseUuidModel
+from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO
 
@@ -279,6 +277,8 @@ class PkPdCrf(CrfModelMixin):
         validators=[datetime_not_future],
         max_length=5,
         null=True)
+
+    history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
         verbose_name = 'Pk Dk Crf Form'

@@ -34,15 +34,13 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
         max_length=25,
         blank=True,
         null=True,
-        choices=VISIT_UNSCHEDULED_REASON,
-    )
+        choices=VISIT_UNSCHEDULED_REASON)
 
     reason_unscheduled_other = OtherCharField(
         verbose_name='If Other, Specify',
         max_length=25,
         blank=True,
-        null=True,
-    )
+        null=True)
 
     info_source = models.CharField(
         verbose_name='What is the main source of this information?',
@@ -52,10 +50,6 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
     objects = VisitModelManager()
 
     history = HistoricalRecords()
-
-    def save(self, *args, **kwargs):
-        self.info_source = 'subject'
-        super().save(*args, **kwargs)
 
     @property
     def common_clean_exceptions(self):

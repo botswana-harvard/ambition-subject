@@ -4,15 +4,15 @@ from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.utils import get_utcnow
-from edc_constants.choices import GENDER, YES_NO, YES_NO_NA, NO, YES, NORMAL_ABNORMAL
-from edc_constants.constants import UUID_PATTERN, NORMAL
+from edc_constants.choices import GENDER, YES_NO, YES_NO_NA, NORMAL_ABNORMAL
+from edc_constants.constants import UUID_PATTERN
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_search.model_mixins import SearchSlugManager, SearchSlugModelMixin
 from uuid import uuid4
 
-from ..eligibility import Eligibility
+from ..choices import PREG_YES_NO_NA
+from ..eligibility import SubjectScreeningEligibility
 from ..screening_identifier import ScreeningIdentifier
-from ..choices import PREG_YES_NO_NA, YES_NO_RESULTS_UNKNOWN
 
 
 class SubjectScreeningManager(SearchSlugManager, models.Manager):
@@ -41,6 +41,8 @@ class SubjectIdentifierModelMixin(NonUniqueSubjectIdentifierModelMixin,
 
 
 class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
+
+    eligibility_cls = SubjectScreeningEligibility
 
     reference = models.UUIDField(
         verbose_name="Reference",
@@ -122,26 +124,14 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         verbose_name='Has received >48 hours of Amphotericin B '
         '(>0.7mg/kg/day) prior to screening.',
         max_length=5,
-        choices=YES_NO,
-
-    )
+        choices=YES_NO)
 
     received_fluconazole = models.CharField(
-        verbose_name='Has received >48 hours of fluconazole treatment (> '
-                     '400mg/day) prior to screening.',
+        verbose_name=(
+            'Has received >48 hours of fluconazole treatment (> '
+            '400mg/day) prior to screening.'),
         max_length=5,
-        choices=YES_NO,
-    )
-
-    eligible = models.BooleanField(
-        default=False,
-        editable=False)
-
-    reasons_ineligible = models.TextField(
-        verbose_name="Reason not eligible",
-        max_length=150,
-        null=True,
-        editable=False)
+        choices=YES_NO)
 
     alt_result = models.IntegerField(
         verbose_name='ALT result?',
@@ -163,6 +153,16 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         help_text=('Leave blank if unknown. Units: " x 10e6/L". '
                    'Ineligible if < 50,000 x 10e6/L'))
 
+    eligible = models.BooleanField(
+        default=False,
+        editable=False)
+
+    reasons_ineligible = models.TextField(
+        verbose_name="Reason not eligible",
+        max_length=150,
+        null=True,
+        editable=False)
+
     objects = SubjectScreeningManager()
 
     history = HistoricalRecords()
@@ -171,7 +171,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         return (self.screening_identifier,)
 
     def save(self, *args, **kwargs):
-        eligibility_obj = self.verify_eligibility()
+        eligibility_obj = self.eligibility_cls(model_obj=self)
         self.eligible = eligibility_obj.eligible
         if not self.eligible:
             reasons_ineligible = [
@@ -189,34 +189,3 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
 
     def get_search_slug_fields(self):
         return ['screening_identifier', 'subject_identifier', 'reference']
-
-    def verify_eligibility(self):
-        """Returns an eligibility object instantiated with model attrs.
-        """
-        def if_yes(value):
-            if value == NORMAL:
-                return True
-            return value == YES
-
-        def if_no(value):
-            return value == NO
-
-        def if_normal(value):
-            return value == NORMAL
-
-        return Eligibility(
-            age=self.age_in_years,
-            gender=self.gender,
-            alt=self.alt_result,
-            pmn=self.pmn_result,
-            platlets=self.platelets_result,
-            will_hiv_test=if_yes(self.will_hiv_test),
-            consent_ability=if_yes(self.consent_ability),
-            mentally_normal=if_normal(self.mental_status),
-            meningitis_dx=if_yes(self.meningitis_dx),
-            pregnant=if_yes(self.pregnancy),
-            breast_feeding=if_yes(self.breast_feeding),
-            no_drug_reaction=if_no(self.previous_drug_reaction),
-            no_concomitant_meds=if_no(self.contraindicated_meds),
-            no_amphotericin=if_no(self.received_amphotericin),
-            no_fluconazole=if_no(self.received_fluconazole))

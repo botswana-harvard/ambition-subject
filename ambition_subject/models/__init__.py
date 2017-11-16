@@ -10,7 +10,8 @@ from .death_report import DeathReportTmg2
 from .disenrollment import Disenrollment
 from .educational_background import EducationalBackground
 from .enrollment import Enrollment
-from .follow_up import FollowUp, FollowUpDiagnoses
+from .follow_up import FollowUp
+from .follow_up_diagnosis import FollowUpDiagnoses
 from .health_economics_questionnaire import HealthEconomicsQuestionnaire
 from .health_economics_questionnaire import HealthEconomicsQuestionnaire2
 from .identifier_history import IdentifierHistory

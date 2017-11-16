@@ -4,7 +4,7 @@ from django.db import models
 from ...choices import YES_NO_ND
 
 
-class ClinicalAssessment(models.Model):
+class ClinicalAssessmentModelMixin(models.Model):
 
     physical_symptoms = models.CharField(
         verbose_name='Physical symptoms',
@@ -71,5 +71,5 @@ class ClinicalAssessment(models.Model):
         choices=YES_NO_ND,
         null=True)
 
-    class Meta():
+    class Meta:
         abstract = True

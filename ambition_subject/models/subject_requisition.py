@@ -1,6 +1,7 @@
 from django.apps import apps as django_apps
 from django.db import models
 from django.db.models.deletion import PROTECT
+from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentMixin
 from edc_lab.model_mixins.requisition import RequisitionIdentifierMixin
@@ -31,6 +32,8 @@ class SubjectRequisition(
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=PROTECT)
 
     objects = Manager()
+
+    history = HistoricalRecords()
 
     def save(self, *args, **kwargs):
         if not self.id:

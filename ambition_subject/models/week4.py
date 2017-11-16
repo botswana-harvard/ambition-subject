@@ -1,12 +1,13 @@
 from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_fields.custom_fields import OtherCharField
+from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import FLUCONAZOLE_DOSE, YES_NO_ALREADY_ND
-from .model_mixins import (
-    CrfModelMixin, ClinicalAssessment, SignificantDiagnosesMixin)
+from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin, SignificantDiagnosesModelMixin
 
 
 class Week4DiagnosesManager(models.Manager):
@@ -22,7 +23,7 @@ class Week4DiagnosesManager(models.Manager):
             subject_visit__visit_code=visit_code)
 
 
-class Week4(ClinicalAssessment, CrfModelMixin):
+class Week4(ClinicalAssessmentModelMixin, CrfModelMixin):
 
     fluconazole_dose = models.CharField(
         verbose_name='Fluconazole dose (Day prior to visit)',
@@ -42,7 +43,7 @@ class Week4(ClinicalAssessment, CrfModelMixin):
         verbose_name='Date rifampicin started',
         validators=[date_not_future],
         null=True,
-        blank=True,)
+        blank=True)
 
     lp_done = models.CharField(
         verbose_name='LP done?',
@@ -55,20 +56,26 @@ class Week4(ClinicalAssessment, CrfModelMixin):
         max_length=5,
         choices=YES_NO_NA)
 
+    history = HistoricalRecords()
+
     class Meta(CrfModelMixin.Meta):
-        verbose_name_plural = 'Week4'
+        verbose_name = 'Week 4'
+        verbose_name_plural = 'Week 4'
 
 
-class Week4Diagnoses(SignificantDiagnosesMixin):
+class Week4Diagnoses(SignificantDiagnosesModelMixin, BaseUuidModel):
 
     week4 = models.ForeignKey(Week4, on_delete=PROTECT)
 
     objects = Week4DiagnosesManager()
+
+    history = HistoricalRecords()
 
     def natural_key(self):
         return (self.possible_diagnoses, self.dx_date) + self.week4.natural_key()
     natural_key.dependencies = ['ambition_subject.week4']
 
     class Meta:
-        verbose_name_plural = 'Significant Diagnoses'
+        verbose_name = 'Week 4 Diagnoses'
+        verbose_name_plural = 'Week 4 Diagnoses'
         unique_together = ('week4', 'possible_diagnoses', 'dx_date')

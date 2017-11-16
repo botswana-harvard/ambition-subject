@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.deletion import PROTECT
-from edc_base.model_mixins.base_uuid_model import BaseUuidModel
+from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 
 from ..choices import INFECTION
@@ -50,6 +51,8 @@ class PreviousOpportunisticInfection(BaseUuidModel):
         return ((self.previous_non_tb_oi, self.previous_non_tb_oi_date,) +
                 self.patient_history.natural_key())
     natural_key.dependencies = ['ambition_subject.patienthistory']
+
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name_plural = 'Previous Opportunistic Infection'

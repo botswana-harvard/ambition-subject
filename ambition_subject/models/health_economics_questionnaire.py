@@ -1,8 +1,9 @@
 from django.db import models
 from django.db.models.deletion import PROTECT
+from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 
-from .model_mixins import CrfModelMixin, MedicalExpensesMixin
+from .model_mixins import CrfModelMixin, MedicalExpensesModelMixin
 
 
 class HealthEconomicsQuestionnaire2Manager(models.Manager):
@@ -20,11 +21,13 @@ class HealthEconomicsQuestionnaire2Manager(models.Manager):
 
 class HealthEconomicsQuestionnaire(CrfModelMixin):
 
+    history = HistoricalRecords()
+
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Health Economics Questionnaires'
 
 
-class HealthEconomicsQuestionnaire2(BaseUuidModel, MedicalExpensesMixin):
+class HealthEconomicsQuestionnaire2(MedicalExpensesModelMixin, BaseUuidModel):
 
     health_economics_questionnaire = models.ForeignKey(
         HealthEconomicsQuestionnaire, on_delete=PROTECT)
@@ -35,6 +38,8 @@ class HealthEconomicsQuestionnaire2(BaseUuidModel, MedicalExpensesMixin):
         return ((self.location_care,) + self.health_economics_questionnaire.natural_key())
     natural_key.dependencies = [
         'ambition_subject.healtheconomicsquestionnaire']
+
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name_plural = 'Health Economics Questionnaire Inlines'

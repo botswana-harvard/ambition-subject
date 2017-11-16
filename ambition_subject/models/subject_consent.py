@@ -1,8 +1,7 @@
 from django.apps import apps as django_apps
-from django.db import models
 from django.core.validators import RegexValidator
-from django_crypto_fields.fields import (
-    FirstnameField, LastnameField, EncryptedCharField)
+from django.db import models
+from django_crypto_fields.fields import FirstnameField, LastnameField, EncryptedCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.field_mixins import ReviewFieldsMixin, PersonalFieldsMixin
@@ -16,7 +15,6 @@ from edc_constants.choices import YES_NO
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
-
 
 from ..choices import ID_TYPE, YES_NO_DECLINED
 from .model_mixins import SearchSlugModelMixin
@@ -36,26 +34,22 @@ class SubjectConsent(
         ReviewFieldsMixin, PersonalFieldsMixin,
         SampleCollectionFieldsMixin, CitizenFieldsMixin,
         VulnerabilityFieldsMixin, SearchSlugModelMixin, BaseUuidModel):
+
     """ A model completed by the user that captures the ICF.
     """
 
     subject_screening_model_cls = SubjectScreening
 
-    first_name = FirstnameField(
-        blank=False)
+    first_name = FirstnameField()
 
     last_name = LastnameField(
-        verbose_name="Last name",
-        blank=False
-    )
+        verbose_name="Last name")
 
     initials = EncryptedCharField(
         validators=[RegexValidator(
             regex=r'^[A-Z]{2,3}$',
             message=('Ensure initials consist of letters '
-                     'only in upper case, no spaces.')), ],
-        blank=False
-    )
+                     'only in upper case, no spaces.')), ])
 
     screening_identifier = models.CharField(
         verbose_name='Screening Identifier',
@@ -68,8 +62,7 @@ class SubjectConsent(
         max_length=3,
         choices=YES_NO,
         help_text=('If \'No\' provide witness\'s name on this '
-                   'form and signature on the paper document.'),
-    )
+                   'form and signature on the paper document.'))
 
     may_store_genetic_samples = models.CharField(
         verbose_name=('Does the participant/next of kin agree that a portion of'
@@ -88,8 +81,7 @@ class SubjectConsent(
             'Does the participant/next of kin agree to have samples '
             'stored after the study has ended'),
         max_length=3,
-        choices=YES_NO,
-    )
+        choices=YES_NO)
 
     consent_reviewed = models.CharField(
         verbose_name='I have reviewed the consent with the participant/next of kin',
@@ -97,9 +89,8 @@ class SubjectConsent(
         choices=YES_NO,
         validators=[eligible_if_yes, ],
         null=True,
-        blank=False,
-        help_text='If no, INELIGIBLE',
-    )
+        help_text='If no, INELIGIBLE')
+
     study_questions = models.CharField(
         verbose_name=('I have answered all questions the participant/next of '
                       'kin had about the study'),
@@ -107,9 +98,8 @@ class SubjectConsent(
         choices=YES_NO,
         validators=[eligible_if_yes, ],
         null=True,
-        blank=False,
-        help_text='If no, INELIGIBLE',
-    )
+        help_text='If no, INELIGIBLE')
+
     assessment_score = models.CharField(
         verbose_name=(
             'I have asked the participant/next of kin questions about this study and '
@@ -118,9 +108,7 @@ class SubjectConsent(
         choices=YES_NO,
         validators=[eligible_if_yes, ],
         null=True,
-        blank=False,
-        help_text='If no, INELIGIBLE',
-    )
+        help_text='If no, INELIGIBLE')
 
     consent_signature = models.CharField(
         verbose_name=(
@@ -129,9 +117,7 @@ class SubjectConsent(
         choices=YES_NO,
         validators=[eligible_if_yes, ],
         null=True,
-        blank=False,
-        help_text='If no, INELIGIBLE',
-    )
+        help_text='If no, INELIGIBLE')
 
     consent_copy = models.CharField(
         verbose_name=(
@@ -141,9 +127,8 @@ class SubjectConsent(
         choices=YES_NO_DECLINED,
         validators=[eligible_if_yes_or_declined, ],
         null=True,
-        blank=False,
-        help_text='If declined, return copy to the clinic with the consent',
-    )
+        help_text='If declined, return copy to the clinic with the consent')
+
     objects = SubjectConsentManager()
 
     consent = ConsentManager()

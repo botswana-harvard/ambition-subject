@@ -99,3 +99,6 @@ class ProtocolDeviationViolation(CrfModelMixin):
         blank=True)
 
     history = HistoricalRecords()
+
+    class Meta(CrfModelMixin.Meta):
+        pass

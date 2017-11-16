@@ -1,14 +1,11 @@
 from django.db import models
-
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
-from ..choices import (ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON,
-                       CXR_TYPE, INFILTRATE_LOCATION)
-
+from ..choices import ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON
+from ..choices import CXR_TYPE, INFILTRATE_LOCATION
 from .model_mixins import CrfModelMixin
-from edc_constants.constants import NOT_APPLICABLE
 
 
 class Radiology(CrfModelMixin):

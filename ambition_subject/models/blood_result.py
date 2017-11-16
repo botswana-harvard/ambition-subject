@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
@@ -97,3 +98,8 @@ class BloodResult(CrfModelMixin):
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
         help_text='If YES, this value will open Adverse Event Form.')
+
+    history = HistoricalRecords()
+
+    class Meta(CrfModelMixin.Meta):
+        pass

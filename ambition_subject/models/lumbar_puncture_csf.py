@@ -1,12 +1,10 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from .model_mixins import CrfModelMixin
-from edc_constants.constants import NOT_APPLICABLE
 
 
 class LumbarPunctureCsf(CrfModelMixin):

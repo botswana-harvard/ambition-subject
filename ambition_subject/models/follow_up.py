@@ -1,31 +1,14 @@
 from django.db import models
-from django.db.models.deletion import PROTECT
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO_NA
 
-from ..choices import (
-    FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND, YES_NO_ALREADY_ND)
-from .model_mixins import (
-    CrfModelMixin, ClinicalAssessment, SignificantDiagnosesMixin)
+from ..choices import FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND, YES_NO_ALREADY_ND
+from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
 
 
-class FollowUpDiagnosesManager(models.Manager):
-
-    def get_by_natural_key(self, possible_diagnoses, dx_date, subject_identifier,
-                           visit_schedule_name, schedule_name, visit_code):
-        return self.get(
-            possible_diagnoses=possible_diagnoses,
-            dx_date=dx_date,
-            subject_visit__subject_identifier=subject_identifier,
-            subject_visit__visit_schedule_name=visit_schedule_name,
-            subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code
-        )
-
-
-class FollowUp(ClinicalAssessment, CrfModelMixin):
+class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
 
     fluconazole_dose = models.CharField(
         verbose_name='Fluconazole dose (Day prior to visit)',
@@ -74,18 +57,3 @@ class FollowUp(ClinicalAssessment, CrfModelMixin):
 
     class Meta(CrfModelMixin.Meta):
         verbose_name_plural = 'Follow up'
-
-
-class FollowUpDiagnoses(SignificantDiagnosesMixin):
-
-    follow_up = models.ForeignKey(FollowUp, on_delete=PROTECT)
-
-    objects = FollowUpDiagnosesManager()
-
-    def natural_key(self):
-        return (self.possible_diagnoses, self.dx_date) + self.follow_up.natural_key()
-    natural_key.dependencies = ['ambition_subject.followup']
-
-    class Meta:
-        verbose_name_plural = 'Follow Up Diagnoses'
-        unique_together = ('follow_up', 'possible_diagnoses', 'dx_date')

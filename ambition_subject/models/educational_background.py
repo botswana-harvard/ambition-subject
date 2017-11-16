@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
 
 from .model_mixins import CrfModelMixin
@@ -59,3 +60,8 @@ class EducationalBackground(CrfModelMixin):
         validators=[MinValueValidator(1)],
         blank=True,
         null=True)
+
+    history = HistoricalRecords()
+
+    class Meta(CrfModelMixin.Meta):
+        pass

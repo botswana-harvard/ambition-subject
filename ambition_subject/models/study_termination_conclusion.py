@@ -1,16 +1,12 @@
 from django.db import models
-
+from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
-from ..choices import (ARV_REGIMEN, FIRST_LINE_REGIMEN,
-                       REASON_STUDY_TERMINATED, YES_NO_ALREADY)
+from ..choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, SECOND_ARV_REGIMEN
+from ..choices import REASON_STUDY_TERMINATED, YES_NO_ALREADY
 from .model_mixins.crf_model_mixin import CrfModelMixin
-from edc_base.model_fields.custom_fields import OtherCharField
-from ambition_subject.choices import SECOND_ARV_REGIMEN
-from edc_constants.constants import NOT_APPLICABLE
-from django.template.defaultfilters import default
 
 
 class StudyTerminationConclusion(CrfModelMixin):

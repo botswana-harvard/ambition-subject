@@ -1,14 +1,16 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO
 
 from .list_models import Antibiotic, Day14Medication, OtherDrug
-from .model_mixins import (CrfModelMixin, ClinicalAssessment,
-                           FluconazoleMissedDosesMixin, SignificantDiagnosesMixin,
-                           AmphotericinMissedDosesMixin, FlucytosineMissedDosesMixin)
+from .model_mixins import (
+    CrfModelMixin, ClinicalAssessmentModelMixin,
+    FluconazoleMissedDosesModelMixin, SignificantDiagnosesModelMixin,
+    AmphotericinMissedDosesModelMixin, FlucytosineMissedDosesModelMixin)
 
 
 class AmphotericinMissedDosesManager(models.Manager):
@@ -66,7 +68,7 @@ class SignificantDiagnosesManager(models.Manager):
             subject_visit__visit_code=visit_code)
 
 
-class Week2(ClinicalAssessment, CrfModelMixin):
+class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
 
     discharged = models.CharField(
         verbose_name='Discharged?',
@@ -243,11 +245,13 @@ class Week2(ClinicalAssessment, CrfModelMixin):
         verbose_name_plural = 'Week 2'
 
 
-class SignificantDiagnoses(SignificantDiagnosesMixin):
+class SignificantDiagnoses(SignificantDiagnosesModelMixin, BaseUuidModel):
 
     week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = SignificantDiagnosesManager()
+
+    history = HistoricalRecords()
 
     def natural_key(self):
         return (self.possible_diagnoses, self.dx_date) + self.week2.natural_key()
@@ -259,11 +263,13 @@ class SignificantDiagnoses(SignificantDiagnosesMixin):
             'week2', 'possible_diagnoses', 'dx_date', 'dx_other')
 
 
-class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
+class FluconazoleMissedDoses(FluconazoleMissedDosesModelMixin, BaseUuidModel):
 
     week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
     objects = FluconazoleMissedDosesManager()
+
+    history = HistoricalRecords()
 
     def natural_key(self):
         return (self.flucon_day_missed, self.flucon_missed_reason) + self.week2.natural_key()
@@ -275,7 +281,7 @@ class FluconazoleMissedDoses(FluconazoleMissedDosesMixin):
             'week2', 'flucon_day_missed', 'flucon_missed_reason')
 
 
-class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
+class AmphotericinMissedDoses(AmphotericinMissedDosesModelMixin, BaseUuidModel):
 
     week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
@@ -292,7 +298,7 @@ class AmphotericinMissedDoses(AmphotericinMissedDosesMixin):
         unique_together = ('week2', 'ampho_day_missed', 'ampho_missed_reason')
 
 
-class FlucytosineMissedDoses(FlucytosineMissedDosesMixin):
+class FlucytosineMissedDoses(FlucytosineMissedDosesModelMixin, BaseUuidModel):
 
     week2 = models.ForeignKey(Week2, on_delete=PROTECT)
 
