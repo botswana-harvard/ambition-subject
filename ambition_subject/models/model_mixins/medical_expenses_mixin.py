@@ -20,27 +20,24 @@ class MedicalExpensesMixin(models.Model):
         'spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)],
         null=True,
-        blank=True)
+        validators=[MinValueValidator(0)])
 
     proxy_he_spend = models.DecimalField(
         verbose_name='Over that last 4 weeks, how much'
         ' has someone else spent on activities relating to your health?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)],
         null=True,
-        blank=True)
+        validators=[MinValueValidator(0)])
 
     he_spend_last_4weeks = models.DecimalField(
         verbose_name='How much in total has been spent'
         ' on your healthcare in the last 4 weeks?',
         decimal_places=2,
         max_digits=16,
-        validators=[MinValueValidator(0)],
         null=True,
-        blank=True)
+        validators=[MinValueValidator(0)])
 
     care_before_hospital = models.CharField(
         verbose_name='Have you received any treatment or care '
@@ -74,9 +71,9 @@ class MedicalExpensesMixin(models.Model):
         verbose_name='How long did it take you to reach there?',
         validators=[hm_validator],
         max_length=8,
+        help_text='in hours:minutes',
         null=True,
-        blank=True,
-        help_text='in hours:minutes')
+        blank=True)
 
     care_provider = models.CharField(
         verbose_name='Who provided treatment or care during that visit?',
@@ -149,8 +146,8 @@ class MedicalExpensesMixin(models.Model):
         max_digits=4,
         decimal_places=1,
         validators=[MinValueValidator(0.5)],
-        null=True,
         blank=True,
+        null=True,
         help_text='in days')
 
     carer_time_off = models.IntegerField(
@@ -158,7 +155,6 @@ class MedicalExpensesMixin(models.Model):
         'off work to accompany you to the hospital?',
         validators=[MinValueValidator(0.5)],
         null=True,
-        blank=True,
         help_text='in days')
 
     loss_of_earnings = models.CharField(
@@ -171,8 +167,8 @@ class MedicalExpensesMixin(models.Model):
         decimal_places=2,
         max_digits=15,
         validators=[MinValueValidator(0)],
-        blank=True,
-        null=True)
+        null=True,
+        blank=True)
 
     class Meta:
         abstract = True
