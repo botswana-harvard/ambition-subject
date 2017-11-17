@@ -4,7 +4,6 @@ from edc_constants.constants import FEMALE, MALE
 from ..eligibility import GenderEvaluator
 
 
-@tag('2')
 class TestGenderEvaluator(TestCase):
 
     def test_eligibility_gender(self):

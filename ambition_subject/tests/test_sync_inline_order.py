@@ -42,7 +42,6 @@ class TestSyncInlineOrder(TestCase):
             PreviousOpportunisticInfection,
             form=PreviousOpportunisticInfectionForm, extra=1)
         patient_history_form = PatientHistoryFormSet()
-        print(patient_history_form)
 
 #         obj_inline = PreviousOpportunisticInfection(
 #             patient_history=patient_history

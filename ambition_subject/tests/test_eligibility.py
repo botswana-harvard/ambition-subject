@@ -1,11 +1,10 @@
 from django.test import TestCase, tag
 from edc_constants.constants import FEMALE
-
-from ..eligibility import Eligibility, EligibilityError
 from copy import copy
 
+from ..eligibility import Eligibility, EligibilityError
 
-@tag('2')
+
 class TestEligibility(TestCase):
 
     def setUp(self):

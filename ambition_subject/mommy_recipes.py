@@ -14,7 +14,8 @@ from .models import EducationalBackground
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
 from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory, Week16
 from .models import RecurrenceSymptom, Week2, SubjectVisit, SubjectScreening, MedicalExpenses
-from .models import SubjectLocator, SubjectConsent, PrnModel, HealthEconomicsQuestionnaire
+from .models import SubjectLocator, SubjectConsent, PrnModel, MedicalExpensesTwoDetail
+from .models import MedicalExpensesTwo
 from .models.list_models import AEClassification, Neurological
 from .models.list_models import Antibiotic, Symptom
 from .models.list_models import SignificantNewDiagnosis, MeningitisSymptom
@@ -314,6 +315,8 @@ week16 = Recipe(Week16)
 
 medicalexpenses = Recipe(MedicalExpenses)
 
-healtheconomicsquestionnaire = Recipe(HealthEconomicsQuestionnaire)
+medicalexpensestwo = Recipe(MedicalExpensesTwo)
+
+medicalexpensestwodetail = Recipe(MedicalExpensesTwoDetail)
 
 educationalbackground = Recipe(EducationalBackground)

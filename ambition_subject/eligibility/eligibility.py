@@ -41,7 +41,6 @@ class Eligibility:
                 k: v for k, v in self.criteria.items() if not v}
             for k, v in self.criteria.items():
                 if not v:
-                    print(k, v)
                     if k in self.custom_reasons_dict:
                         self.reasons_ineligible.update(
                             {k: self.custom_reasons_dict.get(k)})
@@ -54,7 +53,6 @@ class Eligibility:
                 self.reasons_ineligible.update(
                     gender=self.gender_evaluator.reasons_ineligible)
             if not self.early_withdrawal_evaluator.eligible:
-                print(self.early_withdrawal_evaluator.reasons_ineligible)
                 self.reasons_ineligible.update(
                     {**self.early_withdrawal_evaluator.reasons_ineligible})
 

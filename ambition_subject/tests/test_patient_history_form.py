@@ -2,14 +2,10 @@ from ambition_rando.import_randomization_list import import_randomization_list
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
-from edc_constants.constants import NO
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
-from ..forms import PatientHistoryForm
 
-
-@tag('ph')
 class TestPatientHistoryFormValidator(TestCase):
 
     def setUp(self):
@@ -37,5 +33,4 @@ class TestPatientHistoryFormValidator(TestCase):
 #         mommy.make_recipe(
 #             'ambition_subject.patienthistory', **options)
 #         form = PatientHistoryForm()
-#         print(">>>>>>>>", form.errors)
 #         self.assertTrue(form.is_valid())

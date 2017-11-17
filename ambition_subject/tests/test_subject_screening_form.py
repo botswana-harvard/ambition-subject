@@ -1,7 +1,6 @@
 from django.test import TestCase, tag
-from model_mommy import mommy
-
 from edc_constants.constants import YES, FEMALE, NO, NOT_APPLICABLE
+from model_mommy import mommy
 
 from ..forms import SubjectScreeningForm
 

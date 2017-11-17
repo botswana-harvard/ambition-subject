@@ -9,7 +9,6 @@ from model_mommy import mommy
 from ..forms import MicrobiologyForm
 
 
-@tag('4')
 class TestMicrobiologyForm(TestCase):
 
     def setUp(self):

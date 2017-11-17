@@ -4,7 +4,6 @@ from django.test import TestCase, tag
 from ..eligibility import AgeEvaluator
 
 
-@tag('2')
 class TestAgeEvaluator(TestCase):
 
     def setUp(self):
