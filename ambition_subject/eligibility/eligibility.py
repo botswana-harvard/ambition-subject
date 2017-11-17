@@ -1,6 +1,7 @@
 from .age_evaluator import AgeEvaluator
 from .early_withdrawal_evaluator import EarlyWithdrawalEvaluator
 from .gender_evaluator import GenderEvaluator
+from pprint import pprint
 
 
 class EligibilityError(Exception):
@@ -31,7 +32,7 @@ class Eligibility:
         self.criteria.update(gender=self.gender_evaluator.eligible)
         self.criteria.update(
             early_withdrawal=self.early_withdrawal_evaluator.eligible)
-
+        pprint(self.criteria)
         # eligible if all criteria are True
         self.eligible = all([v for v in self.criteria.values()])
 
@@ -40,22 +41,25 @@ class Eligibility:
         else:
             self.reasons_ineligible = {
                 k: v for k, v in self.criteria.items() if not v}
-            if self.age_evaluator.reasons_ineligible:
-                self.reasons_ineligible.update(
-                    age=self.age_evaluator.reasons_ineligible)
-            if self.gender_evaluator.reasons_ineligible:
-                self.reasons_ineligible.update(
-                    gender=self.gender_evaluator.reasons_ineligible)
-            if self.early_withdrawal_evaluator.reasons_ineligible:
-                self.reasons_ineligible.update(
-                    early_withdrawal=self.early_withdrawal_evaluator.reasons_ineligible)
             for k, v in self.criteria.items():
                 if not v:
+                    print(k, v)
                     if k in self.custom_reasons_dict:
                         self.reasons_ineligible.update(
                             {k: self.custom_reasons_dict.get(k)})
                     else:
                         self.reasons_ineligible.update({k: k})
+            if not self.age_evaluator.eligible:
+                self.reasons_ineligible.update(
+                    age=self.age_evaluator.reasons_ineligible)
+            if not self.gender_evaluator.eligible:
+                self.reasons_ineligible.update(
+                    gender=self.gender_evaluator.reasons_ineligible)
+            if not self.early_withdrawal_evaluator.eligible:
+                print(self.early_withdrawal_evaluator.reasons_ineligible)
+                self.reasons_ineligible.update(
+                    early_withdrawal=(
+                        f'Early withdrawal: {self.early_withdrawal_evaluator.reasons_ineligible}'))
 
     def __str__(self):
         return self.eligible

@@ -150,8 +150,8 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
     platelets_result = models.IntegerField(
         null=True,
         blank=True,
-        help_text=('Leave blank if unknown. Units: " x 10e6/L". '
-                   'Ineligible if < 50,000 x 10e6/L'))
+        help_text=('Leave blank if unknown. Units: " x 10e9/L". '
+                   'Ineligible if < 50 x 10e9/L'))
 
     eligible = models.BooleanField(
         default=False,
@@ -171,7 +171,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         return (self.screening_identifier,)
 
     def save(self, *args, **kwargs):
-        eligibility_obj = self.eligibility_cls(model_obj=self)
+        eligibility_obj = self.eligibility_cls(model_obj=self, allow_none=True)
         self.eligible = eligibility_obj.eligible
         if not self.eligible:
             reasons_ineligible = [
