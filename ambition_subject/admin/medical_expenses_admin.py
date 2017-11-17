@@ -35,10 +35,5 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     radio_fields = {
         'activities_missed': admin.VERTICAL,
         'care_before_hospital': admin.VERTICAL,
-        'care_provider': admin.VERTICAL,
         'currency': admin.VERTICAL,
-        'location_care': admin.VERTICAL,
-        'medication_bought': admin.VERTICAL,
-        'other_place_visited': admin.VERTICAL,
-        'transport_form': admin.VERTICAL,
         'loss_of_earnings': admin.VERTICAL}
