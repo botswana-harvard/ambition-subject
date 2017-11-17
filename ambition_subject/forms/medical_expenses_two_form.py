@@ -1,6 +1,6 @@
 from django.forms import forms
 from edc_base.modelform_validators import NOT_REQUIRED_ERROR
-from edc_constants.constants import NOT_APPLICABLE, YES
+from edc_constants.constants import YES
 
 from ..models import MedicalExpensesTwo
 from .form_mixins import SubjectModelFormMixin
@@ -9,23 +9,23 @@ from .form_mixins import SubjectModelFormMixin
 class MedicalExpensesTwoForm(SubjectModelFormMixin):
 
     def clean(self):
+        """Force the next inline to be completed based on the
+        response to 'other_place_visited'.
+        """
 
-        if self.data.get('healtheconomicsquestionnaire2_set-3-location_care'):
-            message = 'Exceeded maximum number of medical expenses inlines.'
+        inline = 'medicalexpensestwodetail_set'
+        template = (
+            'You visited a {} place for '
+            'the treatment of the present situation. '
+            'Please add details below by clicking [ "Add another Medical '
+            'Expenses Part 2: Detail" ] at the bottom of this form.')
+        if (self.data.get(f'{inline}-0-other_place_visited') == YES
+                and not self.data.get(f'{inline}-1-other_place_visited')):
+            message = template.format('second')
             raise forms.ValidationError(message, code=NOT_REQUIRED_ERROR)
-
-        if (self.data.get('healtheconomicsquestionnaire2_set-0-other_place_visited') == YES
-                and self.data.get(
-                    'healtheconomicsquestionnaire2_set-1-location_care') == NOT_APPLICABLE):
-
-            message = 'Please fill in the second medical expenses inline.'
-            raise forms.ValidationError(message, code=NOT_REQUIRED_ERROR)
-
-        if (self.data.get('healtheconomicsquestionnaire2_set-1-other_place_visited') == YES
-                and self.data.get(
-                    'mhealtheconomicsquestionnaire2_set-2-location_care') == NOT_APPLICABLE):
-
-            message = 'Please fill in the third medical expenses inline.'
+        if (self.data.get(f'{inline}-1-other_place_visited') == YES
+                and not self.data.get(f'{inline}-2-other_place_visited')):
+            message = template.format('third')
             raise forms.ValidationError(message, code=NOT_REQUIRED_ERROR)
 
     class Meta:

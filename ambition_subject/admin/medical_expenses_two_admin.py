@@ -13,6 +13,7 @@ class MedicalExpensesTwoDetailAdmin(StackedInlineMixin, admin.StackedInline):
     form = MedicalExpensesTwoDetailForm
     extra = 0
     min_num = 1
+    max_num = 3
 
     list_display = ('location_care', 'location_care_other', 'transport_form')
 
