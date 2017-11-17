@@ -36,8 +36,8 @@ class SubjectScreeningEligibility:
             breast_feeding=if_yes(model_obj.breast_feeding),
             no_drug_reaction=if_no(model_obj.previous_drug_reaction),
             no_concomitant_meds=if_no(model_obj.contraindicated_meds),
-            no_amphotericin=if_no(model_obj.received_amphotericin),
-            no_fluconazole=if_no(model_obj.received_fluconazole)
+            no_amphotericin=if_yes(model_obj.received_amphotericin),
+            no_fluconazole=if_yes(model_obj.received_fluconazole)
         )
         self.eligible = eligibility_obj.eligible
         self.reasons_ineligible = eligibility_obj.reasons_ineligible

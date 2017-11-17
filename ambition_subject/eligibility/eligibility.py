@@ -1,6 +1,7 @@
 from .age_evaluator import AgeEvaluator
 from .gender_evaluator import GenderEvaluator
 from ambition_subject.eligibility.early_withdrawal_evaluator import EarlyWithdrawalEvaluator
+from pprint import pprint
 
 
 class EligibilityError(Exception):
@@ -46,9 +47,10 @@ class Eligibility:
                 gender=self.gender_evaluator.reasons_ineligible)
             self.reasons_ineligible.update(
                 early_withdrawal=self.early_withdrawal_evaluator.reasons_ineligible)
-            for k, v in self.custom_reasons_dict.items():
+            for k, v in self.criteria.items():
                 if v:
-                    self.reasons_ineligible.update({k: v})
+                    self.reasons_ineligible.update(
+                        {k: self.custom_reasons_dict.get(k)})
 
     def __str__(self):
         return self.eligible
@@ -63,7 +65,8 @@ class Eligibility:
             meningitis_dx='Previous Hx of Cryptococcal Meningitis.',
             no_amphotericin='> 0.7mg/kg of Amphotericin B.',
             no_fluconazole='> 48hrs of Fluconazole.',
-            will_hiv_test='HIV unknown, not willing to consent.')
+            will_hiv_test='HIV unknown.',
+            consent_ability='Not able/willing to consent.')
         for k in custom_reasons_dict:
             if k in custom_reasons_dict and k not in self.criteria:
                 raise EligibilityError(
