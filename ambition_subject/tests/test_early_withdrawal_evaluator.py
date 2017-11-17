@@ -15,3 +15,8 @@ class TestEarlyWithdrawalEvaluator(TestCase):
         opts = dict(alt=None, pmns=None, platlets=None, allow_none=True)
         obj = EarlyWithdrawalEvaluator(**opts)
         self.assertTrue(obj.eligible)
+
+    def test_early_withdrawal_criteria_ok(self):
+        opts = dict(alt=200, pmns=500, platlets=50, allow_none=True)
+        obj = EarlyWithdrawalEvaluator(**opts)
+        self.assertTrue(obj.eligible)

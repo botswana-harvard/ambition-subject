@@ -18,4 +18,4 @@ class EarlyWithdrawalEvaluator:
             if platlets and int(platlets) < 50:
                 self.reasons_ineligible.update(platlets='Platelets<50x10^9/L.')
                 failed.append(1)
-            self.eligible = True if failed else False
+            self.eligible = True if not failed else False
