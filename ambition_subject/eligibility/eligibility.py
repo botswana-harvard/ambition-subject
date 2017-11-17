@@ -1,6 +1,7 @@
 from .age_evaluator import AgeEvaluator
 from .early_withdrawal_evaluator import EarlyWithdrawalEvaluator
 from .gender_evaluator import GenderEvaluator
+from pprint import pprint
 
 
 class EligibilityError(Exception):
@@ -15,13 +16,13 @@ class Eligibility:
     """
 
     def __init__(self, age=None, gender=None, pregnant=None, breast_feeding=None,
-                 alt=None, pmn=None, platlets=None, **kwargs):
+                 alt=None, pmn=None, platlets=None, allow_none=None, **kwargs):
 
         self.age_evaluator = AgeEvaluator(age=age)
         self.gender_evaluator = GenderEvaluator(
             gender=gender, pregnant=pregnant, breast_feeding=breast_feeding)
         self.early_withdrawal_evaluator = EarlyWithdrawalEvaluator(
-            alt=alt, pmn=pmn, platlets=platlets)
+            alt=alt, pmn=pmn, platlets=platlets, allow_none=allow_none)
 
         self.criteria = dict(**kwargs)
         if len(self.criteria) == 0:
@@ -33,7 +34,7 @@ class Eligibility:
             early_withdrawal=self.early_withdrawal_evaluator.eligible)
         # eligible if all criteria are True
         self.eligible = all([v for v in self.criteria.values()])
-
+        pprint(self.criteria)
         if self.eligible:
             self.reasons_ineligible = None
         else:
@@ -51,7 +52,7 @@ class Eligibility:
                     age=self.age_evaluator.reasons_ineligible)
             if not self.gender_evaluator.eligible:
                 self.reasons_ineligible.update(
-                    gender=self.gender_evaluator.reasons_ineligible)
+                    gender=f"{' and '.join(self.gender_evaluator.reasons_ineligible)}.")
             if not self.early_withdrawal_evaluator.eligible:
                 self.reasons_ineligible.update(
                     {**self.early_withdrawal_evaluator.reasons_ineligible})
@@ -64,6 +65,7 @@ class Eligibility:
         """Returns a dictionary of custom reasons for named criteria.
         """
         custom_reasons_dict = dict(
+            mentally_normal='Abnormal mental status.',
             no_drug_reaction='Previous adverse drug reaction to the study medication.',
             no_concomitant_meds='Patient on Contraindicated Meds.',
             meningitis_dx='Previous Hx of Cryptococcal Meningitis.',

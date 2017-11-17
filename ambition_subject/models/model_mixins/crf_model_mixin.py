@@ -4,7 +4,7 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel, FormAsJSONModelMixin
 from edc_consent.model_mixins import RequiresConsentMixin
 from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
-from edc_offstudy.model_mixins import OffstudyModelMixin
+from edc_offstudy.model_mixins import OffstudyMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import CrfModelManager  # as BaseCrfModelManager
 from edc_visit_tracking.model_mixins import CrfModelMixin as BaseCrfModelMixin
@@ -13,7 +13,7 @@ from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 from ..subject_visit import SubjectVisit
 
 
-class CrfModelMixin(BaseCrfModelMixin, OffstudyModelMixin,
+class CrfModelMixin(BaseCrfModelMixin, OffstudyMixin,
                     RequiresConsentMixin, PreviousVisitModelMixin,
                     UpdatesCrfMetadataModelMixin,
                     FormAsJSONModelMixin, ReferenceModelMixin, BaseUuidModel):

@@ -23,6 +23,7 @@ class SubjectScreeningEligibility:
 
     def __init__(self, model_obj=None, allow_none=None):
         eligibility_obj = self.eligibility_cls(
+            allow_none=allow_none,
             age=model_obj.age_in_years,
             gender=model_obj.gender,
             alt=model_obj.alt_result,
