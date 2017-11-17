@@ -11,7 +11,8 @@ class MedicalExpensesTwoDetailAdmin(StackedInlineMixin, admin.StackedInline):
 
     model = MedicalExpensesTwoDetail
     form = MedicalExpensesTwoDetailForm
-    extra = 1
+    extra = 0
+    min_num = 1
 
     list_display = ('location_care', 'location_care_other', 'transport_form')
 

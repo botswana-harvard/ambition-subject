@@ -103,9 +103,13 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
         verbose_name='Before this, did you go to another place '
         'for the treatment of the present situation?',
         max_length=15,
-        choices=YES_NO)
+        choices=YES_NO,
+        help_text='If Yes, click "Add another Medical Expenses Part 2: Detail" below.')
 
     objects = ModelManager()
+
+    def __str__(self):
+        return self.medical_expenses_two.visit.subject_identifier
 
     def natural_key(self):
         return ((self.location_care,) + self.medical_expenses_two.natural_key())
