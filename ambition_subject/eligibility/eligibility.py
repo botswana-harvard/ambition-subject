@@ -47,7 +47,7 @@ class Eligibility:
                     if k in self.custom_reasons_dict:
                         self.reasons_ineligible.update(
                             {k: self.custom_reasons_dict.get(k)})
-                    else:
+                    elif k not in ['age', 'gender', 'early_withdrawal']:
                         self.reasons_ineligible.update({k: k})
             if not self.age_evaluator.eligible:
                 self.reasons_ineligible.update(
@@ -58,8 +58,7 @@ class Eligibility:
             if not self.early_withdrawal_evaluator.eligible:
                 print(self.early_withdrawal_evaluator.reasons_ineligible)
                 self.reasons_ineligible.update(
-                    early_withdrawal=(
-                        f'Early withdrawal: {self.early_withdrawal_evaluator.reasons_ineligible}'))
+                    {**self.early_withdrawal_evaluator.reasons_ineligible})
 
     def __str__(self):
         return self.eligible
