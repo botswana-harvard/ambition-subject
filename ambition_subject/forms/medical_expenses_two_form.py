@@ -12,7 +12,7 @@ class MedicalExpensesTwoForm(SubjectModelFormMixin):
         """Force the next inline to be completed based on the
         response to 'other_place_visited'.
         """
-
+        cleaned_data = super().clean()
         inline = 'medicalexpensestwodetail_set'
         template = (
             'You visited a {} place for '
@@ -27,6 +27,7 @@ class MedicalExpensesTwoForm(SubjectModelFormMixin):
                 and not self.data.get(f'{inline}-2-other_place_visited')):
             message = template.format('third')
             raise forms.ValidationError(message, code=NOT_REQUIRED_ERROR)
+        return cleaned_data
 
     class Meta:
         model = MedicalExpensesTwo
