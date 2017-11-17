@@ -472,7 +472,6 @@ class TestSubjectRules(TestCase):
                 visit_code='1000').entry_status,
             REQUIRED)
 
-    @tag('m')
     def test_medical_expenses_two_required(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
