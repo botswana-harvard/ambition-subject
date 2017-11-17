@@ -3,6 +3,5 @@ from .clinical_assessment_model_mixin import ClinicalAssessmentModelMixin
 from .crf_model_mixin import CrfModelMixin
 from .fluconazole_missed_doses_model_mixin import FluconazoleMissedDosesModelMixin
 from .flucytosine_missed_doses_model_mixin import FlucytosineMissedDosesModelMixin
-from .medical_expenses_model_mixin import MedicalExpensesModelMixin
 from .search_slug_model_mixin import SearchSlugModelMixin
 from .significant_diagnoses_model_mixin import SignificantDiagnosesModelMixin
