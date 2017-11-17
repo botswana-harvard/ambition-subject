@@ -471,3 +471,23 @@ class TestSubjectRules(TestCase):
                 subject_identifier=self.consent.subject_identifier,
                 visit_code='1000').entry_status,
             REQUIRED)
+
+    @tag('m')
+    def test_medical_expenses_two_required(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1000')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.medicalexpenses',
+            subject_visit=self.subject_visit,
+            care_before_hospital=YES)
+
+        self.assertEqual(
+            CrfMetadata.objects.get(
+                model='ambition_subject.medicalexpensestwo',
+                subject_identifier=self.consent.subject_identifier,
+                visit_code='1000').entry_status,
+            REQUIRED)
