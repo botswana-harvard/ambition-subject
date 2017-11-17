@@ -1,7 +1,6 @@
 from .adverse_event import AdverseEvent
 from .adverse_event_followup import AdverseEventFollowUp
 from .adverse_event_tmg import AdverseEventTMG
-# from .appointment import Appointment
 from .blood_result import BloodResult
 from .clinic_note import ClinicNote
 from .death_report import DeathReport
@@ -12,11 +11,11 @@ from .educational_background import EducationalBackground
 from .enrollment import Enrollment
 from .follow_up import FollowUp
 from .follow_up_diagnosis import FollowUpDiagnoses
-from .health_economics_questionnaire import HealthEconomicsQuestionnaire
-from .health_economics_questionnaire import HealthEconomicsQuestionnaire2
 from .identifier_history import IdentifierHistory
 from .lumbar_puncture_csf import LumbarPunctureCsf
 from .medical_expenses import MedicalExpenses
+from .medical_expenses_two_detail import MedicalExpensesTwoDetail
+from .medical_expenses_two import MedicalExpensesTwo
 from .microbiology import Microbiology
 from .missed_visit import MissedVisit
 from .patient_history import PatientHistory

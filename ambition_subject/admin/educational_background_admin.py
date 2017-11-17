@@ -14,7 +14,7 @@ class EducationalBackgroundAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = EducationalBackgroundForm
 
     fieldsets = (
-        ('Educational Background', {
+        (None, {
             'fields': [
                 'subject_visit',
                 'household_head',

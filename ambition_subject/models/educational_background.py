@@ -64,4 +64,5 @@ class EducationalBackground(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        pass
+        verbose_name = 'Health Economics: Educational Background'
+        verbose_name_plural = 'Health Economics: Educational Background'

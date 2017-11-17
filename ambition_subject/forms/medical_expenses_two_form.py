@@ -1,12 +1,12 @@
 from django.forms import forms
-
-from edc_base.modelform_validators.base_form_validator import NOT_REQUIRED_ERROR
+from edc_base.modelform_validators import NOT_REQUIRED_ERROR
 from edc_constants.constants import NOT_APPLICABLE, YES
-from ..models import HealthEconomicsQuestionnaire
+
+from ..models import MedicalExpensesTwo
 from .form_mixins import SubjectModelFormMixin
 
 
-class HealthEconomicsQuestionnaireForm(SubjectModelFormMixin):
+class MedicalExpensesTwoForm(SubjectModelFormMixin):
 
     def clean(self):
 
@@ -29,5 +29,5 @@ class HealthEconomicsQuestionnaireForm(SubjectModelFormMixin):
             raise forms.ValidationError(message, code=NOT_REQUIRED_ERROR)
 
     class Meta:
-        model = HealthEconomicsQuestionnaire
+        model = MedicalExpensesTwo
         fields = '__all__'

@@ -1,12 +1,13 @@
-from ambition_validators import HealthEconomicsQuestionnaire2FormValidator
-from ..models import HealthEconomicsQuestionnaire2
+from ambition_validators import MedicalExpensesTwoDetailFormValidator
+
+from ..models import MedicalExpensesTwoDetail
 from .form_mixins import SubjectModelFormMixin
 
 
-class HealthEconomicsQuestionnaire2Form(SubjectModelFormMixin):
+class MedicalExpensesTwoDetailForm(SubjectModelFormMixin):
 
-    form_validator_cls = HealthEconomicsQuestionnaire2FormValidator
+    form_validator_cls = MedicalExpensesTwoDetailFormValidator
 
     class Meta:
-        model = HealthEconomicsQuestionnaire2
+        model = MedicalExpensesTwoDetail
         fields = '__all__'

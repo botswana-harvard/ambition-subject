@@ -1,25 +1,22 @@
 from django.contrib import admin
-
-from edc_base.modeladmin_mixins import audit_fieldset_tuple, TabularInlineMixin
+from edc_base.modeladmin_mixins import audit_fieldset_tuple, StackedInlineMixin
 
 from ..admin_site import ambition_subject_admin
-from ..forms import HealthEconomicsQuestionnaireForm
-from ..forms import HealthEconomicsQuestionnaire2Form
-from ..models import HealthEconomicsQuestionnaire
-from ..models import HealthEconomicsQuestionnaire2
+from ..forms import MedicalExpensesTwoDetailForm, MedicalExpensesTwoForm
+from ..models import MedicalExpensesTwoDetail, MedicalExpensesTwo
 from .modeladmin_mixins import CrfModelAdminMixin
 
 
-class HealthEconomicsQuestionnaire2Inline(TabularInlineMixin, admin.StackedInline):
+class MedicalExpensesTwoDetailAdmin(StackedInlineMixin, admin.StackedInline):
 
-    model = HealthEconomicsQuestionnaire2
-    form = HealthEconomicsQuestionnaire2Form
+    model = MedicalExpensesTwoDetail
+    form = MedicalExpensesTwoDetailForm
     extra = 1
 
     list_display = ('location_care', 'location_care_other', 'transport_form')
 
     fieldsets = (
-        ['Medical Expenses Continued..', {
+        [None, {
             'fields': (
                 'location_care',
                 'location_care_other',
@@ -33,7 +30,7 @@ class HealthEconomicsQuestionnaire2Inline(TabularInlineMixin, admin.StackedInlin
                 'medication_bought',
                 'medication_payment',
                 'other_place_visited')},
-         ],)
+         ], audit_fieldset_tuple)
 
     radio_fields = {
         'care_provider': admin.VERTICAL,
@@ -44,16 +41,16 @@ class HealthEconomicsQuestionnaire2Inline(TabularInlineMixin, admin.StackedInlin
         'transport_form': admin.VERTICAL}
 
 
-@admin.register(HealthEconomicsQuestionnaire, site=ambition_subject_admin)
-class HealthEconomicsQuestionnaireAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+@admin.register(MedicalExpensesTwo, site=ambition_subject_admin)
+class MedicalExpensesTwoAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
-    form = HealthEconomicsQuestionnaireForm
+    form = MedicalExpensesTwoForm
 
-    inlines = [HealthEconomicsQuestionnaire2Inline]
+    inlines = [MedicalExpensesTwoDetailAdmin]
 
     fieldsets = (
-        ('Health Economics Questionnaire', {
+        (None, {
             'fields': [
                 'subject_visit',
             ]}
-         ), audit_fieldset_tuple)
+         ), )

@@ -8,4 +8,5 @@ class MedicalExpenses(MedicalExpensesModelMixin, CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name_plural = 'Medical Expenses'
+        verbose_name = 'Health Economics: Medical Expenses'
+        verbose_name_plural = 'Health Economics: Medical Expenses'

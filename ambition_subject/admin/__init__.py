@@ -9,7 +9,7 @@ from .death_report import DeathReportTmg1Admin
 from .death_report import DeathReportTmg2Admin
 from .educational_background_admin import EducationalBackgroundAdmin
 from .follow_up_admin import FollowUpAdmin
-from .health_economics_questionnaire_admin import HealthEconomicsQuestionnaire
+from .medical_expenses_two_admin import MedicalExpensesTwoAdmin, MedicalExpensesTwoDetailAdmin
 from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin
 from .microbiology_admin import MicrobiologyAdmin
 from .medical_expenses_admin import MedicalExpensesAdmin
