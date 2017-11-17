@@ -45,7 +45,7 @@ class SubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
         ('Blood Results', {
             'fields': (
                 'alt_result',
-                'pmns_result',
-                'platlets_result')
+                'pmn_result',
+                'platelets_result')
         }),
     )
