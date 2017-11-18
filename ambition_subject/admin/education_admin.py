@@ -13,6 +13,10 @@ class EducationAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = EducationForm
 
+    additional_instructions = (
+        'The following questions refer to the educational background of '
+        'the patient.')
+
     fieldsets = (
         (None, {
             'fields': [

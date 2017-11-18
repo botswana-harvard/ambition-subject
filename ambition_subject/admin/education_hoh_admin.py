@@ -6,12 +6,18 @@ from ..admin_site import ambition_subject_admin
 from ..forms import EducationHohForm
 from ..models import EducationHoh
 from .modeladmin_mixins import CrfModelAdminMixin
+from django.utils.safestring import mark_safe
 
 
 @admin.register(EducationHoh, site=ambition_subject_admin)
 class EducationHohAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = EducationHohForm
+
+    additional_instructions = mark_safe(
+        '<H5><span style="color:orange;">'
+        'The following questions refer to the educational background of '
+        'the head of household</span></H5> Please respond on behalf of the head of household.')
 
     fieldsets = (
         (None, {
