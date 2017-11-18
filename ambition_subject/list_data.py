@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 
-from edc_constants.constants import OTHER, UNKNOWN, NOT_APPLICABLE
+from edc_constants.constants import OTHER, UNKNOWN, NOT_APPLICABLE, NORMAL
 
 from .constants import HEADACHE, VISUAL_LOSS
 
@@ -128,6 +128,14 @@ list_data = {
          'Enhancing mass lesions DD Toxoplasmosis, TB, lymphoma'),
         ('infarcts', 'Infarcts'),
         (OTHER, 'Other'),
+    ],
+    'ambition_subject.cxrtype': [
+        (NOT_APPLICABLE, 'Not Applicable'),
+        (NORMAL, 'Normal'),
+        ('hilar_adenopathy', 'Hilar adenopathy'),
+        ('miliary_appearance', 'Miliary appearance'),
+        ('pleural_effusion', 'Pleural effusion'),
+        ('infiltrates', 'Infiltrates'),
     ],
 }
 
