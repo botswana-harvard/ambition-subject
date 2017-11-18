@@ -20,7 +20,6 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         'scanned_with_contrast': admin.VERTICAL,
         'brain_imaging_reason': admin.VERTICAL,
         'are_results_abnormal': admin.VERTICAL,
-        'abnormal_results_reason': admin.VERTICAL,
         'infiltrate_location': admin.VERTICAL}
 
     fieldsets = (
@@ -45,3 +44,5 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'infarcts_location')}],
         audit_fieldset_tuple
     )
+
+    filter_horizontal = ('abnormal_results_reason',)
