@@ -10,7 +10,10 @@ class Education(EducationModelMixin, CrfModelMixin):
     household_head = models.CharField(
         verbose_name='Are you head of the household?',
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO,
+        help_text=('If NO, please complete the form "Health Economics: '
+                   'Education (Head of Household)" on behalf of the '
+                   'head of household.'))
 
     history = HistoricalRecords()
 
