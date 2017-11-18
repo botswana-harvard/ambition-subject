@@ -3,9 +3,11 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
-from ..choices import ABNORMAL_RESULTS_REASON, BRAIN_IMAGINING_REASON
+from ..choices import BRAIN_IMAGINING_REASON
 from ..choices import CXR_TYPE, INFILTRATE_LOCATION
+
 from .model_mixins import CrfModelMixin
+from .list_models import AbnormalResultsReason
 
 
 class Radiology(CrfModelMixin):
@@ -83,13 +85,9 @@ class Radiology(CrfModelMixin):
         null=False,
         max_length=5)
 
-    abnormal_results_reason = models.CharField(
-        verbose_name='If results are abnormal, what is the reason?',
-        blank=False,
-        choices=ABNORMAL_RESULTS_REASON,
-        default=NOT_APPLICABLE,
-        max_length=50,
-        null=True)
+    abnormal_results_reason = models.ManyToManyField(
+        AbnormalResultsReason,
+        verbose_name='If results are abnormal, what is the reason?')
 
     abnormal_results_reason_other = models.CharField(
         verbose_name='If other, please specify reason',
