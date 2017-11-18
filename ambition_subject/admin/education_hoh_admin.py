@@ -31,5 +31,4 @@ class EducationHohAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     radio_fields = {
         'elementary': admin.VERTICAL,
         'secondary': admin.VERTICAL,
-        'household_head': admin.VERTICAL,
         'higher_education': admin.VERTICAL}

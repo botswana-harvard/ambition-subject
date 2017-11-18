@@ -33,5 +33,4 @@ class EducationAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'household_head': admin.VERTICAL,
         'elementary': admin.VERTICAL,
         'secondary': admin.VERTICAL,
-        'household_head': admin.VERTICAL,
         'higher_education': admin.VERTICAL}
