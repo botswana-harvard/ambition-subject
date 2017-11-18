@@ -40,7 +40,7 @@ class MedicalExpenses(CrfModelMixin):
         validators=[MinValueValidator(0)])
 
     care_before_hospital = models.CharField(
-        verbose_name='Have you received any treatment or care '
+        verbose_name='a. Have you received any treatment or care '
         'for your present condition, before coming to the hospital?',
         max_length=5,
         choices=YES_NO,
