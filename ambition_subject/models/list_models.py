@@ -54,3 +54,8 @@ class Symptom(ListModelMixin, BaseUuidModel):
 class OtherDrug(ListModelMixin, BaseUuidModel):
 
     pass
+
+
+class AbnormalResultsReason(ListModelMixin, BaseUuidModel):
+
+    pass

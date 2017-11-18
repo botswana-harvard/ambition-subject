@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 
-from edc_constants.constants import OTHER, UNKNOWN
+from edc_constants.constants import OTHER, UNKNOWN, NOT_APPLICABLE
 
 from .constants import HEADACHE, VISUAL_LOSS
 
@@ -117,6 +117,17 @@ list_data = {
         ('weight_loss', 'Weight Loss'),
         ('skin_lesions', 'Skin Lesions'),
         ('shortness_of_breath', 'Shortness of breath'),
+    ],
+    'ambition_subject.abnormalresultsreason': [
+        (NOT_APPLICABLE, 'Not Applicable'),
+        ('cerebral_oedema', 'Cerebral oedema'),
+        ('hydrocephalus', 'Hydrocephalus'),
+        ('cryptococcomus', 'Cryptococcomus'),
+        ('dilated_virchow_robin_spaces', 'Dilated Virchow robin spaces'),
+        ('enhancing_mass_lesions',
+         'Enhancing mass lesions DD Toxoplasmosis, TB, lymphoma'),
+        ('infarcts', 'Infarcts'),
+        (OTHER, 'Other'),
     ],
 }
 
