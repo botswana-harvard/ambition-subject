@@ -59,3 +59,8 @@ class OtherDrug(ListModelMixin, BaseUuidModel):
 class AbnormalResultsReason(ListModelMixin, BaseUuidModel):
 
     pass
+
+
+class CXRType(ListModelMixin, BaseUuidModel):
+
+    pass
