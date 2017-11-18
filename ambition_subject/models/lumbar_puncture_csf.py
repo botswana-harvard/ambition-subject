@@ -36,7 +36,9 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_culture = models.CharField(
         verbose_name='Other organism (non-cryptococcus)',
         max_length=5,
-        choices=YES_NO)
+        blank=True,
+        choices=YES_NO,
+        help_text='Complete after getting the results.')
 
     other_csf_culture = models.CharField(
         verbose_name='If yes, specify organism:',
