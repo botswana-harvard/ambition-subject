@@ -78,6 +78,10 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True)
 
+    arv_date_estimated = IsDateEstimatedFieldNa(
+        verbose_name=("Is the subject's ARV date estimated?"),
+        default=NOT_APPLICABLE)
+
     first_arv_regimen = models.CharField(
         verbose_name='Drug used in first line arv regimen',
         max_length=50,
