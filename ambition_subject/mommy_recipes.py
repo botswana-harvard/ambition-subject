@@ -11,7 +11,7 @@ from model_mommy.recipe import Recipe, related, seq
 
 from .models import AdverseEvent, AdverseEventTMG, AdverseEventFollowUp
 from .models import BloodResult, DeathReport, Microbiology, FollowUp
-from .models import Education
+from .models import Education, EducationHoh
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
 from .models import MedicalExpensesTwo
 from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory, Week16
@@ -321,3 +321,5 @@ medicalexpensestwo = Recipe(MedicalExpensesTwo)
 medicalexpensestwodetail = Recipe(MedicalExpensesTwoDetail)
 
 education = Recipe(Education)
+
+educationhoh = Recipe(EducationHoh)
