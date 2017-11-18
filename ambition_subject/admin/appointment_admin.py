@@ -36,9 +36,9 @@ class AppointmentAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     search_fields = ('subject_identifier', )
 
-    radio_fields = {'appt_status': admin.VERTICAL}
-#         'appt_type': admin.VERTICAL,
-#         'appt_reason': admin.VERTICAL}
+    radio_fields = {'appt_status': admin.VERTICAL,
+                    'appt_type': admin.VERTICAL,
+                    'appt_reason': admin.VERTICAL}
 
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)

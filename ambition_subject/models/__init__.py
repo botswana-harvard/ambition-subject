@@ -7,7 +7,8 @@ from .death_report import DeathReport
 from .death_report import DeathReportTmg1
 from .death_report import DeathReportTmg2
 from .disenrollment import Disenrollment
-from .educational_background import EducationalBackground
+from .education import Education
+from .education_hoh import EducationHoh
 from .enrollment import Enrollment
 from .follow_up import FollowUp
 from .follow_up_diagnosis import FollowUpDiagnoses

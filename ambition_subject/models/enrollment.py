@@ -44,4 +44,4 @@ class Enrollment(EnrollmentModelMixin, CreateAppointmentsMixin,
 
     class Meta(EnrollmentModelMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
-        visit_schedule_name = 'visit_schedule1.schedule1'
+        visit_schedule_name = 'visit_schedule.schedule'
