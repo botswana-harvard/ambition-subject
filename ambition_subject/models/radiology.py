@@ -4,10 +4,10 @@ from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
 from ..choices import BRAIN_IMAGINING_REASON
-from ..choices import CXR_TYPE, INFILTRATE_LOCATION
+from ..choices import INFILTRATE_LOCATION
 
 from .model_mixins import CrfModelMixin
-from .list_models import AbnormalResultsReason
+from .list_models import AbnormalResultsReason, CXRType
 
 
 class Radiology(CrfModelMixin):
@@ -23,13 +23,9 @@ class Radiology(CrfModelMixin):
         blank=True,
         null=True)
 
-    cxr_type = models.CharField(
-        verbose_name='If yes, result',
-        blank=False,
-        choices=CXR_TYPE,
-        default=NOT_APPLICABLE,
-        max_length=75,
-        null=True)
+    cxr_type = models.ManyToManyField(
+        CXRType,
+        verbose_name='If yes, result',)
 
     infiltrate_location = models.CharField(
         verbose_name='If Infiltrates, specify location',

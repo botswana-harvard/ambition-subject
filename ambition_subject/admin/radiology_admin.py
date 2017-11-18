@@ -15,7 +15,6 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {
         'cxr_done': admin.VERTICAL,
-        'cxr_type': admin.VERTICAL,
         'ct_performed': admin.VERTICAL,
         'scanned_with_contrast': admin.VERTICAL,
         'brain_imaging_reason': admin.VERTICAL,
@@ -45,4 +44,5 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         audit_fieldset_tuple
     )
 
-    filter_horizontal = ('abnormal_results_reason',)
+    filter_horizontal = ('abnormal_results_reason',
+                         'cxr_type')
