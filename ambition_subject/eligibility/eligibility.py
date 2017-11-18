@@ -1,7 +1,6 @@
 from .age_evaluator import AgeEvaluator
 from .early_withdrawal_evaluator import EarlyWithdrawalEvaluator
 from .gender_evaluator import GenderEvaluator
-from pprint import pprint
 
 
 class EligibilityError(Exception):
@@ -34,7 +33,6 @@ class Eligibility:
             early_withdrawal=self.early_withdrawal_evaluator.eligible)
         # eligible if all criteria are True
         self.eligible = all([v for v in self.criteria.values()])
-        pprint(self.criteria)
         if self.eligible:
             self.reasons_ineligible = None
         else:

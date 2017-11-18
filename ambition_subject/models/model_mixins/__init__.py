@@ -1,6 +1,7 @@
 from .amphotericin_missed_doses_model_mixin import AmphotericinMissedDosesModelMixin
 from .clinical_assessment_model_mixin import ClinicalAssessmentModelMixin
 from .crf_model_mixin import CrfModelMixin
+from .education_model_mixin import EducationModelMixin
 from .fluconazole_missed_doses_model_mixin import FluconazoleMissedDosesModelMixin
 from .flucytosine_missed_doses_model_mixin import FlucytosineMissedDosesModelMixin
 from .search_slug_model_mixin import SearchSlugModelMixin

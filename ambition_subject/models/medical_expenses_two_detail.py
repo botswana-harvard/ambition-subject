@@ -30,7 +30,7 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
         MedicalExpensesTwo, on_delete=PROTECT)
 
     location_care = models.CharField(
-        verbose_name='Where did you receive treatment or care?',
+        verbose_name='b .Where did you receive treatment or care?',
         max_length=35,
         choices=LOCATION_CARE)
 

@@ -1,11 +1,9 @@
-from pprint import pprint
 
 
 class EarlyWithdrawalEvaluator:
 
     def __init__(self, alt=None, pmn=None, platlets=None, allow_none=None):
         self.reasons_ineligible = {}
-        print(alt, pmn, platlets, allow_none)
         if (not alt and not pmn and not platlets and allow_none):
             self.eligible = True
         elif not alt and not pmn and not platlets and not allow_none:

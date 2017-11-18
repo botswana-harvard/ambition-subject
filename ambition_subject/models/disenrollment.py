@@ -25,5 +25,5 @@ class Disenrollment(DisenrollmentModelMixin, RequiresConsentMixin,
     history = HistoricalRecords()
 
     class Meta(DisenrollmentModelMixin.Meta):
-        visit_schedule_name = 'visit_schedule1.schedule1'
+        visit_schedule_name = 'visit_schedule.schedule'
         consent_model = 'ambition_subject.subjectconsent'
