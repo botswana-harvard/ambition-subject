@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
+from edc_constants.choices import YES_NO_UNPERFOMED, YES_NO_NA, NOT_APPLICABLE
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from .model_mixins import CrfModelMixin
@@ -36,8 +36,7 @@ class LumbarPunctureCsf(CrfModelMixin):
     csf_culture = models.CharField(
         verbose_name='Other organism (non-cryptococcus)',
         max_length=5,
-        blank=True,
-        choices=YES_NO,
+        choices=YES_NO_UNPERFOMED,
         help_text='Complete after getting the results.')
 
     other_csf_culture = models.CharField(
