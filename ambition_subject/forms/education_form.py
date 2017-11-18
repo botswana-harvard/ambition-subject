@@ -4,7 +4,7 @@ from ..models import Education
 from .form_mixins import SubjectModelFormMixin
 
 
-class EducationalBackgroundForm(SubjectModelFormMixin):
+class EducationForm(SubjectModelFormMixin):
 
     form_validator_cls = EducationFormValidator
 
