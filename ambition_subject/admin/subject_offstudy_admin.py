@@ -1,9 +1,9 @@
-from ambition_subject.admin_site import ambition_subject_admin
 from ambition_subject.forms import SubjectOffStudyForm
-from ambition_subject.models import SubjectOffstudy
-# from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
+from ambition_subject.admin_site import ambition_subject_admin
+from ambition_subject.models import SubjectOffstudy
 from django.contrib import admin
+from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
 from .modeladmin_mixins import ModelAdminMixin
 
@@ -12,3 +12,13 @@ from .modeladmin_mixins import ModelAdminMixin
 class SubjectOffStudyAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = SubjectOffStudyForm
+
+    fieldsets = (
+        (None, {
+            'fields': (
+                'offstudy_datetime',
+                'reason',
+                'reason_other',
+                'comment')}),
+        audit_fieldset_tuple,
+    )
