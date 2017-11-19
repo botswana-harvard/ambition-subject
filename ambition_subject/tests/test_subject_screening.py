@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 from django.test import TestCase, tag
-from edc_base.modelform_validators.base_form_validator import NOT_APPLICABLE_ERROR
 from edc_constants.constants import FEMALE, YES, ABNORMAL, NORMAL, NO, MALE, NOT_APPLICABLE
+from edc_form_validators.base_form_validator import NOT_APPLICABLE_ERROR
 from model_mommy import mommy
 
 from ..models import SubjectScreening
