@@ -11,12 +11,12 @@ from edc_consent.field_mixins.bw import IdentityFieldsMixin
 from edc_consent.managers import ConsentManager
 from edc_consent.model_mixins import ConsentModelMixin
 from edc_consent.validators import eligible_if_yes, eligible_if_yes_or_declined
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_DECLINED
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
 
-from ..choices import ID_TYPE, YES_NO_DECLINED
+from ..choices import ID_TYPE
 from .model_mixins import SearchSlugModelMixin
 from .subject_screening import SubjectScreening
 
