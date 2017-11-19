@@ -1,23 +1,19 @@
 from django import forms
-
 from edc_appointment.modelform_mixins import AppointmentFormMixin
 from edc_appointment.models import Appointment
 
-from ..choices import APPOINTMENT_REASON, AMB_APPT_TYPE
+from ..choices import APPOINTMENT_REASON
 
 
 class AppointmentForm(AppointmentFormMixin, forms.ModelForm):
 
-    appt_type = forms.ChoiceField(
-        label='Appointment type:',
-        choices=AMB_APPT_TYPE,
-        widget=forms.RadioSelect)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.status_field is not None:
+            self.fields['appt_reason'].choices = APPOINTMENT_REASON
+            self.fields['appt_reason'].widget.choices = APPOINTMENT_REASON
 
-    appt_reason = forms.ChoiceField(
-        label='Reason for appointment:',
-        choices=APPOINTMENT_REASON,
-        widget=forms.RadioSelect)
-
+    # FIXME: This should NOT be overriden!
     def validate_appt_new_or_complete(self, appt_status=None):
         return None
 
