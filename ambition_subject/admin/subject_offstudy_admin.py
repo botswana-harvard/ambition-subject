@@ -16,6 +16,7 @@ class SubjectOffStudyAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
+                'subject_identifier',
                 'offstudy_datetime',
                 'reason',
                 'reason_other',
