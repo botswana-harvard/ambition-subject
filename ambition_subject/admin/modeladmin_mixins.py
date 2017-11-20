@@ -30,7 +30,10 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
                          FormAsJSONModelAdminMixin,
                          admin.ModelAdmin):
 
-    save_next = True
+    # leave false for now.
+    show_save_next = False
+    show_cancel = False
+
     post_url_on_delete_name = 'ambition_dashboard:dashboard_url'
     instructions = (
         'Please complete the questions below. Required questions are in bold. '
