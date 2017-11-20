@@ -1,12 +1,12 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
-from edc_base.modeladmin_mixins import audit_fieldset_tuple
+from edc_model_admin import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
 from ..forms import EducationHohForm
 from ..models import EducationHoh
 from .modeladmin_mixins import CrfModelAdminMixin
-from django.utils.safestring import mark_safe
 
 
 @admin.register(EducationHoh, site=ambition_subject_admin)
