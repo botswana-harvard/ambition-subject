@@ -1,7 +1,6 @@
 from django.forms import forms
 from ambition_validators import SignificantDiagnosesFormValidator, Week4FormValidator
-from edc_base.modelform_validators import FormValidatorMixin
-from edc_base.modelform_validators.base_form_validator import NOT_REQUIRED_ERROR
+from edc_form_validators import FormValidatorMixin, NOT_REQUIRED_ERROR
 from edc_constants.constants import YES
 
 from ..models import Week4, Week4Diagnoses

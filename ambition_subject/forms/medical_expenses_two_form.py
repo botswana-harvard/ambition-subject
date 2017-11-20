@@ -1,6 +1,6 @@
 from django.forms import forms
-from edc_base.modelform_validators import NOT_REQUIRED_ERROR
 from edc_constants.constants import YES
+from edc_form_validators import NOT_REQUIRED_ERROR
 
 from ..models import MedicalExpensesTwo
 from .form_mixins import SubjectModelFormMixin

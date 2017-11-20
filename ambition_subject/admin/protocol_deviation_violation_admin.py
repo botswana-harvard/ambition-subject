@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from edc_base.modeladmin_mixins import audit_fieldset_tuple
+from edc_model_admin import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
 from ..forms import ProtocolDeviationViolationForm

@@ -1,12 +1,10 @@
 from ambition_validators.constants import WORKING
-from edc_constants.constants import DECLINED, NEG, OTHER, POS, NOT_APPLICABLE
-from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN, NONE
-from edc_visit_tracking.constants import (
-    MISSED_VISIT,
-    SCHEDULED,
-    UNSCHEDULED)
+from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE
+from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN
+from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
 
-from .constants import (DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN)
+from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
+from .constants import CONSENT_WITHDRAWAL
 
 ABNORMAL_RESULTS_REASON = (
     (NOT_APPLICABLE, 'Not Applicable'),
@@ -98,13 +96,6 @@ SECOND_ARV_REGIMEN = (
 APPOINTMENT_REASON = (
     ('routine', 'Routine'),
     (UNSCHEDULED, 'Unscheduled'),
-)
-
-AMB_APPT_TYPE = (
-    ('clinic', 'In clinic'),
-    ('hospital', 'In Hospital'),
-    ('telephone', 'By telephone'),
-    ('home', 'At home'),
 )
 
 BLOOD_CULTURE_RESULTS_ORGANISM = (
@@ -389,8 +380,8 @@ REASON_STUDY_TERMINATED = (
     ('10_weeks_completed_followUp', 'Patient completed 10 weeks of follow-up'),
     ('patient_lost_to_follow_up', 'Patient lost to follow-up'),
     ('died', 'Reported/known to have died'),
-    ('withdrawal_of_subject_consent', 'Withdrawal of Subject Consent for '
-                                      'participation'),
+    (CONSENT_WITHDRAWAL, 'Withdrawal of Subject Consent for '
+     'participation'),
     ('care_transferred_to_another_institution', 'Care transferred to another '
                                                 'institution'),
     ('late_exclusion_criteria_met', 'Late exclusion criteria met'),
@@ -561,12 +552,6 @@ YES_NO_ALREADY = (
     (YES, 'Yes'),
     (NO, 'No'),
     ('already_on_rifampicin', 'Already on Rifampicin'),
-)
-
-YES_NO_DECLINED = (
-    (YES, YES),
-    (NO, NO),
-    (DECLINED, 'Yes, but participant declined copy'),
 )
 
 YES_NO_RESULTS_UNKNOWN = (

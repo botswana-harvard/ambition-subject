@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from edc_base.modeladmin_mixins import audit_fieldset_tuple
+from edc_model_admin import audit_fieldset_tuple
 from edc_lab.admin import (
     RequisitionAdminMixin,
     requisition_fieldset,
@@ -18,6 +18,8 @@ from .modeladmin_mixins import CrfModelAdminMixin
 class SubjectRequisitionAdmin(CrfModelAdminMixin,
                               RequisitionAdminMixin,
                               admin.ModelAdmin):
+
+    # show_save_next = False
 
     form = SubjectRequisitionForm
     fieldsets = (

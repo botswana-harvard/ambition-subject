@@ -1,8 +1,8 @@
 from ambition_validators import SubjectVisitFormValidator
 from django import forms
 from edc_base.modelform_mixins import CommonCleanModelFormMixin
-from edc_base.modelform_validators import FormValidatorMixin
 from edc_consent.modelform_mixins import RequiresConsentModelFormMixin
+from edc_form_validators import FormValidatorMixin
 
 
 from ..models import SubjectVisit

@@ -1,10 +1,9 @@
-from ambition_subject.forms import SubjectOffStudyForm
-
-from ambition_subject.admin_site import ambition_subject_admin
-from ambition_subject.models import SubjectOffstudy
 from django.contrib import admin
 from edc_base.modeladmin_mixins import audit_fieldset_tuple
 
+from ..admin_site import ambition_subject_admin
+from ..forms import SubjectOffStudyForm
+from ..models import SubjectOffstudy
 from .modeladmin_mixins import ModelAdminMixin
 
 

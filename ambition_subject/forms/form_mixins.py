@@ -1,7 +1,7 @@
 import arrow
 
 from django import forms
-from edc_base.modelform_validators import FormValidatorMixin
+from edc_form_validators import FormValidatorMixin
 
 from ..models import SubjectVisit
 
