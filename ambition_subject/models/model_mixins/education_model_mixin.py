@@ -11,7 +11,7 @@ class EducationModelMixin(models.Model):
 
     education_years = models.IntegerField(
         verbose_name='How many years of education did you complete?',
-        validators=[MinValueValidator(1)])
+        validators=[MinValueValidator(0)])
 
     education_certificate = models.CharField(
         verbose_name='What is the your highest education '

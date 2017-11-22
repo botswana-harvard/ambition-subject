@@ -70,7 +70,7 @@ class MedicalExpenses(CrfModelMixin):
         verbose_name='How much time did you take off work?',
         max_digits=4,
         decimal_places=1,
-        validators=[MinValueValidator(0.5)],
+        validators=[MinValueValidator(0)],
         blank=True,
         null=True,
         help_text='in days')
@@ -78,7 +78,8 @@ class MedicalExpenses(CrfModelMixin):
     carer_time_off = models.IntegerField(
         verbose_name='How much time did a caring family member take '
         'off work to accompany you to the hospital?',
-        validators=[MinValueValidator(0.5)],
+        validators=[MinValueValidator(0)],
+        blank=True,
         null=True,
         help_text='in days')
 
