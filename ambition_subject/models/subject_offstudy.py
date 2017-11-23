@@ -15,3 +15,4 @@ class SubjectOffstudy(OffstudyModelMixin, BaseUuidModel):
 
     class Meta(OffstudyModelMixin.Meta):
         verbose_name_plural = "Subject Off-study"
+        consent_model = 'ambition_subject.subjectconsent'
