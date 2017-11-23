@@ -7,7 +7,7 @@ from edc_consent.model_mixins import RequiresConsentMixin
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import VisitModelManager
-from edc_visit_tracking.model_mixins import VisitModelMixin, PreviousVisitError
+from edc_visit_tracking.model_mixins import VisitModelMixin
 
 from ..choices import INFO_SOURCE, VISIT_UNSCHEDULED_REASON, VISIT_REASON
 
@@ -50,10 +50,6 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
     objects = VisitModelManager()
 
     history = HistoricalRecords()
-
-    @property
-    def common_clean_exceptions(self):
-        return super().common_clean_exceptions + [PreviousVisitError]
 
     class Meta(VisitModelMixin.Meta, RequiresConsentMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
