@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.apps import AppConfig as DjangoApponfig
-from edc_timepoint.timepoint_collection import TimepointCollection
+from edc_facility.apps import AppConfig as BaseEdcFacilityAppConfig
 
 
 class AppConfig(DjangoApponfig):
@@ -88,10 +88,14 @@ if settings.APP_NAME == 'ambition_subject':
                 model='edc_appointment.appointment',
                 related_visit_model='ambition_subject.subjectvisit')
         ]
-        facilities = {
-            'clinic': Facility(
-                name='clinic', days=[MO, TU, WE, TH, FR, SA, SU],
-                slots=[99999, 99999, 99999, 99999, 99999, 99999, 99999])}
+
+    class EdcFacilityAppConfig(BaseEdcFacilityAppConfig):
+        country = 'botswana'
+        definitions = {
+            '7-day clinic': dict(days=[MO, TU, WE, TH, FR, SA, SU],
+                                 slots=[100, 100, 100, 100, 100, 100, 100]),
+            '5-day clinic': dict(days=[MO, TU, WE, TH, FR],
+                                 slots=[100, 100, 100, 100, 100])}
 
     class EdcLabelAppConfig(BaseEdcLabelAppConfig):
         template_folder = os.path.join(
