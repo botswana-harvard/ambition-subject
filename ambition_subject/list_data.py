@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import OTHER, UNKNOWN, NOT_APPLICABLE, NORMAL
 
 from .constants import HEADACHE, VISUAL_LOSS
+from edc_base.preload_data import PreloadData
 
 list_data = {
     'ambition_subject.aeclassification': [
@@ -139,16 +140,29 @@ list_data = {
     ],
 }
 
+model_data = {
+    'edc_lab.consignee': {
+        'name': 'Botswana-Harvard Partnership',
+        'contact_name': 'Dr Sikhulile Moyo',
+        'address': 'Private Bag BO 320, Bontleng',
+        'postal_code': 'Plot 1836, Gaborone',
+        'city': 'Gaborone',
+        'state': '',
+        'country': 'Botswana',
+        'telephone': '+267 3902671',
+        'mobile': '',
+        'fax': '+267 3901284',
+        'email': ''}
+}
 
-for list_obj in list_data.keys():
-    model = django_apps.get_app_config(
-        list_obj.split('.')[0]).get_model(list_obj.split('.')[1])
-    for tpl in list_data.get(list_obj):
-        short_name, display_value = tpl
-        try:
-            obj = model.objects.get(short_name=short_name)
-        except ObjectDoesNotExist:
-            model.objects.create(short_name=short_name, name=display_value)
-        else:
-            obj.name = display_value
-            obj.save()
+unique_field_data = {
+    'edc_lab.consignee': {
+        'name': ('Botswana-Harvard Partnership',
+                 'Botswana-Harvard AIDS Institute Partnership')
+    }
+}
+
+preload_data = PreloadData(
+    list_data=list_data,
+    model_data=model_data,
+    unique_field_data=unique_field_data)

@@ -38,10 +38,6 @@ class Enrollment(EnrollmentModelMixin, CreateAppointmentsMixin,
 
     history = HistoricalRecords()
 
-    def save(self, *args, **kwargs):
-        self.facility_name = 'clinic'
-        super().save(*args, **kwargs)
-
     class Meta(EnrollmentModelMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
         visit_schedule_name = 'visit_schedule.schedule'
