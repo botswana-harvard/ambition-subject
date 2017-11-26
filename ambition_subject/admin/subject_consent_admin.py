@@ -12,6 +12,7 @@ from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectConsentForm
 from ..models import SubjectConsent
+from django.conf import settings
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMixin,
@@ -95,9 +96,11 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
                 + audit_fields)
 
     def view_on_site(self, obj):
+        dashboard_url_name = settings.DASHBOARD_URL_NAMES.get(
+            'subject_dashboard_url')
         try:
             return reverse(
-                'ambition_dashboard:dashboard_url', kwargs=dict(
+                dashboard_url_name, kwargs=dict(
                     subject_identifier=obj.subject_identifier))
         except NoReverseMatch:
             return super().view_on_site(obj)

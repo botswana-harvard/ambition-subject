@@ -27,15 +27,12 @@ if settings.APP_NAME == 'ambition_subject':
     from edc_label.apps import AppConfig as BaseEdcLabelAppConfig
     from edc_metadata.apps import AppConfig as BaseEdcMetadataAppConfig
     from edc_protocol.apps import AppConfig as BaseEdcProtocolAppConfig
-    from edc_timepoint.apps import AppConfig as BaseEdcTimepointAppConfig
-    from edc_timepoint.timepoint import Timepoint
     from edc_visit_tracking.apps import AppConfig as BaseEdcVisitTrackingAppConfig
     from edc_visit_tracking.constants import MISSED_VISIT
     from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
     from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
     from dateutil.tz import gettz
     from edc_appointment.appointment_config import AppointmentConfig
-    from edc_facility import Facility
 
     class EdcProtocolAppConfig(BaseEdcProtocolAppConfig):
         protocol = 'BHP092'

@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls.conf import path
 from django.views.generic.base import RedirectView
 
 from .admin_site import ambition_subject_admin
@@ -6,6 +6,6 @@ from .admin_site import ambition_subject_admin
 app_name = 'ambition_subject'
 
 urlpatterns = [
-    url(r'^admin/', ambition_subject_admin.urls),
-    url(r'', RedirectView.as_view(url='/'), name='home_url'),
+    path('admin/', ambition_subject_admin.urls),
+    path('', RedirectView.as_view(url='/'), name='home_url'),
 ]

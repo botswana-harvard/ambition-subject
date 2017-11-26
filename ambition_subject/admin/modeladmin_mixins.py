@@ -11,6 +11,7 @@ from edc_model_admin import (
 from edc_fieldsets import FieldsetsModelAdminMixin
 from edc_visit_tracking.modeladmin_mixins import (
     CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin)
+from django.conf import settings
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
@@ -34,7 +35,9 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
     show_save_next = False
     show_cancel = False
 
-    post_url_on_delete_name = 'ambition_dashboard:dashboard_url'
+    post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
+        'subject_dashboard_url')
+
     instructions = (
         'Please complete the questions below. Required questions are in bold. '
         'When all required questions are complete click SAVE. '
@@ -47,9 +50,11 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
             appointment=str(obj.subject_visit.appointment.id))
 
     def view_on_site(self, obj):
+        dashboard_url_name = settings.DASHBOARD_URL_NAMES.get(
+            'subject_dashboard_url')
         try:
             url = reverse(
-                'ambition_dashboard:dashboard_url', kwargs=dict(
+                dashboard_url_name, kwargs=dict(
                     subject_identifier=obj.subject_visit.subject_identifier,
                     appointment=str(obj.subject_visit.appointment.id)))
         except NoReverseMatch as e:
