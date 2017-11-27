@@ -15,12 +15,13 @@ class TestEligibility(TestCase):
             breast_feeding=False,
             alt=None,
             pmn=None,
-            platlets=None)
+            platlets=None,
+            allow_none=True)
 
         self.criteria = dict(
             consent_ability=True,
             meningitis_dx=True,
-            not_mentally_abnormal=True,
+            # not_mentally_abnormal=True,
             no_amphotericin=True,
             no_concomitant_meds=True,
             no_drug_reaction=True,
