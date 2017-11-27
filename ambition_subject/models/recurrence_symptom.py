@@ -75,7 +75,7 @@ class RecurrenceSymptom(CrfModelMixin):
         choices=YES_NO)
 
     amb_duration = models.IntegerField(
-        verbose_name='If yes, Specify length of course',
+        verbose_name='If yes, specify length of course',
         validators=[MinValueValidator(1)],
         null=True,
         blank=True)
@@ -90,7 +90,7 @@ class RecurrenceSymptom(CrfModelMixin):
         choices=YES_NO)
 
     steroids_duration = models.IntegerField(
-        verbose_name='If yes, Specify length of course:',
+        verbose_name='If yes, specify the length of course in days:',
         validators=[MinValueValidator(1)],
         null=True,
         blank=True)
@@ -140,7 +140,7 @@ class RecurrenceSymptom(CrfModelMixin):
         choices=YES_NO_NA)
 
     narrative_summary = models.TextField(
-        verbose_name='Narrative Summary of recurrence of symptoms:',
+        verbose_name='Narrative summary of recurrence of symptoms:',
         help_text=(
             'Please ensure the following forms have been completed:'
             ' LP, Bloods, Microbiology, Radiology'))
