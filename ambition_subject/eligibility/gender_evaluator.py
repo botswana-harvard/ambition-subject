@@ -15,9 +15,9 @@ class GenderEvaluator:
         if not self.eligible:
             self.reasons_ineligible = []
             if pregnant:
-                self.reasons_ineligible.append('pregnant')
+                self.reasons_ineligible.append('pregnant.')
             if breast_feeding:
                 self.reasons_ineligible.append('breastfeeding')
             if gender not in [MALE, FEMALE]:
                 self.reasons_ineligible.append(
-                    f'{gender} is an invalid gender')
+                    f'{gender} is an invalid gender.')

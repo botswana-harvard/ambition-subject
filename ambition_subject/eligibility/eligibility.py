@@ -63,7 +63,6 @@ class Eligibility:
         """Returns a dictionary of custom reasons for named criteria.
         """
         custom_reasons_dict = dict(
-            mentally_normal='Abnormal mental status.',
             no_drug_reaction='Previous adverse drug reaction to the study medication.',
             no_concomitant_meds='Patient on Contraindicated Meds.',
             meningitis_dx='Previous Hx of Cryptococcal Meningitis.',

@@ -122,14 +122,14 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
 
     received_amphotericin = models.CharField(
         verbose_name='Has received >48 hours of Amphotericin B '
-        '(>0.7mg/kg/day) prior to screening.',
+        '(>=0.7mg/kg/day) prior to screening.',
         max_length=5,
         choices=YES_NO)
 
     received_fluconazole = models.CharField(
         verbose_name=(
-            'Has received >48 hours of fluconazole treatment (> '
-            '400mg/day) prior to screening.'),
+            'Has received >48 hours of fluconazole treatment (>= '
+            '800mg/day) prior to screening.'),
         max_length=5,
         choices=YES_NO)
 
@@ -140,12 +140,14 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         help_text=('Leave blank if unknown. Units: "IU/mL". '
                    'Ineligible if > 200 IU/mL'))
 
-    pmn_result = models.IntegerField(
+    pmn_result = models.DecimalField(
         verbose_name='PMNs result?',
+        decimal_places=2,
+        max_digits=4,
         null=True,
         blank=True,
-        help_text=('Leave blank if unknown. Units: " x 10e6/L". '
-                   'Ineligible if < 500 x 10e6/L'))
+        help_text=('Leave blank if unknown. Units: " x 10e9/L". '
+                   'Ineligible if < 0.5 x 10e9/L'))
 
     platelets_result = models.IntegerField(
         null=True,
