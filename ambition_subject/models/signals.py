@@ -1,7 +1,7 @@
 from ambition_rando.models import SubjectRandomization
 from ambition_rando.randomizer import Randomizer
 from django.apps import apps as django_apps
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from edc_base.utils import get_utcnow
 
@@ -9,6 +9,8 @@ from .enrollment import Enrollment
 from .patient_history import PatientHistory
 from .subject_consent import SubjectConsent
 from .subject_screening import SubjectScreening
+
+post_delete.providing_args = set(["instance", "using", "raw"])
 
 
 @receiver(post_save, weak=False, sender=SubjectConsent,
@@ -31,7 +33,9 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                     consent_identifier=instance.consent_identifier,
                     is_eligible=subject_screening.eligible)
             subject_screening.subject_identifier = instance.subject_identifier
-            subject_screening.save_base(update_fields=['subject_identifier'])
+            subject_screening.consented = True
+            subject_screening.save_base(
+                update_fields=['subject_identifier', 'consented'])
 
             # randomize
             randomizer = Randomizer(
@@ -62,3 +66,14 @@ def patient_history_on_post_save(sender, instance, raw, created, **kwargs):
             rando_sid=subject_randomization.sid)
         prescription.weight = instance.weight
         prescription.save()
+
+
+@receiver(post_delete, weak=False, sender=SubjectConsent,
+          dispatch_uid="subject_consent_on_post_delete")
+def subject_consent_on_post_delete(sender, instance, raw, using, **kwargs):
+    if not raw:
+        subject_screening = SubjectScreening.objects.get(
+            screening_identifier=instance.screening_identifier)
+        subject_screening.consented = False
+        subject_screening.subject_identifier = subject_screening.subject_screening_as_pk
+        subject_screening.save()

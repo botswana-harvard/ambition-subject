@@ -163,6 +163,10 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
         null=True,
         editable=False)
 
+    consented = models.BooleanField(
+        default=False,
+        editable=False)
+
     objects = SubjectScreeningManager()
 
     history = HistoricalRecords()
