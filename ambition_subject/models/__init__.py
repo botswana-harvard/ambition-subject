@@ -26,7 +26,6 @@ from .prn_model import PrnModel
 from .protocol_deviation_violation import ProtocolDeviationViolation
 from .radiology import Radiology
 from .recurrence_symptom import RecurrenceSymptom
-from .result import ResultItem, Result
 from .study_termination_conclusion import StudyTerminationConclusion
 from .subject_consent import SubjectConsent
 from .subject_locator import SubjectLocator
