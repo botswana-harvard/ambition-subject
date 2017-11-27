@@ -77,6 +77,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'dia_blood_pressure',
                 'respiratory_rate',
                 'weight',
+                'weight_determination',
                 'glasgow_coma_score']}
          ),
         ('Neurological', {
@@ -118,4 +119,5 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'tb_site': admin.VERTICAL,
         'tb_treatment': admin.VERTICAL,
         'vl_date_estimated': admin.VERTICAL,
-        'previous_oi': admin.VERTICAL, }
+        'previous_oi': admin.VERTICAL,
+        'weight_determination': admin.VERTICAL}
