@@ -31,7 +31,6 @@ class SubjectScreeningEligibility:
             platlets=model_obj.platelets_result,
             will_hiv_test=if_yes(model_obj.will_hiv_test),
             consent_ability=if_yes(model_obj.consent_ability),
-            mentally_normal=if_normal(model_obj.mental_status),
             meningitis_dx=if_yes(model_obj.meningitis_dx),
             pregnant=if_yes(model_obj.pregnancy),
             breast_feeding=if_yes(model_obj.breast_feeding),

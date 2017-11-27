@@ -1,9 +1,8 @@
-from django.test import TestCase, tag
+from django.test import TestCase
 
 from ..eligibility import EarlyWithdrawalEvaluator
 
 
-@tag('5')
 class TestEarlyWithdrawalEvaluator(TestCase):
 
     def test_early_withdrawal_criteria_no(self):
@@ -17,6 +16,6 @@ class TestEarlyWithdrawalEvaluator(TestCase):
         self.assertTrue(obj.eligible)
 
     def test_early_withdrawal_criteria_ok(self):
-        opts = dict(alt=200, pmn=500, platlets=50, allow_none=True)
+        opts = dict(alt=200, pmn=0.5, platlets=50, allow_none=True)
         obj = EarlyWithdrawalEvaluator(**opts)
         self.assertTrue(obj.eligible)
