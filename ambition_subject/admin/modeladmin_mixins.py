@@ -9,6 +9,7 @@ from edc_model_admin import (
     ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
     FormAsJSONModelAdminMixin, ModelAdminRedirectOnDeleteMixin)
 from edc_fieldsets import FieldsetsModelAdminMixin
+from edc_metadata import NextFormGetter
 from edc_visit_tracking.modeladmin_mixins import (
     CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin)
 from django.conf import settings
@@ -22,6 +23,7 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructions
     list_per_page = 10
     date_hierarchy = 'modified'
     empty_value_display = '-'
+    next_form_getter_cls = NextFormGetter
 
 
 class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
@@ -31,8 +33,7 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
                          FormAsJSONModelAdminMixin,
                          admin.ModelAdmin):
 
-    # leave false for now.
-    show_save_next = False
+    show_save_next = True  # disabled for now.
     show_cancel = True
 
     post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
