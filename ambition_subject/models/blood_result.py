@@ -30,9 +30,9 @@ class BloodResult(CrfModelMixin):
 
     absolute_neutrophil = models.DecimalField(
         decimal_places=2,
-        max_digits=6,
+        max_digits=4,
         null=True,
-        help_text='units in 10^6/L',)
+        help_text='units in 10^9/L',)
 
     creatinine = models.DecimalField(
         decimal_places=2,
