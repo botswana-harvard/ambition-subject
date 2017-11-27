@@ -1,10 +1,7 @@
-from django.apps import apps as django_apps
-from django.core.exceptions import ObjectDoesNotExist
-
+from edc_base.preload_data import PreloadData
 from edc_constants.constants import OTHER, UNKNOWN, NOT_APPLICABLE, NORMAL
 
 from .constants import HEADACHE, VISUAL_LOSS
-from edc_base.preload_data import PreloadData
 
 list_data = {
     'ambition_subject.aeclassification': [
