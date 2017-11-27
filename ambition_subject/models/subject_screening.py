@@ -122,14 +122,14 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
 
     received_amphotericin = models.CharField(
         verbose_name='Has received >48 hours of Amphotericin B '
-        '(>0.7mg/kg/day) prior to screening.',
+        '(>=0.7mg/kg/day) prior to screening.',
         max_length=5,
         choices=YES_NO)
 
     received_fluconazole = models.CharField(
         verbose_name=(
-            'Has received >48 hours of fluconazole treatment (> '
-            '400mg/day) prior to screening.'),
+            'Has received >48 hours of fluconazole treatment (>= '
+            '800mg/day) prior to screening.'),
         max_length=5,
         choices=YES_NO)
 
