@@ -24,8 +24,7 @@ class LumbarPunctureCsf(CrfModelMixin):
 
     csf_amount_removed = models.IntegerField(
         verbose_name='CSF amount removed',
-        validators=[MinValueValidator(1), MaxValueValidator(39)],
-        help_text='Do not remove ≥ 40mL CSF. See management of raised ICP WPD')
+        validators=[MinValueValidator(1)])
 
     quantitative_culture = models.IntegerField(
         blank=True,
