@@ -3,12 +3,11 @@ from edc_model_admin import audit_fieldset_tuple
 from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
+from ..constants import WEEK4, WEEK6, WEEK8, WEEK10, DAY1, DAY7, DAY14
 from ..forms import PrnModelForm
 from ..models import PrnModel
 
 from .modeladmin_mixins import CrfModelAdminMixin
-from ambition_subject.constants import (WEEK4, WEEK6, WEEK8, WEEK10,
-                                        DAY1, DAY7, DAY14)
 
 common_fields = ('subject_visit',
                  'adverse_event',

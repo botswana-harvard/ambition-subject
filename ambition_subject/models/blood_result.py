@@ -92,7 +92,7 @@ class BloodResult(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         max_length=5)
 
     abnormal_results_in_ae_range = models.CharField(
-        verbose_name='If results abnormal, are results within Grade IV '
+        verbose_name='If results abnormal, are results within Grade III or IV '
                      'AE range?',
         max_length=5,
         choices=YES_NO_NA,
