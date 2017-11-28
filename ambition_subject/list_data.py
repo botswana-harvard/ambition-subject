@@ -117,10 +117,9 @@ list_data = {
         ('shortness_of_breath', 'Shortness of breath'),
     ],
     'ambition_subject.abnormalresultsreason': [
-        (NOT_APPLICABLE, 'Not Applicable'),
         ('cerebral_oedema', 'Cerebral oedema'),
         ('hydrocephalus', 'Hydrocephalus'),
-        ('cryptococcomus', 'Cryptococcomus'),
+        ('cryptococcomas', 'Cryptococcomas'),
         ('dilated_virchow_robin_spaces', 'Dilated Virchow robin spaces'),
         ('enhancing_mass_lesions',
          'Enhancing mass lesions DD Toxoplasmosis, TB, lymphoma'),
@@ -128,7 +127,6 @@ list_data = {
         (OTHER, 'Other'),
     ],
     'ambition_subject.cxrtype': [
-        (NOT_APPLICABLE, 'Not Applicable'),
         (NORMAL, 'Normal'),
         ('hilar_adenopathy', 'Hilar adenopathy'),
         ('miliary_appearance', 'Miliary appearance'),
