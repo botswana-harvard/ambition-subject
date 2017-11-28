@@ -291,7 +291,7 @@ INFO_SOURCE = (
     ('hospital_notes', 'Hospital Notes'),
     ('outpatient_cards', 'Outpatient Cards'),
     ('patient', 'Patient'),
-    ('collateral_history_from_relative/guardian',
+    ('collateral_history',
      'Collateral History from relative/guardian'),
     (OTHER, 'Other'),
 )
