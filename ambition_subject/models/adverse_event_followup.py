@@ -3,10 +3,10 @@ from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
 
 from ..choices import AE_OUTCOME
-from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
+from .model_mixins import CrfModelMixin
 
 
-class AdverseEventFollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
+class AdverseEventFollowUp(CrfModelMixin):
 
     outcome = models.CharField(
         blank=False,
