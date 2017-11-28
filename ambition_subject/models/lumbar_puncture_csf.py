@@ -4,10 +4,10 @@ from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE, YES_NO_NOT_DONE
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
-from .model_mixins import CrfModelMixin
+from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
 
 
-class LumbarPunctureCsf(CrfModelMixin):
+class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     reason_for_lp = models.CharField(
         verbose_name='Reason for LP',

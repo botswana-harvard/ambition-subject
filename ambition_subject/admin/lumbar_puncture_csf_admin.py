@@ -21,7 +21,11 @@ day1_lp = Fieldset('csf_wbc_cell_count',
                    'csf_glucose_units',
                    'csf_protein',
                    'csf_cr_ag',
-                   'csf_cr_ag_lfa', section='Day 1')
+                   'csf_cr_ag_lfa',
+                   'bios_crag',
+                   'crag_control_result',
+                   'crag_t1_result',
+                   'crag_t2_result', section='Day 1')
 
 
 @admin.register(LumbarPunctureCsf, site=ambition_subject_admin)
@@ -56,4 +60,5 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'csf_cr_ag_lfa': admin.VERTICAL,
         'differential_lymphocyte_unit': admin.VERTICAL,
         'differential_neutrophil_unit': admin.VERTICAL,
-        'csf_glucose_units': admin.VERTICAL}
+        'csf_glucose_units': admin.VERTICAL,
+        'bios_crag': admin.VERTICAL}

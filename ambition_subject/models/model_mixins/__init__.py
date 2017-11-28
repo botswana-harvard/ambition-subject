@@ -1,4 +1,5 @@
 from .amphotericin_missed_doses_model_mixin import AmphotericinMissedDosesModelMixin
+from .biosynex_semi_quantitative_crag_mixin import BiosynexSemiQuantitativeCragMixin
 from .clinical_assessment_model_mixin import ClinicalAssessmentModelMixin
 from .crf_model_mixin import CrfModelMixin
 from .education_model_mixin import EducationModelMixin

@@ -24,13 +24,20 @@ immunology = Fieldset(
     'abs_cd4',
     section='Immunology')
 
+crag = Fieldset(
+    'bios_crag',
+    'crag_control_result',
+    'crag_t1_result',
+    'crag_t2_result',
+    section='BIOSYNEX® CryptoPS (Semi-quantitative CrAg)')
+
 
 @admin.register(BloodResult, site=ambition_subject_admin)
 class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = BloodResultForm
     conditional_fieldsets = {
-        DAY1: (alt, blood_count, immunology),
+        DAY1: (alt, blood_count, immunology, crag),
         DAY7: (alt, blood_count),
         DAY14: (alt, blood_count),
         WEEK4: (alt, blood_count),
@@ -64,4 +71,6 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'abnormal_results_in_ae_range': admin.VERTICAL,
         'creatinine_unit': admin.VERTICAL,
         'magnesium_unit': admin.VERTICAL,
-        'urea_unit': admin.VERTICAL}
+        'urea_unit': admin.VERTICAL,
+        'bios_crag': admin.VERTICAL
+    }

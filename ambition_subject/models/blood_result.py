@@ -5,10 +5,10 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS
-from .model_mixins import CrfModelMixin
+from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
 
 
-class BloodResult(CrfModelMixin):
+class BloodResult(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     wbc = models.DecimalField(
         verbose_name='WBC',
