@@ -97,7 +97,9 @@ class BloodResult(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
-        help_text='If YES, this value will open Adverse Event Form.')
+        help_text='If YES, this value will open Adverse Event Form.<br/><br/>'
+        'Note: On Day 1 only abnormal bloods should not be reported as Adverse'
+        'Events.')
 
     history = HistoricalRecords()
 
