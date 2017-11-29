@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO_NA
+from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 
 from .model_mixins import CrfModelMixin
 
@@ -100,13 +100,16 @@ class MedicalExpenses(CrfModelMixin):
     form_of_transport = models.CharField(
         verbose_name='Which form of transport did you take to get here today?',
         max_length=25,
+        default=NOT_APPLICABLE,
         choices=TRANSPORT)
 
     transport_fare = models.DecimalField(
         verbose_name='How much did you spend on the transport (each way)?',
         decimal_places=2,
         max_digits=15,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(0)],
+        blank=True,
+        null=True)
 
     travel_time = models.IntegerField(
         verbose_name='How long did it take you to reach here?',
