@@ -554,6 +554,12 @@ YES_NO_ALREADY = (
     ('already_on_rifampicin', 'Already on Rifampicin'),
 )
 
+YES_NO_ALREADY_ARV = (
+    (YES, 'Yes'),
+    (NO, 'No'),
+    ('already_on_arvs_before_enrollment', 'Already on ARVs before enrolment')
+)
+
 YES_NO_RESULTS_UNKNOWN = (
     (YES, YES),
     (NO, NO),
