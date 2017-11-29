@@ -557,7 +557,7 @@ YES_NO_ALREADY = (
 YES_NO_ALREADY_ARV = (
     (YES, 'Yes'),
     (NO, 'No'),
-    ('already_on_arvs_before_enrollment', 'Already on ARVs before enrolment')
+    ('already_on_arvs_before_enrollment', 'Already on ARVs before enrollment')
 )
 
 YES_NO_RESULTS_UNKNOWN = (
