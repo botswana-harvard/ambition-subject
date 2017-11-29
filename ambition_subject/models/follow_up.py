@@ -44,7 +44,7 @@ class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
         choices=YES_NO_ND)
 
     ranking_score = models.IntegerField(
-        verbose_name='Modified Ranking score:',
+        verbose_name='Modified Rankin score:',
         choices=RANKING_SCORE,
         null=True)
 
