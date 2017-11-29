@@ -13,9 +13,10 @@ class AdverseEventFollowUpAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = AdverseEventFollowUpForm
     fieldsets = (
-        ('Clinical Assessment', {
+        (None, {
             'fields': (
-                'subject_visit',
+                'ae_identifier',
+                'report_datetime',
                 'outcome',
                 'outcome_date',
                 'relevant_history')},
@@ -25,3 +26,7 @@ class AdverseEventFollowUpAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {
         'outcome': admin.VERTICAL}
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = super().get_readonly_fields(request, obj=obj)
+        return fields + ('ae_identifier', )

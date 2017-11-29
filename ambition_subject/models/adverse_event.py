@@ -1,19 +1,44 @@
 from django.db import models
 from django.utils import timezone
-
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_not_future
+from edc_base.utils import get_utcnow
 from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE, UNKNOWN
+from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 
 from ..choices import AE_SEVERITY, AE_INTENSITY, RAE_REASON
 from ..choices import STUDY_DRUG_RELATIONSHIP
+from ..identifiers import AeIdentifier
 
-from .model_mixins import CrfModelMixin
+
+class AeManager(models.Manager):
+
+    def get_by_natural_key(self, ae_identifier):
+        return self.get(ae_identifier=ae_identifier)
 
 
-class AdverseEvent(CrfModelMixin):
+class AdverseEvent(NonUniqueSubjectIdentifierFieldMixin, BaseUuidModel):
+
+    ae_identifier = models.CharField(
+        max_length=25,
+        unique=True)
+
+    ae_auto_created = models.BooleanField(
+        max_length=25,
+        default=False,
+        editable=False)
+
+    ae_auto_created_criteria = models.CharField(
+        max_length=50,
+        default=NOT_APPLICABLE,
+        editable=False)
+
+    report_datetime = models.DateTimeField(
+        verbose_name="Report Date and Time",
+        default=get_utcnow)
 
     ae_description = models.TextField(
         verbose_name='Adverse Event (AE) description')
@@ -143,7 +168,17 @@ class AdverseEvent(CrfModelMixin):
                   'Management Group (TMG) within 48hrs (Email to: '
                   'ambition_tmg@sgul.ac.uk)')
 
+    objects = AeManager()
+
     history = HistoricalRecords()
 
-    class Meta(CrfModelMixin.Meta):
-        pass
+    def __str__(self):
+        return self.ae_identifier
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.ae_identifier = AeIdentifier().identifier
+        super().save(*args, **kwargs)
+
+    def natural_key(self):
+        return (self.ae_identifier, )

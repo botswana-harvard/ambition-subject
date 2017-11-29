@@ -12,7 +12,9 @@ from uuid import uuid4
 
 from ..choices import PREG_YES_NO_NA
 from ..eligibility import SubjectScreeningEligibility
-from ..screening_identifier import ScreeningIdentifier
+from ..identifiers import ScreeningIdentifier
+from dateutil.relativedelta import relativedelta
+from arrow.arrow import Arrow
 
 
 class SubjectScreeningManager(SearchSlugManager, models.Manager):
@@ -173,8 +175,8 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
 
     history = HistoricalRecords()
 
-    def natural_key(self):
-        return (self.screening_identifier,)
+    def __str__(self):
+        return f'{self.screening_identifier} {self.gender} {self.age_in_years}'
 
     def save(self, *args, **kwargs):
         eligibility_obj = self.eligibility_cls(model_obj=self, allow_none=True)
@@ -190,8 +192,12 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel):
             self.screening_identifier = ScreeningIdentifier().identifier
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return f'{self.screening_identifier} {self.gender} {self.age_in_years}'
+    def natural_key(self):
+        return (self.screening_identifier,)
 
     def get_search_slug_fields(self):
         return ['screening_identifier', 'subject_identifier', 'reference']
+
+    @property
+    def estimated_dob(self):
+        return get_utcnow().date() - relativedelta(years=self.age_in_years)

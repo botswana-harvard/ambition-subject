@@ -266,20 +266,25 @@ lumbarpuncturecsf = Recipe(
 
 subjectconsent = Recipe(
     SubjectConsent,
-    screening_identifier=None,
-    subject_identifier=None,
-    study_site='40',
+    assessment_score=YES,
+    confirm_identity=seq('12315678'),
+    consent_copy=YES,
     consent_datetime=get_utcnow(),
+    consent_reviewed=YES,
     dob=fake.dob_for_consenting_adult,
     first_name=fake.first_name,
-    last_name=fake.last_name,
-    initials=fake.initials,
     gender='M',
     identity=seq('12315678'),
-    confirm_identity=seq('12315678'),
-    identity_type='OMANG',
+    identity_type='country_id',
+    initials=fake.initials,
     is_dob_estimated='-',
-    is_incarcerated=NO,)
+    is_incarcerated=NO,
+    is_literate=YES,
+    last_name=fake.last_name,
+    screening_identifier=None,
+    study_questions=YES,
+    study_site='40',
+    subject_identifier=None)
 
 prnmodel = Recipe(
     PrnModel,

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 
 from ..admin_site import ambition_subject_admin
@@ -10,6 +11,9 @@ from .modeladmin_mixins import ModelAdminMixin
 class SubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = SubjectScreeningForm
+
+    post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
+        'screening_dashboard_url')
 
     radio_fields = {
         'gender': admin.VERTICAL,

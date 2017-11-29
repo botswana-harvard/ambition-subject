@@ -14,15 +14,17 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
     form = AdverseEventForm
 
     fieldsets = (
-        ('Initial Report', {
+        (None, {
             'fields': (
-                'subject_visit',
+                'ae_identifier',
+                'subject_identifier',
+                'regimen',
+                'report_datetime',
                 'ae_description',
                 'ae_awareness_date',
                 'ae_start_date',
                 'ae_severity_grade',
                 'ae_intensity',
-                'regimen',
                 'ae_study_relation_possibility',
                 'ambisome_relation',
                 'fluconazole_relation',
@@ -57,3 +59,7 @@ class AdverseEventAdmin(ModelAdminMixin, admin.ModelAdmin):
         'sae_possibility': admin.VERTICAL,
         'susar_possility': admin.VERTICAL,
         'susar_reported': admin.VERTICAL}
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = super().get_readonly_fields(request, obj=obj)
+        return fields + ('ae_identifier', )

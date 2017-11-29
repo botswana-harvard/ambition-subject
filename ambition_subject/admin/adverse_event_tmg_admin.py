@@ -13,10 +13,13 @@ class AdverseEventTMGAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = AdverseEventTMGForm
 
+    additional_instructions = 'For completion by TMG Investigator Only'
+
     fieldsets = (
-        ('For completion by TMG Investigator Only', {
+        (None, {
             'fields': (
-                'subject_visit',
+                'ae_identifier',
+                'report_datetime',
                 'ae_received_datetime',
                 'clinical_review_datetime',
                 'investigator_comments',
@@ -29,3 +32,7 @@ class AdverseEventTMGAdmin(ModelAdminMixin, admin.ModelAdmin):
     )
 
     filter_horizontal = ('ae_classification',)
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = super().get_readonly_fields(request, obj=obj)
+        return fields + ('ae_identifier', )

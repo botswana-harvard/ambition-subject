@@ -4,7 +4,7 @@ from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
 
 from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
-from .constants import CONSENT_WITHDRAWAL
+from .constants import CONSENT_WITHDRAWAL, ROUTINE_APPT
 
 ABNORMAL_RESULTS_REASON = (
     (NOT_APPLICABLE, 'Not Applicable'),
@@ -62,6 +62,12 @@ ANTIBIOTICS = (
     (OTHER, 'Other'),
 )
 
+APPOINTMENT_REASON = (
+    (ROUTINE_APPT, 'Routine'),
+    (UNSCHEDULED, 'Unscheduled'),
+)
+
+
 ARV_REGIMEN = (
     (NOT_APPLICABLE, 'Not Applicable'),
     ('TDF +3TC/FTC + either EFV or NVP',
@@ -91,11 +97,6 @@ SECOND_ARV_REGIMEN = (
     ('AZT+3TC+ either ATZ/r or Lopinavir/r',
      'AZT+3TC+ either ATZ/r or Lopinavir/r'),
     (OTHER, 'Other'),
-)
-
-APPOINTMENT_REASON = (
-    ('routine', 'Routine'),
-    (UNSCHEDULED, 'Unscheduled'),
 )
 
 BLOOD_CULTURE_RESULTS_ORGANISM = (

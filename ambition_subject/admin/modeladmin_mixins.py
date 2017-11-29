@@ -1,8 +1,8 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
-
 from edc_model_admin import (
     ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
     ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
@@ -12,13 +12,12 @@ from edc_fieldsets import FieldsetsModelAdminMixin
 from edc_metadata import NextFormGetter
 from edc_visit_tracking.modeladmin_mixins import (
     CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin)
-from django.conf import settings
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
                       ModelAdminFormAutoNumberMixin, ModelAdminRevisionMixin,
                       ModelAdminAuditFieldsMixin, ModelAdminReadOnlyMixin,
-                      ModelAdminInstitutionMixin):
+                      ModelAdminInstitutionMixin, ModelAdminRedirectOnDeleteMixin):
 
     list_per_page = 10
     date_hierarchy = 'modified'
@@ -27,13 +26,12 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructions
 
 
 class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
-                         ModelAdminRedirectOnDeleteMixin,
                          ModelAdminMixin,
                          FieldsetsModelAdminMixin,
                          FormAsJSONModelAdminMixin,
                          admin.ModelAdmin):
 
-    show_save_next = True  # disabled for now.
+    show_save_next = True
     show_cancel = True
 
     post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
