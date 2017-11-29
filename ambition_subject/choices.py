@@ -137,7 +137,7 @@ CARE_PROVIDER = (
     ('spiritual_healer', 'Spiritual Healer'),
     ('family/friend', 'Family/Friend'),
     ('pharmacist', 'Pharmacist'),
-    ('clinical_officer', 'Clinical Officer')
+    ('clinical_officer', 'Clinical Officer'),
     (OTHER, 'Other')
 )
 
