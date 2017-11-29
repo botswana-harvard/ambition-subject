@@ -44,7 +44,7 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
         default=NOT_APPLICABLE)
 
     transport_cost = models.DecimalField(
-        verbose_name='How much did you spend on the transport (each way)?',
+        verbose_name='How much did you spend on the transport (return)?',
         decimal_places=2,
         max_digits=15,
         validators=[MinValueValidator(0)],
@@ -72,7 +72,7 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
 
     paid_treatment = models.CharField(
         verbose_name=(
-            'Did you pay for the treatment '
+            'Did you pay for the consultation '
             'you received during that visit'),
         max_length=15,
         choices=YES_NO)

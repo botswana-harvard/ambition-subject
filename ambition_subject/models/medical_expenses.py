@@ -1,9 +1,10 @@
-from ambition_subject.choices import YES_NO, ACTIVITIES_MISSED, CURRENCY
+from ambition_subject.choices import YES_NO, ACTIVITIES_MISSED, CURRENCY,\
+    TRANSPORT
 from django.core.validators import MinValueValidator
 from django.db import models
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO_NA
+from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 
 from .model_mixins import CrfModelMixin
 
@@ -76,8 +77,8 @@ class MedicalExpenses(CrfModelMixin):
         help_text='in days')
 
     carer_time_off = models.IntegerField(
-        verbose_name='How much time did a caring family member take '
-        'off work to accompany you to the hospital?',
+        verbose_name='How much time did a caring family member '
+        'take to accompany you to the hospital?',
         validators=[MinValueValidator(0)],
         blank=True,
         null=True,
@@ -95,6 +96,25 @@ class MedicalExpenses(CrfModelMixin):
         validators=[MinValueValidator(0)],
         null=True,
         blank=True)
+
+    form_of_transport = models.CharField(
+        verbose_name='Which form of transport did you take to get here today?',
+        max_length=25,
+        default=NOT_APPLICABLE,
+        choices=TRANSPORT)
+
+    transport_fare = models.DecimalField(
+        verbose_name='How much did you spend on the transport (each way)?',
+        decimal_places=2,
+        max_digits=15,
+        validators=[MinValueValidator(0)],
+        blank=True,
+        null=True)
+
+    travel_time = models.IntegerField(
+        verbose_name='How long did it take you to reach here?',
+        validators=[MinValueValidator(1)],
+        help_text='in minutes')
 
     history = HistoricalRecords()
 

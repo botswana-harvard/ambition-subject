@@ -35,10 +35,9 @@ class Week16(CrfModelMixin):
         choices=YES_NO_NA)
 
     ranking_score = models.CharField(
-        verbose_name='Modified Ranking score',
+        verbose_name='Modified Rankin score',
         max_length=10,
-        choices=RANKING_SCORE,
-        default=NOT_APPLICABLE)
+        choices=RANKING_SCORE)
 
     week16_narrative = models.TextField(
         verbose_name='Narrative',

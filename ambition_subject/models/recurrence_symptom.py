@@ -4,7 +4,7 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
-from ..choices import DR_OPINION, STEROIDS_CHOICES
+from ..choices import DR_OPINION, STEROIDS_CHOICES, YES_NO_ALREADY_ARV
 from .list_models import Neurological, MeningitisSymptom, AntibioticTreatment
 from .model_mixins import CrfModelMixin
 
@@ -66,6 +66,7 @@ class RecurrenceSymptom(CrfModelMixin):
         blank=True)
 
     lp_completed = models.CharField(
+        verbose_name='LP completed',
         max_length=5,
         choices=YES_NO,
         help_text='If yes, complete LP form')
@@ -125,8 +126,8 @@ class RecurrenceSymptom(CrfModelMixin):
 
     on_arvs = models.CharField(
         verbose_name='On ARVS:',
-        max_length=5,
-        choices=YES_NO)
+        max_length=26,
+        choices=YES_NO_ALREADY_ARV)
 
     arv_date = models.DateField(
         verbose_name='Study date ARVs started.',

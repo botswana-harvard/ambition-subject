@@ -138,6 +138,7 @@ CARE_PROVIDER = (
     ('spiritual_healer', 'Spiritual Healer'),
     ('family/friend', 'Family/Friend'),
     ('pharmacist', 'Pharmacist'),
+    ('clinical_officer', 'Clinical Officer'),
     (OTHER, 'Other')
 )
 
@@ -506,14 +507,14 @@ POS_NEG = (
 )
 
 RANKING_SCORE = (
+    ('0', '0'),
     ('1', '1'),
     ('2', '2'),
     ('3', '3'),
     ('4', '4'),
     ('5', '5'),
-    ('nil', 'Nil'),
-    ('not_done', 'Not Done'),
-    (NOT_APPLICABLE, 'Not Applicable')
+    ('6', '6'),
+    ('not done', 'Not done')
 )
 
 WEIGHT_DETERMINATION = (
@@ -553,6 +554,12 @@ YES_NO_ALREADY = (
     (YES, 'Yes'),
     (NO, 'No'),
     ('already_on_rifampicin', 'Already on Rifampicin'),
+)
+
+YES_NO_ALREADY_ARV = (
+    (YES, 'Yes'),
+    (NO, 'No'),
+    ('on_arvs_before_enrollment', 'Already on ARVs before enrollment')
 )
 
 YES_NO_RESULTS_UNKNOWN = (

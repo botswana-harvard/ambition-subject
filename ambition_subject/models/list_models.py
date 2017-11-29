@@ -64,3 +64,8 @@ class AbnormalResultsReason(ListModelMixin, BaseUuidModel):
 class CXRType(ListModelMixin, BaseUuidModel):
 
     pass
+
+
+class InfiltrateLocation(ListModelMixin, BaseUuidModel):
+
+    pass
