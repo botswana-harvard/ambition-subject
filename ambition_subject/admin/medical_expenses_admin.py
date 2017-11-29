@@ -28,6 +28,9 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'carer_time_off',
                 'loss_of_earnings',
                 'earnings_lost_amount',
+                'form_of_transport',
+                'transport_fare',
+                'travel_time',
                 'care_before_hospital'
             ]}
          ), audit_fieldset_tuple)
@@ -36,4 +39,5 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'activities_missed': admin.VERTICAL,
         'care_before_hospital': admin.VERTICAL,
         'currency': admin.VERTICAL,
-        'loss_of_earnings': admin.VERTICAL}
+        'loss_of_earnings': admin.VERTICAL,
+        'form_of_transport': admin.VERTICAL}
