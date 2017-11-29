@@ -72,7 +72,7 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
 
     paid_treatment = models.CharField(
         verbose_name=(
-            'Did you pay for the treatment '
+            'Did you pay for the consultation '
             'you received during that visit'),
         max_length=15,
         choices=YES_NO)
