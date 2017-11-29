@@ -76,8 +76,8 @@ class MedicalExpenses(CrfModelMixin):
         help_text='in days')
 
     carer_time_off = models.IntegerField(
-        verbose_name='How much time did a caring family member take '
-        'off work to accompany you to the hospital?',
+        verbose_name='How much time did a caring family member '
+        'take to accompany you to the hospital?',
         validators=[MinValueValidator(0)],
         blank=True,
         null=True,
