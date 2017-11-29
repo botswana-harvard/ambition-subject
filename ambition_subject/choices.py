@@ -506,14 +506,14 @@ POS_NEG = (
 )
 
 RANKING_SCORE = (
+    ('0', '0'),
     ('1', '1'),
     ('2', '2'),
     ('3', '3'),
     ('4', '4'),
     ('5', '5'),
-    ('nil', 'Nil'),
-    ('not_done', 'Not Done'),
-    (NOT_APPLICABLE, 'Not Applicable')
+    ('6', '6'),
+    ('not done', 'Not done')
 )
 
 WEIGHT_DETERMINATION = (
