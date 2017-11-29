@@ -1,5 +1,5 @@
 from edc_base.preload_data import PreloadData
-from edc_constants.constants import OTHER, UNKNOWN, NOT_APPLICABLE, NORMAL
+from edc_constants.constants import OTHER, UNKNOWN, NORMAL
 
 from .constants import HEADACHE, VISUAL_LOSS
 
@@ -132,6 +132,14 @@ list_data = {
         ('miliary_appearance', 'Miliary appearance'),
         ('pleural_effusion', 'Pleural effusion'),
         ('infiltrates', 'Infiltrates'),
+    ],
+    'ambition_subject.infiltratelocation': [
+        ('lul', 'LUL'),
+        ('lll', 'LLL'),
+        ('rul', 'RUL'),
+        ('rll', 'RLL'),
+        ('rml', 'RML'),
+        ('diffuse', 'Diffuse'),
     ],
 }
 

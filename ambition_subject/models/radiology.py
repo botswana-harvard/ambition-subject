@@ -7,7 +7,7 @@ from ..choices import BRAIN_IMAGINING_REASON
 from ..choices import INFILTRATE_LOCATION
 
 from .model_mixins import CrfModelMixin
-from .list_models import AbnormalResultsReason, CXRType
+from .list_models import AbnormalResultsReason, CXRType, InfiltrateLocation
 
 
 class Radiology(CrfModelMixin):
@@ -28,12 +28,10 @@ class Radiology(CrfModelMixin):
         verbose_name='If yes, result',
         blank=True)
 
-    infiltrate_location = models.CharField(
+    infiltrate_location = models.ManyToManyField(
+        InfiltrateLocation,
         verbose_name='If Infiltrates, specify location',
-        choices=INFILTRATE_LOCATION,
-        default=NOT_APPLICABLE,
-        max_length=10,
-        null=True)
+        blank=True)
 
     cxr_description = models.TextField(
         verbose_name='Description/Comments',

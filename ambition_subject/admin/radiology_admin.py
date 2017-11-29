@@ -18,8 +18,7 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         'ct_performed': admin.VERTICAL,
         'scanned_with_contrast': admin.VERTICAL,
         'brain_imaging_reason': admin.VERTICAL,
-        'are_results_abnormal': admin.VERTICAL,
-        'infiltrate_location': admin.VERTICAL}
+        'are_results_abnormal': admin.VERTICAL}
 
     fieldsets = (
         ['CXR', {
@@ -45,4 +44,5 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
     )
 
     filter_horizontal = ('abnormal_results_reason',
-                         'cxr_type')
+                         'cxr_type',
+                         'infiltrate_location')
