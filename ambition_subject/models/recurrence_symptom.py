@@ -126,7 +126,7 @@ class RecurrenceSymptom(CrfModelMixin):
 
     on_arvs = models.CharField(
         verbose_name='On ARVS:',
-        max_length=5,
+        max_length=26,
         choices=YES_NO_ALREADY_ARV)
 
     arv_date = models.DateField(

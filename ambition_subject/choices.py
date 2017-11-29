@@ -137,6 +137,7 @@ CARE_PROVIDER = (
     ('spiritual_healer', 'Spiritual Healer'),
     ('family/friend', 'Family/Friend'),
     ('pharmacist', 'Pharmacist'),
+    ('clinical_officer', 'Clinical Officer'),
     (OTHER, 'Other')
 )
 
@@ -557,7 +558,7 @@ YES_NO_ALREADY = (
 YES_NO_ALREADY_ARV = (
     (YES, 'Yes'),
     (NO, 'No'),
-    ('already_on_arvs_before_enrollment', 'Already on ARVs before enrollment')
+    ('on_arvs_before_enrollment', 'Already on ARVs before enrollment')
 )
 
 YES_NO_RESULTS_UNKNOWN = (
