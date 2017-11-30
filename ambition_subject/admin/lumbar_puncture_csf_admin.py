@@ -61,4 +61,7 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'differential_lymphocyte_unit': admin.VERTICAL,
         'differential_neutrophil_unit': admin.VERTICAL,
         'csf_glucose_units': admin.VERTICAL,
-        'bios_crag': admin.VERTICAL}
+        'bios_crag': admin.VERTICAL,
+        'crag_control_result': admin.VERTICAL,
+        'crag_t1_result': admin.VERTICAL,
+        'crag_t2_result': admin.VERTICAL, }

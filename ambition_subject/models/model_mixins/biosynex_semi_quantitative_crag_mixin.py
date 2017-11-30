@@ -1,13 +1,13 @@
 from django.db import models
 
-from edc_constants.choices import POS_NEG_ONLY, YES_NO
+from edc_constants.choices import POS_NEG_ONLY, YES_NO_NA
 
 
 class BiosynexSemiQuantitativeCragMixin(models.Model):
 
     bios_crag = models.CharField(
         verbose_name='Biosynex Semi-quantitative CrAg performed?',
-        choices=YES_NO,
+        choices=YES_NO_NA,
         help_text='Gaborone and Blantyre only',
         max_length=5,
         blank=True,
