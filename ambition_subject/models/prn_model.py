@@ -8,24 +8,6 @@ from .model_mixins import CrfModelMixin
 
 class PrnModel(CrfModelMixin):
 
-    adverse_event = models.CharField(
-        verbose_name='Adverse event?',
-        max_length=5,
-        choices=YES_NO,
-        default=NO)
-
-    adverse_event_tmg = models.CharField(
-        verbose_name='Adverse event TMG?',
-        max_length=5,
-        choices=YES_NO,
-        default=NO)
-
-    adverse_event_followup = models.CharField(
-        verbose_name='Adverse event follow up?',
-        max_length=5,
-        choices=YES_NO,
-        default=NO)
-
     blood_result = models.CharField(
         verbose_name='Blood result?',
         max_length=5,
@@ -51,11 +33,11 @@ class PrnModel(CrfModelMixin):
         default=NO,
         null=True)
 
-    protocol_deviation = models.CharField(
-        verbose_name='Protocol Deviation?',
-        max_length=5,
-        choices=YES_NO,
-        default=NO)
+#     protocol_deviation = models.CharField(
+#         verbose_name='Protocol Deviation?',
+#         max_length=5,
+#         choices=YES_NO,
+#         default=NO)
 
     lumbar_puncture = models.CharField(
         verbose_name='Lumbar puncture?',
@@ -64,11 +46,11 @@ class PrnModel(CrfModelMixin):
         default=YES,
         null=True)
 
-    death_report = models.CharField(
-        verbose_name='Death Report?',
-        max_length=5,
-        choices=YES_NO,
-        default=NO)
+#     death_report = models.CharField(
+#         verbose_name='Death Report?',
+#         max_length=5,
+#         choices=YES_NO,
+#         default=NO)
 
     history = HistoricalRecords()
 

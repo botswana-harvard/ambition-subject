@@ -10,13 +10,8 @@ from ..models import PrnModel
 from .modeladmin_mixins import CrfModelAdminMixin
 
 common_fields = ('subject_visit',
-                 'adverse_event',
-                 'adverse_event_tmg',
-                 'adverse_event_followup',
                  'microbiology',
-                 'radiology',
-                 'protocol_deviation',
-                 'death_report',)
+                 'radiology',)
 
 week4 = common_fields + ('lumbar_puncture', 'recurrence_symptom',)
 
@@ -39,28 +34,17 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         WEEK10: Fieldset(*follow_up, section='PRN'), }
 
     radio_fields = {
-        'adverse_event': admin.VERTICAL,
-        'adverse_event_tmg': admin.VERTICAL,
-        'adverse_event_followup': admin.VERTICAL,
         'microbiology': admin.VERTICAL,
         'radiology': admin.VERTICAL,
         'lumbar_puncture': admin.VERTICAL,
-        'protocol_deviation': admin.VERTICAL,
-        'recurrence_symptom': admin.VERTICAL,
-        'blood_result': admin.VERTICAL,
-        'death_report': admin.VERTICAL, }
+        'blood_result': admin.VERTICAL, }
 
     fieldsets = (
         ['PRN', {
             'fields': (
                 'subject_visit',
-                'adverse_event',
-                'adverse_event_tmg',
-                'adverse_event_followup',
                 'microbiology',
                 'lumbar_puncture',
-                'radiology',
-                'protocol_deviation',
-                'death_report',)}],
+                'radiology',)}],
         audit_fieldset_tuple
     )

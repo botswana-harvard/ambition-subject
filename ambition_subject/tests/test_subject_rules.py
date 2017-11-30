@@ -31,25 +31,25 @@ class TestSubjectRules(TestCase):
             if appointment.visit_code == self.visit_code:
                 break
 
-    def test_death_report_required_included_in_error(self):
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.deathreport',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            NOT_REQUIRED)
-
-        mommy.make_recipe(
-            'ambition_subject.adverseevent',
-            subject_visit=self.subject_visit,
-            ae_severity_grade='grade_5')
-
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.deathreport',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            REQUIRED)
+#     def test_death_report_required_included_in_error(self):
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.deathreport',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             NOT_REQUIRED)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.adverseevent',
+#             subject_visit=self.subject_visit,
+#             ae_severity_grade='grade_5')
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.deathreport',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             REQUIRED)
 
     def test_protocol_deviation_violation_required_included_in_error(self):
         self.assertEqual(
@@ -91,65 +91,65 @@ class TestSubjectRules(TestCase):
                 visit_code='1070').entry_status,
             REQUIRED)
 
-    def test_adverse_event_required(self):
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.adverseevent',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            NOT_REQUIRED)
+#     def test_adverse_event_required(self):
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.adverseevent',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             NOT_REQUIRED)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.prnmodel',
+#             subject_visit=self.subject_visit,
+#             adverse_event=YES)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.adverseevent',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             REQUIRED)
 
-        mommy.make_recipe(
-            'ambition_subject.prnmodel',
-            subject_visit=self.subject_visit,
-            adverse_event=YES)
+#     def test_adverse_event_tmg_required(self):
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.adverseeventtmg',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             NOT_REQUIRED)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.prnmodel',
+#             subject_visit=self.subject_visit,
+#             adverse_event_tmg=YES)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.adverseeventtmg',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             REQUIRED)
 
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.adverseevent',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            REQUIRED)
-
-    def test_adverse_event_tmg_required(self):
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.adverseeventtmg',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            NOT_REQUIRED)
-
-        mommy.make_recipe(
-            'ambition_subject.prnmodel',
-            subject_visit=self.subject_visit,
-            adverse_event_tmg=YES)
-
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.adverseeventtmg',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            REQUIRED)
-
-    def test_adverse_event_followup_required(self):
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.adverseeventfollowup',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            NOT_REQUIRED)
-
-        mommy.make_recipe(
-            'ambition_subject.prnmodel',
-            subject_visit=self.subject_visit,
-            adverse_event_followup=YES)
-
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.adverseeventfollowup',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            REQUIRED)
+#     def test_adverse_event_followup_required(self):
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.adverseeventfollowup',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             NOT_REQUIRED)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.prnmodel',
+#             subject_visit=self.subject_visit,
+#             adverse_event_followup=YES)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.adverseeventfollowup',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             REQUIRED)
 
     def test_microbiology_required(self):
         self.assertEqual(
@@ -259,25 +259,25 @@ class TestSubjectRules(TestCase):
                 visit_code='1070').entry_status,
             REQUIRED)
 
-    def test_recurrence_symptom_required_from_adverse_event(self):
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.recurrencesymptom',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            NOT_REQUIRED)
-
-        mommy.make_recipe(
-            'ambition_subject.adverseevent',
-            subject_visit=self.subject_visit,
-            ae_cm_recurrence=YES)
-
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.recurrencesymptom',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
-            REQUIRED)
+#     def test_recurrence_symptom_required_from_adverse_event(self):
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.recurrencesymptom',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             NOT_REQUIRED)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.adverseevent',
+#             subject_visit=self.subject_visit,
+#             ae_cm_recurrence=YES)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.recurrencesymptom',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1070').entry_status,
+#             REQUIRED)
 
     def test_death_report_required_on_prn(self):
         appointment = Appointment.objects.get(
@@ -342,135 +342,133 @@ class TestSubjectRules(TestCase):
                 visit_code='1112').entry_status,
             REQUIRED)
 
-    @tag('recurrence_form')
-    def test_recurrence_form(self):
-        appointment = Appointment.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code='1005')
-        self.subject_visit = SubjectVisit.objects.get(
-            appointment=appointment)
+#     def test_recurrence_form(self):
+#         appointment = Appointment.objects.get(
+#             subject_identifier=self.consent.subject_identifier,
+#             visit_code='1005')
+#         self.subject_visit = SubjectVisit.objects.get(
+#             appointment=appointment)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.adverseevent',
+#             subject_visit=self.subject_visit,
+#             ae_cm_recurrence=YES)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.recurrencesymptom',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1005').entry_status,
+#             REQUIRED)
 
-        mommy.make_recipe(
-            'ambition_subject.adverseevent',
-            subject_visit=self.subject_visit,
-            ae_cm_recurrence=YES)
+#     def test_recurrence_form_1(self):
+#         appointment = Appointment.objects.get(
+#             subject_identifier=self.consent.subject_identifier,
+#             visit_code='1005')
+#         self.subject_visit = SubjectVisit.objects.get(
+#             appointment=appointment)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.adverseevent',
+#             subject_visit=self.subject_visit,
+#             ae_cm_recurrence=NO)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.recurrencesymptom',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1005').entry_status,
+#             NOT_REQUIRED)
 
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.recurrencesymptom',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1005').entry_status,
-            REQUIRED)
+#     def test_recurrence_form_2(self):
+#         appointment = Appointment.objects.get(
+#             subject_identifier=self.consent.subject_identifier,
+#             visit_code='1005')
+#         self.subject_visit = SubjectVisit.objects.get(
+#             appointment=appointment)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.adverseevent',
+#             subject_visit=self.subject_visit,
+#             ae_cm_recurrence=NO)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.prnmodel',
+#             subject_visit=self.subject_visit,
+#             recurrence_symptom=NO)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.recurrencesymptom',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1005').entry_status,
+#             NOT_REQUIRED)
 
-    def test_recurrence_form_1(self):
-        appointment = Appointment.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code='1005')
-        self.subject_visit = SubjectVisit.objects.get(
-            appointment=appointment)
+#     def test_recurrence_form_3(self):
+#         appointment = Appointment.objects.get(
+#             subject_identifier=self.consent.subject_identifier,
+#             visit_code='1005')
+#         self.subject_visit = SubjectVisit.objects.get(
+#             appointment=appointment)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.adverseevent',
+#             subject_visit=self.subject_visit,
+#             ae_cm_recurrence=NO)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.prnmodel',
+#             subject_visit=self.subject_visit,
+#             recurrence_symptom=YES)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.recurrencesymptom',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1005').entry_status,
+#             REQUIRED)
 
-        mommy.make_recipe(
-            'ambition_subject.adverseevent',
-            subject_visit=self.subject_visit,
-            ae_cm_recurrence=NO)
+#     def test_blood_result_rule_not_required(self):
+#         appointment = Appointment.objects.get(
+#             subject_identifier=self.consent.subject_identifier,
+#             visit_code='1000')
+#         self.subject_visit = SubjectVisit.objects.get(
+#             appointment=appointment)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.bloodresult',
+#             subject_visit=self.subject_visit,
+#             absolute_neutrophil=55,
+#             alt=199,
+#             platelets=5451)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.subjectoffstudy',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1000').entry_status,
+#             NOT_REQUIRED)
 
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.recurrencesymptom',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1005').entry_status,
-            NOT_REQUIRED)
-
-    def test_recurrence_form_2(self):
-        appointment = Appointment.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code='1005')
-        self.subject_visit = SubjectVisit.objects.get(
-            appointment=appointment)
-
-        mommy.make_recipe(
-            'ambition_subject.adverseevent',
-            subject_visit=self.subject_visit,
-            ae_cm_recurrence=NO)
-
-        mommy.make_recipe(
-            'ambition_subject.prnmodel',
-            subject_visit=self.subject_visit,
-            recurrence_symptom=NO)
-
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.recurrencesymptom',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1005').entry_status,
-            NOT_REQUIRED)
-
-    def test_recurrence_form_3(self):
-        appointment = Appointment.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code='1005')
-        self.subject_visit = SubjectVisit.objects.get(
-            appointment=appointment)
-
-        mommy.make_recipe(
-            'ambition_subject.adverseevent',
-            subject_visit=self.subject_visit,
-            ae_cm_recurrence=NO)
-
-        mommy.make_recipe(
-            'ambition_subject.prnmodel',
-            subject_visit=self.subject_visit,
-            recurrence_symptom=YES)
-
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.recurrencesymptom',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1005').entry_status,
-            REQUIRED)
-
-    @tag('result_rule')
-    def test_blood_result_rule_not_required(self):
-        appointment = Appointment.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code='1000')
-        self.subject_visit = SubjectVisit.objects.get(
-            appointment=appointment)
-
-        mommy.make_recipe(
-            'ambition_subject.bloodresult',
-            subject_visit=self.subject_visit,
-            absolute_neutrophil=55,
-            alt=199,
-            platelets=5451)
-
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.subjectoffstudy',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1000').entry_status,
-            NOT_REQUIRED)
-
-    def test_blood_result_rule_required(self):
-        appointment = Appointment.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code='1000')
-        self.subject_visit = SubjectVisit.objects.get(
-            appointment=appointment)
-
-        mommy.make_recipe(
-            'ambition_subject.bloodresult',
-            subject_visit=self.subject_visit,
-            absolute_neutrophil=55,
-            alt=201,
-            platelets=5451)
-
-        self.assertEqual(
-            CrfMetadata.objects.get(
-                model='ambition_subject.subjectoffstudy',
-                subject_identifier=self.consent.subject_identifier,
-                visit_code='1000').entry_status,
-            REQUIRED)
+#     def test_blood_result_rule_required(self):
+#         appointment = Appointment.objects.get(
+#             subject_identifier=self.consent.subject_identifier,
+#             visit_code='1000')
+#         self.subject_visit = SubjectVisit.objects.get(
+#             appointment=appointment)
+#
+#         mommy.make_recipe(
+#             'ambition_subject.bloodresult',
+#             subject_visit=self.subject_visit,
+#             absolute_neutrophil=55,
+#             alt=201,
+#             platelets=5451)
+#
+#         self.assertEqual(
+#             CrfMetadata.objects.get(
+#                 model='ambition_subject.subjectoffstudy',
+#                 subject_identifier=self.consent.subject_identifier,
+#                 visit_code='1000').entry_status,
+#             REQUIRED)
 
     def test_medical_expenses_two_required(self):
         appointment = Appointment.objects.get(
