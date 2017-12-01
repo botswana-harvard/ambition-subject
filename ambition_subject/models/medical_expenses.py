@@ -8,6 +8,8 @@ from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 
 from .model_mixins import CrfModelMixin
 
+from ..validators import hm_validator
+
 
 class MedicalExpenses(CrfModelMixin):
 
@@ -111,10 +113,13 @@ class MedicalExpenses(CrfModelMixin):
         blank=True,
         null=True)
 
-    travel_time = models.IntegerField(
-        verbose_name='How long did it take you to reach here?',
-        validators=[MinValueValidator(1)],
-        help_text='in minutes')
+    travel_time = models.CharField(
+        verbose_name='How long did it take you to reach there?',
+        validators=[hm_validator],
+        max_length=8,
+        help_text='in hours:minutes',
+        null=True,
+        blank=True)
 
     history = HistoricalRecords()
 
