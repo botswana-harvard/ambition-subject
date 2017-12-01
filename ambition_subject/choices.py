@@ -133,12 +133,12 @@ BRAIN_IMAGINING_REASON = (
 
 CARE_PROVIDER = (
     ('doctor', 'Doctor'),
+    ('clinical_officer', 'Clinical Officer'),
     ('nurse', 'Nurse'),
     ('traditional_healer', 'Traditional Healer'),
     ('spiritual_healer', 'Spiritual Healer'),
     ('family/friend', 'Family/Friend'),
     ('pharmacist', 'Pharmacist'),
-    ('clinical_officer', 'Clinical Officer'),
     (OTHER, 'Other')
 )
 
