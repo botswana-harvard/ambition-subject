@@ -12,8 +12,8 @@ class Education(EducationModelMixin, CrfModelMixin):
         max_length=5,
         choices=YES_NO,
         help_text=('If NO, please complete the form "Health Economics: '
-                   'Education (Head of Household)" on behalf of the '
-                   'head of household.'))
+                   'Education (Person who earns the highest income)" on behalf of the '
+                   'Person who earns the highest income.'))
 
     history = HistoricalRecords()
 
