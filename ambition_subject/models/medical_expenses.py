@@ -106,7 +106,7 @@ class MedicalExpenses(CrfModelMixin):
         choices=TRANSPORT)
 
     transport_fare = models.DecimalField(
-        verbose_name='How much did you spend on the transport (each way)?',
+        verbose_name='How much did you spend on the transport (in total)?',
         decimal_places=2,
         max_digits=15,
         validators=[MinValueValidator(0)],
