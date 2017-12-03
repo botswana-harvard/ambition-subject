@@ -1,4 +1,5 @@
 from django.db import models
+from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
@@ -12,7 +13,8 @@ from ...choices import REASON_STUDY_TERMINATED, YES_NO_ALREADY
 
 
 class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
-                                 TrackingIdentifierModelMixin, BaseUuidModel):
+                                 ActionItemModelMixin, TrackingIdentifierModelMixin,
+                                 BaseUuidModel):
 
     tracking_identifier_prefix = 'ST'
 

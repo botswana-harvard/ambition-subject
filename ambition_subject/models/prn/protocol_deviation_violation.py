@@ -1,4 +1,5 @@
 from django.db import models
+from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
@@ -11,7 +12,8 @@ from ...choices import PROTOCOL_VIOLATION, ACTION_REQUIRED, DEVIATION_VIOLATION
 
 
 class ProtocolDeviationViolation(NonUniqueSubjectIdentifierFieldMixin,
-                                 TrackingIdentifierModelMixin, BaseUuidModel):
+                                 ActionItemModelMixin, TrackingIdentifierModelMixin,
+                                 BaseUuidModel):
 
     tracking_identifier_prefix = 'PD'
 

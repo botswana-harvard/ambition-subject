@@ -4,20 +4,6 @@ from edc_constants.constants import OTHER, UNKNOWN, NORMAL, YES
 from .constants import HEADACHE, VISUAL_LOSS
 
 list_data = {
-    'ambition_subject.aeclassification': [
-        ('anaemia', 'Anaemia'),
-        ('thrombocytopenia', 'Thrombocytopenia'),
-        ('diarrhoea', 'Diarrhoea'),
-        ('thrombophlebitis', 'Renal impairment'),
-        ('pneumonia', 'Pneumonia'),
-        ('TB', 'TB'),
-        ('hypokalaemia', 'Hypokalaemia'),
-        ('bacteraemia/sepsis', 'Bacteraemia/sepsis'),
-        ('neutropaenia', 'Neutropaenia'),
-        ('CM_IRIS', 'CM IRIS'),
-        ('respiratory_distress', 'Respiratory distress'),
-        (OTHER, 'Other')
-    ],
     'ambition_subject.antibiotic': [
         ('flucloxacillin', 'Flucloxacillin'),
         ('gentamicin', 'Gentamicin'),
@@ -152,7 +138,7 @@ model_data = {
          'instructions': None},
         {'display_name': 'Submit protocol deviation report',
          'prn_form_action': YES,
-         'model': 'ambition_subject.protocoldeviation',
+         'model': 'ambition_subject.protocoldeviationviolation',
          'show_on_dashboard': True,
          'instructions': None},
         {'display_name': 'Re-consent reminder',
