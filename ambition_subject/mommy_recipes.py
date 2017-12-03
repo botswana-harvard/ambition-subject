@@ -285,13 +285,15 @@ subjectconsent = Recipe(
 
 prnmodel = Recipe(
     PrnModel,
-    adverse_event=NO,
+    #     adverse_event=NO,
+    blood_result=NO,
     microbiology=NO,
     radiology=NO,
     lumbar_puncture=NO,
-    recurrence_symptom=NO,
-    protocol_deviation=NO,
-    death_report=NO)
+    #     recurrence_symptom=NO,
+    #     protocol_deviation=NO,
+    #     death_report=NO
+)
 
 clinicnote = Recipe(
     ClinicNote,)

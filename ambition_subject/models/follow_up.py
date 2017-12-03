@@ -4,7 +4,7 @@ from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO_NA
 
-from ..choices import FLUCONAZOLE_DOSE, RANKING_SCORE, YES_NO_ND, YES_NO_ALREADY_ND
+from ..choices import FLUCONAZOLE_DOSE, RANKIN_SCORE, YES_NO_ND, YES_NO_ALREADY_ND
 from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
 
 
@@ -43,9 +43,9 @@ class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
         max_length=10,
         choices=YES_NO_ND)
 
-    ranking_score = models.IntegerField(
+    rankin_score = models.IntegerField(
         verbose_name='Modified Rankin score:',
-        choices=RANKING_SCORE,
+        choices=RANKIN_SCORE,
         null=True)
 
     other_significant_dx = models.CharField(

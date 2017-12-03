@@ -128,14 +128,15 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
         verbose_name='If other, please specify:')
 
     second_line_regimen = models.CharField(
-        verbose_name='Second line arv regimen',
+        verbose_name='Second line / second switch ARV regimen',
         max_length=50,
         choices=SECOND_ARV_REGIMEN,
         default=NOT_APPLICABLE)
 
     second_line_regimen_other = OtherCharField()
 
-    arvs_started_switch_date = models.DateField(
+    arvs_switch_date = models.DateField(
+        verbose_name='ARV switch date',
         blank=True,
         null=True,
         validators=[date_not_future])

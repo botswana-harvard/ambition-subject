@@ -13,7 +13,7 @@ visual_acuity_fieldset = Fieldset(
     'visual_acuity_right_eye',
     'patient_help',
     'patient_problems',
-    'ranking_score',
+    'rankin_score',
     section='Disability Assessment')
 
 
@@ -98,4 +98,4 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'other_significant_dx': admin.VERTICAL,
         'patient_help': admin.VERTICAL,
         'patient_problems': admin.VERTICAL,
-        'ranking_score': admin.VERTICAL, }
+        'rankin_score': admin.VERTICAL, }

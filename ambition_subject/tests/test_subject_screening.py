@@ -28,7 +28,7 @@ class TestSubjectScreening(TestCase):
         """
         subject_screening = mommy.prepare_recipe(
             'ambition_subject.subjectscreening', age_in_years=17)
-        subject_screening.verify_eligibility()
+#         subject_screening.verify_eligibility()
         self.assertFalse(subject_screening.eligible)
 
     def test_subject_age_minor_invalid_reason(self):
@@ -37,7 +37,7 @@ class TestSubjectScreening(TestCase):
             'ambition_subject.subjectscreening', **options)
         self.assertFalse(subject_screening.eligible)
         self.assertIn(
-            subject_screening.reasons_ineligible, 'age<18')
+            subject_screening.reasons_ineligible, 'age<18.')
 
     def test_subject_age_valid_no_reason(self):
         options = {'age_in_years': 18}

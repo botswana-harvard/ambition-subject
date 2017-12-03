@@ -23,8 +23,11 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         help_text='Units cm of H2O')
 
     csf_amount_removed = models.IntegerField(
-        verbose_name='CSF amount removed',
-        validators=[MinValueValidator(1)])
+        blank=True,
+        null=True,
+        verbose_name='CSF amount removed ',
+        validators=[MinValueValidator(1)],
+        help_text='Units ml')
 
     quantitative_culture = models.IntegerField(
         blank=True,

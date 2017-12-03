@@ -16,7 +16,7 @@ class Week16Admin(ModelAdminMixin, admin.ModelAdmin):
         'patient_alive': admin.VERTICAL,
         'activities_help': admin.VERTICAL,
         'illness_problems': admin.VERTICAL,
-        'ranking_score': admin.VERTICAL}
+        'rankin_score': admin.VERTICAL}
 
     fieldsets = (
         (None, {
@@ -26,7 +26,7 @@ class Week16Admin(ModelAdminMixin, admin.ModelAdmin):
                 'death_datetime',
                 'activities_help',
                 'illness_problems',
-                'ranking_score',
+                'rankin_score',
                 'week16_narrative',
             )},
          ),

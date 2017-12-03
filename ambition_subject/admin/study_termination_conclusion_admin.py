@@ -51,7 +51,7 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'first_line_regimen_other',
                 'second_line_regimen',
                 'second_line_regimen_other',
-                'arvs_started_switch_date',
+                'arvs_switch_date',
                 'first_line_env',
                 'arvs_delay_reason')}],
         audit_fieldset_tuple

@@ -72,5 +72,8 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'creatinine_unit': admin.VERTICAL,
         'magnesium_unit': admin.VERTICAL,
         'urea_unit': admin.VERTICAL,
-        'bios_crag': admin.VERTICAL
+        'bios_crag': admin.VERTICAL,
+        'crag_control_result': admin.VERTICAL,
+        'crag_t1_result': admin.VERTICAL,
+        'crag_t2_result': admin.VERTICAL,
     }

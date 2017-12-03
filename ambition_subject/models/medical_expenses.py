@@ -8,6 +8,8 @@ from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 
 from .model_mixins import CrfModelMixin
 
+from ..validators import hm_validator
+
 
 class MedicalExpenses(CrfModelMixin):
 
@@ -104,17 +106,20 @@ class MedicalExpenses(CrfModelMixin):
         choices=TRANSPORT)
 
     transport_fare = models.DecimalField(
-        verbose_name='How much did you spend on the transport (each way)?',
+        verbose_name='How much did you spend on the transport (in total)?',
         decimal_places=2,
         max_digits=15,
         validators=[MinValueValidator(0)],
         blank=True,
         null=True)
 
-    travel_time = models.IntegerField(
-        verbose_name='How long did it take you to reach here?',
-        validators=[MinValueValidator(1)],
-        help_text='in minutes')
+    travel_time = models.CharField(
+        verbose_name='How long did it take you to reach there?',
+        validators=[hm_validator],
+        max_length=8,
+        help_text='in hours:minutes',
+        null=True,
+        blank=True)
 
     history = HistoricalRecords()
 

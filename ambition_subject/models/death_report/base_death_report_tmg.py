@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.deletion import PROTECT
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators.date import datetime_not_future
 from edc_base.utils import get_utcnow
 from edc_constants.choices import YES_NO
@@ -9,7 +10,7 @@ from ...choices import CAUSE_OF_DEATH, TB_SITE_DEATH
 from .death_report import DeathReport
 
 
-class BaseDeathReportTmg(models.Model):
+class BaseDeathReportTmg(BaseUuidModel, models.Model):
 
     death_report = models.OneToOneField(DeathReport, on_delete=PROTECT)
 
