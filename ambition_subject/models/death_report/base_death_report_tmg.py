@@ -10,7 +10,7 @@ from ...choices import CAUSE_OF_DEATH, TB_SITE_DEATH
 from .death_report import DeathReport
 
 
-class BaseDeathReportTmg(BaseUuidModel, models.Model):
+class BaseDeathReportTmg(models.Model):
 
     death_report = models.OneToOneField(DeathReport, on_delete=PROTECT)
 

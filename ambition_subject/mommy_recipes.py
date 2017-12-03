@@ -7,7 +7,6 @@ from faker import Faker
 from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
 
-from .models import AeInitial, AeTmg, AeFollowUp, AeFinal
 from .models import BloodResult, DeathReport, Microbiology, FollowUp
 from .models import Education, EducationHoh, ClinicNote
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
@@ -15,7 +14,7 @@ from .models import MedicalExpensesTwo
 from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory, Week16
 from .models import RecurrenceSymptom, Week2, SubjectVisit, SubjectScreening, MedicalExpenses
 from .models import SubjectLocator, SubjectConsent, PrnModel, MedicalExpensesTwoDetail
-from .models import AEClassification, Neurological, Antibiotic, Symptom
+from .models import Neurological, Antibiotic, Symptom
 from .models import SignificantNewDiagnosis, MeningitisSymptom
 
 
@@ -47,25 +46,6 @@ class MyEdcConsentProvider(EdcConsentProvider):
 fake = Faker()
 fake.add_provider(MyEdcConsentProvider)
 fake.add_provider(DateProvider)
-
-aeclassification = Recipe(AEClassification)
-
-aeinitial = Recipe(
-    AeInitial,
-    ae_study_relation_possibility=YES,
-    ambisome_relation='not_related',
-    fluconazole_relation='not_related',
-    amphotericin_b_relation='not_related',
-    ae_cause=NO,
-    ae_cause_other=None)
-
-aetmg = Recipe(AeTmg)
-
-aefollowup = Recipe(
-    AeFollowUp,
-    relevant_history=NO)
-
-aefinal = Recipe(AeFinal)
 
 bloodresult = Recipe(BloodResult)
 

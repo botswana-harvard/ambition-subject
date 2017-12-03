@@ -9,7 +9,7 @@ from .enrollment import Enrollment
 from .follow_up import FollowUp
 from .follow_up_diagnosis import FollowUpDiagnoses
 from .identifier_history import IdentifierHistory
-from .list_models import AEClassification, Antibiotic, AntibioticTreatment, Day14Medication
+from .list_models import Antibiotic, AntibioticTreatment, Day14Medication
 from .list_models import MeningitisSymptom, MissedVisitReason, Medication, Neurological
 from .list_models import SignificantNewDiagnosis, Symptom, OtherDrug, AbnormalResultsReason
 from .list_models import CXRType, InfiltrateLocation
