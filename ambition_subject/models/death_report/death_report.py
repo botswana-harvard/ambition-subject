@@ -2,14 +2,14 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO
 
 from ...choices import CAUSE_OF_DEATH, TB_SITE_DEATH
-from ..model_mixins import CrfModelMixin
 
 
-class DeathReport(CrfModelMixin):
+class DeathReport(BaseUuidModel):
 
     death_datetime = models.DateTimeField(
         validators=[datetime_not_future],

@@ -506,7 +506,7 @@ POS_NEG = (
     ('not_done', 'Not Done'),
 )
 
-RANKING_SCORE = (
+RANKIN_SCORE = (
     ('0', '0'),
     ('1', '1'),
     ('2', '2'),

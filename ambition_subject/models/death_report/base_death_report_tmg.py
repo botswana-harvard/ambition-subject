@@ -1,11 +1,12 @@
 from django.db import models
 
 from edc_constants.choices import YES_NO
+from edc_base.model_mixins import BaseUuidModel
 
 from ...choices import CAUSE_OF_DEATH, TB_SITE_DEATH
 
 
-class BaseDeathReportTmg(models.Model):
+class BaseDeathReportTmg(BaseUuidModel, models.Model):
 
     cause_of_death = models.CharField(
         verbose_name='Main cause of death (opinion of TMG member)',

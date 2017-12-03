@@ -1,11 +1,10 @@
 from django.db import models
 
-from ..choices import RANKING_SCORE
+from ..choices import RANKIN_SCORE
 from .model_mixins import CrfModelMixin
 from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_APPLICABLE
 
 
 class Week16(CrfModelMixin):
@@ -34,10 +33,10 @@ class Week16(CrfModelMixin):
         max_length=5,
         choices=YES_NO_NA)
 
-    ranking_score = models.CharField(
+    rankin_score = models.CharField(
         verbose_name='Modified Rankin score',
         max_length=10,
-        choices=RANKING_SCORE)
+        choices=RANKIN_SCORE)
 
     week16_narrative = models.TextField(
         verbose_name='Narrative',
