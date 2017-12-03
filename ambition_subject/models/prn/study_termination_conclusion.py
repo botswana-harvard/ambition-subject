@@ -7,6 +7,7 @@ from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
+from edc_identifier.managers import TrackingIdentifierManager
 
 from ...choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, SECOND_ARV_REGIMEN
 from ...choices import REASON_STUDY_TERMINATED, YES_NO_ALREADY
@@ -156,6 +157,13 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
         null=True)
 
     history = HistoricalRecords()
+
+    objects = TrackingIdentifierManager()
+
+    history = HistoricalRecords()
+
+    def natural_key(self):
+        return (self.tracking_identifier, )
 
     class Meta:
         verbose_name = 'Study Termination/Conclusion'

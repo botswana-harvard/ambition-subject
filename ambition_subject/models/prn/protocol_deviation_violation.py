@@ -7,6 +7,7 @@ from edc_base.utils import get_utcnow
 from edc_constants.choices import YES_NO
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
+from edc_identifier.managers import TrackingIdentifierManager
 
 from ...choices import PROTOCOL_VIOLATION, ACTION_REQUIRED, DEVIATION_VIOLATION
 
@@ -108,4 +109,9 @@ class ProtocolDeviationViolation(NonUniqueSubjectIdentifierFieldMixin,
         null=True,
         blank=True)
 
+    objects = TrackingIdentifierManager()
+
     history = HistoricalRecords()
+
+    def natural_key(self):
+        return (self.tracking_identifier, )

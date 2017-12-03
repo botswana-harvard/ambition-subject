@@ -28,8 +28,9 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         [None, {
             'fields': (
-                'subject_idenifier',
-                'tracking_idenifier',
+                'tracking_identifier',
+                'subject_identifier',
+                'action_identifier',
                 'patient_terminated_date',
                 'last_study_fu_date',
                 'discharged_after_initial_admission',
@@ -57,7 +58,15 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
         audit_fieldset_tuple
     )
 
+    list_display = ('tracking_identifier', 'dashboard',
+                    'patient_terminated_date', 'last_study_fu_date')
+
+    list_filter = ('patient_terminated_date', 'last_study_fu_date')
+
+    search_fields = ('tracking_identifier',
+                     'subject_identifier', 'action_identifier')
+
     def get_readonly_fields(self, request, obj=None):
         fields = super().get_readonly_fields(request, obj)
-        fields = ('subject_idenifier', 'tracking_idenifier', ) + fields
+        fields = ('tracking_identifier', ) + fields
         return fields
