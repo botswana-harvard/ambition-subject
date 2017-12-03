@@ -1,12 +1,8 @@
-from .adverse_event_followup_form import AdverseEventFollowUpForm
-from .adverse_event_form import AdverseEventForm
-from .adverse_event_tmg_form import AdverseEventTMGForm
 from .amphotericin_missed_doses_form import AmphotericinMissedDosesForm
 from .blood_result_form import BloodResultForm
 from .clinic_note_form import ClinicNoteForm
 from .death_report import DeathReportForm
-from .death_report import DeathReportTmg1Form
-from .death_report import DeathReportTmg2Form
+from .death_report import DeathReportTmgOneForm, DeathReportTmgTwoForm
 from .education_form import EducationForm
 from .education_hoh_form import EducationHohForm
 from .fluconazole_missed_doses_form import FluconazoleMissedDosesForm

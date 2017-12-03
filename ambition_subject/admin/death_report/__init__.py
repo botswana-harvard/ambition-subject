@@ -1,3 +1,2 @@
 from .death_report_admin import DeathReportAdmin
-from .death_report_tmg1_admin import DeathReportTmg1Admin
-from .death_report_tmg2_admin import DeathReportTmg2Admin
+from .death_report_tmg_admin import DeathReportTmgOneAdmin, DeathReportTmgTwoAdmin

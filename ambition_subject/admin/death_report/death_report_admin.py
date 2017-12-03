@@ -5,11 +5,11 @@ from edc_model_admin import audit_fieldset_tuple
 from ...admin_site import ambition_subject_admin
 from ...forms import DeathReportForm
 from ...models import DeathReport
-from ..modeladmin_mixins import CrfModelAdminMixin
+from ..modeladmin_mixins import ModelAdminMixin
 
 
 @admin.register(DeathReport, site=ambition_subject_admin)
-class DeathReportAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class DeathReportAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = DeathReportForm
 
@@ -21,7 +21,7 @@ class DeathReportAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'subject_visit',
+                'subject_identifier',
                 'death_datetime',
                 'study_day',
                 'death_as_inpatient')},

@@ -1,3 +1,2 @@
 from .death_report_form import DeathReportForm
-from .death_report_tmg1_form import DeathReportTmg1Form
-from .death_report_tmg2_form import DeathReportTmg2Form
+from .death_report_tmg_form import DeathReportTmgOneForm, DeathReportTmgTwoForm

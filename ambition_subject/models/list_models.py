@@ -1,11 +1,6 @@
 from edc_base.model_mixins import ListModelMixin, BaseUuidModel
 
 
-class AEClassification(ListModelMixin, BaseUuidModel):
-
-    pass
-
-
 class Antibiotic(ListModelMixin, BaseUuidModel):
 
     pass

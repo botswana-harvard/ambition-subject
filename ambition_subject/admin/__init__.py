@@ -1,12 +1,8 @@
-from .adverse_event_admin import AdverseEventAdmin
-from .adverse_event_followup_admin import AdverseEventFollowUpAdmin
-from .adverse_event_tmg_admin import AdverseEventTMGAdmin
 from .appointment_admin import AppointmentAdmin
 from .blood_result_admin import BloodResultsAdmin
 from .clinic_note_admin import ClinicNoteAdmin
 from .death_report import DeathReportAdmin
-from .death_report import DeathReportTmg1Admin
-from .death_report import DeathReportTmg2Admin
+from .death_report import DeathReportTmgOneAdmin, DeathReportTmgTwoAdmin
 from .education_admin import EducationAdmin
 from .education_hoh_admin import EducationHohAdmin
 from .follow_up_admin import FollowUpAdmin

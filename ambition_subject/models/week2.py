@@ -7,10 +7,9 @@ from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO
 
 from .list_models import Antibiotic, Day14Medication, OtherDrug
-from .model_mixins import (
-    CrfModelMixin, ClinicalAssessmentModelMixin,
-    FluconazoleMissedDosesModelMixin, SignificantDiagnosesModelMixin,
-    AmphotericinMissedDosesModelMixin, FlucytosineMissedDosesModelMixin)
+from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
+from .model_mixins import FluconazoleMissedDosesModelMixin, SignificantDiagnosesModelMixin
+from .model_mixins import AmphotericinMissedDosesModelMixin, FlucytosineMissedDosesModelMixin
 
 
 class AmphotericinMissedDosesManager(models.Manager):

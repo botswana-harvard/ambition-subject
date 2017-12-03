@@ -1,15 +1,27 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import datetime_not_future
+from edc_base.utils import get_utcnow
 from edc_constants.choices import YES_NO
+from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
+from edc_identifier.models import SubjectIdentifierManager
+from edc_protocol.validators import datetime_not_before_study_start
 
 from ...choices import CAUSE_OF_DEATH, TB_SITE_DEATH
-from ..model_mixins import CrfModelMixin
 
 
-class DeathReport(CrfModelMixin):
+class DeathReport(UniqueSubjectIdentifierFieldMixin, BaseUuidModel):
+
+    report_datetime = models.DateTimeField(
+        verbose_name="Report Date",
+        validators=[
+            datetime_not_before_study_start,
+            datetime_not_future, ],
+        default=get_utcnow,
+        help_text=('If reporting today, use today\'s date/time, otherwise use '
+                   'the date/time this information was reported.'))
 
     death_datetime = models.DateTimeField(
         validators=[datetime_not_future],
@@ -47,4 +59,9 @@ class DeathReport(CrfModelMixin):
     death_narrative = models.TextField(
         verbose_name='Narrative')
 
+    objects = SubjectIdentifierManager()
+
     history = HistoricalRecords()
+
+    def natural_key(self):
+        return (self.subject_identifier, )

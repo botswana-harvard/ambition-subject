@@ -7,7 +7,8 @@ from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 
 from ..choices import FLUCONAZOLE_DOSE, YES_NO_ALREADY_ND
-from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin, SignificantDiagnosesModelMixin
+from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
+from .model_mixins import SignificantDiagnosesModelMixin
 
 
 class Week4DiagnosesManager(models.Manager):

@@ -1,11 +1,26 @@
 from django.db import models
-
+from django.db.models.deletion import PROTECT
+from edc_base.model_validators.date import datetime_not_future
+from edc_base.utils import get_utcnow
 from edc_constants.choices import YES_NO
+from edc_protocol.validators import datetime_not_before_study_start
 
 from ...choices import CAUSE_OF_DEATH, TB_SITE_DEATH
+from .death_report import DeathReport
 
 
 class BaseDeathReportTmg(models.Model):
+
+    death_report = models.OneToOneField(DeathReport, on_delete=PROTECT)
+
+    report_datetime = models.DateTimeField(
+        verbose_name="Report Date",
+        validators=[
+            datetime_not_before_study_start,
+            datetime_not_future, ],
+        default=get_utcnow,
+        help_text=('If reporting today, use today\'s date/time, otherwise use '
+                   'the date/time this information was reported.'))
 
     cause_of_death = models.CharField(
         verbose_name='Main cause of death (opinion of TMG member)',
@@ -34,6 +49,12 @@ class BaseDeathReportTmg(models.Model):
 
     death_narrative = models.TextField(
         verbose_name='Narrative')
+
+    def __str__(self):
+        return str(self.death_report)
+
+    def natural_key(self):
+        return self.death_report.natural_key()
 
     class Meta:
         abstract = True

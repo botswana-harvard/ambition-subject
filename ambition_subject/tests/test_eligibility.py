@@ -1,6 +1,6 @@
+from copy import copy
 from django.test import TestCase, tag
 from edc_constants.constants import FEMALE
-from copy import copy
 
 from ..eligibility import Eligibility, EligibilityError
 

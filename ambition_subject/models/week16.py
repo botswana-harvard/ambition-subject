@@ -1,11 +1,10 @@
 from django.db import models
-
-from ..choices import RANKING_SCORE
-from .model_mixins import CrfModelMixin
 from edc_base.model_validators import date_not_future
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_APPLICABLE
+
+from ..choices import RANKING_SCORE
+from .model_mixins import CrfModelMixin
 
 
 class Week16(CrfModelMixin):

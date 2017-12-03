@@ -21,9 +21,13 @@ class ProtocolDeviationViolationAdmin(ModelAdminMixin, admin.ModelAdmin):
         'action_required': admin.VERTICAL}
 
     fieldsets = (
+        (None, {
+            'fields': (
+                'subject_idenifier',
+                'tracking_idenifier')}
+         ),
         ('Assessment to confirm violation', {
             'fields': (
-                'subject_visit',
                 'deviation_or_violation',
                 'participant_safety_impact',
                 'participant_safety_impact_details',
@@ -47,3 +51,8 @@ class ProtocolDeviationViolationAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'action_required',)}),
         audit_fieldset_tuple
     )
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = super().get_readonly_fields(request, obj)
+        fields = ('subject_idenifier', 'tracking_idenifier', ) + fields
+        return fields

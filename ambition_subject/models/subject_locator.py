@@ -1,4 +1,3 @@
-from django.apps import apps as django_apps
 from django.db import models
 from django_crypto_fields.fields import EncryptedCharField
 from edc_base.model_validators import CellNumber, TelephoneNumber

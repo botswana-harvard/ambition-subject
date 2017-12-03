@@ -5,11 +5,11 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import ambition_subject_admin
 from ..forms import StudyTerminationConclusionForm
 from ..models import StudyTerminationConclusion
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin_mixins import ModelAdminMixin
 
 
 @admin.register(StudyTerminationConclusion, site=ambition_subject_admin)
-class StudyTerminationConclusionAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = StudyTerminationConclusionForm
 
@@ -28,7 +28,8 @@ class StudyTerminationConclusionAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         [None, {
             'fields': (
-                'subject_visit',
+                'subject_idenifier',
+                'tracking_idenifier',
                 'patient_terminated_date',
                 'last_study_fu_date',
                 'discharged_after_initial_admission',
@@ -55,3 +56,8 @@ class StudyTerminationConclusionAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'arvs_delay_reason')}],
         audit_fieldset_tuple
     )
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = super().get_readonly_fields(request, obj)
+        fields = ('subject_idenifier', 'tracking_idenifier', ) + fields
+        return fields

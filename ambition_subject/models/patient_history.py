@@ -8,8 +8,7 @@ from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE
 from ..choices import ECOG_SCORE, SECOND_ARV_REGIMEN, WEIGHT_DETERMINATION
-from .list_models import Medication, Neurological
-from .list_models import Symptom
+from .list_models import Medication, Neurological, Symptom
 from .model_mixins import CrfModelMixin
 
 

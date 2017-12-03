@@ -26,7 +26,7 @@ class TestIdentifiers(TestCase):
         self.assertIsNotNone(obj.screening_identifier)
         self.assertTrue(obj.screening_identifier.startswith('S'))
 
-    def test_ae_identifier(self):
+    def test_tracking_identifier(self):
         identifiers = []
         for _ in range(0, 10):
             identifier = AeIdentifier()

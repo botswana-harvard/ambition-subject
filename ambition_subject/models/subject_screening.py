@@ -1,5 +1,6 @@
 import re
 
+from dateutil.relativedelta import relativedelta
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
@@ -13,8 +14,6 @@ from uuid import uuid4
 from ..choices import PREG_YES_NO_NA
 from ..eligibility import SubjectScreeningEligibility
 from ..identifiers import ScreeningIdentifier
-from dateutil.relativedelta import relativedelta
-from arrow.arrow import Arrow
 
 
 class SubjectScreeningManager(SearchSlugManager, models.Manager):

@@ -1,5 +1,5 @@
-from edc_base.preload_data import PreloadData
-from edc_constants.constants import OTHER, UNKNOWN, NORMAL
+from edc_list_data import PreloadData
+from edc_constants.constants import OTHER, UNKNOWN, NORMAL, YES
 
 from .constants import HEADACHE, VISUAL_LOSS
 
@@ -144,18 +144,39 @@ list_data = {
 }
 
 model_data = {
-    'edc_lab.consignee': {
-        'name': 'Botswana-Harvard Partnership',
-        'contact_name': 'Dr Sikhulile Moyo',
-        'address': 'Private Bag BO 320, Bontleng',
-        'postal_code': 'Plot 1836, Gaborone',
-        'city': 'Gaborone',
-        'state': '',
-        'country': 'Botswana',
-        'telephone': '+267 3902671',
-        'mobile': '',
-        'fax': '+267 3901284',
-        'email': ''}
+    ('edc_action_item.actiontype', 'display_name'): [
+        {'display_name': 'Submit death report',
+         'prn_form_action': YES,
+         'model': 'ambition_subject.deathreport',
+         'show_on_dashboard': True,
+         'instructions': None},
+        {'display_name': 'Submit protocol deviation report',
+         'prn_form_action': YES,
+         'model': 'ambition_subject.protocoldeviation',
+         'show_on_dashboard': True,
+         'instructions': None},
+        {'display_name': 'Re-consent reminder',
+         'prn_form_action': YES,
+         'model': 'ambition_subject.subjectreconsent',
+         'show_on_dashboard': True,
+         'instructions': None},
+        {'display_name': 'Submit study termination report',
+         'prn_form_action': YES,
+         'model': 'ambition_subject.studyterminationconclusion',
+         'show_on_dashboard': True,
+         'instructions': None}],
+    'edc_lab.consignee': [
+        {'name': 'Botswana-Harvard Partnership',
+         'contact_name': 'Dr Sikhulile Moyo',
+         'address': 'Private Bag BO 320, Bontleng',
+         'postal_code': 'Plot 1836, Gaborone',
+         'city': 'Gaborone',
+         'state': '',
+         'country': 'Botswana',
+         'telephone': '+267 3902671',
+         'mobile': '',
+         'fax': '+267 3901284',
+         'email': ''}],
 }
 
 unique_field_data = {

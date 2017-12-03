@@ -1,15 +1,23 @@
 from django.db import models
-
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
+from edc_base.utils import get_utcnow
 from edc_constants.choices import YES_NO
+from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
+from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 
-from ..choices import PROTOCOL_VIOLATION, ACTION_REQUIRED, DEVIATION_VIOLATION
-
-from .model_mixins import CrfModelMixin
+from ...choices import PROTOCOL_VIOLATION, ACTION_REQUIRED, DEVIATION_VIOLATION
 
 
-class ProtocolDeviationViolation(CrfModelMixin):
+class ProtocolDeviationViolation(NonUniqueSubjectIdentifierFieldMixin,
+                                 TrackingIdentifierModelMixin, BaseUuidModel):
+
+    tracking_identifier_prefix = 'PD'
+
+    report_datetime = models.DateTimeField(
+        verbose_name="Report Date and Time",
+        default=get_utcnow)
 
     deviation_or_violation = models.CharField(
         verbose_name='Is this a protocol deviation or violation?',
@@ -99,6 +107,3 @@ class ProtocolDeviationViolation(CrfModelMixin):
         blank=True)
 
     history = HistoricalRecords()
-
-    class Meta(CrfModelMixin.Meta):
-        pass

@@ -1,25 +1,22 @@
+from dateutil.relativedelta import relativedelta
 from edc_base.utils import get_utcnow
 from edc_consent.tests import EdcConsentProvider
 from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER, MALE, NORMAL
 from edc_visit_tracking.constants import SCHEDULED
-
-from ambition_subject.models.clinic_note import ClinicNote
-from dateutil.relativedelta import relativedelta
 from faker import Faker
 from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
 
-from .models import AdverseEvent, AdverseEventTMG, AdverseEventFollowUp
+from .models import AeInitial, AeTmg, AeFollowUp, AeFinal
 from .models import BloodResult, DeathReport, Microbiology, FollowUp
-from .models import Education, EducationHoh
+from .models import Education, EducationHoh, ClinicNote
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
 from .models import MedicalExpensesTwo
 from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory, Week16
 from .models import RecurrenceSymptom, Week2, SubjectVisit, SubjectScreening, MedicalExpenses
 from .models import SubjectLocator, SubjectConsent, PrnModel, MedicalExpensesTwoDetail
-from .models.list_models import AEClassification, Neurological
-from .models.list_models import Antibiotic, Symptom
-from .models.list_models import SignificantNewDiagnosis, MeningitisSymptom
+from .models import AEClassification, Neurological, Antibiotic, Symptom
+from .models import SignificantNewDiagnosis, MeningitisSymptom
 
 
 class DateProvider(BaseProvider):
@@ -53,8 +50,8 @@ fake.add_provider(DateProvider)
 
 aeclassification = Recipe(AEClassification)
 
-adverseevent = Recipe(
-    AdverseEvent,
+aeinitial = Recipe(
+    AeInitial,
     ae_study_relation_possibility=YES,
     ambisome_relation='not_related',
     fluconazole_relation='not_related',
@@ -62,11 +59,15 @@ adverseevent = Recipe(
     ae_cause=NO,
     ae_cause_other=None)
 
-adverseeventtmg = Recipe(
-    AdverseEventTMG)
+aetmg = Recipe(AeTmg)
 
-bloodresult = Recipe(
-    BloodResult,)
+aefollowup = Recipe(
+    AeFollowUp,
+    relevant_history=NO)
+
+aefinal = Recipe(AeFinal)
+
+bloodresult = Recipe(BloodResult)
 
 deathreport = Recipe(
     DeathReport,
@@ -102,10 +103,6 @@ followup = Recipe(
     focal_neurology=NO,
     fluconazole_dose='800mg_daily',
     rifampicin_started=NO)
-
-adverseeventfollowup = Recipe(
-    AdverseEventFollowUp,
-    relevant_history=NO,)
 
 subjectvisit = Recipe(
     SubjectVisit,

@@ -42,7 +42,7 @@ class TestSubjectRules(TestCase):
         mommy.make_recipe(
             'ambition_subject.adverseevent',
             subject_visit=self.subject_visit,
-            ae_severity_grade='grade_5')
+            ae_grade='grade_5')
 
         self.assertEqual(
             CrfMetadata.objects.get(

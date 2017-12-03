@@ -1,13 +1,11 @@
 from ambition_rando.import_randomization_list import import_randomization_list
-from dateutil.relativedelta import relativedelta, SU, MO, TU, WE, TH, FR, SA
+from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
-from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 from model_mommy import mommy
 
 
-@tag('1')
 class TestAppointment(TestCase):
 
     def setUp(self):

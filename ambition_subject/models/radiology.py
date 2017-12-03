@@ -4,8 +4,6 @@ from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
 from ..choices import BRAIN_IMAGINING_REASON
-from ..choices import INFILTRATE_LOCATION
-
 from .model_mixins import CrfModelMixin
 from .list_models import AbnormalResultsReason, CXRType, InfiltrateLocation
 

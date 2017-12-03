@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from edc_model_admin import audit_fieldset_tuple
 from edc_lab.admin import (
     RequisitionAdminMixin,
