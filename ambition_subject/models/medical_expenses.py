@@ -162,6 +162,12 @@ class MedicalExpenses(CrfModelMixin):
         choices=YES_NO
     )
 
+    private_healthcare = models.CharField(
+        verbose_name='Do you have private healthcare insurance?',
+        max_length=5,
+        choices=YES_NO
+    )
+
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):

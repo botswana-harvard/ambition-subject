@@ -47,6 +47,7 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'care_before_hospital',
                 'loans',
                 'sold_anything',
+                'private_healthcare',
             ]}
          ), audit_fieldset_tuple)
 
@@ -57,4 +58,5 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'loss_of_earnings': admin.VERTICAL,
         'form_of_transport': admin.VERTICAL,
         'loans': admin.VERTICAL,
-        'sold_anything': admin.VERTICAL}
+        'sold_anything': admin.VERTICAL,
+        'private_healthcare': admin.VERTICAL}
