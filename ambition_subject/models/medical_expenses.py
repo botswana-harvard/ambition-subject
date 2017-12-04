@@ -168,6 +168,13 @@ class MedicalExpenses(CrfModelMixin):
         choices=YES_NO
     )
 
+    healthcare_insurance = models.CharField(
+        verbose_name='Did you use it to help pay for your healthcare?',
+        max_length=5,
+        choices=YES_NO,
+        null=True,
+    )
+
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
