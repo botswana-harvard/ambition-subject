@@ -156,6 +156,12 @@ class MedicalExpenses(CrfModelMixin):
         choices=YES_NO
     )
 
+    sold_anything = models.CharField(
+        verbose_name='Did you sell anything to pay for your healthcare?',
+        max_length=5,
+        choices=YES_NO
+    )
+
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
