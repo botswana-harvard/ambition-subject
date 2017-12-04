@@ -20,6 +20,7 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'currency',
                 'food_spend',
                 'utilities_spend',
+                'item_spend',
                 'personal_he_spend',
                 'proxy_he_spend',
                 'he_spend_last_4weeks',

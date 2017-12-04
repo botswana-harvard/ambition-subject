@@ -32,6 +32,14 @@ class MedicalExpenses(CrfModelMixin):
         null=True,
         validators=[MinValueValidator(0)])
 
+    item_spend = models.DecimalField(
+        verbose_name='How much have you spent on large items '
+        '(e.g. furniture, electrical items, cars) in the last year?',
+        decimal_places=2,
+        max_digits=15,
+        null=True,
+        validators=[MinValueValidator(0)])
+
     personal_he_spend = models.DecimalField(
         verbose_name='Over that last 4 weeks, how much have you '
         'spent on activities relating to your health?',
