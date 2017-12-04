@@ -25,6 +25,13 @@ class MedicalExpenses(CrfModelMixin):
         null=True,
         validators=[MinValueValidator(0)])
 
+    utilities_spend = models.DecimalField(
+        verbose_name='How much do you/your family spent on rent and utilities a month?',
+        decimal_places=2,
+        max_digits=15,
+        null=True,
+        validators=[MinValueValidator(0)])
+
     personal_he_spend = models.DecimalField(
         verbose_name='Over that last 4 weeks, how much have you '
         'spent on activities relating to your health?',
