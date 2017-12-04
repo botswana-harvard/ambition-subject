@@ -176,6 +176,12 @@ class MedicalExpenses(CrfModelMixin):
         blank=True
     )
 
+    welfare = models.CharField(
+        verbose_name='Do you receive any welfare or social service '
+        'support?',
+        max_length=5,
+        choices=YES_NO)
+
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
