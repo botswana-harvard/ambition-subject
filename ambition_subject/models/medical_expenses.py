@@ -173,6 +173,7 @@ class MedicalExpenses(CrfModelMixin):
         max_length=5,
         choices=YES_NO,
         null=True,
+        blank=True
     )
 
     history = HistoricalRecords()
