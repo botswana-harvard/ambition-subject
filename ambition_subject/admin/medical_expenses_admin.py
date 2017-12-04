@@ -14,14 +14,22 @@ info_source = Fieldset(
     'info_source',
     section='Information Source')
 
+loans_insurance = Fieldset(
+    'loans',
+    'sold_anything',
+    'private_healthcare',
+    'healthcare_insurance',
+    section='Loans and Insurance'
+)
+
 
 @admin.register(MedicalExpenses, site=ambition_subject_admin)
 class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = MedicalExpensesForm
     conditional_fieldsets = {
-        DAY1: (info_source,),
-        WEEK10: (info_source,)}
+        DAY1: (info_source, loans_insurance),
+        WEEK10: (info_source, loans_insurance)}
 
     fieldsets = (
         ('Medical Expenses', {
