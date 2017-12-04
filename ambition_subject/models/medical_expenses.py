@@ -9,9 +9,15 @@ from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 from .model_mixins import CrfModelMixin
 
 from ..validators import hm_validator
+from ..choices import INFO_SOURCE
 
 
 class MedicalExpenses(CrfModelMixin):
+
+    info_source = models.CharField(
+        verbose_name='What is the main source of this information?',
+        max_length=25,
+        choices=INFO_SOURCE)
 
     currency = models.CharField(
         verbose_name='Which currency do you use?',
@@ -142,6 +148,13 @@ class MedicalExpenses(CrfModelMixin):
         help_text='in hours:minutes',
         null=True,
         blank=True)
+
+    loans = models.CharField(
+        verbose_name='Did you take out any loans to pay for your '
+        'healthcare?',
+        max_length=5,
+        choices=YES_NO
+    )
 
     history = HistoricalRecords()
 

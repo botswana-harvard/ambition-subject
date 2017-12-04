@@ -1,17 +1,27 @@
 from django.contrib import admin
 
 from edc_model_admin import audit_fieldset_tuple
+from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
 from ..forms import MedicalExpensesForm
 from ..models import MedicalExpenses
+from ..constants import DAY1, WEEK10
+
 from .modeladmin_mixins import CrfModelAdminMixin
+
+info_source = Fieldset(
+    'info_source',
+    section='Information Source')
 
 
 @admin.register(MedicalExpenses, site=ambition_subject_admin)
 class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = MedicalExpensesForm
+    conditional_fieldsets = {
+        DAY1: (info_source,),
+        WEEK10: (info_source,)}
 
     fieldsets = (
         ('Medical Expenses', {
@@ -34,7 +44,8 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'form_of_transport',
                 'transport_fare',
                 'travel_time',
-                'care_before_hospital'
+                'care_before_hospital',
+                'loans',
             ]}
          ), audit_fieldset_tuple)
 
@@ -43,4 +54,5 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'care_before_hospital': admin.VERTICAL,
         'currency': admin.VERTICAL,
         'loss_of_earnings': admin.VERTICAL,
-        'form_of_transport': admin.VERTICAL}
+        'form_of_transport': admin.VERTICAL,
+        'loans': admin.VERTICAL, }
