@@ -50,10 +50,10 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'rifampicin_started',
                 'first_line_regimen',
                 'first_line_regimen_other',
+                'first_line_choice',
                 'second_line_regimen',
                 'second_line_regimen_other',
                 'arvs_switch_date',
-                'first_line_choice',
                 'arvs_delay_reason')}],
         audit_fieldset_tuple
     )
