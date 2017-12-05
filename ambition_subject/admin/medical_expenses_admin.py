@@ -58,11 +58,6 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'transport_fare',
                 'travel_time',
                 'care_before_hospital',
-                'loans',
-                'sold_anything',
-                'private_healthcare',
-                'healthcare_insurance',
-                'welfare',
             ]}
          ), audit_fieldset_tuple)
 
