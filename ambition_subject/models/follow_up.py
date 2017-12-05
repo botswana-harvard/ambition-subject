@@ -44,8 +44,9 @@ class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
         choices=YES_NO_ND)
 
     rankin_score = models.CharField(
-        verbose_name='Modified Rankin score:',
+        verbose_name='Modified Rankin score',
         choices=RANKIN_SCORE,
+        max_length=10,
         null=True)
 
     other_significant_dx = models.CharField(
