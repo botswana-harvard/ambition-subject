@@ -9,7 +9,7 @@ from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_identifier.managers import TrackingIdentifierManager
 
-from ...choices import ARV_REGIMEN, FIRST_LINE_REGIMEN, SECOND_ARV_REGIMEN
+from ...choices import FIRST_ARV_REGIMEN, FIRST_LINE_REGIMEN, SECOND_ARV_REGIMEN
 from ...choices import REASON_STUDY_TERMINATED, YES_NO_ALREADY
 
 
@@ -121,14 +121,10 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
         verbose_name='ART regimen started for naive patients (or regimen'
         ' switched for those already on ARVs)',
         max_length=75,
-        choices=ARV_REGIMEN,
+        choices=FIRST_ARV_REGIMEN,
         default=NOT_APPLICABLE)
 
-    first_line_regimen_other = OtherCharField(
-        max_length=100,
-        blank=True,
-        null=True,
-        verbose_name='If other, please specify:')
+    first_line_regimen_other = OtherCharField()
 
     second_line_regimen = models.CharField(
         verbose_name='Second line / second switch ARV regimen',
@@ -145,10 +141,10 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
         validators=[date_not_future])
 
     first_line_env = models.CharField(
-        verbose_name='If first line, on EFV or NVP or DTG?',
-        max_length=3,
+        verbose_name='If first line:',
+        max_length=5,
         choices=FIRST_LINE_REGIMEN,
-        null=True)
+        default=NOT_APPLICABLE)
 
     arvs_delay_reason = models.CharField(
         verbose_name='Reason ARVs not started',
