@@ -80,13 +80,15 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
         verbose_name='Is the patient willing to complete the 10 week FU '
         'visit only?',
         max_length=12,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     willing_to_complete_centre = models.CharField(
         verbose_name='Is the patient willing to complete the 10 week FU '
         'visit only at their new care centre?',
         max_length=17,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     willing_to_complete_date = models.DateField(
         verbose_name=' Date the 10W FU due',
@@ -97,7 +99,8 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
     protocol_exclusion_criterion = models.CharField(
         verbose_name='Late protocol exclusion met?',
         max_length=12,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     included_in_error_date = models.DateField(
         verbose_name='If included in error, date',
@@ -140,7 +143,7 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
         null=True,
         validators=[date_not_future])
 
-    first_line_env = models.CharField(
+    first_line_choice = models.CharField(
         verbose_name='If first line:',
         max_length=5,
         choices=FIRST_LINE_REGIMEN,
