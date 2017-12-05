@@ -23,7 +23,7 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
         'rifampicin_started': admin.VERTICAL,
         'first_line_regimen': admin.VERTICAL,
         'second_line_regimen': admin.VERTICAL,
-        'first_line_env': admin.VERTICAL}
+        'first_line_choice': admin.VERTICAL}
 
     fieldsets = (
         [None, {
@@ -53,7 +53,7 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'second_line_regimen',
                 'second_line_regimen_other',
                 'arvs_switch_date',
-                'first_line_env',
+                'first_line_choice',
                 'arvs_delay_reason')}],
         audit_fieldset_tuple
     )
