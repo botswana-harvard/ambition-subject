@@ -14,6 +14,13 @@ info_source = Fieldset(
     'info_source',
     section='Information Source')
 
+transport = Fieldset(
+    'form_of_transport',
+    'transport_fare',
+    'travel_time',
+    section='Transport'
+)
+
 loans_insurance = Fieldset(
     'loans',
     'sold_anything',
@@ -33,7 +40,7 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = MedicalExpensesForm
     conditional_fieldsets = {
-        DAY1: (info_source, loans_insurance, welfare),
+        DAY1: (info_source, transport, loans_insurance, welfare),
         WEEK10: (info_source, loans_insurance)}
 
     fieldsets = (
@@ -54,9 +61,6 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'carer_time_off',
                 'loss_of_earnings',
                 'earnings_lost_amount',
-                'form_of_transport',
-                'transport_fare',
-                'travel_time',
                 'care_before_hospital',
             ]}
          ), audit_fieldset_tuple)
