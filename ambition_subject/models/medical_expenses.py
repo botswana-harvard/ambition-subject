@@ -25,14 +25,14 @@ class MedicalExpenses(CrfModelMixin):
         choices=CURRENCY)
 
     food_spend = models.DecimalField(
-        verbose_name='How much do you/your family spend on food in a week?',
+        verbose_name='How much do they/their family spend on food in a week?',
         decimal_places=2,
         max_digits=15,
         null=True,
         validators=[MinValueValidator(0)])
 
     utilities_spend = models.DecimalField(
-        verbose_name='How much do you/your family spent on rent and utilities a month?',
+        verbose_name='How much do they/their family spent on rent and utilities a month?',
         decimal_places=2,
         max_digits=15,
         null=True,
