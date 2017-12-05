@@ -171,9 +171,7 @@ class MedicalExpenses(CrfModelMixin):
     healthcare_insurance = models.CharField(
         verbose_name='Did you use it to help pay for your healthcare?',
         max_length=5,
-        choices=YES_NO,
-        null=True,
-        blank=True
+        choices=YES_NO_NA,
     )
 
     welfare = models.CharField(
