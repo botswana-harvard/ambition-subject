@@ -9,7 +9,7 @@ from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 from .model_mixins import CrfModelMixin
 
 from ..validators import hm_validator
-from ..choices import INFO_SOURCE
+from ..choices import PATIENT_REL
 
 
 class MedicalExpenses(CrfModelMixin):
@@ -17,7 +17,7 @@ class MedicalExpenses(CrfModelMixin):
     info_source = models.CharField(
         verbose_name='What is the main source of this information?',
         max_length=25,
-        choices=INFO_SOURCE)
+        choices=PATIENT_REL)
 
     currency = models.CharField(
         verbose_name='Which currency do you use?',
