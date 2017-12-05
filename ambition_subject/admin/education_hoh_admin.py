@@ -16,7 +16,8 @@ class EducationHohAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     additional_instructions = mark_safe(
         '<H5><span style="color:orange;">'
         'The following questions refer to the educational background of '
-        'the Person who earns the highest income</span></H5> Please respond on behalf of the Person who earns the highest income.')
+        'the Person who earns the highest income</span></H5>'
+        'Please respond on behalf of the Person who earns the highest income.')
 
     fieldsets = (
         (None, {

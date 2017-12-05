@@ -8,7 +8,7 @@ from .model_mixins import CrfModelMixin, EducationModelMixin
 class Education(EducationModelMixin, CrfModelMixin):
 
     household_head = models.CharField(
-        verbose_name='Are you head of the household?',
+        verbose_name='Are you the person who earns the highest income?',
         max_length=5,
         choices=YES_NO,
         help_text=('If NO, please complete the form "Health Economics: '
