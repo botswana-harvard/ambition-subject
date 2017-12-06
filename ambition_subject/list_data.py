@@ -1,7 +1,10 @@
 from edc_list_data import PreloadData
-from edc_constants.constants import OTHER, UNKNOWN, NORMAL, YES
+from edc_constants.constants import OTHER, UNKNOWN, NORMAL
 
 from .constants import HEADACHE, VISUAL_LOSS
+from edc_action_item.site_action_items import site_action_items
+
+site_action_items.populate_action_type()
 
 list_data = {
     'ambition_subject.antibiotic': [
@@ -130,27 +133,6 @@ list_data = {
 }
 
 model_data = {
-    ('edc_action_item.actiontype', 'display_name'): [
-        {'display_name': 'Submit death report',
-         'prn_form_action': YES,
-         'model': 'ambition_subject.deathreport',
-         'show_on_dashboard': True,
-         'instructions': None},
-        {'display_name': 'Submit protocol deviation report',
-         'prn_form_action': YES,
-         'model': 'ambition_subject.protocoldeviationviolation',
-         'show_on_dashboard': True,
-         'instructions': None},
-        {'display_name': 'Re-consent reminder',
-         'prn_form_action': YES,
-         'model': 'ambition_subject.subjectreconsent',
-         'show_on_dashboard': True,
-         'instructions': None},
-        {'display_name': 'Submit study termination report',
-         'prn_form_action': YES,
-         'model': 'ambition_subject.studyterminationconclusion',
-         'show_on_dashboard': True,
-         'instructions': None}],
     'edc_lab.consignee': [
         {'name': 'Botswana-Harvard Partnership',
          'contact_name': 'Dr Sikhulile Moyo',
