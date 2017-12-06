@@ -52,6 +52,18 @@ class PrnModel(CrfModelMixin):
 #         choices=YES_NO,
 #         default=NO)
 
+    viral_load = models.CharField(
+        verbose_name='Add viral load',
+        max_length=5,
+        choices=YES_NO,
+        default=NO)
+
+    cd4 = models.CharField(
+        verbose_name='Add c',
+        max_length=5,
+        choices=YES_NO,
+        default=NO)
+
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):

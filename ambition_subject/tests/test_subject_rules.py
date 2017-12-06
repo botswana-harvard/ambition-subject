@@ -5,7 +5,7 @@ from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
 from edc_constants.constants import YES
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
-from edc_metadata.models import CrfMetadata
+from edc_metadata.models import CrfMetadata, RequisitionMetadata
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
@@ -488,3 +488,43 @@ class TestSubjectRules(TestCase):
 #                 subject_identifier=self.consent.subject_identifier,
 #                 visit_code='1000').entry_status,
 #             REQUIRED)
+
+    def test_viral_load_required(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1005')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            viral_load=YES)
+
+        self.assertEqual(
+            RequisitionMetadata.objects.get(
+                model='ambition_subject.subjectrequisition',
+                subject_identifier=self.consent.subject_identifier,
+                panel_name='Viral Load',
+                visit_code='1005').entry_status,
+            NOT_REQUIRED)
+
+    def test_cd4_required(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code='1005')
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            cd4=YES)
+
+        self.assertEqual(
+            RequisitionMetadata.objects.get(
+                model='ambition_subject.subjectrequisition',
+                subject_identifier=self.consent.subject_identifier,
+                panel_name='CD4',
+                visit_code='1005').entry_status,
+            NOT_REQUIRED)
