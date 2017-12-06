@@ -109,16 +109,16 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
 
-    last_dose = models.IntegerField(
-        verbose_name='If no, how many months since the last dose '
-        'was taken?',
-        validators=[MinValueValidator(0)],
+    tablets_missed = models.IntegerField(
+        verbose_name='If no, how many tablets missed in the last month?',
+        validators=[MinValueValidator(0), MaxValueValidator(31)],
         null=True,
         blank=True)
 
-    days_missed = models.IntegerField(
-        verbose_name='If no, how many days of treatment missed this month?',
-        validators=[MinValueValidator(0), MaxValueValidator(31)],
+    last_dose = models.IntegerField(
+        verbose_name='If no tablets taken this month, how many months '
+        'since the last dose taken?',
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
