@@ -11,6 +11,8 @@ class EducationHohForm(SubjectModelFormMixin):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['profession'].label = ('What is their profession?')
+        self.fields['education_years'].label = (
+            'How many years of education did they complete?')
         self.fields['education_certificate'].label = (
             'What is the their highest education certificate?')
         self.fields['elementary'].label = (
