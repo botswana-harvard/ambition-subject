@@ -59,7 +59,7 @@ class PrnModel(CrfModelMixin):
         default=NO)
 
     cd4 = models.CharField(
-        verbose_name='Add c',
+        verbose_name='Add cd4',
         max_length=5,
         choices=YES_NO,
         default=NO)

@@ -9,15 +9,25 @@ from ..models import PrnModel
 
 from .modeladmin_mixins import CrfModelAdminMixin
 
+
+# requisitions = Fieldset(
+#     'viral_load',
+#     'cd4',
+#     section='Requisitions')
+
 common_fields = ('subject_visit',
                  'microbiology',
-                 'radiology',)
+                 'radiology',
+                 'cd4',
+                 'viral_load')
 
-week4 = common_fields + ('lumbar_puncture', 'recurrence_symptom',)
+week4 = common_fields + ('lumbar_puncture', 'recurrence_symptom')
 
 follow_up = common_fields + ('lumbar_puncture',
                              'recurrence_symptom',
-                             'blood_result')
+                             'blood_result',
+                             'cd4',
+                             'viral_load')
 
 
 @admin.register(PrnModel, site=ambition_subject_admin)
@@ -37,7 +47,9 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'microbiology': admin.VERTICAL,
         'radiology': admin.VERTICAL,
         'lumbar_puncture': admin.VERTICAL,
-        'blood_result': admin.VERTICAL, }
+        'blood_result': admin.VERTICAL,
+        'viral_load': admin.VERTICAL,
+        'cd4': admin.VERTICAL, }
 
     fieldsets = (
         ['PRN', {
