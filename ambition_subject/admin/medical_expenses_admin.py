@@ -21,6 +21,13 @@ transport = Fieldset(
     section='Transport'
 )
 
+house_essentials = Fieldset(
+    'food_spend',
+    'utilities_spend',
+    'item_spend',
+    section='House Essentials'
+)
+
 loans_insurance = Fieldset(
     'loans',
     'sold_anything',
@@ -40,7 +47,7 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = MedicalExpensesForm
     conditional_fieldsets = {
-        DAY1: (info_source, transport, loans_insurance, welfare),
+        DAY1: (info_source, house_essentials, transport, loans_insurance, welfare),
         WEEK10: (info_source, loans_insurance)}
 
     fieldsets = (
@@ -48,9 +55,6 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'subject_visit',
                 'currency',
-                'food_spend',
-                'utilities_spend',
-                'item_spend',
                 'personal_he_spend',
                 'proxy_he_spend',
                 'he_spend_last_4weeks',
