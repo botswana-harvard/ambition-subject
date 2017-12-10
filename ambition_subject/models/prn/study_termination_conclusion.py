@@ -1,5 +1,5 @@
 from django.db import models
-from ambition_ae.action_items import StudyTerminationConclusionAction
+# from ambition_ae.action_items import StudyTerminationConclusionAction
 from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
@@ -18,7 +18,7 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
                                  ActionItemModelMixin, TrackingIdentifierModelMixin,
                                  BaseUuidModel):
 
-    action_cls = StudyTerminationConclusionAction
+    # action_cls = StudyTerminationConclusionAction
 
     tracking_identifier_prefix = 'ST'
 
