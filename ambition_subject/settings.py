@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django_revision.apps.AppConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'edc_action_item.apps.AppConfig',
     'edc_base.apps.AppConfig',
     'edc_prn.apps.AppConfig',
     'edc_pharmacy.apps.AppConfig',
@@ -41,8 +42,9 @@ INSTALLED_APPS = [
     'edc_sync.apps.AppConfig',
     'edc_sync_files.apps.AppConfig',
     'ambition_labs.apps.AppConfig',
-    'ambition_rando.apps.AppConfig',
+    'ambition_ae.apps.AppConfig',
     'ambition_reference.apps.AppConfig',
+    'ambition_rando.apps.AppConfig',
     'ambition_metadata_rules.apps.AppConfig',
     'ambition_validators.apps.AppConfig',
     'ambition_visit_schedule.apps.AppConfig',
@@ -161,6 +163,9 @@ DASHBOARD_BASE_TEMPLATES = {
     'subject_listboard_template': 'ambition_dashboard/subject/listboard.html',
     'subject_dashboard_template': 'ambition_dashboard/subject/dashboard.html',
 }
+
+EMAIL_CONTACTS = {
+    'ae_reports': 'ambitionreporting@lshtm.ac.uk'}
 
 if 'test' in sys.argv:
 

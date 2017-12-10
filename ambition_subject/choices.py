@@ -1,10 +1,13 @@
 from ambition_validators.constants import WORKING
 from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE
 from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN
+from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER, MICROMOLES_PER_LITER
+from edc_reportable import GRADE3, GRADE4
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
 
 from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
 from .constants import CONSENT_WITHDRAWAL, ROUTINE_APPT
+
 
 ABNORMAL_RESULTS_REASON = (
     (NOT_APPLICABLE, 'Not Applicable'),
@@ -368,6 +371,13 @@ REGIMEN = (
     ('control', '4 (Control)'),
 )
 
+REPORTABLE = (
+    (NOT_APPLICABLE, 'Not applicable'),
+    (NO, 'No'),
+    (GRADE3, 'Grade 3'),
+    (GRADE4, 'Grade 4'),
+)
+
 SIGNIFICANT_DX = (
     ('pulmonary_tb', 'Pulmonary TB'),
     ('extra_pulmonary_tb', 'Extra Pulmonary TB'),
@@ -436,14 +446,15 @@ DAYS_MISSED = (
 DOSES_MISSED = (
     (1, '1 Dose'), (2, '2 Doses'), (3, '3 Doses'), (4, '4 Doses'))
 
+
 MG_MMOL_UNITS = (
-    ('mg/dL', 'mg/dL'),
-    ('mmol/L', 'mmol/L'),
+    (MILLIGRAMS_PER_DECILITER, 'mg/dL'),
+    (MILLIMOLES_PER_LITER, 'mmol/L'),
 )
 
 MG_UMOL_UNITS = (
-    ('mg/dL', 'mg/dL'),
-    ('umol/L', 'μmol/L'),
+    (MILLIGRAMS_PER_DECILITER, 'mg/dL'),
+    (MICROMOLES_PER_LITER, 'μmol/L'),
 )
 
 MM3_PERC_UNITS = (
