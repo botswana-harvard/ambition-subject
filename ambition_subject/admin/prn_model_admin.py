@@ -21,13 +21,10 @@ common_fields = ('subject_visit',
                  'cd4',
                  'viral_load')
 
-week4 = common_fields + ('lumbar_puncture', 'recurrence_symptom')
+week4 = common_fields + ('lumbar_puncture', )
 
 follow_up = common_fields + ('lumbar_puncture',
-                             'recurrence_symptom',
-                             'blood_result',
-                             'cd4',
-                             'viral_load')
+                             'blood_result',)
 
 
 @admin.register(PrnModel, site=ambition_subject_admin)

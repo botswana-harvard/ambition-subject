@@ -281,5 +281,4 @@ class PkPdCrf(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = 'Pk Dk Crf Form'
-        verbose_name_plural = 'Pk Dk Crf Forms'
+        verbose_name = 'Pk Pd'
