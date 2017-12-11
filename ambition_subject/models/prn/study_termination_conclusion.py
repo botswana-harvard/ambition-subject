@@ -4,7 +4,7 @@ from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import date_not_future
+from edc_base.model_validators import date_not_future, date_is_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
@@ -96,7 +96,7 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
 
     willing_to_complete_date = models.DateField(
         verbose_name=' Date the 10W FU due',
-        validators=[date_not_future],
+        validators=[date_is_future],
         blank=True,
         null=True)
 
