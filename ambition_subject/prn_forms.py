@@ -1,4 +1,4 @@
-from edc_prn import CrfPrn, Prn, site_prn_forms
+from edc_prn import CrfPrn, Prn, site_prn_forms, AlreadyRegistered
 
 from .admin_site import ambition_subject_admin
 
@@ -15,7 +15,10 @@ for model in prn_models:
     prn = Prn(
         model=model,
         url_namespace=ambition_subject_admin.name)
-    site_prn_forms.register(prn)
+    try:
+        site_prn_forms.register(prn)
+    except AlreadyRegistered:
+        pass
 
 for model in crf_prn_models:
     prn = CrfPrn(

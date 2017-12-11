@@ -7,8 +7,6 @@ class AppConfig(DjangoApponfig):
     name = 'ambition_subject'
     admin_site_name = 'ambition_subject_admin'
 
-    screening_age_adult_upper = 99
-    screening_age_adult_lower = 18
     include_in_administration_section = False
 
     def ready(self):

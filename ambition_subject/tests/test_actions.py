@@ -1,3 +1,4 @@
+from ambition_visit_schedule import DAY1
 from ambition_rando.import_randomization_list import import_randomization_list
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, tag
@@ -16,7 +17,7 @@ class TestActions(TestCase):
     def setUp(self):
         import_randomization_list(verbose=False)
         subject_screening = mommy.make_recipe(
-            'ambition_subject.subjectscreening')
+            'ambition_screening.subjectscreening')
 
         options = {
             'screening_identifier': subject_screening.screening_identifier,
@@ -27,7 +28,8 @@ class TestActions(TestCase):
         self.subject_identifier = consent.subject_identifier
 
         self.appointment = Appointment.objects.get(
-            subject_identifier=self.subject_identifier, visit_code='1000')
+            subject_identifier=self.subject_identifier,
+            visit_code=DAY1)
         self.subject_visit = mommy.make_recipe(
             'ambition_subject.subjectvisit',
             appointment=self.appointment,
@@ -38,8 +40,10 @@ class TestActions(TestCase):
         obj = make_recipe(
             'ambition_subject.bloodresult',
             subject_visit=self.subject_visit,
-            are_results_normal=NO,
-            abnormal_results_in_ae_range=YES)
+            results_abnormal=YES,
+            results_reportable=YES)
+
+        pprint(ActionItem.objects.all())
 
         try:
             ActionItem.objects.get(

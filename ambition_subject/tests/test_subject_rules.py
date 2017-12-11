@@ -1,3 +1,4 @@
+from ambition_visit_schedule import DAY1, DAY5, WEEK10, WEEK16
 from ambition_rando.import_randomization_list import import_randomization_list
 from ambition_subject.models.subject_visit import SubjectVisit
 from django.test import TestCase, tag
@@ -14,14 +15,14 @@ class TestSubjectRules(TestCase):
 
     def setUp(self):
         import_randomization_list(verbose=False)
-        screening = mommy.make_recipe('ambition_subject.subjectscreening',
+        screening = mommy.make_recipe('ambition_screening.subjectscreening',
                                       report_datetime=get_utcnow())
         self.consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
             consent_datetime=get_utcnow(),
             screening_identifier=screening.screening_identifier)
 
-        self.visit_code = '1070'
+        self.visit_code = WEEK10
 
         for appointment in Appointment.objects.all().order_by('timepoint'):
             self.subject_visit = mommy.make_recipe(
@@ -36,7 +37,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #
 #         mommy.make_recipe(
@@ -48,7 +49,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 
 #     def test_protocol_deviation_violation_required_included_in_error(self):
@@ -56,7 +57,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.protocoldeviationviolation',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #
 #         mommy.make_recipe(
@@ -68,7 +69,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.protocoldeviationviolation',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 
     def test_blood_result_required_prn_form(self):
@@ -76,7 +77,7 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.bloodresult',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
+                visit_code=WEEK10).entry_status,
             NOT_REQUIRED)
 
         mommy.make_recipe(
@@ -88,7 +89,7 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.bloodresult',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
+                visit_code=WEEK10).entry_status,
             REQUIRED)
 
 #     def test_adverse_event_required(self):
@@ -96,7 +97,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.adverseevent',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #
 #         mommy.make_recipe(
@@ -108,7 +109,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.adverseevent',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 #
 #     def test_adverse_event_tmg_required(self):
@@ -116,7 +117,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.adverseeventtmg',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #
 #         mommy.make_recipe(
@@ -128,7 +129,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.adverseeventtmg',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 #
 #     def test_adverse_event_followup_required(self):
@@ -136,7 +137,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.adverseeventfollowup',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #
 #         mommy.make_recipe(
@@ -148,7 +149,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.adverseeventfollowup',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 
     def test_microbiology_required(self):
@@ -156,7 +157,7 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.microbiology',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
+                visit_code=WEEK10).entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
             'ambition_subject.prnmodel',
@@ -166,7 +167,7 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.microbiology',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
+                visit_code=WEEK10).entry_status,
             REQUIRED)
 
     def test_radiology_required(self):
@@ -174,7 +175,7 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.radiology',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
+                visit_code=WEEK10).entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
             'ambition_subject.prnmodel',
@@ -184,7 +185,7 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.radiology',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
+                visit_code=WEEK10).entry_status,
             REQUIRED)
 
     def test_lumbar_puncture_required(self):
@@ -192,7 +193,7 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.lumbarpuncturecsf',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
+                visit_code=WEEK10).entry_status,
             NOT_REQUIRED)
         mommy.make_recipe(
             'ambition_subject.prnmodel',
@@ -202,13 +203,13 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.lumbarpuncturecsf',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1070').entry_status,
+                visit_code=WEEK10).entry_status,
             REQUIRED)
 
     def test_medical_expenses_two_required(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
-            visit_code='1000')
+            visit_code=DAY1)
         self.subject_visit = SubjectVisit.objects.get(
             appointment=appointment)
 
@@ -221,7 +222,7 @@ class TestSubjectRules(TestCase):
             CrfMetadata.objects.get(
                 model='ambition_subject.medicalexpensestwo',
                 subject_identifier=self.consent.subject_identifier,
-                visit_code='1000').entry_status,
+                visit_code=DAY1).entry_status,
             REQUIRED)
 
 #     def test_recurrence_symptom_required(self):
@@ -229,7 +230,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.recurrencesymptom',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #         mommy.make_recipe(
 #             'ambition_subject.prnmodel',
@@ -239,7 +240,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.recurrencesymptom',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 
 #     def test_protocol_deviation_required(self):
@@ -247,7 +248,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.protocoldeviationviolation',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #         mommy.make_recipe(
 #             'ambition_subject.prnmodel',
@@ -257,7 +258,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.protocoldeviationviolation',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 
 #     def test_death_report_required(self):
@@ -265,7 +266,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #         mommy.make_recipe(
 #             'ambition_subject.prnmodel',
@@ -275,7 +276,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 
 #     def test_recurrence_symptom_required_from_adverse_event(self):
@@ -283,7 +284,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.recurrencesymptom',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             NOT_REQUIRED)
 #
 #         mommy.make_recipe(
@@ -295,13 +296,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.recurrencesymptom',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1070').entry_status,
+#                 visit_code=WEEK10).entry_status,
 #             REQUIRED)
 
 #     def test_death_report_required_on_prn(self):
 #         appointment = Appointment.objects.get(
 #             subject_identifier=self.consent.subject_identifier,
-#             visit_code='1112')
+#             visit_code=WEEK16)
 #         self.subject_visit = mommy.make_recipe(
 #             'ambition_subject.subjectvisit',
 #             appointment=appointment,
@@ -310,7 +311,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1112').entry_status,
+#                 visit_code=WEEK16).entry_status,
 #             NOT_REQUIRED)
 #
 #         mommy.make_recipe(
@@ -322,13 +323,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1112').entry_status,
+#                 visit_code=WEEK16).entry_status,
 #             REQUIRED)
 
 #     def test_death_report_required_on_prn_1(self):
 #         appointment = Appointment.objects.get(
 #             subject_identifier=self.consent.subject_identifier,
-#             visit_code='1112')
+#             visit_code=WEEK16)
 #         self.subject_visit = mommy.make_recipe(
 #             'ambition_subject.subjectvisit',
 #             appointment=appointment,
@@ -337,7 +338,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1112').entry_status,
+#                 visit_code=WEEK16).entry_status,
 #             NOT_REQUIRED)
 #
 #         week16 = mommy.make_recipe(
@@ -349,7 +350,7 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1112').entry_status,
+#                 visit_code=WEEK16).entry_status,
 #             NOT_REQUIRED)
 #
 #         week16.patient_alive = NO
@@ -358,13 +359,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.deathreport',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1112').entry_status,
+#                 visit_code=WEEK16).entry_status,
 #             REQUIRED)
 
 #     def test_recurrence_form(self):
 #         appointment = Appointment.objects.get(
 #             subject_identifier=self.consent.subject_identifier,
-#             visit_code='1005')
+#             visit_code=DAY5)
 #         self.subject_visit = SubjectVisit.objects.get(
 #             appointment=appointment)
 #
@@ -377,13 +378,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.recurrencesymptom',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1005').entry_status,
+#                 visit_code=DAY5).entry_status,
 #             REQUIRED)
 
 #     def test_recurrence_form_1(self):
 #         appointment = Appointment.objects.get(
 #             subject_identifier=self.consent.subject_identifier,
-#             visit_code='1005')
+#             visit_code=DAY5)
 #         self.subject_visit = SubjectVisit.objects.get(
 #             appointment=appointment)
 #
@@ -396,13 +397,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.recurrencesymptom',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1005').entry_status,
+#                 visit_code=DAY5).entry_status,
 #             NOT_REQUIRED)
 
 #     def test_recurrence_form_2(self):
 #         appointment = Appointment.objects.get(
 #             subject_identifier=self.consent.subject_identifier,
-#             visit_code='1005')
+#             visit_code=DAY5)
 #         self.subject_visit = SubjectVisit.objects.get(
 #             appointment=appointment)
 #
@@ -420,13 +421,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.recurrencesymptom',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1005').entry_status,
+#                 visit_code=DAY5).entry_status,
 #             NOT_REQUIRED)
 
 #     def test_recurrence_form_3(self):
 #         appointment = Appointment.objects.get(
 #             subject_identifier=self.consent.subject_identifier,
-#             visit_code='1005')
+#             visit_code=DAY5)
 #         self.subject_visit = SubjectVisit.objects.get(
 #             appointment=appointment)
 #
@@ -444,13 +445,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.recurrencesymptom',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1005').entry_status,
+#                 visit_code=DAY5).entry_status,
 #             REQUIRED)
 
 #     def test_blood_result_rule_not_required(self):
 #         appointment = Appointment.objects.get(
 #             subject_identifier=self.consent.subject_identifier,
-#             visit_code='1000')
+#             visit_code=DAY1)
 #         self.subject_visit = SubjectVisit.objects.get(
 #             appointment=appointment)
 #
@@ -465,13 +466,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.subjectoffstudy',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1000').entry_status,
+#                 visit_code=DAY1).entry_status,
 #             NOT_REQUIRED)
 
 #     def test_blood_result_rule_required(self):
 #         appointment = Appointment.objects.get(
 #             subject_identifier=self.consent.subject_identifier,
-#             visit_code='1000')
+#             visit_code=DAY1)
 #         self.subject_visit = SubjectVisit.objects.get(
 #             appointment=appointment)
 #
@@ -486,13 +487,13 @@ class TestSubjectRules(TestCase):
 #             CrfMetadata.objects.get(
 #                 model='ambition_subject.subjectoffstudy',
 #                 subject_identifier=self.consent.subject_identifier,
-#                 visit_code='1000').entry_status,
+#                 visit_code=DAY1).entry_status,
 #             REQUIRED)
 
     def test_viral_load_required(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
-            visit_code='1005')
+            visit_code=DAY5)
         self.subject_visit = SubjectVisit.objects.get(
             appointment=appointment)
 
@@ -506,13 +507,13 @@ class TestSubjectRules(TestCase):
                 model='ambition_subject.subjectrequisition',
                 subject_identifier=self.consent.subject_identifier,
                 panel_name='Viral Load',
-                visit_code='1005').entry_status,
+                visit_code=DAY5).entry_status,
             NOT_REQUIRED)
 
     def test_cd4_required(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
-            visit_code='1005')
+            visit_code=DAY5)
         self.subject_visit = SubjectVisit.objects.get(
             appointment=appointment)
 
@@ -526,5 +527,5 @@ class TestSubjectRules(TestCase):
                 model='ambition_subject.subjectrequisition',
                 subject_identifier=self.consent.subject_identifier,
                 panel_name='CD4',
-                visit_code='1005').entry_status,
+                visit_code=DAY5).entry_status,
             NOT_REQUIRED)

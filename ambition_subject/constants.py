@@ -1,5 +1,7 @@
-from ambition_validators.constants import DEVIATION, VIOLATION, TUBERCULOSIS
-from ambition_validators.constants import HEADACHE, VISUAL_LOSS
+from ambition_validators import DEVIATION, VIOLATION, TUBERCULOSIS
+from ambition_validators import HEADACHE, VISUAL_LOSS
+from ambition_visit_schedule import DAY1, DAY3, DAY5, DAY7, DAY14, DAY12, DAY10
+from ambition_visit_schedule import WEEK16, WEEK10, WEEK8, WEEK6, WEEK4
 
 BACTERIA = 'Bacteria'
 CONTROL = 'control'
@@ -9,10 +11,6 @@ AMS_A4 = 'AMS_A'
 CEREBRAL_OEDEMA = 'cerebral_oedema'
 CONSENT_WITHDRAWAL = 'consent_withdrawn'
 CXR_DESCRIPTION = 'Some cxr description'
-DAY1 = '1000'
-DAY3 = '1003'
-DAY7 = '1007'
-DAY14 = '1014'
 DIFFUSE = 'diffuse'
 FOCAL_NEUROLOGIC_DEFICIT = 'focal_neurologic_deficit'
 INFARCTS = 'infarcts'
@@ -26,9 +24,7 @@ SINGLE_DOSE = 'single_dose'
 THREE_DOSES = 'three_doses'
 TWO_DOSES = 'three_doses'
 VIBRIO = 'vibrio'
-WEEK4 = '1028'
-WEEK6 = '1042'
-WEEK8 = '1056'
-WEEK10 = '1070'
 RESULTS_UNKNOWN = 'results_unknown'
 ROUTINE_APPT = 'routine'
+RECURRENCE_OF_SYMPTOMS_ACTION = 'submit-recurrence-symptoms'
+STUDY_TERMINATION_CONCLUSION_ACTION = 'submit-study-termination-conclusion'

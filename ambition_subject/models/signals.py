@@ -1,5 +1,6 @@
 from ambition_rando.models import SubjectRandomization
 from ambition_rando.randomizer import Randomizer
+from ambition_screening.models import SubjectScreening
 from django.apps import apps as django_apps
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
@@ -8,7 +9,6 @@ from edc_base.utils import get_utcnow
 from .enrollment import Enrollment
 from .patient_history import PatientHistory
 from .subject_consent import SubjectConsent
-from .subject_screening import SubjectScreening
 
 post_delete.providing_args = set(["instance", "using", "raw"])
 

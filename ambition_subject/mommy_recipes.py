@@ -1,7 +1,7 @@
 from dateutil.relativedelta import relativedelta
 from edc_base.utils import get_utcnow
 from edc_consent.tests import EdcConsentProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER, MALE, NORMAL
+from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
 from edc_visit_tracking.constants import SCHEDULED
 from faker import Faker
 from faker.providers import BaseProvider
@@ -12,10 +12,10 @@ from .models import Education, EducationHoh, ClinicNote
 from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
 from .models import MedicalExpensesTwo
 from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory, Week16
-from .models import RecurrenceSymptom, Week2, SubjectVisit, SubjectScreening, MedicalExpenses
+from .models import RecurrenceSymptom, Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectLocator, SubjectConsent, PrnModel, MedicalExpensesTwoDetail
 from .models import Neurological, Antibiotic, Symptom
-from .models import SignificantNewDiagnosis, MeningitisSymptom
+from .models import SignificantNewDiagnosis, MeningitisSymptom, PkPdCrf
 
 
 class DateProvider(BaseProvider):
@@ -280,24 +280,6 @@ prnmodel = Recipe(
 clinicnote = Recipe(
     ClinicNote,)
 
-subjectscreening = Recipe(
-    SubjectScreening,
-    report_datetime=get_utcnow(),
-    gender=MALE,
-    age_in_years=40,
-    meningitis_dx=YES,
-    will_hiv_test=YES,
-    consent_ability=YES,
-    mental_status=NORMAL,
-    pregnancy=NOT_APPLICABLE,
-    breast_feeding=NOT_APPLICABLE,
-    previous_drug_reaction=NO,
-    contraindicated_meds=NO,
-    received_amphotericin=NO,
-    received_fluconazole=NO,
-    eligible=True,
-    reasons_ineligible=None)
-
 week16 = Recipe(Week16)
 
 medicalexpenses = Recipe(MedicalExpenses)
@@ -309,3 +291,5 @@ medicalexpensestwodetail = Recipe(MedicalExpensesTwoDetail)
 education = Recipe(Education)
 
 educationhoh = Recipe(EducationHoh)
+
+pkpdcrf = Recipe(PkPdCrf)

@@ -11,7 +11,7 @@ class TestAppointment(TestCase):
     def setUp(self):
         import_randomization_list(verbose=False)
         subject_screening = mommy.make_recipe(
-            'ambition_subject.subjectscreening')
+            'ambition_screening.subjectscreening')
         options = {
             'screening_identifier': subject_screening.screening_identifier,
             'consent_datetime': get_utcnow, }

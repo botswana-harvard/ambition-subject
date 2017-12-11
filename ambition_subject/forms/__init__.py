@@ -27,7 +27,6 @@ from .subject_consent_form import SubjectConsentForm
 from .subject_locator_form import SubjectLocatorForm
 from .subject_offstudy_form import SubjectOffStudyForm
 from .subject_requisition_form import SubjectRequisitionForm
-from .subject_screening_form import SubjectScreeningForm
 from .subject_visit_form import SubjectVisitForm
 from .week16_form import Week16Form
 from .week2_form import Week2Form

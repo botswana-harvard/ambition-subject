@@ -15,7 +15,7 @@ class TestSubjectConsent(TestCase):
     def setUp(self):
         import_randomization_list(verbose=False)
         self.subject_screening = mommy.make_recipe(
-            'ambition_subject.subjectscreening')
+            'ambition_screening.subjectscreening')
 
     def test_allocated_subject_identifier(self):
         """Test consent successfully allocates subject identifier on
@@ -63,7 +63,7 @@ class TestSubjectConsent(TestCase):
 #             RandomizationItem.objects.get(name=randomized.sid).field_name)
 #
 #         subject_screening = mommy.make_recipe(
-#             'ambition_subject.subjectscreening')
+#             'ambition_screening.subjectscreening')
 #         options = {
 #             'subject_screening': subject_screening,
 #             'consent_datetime': get_utcnow, }
@@ -80,7 +80,7 @@ class TestSubjectConsent(TestCase):
 #         rando_list = RandomizationItem.objects.all()
 #         for rando in rando_list:
 #             self.subject_screening = mommy.make_recipe(
-#                 'ambition_subject.subjectscreening')
+#                 'ambition_screening.subjectscreening')
 #             options = {
 #                 'subject_screening': self.subject_screening,
 #                 'consent_datetime': get_utcnow, }

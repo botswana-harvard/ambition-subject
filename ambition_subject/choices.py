@@ -532,12 +532,6 @@ YES_NO_RESULTS_UNKNOWN = (
     (RESULTS_UNKNOWN, 'Results unknown'),
 )
 
-PREG_YES_NO_NA = (
-    (YES, 'Yes'),
-    (NO, 'No'),
-    (NOT_APPLICABLE, 'Not Applicable: e.g. male, post-menopausal'),
-)
-
 PATIENT_REL = (
     ('patient', 'Patient'),
     ('next_of_kin', 'Next of Kin/Relative'),

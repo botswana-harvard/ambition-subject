@@ -1,3 +1,4 @@
+# from ambition_visit_schedule import DAY1
 # from ambition_rando.import_randomization_list import import_randomization_list
 # from edc_base.utils import get_utcnow
 # from edc_pharma.models import DispenseAppointment
@@ -16,14 +17,14 @@
 #
 #     def setUp(self):
 #         import_randomization_list(verbose=False)
-#         screening = mommy.make_recipe('ambition_subject.subjectscreening',
+#         screening = mommy.make_recipe('ambition_screening.subjectscreening',
 #                                       report_datetime=get_utcnow())
 #         self.consent = mommy.make_recipe(
 #             'ambition_subject.subjectconsent',
 #             consent_datetime=get_utcnow(),
 #             screening_identifier=screening.screening_identifier)
 #
-#         self.visit_code = '1000'
+#         self.visit_code = DAY1
 #         self.appointment = Appointment.objects.all().order_by('timepoint').first()
 #         self.subject_visit = mommy.make_recipe(
 #             'ambition_subject.subjectvisit',
@@ -73,7 +74,7 @@
 #         """ Assert that dispense timepoints for single dose subject
 #         are created correctly on update of subject consent.
 #         """
-#         screening = mommy.make_recipe('ambition_subject.subjectscreening',
+#         screening = mommy.make_recipe('ambition_screening.subjectscreening',
 #                                       report_datetime=get_utcnow())
 #         consent = mommy.make_recipe(
 #             'ambition_subject.subjectconsent',

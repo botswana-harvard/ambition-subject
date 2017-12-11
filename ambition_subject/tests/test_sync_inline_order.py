@@ -1,3 +1,4 @@
+from ambition_visit_schedule import DAY1
 from ambition_rando.import_randomization_list import import_randomization_list
 from ambition_subject.forms import PreviousOpportunisticInfectionForm
 from ambition_subject.models import PatientHistory, PreviousOpportunisticInfection
@@ -14,7 +15,7 @@ class TestSyncInlineOrder(TestCase):
 
     def setUp(self):
         import_randomization_list(verbose=False)
-        screening = mommy.make_recipe('ambition_subject.subjectscreening',
+        screening = mommy.make_recipe('ambition_screening.subjectscreening',
                                       report_datetime=get_utcnow())
         self.consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
@@ -22,7 +23,7 @@ class TestSyncInlineOrder(TestCase):
             screening_identifier=screening.screening_identifier)
 
         self.appointment = Appointment.objects.get(
-            visit_code='1000', subject_identifier=self.consent.subject_identifier)
+            visit_code=DAY1, subject_identifier=self.consent.subject_identifier)
         self.subject_visit = mommy.make_recipe(
             'ambition_subject.subjectvisit',
             appointment=self.appointment,

@@ -30,7 +30,6 @@ from .subject_consent import SubjectConsent
 from .subject_locator import SubjectLocator
 from .subject_offstudy import SubjectOffstudy
 from .subject_requisition import SubjectRequisition
-from .subject_screening import SubjectScreening
 from .subject_visit import SubjectVisit
 from .week16 import Week16
 from .week2 import SignificantDiagnoses, FlucytosineMissedDoses

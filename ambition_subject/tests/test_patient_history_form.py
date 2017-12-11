@@ -1,3 +1,4 @@
+from ambition_visit_schedule import DAY1
 from ambition_rando.import_randomization_list import import_randomization_list
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
@@ -15,7 +16,7 @@ class TestPatientHistoryFormValidator(TestCase):
     def setUp(self):
         import_randomization_list(verbose=False)
         subject_screening = mommy.make_recipe(
-            'ambition_subject.subjectscreening')
+            'ambition_screening.subjectscreening')
 
         options = {
             'screening_identifier': subject_screening.screening_identifier,
@@ -26,7 +27,7 @@ class TestPatientHistoryFormValidator(TestCase):
         self.subject_visit = mommy.make_recipe(
             'ambition_subject.subjectvisit',
             appointment=Appointment.objects.get(
-                subject_identifier=self.subject_identifier, visit_code='1000'),
+                subject_identifier=self.subject_identifier, visit_code=DAY1),
             subject_identifier=consent.subject_identifier,
             reason=SCHEDULED,)
 

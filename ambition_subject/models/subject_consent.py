@@ -18,7 +18,6 @@ from edc_search.model_mixins import SearchSlugManager
 
 from ..choices import ID_TYPE
 from .model_mixins import SearchSlugModelMixin
-from .subject_screening import SubjectScreening
 
 
 class SubjectConsentManager(SearchSlugManager, models.Manager):
@@ -38,7 +37,7 @@ class SubjectConsent(
     """ A model completed by the user that captures the ICF.
     """
 
-    subject_screening_model_cls = SubjectScreening
+    subject_screening_model = 'ambition_screening.subjectscreening'
 
     first_name = FirstnameField()
 
@@ -140,7 +139,8 @@ class SubjectConsent(
 
     def save(self, *args, **kwargs):
         # screening must exist
-        subject_screening = self.subject_screening_model_cls.objects.get(
+        model_cls = django_apps.get_model(self.subject_screening_model)
+        subject_screening = model_cls.objects.get(
             screening_identifier=self.screening_identifier)
         self.gender = subject_screening.gender
         if not self.id:

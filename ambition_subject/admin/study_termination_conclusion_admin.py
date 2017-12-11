@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from edc_action_item import action_fieldset
 from edc_model_admin import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
@@ -28,9 +28,7 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         [None, {
             'fields': (
-                'tracking_identifier',
                 'subject_identifier',
-                'action_identifier',
                 'patient_terminated_date',
                 'last_study_fu_date',
                 'discharged_after_initial_admission',
@@ -55,6 +53,7 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'second_line_regimen_other',
                 'arvs_switch_date',
                 'arvs_delay_reason')}],
+        action_fieldset,
         audit_fieldset_tuple
     )
 
@@ -68,5 +67,5 @@ class StudyTerminationConclusionAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         fields = super().get_readonly_fields(request, obj)
-        fields = ('tracking_identifier', ) + fields
+        fields = ('tracking_identifier', 'action_identifier') + fields
         return fields

@@ -5,14 +5,14 @@ from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE, NO
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
-from edc_reportable import UI_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER, TEN_X_3_PER_LITER
+from edc_registration.models import RegisteredSubject
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED, MILLIMOLES_PER_LITER
+from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER, TEN_X_3_PER_LITER
+from edc_reportable import site_reportables
 
 from ..action_items import BloodResultAction
 from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS, REPORTABLE
 from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
-from edc_reportable.site_reportables import site_reportables
-from edc_registration.models import RegisteredSubject
 
 
 class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMixin,
@@ -268,8 +268,8 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     alt_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((UI_LITER, UI_LITER), ),
-        default=UI_LITER,
+        choices=((IU_LITER, IU_LITER), ),
+        default=IU_LITER,
         null=True,
         blank=True)
 
