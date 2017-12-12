@@ -1,16 +1,14 @@
 from django.db import models
-# from ambition_ae.action_items import StudyTerminationConclusionAction
 from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import date_not_future, date_is_future
+from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_identifier.managers import TrackingIdentifierManager
 
-from ...action_items import StudyTerminationConclusionAction
 from ...choices import FIRST_ARV_REGIMEN, FIRST_LINE_REGIMEN, SECOND_ARV_REGIMEN
 from ...choices import REASON_STUDY_TERMINATED, YES_NO_ALREADY
 
@@ -18,8 +16,6 @@ from ...choices import REASON_STUDY_TERMINATED, YES_NO_ALREADY
 class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
                                  ActionItemModelMixin, TrackingIdentifierModelMixin,
                                  BaseUuidModel):
-
-    action_cls = StudyTerminationConclusionAction
 
     tracking_identifier_prefix = 'ST'
 
@@ -81,22 +77,22 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
         null=True)
 
     willing_to_complete_10w = models.CharField(
-        verbose_name='Is the patient willing to complete the 10 week FU '
-        'visit only?',
+        verbose_name='Is the patient willing to complete the W10 '
+        'and W16 FU visit only?',
         max_length=12,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
 
     willing_to_complete_centre = models.CharField(
-        verbose_name='Is the patient willing to complete the 10 week FU '
-        'visit only at their new care centre?',
+        verbose_name='Is the patient willing to complete the W10'
+        'and W16 FU visit only at their new care centre?',
         max_length=17,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
 
     willing_to_complete_date = models.DateField(
         verbose_name=' Date the 10W FU due',
-        validators=[date_is_future],
+        validators=[date_not_future],
         blank=True,
         null=True)
 
