@@ -1,4 +1,3 @@
-from ambition_rando.models import SubjectRandomization
 from ambition_rando.randomizer import Randomizer
 from ambition_screening.models import SubjectScreening
 from django.apps import apps as django_apps
@@ -7,7 +6,6 @@ from django.dispatch import receiver
 from edc_base.utils import get_utcnow
 
 from .enrollment import Enrollment
-from .patient_history import PatientHistory
 from .subject_consent import SubjectConsent
 
 post_delete.providing_args = set(["instance", "using", "raw"])
@@ -51,21 +49,21 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                 rando_arm=randomizer.history_obj.rx)
 
 
-@receiver(post_save, weak=False, sender=PatientHistory,
-          dispatch_uid='patient_history_on_post_save')
-def patient_history_on_post_save(sender, instance, raw, created, **kwargs):
-    if not raw:
-        # subject_randomization must exist
-        subject_randomization = SubjectRandomization.objects.get(
-            subject_identifier=instance.subject_identifier)
-        # update weight on prescription
-        prescription_model_cls = django_apps.get_model(
-            'edc_pharmacy.prescription')
-        prescription = prescription_model_cls.objects.get(
-            subject_identifier=subject_randomization.subject_identifier,
-            rando_sid=subject_randomization.sid)
-        prescription.weight = instance.weight
-        prescription.save()
+# @receiver(post_save, weak=False, sender=PatientHistory,
+#           dispatch_uid='patient_history_on_post_save')
+# def patient_history_on_post_save(sender, instance, raw, created, **kwargs):
+#     if not raw:
+#         # subject_randomization must exist
+#         subject_randomization = SubjectRandomization.objects.get(
+#             subject_identifier=instance.subject_identifier)
+#         # update weight on prescription
+#         prescription_model_cls = django_apps.get_model(
+#             'edc_pharmacy.prescription')
+#         prescription = prescription_model_cls.objects.get(
+#             subject_identifier=subject_randomization.subject_identifier,
+#             rando_sid=subject_randomization.sid)
+#         prescription.weight = instance.weight
+#         prescription.save()
 
 
 @receiver(post_delete, weak=False, sender=SubjectConsent,
