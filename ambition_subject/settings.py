@@ -126,6 +126,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+LANGUAGES = (
+    ('af', 'Afrikaans'),
+    ('ny', 'Chichewa'),
+    ('en', 'English'),
+    ('xh', 'isiXhosa'),
+    ('lg', 'Luganda'),
+    ('rny', 'Runyankore'),
+    ('tn', 'Setswana'),
+    ('sn', 'Shona'))
+
 TIME_ZONE = 'Africa/Gaborone'
 
 USE_I18N = True
