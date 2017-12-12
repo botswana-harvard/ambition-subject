@@ -567,3 +567,24 @@ class TestSubjectRules(TestCase):
                 panel_name='Viral Load',
                 visit_code=DAY1).entry_status,
             REQUIRED)
+
+    @tag('a')
+    def test_fbc_required_d5(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code=DAY5)
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            fbc=YES)
+
+        self.assertEqual(
+            RequisitionMetadata.objects.get(
+                model='ambition_subject.subjectrequisition',
+                subject_identifier=self.consent.subject_identifier,
+                panel_name='Full Blood Count',
+                visit_code=DAY5).entry_status,
+            REQUIRED)

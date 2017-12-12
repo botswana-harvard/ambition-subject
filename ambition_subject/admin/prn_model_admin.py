@@ -19,7 +19,9 @@ common_fields = ('subject_visit',
                  'microbiology',
                  'radiology',
                  'cd4',
-                 'viral_load')
+                 'viral_load',
+                 'fbc',
+                 'chemistry')
 
 week4 = common_fields + ('lumbar_puncture', )
 
