@@ -7,7 +7,8 @@ from edc_constants.constants import NOT_APPLICABLE, NO
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED, MILLIMOLES_PER_LITER
-from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER, TEN_X_3_PER_LITER
+from edc_reportable import COPIES_PER_MILLILITER, TEN_X_3_PER_LITER
+from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER
 from edc_reportable import site_reportables
 
 from ..action_items import BloodResultAction
@@ -341,6 +342,36 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         blank=True)
 
     cd4_reportable = models.CharField(
+        verbose_name='reportable',
+        choices=REPORTABLE,
+        default=NOT_APPLICABLE,
+        max_length=6,
+        null=True,
+        blank=True)
+
+    vl = models.FloatField(
+        verbose_name='Viral Load',
+        validators=[MinValueValidator(0.0)],
+        blank=True,
+        null=True)
+
+    vl_units = models.CharField(
+        verbose_name='units',
+        max_length=10,
+        choices=((COPIES_PER_MILLILITER, COPIES_PER_MILLILITER), ),
+        default=COPIES_PER_MILLILITER,
+        null=True,
+        blank=True)
+
+    vl_abnormal = models.CharField(
+        verbose_name='abnormal',
+        choices=YES_NO,
+        default=NO,
+        max_length=6,
+        null=True,
+        blank=True)
+
+    vl_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
         default=NOT_APPLICABLE,

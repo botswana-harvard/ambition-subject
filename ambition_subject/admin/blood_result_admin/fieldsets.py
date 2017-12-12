@@ -6,6 +6,7 @@ fs = {}
 fields = [
     ('alt', 'LFT', 'urea'),
     ('cd4', 'Immunology', None),
+    ('vl', 'Immunology', None),
     ('creatinine', 'RFT', None),
     ('haemoglobin', 'CBC', None),
     ('magnesium', 'RFT', None),
@@ -37,6 +38,7 @@ conditional_fieldsets = {
         fs.get('haemoglobin'),
         fs.get('neutrophil'),
         fs.get('cd4'),
+        fs.get('vl'),
         fs.get('crag')),
     DAY7: (
         fs.get('alt'),
