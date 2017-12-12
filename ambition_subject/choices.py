@@ -1,14 +1,18 @@
 from ambition_rando.constants import SINGLE_DOSE, CONTROL
-from ambition_validators.constants import WORKING
-from django.utils.safestring import mark_safe
-from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE
+from ambition_validators import WORKING, NO_GROWTH, KLEBSIELLA_SPP
+from ambition_validators import CRYPTOCOCCUS_NEOFORMANS, BACTERIA
+from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, NOT_DONE
 from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN
 from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER, MICROMOLES_PER_LITER
-from edc_reportable import GRADE3, GRADE4
+from edc_reportable import GRADE3, GRADE4, MICROMOLES_PER_LITER_DISPLAY, MM3, MM3_DISPLAY
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
 
-from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
+from .constants import AZT_3TC_with_ATZ_r_or_Lopinavir_r
+from .constants import AZT_3TC_with_EFV_NVP_or_DTG
 from .constants import CONSENT_WITHDRAWAL, ROUTINE_APPT, THREE_DOSES, TWO_DOSES
+from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
+from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
+from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -23,18 +27,18 @@ ABNORMAL_RESULTS_REASON = (
     (OTHER, 'Other'))
 
 ACTION_REQUIRED = (
-    ('participant_to_remain', 'Participant to remain on trial'),
-    ('participant_to_be_withdrawn', 'Participant to be withdrawn from trial'),
-    ('patient_remains_on_study',
+    ('remain_on_study', 'Participant to remain on trial'),
+    ('to_be_withdrawn', 'Participant to be withdrawn from trial'),
+    ('remain_on_study_modified',
      'Patient remains on study but data analysis will be modified')
 )
 
 ACTIVITIES_MISSED = (
     (WORKING, 'Working'),
-    ('Studying', 'Studying'),
-    ('Caring for Children', 'Caring for children'),
-    ('Maintaining the house', 'Maintaining the house'),
-    ('Nothing', 'Nothing'),
+    ('studying', 'Studying'),
+    ('caring_for_children', 'Caring for children'),
+    ('maintaining_house', 'Maintaining the house'),
+    ('nothing', 'Nothing'),
     (OTHER, 'Other'),
 )
 
@@ -55,58 +59,56 @@ APPOINTMENT_REASON = (
     (ROUTINE_APPT, 'Routine'),
     (UNSCHEDULED, 'Unscheduled'),
 )
-
-
 ARV_REGIMEN = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('TDF +3TC/FTC + either EFV or NVP',
-     'TDF +3TC/FTC + either EFV or NVP or DTG'),
-    ('AZT + 3TC + either EFV or NVP or DTG',
+    (TDF_3TC_FTC_with_EFV_or_NVP,
+     'TDF + 3TC/FTC + either EFV or NVP or DTG'),
+    (AZT_3TC_with_EFV_NVP_or_DTG,
      'AZT + 3TC + either EFV or NVP or DTG'),
-    ('TDF + 3TC/FTC + either ATZ/r or Lopinavir/r',
+    (TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r,
      'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
-    ('AZT + 3TC + either ATZ/r or Lopinavir/r',
+    (AZT_3TC_with_ATZ_r_or_Lopinavir_r,
      'AZT + 3TC + either ATZ/r or Lopinavir/r'),
     (OTHER, 'Other'),
 )
 
 FIRST_ARV_REGIMEN = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('TDF +3TC/FTC + either EFV or NVP',
-     'TDF +3TC/FTC + either EFV or NVP or DTG'),
-    ('AZT+3TC+ either EFV or NVP or DTG',
+    (TDF_3TC_FTC_with_EFV_or_NVP,
+     'TDF + 3TC/FTC + either EFV or NVP or DTG'),
+    (AZT_3TC_with_EFV_NVP_or_DTG,
      'AZT+3TC+ either EFV or NVP or DTG'),
     (OTHER, 'Other'),
 )
 
 SECOND_ARV_REGIMEN = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('TDF+3TC/FTC+ either ATZ/r or Lopinavir/r',
-     'TDF+3TC/FTC+ either ATZ/r or Lopinavir/r'),
-    ('AZT+3TC+ either ATZ/r or Lopinavir/r',
-     'AZT+3TC+ either ATZ/r or Lopinavir/r'),
+    (TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r,
+     'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
+    (AZT_3TC_with_ATZ_r_or_Lopinavir_r,
+     'AZT +3TC + either ATZ/r or Lopinavir/r'),
     (OTHER, 'Other'),
 )
 
 BLOOD_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
-    ('bacteria', 'Bacteria'),
+    (CRYPTOCOCCUS_NEOFORMANS, 'Cryptococcus neoformans'),
+    (BACTERIA, 'Bacteria'),
     ('bacteria_and_cryptococcus', 'Bacteria and Cryptococcus'),
     (OTHER, 'Other'),
 )
 
 BIOPSY_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('cryptococcus_neoformans', 'Cryptococcus neoformans'),
+    (CRYPTOCOCCUS_NEOFORMANS, 'Cryptococcus neoformans'),
     ('mycobacterium_tuberculosis', 'Mycobacterium Tuberculosis'),
     (OTHER, 'Other'),
 )
 
 BACTERIA_TYPE = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('e.coli', 'E.coli'),
-    ('klebsiella_spp', 'Klebsiella spp.'),
+    (ECOLI, 'E.coli'),
+    (KLEBSIELLA_SPP, 'Klebsiella spp.'),
     ('streptococcus_pneumoniae', 'Streptococcus pneumoniae'),
     ('staphylococus_aureus', '(Sensitive) Staphylococus aureus'),
     ('mrsa', 'MRSA'),
@@ -147,10 +149,10 @@ CAUSE_OF_DEATH = (
 )
 
 CN_PALSY = (
-    ('III', 'III'),
-    ('VI', 'VI'),
-    ('VII', 'VII'),
-    ('VIII', 'VIII'),
+    ('3', 'III'),
+    ('6', 'VI'),
+    ('7', 'VII'),
+    ('8', 'VIII'),
 )
 
 CLINICAL_ASSESSMENT = (
@@ -159,7 +161,7 @@ CLINICAL_ASSESSMENT = (
 
 CULTURE_RESULTS = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('no_growth', 'No growth'),
+    (NO_GROWTH, 'No growth'),
     (POS, 'Positive'),
 )
 
@@ -212,7 +214,7 @@ FIRST_LINE_REGIMEN = (
 FLUCONAZOLE_DOSE = (
     ('800mg_daily', '800mg daily'),
     (OTHER, 'Other'),
-    ('Not Done', 'Not done'),
+    (NOT_DONE, 'Not done'),
 )
 
 FLUCYTOSINE_DOSE_MISSED = (
@@ -259,11 +261,11 @@ ID_TYPE = (
 
 
 INFECTION = (
-    ('Kaposi_sarcoma', 'Kaposi Sarcoma'),
-    ('Herpes_zoster_virus', 'Herpes-Zoster virus'),
-    ('Oesophageal_candidiasis', 'Oesophageal Candidiasis'),
+    ('kaposi_sarcoma', 'Kaposi Sarcoma'),
+    ('herpes_zoster_virus', 'Herpes-Zoster virus'),
+    ('oesophageal_candidiasis', 'Oesophageal Candidiasis'),
     ('PCP', 'PCP'),
-    ('Cytomegalovirus', 'Cytomegalovirus'),
+    ('cytomegalovirus', 'Cytomegalovirus'),
     (OTHER, 'Other')
 )
 
@@ -350,14 +352,14 @@ REASON_DRUG_MISSED = (
     ('toxicity', 'Toxicity'),
     ('missed', 'Missed'),
     ('refused', 'Refused'),
-    ('not_required_acc_protocol', 'Not required according to protocol'),
+    ('not_required', 'Not required according to protocol'),
     (OTHER, 'Other'),
 )
 
 REASON_STUDY_TERMINATED = (
-    ('10_weeks_completed_followUp', 'Patient completed 10 weeks of follow-up'),
+    ('10_weeks_completed_follow_up', 'Patient completed 10 weeks of follow-up'),
     ('patient_lost_to_follow_up', 'Patient lost to follow-up'),
-    ('died', 'Reported/known to have died'),
+    ('dead', 'Reported/known to have died'),
     (CONSENT_WITHDRAWAL, 'Withdrawal of Subject Consent for '
      'participation'),
     ('care_transferred_to_another_institution',
@@ -426,8 +428,8 @@ TRANSPORT = (
 
 URINE_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
-    ('e_coli', 'E.coli'),
-    ('klebsiella_sp', 'Klebsiella spp.'),
+    (ECOLI, 'E.coli'),
+    (KLEBSIELLA_SPP, 'Klebsiella spp.'),
     (OTHER, 'Other'),
 )
 
@@ -456,11 +458,11 @@ MG_MMOL_UNITS = (
 
 MG_UMOL_UNITS = (
     (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
-    (MICROMOLES_PER_LITER, 'μmol/L'),
+    (MICROMOLES_PER_LITER, MICROMOLES_PER_LITER_DISPLAY),
 )
 
 MM3_PERC_UNITS = (
-    ('mm3', mark_safe('mm<sup>3</sup>')),
+    (MM3, MM3_DISPLAY),
     ('%', '%'),
     (NOT_APPLICABLE, 'Not applicable'),
 )
@@ -469,7 +471,7 @@ POS_NEG = (
     (POS, 'Positive'),
     (NEG, 'Negative'),
     (IND, 'Indeterminate'),
-    ('not_done', 'Not done'),
+    (NOT_DONE, 'Not done'),
 )
 
 RANKIN_SCORE = (
@@ -480,7 +482,7 @@ RANKIN_SCORE = (
     ('4', '4'),
     ('5', '5'),
     ('6', '6'),
-    ('not done', 'Not done')
+    (NOT_DONE, 'Not done')
 )
 
 WEIGHT_DETERMINATION = (
@@ -506,14 +508,14 @@ YES_NO = (
 YES_NO_ND = (
     (YES, 'Yes'),
     (NO, 'No'),
-    ('not_done', 'Not done'),
+    (NOT_DONE, 'Not done'),
 )
 
 YES_NO_ALREADY_ND = (
     (YES, 'Yes'),
     (NO, 'No'),
     ('already_on_rifampicin', 'Already on Rifampicin'),
-    ('not_done', 'Not done'),
+    (NOT_DONE, 'Not done'),
 )
 
 YES_NO_ALREADY = (
