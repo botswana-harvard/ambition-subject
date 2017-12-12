@@ -37,16 +37,18 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
 
             # randomize
             randomizer = Randomizer(
-                subject_consent=instance,
-                randomization_datetime=get_utcnow())
+                subject_identifier=instance.subject_identifier,
+                report_datetime=instance.consent_datetime,
+                study_site=instance.study_site,
+                user=instance.user_created)
 
             # create prescription
             prescription_model_cls = django_apps.get_model(
                 'edc_pharmacy.prescription')
             prescription_model_cls.objects.create(
-                subject_identifier=instance.subject_identifier,
-                rando_sid=randomizer.history_obj.sid,
-                rando_arm=randomizer.history_obj.rx)
+                subject_identifier=randomizer.model_obj.subject_identifier,
+                rando_sid=randomizer.model_obj.sid,
+                rando_arm=randomizer.model_obj.drug_assignment)
 
 
 # @receiver(post_save, weak=False, sender=PatientHistory,
