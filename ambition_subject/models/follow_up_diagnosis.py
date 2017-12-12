@@ -33,5 +33,6 @@ class FollowUpDiagnoses(SignificantDiagnosesModelMixin, BaseUuidModel):
     history = HistoricalRecords()
 
     class Meta:
-        verbose_name_plural = 'Follow Up Diagnoses'
+        verbose_name = 'Follow-up diagnosis'
+        verbose_name_plural = 'Follow-up diagnoses'
         unique_together = ('follow_up', 'possible_diagnoses', 'dx_date')

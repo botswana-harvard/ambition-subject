@@ -1,4 +1,6 @@
+from ambition_rando.constants import SINGLE_DOSE, CONTROL
 from ambition_validators.constants import WORKING
+from django.utils.safestring import mark_safe
 from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE
 from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN
 from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER, MICROMOLES_PER_LITER
@@ -6,23 +8,23 @@ from edc_reportable import GRADE3, GRADE4
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
 
 from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
-from .constants import CONSENT_WITHDRAWAL, ROUTINE_APPT
+from .constants import CONSENT_WITHDRAWAL, ROUTINE_APPT, THREE_DOSES, TWO_DOSES
 
 
 ABNORMAL_RESULTS_REASON = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('cerebral_oedema', 'Cerebral oedema'),
     ('hydrocephalus', 'Hydrocephalus'),
     ('cryptococcomus', 'Cryptococcomus'),
-    ('dilated_virchow_robin_spaces', 'Dilated Virchow robin spaces'),
+    ('dilated_virchow_robin_spaces', 'Dilated Virchow-Robin spaces'),
     ('enhancing_mass_lesions',
-     'Enhancing mass lesions DD Toxoplasmosis, TB, lymphoma'),
+     'Enhancing mass lesions DD Toxoplasmosis, TB, Lymphoma'),
     ('infarcts', 'Infarcts'),
     (OTHER, 'Other'))
 
 ACTION_REQUIRED = (
     ('participant_to_remain', 'Participant to remain on trial'),
-    ('participant_to_be_withdrawn', 'participant to be withdrawn from trial'),
+    ('participant_to_be_withdrawn', 'Participant to be withdrawn from trial'),
     ('patient_remains_on_study',
      'Patient remains on study but data analysis will be modified')
 )
@@ -43,9 +45,9 @@ ANTIBIOTICS = (
     ('flucloxacillin', 'Flucloxacillin'),
     ('ceftriaxone', 'Ceftriaxone'),
     ('erythromycin',
-     'Erythromycin (contra-indicated with concomitant high dose fluconazole)'),
+     'Erythromycin (contra-indicated with concomitant high dose Fluconazole)'),
     ('ciprofloxacin',
-     'Ciprofloxacin (avoid with concomitant high dose fluconazole)'),
+     'Ciprofloxacin (avoid with concomitant high dose Fluconazole)'),
     (OTHER, 'Other'),
 )
 
@@ -56,7 +58,7 @@ APPOINTMENT_REASON = (
 
 
 ARV_REGIMEN = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('TDF +3TC/FTC + either EFV or NVP',
      'TDF +3TC/FTC + either EFV or NVP or DTG'),
     ('AZT + 3TC + either EFV or NVP or DTG',
@@ -69,7 +71,7 @@ ARV_REGIMEN = (
 )
 
 FIRST_ARV_REGIMEN = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('TDF +3TC/FTC + either EFV or NVP',
      'TDF +3TC/FTC + either EFV or NVP or DTG'),
     ('AZT+3TC+ either EFV or NVP or DTG',
@@ -78,7 +80,7 @@ FIRST_ARV_REGIMEN = (
 )
 
 SECOND_ARV_REGIMEN = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('TDF+3TC/FTC+ either ATZ/r or Lopinavir/r',
      'TDF+3TC/FTC+ either ATZ/r or Lopinavir/r'),
     ('AZT+3TC+ either ATZ/r or Lopinavir/r',
@@ -104,7 +106,7 @@ BIOPSY_RESULTS_ORGANISM = (
 BACTERIA_TYPE = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('e.coli', 'E.coli'),
-    ('klebsiella_sp', 'Klebsiella sp'),
+    ('klebsiella_spp', 'Klebsiella spp.'),
     ('streptococcus_pneumoniae', 'Streptococcus pneumoniae'),
     ('staphylococus_aureus', '(Sensitive) Staphylococus aureus'),
     ('mrsa', 'MRSA'),
@@ -112,7 +114,7 @@ BACTERIA_TYPE = (
 )
 
 BRAIN_IMAGINING_REASON = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('reduction_in_gcs', 'Reduction in GCS'),
     ('new_neurology', 'New neurology'),
     (OTHER, 'Other'),
@@ -171,7 +173,7 @@ CURRENCY = (
 )
 
 CXR_TYPE = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     (NORMAL, 'Normal'),
     ('hilar_adenopathy', 'Hilar adenopathy'),
     ('miliary_appearance', 'Miliary appearance'),
@@ -191,26 +193,26 @@ ECOG_SCORE = (
     ('1', 'Restricted in physically strenuous activity but '
      'ambulatory and able to carry out work of a light or sedentary nature, e.g., '
      'light house work, office work'),
-    ('2', 'Ambulatory and capable of all selfcare but unable to carry out '
-     'any work activities;up and about more than 50% of waking hours '),
-    ('3', 'Capable of only limited selfcare; confined to bed or chair more than '
+    ('2', 'Ambulatory and capable of all self-care but unable to carry out '
+     'any work activities; up and about more than 50% of waking hours '),
+    ('3', 'Capable of only limited self-care; confined to bed or chair more than '
      '50% of waking hours'),
     ('4',
-     'Completely disabled; cannot carry on any selfcare; totally confined to bed or chair'),
-    ('5', 'Dead'),
+     'Completely disabled; cannot carry on any self-care; totally confined to bed or chair'),
+    ('5', 'Deceased'),
 )
 
 FIRST_LINE_REGIMEN = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('EFV', 'EFV'),
     ('DTG', 'DTG'),
     ('NVP', 'NVP'),
 )
 
 FLUCONAZOLE_DOSE = (
-    ('800mg_daily', '800mg Daily'),
+    ('800mg_daily', '800mg daily'),
     (OTHER, 'Other'),
-    ('Not Done', 'Not Done'),
+    ('Not Done', 'Not done'),
 )
 
 FLUCYTOSINE_DOSE_MISSED = (
@@ -225,7 +227,7 @@ GLASGOW_COMA_SCORE_EYES = (
     ('opens_eyes_to_pain_only', 'Opens eyes to pain only'),
     ('opens_eyes_to_voice', 'Opens eyes to voice'),
     ('opens_eyes_spontaneously', 'Opens eyes spontaneously'),
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
 )
 
 GLASGOW_COMA_SCORE_VERBAL = (
@@ -234,7 +236,7 @@ GLASGOW_COMA_SCORE_VERBAL = (
     ('makes_words', 'Makes words'),
     ('disoriented', 'Disoriented'),
     ('oriented', 'Oriented'),
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
 )
 
 GLASGOW_COMA_SCORE_MOTOR = (
@@ -247,18 +249,18 @@ GLASGOW_COMA_SCORE_MOTOR = (
 )
 
 ID_TYPE = (
-    ('country_id', 'Country ID Number'),
-    ('drivers', 'Driver\'s License'),
+    ('country_id', 'Country ID number'),
+    ('drivers', 'Driver\'s license'),
     ('passport', 'Passport'),
-    ('hospital_no', 'Hospital Number'),
-    ('country_id_rcpt', 'Country ID Receipt'),
+    ('hospital_no', 'Hospital number'),
+    ('country_id_rcpt', 'Country ID receipt'),
     (OTHER, 'Other'),
 )
 
 
 INFECTION = (
     ('Kaposi_sarcoma', 'Kaposi Sarcoma'),
-    ('Herpes_zoster_virus', 'Herpes Zoster Virus'),
+    ('Herpes_zoster_virus', 'Herpes-Zoster virus'),
     ('Oesophageal_candidiasis', 'Oesophageal Candidiasis'),
     ('PCP', 'PCP'),
     ('Cytomegalovirus', 'Cytomegalovirus'),
@@ -267,7 +269,7 @@ INFECTION = (
 
 
 INFILTRATE_LOCATION = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('lul', 'LUL'),
     ('lll', 'LLL'),
     ('rul', 'RUL'),
@@ -277,8 +279,8 @@ INFILTRATE_LOCATION = (
 )
 
 INFO_SOURCE = (
-    ('hospital_notes', 'Hospital Notes'),
-    ('outpatient_cards', 'Outpatient Cards'),
+    ('hospital_notes', 'Hospital notes'),
+    ('outpatient_cards', 'Outpatient cards'),
     ('patient', 'Patient'),
     ('collateral_history',
      'Collateral History from relative/guardian'),
@@ -288,13 +290,13 @@ INFO_SOURCE = (
 LP_REASON = (
     ('scheduled_per_protocol', 'Scheduled per protocol'),
     ('therapeutic_lp', 'Therapeutic LP'),
-    ('clincal_deterioration', 'Clinical Deterioration'),
+    ('clincal_deterioration', 'Clinical deterioration'),
 )
 
 LOCATION_CARE = (
-    ('government_healthcare', 'Government Healthcare'),
-    ('private_healthcare', 'Private Healthcare'),
-    ('ngo_healthcare', 'NGO Healthcare'),
+    ('government_healthcare', 'Government healthcare'),
+    ('private_healthcare', 'Private healthcare'),
+    ('ngo_healthcare', 'NGO healthcare'),
     ('pharmacy', 'Pharmacy'),
     ('home', 'Home'),
     (OTHER, 'Other'),
@@ -358,17 +360,17 @@ REASON_STUDY_TERMINATED = (
     ('died', 'Reported/known to have died'),
     (CONSENT_WITHDRAWAL, 'Withdrawal of Subject Consent for '
      'participation'),
-    ('care_transferred_to_another_institution', 'Care transferred to another '
-                                                'institution'),
+    ('care_transferred_to_another_institution',
+     'Care transferred to another institution'),
     ('late_exclusion_criteria_met', 'Late exclusion criteria met'),
     ('included_in_error', 'Included in error'),
 )
 
 REGIMEN = (
-    ('single_dose', '1 (Single dose)'),
-    ('two_doses', '2 (Two doses)'),
-    ('three_doses', '3 (Three Doses)'),
-    ('control', '4 (Control)'),
+    (SINGLE_DOSE, '1 (single dose)'),
+    (TWO_DOSES, '2 (two doses)'),
+    (THREE_DOSES, '3 (three Doses)'),
+    (CONTROL, '4 (control)'),
 )
 
 REPORTABLE = (
@@ -380,26 +382,26 @@ REPORTABLE = (
 
 SIGNIFICANT_DX = (
     ('pulmonary_tb', 'Pulmonary TB'),
-    ('extra_pulmonary_tb', 'Extra Pulmonary TB'),
-    ('kaposi_sarcoma', 'Kaposi Sarcoma'),
+    ('extra_pulmonary_tb', 'Extra-pulmonary TB'),
+    ('kaposi_sarcoma', 'Kaposi-sarcoma'),
     ('malaria', 'Malaria'),
     ('bacteraemia', 'Bacteraemia'),
     ('pneumonia', 'Pneumonia'),
-    ('diarrhoeal_wasting', 'Diarrhoeal Wasting'),
+    ('diarrhoeal_wasting', 'Diarrhoeal wasting'),
     (OTHER, 'Other'),
 )
 
 STEROIDS_CHOICES = (
-    (NOT_APPLICABLE, 'Not Applicable'),
-    ('oral_prednisolone', 'Oral prednisolone'),
+    (NOT_APPLICABLE, 'Not applicable'),
+    ('oral_prednisolone', 'Oral Prednisolone'),
     ('iv_dexamethasone', 'IV Dexamethasone used'),
     (OTHER, 'Other'),
 )
 
 TB_SITE = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('pulmonary', 'Pulmonary'),
-    ('extra_pulmonary', 'Extra pulmonary'),
+    ('extra_pulmonary', 'Extra-pulmonary'),
     ('both', 'Both')
 )
 
@@ -413,26 +415,26 @@ TRANSPORT = (
     ('bus', 'Bus'),
     ('train', 'Train'),
     ('ambulance', 'Ambulance'),
-    ('private_taxi', 'Private Taxi'),
-    ('hired_motorbike', 'Hired Motorbike'),
-    ('own_car', 'Own Car'),
-    ('own_motorbike', 'Own Motorbike'),
+    ('private_taxi', 'Private taxi'),
+    ('hired_motorbike', 'Hired motorbike'),
+    ('own_car', 'Own car'),
+    ('own_motorbike', 'Own motorbike'),
     ('bicycle', 'Bicycle'),
     ('foot', 'Foot'),
-    (NOT_APPLICABLE, 'Not Applicable')
+    (NOT_APPLICABLE, 'Not applicable')
 )
 
 URINE_CULTURE_RESULTS_ORGANISM = (
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
     ('e_coli', 'E.coli'),
-    ('klebsiella_sp', 'Klebsiella sp.'),
+    ('klebsiella_sp', 'Klebsiella spp.'),
     (OTHER, 'Other'),
 )
 
 VISIT_UNSCHEDULED_REASON = (
     ('patient_unwell_outpatient', 'Patient unwell (outpatient)'),
     ('recurrence_symptoms', 'Recurrence of symptoms'),
-    ('raised_icp_management', 'Raised ICP Management'),
+    ('raised_icp_management', 'Raised ICP management'),
     ('art_initiation', 'ART initiation'),
     ('patient_hospitalised', 'Patient hospitalised'),
     (OTHER, 'Other'),
@@ -448,26 +450,26 @@ DOSES_MISSED = (
 
 
 MG_MMOL_UNITS = (
-    (MILLIGRAMS_PER_DECILITER, 'mg/dL'),
-    (MILLIMOLES_PER_LITER, 'mmol/L'),
+    (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
+    (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),
 )
 
 MG_UMOL_UNITS = (
-    (MILLIGRAMS_PER_DECILITER, 'mg/dL'),
+    (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
     (MICROMOLES_PER_LITER, 'μmol/L'),
 )
 
 MM3_PERC_UNITS = (
-    ('mm3', 'mm3'),
+    ('mm3', mark_safe('mm<sup>3</sup>')),
     ('%', '%'),
-    (NOT_APPLICABLE, 'Not Applicable'),
+    (NOT_APPLICABLE, 'Not applicable'),
 )
 
 POS_NEG = (
     (POS, 'Positive'),
     (NEG, 'Negative'),
     (IND, 'Indeterminate'),
-    ('not_done', 'Not Done'),
+    ('not_done', 'Not done'),
 )
 
 RANKIN_SCORE = (
@@ -504,14 +506,14 @@ YES_NO = (
 YES_NO_ND = (
     (YES, 'Yes'),
     (NO, 'No'),
-    ('not_done', 'Not Done'),
+    ('not_done', 'Not done'),
 )
 
 YES_NO_ALREADY_ND = (
     (YES, 'Yes'),
     (NO, 'No'),
     ('already_on_rifampicin', 'Already on Rifampicin'),
-    ('not_done', 'Not Done'),
+    ('not_done', 'Not done'),
 )
 
 YES_NO_ALREADY = (

@@ -1,12 +1,12 @@
-from ambition_validators import LumbarPunctureCSFFormValidator
+from ambition_validators import LumbarPunctureCsfFormValidator
 
 from ..models import LumbarPunctureCsf
 from .form_mixins import SubjectModelFormMixin
 
 
-class LumbarPunctureCSFForm(SubjectModelFormMixin):
+class LumbarPunctureCsfForm(SubjectModelFormMixin):
 
-    form_validator_cls = LumbarPunctureCSFFormValidator
+    form_validator_cls = LumbarPunctureCsfFormValidator
 
     class Meta:
         model = LumbarPunctureCsf

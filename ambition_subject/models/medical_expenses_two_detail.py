@@ -30,15 +30,14 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
         MedicalExpensesTwo, on_delete=PROTECT)
 
     location_care = models.CharField(
-        verbose_name='b .Where did you receive treatment or care?',
+        verbose_name='Where did you receive treatment or care?',
         max_length=35,
         choices=LOCATION_CARE)
 
     location_care_other = OtherCharField()
 
     transport_form = models.CharField(
-        verbose_name='Which form of transport did you take to reach '
-        'there?',
+        verbose_name='Which form of transport did you take to reach there?',
         max_length=20,
         choices=TRANSPORT,
         default=NOT_APPLICABLE)
@@ -55,7 +54,7 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
         verbose_name='How long did it take you to reach there?',
         validators=[hm_validator],
         max_length=8,
-        help_text='in hours:minutes',
+        help_text='Specify as hours:minutes (format HH:MM)',
         null=True,
         blank=True)
 
@@ -65,15 +64,13 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
         choices=CARE_PROVIDER)
 
     care_provider_other = OtherCharField(
-        verbose_name='If Other Specify:',
         max_length=25,
         blank=True,
         null=True)
 
     paid_treatment = models.CharField(
         verbose_name=(
-            'Did you pay for the consultation '
-            'you received during that visit'),
+            'Did you pay for the consultation you received during that visit'),
         max_length=15,
         choices=YES_NO)
 
@@ -104,7 +101,7 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
         'for the treatment of the present situation?',
         max_length=15,
         choices=YES_NO,
-        help_text='If Yes, click "Add another Medical Expenses Part 2: Detail" below.')
+        help_text='If YES, click "Add another Medical Expenses Part 2: Detail" below.')
 
     objects = ModelManager()
 

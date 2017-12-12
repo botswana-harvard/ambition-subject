@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 from edc_base.model_fields import OtherCharField, IsDateEstimatedFieldNa
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
@@ -38,7 +39,7 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO)
 
     tb_site = models.CharField(
-        verbose_name='If Yes, site of TB?',
+        verbose_name='If YES, site of TB?',
         max_length=15,
         choices=TB_SITE,
         default=NOT_APPLICABLE)
@@ -49,13 +50,13 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO)
 
     taking_rifampicin = models.CharField(
-        verbose_name='If yes, are you currently also taking Rifampicin?',
+        verbose_name='If YES, are you currently also taking Rifampicin?',
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
 
     rifampicin_started_date = models.DateField(
-        verbose_name='If yes, when did you first start taking Rifampicin?',
+        verbose_name='If YES, when did you first start taking Rifampicin?',
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -66,13 +67,13 @@ class PatientHistory(CrfModelMixin):
         choices=YES_NO)
 
     taking_arv = models.CharField(
-        verbose_name='If No, Already taking ARVs?',
+        verbose_name='If NO, already taking ARVs?',
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
 
     arv_date = models.DateField(
-        verbose_name='If yes, date ARVs were started.',
+        verbose_name='If YES, date ARVs were started.',
         validators=[date_not_future],
         null=True,
         blank=True)
@@ -82,7 +83,7 @@ class PatientHistory(CrfModelMixin):
         default=NOT_APPLICABLE)
 
     first_arv_regimen = models.CharField(
-        verbose_name='Drug used in first line arv regimen',
+        verbose_name='Drug used in first line ARV regimen',
         max_length=50,
         choices=FIRST_ARV_REGIMEN,
         default=NOT_APPLICABLE)
@@ -90,7 +91,7 @@ class PatientHistory(CrfModelMixin):
     first_arv_regimen_other = OtherCharField()
 
     second_arv_regimen = models.CharField(
-        verbose_name='Second line arv regimen',
+        verbose_name='Second line ARV regimen',
         max_length=50,
         choices=SECOND_ARV_REGIMEN,
         default=NOT_APPLICABLE)
@@ -110,14 +111,13 @@ class PatientHistory(CrfModelMixin):
         default=NOT_APPLICABLE)
 
     tablets_missed = models.IntegerField(
-        verbose_name='If no, how many tablets missed in the last month?',
+        verbose_name='If NO, how many tablets missed in the last month?',
         validators=[MinValueValidator(0), MaxValueValidator(31)],
         null=True,
         blank=True)
 
     last_dose = models.IntegerField(
-        verbose_name='If no tablets taken this month, how many months '
-        'since the last dose taken?',
+        verbose_name=('If NO, how many months since the last dose taken?'),
         validators=[MinValueValidator(0)],
         null=True,
         blank=True)
@@ -131,14 +131,14 @@ class PatientHistory(CrfModelMixin):
         help_text='copies/mL')
 
     viral_load_date = models.DateField(
-        verbose_name='Viral load date',
+        verbose_name='Viral Load date',
         validators=[date_not_future],
         null=True,
         blank=True
     )
 
     vl_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name=("Is the subject's viral load date estimated?"),
+        verbose_name=("Is the subject's Viral Load date estimated?"),
         default=NOT_APPLICABLE)
 
     last_cd4 = models.IntegerField(
@@ -146,7 +146,7 @@ class PatientHistory(CrfModelMixin):
         validators=[MinValueValidator(1), MaxValueValidator(2500)],
         null=True,
         blank=True,
-        help_text='acceptable units are mm3')
+        help_text=mark_safe('acceptable units are mm<sup>3</sup>'))
 
     cd4_date = models.DateField(
         verbose_name='CD4 date',
@@ -167,22 +167,22 @@ class PatientHistory(CrfModelMixin):
         help_text='in degrees Celcius')
 
     heart_rate = models.IntegerField(
-        verbose_name='Heart Rate:',
+        verbose_name='Heart rate:',
         validators=[MinValueValidator(30), MaxValueValidator(200)],
         help_text='bpm')
 
     sys_blood_pressure = models.IntegerField(
-        verbose_name='Blood Pressure: systolic',
+        verbose_name='Blood pressure: systolic',
         validators=[MinValueValidator(50), MaxValueValidator(220)],
         help_text='in mm. format SYS, e.g. 120')
 
     dia_blood_pressure = models.IntegerField(
-        verbose_name='Blood Pressure: diastolic',
+        verbose_name='Blood pressure: diastolic',
         validators=[MinValueValidator(20), MaxValueValidator(150)],
         help_text='in Hg. format DIA, e.g. 80')
 
     respiratory_rate = models.IntegerField(
-        verbose_name='Respiratory Rate:',
+        verbose_name='Respiratory rate:',
         validators=[MinValueValidator(6), MaxValueValidator(50)],
         help_text='breaths/min')
 
@@ -191,7 +191,7 @@ class PatientHistory(CrfModelMixin):
         validators=[MinValueValidator(20), MaxValueValidator(150)],
         decimal_places=1,
         max_digits=4,
-        help_text='Kg')
+        help_text='kg')
 
     weight_determination = models.CharField(
         verbose_name='Is weight estimated or measured?',
@@ -208,14 +208,13 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     neurological_other = OtherCharField(
-        verbose_name='If other CN palsy, specify',
+        verbose_name='If "Other CN palsy", specify',
         max_length=250,
         blank=True,
         null=True)
 
     focal_neurologic_deficit = models.TextField(
-        verbose_name='If focal neurologic deficit chosen, please '
-        'specify details:',
+        verbose_name='If "Focal neurologic deficit" chosen, please specify details:',
         null=True,
         blank=True)
 
@@ -226,21 +225,21 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     left_acuity = models.DecimalField(
-        verbose_name='Visual acuity Left eye:',
+        verbose_name='Visual acuity left eye:',
         decimal_places=3,
         max_digits=4,
         null=True,
         blank=True)
 
     right_acuity = models.DecimalField(
-        verbose_name='Visual Acuity Right eye',
+        verbose_name='Visual acuity right eye',
         decimal_places=3,
         max_digits=4,
         null=True,
         blank=True)
 
     ecog_score = models.CharField(
-        verbose_name='ECOG Disability score',
+        verbose_name='ECOG Disability Score',
         max_length=15,
         choices=ECOG_SCORE)
 
@@ -264,7 +263,6 @@ class PatientHistory(CrfModelMixin):
         blank=True)
 
     specify_medications_other = models.TextField(
-        verbose_name='...if "Other", specify',
         max_length=150,
         blank=True,
         null=True)
@@ -277,4 +275,5 @@ class PatientHistory(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name_plural = 'Patients History'
+        verbose_name = 'Patient\'s History'
+        verbose_name_plural = 'Patient\'s History'

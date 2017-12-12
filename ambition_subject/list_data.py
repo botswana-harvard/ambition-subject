@@ -1,8 +1,8 @@
+from edc_action_item import site_action_items
 from edc_list_data import PreloadData
 from edc_constants.constants import OTHER, UNKNOWN, NORMAL
 
 from .constants import HEADACHE, VISUAL_LOSS
-from edc_action_item.site_action_items import site_action_items
 
 site_action_items.populate_action_type()
 
@@ -37,16 +37,16 @@ list_data = {
         ('vomiting', 'Vomiting'),
         ('fever', 'Fever'),
         ('seizures', 'Seizures'),
-        ('neck_pain', 'Neck Pain'),
+        ('neck_pain', 'Neck pain'),
         (OTHER, 'Other')
     ],
     'ambition_subject.missedvisitreason': [
         ('transportation_difficulty', 'Transportation difficulty'),
         ('severely_sick', 'Severely sick or other physical conditions'),
-        ('discouraged_by_clinic_situation', 'Discouraged by clinic situation '
-                                            '(long waits, rude clinicians)'),
-        ('away_working_schooling', 'Away Working/Schooling'),
-        ('away_visiting', 'Away Visiting'),
+        ('discouraged_by_clinic_situation',
+         'Discouraged by clinic situation (long waits, rude clinicians)'),
+        ('away_working_schooling', 'Away working/schooling'),
+        ('away_visiting', 'Away visiting'),
         ('forgot', 'Forgot about appointment for clinic visit'),
         ('not_given_an_appointment', 'Not given an appointment'),
         (OTHER, 'Other, specify;'),
@@ -72,7 +72,7 @@ list_data = {
         ('magnesium', 'Magnesium'),
         ('vitamins', ' Vitamins'),
         ('tmp_smx_Cotrimoxazole', ' TMP-SMX/Cotrimoxazole'),
-        ('anti_convulsants', 'Anti convulsants'),
+        ('anti_convulsants', 'Anticonvulsants'),
         ('antibiotics', 'Antibiotics'),
         (OTHER, 'Other, specify')
     ],
@@ -101,17 +101,17 @@ list_data = {
         ('seizures_gt_72', 'Seizures (72 hrs - 1 mo)'),
         ('nausea', 'Nausea'),
         ('vomiting', 'Vomiting'),
-        ('weight_loss', 'Weight Loss'),
-        ('skin_lesions', 'Skin Lesions'),
+        ('weight_loss', 'Weight loss'),
+        ('skin_lesions', 'Skin lesions'),
         ('shortness_of_breath', 'Shortness of breath'),
     ],
     'ambition_subject.abnormalresultsreason': [
         ('cerebral_oedema', 'Cerebral oedema'),
         ('hydrocephalus', 'Hydrocephalus'),
         ('cryptococcomas', 'Cryptococcomas'),
-        ('dilated_virchow_robin_spaces', 'Dilated Virchow robin spaces'),
+        ('dilated_virchow_robin_spaces', 'Dilated Virchow-Robin spaces'),
         ('enhancing_mass_lesions',
-         'Enhancing mass lesions DD Toxoplasmosis, TB, lymphoma'),
+         'Enhancing mass lesions DD toxoplasmosis, TB, lymphoma'),
         ('infarcts', 'Infarcts'),
         (OTHER, 'Other'),
     ],

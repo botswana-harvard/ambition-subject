@@ -67,8 +67,8 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = PkPdCrfForm
     conditional_fieldsets = {
-        DAY1: Fieldset(*day1, section='Pk and Dk Crf'),
-        DAY7: Fieldset(*day7, section='Pk and Dk Crf'),
+        DAY1: Fieldset(*day1, section='DAY 1'),
+        DAY7: Fieldset(*day7, section='DAY 7'),
     }
     radio_fields = {
         'on_art': admin.VERTICAL,
@@ -84,7 +84,7 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'time_csf_sample_taken': admin.VERTICAL}
 
     fieldsets = (
-        ('Pk and DK Crf', {
+        (None, {
             'fields': (
                 'weight',
                 'cd4_cell_count',

@@ -7,8 +7,9 @@ from edc_constants.constants import NOT_APPLICABLE, NO
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED, MILLIMOLES_PER_LITER
-from edc_reportable import COPIES_PER_MILLILITER, TEN_X_3_PER_LITER
+from edc_reportable import COPIES_PER_MILLILITER, TEN_X_3_PER_LITER, TEN_X_3_PER_LITER_DISPLAY
 from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER
+from edc_reportable import TEN_X_9_PER_LITER_DISPLAY, CELLS_PER_MILLIMETER_CUBED_DISPLAY
 from edc_reportable import site_reportables
 
 from ..action_items import BloodResultAction
@@ -33,7 +34,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     wbc_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((TEN_X_3_PER_LITER, TEN_X_3_PER_LITER), ),
+        choices=((TEN_X_3_PER_LITER, TEN_X_3_PER_LITER_DISPLAY), ),
         default=TEN_X_3_PER_LITER,
         null=True,
         blank=True)
@@ -62,7 +63,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     platelets_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER), ),
+        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER_DISPLAY), ),
         default=TEN_X_9_PER_LITER,
         null=True,
         blank=True)
@@ -122,7 +123,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     neutrophil_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER), ),
+        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER_DISPLAY), ),
         default=TEN_X_9_PER_LITER,
         null=True,
         blank=True)
@@ -328,7 +329,8 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     cd4_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((CELLS_PER_MILLIMETER_CUBED, CELLS_PER_MILLIMETER_CUBED), ),
+        choices=((CELLS_PER_MILLIMETER_CUBED,
+                  CELLS_PER_MILLIMETER_CUBED_DISPLAY), ),
         default=CELLS_PER_MILLIMETER_CUBED,
         null=True,
         blank=True)
@@ -385,13 +387,13 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         max_length=5)
 
     results_reportable = models.CharField(
-        verbose_name='If any results are abnormal, are results within Grade III '
+        verbose_name='If any results are abnormal, are results within grade III '
                      'or above?',
         max_length=5,
         choices=YES_NO_NA,
         help_text=('If YES, this value will open Adverse Event Form.<br/><br/>'
-                   'Note: On Day 1 only abnormal bloods should not be reported as Adverse'
-                   'Events.'))
+                   'Note: On Day 1 only abnormal bloods should not be reported as adverse'
+                   'events.'))
 
     summary = models.TextField(
         null=True,

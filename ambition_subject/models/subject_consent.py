@@ -51,7 +51,7 @@ class SubjectConsent(
                      'only in upper case, no spaces.')), ])
 
     screening_identifier = models.CharField(
-        verbose_name='Screening Identifier',
+        verbose_name='Screening identifier',
         max_length=50)
 
     is_signed = models.BooleanField(default=False, editable=False)

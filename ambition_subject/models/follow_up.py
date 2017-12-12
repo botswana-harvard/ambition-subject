@@ -11,7 +11,7 @@ from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
 class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
 
     fluconazole_dose = models.CharField(
-        verbose_name='Fluconazole dose (Day prior to visit)',
+        verbose_name='Fluconazole dose (day prior to visit)',
         max_length=25,
         choices=FLUCONAZOLE_DOSE)
 
@@ -25,7 +25,7 @@ class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
         choices=YES_NO_ALREADY_ND)
 
     rifampicin_start_date = models.DateField(
-        verbose_name='Date rifampicin started',
+        verbose_name='Date Rifampicin started',
         validators=[date_not_future],
         null=True,
         blank=True,)
@@ -57,4 +57,5 @@ class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name_plural = 'Follow up'
+        verbose_name = 'Follow-up'
+        verbose_name_plural = 'Follow-up'

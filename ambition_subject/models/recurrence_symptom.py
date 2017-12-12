@@ -23,11 +23,11 @@ class RecurrenceSymptom(CrfModelMixin):
         blank=True)
 
     patient_readmitted = models.CharField(
-        verbose_name=('Has the patient been readmitted due to these recurrent '
-                      ' symptoms?'),
+        verbose_name=(
+            'Has the patient been readmitted due to these recurrent symptoms?'),
         max_length=5,
         choices=YES_NO,
-        help_text='If Yes, complete AE CRF.')
+        help_text='If YES, complete AE CRF.')
 
     glasgow_coma_score = models.IntegerField(
         verbose_name='Score:',
@@ -54,7 +54,7 @@ class RecurrenceSymptom(CrfModelMixin):
         verbose_name='neurologic:')
 
     focal_neurologic_deficit = models.CharField(
-        verbose_name='If focal neurologic deficit chosen, please specify',
+        verbose_name='If "Focal neurologic deficit" chosen, please specify',
         max_length=15,
         null=True,
         blank=True)
@@ -76,13 +76,13 @@ class RecurrenceSymptom(CrfModelMixin):
         choices=YES_NO)
 
     amb_duration = models.IntegerField(
-        verbose_name='If yes, specify length of course',
+        verbose_name='If YES, specify length of course',
         validators=[MinValueValidator(1)],
         null=True,
         blank=True)
 
     tb_treatment = models.CharField(
-        verbose_name='TB Treatment:',
+        verbose_name='TB treatment:',
         max_length=5,
         choices=YES_NO)
 
@@ -91,13 +91,13 @@ class RecurrenceSymptom(CrfModelMixin):
         choices=YES_NO)
 
     steroids_duration = models.IntegerField(
-        verbose_name='If yes, specify the length of course in days:',
+        verbose_name='If YES, specify the length of course in days:',
         validators=[MinValueValidator(1)],
         null=True,
         blank=True)
 
     steroids_choices = models.CharField(
-        verbose_name='If Yes',
+        verbose_name='If YES',
         max_length=25,
         default=NOT_APPLICABLE,
         choices=STEROIDS_CHOICES)
@@ -125,7 +125,7 @@ class RecurrenceSymptom(CrfModelMixin):
         null=True)
 
     on_arvs = models.CharField(
-        verbose_name='On ARVS:',
+        verbose_name='On ARVs:',
         max_length=26,
         choices=YES_NO_ALREADY_ARV)
 
@@ -143,16 +143,16 @@ class RecurrenceSymptom(CrfModelMixin):
     narrative_summary = models.TextField(
         verbose_name='Narrative summary of recurrence of symptoms:',
         help_text=(
-            'Please ensure the following forms have been completed:'
-            ' LP, Bloods, Microbiology, Radiology'))
+            'Please ensure the following forms have been completed: '
+            'LP, Bloods, Microbiology, Radiology'))
 
     dr_opinion = models.CharField(
-        verbose_name='Study Dr’s opinion:',
+        verbose_name='Study doctor\'s opinion:',
         max_length=10,
         choices=DR_OPINION)
 
     dr_opinion_other = models.CharField(
-        verbose_name='If other doctor opinion, please specify',
+        verbose_name='If other doctor\'s opinion, please specify',
         blank=True,
         max_length=50,
         null=True)

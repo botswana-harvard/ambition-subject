@@ -13,6 +13,7 @@ class ClinicNote(CrfModelMixin):
         max_length=100)
 
     cvs = models.TextField(
+        verbose_name='CVS',
         max_length=100)
 
     resp = models.TextField(

@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE, YES_NO_NOT_DONE
 
@@ -16,11 +17,11 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     opening_pressure = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(99)],
-        help_text='Units cm of H2O')
+        help_text=mark_safe('Units cm of H<sub>2</sub>O'))
 
     closing_pressure = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(99)],
-        help_text='Units cm of H2O')
+        help_text=mark_safe('Units cm of H<sub>2</sub>O'))
 
     csf_amount_removed = models.IntegerField(
         blank=True,
@@ -36,20 +37,20 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         help_text='Units CFU/ml')
 
     csf_culture = models.CharField(
-        verbose_name='Other organism (non-cryptococcus)',
+        verbose_name='Other organism (non-Cryptococcus)',
         max_length=15,
         choices=YES_NO_NOT_DONE,
         help_text='Complete after getting the results.')
 
     other_csf_culture = models.CharField(
-        verbose_name='If yes, specify organism:',
+        verbose_name='If YES, specify organism:',
         max_length=75,
         blank=True,
         null=True)
 
     csf_wbc_cell_count = models.IntegerField(
         verbose_name='Total CSF WBC cell count:',
-        help_text='acceptable units are mm3',
+        help_text=mark_safe('acceptable units are mm<sup>3</sup>'),
         validators=[MinValueValidator(0), MaxValueValidator(999)],
         null=True)
 
@@ -58,7 +59,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         validators=[MinValueValidator(0), MaxValueValidator(999)],
         blank=True,
         null=True,
-        help_text='acceptable units are mm3 or %')
+        help_text=mark_safe('acceptable units are mm<sup>3</sup> or %'))
 
     differential_lymphocyte_unit = models.CharField(
         choices=MM3_PERC_UNITS,
@@ -70,7 +71,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         validators=[MinValueValidator(0), MaxValueValidator(999)],
         blank=True,
         null=True,
-        help_text='acceptable units are mm3 or %')
+        help_text=mark_safe('acceptable units are mm<sup>3</sup> or %'))
 
     differential_neutrophil_unit = models.CharField(
         choices=MM3_PERC_UNITS,
@@ -112,7 +113,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         null=True)
 
     csf_cr_ag_lfa = models.CharField(
-        verbose_name='CSF CrAG done by CSF CrAG LFA:',
+        verbose_name='CSF CrAg done by CSF CrAg LFA:',
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
@@ -120,5 +121,5 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = 'Lumbar Puncture/Cerebrospinal Fluid'
-        verbose_name_plural = 'Lumbar Puncture/Cerebrospinal Fluid'
+        verbose_name = 'Lumbar puncture/Cerebrospinal fluid'
+        verbose_name_plural = 'Lumbar puncture/Cerebrospinal fluid'

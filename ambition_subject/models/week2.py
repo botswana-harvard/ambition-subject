@@ -184,7 +184,7 @@ class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
         choices=YES_NO)
 
     units = models.IntegerField(
-        verbose_name='If yes, No. of units',
+        verbose_name='If YES, no. of units',
         validators=[MinValueValidator(1)],
         null=True,
         blank=True)
@@ -200,11 +200,11 @@ class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
         validators=[MinValueValidator(20), MaxValueValidator(150)],
         decimal_places=1,
         max_digits=4,
-        help_text='Kg')
+        help_text='kg')
 
     medicines = models.ManyToManyField(
         Day14Medication,
-        verbose_name='Medicine Day 14:')
+        verbose_name='Medicine day 14:')
 
     medicine_other = models.CharField(
         verbose_name='If other, please specify:',
@@ -228,7 +228,7 @@ class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
         choices=YES_NO)
 
     amphotericin_missed_doses = models.CharField(
-        verbose_name='Were any Amphotericin b drug doses missed?',
+        verbose_name='Were any Amphotericin B drug doses missed?',
         max_length=25,
         choices=YES_NO)
 
@@ -257,6 +257,7 @@ class SignificantDiagnoses(SignificantDiagnosesModelMixin, BaseUuidModel):
     natural_key.dependencies = ['ambition_subject.week2']
 
     class Meta:
+        verbose_name = 'Significant Diagnosis'
         verbose_name_plural = 'Significant Diagnoses'
         unique_together = (
             'week2', 'possible_diagnoses', 'dx_date', 'dx_other')

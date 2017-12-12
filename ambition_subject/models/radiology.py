@@ -23,12 +23,12 @@ class Radiology(CrfModelMixin):
 
     cxr_type = models.ManyToManyField(
         CXRType,
-        verbose_name='If yes, result',
+        verbose_name='If YES, result',
         blank=True)
 
     infiltrate_location = models.ManyToManyField(
         InfiltrateLocation,
-        verbose_name='If Infiltrates, specify location',
+        verbose_name='If infiltrates, specify location',
         blank=True)
 
     cxr_description = models.TextField(
@@ -89,8 +89,7 @@ class Radiology(CrfModelMixin):
         null=True)
 
     infarcts_location = models.CharField(
-        verbose_name='If results are abnormal because of Infarcts, what is '
-                     'the location?',
+        verbose_name='If results are abnormal because of Infarcts, what is the location?',
         blank=True,
         max_length=50,
         null=True)

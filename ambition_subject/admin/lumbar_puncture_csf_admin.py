@@ -4,7 +4,7 @@ from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
 from ..constants import DAY1
-from ..forms import LumbarPunctureCSFForm
+from ..forms import LumbarPunctureCsfForm
 from ..models import LumbarPunctureCsf
 from .modeladmin_mixins import CrfModelAdminMixin
 
@@ -31,7 +31,7 @@ day1_lp = Fieldset('csf_wbc_cell_count',
 @admin.register(LumbarPunctureCsf, site=ambition_subject_admin)
 class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
-    form = LumbarPunctureCSFForm
+    form = LumbarPunctureCsfForm
 
     conditional_fieldsets = {
         DAY1: day1_lp

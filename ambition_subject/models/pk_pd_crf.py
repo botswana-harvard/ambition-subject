@@ -1,8 +1,11 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO
+from edc_reportable import CELLS_PER_MILLIMETER_CUBED_DISPLAY
+from edc_reportable import MILLIMOLES_PER_LITER, MILLIGRAMS_PER_DECILITER
 
 from ..choices import FLUCYTOSINE_DOSE_MISSED
 from .model_mixins import CrfModelMixin
@@ -17,13 +20,13 @@ class PkPdCrf(CrfModelMixin):
         help_text='in kg')
 
     cd4_cell_count = models.IntegerField(
-        verbose_name='CD4 Cell Count',
+        verbose_name='CD4 cell count',
         validators=[MinValueValidator(1), MaxValueValidator(999)],
         null=True,
-        help_text='in units/mm^3')
+        help_text=f'in {CELLS_PER_MILLIMETER_CUBED_DISPLAY}')
 
     on_art = models.CharField(
-        verbose_name='On antiretroviral treatment?',
+        verbose_name='On Antiretroviral treatment?',
         choices=YES_NO,
         max_length=5,
         null=True)
@@ -45,12 +48,12 @@ class PkPdCrf(CrfModelMixin):
     potassium = models.IntegerField(
         verbose_name='Potassium',
         null=True,
-        help_text='in mmol/L')
+        help_text=f'in {MILLIMOLES_PER_LITER}')
 
     magnesium = models.IntegerField(
         verbose_name='Magnesium',
         null=True,
-        help_text='in mg/dL')
+        help_text=f'in {MILLIGRAMS_PER_DECILITER}')
 
     haemoglobin = models.IntegerField(
         verbose_name='Haemoglobin',
@@ -61,12 +64,12 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     ambisome_dose_time_started = models.TimeField(
-        verbose_name='Time ambisome infusion started?',
+        verbose_name='Time Ambisome infusion started?',
         max_length=5,
         null=True)
 
     ambisome_dose_time_ended = models.TimeField(
-        verbose_name='Time ambisome infusion stopped',
+        verbose_name='Time Ambisome infusion stopped',
         max_length=5,
         null=True)
 
@@ -77,28 +80,32 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     flucytosine_dose = models.IntegerField(
-        verbose_name='Was the dose of flucytosine given?',
+        verbose_name='Was the dose of Flucytosine given?',
         null=True)
 
     flucytosine_dose_one_time = models.TimeField(
-        verbose_name='Time flucytosine DOSE 1 was swallowed?',
+        verbose_name=mark_safe(
+            'Time Flucytosine <u>DOSE&nbsp;1</u> was swallowed?'),
         max_length=5,
         null=True)
 
-    flucytosine_dose_two_time = models.IntegerField(
-        verbose_name='Time flucytosine DOSE 2 was swallowed?',
+    flucytosine_dose_two_time = models.TimeField(
+        verbose_name=mark_safe(
+            'Time Flucytosine <u>DOSE&nbsp;2</u> was swallowed?'),
         null=True)
 
-    flucytosine_dose_three_time = models.IntegerField(
-        verbose_name='Time flucytosine DOSE 3 was swallowed?',
+    flucytosine_dose_three_time = models.TimeField(
+        verbose_name=mark_safe(
+            'Time Flucytosine <u>DOSE&nbsp;3</u> was swallowed?'),
         null=True)
 
-    flucytosine_dose_four_time = models.IntegerField(
-        verbose_name='Time flucytosine DOSE 4 was swallowed?',
+    flucytosine_dose_four_time = models.TimeField(
+        verbose_name=mark_safe(
+            'Time Flucytosine <u>DOSE&nbsp;4</u> was swallowed?'),
         null=True)
 
     flucytosine_doses_missed = models.CharField(
-        verbose_name='Were any flucytosine doses missed?',
+        verbose_name='Were any Flucytosine doses missed?',
         choices=YES_NO,
         max_length=5,
         null=True)
@@ -139,31 +146,31 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     blood_sample_one_day_one = models.TimeField(
-        verbose_name='Time blood sample 1 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;1</u> taken?'),
         max_length=5,
         blank=True,
         null=True)
 
     blood_sample_two_day_one = models.TimeField(
-        verbose_name='Time blood sample 2 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;2</u> taken?'),
         max_length=5,
         blank=True,
         null=True)
 
     blood_sample_three_day_one = models.TimeField(
-        verbose_name='Time blood sample 3 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;3</u> taken?'),
         max_length=5,
         blank=True,
         null=True)
 
     blood_sample_four_day_one = models.TimeField(
-        verbose_name='Time blood sample 4 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;4</u> taken?'),
         max_length=5,
         blank=True,
         null=True)
 
     blood_sample_five_day_one = models.TimeField(
-        verbose_name='Time blood sample 5 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;5</u> taken?'),
         max_length=5,
         blank=True,
         null=True)
@@ -181,32 +188,32 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     blood_sample_one_day_seven = models.TimeField(
-        verbose_name='Time blood sample 1 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;1</u> taken?'),
         max_length=5,
         null=True)
 
     blood_sample_two_day_seven = models.TimeField(
-        verbose_name='Time blood sample 2 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;2</u> taken?'),
         max_length=5,
         null=True)
 
     blood_sample_three_day_seven = models.TimeField(
-        verbose_name='Time blood sample 3 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;3</u> taken?'),
         max_length=5,
         null=True)
 
     blood_sample_four_day_seven = models.TimeField(
-        verbose_name='Time blood sample 4 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;4</u> taken?'),
         max_length=5,
         null=True)
 
     blood_sample_five_day_seven = models.TimeField(
-        verbose_name='Time blood sample 5 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;5</u> taken?'),
         max_length=5,
         null=True)
 
     blood_sample_six_day_seven = models.TimeField(
-        verbose_name='Time blood sample 6 taken?',
+        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;6</u> taken?'),
         max_length=5,
         null=True)
 
@@ -253,27 +260,27 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     extra_csf_samples_time = models.TimeField(
-        verbose_name='If any further CSF samples were taken,'
-        ' please add here the exact time sample was taken',
+        verbose_name=('If any further CSF samples were taken, please add '
+                      'here the exact time sample was taken'),
         max_length=5,
         null=True)
 
     extra_csf_samples_date = models.DateField(
-        verbose_name='If any further CSF samples were taken,'
-        ' please add here the exact date sample was taken',
+        verbose_name=('If any further CSF samples were taken, '
+                      'please add here the exact date sample was taken'),
         validators=[datetime_not_future],
         max_length=5,
         null=True)
 
     extra_blood_samples_time = models.TimeField(
-        verbose_name='If any further blood samples were taken,'
-        ' please add here the exact time sample was taken',
+        verbose_name=('If any further blood samples were taken, '
+                      'please add here the exact time sample was taken'),
         max_length=5,
         null=True)
 
     extra_blood_samples_date = models.DateField(
-        verbose_name='If any further blood samples were taken,'
-        ' please add here the exact date sample was taken',
+        verbose_name=('If any further blood samples were taken, '
+                      'please add here the exact date sample was taken'),
         validators=[datetime_not_future],
         max_length=5,
         null=True)
@@ -281,4 +288,5 @@ class PkPdCrf(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = 'Pk Pd'
+        verbose_name = 'PK/PD'
+        verbose_name_plural = 'PK/PD'

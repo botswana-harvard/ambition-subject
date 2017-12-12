@@ -73,6 +73,7 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'activities_missed': admin.VERTICAL,
         'care_before_hospital': admin.VERTICAL,
         'currency': admin.VERTICAL,
+        'info_source': admin.VERTICAL,
         'loss_of_earnings': admin.VERTICAL,
         'form_of_transport': admin.VERTICAL,
         'loans': admin.VERTICAL,

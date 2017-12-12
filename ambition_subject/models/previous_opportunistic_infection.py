@@ -34,7 +34,6 @@ class PreviousOpportunisticInfection(BaseUuidModel):
         blank=True)
 
     previous_non_tb_oi_other = models.CharField(
-        verbose_name='If other, please specify',
         null=True,
         blank=True,
         max_length=50)

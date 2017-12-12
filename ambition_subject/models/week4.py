@@ -27,12 +27,11 @@ class Week4DiagnosesManager(models.Manager):
 class Week4(ClinicalAssessmentModelMixin, CrfModelMixin):
 
     fluconazole_dose = models.CharField(
-        verbose_name='Fluconazole dose (Day prior to visit)',
+        verbose_name='Fluconazole dose (day prior to visit)',
         max_length=25,
         choices=FLUCONAZOLE_DOSE)
 
     fluconazole_dose_other = OtherCharField(
-        verbose_name='If other, specify dose:',
         max_length=25)
 
     rifampicin_started = models.CharField(
@@ -41,7 +40,7 @@ class Week4(ClinicalAssessmentModelMixin, CrfModelMixin):
         choices=YES_NO_ALREADY_ND)
 
     rifampicin_start_date = models.DateField(
-        verbose_name='Date rifampicin started',
+        verbose_name='Date Rifampicin started',
         validators=[date_not_future],
         null=True,
         blank=True)

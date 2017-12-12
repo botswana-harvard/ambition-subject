@@ -8,7 +8,7 @@ from .education_hoh_form import EducationHohForm
 from .fluconazole_missed_doses_form import FluconazoleMissedDosesForm
 from .flucytosine_missed_doses_form import FlucytosineMissedDosesForm
 from .follow_up_form import FollowUpForm, FollowUpDiagnosesForm
-from .lumbar_puncture_csf_form import LumbarPunctureCSFForm
+from .lumbar_puncture_csf_form import LumbarPunctureCsfForm
 from .medical_expenses import MedicalExpensesForm
 from .medical_expenses_two_detail_form import MedicalExpensesTwoDetailForm
 from .medical_expenses_two_form import MedicalExpensesTwoForm

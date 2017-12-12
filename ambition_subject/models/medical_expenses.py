@@ -39,60 +39,59 @@ class MedicalExpenses(CrfModelMixin):
         validators=[MinValueValidator(0)])
 
     item_spend = models.DecimalField(
-        verbose_name='How much have you spent on large items '
-        '(e.g. furniture, electrical items, cars) in the last year?',
+        verbose_name=(
+            'How much have you spent on large items (e.g. furniture, electrical '
+            'items, cars) in the last year?'),
         decimal_places=2,
         max_digits=15,
         null=True,
         validators=[MinValueValidator(0)])
 
     personal_he_spend = models.DecimalField(
-        verbose_name='Over that last 4 weeks, how much have you '
-        'spent on activities relating to your health?',
+        verbose_name=('Over that last 4 weeks, how much have you '
+                      'spent on activities relating to your health?'),
         decimal_places=2,
         max_digits=15,
         null=True,
         validators=[MinValueValidator(0)])
 
     proxy_he_spend = models.DecimalField(
-        verbose_name='Over that last 4 weeks, how much'
-        ' has someone else spent on activities relating to your health?',
+        verbose_name=('Over that last 4 weeks, how much has someone else '
+                      'spent on activities relating to your health?'),
         decimal_places=2,
         max_digits=15,
         null=True,
         validators=[MinValueValidator(0)])
 
     he_spend_last_4weeks = models.DecimalField(
-        verbose_name='How much in total has been spent'
-        ' on your healthcare in the last 4 weeks?',
+        verbose_name=(
+            'How much in total has been spent on your healthcare in the last 4 weeks?'),
         decimal_places=2,
         max_digits=16,
         null=True,
         validators=[MinValueValidator(0)])
 
     care_before_hospital = models.CharField(
-        verbose_name='a. Have you received any treatment or care '
-        'for your present condition, before coming to the hospital?',
+        verbose_name=('Have you received any treatment or care '
+                      'for your present condition, before coming to the hospital?'),
         max_length=5,
         choices=YES_NO,
-        help_text="If Yes, please complete medical expenses part 2")
+        help_text="If YES, please complete medical expenses part 2")
 
     duration_present_condition = models.IntegerField(
-        verbose_name='How long have you been sick with your current '
-        'condition?',
+        verbose_name='How long have you been sick with your current condition?',
         validators=[MinValueValidator(1)],
         null=True,
         help_text='in days')
 
     activities_missed = models.CharField(
-        verbose_name='What would you have been doing '
-        'if you were not sick with your present condition',
+        verbose_name=('What would you have been doing if you were not sick '
+                      'with your present condition'),
         max_length=25,
         null=True,
         choices=ACTIVITIES_MISSED)
 
     activities_missed_other = OtherCharField(
-        verbose_name='If Other, Specify',
         max_length=25,
         blank=True,
         null=True)
@@ -107,8 +106,8 @@ class MedicalExpenses(CrfModelMixin):
         help_text='in days')
 
     carer_time_off = models.IntegerField(
-        verbose_name='How much time did a caring family member '
-        'take to accompany you to the hospital?',
+        verbose_name=('How much time did a caring family member '
+                      'take to accompany you to the hospital?'),
         validators=[MinValueValidator(0)],
         blank=True,
         null=True,
@@ -145,13 +144,12 @@ class MedicalExpenses(CrfModelMixin):
         verbose_name='How long did it take you to reach there?',
         validators=[hm_validator],
         max_length=8,
-        help_text='in hours:minutes',
+        help_text='Specify as hours:minutes (format HH:MM)',
         null=True,
         blank=True)
 
     loans = models.CharField(
-        verbose_name='Did you take out any loans to pay for your '
-        'healthcare?',
+        verbose_name='Did you take out any loans to pay for your healthcare?',
         max_length=5,
         choices=YES_NO
     )
@@ -175,8 +173,7 @@ class MedicalExpenses(CrfModelMixin):
     )
 
     welfare = models.CharField(
-        verbose_name='Do you receive any welfare or social service '
-        'support?',
+        verbose_name='Do you receive any welfare or social service support?',
         max_length=5,
         choices=YES_NO)
 

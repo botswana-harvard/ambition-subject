@@ -25,8 +25,8 @@ class Week16(CrfModelMixin):
             'Does the patient require help from anybody for everyday activities?'),
         max_length=5,
         choices=YES_NO_NA,
-        help_text=('For example eating, drinking, washing, brushing teeth,'
-                   ' going to the toilet.'))
+        help_text=('For example eating, drinking, washing, brushing teeth, '
+                   'going to the toilet.'))
 
     illness_problems = models.CharField(
         verbose_name='Has the illness left the patient with any other problems?',

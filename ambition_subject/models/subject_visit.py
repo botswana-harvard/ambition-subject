@@ -37,7 +37,6 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
         choices=VISIT_UNSCHEDULED_REASON)
 
     reason_unscheduled_other = OtherCharField(
-        verbose_name='If Other, Specify',
         max_length=25,
         blank=True,
         null=True)
