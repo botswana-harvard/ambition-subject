@@ -85,15 +85,15 @@ class PkPdCrf(CrfModelMixin):
         max_length=5,
         null=True)
 
-    flucytosine_dose_two_time = models.IntegerField(
+    flucytosine_dose_two_time = models.TimeField(
         verbose_name='Time flucytosine DOSE 2 was swallowed?',
         null=True)
 
-    flucytosine_dose_three_time = models.IntegerField(
+    flucytosine_dose_three_time = models.TimeField(
         verbose_name='Time flucytosine DOSE 3 was swallowed?',
         null=True)
 
-    flucytosine_dose_four_time = models.IntegerField(
+    flucytosine_dose_four_time = models.TimeField(
         verbose_name='Time flucytosine DOSE 4 was swallowed?',
         null=True)
 
