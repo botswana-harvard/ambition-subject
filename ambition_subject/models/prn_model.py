@@ -64,6 +64,18 @@ class PrnModel(CrfModelMixin):
         choices=YES_NO,
         default=NO)
 
+    fbc = models.CharField(
+        verbose_name='Add FBC',
+        max_length=5,
+        choices=YES_NO,
+        default=NO)
+
+    chemistry = models.CharField(
+        verbose_name='Add chemistry',
+        max_length=5,
+        choices=YES_NO,
+        default=NO)
+
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):

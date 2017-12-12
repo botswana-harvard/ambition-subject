@@ -508,7 +508,7 @@ class TestSubjectRules(TestCase):
                 subject_identifier=self.consent.subject_identifier,
                 panel_name='Viral Load',
                 visit_code=DAY5).entry_status,
-            NOT_REQUIRED)
+            REQUIRED)
 
     def test_cd4_required(self):
         appointment = Appointment.objects.get(
@@ -527,5 +527,64 @@ class TestSubjectRules(TestCase):
                 model='ambition_subject.subjectrequisition',
                 subject_identifier=self.consent.subject_identifier,
                 panel_name='CD4',
+                visit_code=DAY5).entry_status, REQUIRED)
+
+    def test_cd4_rule_d1(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code=DAY1)
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            cd4=YES)
+
+        self.assertEqual(
+            RequisitionMetadata.objects.get(
+                model='ambition_subject.subjectrequisition',
+                subject_identifier=self.consent.subject_identifier,
+                panel_name='CD4',
+                visit_code=DAY1).entry_status, REQUIRED)
+
+    def test_vl_required_d1(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code=DAY1)
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            viral_load=YES)
+
+        self.assertEqual(
+            RequisitionMetadata.objects.get(
+                model='ambition_subject.subjectrequisition',
+                subject_identifier=self.consent.subject_identifier,
+                panel_name='Viral Load',
+                visit_code=DAY1).entry_status,
+            REQUIRED)
+
+    @tag('a')
+    def test_fbc_required_d5(self):
+        appointment = Appointment.objects.get(
+            subject_identifier=self.consent.subject_identifier,
+            visit_code=DAY5)
+        self.subject_visit = SubjectVisit.objects.get(
+            appointment=appointment)
+
+        mommy.make_recipe(
+            'ambition_subject.prnmodel',
+            subject_visit=self.subject_visit,
+            fbc=YES)
+
+        self.assertEqual(
+            RequisitionMetadata.objects.get(
+                model='ambition_subject.subjectrequisition',
+                subject_identifier=self.consent.subject_identifier,
+                panel_name='Full Blood Count',
                 visit_code=DAY5).entry_status,
-            NOT_REQUIRED)
+            REQUIRED)
