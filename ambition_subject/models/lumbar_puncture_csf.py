@@ -39,6 +39,8 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         verbose_name='Other organism (non-cryptococcus)',
         max_length=15,
         choices=YES_NO_NOT_DONE,
+        blank=True,
+        null=True,
         help_text='Complete after getting the results.')
 
     other_csf_culture = models.CharField(
