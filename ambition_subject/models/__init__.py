@@ -6,6 +6,7 @@ from .disenrollment import Disenrollment
 from .education import Education
 from .education_hoh import EducationHoh
 from .enrollment import Enrollment
+from .enrollment_w10 import EnrollmentW10
 from .follow_up import FollowUp
 from .follow_up_diagnosis import FollowUpDiagnoses
 from .identifier_history import IdentifierHistory
