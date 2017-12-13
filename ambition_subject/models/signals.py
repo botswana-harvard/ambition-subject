@@ -1,12 +1,14 @@
 from ambition_rando.randomizer import Randomizer
 from ambition_screening.models import SubjectScreening
 from django.apps import apps as django_apps
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from edc_base.utils import get_utcnow
 
+from ..constants import CONSENT_WITHDRAWAL
 from .enrollment import Enrollment
 from .subject_consent import SubjectConsent
+from . import StudyTerminationConclusion, SubjectOffstudy
 
 post_delete.providing_args = set(["instance", "using", "raw"])
 
@@ -49,6 +51,21 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                 subject_identifier=randomizer.model_obj.subject_identifier,
                 rando_sid=randomizer.model_obj.sid,
                 rando_arm=randomizer.model_obj.drug_assignment)
+
+
+@receiver(post_save, weak=False, sender=StudyTerminationConclusion,
+          dispatch_uid='study_termination_conclusion_on_post_save')
+def study_termination_conclusion_on_post_save(sender, instance, raw, created, **kwargs):
+    if instance.termination_reason != CONSENT_WITHDRAWAL:
+        try:
+            SubjectOffstudy.objects.get(
+                subject_identifier=instance.subject_identifier)
+        except ObjectDoesNotExist:
+            offstudy_obj = SubjectOffstudy(
+                subject_identifier=instance.subject_identifier,
+                offstudy_datetime=instance.created,
+                reason=instance.termination_reason)
+            offstudy_obj.save()
 
 
 # @receiver(post_save, weak=False, sender=PatientHistory,

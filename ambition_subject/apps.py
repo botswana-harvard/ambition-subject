@@ -10,7 +10,8 @@ class AppConfig(DjangoApponfig):
     include_in_administration_section = False
 
     def ready(self):
-        from .models.signals import subject_consent_on_post_save
+        from .models.signals import (subject_consent_on_post_save,
+                                     study_termination_conclusion_on_post_save)
 
 
 if settings.APP_NAME == 'ambition_subject':
