@@ -8,7 +8,7 @@ from edc_reportable import GRADE3, GRADE4, MICROMOLES_PER_LITER_DISPLAY, MM3, MM
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
 
 from .constants import AZT_3TC_with_ATZ_r_or_Lopinavir_r
-from .constants import AZT_3TC_with_EFV_NVP_or_DTG
+from .constants import AZT_3TC_with_EFV_NVP_or_DTG, DEAD
 from .constants import CONSENT_WITHDRAWAL, ROUTINE_APPT, THREE_DOSES, TWO_DOSES
 from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
@@ -357,9 +357,10 @@ REASON_DRUG_MISSED = (
 )
 
 REASON_STUDY_TERMINATED = (
-    ('10_weeks_completed_follow_up', 'Patient completed 10 weeks of follow-up'),
+    ('10_weeks_completed_follow_up',
+     'Patient completed 10 weeks of follow-up'),
     ('patient_lost_to_follow_up', 'Patient lost to follow-up'),
-    ('dead', 'Reported/known to have died'),
+    (DEAD, 'Reported/known to have died'),
     (CONSENT_WITHDRAWAL, 'Withdrawal of Subject Consent for '
      'participation'),
     ('care_transferred_to_another_institution',
