@@ -1,29 +1,41 @@
 from django.db import models
+from django.utils import timezone
 from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
+from edc_constants.date_constants import EDC_DATETIME_FORMAT
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_identifier.managers import TrackingIdentifierManager
+from edc_offstudy.model_mixins import ValidateOffstudyModelMixin
+from edc_protocol.validators import datetime_not_before_study_start
 
 from ...action_items import StudyTerminationConclusionAction
 from ...choices import FIRST_ARV_REGIMEN, FIRST_LINE_REGIMEN, SECOND_ARV_REGIMEN
 from ...choices import REASON_STUDY_TERMINATED, YES_NO_ALREADY
+from ..subject_visit import SubjectVisit
+
+
+class StudyTerminationConclusionError(Exception):
+    pass
 
 
 class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
+                                 ValidateOffstudyModelMixin,
                                  ActionItemModelMixin, TrackingIdentifierModelMixin,
                                  BaseUuidModel):
 
     action_cls = StudyTerminationConclusionAction
     tracking_identifier_prefix = 'ST'
 
-    patient_terminated_date = models.DateField(
+    offstudy_datetime = models.DateTimeField(
         verbose_name='Date patient terminated on study:',
-        validators=[date_not_future])
+        validators=[
+            datetime_not_before_study_start,
+            date_not_future])
 
     last_study_fu_date = models.DateField(
         verbose_name='Date of last research follow up (if different):',
@@ -163,9 +175,22 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
 
     history = HistoricalRecords()
 
+    def save(self, *args, **kwargs):
+        if not self.consented_before_offstudy:
+            formatted_date = timezone.localtime(
+                self.offstudy_datetime).strftime(EDC_DATETIME_FORMAT)
+            raise StudyTerminationConclusionError(
+                f'Date patient terminated may not be before the date '
+                f'of consent. Got {formatted_date}.')
+        visit_model_cls = SubjectVisit
+        self.offstudy_datetime_after_last_visit_or_raise(
+            visit_model_cls=visit_model_cls)
+        super().save(*args, **kwargs)
+
     def natural_key(self):
         return (self.tracking_identifier, )
 
     class Meta:
+        consent_model = 'ambition_subject.subjectconsent'
         verbose_name = 'Study Termination/Conclusion'
         verbose_name_plural = 'Study Terminations/Conclusions'
