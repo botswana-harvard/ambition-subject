@@ -48,7 +48,9 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'lumbar_puncture': admin.VERTICAL,
         'blood_result': admin.VERTICAL,
         'viral_load': admin.VERTICAL,
-        'cd4': admin.VERTICAL, }
+        'cd4': admin.VERTICAL,
+        'fbc': admin.VERTICAL,
+        'chemistry': admin.VERTICAL, }
 
     fieldsets = (
         ['PRN', {
