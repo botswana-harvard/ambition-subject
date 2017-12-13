@@ -9,6 +9,7 @@ from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_identifier.managers import TrackingIdentifierManager
 
+from ...action_items import StudyTerminationConclusionAction
 from ...choices import FIRST_ARV_REGIMEN, FIRST_LINE_REGIMEN, SECOND_ARV_REGIMEN
 from ...choices import REASON_STUDY_TERMINATED, YES_NO_ALREADY
 
@@ -17,6 +18,7 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
                                  ActionItemModelMixin, TrackingIdentifierModelMixin,
                                  BaseUuidModel):
 
+    action_cls = StudyTerminationConclusionAction
     tracking_identifier_prefix = 'ST'
 
     patient_terminated_date = models.DateField(
