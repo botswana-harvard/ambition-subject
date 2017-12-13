@@ -71,6 +71,9 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'immunology_units': admin.VERTICAL,
         'immunology_abnormal': admin.VERTICAL,
         'immunology_reportable': admin.VERTICAL,
+        'vl_units': admin.VERTICAL,
+        'vl_abnormal': admin.VERTICAL,
+        'vl_reportable': admin.VERTICAL,
         'urea_units': admin.VERTICAL,
         'urea_abnormal': admin.VERTICAL,
         'urea_reportable': admin.VERTICAL, }
