@@ -4,8 +4,8 @@ from ...constants import DAY1, DAY7, DAY14, WEEK4, WEEK6, WEEK8, WEEK10
 
 fs = {}
 fields = [
-    ('alt', 'LFT', 'urea'),
-    ('cd4', 'Immunology', None),
+    ('ALT', 'LFT', 'urea'),
+    ('CD4', 'Immunology', None),
     ('vl', 'Immunology', None),
     ('creatinine', 'RFT', None),
     ('haemoglobin', 'CBC', None),
@@ -32,28 +32,28 @@ fs.update({'crag': Fieldset(
 
 conditional_fieldsets = {
     DAY1: (
-        fs.get('alt'),
+        fs.get('ALT'),
         fs.get('wbc'),
         fs.get('platelets'),
         fs.get('haemoglobin'),
         fs.get('neutrophil'),
-        fs.get('cd4'),
+        fs.get('CD4'),
         fs.get('vl'),
         fs.get('crag')),
     DAY7: (
-        fs.get('alt'),
+        fs.get('ALT'),
         fs.get('wbc'),
         fs.get('platelets'),
         fs.get('haemoglobin'),
         fs.get('neutrophil')),
     DAY14: (
-        fs.get('alt'),
+        fs.get('ALT'),
         fs.get('wbc'),
         fs.get('platelets'),
         fs.get('haemoglobin'),
         fs.get('neutrophil')),
     WEEK4: (
-        fs.get('alt'),
+        fs.get('ALT'),
         fs.get('wbc'),
         fs.get('platelets'),
         fs.get('haemoglobin'),
