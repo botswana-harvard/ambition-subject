@@ -2,7 +2,7 @@ from django.apps import apps as django_apps
 from django import forms
 from ambition_validators import StudyTerminationConclusionFormValidator
 
-from ..models import PatientHistory, StudyTerminationConclusion
+from ..models import DeathReport, PatientHistory, StudyTerminationConclusion
 from .form_mixins import SubjectModelFormMixin
 
 
@@ -13,7 +13,7 @@ class StudyTerminationConclusionForm(SubjectModelFormMixin):
         try:
             form_validator = StudyTerminationConclusionFormValidator(
                 cleaned_data=cleaned_data, instance=self.instance,
-                patient_history_cls=django_apps.get_model(PatientHistory._meta.label_lower))
+                patient_history_cls=PatientHistory, death_report_cls=DeathReport)
         except TypeError:
             pass
         else:
