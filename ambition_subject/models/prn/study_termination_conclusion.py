@@ -87,7 +87,7 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
 
     willing_to_complete_centre = models.CharField(
         verbose_name='Is the patient willing to complete the W10'
-        'and W16 FU visit only at their new care centre?',
+        ' and W16 FU visit only at their new care centre?',
         max_length=17,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
