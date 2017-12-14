@@ -25,6 +25,7 @@ STUDY_TERMINATION_CONCLUSION_ACTION = 'submit-study-termination-conclusion'
 THREE_DOSES = 'three_doses'
 TWO_DOSES = 'two_doses'
 VIBRIO = 'vibrio'
+AWAITING_RESULTS = 'awaiting_results'
 
 AZT_3TC_with_ATZ_r_or_Lopinavir_r = 'AZT_3TC_with_ATZ_r_or_Lopinavir_r'
 AZT_3TC_with_EFV_NVP_or_DTG = 'AZT_3TC_with_EFV_NVP_or_DTG'

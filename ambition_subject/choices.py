@@ -13,6 +13,7 @@ from .constants import CONSENT_WITHDRAWAL, ROUTINE_APPT, THREE_DOSES, TWO_DOSES
 from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
+from ambition_subject.constants import AWAITING_RESULTS
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -540,4 +541,11 @@ YES_NO_RESULTS_UNKNOWN = (
 PATIENT_REL = (
     ('patient', 'Patient'),
     ('next_of_kin', 'Next of Kin/Relative'),
+)
+
+YES_NO_NOT_DONE_WAIT_RESULTS = (
+    (YES, YES),
+    (NO, NO),
+    (AWAITING_RESULTS, 'Awaiting results'),
+    (NOT_DONE, 'Not done'),
 )

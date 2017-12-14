@@ -2,10 +2,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE, YES_NO_NOT_DONE
+from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
+from ..choices import YES_NO_NOT_DONE_WAIT_RESULTS
 from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
+from ambition_subject.constants import AWAITING_RESULTS
 
 
 class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
@@ -38,10 +40,9 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     csf_culture = models.CharField(
         verbose_name='Other organism (non-Cryptococcus)',
-        max_length=15,
-        choices=YES_NO_NOT_DONE,
-        blank=True,
-        null=True,
+        max_length=18,
+        choices=YES_NO_NOT_DONE_WAIT_RESULTS,
+        default=AWAITING_RESULTS,
         help_text='Complete after getting the results.')
 
     other_csf_culture = models.CharField(
