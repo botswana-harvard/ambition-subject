@@ -63,7 +63,7 @@ def study_termination_conclusion_on_post_save(sender, instance, raw, created, **
         except ObjectDoesNotExist:
             offstudy_obj = SubjectOffstudy(
                 subject_identifier=instance.subject_identifier,
-                offstudy_datetime=instance.offstudy_datetime,
+                offstudy_datetime=instance.created,
                 reason=instance.termination_reason)
             offstudy_obj.save()
 
