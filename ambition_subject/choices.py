@@ -549,3 +549,14 @@ YES_NO_NOT_DONE_WAIT_RESULTS = (
     (AWAITING_RESULTS, 'Awaiting results'),
     (NOT_DONE, 'Not done'),
 )
+
+SPUTUM_GENEXPERT = (
+    ('mtb_detected_rif_resistance_detected',
+     'MTB DETECTED & Rif Resistance DETECTED'),
+    ('mtb_detected_rif_resistance_not_detected',
+     'MTB DETECTED & Rif Resistance NOT detected'),
+    ('mtb_detected_rif_resistance_indeterminate',
+     'MTB DETECTED & Rif Resistance INDETERMINATE'),
+    ('mtb_not_detected', 'MTB NOT detected'),
+    (NOT_APPLICABLE, 'Not applicable'),
+)
