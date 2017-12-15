@@ -57,7 +57,8 @@ class StudyTerminationConclusion(NonUniqueSubjectIdentifierFieldMixin,
     readmission_after_initial_discharge = models.CharField(
         verbose_name='Was the patient readmitted following initial discharge?',
         max_length=7,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
 
     readmission_date = models.DateField(
         verbose_name='Date of readmission',
