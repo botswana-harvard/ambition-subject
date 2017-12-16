@@ -1,21 +1,22 @@
 from dateutil.relativedelta import relativedelta
 from edc_base.utils import get_utcnow
 from edc_consent.tests import EdcConsentProvider
-from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO, OTHER
+from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO
 from edc_visit_tracking.constants import SCHEDULED
 from faker import Faker
 from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
+from ambition_ae.mommy_recipes import neurological
 
-from .models import BloodResult, DeathReport, Microbiology, FollowUp
+from .models import BloodResult, Microbiology, FollowUp
 from .models import Education, EducationHoh, ClinicNote
-from .models import LumbarPunctureCsf, Radiology, StudyTerminationConclusion
+from .models import LumbarPunctureCsf, Radiology
 from .models import MedicalExpensesTwo
-from .models import ProtocolDeviationViolation, MissedVisit, PatientHistory, Week16
-from .models import RecurrenceSymptom, Week2, SubjectVisit, MedicalExpenses
+from .models import MissedVisit, PatientHistory, Week16
+from .models import Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectLocator, SubjectConsent, PrnModel, MedicalExpensesTwoDetail
-from .models import Neurological, Antibiotic, Symptom
-from .models import SignificantNewDiagnosis, MeningitisSymptom, PkPdCrf
+from .models import Antibiotic, Symptom
+from .models import SignificantNewDiagnosis, PkPdCrf
 
 
 class DateProvider(BaseProvider):
@@ -48,23 +49,6 @@ fake.add_provider(MyEdcConsentProvider)
 fake.add_provider(DateProvider)
 
 bloodresult = Recipe(BloodResult)
-
-deathreport = Recipe(
-    DeathReport,
-    study_day=1,
-    death_as_inpatient=YES,
-    cause_of_death_study_doctor_opinion='art_toxicity',
-    cause_other_study_doctor_opinion='None',
-    cause_tb_study_doctor_opinion=None,
-    cause_of_death_tmg1_opinion='art_toxicity',
-    cause_other_tmg1_opinion='None',
-    cause_tb_tmg1_opinion=None,
-    cause_of_death_tmg2_opinion='art_toxicity',
-    cause_other_tmg2_opinion='None',
-    cause_tb_tmg2_opinion=None,
-    narrative_summary=(
-        'adverse event resulted in death due to cryptococcal meningitis'))
-
 
 significantnewdiagnosis = Recipe(
     SignificantNewDiagnosis,
@@ -102,8 +86,6 @@ missedvisit = Recipe(
     missed_visit_reason='Not feeling well',
     notes_or_action_taken='hospitalised')
 
-neurological = Recipe(Neurological)
-
 symptom = Recipe(
     Symptom,
     name='vomiting',
@@ -135,48 +117,6 @@ patienthistory = Recipe(
     cd4_date=None,
     viral_load_date=None,)
 
-protocoldeviationviolation = Recipe(
-    ProtocolDeviationViolation)
-
-meningitissymptom = Recipe(
-    MeningitisSymptom,
-    name=OTHER,
-    short_name='Other'
-)
-
-neurological = Recipe(
-    Neurological,
-    name='meningismus',
-    short_name='Meningismus'
-)
-
-recurrencesymptom = Recipe(
-    RecurrenceSymptom,
-    meningitis_symptom=[meningitissymptom],
-    meningitis_symptom_other=None,
-    patient_readmitted=NO,
-    glasgow_coma_score=8,
-    recent_seizure=NO,
-    behaviour_change=YES,
-    confusion=YES,
-    neurological=[neurological],
-    focal_neurologic_deficit=None,
-    lp_completed=NO,
-    amb_administered=NO,
-    amb_duration=1,
-    tb_treatment=YES,
-    steroids_administered=NO,
-    steroids_duration=None,
-    steroids_choices='oral_prednisolone',
-    steroids_choices_other=None,
-    CD4_count=50,
-    antibiotic_treatment=None,
-    antibiotic_treatment_other=None,
-    on_arvs=NO,
-    arv_date=None,
-    arvs_stopped=NO,
-    narrative_summary='description',
-    dr_opinion='cm_release')
 
 antibiotic = Recipe(Antibiotic)
 
@@ -210,9 +150,6 @@ subjectlocator = Recipe(
     alt_contact_cell=None,
     other_alt_contact_cell='760000111',
     alt_contact_tel=None)
-
-studyterminationconclusion = Recipe(
-    StudyTerminationConclusion)
 
 radiology = Recipe(
     Radiology,

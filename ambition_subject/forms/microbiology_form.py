@@ -1,11 +1,9 @@
+from ambition_validators import MicrobiologyFormValidator
 from django import forms
 from django.apps import apps as django_apps
-from ambition_validators import MicrobiologyFormValidator
 
 from ..models import Microbiology
-
 from .form_mixins import SubjectModelFormMixin
-from pprint import pprint
 
 
 class MicrobiologyForm(SubjectModelFormMixin):
@@ -19,7 +17,6 @@ class MicrobiologyForm(SubjectModelFormMixin):
         """
         cleaned_data = super().clean()
         model_cls = django_apps.get_model(self.subject_consent_model)
-        pprint(cleaned_data)
         sub_visit = cleaned_data.get('subject_visit')
         if sub_visit:
             subject_identifier = sub_visit.subject_identifier

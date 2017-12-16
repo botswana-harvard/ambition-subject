@@ -55,9 +55,9 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'subject_visit',
                 'currency',
-                'personal_he_spend',
-                'proxy_he_spend',
-                'he_spend_last_4weeks',
+                'subject_spent_last_4wks',
+                'someone_spent_last_4wks',
+                'total_spent_last_4wks',
                 'duration_present_condition',
                 'activities_missed',
                 'activities_missed_other',

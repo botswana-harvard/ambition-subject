@@ -19,9 +19,6 @@ class EnrollmentManager(models.Manager):
 class EnrollmentW10(EnrollmentModelMixin, CreateAppointmentsMixin,
                     BaseUuidModel):
 
-    """A model used by the system. Auto-completed by subject_consent.
-    """
-
     ADMIN_SITE_NAME = 'ambition_subject_admin'
 
     subject_identifier = models.CharField(
@@ -40,4 +37,4 @@ class EnrollmentW10(EnrollmentModelMixin, CreateAppointmentsMixin,
 
     class Meta(EnrollmentModelMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
-        visit_schedule_name = 'visit_schedule1.schedule1'
+        visit_schedule_name = 'visit_schedule_w10.schedule_w10'

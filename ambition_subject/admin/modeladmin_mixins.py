@@ -56,7 +56,6 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
                 dashboard_url_name, kwargs=dict(
                     subject_identifier=obj.subject_visit.subject_identifier,
                     appointment=str(obj.subject_visit.appointment.id)))
-        except NoReverseMatch as e:
-            print(e)
+        except NoReverseMatch:
             url = super().view_on_site(obj)
         return url

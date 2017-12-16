@@ -1,8 +1,6 @@
 from .appointment_admin import AppointmentAdmin
 from .blood_result_admin import BloodResultsAdmin
 from .clinic_note_admin import ClinicNoteAdmin
-from .death_report import DeathReportAdmin
-from .death_report import DeathReportTmgOneAdmin, DeathReportTmgTwoAdmin
 from .education_admin import EducationAdmin
 from .education_hoh_admin import EducationHohAdmin
 from .follow_up_admin import FollowUpAdmin
@@ -14,10 +12,7 @@ from .missed_visit_admin import MissedVisitAdmin
 from .patient_history_admin import PatientHistory
 from .pk_pd_crf_admin import PkPdCrfAdmin
 from .prn_model_admin import PrnModelAdmin
-from .protocol_deviation_violation_admin import ProtocolDeviationViolationAdmin
 from .radiology_admin import RadiologyAdmin
-from .recurrence_symptom_admin import RecurrenceSymptomAdmin
-from .study_termination_conclusion_admin import StudyTerminationConclusionAdmin
 from .subject_consent_admin import SubjectConsentAdmin
 from .subject_locator_admin import SubjectLocatorAdmin
 from .subject_offstudy_admin import SubjectOffStudyAdmin

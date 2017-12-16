@@ -5,11 +5,13 @@ from django.test import TestCase, tag
 from edc_action_item.models.action_item import ActionItem
 from edc_appointment.models.appointment import Appointment
 from edc_base.utils import get_utcnow
-from edc_constants.constants import YES, NO
+from edc_constants.constants import YES
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 from model_mommy.mommy import make_recipe
 from pprint import pprint
+
+print
 
 
 class TestActions(TestCase):

@@ -1,18 +1,19 @@
-from ambition_rando.constants import SINGLE_DOSE, CONTROL
+from ambition_ae import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, SECOND_ARV_REGIMEN
 from ambition_validators import WORKING, NO_GROWTH, KLEBSIELLA_SPP
 from ambition_validators import CRYPTOCOCCUS_NEOFORMANS, BACTERIA
 from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, NOT_DONE
-from edc_constants.constants import NORMAL, IND, YES, NO, UNKNOWN
+from edc_constants.constants import NORMAL, IND, YES, NO
 from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER, MICROMOLES_PER_LITER
 from edc_reportable import GRADE3, GRADE4, MICROMOLES_PER_LITER_DISPLAY, MM3, MM3_DISPLAY
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
 
+from .constants import ALREADY_REPORTED
 from .constants import AZT_3TC_with_ATZ_r_or_Lopinavir_r
 from .constants import AZT_3TC_with_EFV_NVP_or_DTG
-from .constants import CONSENT_WITHDRAWAL, ROUTINE_APPT, THREE_DOSES, TWO_DOSES
-from .constants import DEVIATION, VIOLATION, TUBERCULOSIS, RESULTS_UNKNOWN
+from .constants import ROUTINE_APPT
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
+from .constants import RESULTS_UNKNOWN
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -25,13 +26,6 @@ ABNORMAL_RESULTS_REASON = (
      'Enhancing mass lesions DD Toxoplasmosis, TB, Lymphoma'),
     ('infarcts', 'Infarcts'),
     (OTHER, 'Other'))
-
-ACTION_REQUIRED = (
-    ('remain_on_study', 'Participant to remain on trial'),
-    ('to_be_withdrawn', 'Participant to be withdrawn from trial'),
-    ('remain_on_study_modified',
-     'Patient remains on study but data analysis will be modified')
-)
 
 ACTIVITIES_MISSED = (
     (WORKING, 'Working'),
@@ -72,23 +66,6 @@ ARV_REGIMEN = (
     (OTHER, 'Other'),
 )
 
-FIRST_ARV_REGIMEN = (
-    (NOT_APPLICABLE, 'Not applicable'),
-    (TDF_3TC_FTC_with_EFV_or_NVP,
-     'TDF + 3TC/FTC + either EFV or NVP or DTG'),
-    (AZT_3TC_with_EFV_NVP_or_DTG,
-     'AZT+3TC+ either EFV or NVP or DTG'),
-    (OTHER, 'Other'),
-)
-
-SECOND_ARV_REGIMEN = (
-    (NOT_APPLICABLE, 'Not applicable'),
-    (TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r,
-     'TDF + 3TC/FTC + either ATZ/r or Lopinavir/r'),
-    (AZT_3TC_with_ATZ_r_or_Lopinavir_r,
-     'AZT +3TC + either ATZ/r or Lopinavir/r'),
-    (OTHER, 'Other'),
-)
 
 BLOOD_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, 'Not applicable'),
@@ -133,21 +110,6 @@ CARE_PROVIDER = (
     (OTHER, 'Other')
 )
 
-CAUSE_OF_DEATH = (
-    ('cryptococcal_meningitis', 'Cryptococcal meningitis'),
-    ('Cryptococcal_meningitis_relapse_IRIS',
-     'Cryptococcal meningitis relapse/IRIS'),
-    (TUBERCULOSIS, 'TB'),
-    ('bacteraemia', 'Bacteraemia'),
-    ('bacterial_pneumonia', 'Bacterial pneumonia'),
-    ('malignancy', 'Malignancy'),
-    ('art_toxicity', 'ART toxicity'),
-    ('IRIS_non_CM', 'IRIS non-CM'),
-    ('diarrhea_wasting', 'Diarrhea/wasting'),
-    (UNKNOWN, 'Unknown'),
-    (OTHER, 'Other'),
-)
-
 CN_PALSY = (
     ('3', 'III'),
     ('6', 'VI'),
@@ -183,12 +145,6 @@ CXR_TYPE = (
     ('infiltrates', 'Infiltrates'),
 )
 
-DR_OPINION = (
-    ('cm_release', 'CM Relapse'),
-    ('cm_iris', 'CM IRIS'),
-    (OTHER, 'Other'),
-)
-
 ECOG_SCORE = (
     ('0',
      'Fully active, able to carry on all pre-disease performance without restriction'),
@@ -202,13 +158,6 @@ ECOG_SCORE = (
     ('4',
      'Completely disabled; cannot carry on any self-care; totally confined to bed or chair'),
     ('5', 'Deceased'),
-)
-
-FIRST_LINE_REGIMEN = (
-    (NOT_APPLICABLE, 'Not applicable'),
-    ('EFV', 'EFV'),
-    ('DTG', 'DTG'),
-    ('NVP', 'NVP'),
 )
 
 FLUCONAZOLE_DOSE = (
@@ -312,39 +261,10 @@ MEDICINES = (
     (OTHER, 'Other'),
 )
 
-PATIENT_TREATMENT_GROUP = (
-    ('regimen_1',
-     'Regimen 1 (Ambisome 10 mg/kg day 1 (single dose) +'
-     ' fluconazole 1200mg/day + flucytosine 100mg/kg/day'
-     ' for 14 days) '),
-    ('regimen_2',
-     'Regimen 2 (Amphotericin B 1 mg/kg + flucytocine 100mg/kg/day for 14 days) '),
-)
-
 POS_NEG_NA = (
     (POS, 'Positive'),
     (NEG, 'Negative'),
     (NOT_APPLICABLE, 'Not applicable'),
-)
-
-PROTOCOL_VIOLATION = (
-    ('failure_to_obtain_informed_consent', 'Failure to obtain informed '
-     'consent'),
-    ('enrollment_of_ineligible_patient', 'Enrollment of ineligible patient'),
-    ('screening_procedure not done', 'Screening procedure required by '
-     'protocol not done'),
-    ('screening_or_on-study_procedure', 'Screening or on-study procedure/lab '
-     'work required not done'),
-    ('incorrect_research_treatment', 'Incorrect research treatment given to '
-     'patient'),
-    ('procedure_not_completed', 'On-study procedure required by protocol not '
-     'completed'),
-    ('visit_non-compliance', 'Visit non-compliance'),
-    ('medication_stopped_early', 'Medication stopped early'),
-    ('medication_noncompliance', 'Medication_noncompliance'),
-    ('national_regulations_not_met', 'Standard WPD, ICH-GCP, local/national '
-     'regulations not met'),
-    (OTHER, 'Other'),
 )
 
 
@@ -356,30 +276,13 @@ REASON_DRUG_MISSED = (
     (OTHER, 'Other'),
 )
 
-REASON_STUDY_TERMINATED = (
-    ('10_weeks_completed_follow_up', 'Patient completed 10 weeks of follow-up'),
-    ('patient_lost_to_follow_up', 'Patient lost to follow-up'),
-    ('dead', 'Reported/known to have died'),
-    (CONSENT_WITHDRAWAL, 'Withdrawal of Subject Consent for '
-     'participation'),
-    ('care_transferred_to_another_institution',
-     'Care transferred to another institution'),
-    ('late_exclusion_criteria_met', 'Late exclusion criteria met'),
-    ('included_in_error', 'Included in error'),
-)
-
-REGIMEN = (
-    (SINGLE_DOSE, '1 (single dose)'),
-    (TWO_DOSES, '2 (two doses)'),
-    (THREE_DOSES, '3 (three Doses)'),
-    (CONTROL, '4 (control)'),
-)
 
 REPORTABLE = (
     (NOT_APPLICABLE, 'Not applicable'),
     (NO, 'No'),
     (GRADE3, 'Grade 3'),
     (GRADE4, 'Grade 4'),
+    (ALREADY_REPORTED, 'Already reported'),
 )
 
 SIGNIFICANT_DX = (
@@ -393,24 +296,11 @@ SIGNIFICANT_DX = (
     (OTHER, 'Other'),
 )
 
-STEROIDS_CHOICES = (
-    (NOT_APPLICABLE, 'Not applicable'),
-    ('oral_prednisolone', 'Oral Prednisolone'),
-    ('iv_dexamethasone', 'IV Dexamethasone used'),
-    (OTHER, 'Other'),
-)
-
 TB_SITE = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('pulmonary', 'Pulmonary'),
     ('extra_pulmonary', 'Extra-pulmonary'),
     ('both', 'Both')
-)
-
-TB_SITE_DEATH = (
-    ('meningitis', 'Meningitis'),
-    ('pulmonary', 'Pulmonary'),
-    ('disseminated', 'Disseminated'),
 )
 
 TRANSPORT = (
@@ -464,7 +354,6 @@ MG_UMOL_UNITS = (
 MM3_PERC_UNITS = (
     (MM3, MM3_DISPLAY),
     ('%', '%'),
-    (NOT_APPLICABLE, 'Not applicable'),
 )
 
 POS_NEG = (
@@ -490,11 +379,6 @@ WEIGHT_DETERMINATION = (
     ('measured', 'Measured')
 )
 
-DEVIATION_VIOLATION = (
-    (DEVIATION, 'Deviation'),
-    (VIOLATION, 'Violation'),
-)
-
 VISIT_REASON = (
     (SCHEDULED, 'Scheduled'),
     (UNSCHEDULED, 'Not scheduled')
@@ -518,17 +402,6 @@ YES_NO_ALREADY_ND = (
     (NOT_DONE, 'Not done'),
 )
 
-YES_NO_ALREADY = (
-    (YES, 'Yes'),
-    (NO, 'No'),
-    ('already_on_rifampicin', 'Already on Rifampicin'),
-)
-
-YES_NO_ALREADY_ARV = (
-    (YES, 'Yes'),
-    (NO, 'No'),
-    ('on_arvs_before_enrollment', 'Already on ARVs before enrollment')
-)
 
 YES_NO_RESULTS_UNKNOWN = (
     (YES, YES),

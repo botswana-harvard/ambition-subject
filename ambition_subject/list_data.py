@@ -1,10 +1,7 @@
-from edc_action_item import site_action_items
 from edc_list_data import PreloadData
 from edc_constants.constants import OTHER, UNKNOWN, NORMAL
 
 from .constants import HEADACHE, VISUAL_LOSS
-
-site_action_items.populate_action_type()
 
 list_data = {
     'ambition_subject.antibiotic': [
@@ -17,27 +14,10 @@ list_data = {
         ('ciprofloxacin', 'Ciprofloxacin'),
         (OTHER, 'Other, specify')
     ],
-    'ambition_subject.antibiotictreatment': [
-        ('amoxicillin', 'Amoxicillin'),
-        ('flucloxacillin', 'Flucloxacillin'),
-        ('doxycycline', 'Doxycycline'),
-        ('ceftriaxone', 'Ceftriaxone'),
-        ('erythromycin', 'Erythromycin'),
-        ('ciprofloxacin', 'Ciprofloxacin'),
-        (OTHER, 'Other, specify')
-    ],
     'ambition_subject.day14medication': [
         ('fluconazole', 'Fluconazole'),
         ('rifampicin', ' Rifampicin'),
         ('co_trimoxazole', 'Co-trimoxazole'),
-        (OTHER, 'Other')
-    ],
-    'ambition_subject.meningitissymptom': [
-        ('headache', 'Headache'),
-        ('vomiting', 'Vomiting'),
-        ('fever', 'Fever'),
-        ('seizures', 'Seizures'),
-        ('neck_pain', 'Neck pain'),
         (OTHER, 'Other')
     ],
     'ambition_subject.missedvisitreason': [
@@ -55,17 +35,6 @@ list_data = {
     'ambition_subject.medication': [
         ('TMP-SMX', 'TMP-SMX'),
         (OTHER, 'Other, specify;')
-    ],
-    'ambition_subject.neurological': [
-        ('meningism', 'Meningism'),
-        ('papilloedema', ' Papilloedema'),
-        ('focal_neurologic_deficit', 'Focal neurologic deficit'),
-        ('CN_VI_palsy', 'Cranial Nerve VI palsy'),
-        ('CN_III_palsy', 'Cranial Nerve III palsy'),
-        ('CN_IV_palsy', 'Cranial Nerve IV palsy'),
-        ('CN_VII_palsy', 'Cranial Nerve VII palsy'),
-        ('CN_VIII_palsy', 'Cranial Nerve VIII palsy'),
-        (OTHER, 'Other CN palsy'),
     ],
     'ambition_subject.otherdrug': [
         ('potassium', ' Potassium'),

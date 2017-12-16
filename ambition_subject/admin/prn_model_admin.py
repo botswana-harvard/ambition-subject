@@ -10,11 +10,6 @@ from ..models import PrnModel
 from .modeladmin_mixins import CrfModelAdminMixin
 
 
-# requisitions = Fieldset(
-#     'viral_load',
-#     'cd4',
-#     section='Requisitions')
-
 common_fields = ('subject_visit',
                  'microbiology',
                  'radiology',

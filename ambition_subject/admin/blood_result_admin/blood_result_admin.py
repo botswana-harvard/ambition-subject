@@ -1,4 +1,5 @@
 from django.contrib import admin
+from edc_action_item import action_fieldset
 from edc_model_admin import audit_fieldset_tuple
 
 from ...admin_site import ambition_subject_admin
@@ -29,8 +30,7 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'results_abnormal',
                 'results_reportable')}],
         ['Summary', {'classes': ('collapse', ), 'fields': ('summary', )}],
-        ['Action', {'classes': ('collapse', ), 'fields': (
-            'tracking_identifier', 'action_identifier')}],
+        action_fieldset,
         audit_fieldset_tuple
     )
 

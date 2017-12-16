@@ -47,7 +47,7 @@ class MedicalExpenses(CrfModelMixin):
         null=True,
         validators=[MinValueValidator(0)])
 
-    personal_he_spend = models.DecimalField(
+    subject_spent_last_4wks = models.DecimalField(
         verbose_name=('Over that last 4 weeks, how much have you '
                       'spent on activities relating to your health?'),
         decimal_places=2,
@@ -55,7 +55,7 @@ class MedicalExpenses(CrfModelMixin):
         null=True,
         validators=[MinValueValidator(0)])
 
-    proxy_he_spend = models.DecimalField(
+    someone_spent_last_4wks = models.DecimalField(
         verbose_name=('Over that last 4 weeks, how much has someone else '
                       'spent on activities relating to your health?'),
         decimal_places=2,
@@ -63,7 +63,7 @@ class MedicalExpenses(CrfModelMixin):
         null=True,
         validators=[MinValueValidator(0)])
 
-    he_spend_last_4weeks = models.DecimalField(
+    total_spent_last_4wks = models.DecimalField(
         verbose_name=(
             'How much in total has been spent on your healthcare in the last 4 weeks?'),
         decimal_places=2,

@@ -66,7 +66,8 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     differential_lymphocyte_unit = models.CharField(
         choices=MM3_PERC_UNITS,
         max_length=6,
-        default=NOT_APPLICABLE)
+        null=True,
+        blank=True)
 
     differential_neutrophil_count = models.IntegerField(
         verbose_name='Differential neutrophil cell count:',
@@ -77,8 +78,9 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     differential_neutrophil_unit = models.CharField(
         choices=MM3_PERC_UNITS,
-        max_length=3,
-        default=NOT_APPLICABLE)
+        max_length=6,
+        null=True,
+        blank=True)
 
     india_ink = models.CharField(
         max_length=15,

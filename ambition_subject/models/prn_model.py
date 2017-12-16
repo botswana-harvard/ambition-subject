@@ -26,19 +26,6 @@ class PrnModel(CrfModelMixin):
         choices=YES_NO,
         default=NO)
 
-#     recurrence_symptom = models.CharField(
-#         verbose_name='Recurrence of Symptoms?',
-#         max_length=5,
-#         choices=YES_NO,
-#         default=NO,
-#         null=True)
-
-#     protocol_deviation = models.CharField(
-#         verbose_name='Protocol Deviation?',
-#         max_length=5,
-#         choices=YES_NO,
-#         default=NO)
-
     lumbar_puncture = models.CharField(
         verbose_name='Lumbar puncture?',
         max_length=5,
@@ -46,32 +33,26 @@ class PrnModel(CrfModelMixin):
         default=YES,
         null=True)
 
-#     death_report = models.CharField(
-#         verbose_name='Death Report?',
-#         max_length=5,
-#         choices=YES_NO,
-#         default=NO)
-
     viral_load = models.CharField(
-        verbose_name='Add Viral Load',
+        verbose_name='Viral Load?',
         max_length=5,
         choices=YES_NO,
         default=NO)
 
     cd4 = models.CharField(
-        verbose_name='Add CD4',
+        verbose_name='CD4?',
         max_length=5,
         choices=YES_NO,
         default=NO)
 
     fbc = models.CharField(
-        verbose_name='Add FBC',
+        verbose_name='FBC?',
         max_length=5,
         choices=YES_NO,
         default=NO)
 
     chemistry = models.CharField(
-        verbose_name='Add chemistry',
+        verbose_name='Chemistry?',
         max_length=5,
         choices=YES_NO,
         default=NO)

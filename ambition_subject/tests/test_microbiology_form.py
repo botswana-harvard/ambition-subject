@@ -6,10 +6,9 @@ from edc_base.utils import get_utcnow
 from edc_constants.constants import YES
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
+from unittest.case import skip
 
 from ..forms import MicrobiologyForm
-from pprint import pprint
-from unittest.case import skip
 
 
 class TestMicrobiologyForm(TestCase):
@@ -40,6 +39,5 @@ class TestMicrobiologyForm(TestCase):
                 'blood_culture_results': 'no_growth'}
         form = MicrobiologyForm(initial=data)
         form.is_valid()
-        pprint(form.errors)
 #         self.assertTrue(form.is_valid())
 #         self.assertTrue(form.save())

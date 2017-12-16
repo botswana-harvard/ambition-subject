@@ -6,17 +6,7 @@ class Antibiotic(ListModelMixin, BaseUuidModel):
     pass
 
 
-class AntibioticTreatment(ListModelMixin, BaseUuidModel):
-
-    pass
-
-
 class Day14Medication(ListModelMixin, BaseUuidModel):
-
-    pass
-
-
-class MeningitisSymptom(ListModelMixin, BaseUuidModel):
 
     pass
 
@@ -27,11 +17,6 @@ class MissedVisitReason(ListModelMixin, BaseUuidModel):
 
 
 class Medication(ListModelMixin, BaseUuidModel):
-
-    pass
-
-
-class Neurological(ListModelMixin, BaseUuidModel):
 
     pass
 
