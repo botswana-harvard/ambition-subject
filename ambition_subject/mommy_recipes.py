@@ -1,3 +1,4 @@
+from ambition_ae.mommy_recipes import neurological
 from dateutil.relativedelta import relativedelta
 from edc_base.utils import get_utcnow
 from edc_consent.tests import EdcConsentProvider
@@ -6,7 +7,6 @@ from edc_visit_tracking.constants import SCHEDULED
 from faker import Faker
 from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
-from ambition_ae.mommy_recipes import neurological
 
 from .models import BloodResult, Microbiology, FollowUp
 from .models import Education, EducationHoh, ClinicNote

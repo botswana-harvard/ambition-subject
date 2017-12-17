@@ -8,7 +8,7 @@ from edc_constants.choices import NOT_APPLICABLE, YES_NO, YES_NO_NA
 
 from ..choices import (
     BACTERIA_TYPE, BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM,
-    CULTURE_RESULTS, POS_NEG_NA, URINE_CULTURE_RESULTS_ORGANISM)
+    CULTURE_RESULTS, POS_NEG_NA, URINE_CULTURE_RESULTS_ORGANISM, SPUTUM_GENEXPERT)
 from .model_mixins import CrfModelMixin
 
 
@@ -138,8 +138,8 @@ class Microbiology(CrfModelMixin):
 
     sputum_result_genexpert = models.CharField(
         verbose_name='Gene-Xpert results',
-        max_length=15,
-        choices=POS_NEG_NA,
+        max_length=45,
+        choices=SPUTUM_GENEXPERT,
         default=NOT_APPLICABLE)
 
     tissue_biopsy_taken = models.CharField(

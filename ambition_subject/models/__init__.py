@@ -25,7 +25,6 @@ from .prn_model import PrnModel
 from .radiology import Radiology
 from .subject_consent import SubjectConsent
 from .subject_locator import SubjectLocator
-from .subject_offstudy import SubjectOffstudy
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
 from .week16 import Week16

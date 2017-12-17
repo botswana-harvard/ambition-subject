@@ -3,7 +3,6 @@ from ambition_screening.models import SubjectScreening
 from django.apps import apps as django_apps
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from edc_base.utils import get_utcnow
 
 from .enrollment import Enrollment
 from .subject_consent import SubjectConsent

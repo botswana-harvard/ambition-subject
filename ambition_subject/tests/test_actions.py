@@ -9,9 +9,6 @@ from edc_constants.constants import YES
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 from model_mommy.mommy import make_recipe
-from pprint import pprint
-
-print
 
 
 class TestActions(TestCase):
@@ -37,15 +34,12 @@ class TestActions(TestCase):
             appointment=self.appointment,
             reason=SCHEDULED)
 
-    @tag('9')
     def test_(self):
         obj = make_recipe(
             'ambition_subject.bloodresult',
             subject_visit=self.subject_visit,
             results_abnormal=YES,
             results_reportable=YES)
-
-        pprint(ActionItem.objects.all())
 
         try:
             ActionItem.objects.get(
@@ -58,5 +52,3 @@ class TestActions(TestCase):
                 parent_reference_identifier=obj.tracking_identifier)
         except ObjectDoesNotExist:
             self.fail('ActionItem unexpectedly does not exist.')
-
-        pprint(obj.__dict__)

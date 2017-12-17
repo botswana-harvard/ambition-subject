@@ -13,7 +13,7 @@ from .constants import AZT_3TC_with_EFV_NVP_or_DTG
 from .constants import ROUTINE_APPT
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
-from .constants import RESULTS_UNKNOWN
+from .constants import RESULTS_UNKNOWN, AWAITING_RESULTS
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -412,4 +412,22 @@ YES_NO_RESULTS_UNKNOWN = (
 PATIENT_REL = (
     ('patient', 'Patient'),
     ('next_of_kin', 'Next of Kin/Relative'),
+)
+
+YES_NO_NOT_DONE_WAIT_RESULTS = (
+    (YES, YES),
+    (NO, NO),
+    (AWAITING_RESULTS, 'Awaiting results'),
+    (NOT_DONE, 'Not done'),
+)
+
+SPUTUM_GENEXPERT = (
+    ('mtb_detected_rif_resistance_detected',
+     'MTB DETECTED & Rif Resistance DETECTED'),
+    ('mtb_detected_rif_resistance_not_detected',
+     'MTB DETECTED & Rif Resistance NOT detected'),
+    ('mtb_detected_rif_resistance_indeterminate',
+     'MTB DETECTED & Rif Resistance INDETERMINATE'),
+    ('mtb_not_detected', 'MTB NOT detected'),
+    (NOT_APPLICABLE, 'Not applicable'),
 )
