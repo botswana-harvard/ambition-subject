@@ -55,7 +55,9 @@ class PrnModel(CrfModelMixin):
         verbose_name='Chemistry?',
         max_length=5,
         choices=YES_NO,
-        default=NO)
+        default=NO,
+        help_text=('Blood chemistry requisitions, '
+                   'i.e ALT, Urea, Electrolytes and Creatinine'))
 
     history = HistoricalRecords()
 
