@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'edc_sync_files.apps.AppConfig',
     'ambition_labs.apps.AppConfig',
     'ambition_ae.apps.AppConfig',
+    'ambition_prn.apps.AppConfig',
     'ambition_screening.apps.AppConfig',
     'ambition_reference.apps.AppConfig',
     'ambition_rando.apps.AppConfig',
