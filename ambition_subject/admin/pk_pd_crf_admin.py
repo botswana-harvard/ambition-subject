@@ -9,7 +9,8 @@ from ..models import PkPdCrf
 from .modeladmin_mixins import CrfModelAdminMixin
 
 
-common_fields = ('flucytosine_dose',
+common_fields = ('albumin',
+                 'flucytosine_dose',
                  'flucytosine_dose_one_time',
                  'flucytosine_dose_two_time',
                  'flucytosine_dose_three_time',
@@ -43,21 +44,11 @@ second_sample = ('blood_sample_one_day_seven',
                  'post_dose_lp',
                  'time_csf_sample_taken')
 
-day1 = common_fields + first_sample + ('albumin',
-                                       'creatine_clearance',
-                                       'magnesium',
-                                       'haemoglobin')
+day1 = common_fields + first_sample
 
-day7 = common_fields + second_sample + ('albumin',
-                                        'creatine',
-                                        'magnesium',
-                                        'haemoglobin')
+day7 = common_fields + second_sample
 
-day14 = common_fields + ('albumin',
-                         'creatine',
-                         'magnesium',
-                         'haemoglobin',
-                         'pre_dose_lp',
+day14 = common_fields + ('pre_dose_lp',
                          'post_dose_lp',
                          'time_csf_sample_taken')
 
@@ -85,15 +76,6 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'weight',
-                'cd4_cell_count',
-                'on_art',
-                'other_medication',
-                'albumin',
-                'creatine_clearance',
-                'potassium',
-                'magnesium',
-                'haemoglobin',
                 'ambisome_dose',
                 'ambisome_dose_time_started',
                 'ambisome_dose_time_ended',
