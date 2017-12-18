@@ -61,7 +61,8 @@ class PkPdCrf(CrfModelMixin):
 
     ambisome_dose = models.IntegerField(
         verbose_name='Ambisome dose given',
-        null=True)
+        null=True,
+        help_text='Units in mg')
 
     ambisome_dose_time_started = models.TimeField(
         verbose_name='Time Ambisome infusion started?',
@@ -80,8 +81,9 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     flucytosine_dose = models.IntegerField(
-        verbose_name='Was the dose of Flucytosine given?',
-        null=True)
+        verbose_name='What was  the dose of Flucytosine given?',
+        null=True,
+        help_text='Units in mg')
 
     flucytosine_dose_one_time = models.TimeField(
         verbose_name=mark_safe(
@@ -125,7 +127,8 @@ class PkPdCrf(CrfModelMixin):
     fluconazole_dose_given = models.IntegerField(
         verbose_name='What was the dose of Fluconazole given?',
         blank=True,
-        null=True)
+        null=True,
+        help_text='Units in mg')
 
     time_fluconazole_dose_given = models.TimeField(
         verbose_name='Time Fluconazole was swallowed?',
