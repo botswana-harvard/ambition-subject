@@ -80,8 +80,7 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'any_day_one_sample_missed': admin.VERTICAL,
         'any_day_seven_sample_missed': admin.VERTICAL,
         'pre_dose_lp': admin.VERTICAL,
-        'post_dose_lp': admin.VERTICAL,
-        'time_csf_sample_taken': admin.VERTICAL}
+        'post_dose_lp': admin.VERTICAL}
 
     fieldsets = (
         (None, {
@@ -129,9 +128,7 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'pre_dose_lp',
                 'post_dose_lp',
                 'time_csf_sample_taken',
-                'extra_csf_samples_time',
-                'extra_csf_samples_date',
-                'extra_blood_samples_time',
-                'extra_blood_samples_date')}),
+                'extra_csf_samples_datetime',
+                'extra_blood_samples_datetime')}),
         audit_fieldset_tuple
     )

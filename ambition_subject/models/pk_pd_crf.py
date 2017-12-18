@@ -116,7 +116,8 @@ class PkPdCrf(CrfModelMixin):
         verbose_name='Which dose(s) was/were missed?',
         choices=FLUCYTOSINE_DOSE_MISSED,
         max_length=5,
-        null=True)
+        null=True,
+        blank=True)
 
     reason_flucytosine_dose_missed = models.CharField(
         verbose_name='Why was/were the dose(s) missed?',
@@ -143,7 +144,7 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     reason_fluconazole_dose_missed = models.CharField(
-        verbose_name='Was the Fluconazole dose missed?',
+        verbose_name='Why was the Fluconazole dose missed?',
         max_length=75,
         blank=True,
         null=True)
@@ -179,7 +180,7 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     any_day_one_sample_missed = models.CharField(
-        verbose_name='Were any blood sample missed?',
+        verbose_name='Were any blood samples missed?',
         choices=YES_NO,
         max_length=5,
         null=True)
@@ -221,7 +222,7 @@ class PkPdCrf(CrfModelMixin):
         null=True)
 
     any_day_seven_sample_missed = models.CharField(
-        verbose_name='Were any blood sample missed?',
+        verbose_name='Were any blood samples missed?',
         choices=YES_NO,
         max_length=5,
         null=True)
@@ -258,34 +259,19 @@ class PkPdCrf(CrfModelMixin):
 
     time_csf_sample_taken = models.TimeField(
         verbose_name='What time was the CSF sample taken?',
-        choices=YES_NO,
         max_length=5,
         null=True)
 
-    extra_csf_samples_time = models.TimeField(
-        verbose_name=('If any further CSF samples were taken, please add '
-                      'here the exact time sample was taken'),
-        max_length=5,
-        null=True)
-
-    extra_csf_samples_date = models.DateField(
-        verbose_name=('If any further CSF samples were taken, '
-                      'please add here the exact date sample was taken'),
+    extra_csf_samples_datetime = models.DateTimeField(
+        verbose_name=('If any further CSF samples were taken, please'
+                      ' add here the exact date and time sample was taken'),
         validators=[datetime_not_future],
-        max_length=5,
         null=True)
 
-    extra_blood_samples_time = models.TimeField(
-        verbose_name=('If any further blood samples were taken, '
-                      'please add here the exact time sample was taken'),
-        max_length=5,
-        null=True)
-
-    extra_blood_samples_date = models.DateField(
-        verbose_name=('If any further blood samples were taken, '
-                      'please add here the exact date sample was taken'),
+    extra_blood_samples_datetime = models.DateTimeField(
+        verbose_name=('If any further blood samples were taken, please'
+                      ' add here the exact date and time sample was taken'),
         validators=[datetime_not_future],
-        max_length=5,
         null=True)
 
     history = HistoricalRecords()
