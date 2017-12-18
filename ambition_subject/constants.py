@@ -1,7 +1,7 @@
-from ambition_ae.constants import AZT_3TC_with_ATZ_r_or_Lopinavir_r
-from ambition_ae.constants import AZT_3TC_with_EFV_NVP_or_DTG
-from ambition_ae.constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
-from ambition_ae.constants import TDF_3TC_FTC_with_EFV_or_NVP
+from ambition_prn.constants import AZT_3TC_with_ATZ_r_or_Lopinavir_r
+from ambition_prn.constants import AZT_3TC_with_EFV_NVP_or_DTG
+from ambition_prn.constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
+from ambition_prn.constants import TDF_3TC_FTC_with_EFV_or_NVP
 from ambition_validators import HEADACHE, VISUAL_LOSS
 from ambition_visit_schedule import DAY1, DAY3, DAY5, DAY7, DAY14, DAY12, DAY10
 from ambition_visit_schedule import WEEK16, WEEK10, WEEK8, WEEK6, WEEK4

@@ -1,4 +1,4 @@
-from ambition_ae import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, SECOND_ARV_REGIMEN
+from ambition_prn import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, SECOND_ARV_REGIMEN
 from ambition_validators import WORKING, NO_GROWTH, KLEBSIELLA_SPP
 from ambition_validators import CRYPTOCOCCUS_NEOFORMANS, BACTERIA
 from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, NOT_DONE
