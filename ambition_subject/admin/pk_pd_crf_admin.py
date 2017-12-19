@@ -62,8 +62,6 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         DAY7: Fieldset(*day7, section='DAY 7'),
     }
     radio_fields = {
-        'on_art': admin.VERTICAL,
-        'other_medication': admin.VERTICAL,
         'full_ambisome_dose_given': admin.VERTICAL,
         'flucytosine_dose_missed': admin.VERTICAL,
         'flucytosine_doses_missed': admin.VERTICAL,
