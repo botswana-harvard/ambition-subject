@@ -24,15 +24,13 @@ class PkPdCrf(CrfModelMixin):
         blank=True,
         help_text='Units in mg')
 
-    ambisome_dose_time_started = models.TimeField(
-        verbose_name='Time Ambisome infusion started?',
-        max_length=5,
+    ambisome_started_datetime = models.DateTimeField(
+        verbose_name='Date and time Ambisome infusion started?',
         null=True,
         blank=True)
 
-    ambisome_dose_time_ended = models.TimeField(
-        verbose_name='Time Ambisome infusion stopped',
-        max_length=5,
+    ambisome_ended_datetime = models.DateTimeField(
+        verbose_name='Date and time Ambisome infusion stopped',
         null=True,
         blank=True)
 
@@ -44,37 +42,36 @@ class PkPdCrf(CrfModelMixin):
         blank=True)
 
     flucytosine_dose = models.IntegerField(
-        verbose_name='What was  the dose of Flucytosine given?',
+        verbose_name='What was the dose of Flucytosine given?',
         null=True,
         blank=True,
         help_text='Units in mg')
 
-    flucytosine_dose_one_time = models.TimeField(
+    flucytosine_dose_one_datetime = models.DateTimeField(
         verbose_name=mark_safe(
-            'Time Flucytosine <u>DOSE&nbsp;1</u> was swallowed?'),
-        max_length=5,
+            'Date and time Flucytosine <u>DOSE&nbsp;1</u> was swallowed?'),
         null=True,
         blank=True)
 
-    flucytosine_dose_two_time = models.TimeField(
+    flucytosine_dose_two_datetime = models.DateTimeField(
         verbose_name=mark_safe(
-            'Time Flucytosine <u>DOSE&nbsp;2</u> was swallowed?'),
+            'Date and time Flucytosine <u>DOSE&nbsp;2</u> was swallowed?'),
         null=True,
         blank=True)
 
-    flucytosine_dose_three_time = models.TimeField(
+    flucytosine_dose_three_datetime = models.DateTimeField(
         verbose_name=mark_safe(
-            'Time Flucytosine <u>DOSE&nbsp;3</u> was swallowed?'),
+            'Date and time Flucytosine <u>DOSE&nbsp;3</u> was swallowed?'),
         null=True,
         blank=True)
 
-    flucytosine_dose_four_time = models.TimeField(
+    flucytosine_dose_four_datetime = models.DateTimeField(
         verbose_name=mark_safe(
-            'Time Flucytosine <u>DOSE&nbsp;4</u> was swallowed?'),
+            'Date and time Flucytosine <u>DOSE&nbsp;4</u> was swallowed?'),
         null=True,
         blank=True)
 
-    flucytosine_doses_missed = models.CharField(
+    flucytosine_missed = models.CharField(
         verbose_name='Were any Flucytosine doses missed?',
         choices=YES_NO,
         max_length=5,
@@ -100,9 +97,8 @@ class PkPdCrf(CrfModelMixin):
         blank=True,
         help_text='Units in mg')
 
-    time_fluconazole_dose_given = models.TimeField(
-        verbose_name='Time Fluconazole was swallowed?',
-        max_length=5,
+    fluconazole_dose_datetime = models.DateTimeField(
+        verbose_name='Date and time Fluconazole was swallowed?',
         null=True,
         blank=True)
 
@@ -119,94 +115,51 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    blood_sample_one_day_one = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;1</u> taken?'),
-        max_length=5,
+    blood_sample_one_datetime = models.DateTimeField(
+        verbose_name=mark_safe(
+            'Date and time blood <u>SAMPLE&nbsp;1</u> taken?'),
         null=True,
         blank=True)
 
-    blood_sample_two_day_one = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;2</u> taken?'),
-        max_length=5,
+    blood_sample_two_datetime = models.DateTimeField(
+        verbose_name=mark_safe(
+            'Date and time blood <u>SAMPLE&nbsp;2</u> taken?'),
         null=True,
         blank=True)
 
-    blood_sample_three_day_one = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;3</u> taken?'),
-        max_length=5,
+    blood_sample_three_datetime = models.DateTimeField(
+        verbose_name=mark_safe(
+            'Date and time blood <u>SAMPLE&nbsp;3</u> taken?'),
         null=True,
         blank=True)
 
-    blood_sample_four_day_one = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;4</u> taken?'),
-        max_length=5,
+    blood_sample_four_datetime = models.DateTimeField(
+        verbose_name=mark_safe(
+            'Date and time blood <u>SAMPLE&nbsp;4</u> taken?'),
         null=True,
         blank=True)
 
-    blood_sample_five_day_one = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;5</u> taken?'),
-        max_length=5,
+    blood_sample_five_datetime = models.DateTimeField(
+        verbose_name=mark_safe(
+            'Date and time blood <u>SAMPLE&nbsp;5</u> taken?'),
         null=True,
         blank=True)
 
-    any_day_one_sample_missed = models.CharField(
+    blood_sample_six_datetime = models.DateTimeField(
+        verbose_name=mark_safe(
+            'Date and time blood <u>SAMPLE&nbsp;6</u> taken?'),
+        null=True,
+        blank=True)
+
+    blood_sample_missed = models.CharField(
         verbose_name='Were any blood samples missed?',
         choices=YES_NO,
         max_length=5,
         null=True,
         blank=True)
 
-    reason_day_one_missed = models.CharField(
+    reason_blood_sample_missed = models.CharField(
         verbose_name='Why was/were the blood sample(s) missed??',
-        max_length=75,
-        null=True,
-        blank=True)
-
-    blood_sample_one_day_seven = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;1</u> taken?'),
-        max_length=5,
-        null=True,
-        blank=True)
-
-    blood_sample_two_day_seven = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;2</u> taken?'),
-        max_length=5,
-        null=True,
-        blank=True)
-
-    blood_sample_three_day_seven = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;3</u> taken?'),
-        max_length=5,
-        null=True,
-        blank=True)
-
-    blood_sample_four_day_seven = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;4</u> taken?'),
-        max_length=5,
-        null=True,
-        blank=True)
-
-    blood_sample_five_day_seven = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;5</u> taken?'),
-        max_length=5,
-        null=True,
-        blank=True)
-
-    blood_sample_six_day_seven = models.TimeField(
-        verbose_name=mark_safe('Time blood <u>SAMPLE&nbsp;6</u> taken?'),
-        max_length=5,
-        null=True,
-        blank=True)
-
-    any_day_seven_sample_missed = models.CharField(
-        verbose_name='Were any blood samples missed?',
-        choices=YES_NO,
-        max_length=5,
-        null=True,
-        blank=True)
-
-    reason_day_seven_missed = models.CharField(
-        verbose_name='Why was/were the blood sample(s) missed?',
         max_length=75,
         null=True,
         blank=True)
@@ -225,37 +178,8 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    second_pre_dose_lp = models.CharField(
-        verbose_name='Is this a pre-dose LP?',
-        choices=YES_NO,
-        max_length=5,
-        null=True,
-        blank=True)
-
-    second_post_dose_lp = models.CharField(
-        verbose_name='Is this a post-dose LP?',
-        choices=YES_NO,
-        max_length=5,
-        null=True,
-        blank=True)
-
-    time_csf_sample_taken = models.TimeField(
-        verbose_name='What time was the CSF sample taken?',
-        max_length=5,
-        null=True,
-        blank=True)
-
-    extra_csf_samples_datetime = models.DateTimeField(
-        verbose_name=('If any further CSF samples were taken, please'
-                      ' add here the exact date and time sample was taken'),
-        validators=[datetime_not_future],
-        null=True,
-        blank=True)
-
-    extra_blood_samples_datetime = models.DateTimeField(
-        verbose_name=('If any further blood samples were taken, please'
-                      ' add here the exact date and time sample was taken'),
-        validators=[datetime_not_future],
+    time_csf_sample_taken = models.DateTimeField(
+        verbose_name='What date and time was the CSF sample taken?',
         null=True,
         blank=True)
 

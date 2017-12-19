@@ -20,6 +20,7 @@ from .microbiology import Microbiology
 from .missed_visit import MissedVisit
 from .patient_history import PatientHistory
 from .pk_pd_crf import PkPdCrf
+from .pk_pd_extra_samples import PkPdExtraSamples
 from .previous_opportunistic_infection import PreviousOpportunisticInfection
 from .prn_model import PrnModel
 from .radiology import Radiology
