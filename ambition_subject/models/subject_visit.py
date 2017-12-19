@@ -3,7 +3,7 @@ from edc_appointment.models import Appointment
 from edc_base.model_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_consent.model_mixins import RequiresConsentMixin
+from edc_consent.model_mixins import RequiresConsentModelMixin
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.managers import VisitModelManager
@@ -13,7 +13,7 @@ from ..choices import INFO_SOURCE, VISIT_UNSCHEDULED_REASON, VISIT_REASON
 
 
 class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMixin,
-                   RequiresConsentMixin, BaseUuidModel):
+                   RequiresConsentModelMixin, BaseUuidModel):
 
     """A model completed by the user that captures the covering
     information for the data collected for this timepoint/appointment,
@@ -50,5 +50,5 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
 
     history = HistoricalRecords()
 
-    class Meta(VisitModelMixin.Meta, RequiresConsentMixin.Meta):
+    class Meta(VisitModelMixin.Meta, RequiresConsentModelMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'

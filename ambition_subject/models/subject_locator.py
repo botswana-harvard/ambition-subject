@@ -5,11 +5,11 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.constants import NOT_APPLICABLE
 from edc_constants.choices import YES_NO_NA, YES_NO
-from edc_consent.model_mixins import RequiresConsentMixin
+from edc_consent.model_mixins import RequiresConsentModelMixin
 from edc_locator.model_mixins import LocatorModelMixin
 
 
-class SubjectLocator(LocatorModelMixin, RequiresConsentMixin, BaseUuidModel):
+class SubjectLocator(LocatorModelMixin, RequiresConsentModelMixin, BaseUuidModel):
     """A model completed by the user to that captures participant
     locator information and permission to contact.
     """
@@ -76,5 +76,5 @@ class SubjectLocator(LocatorModelMixin, RequiresConsentMixin, BaseUuidModel):
     def __str__(self):
         return self.subject_identifier
 
-    class Meta(RequiresConsentMixin.Meta):
+    class Meta(RequiresConsentModelMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'

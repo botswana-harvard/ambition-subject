@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_consent.model_mixins import RequiresConsentMixin
+from edc_consent.model_mixins import RequiresConsentModelMixin
 from edc_lab.model_mixins.requisition import RequisitionIdentifierMixin
 from edc_lab.model_mixins.requisition import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
@@ -25,7 +25,7 @@ class Manager(VisitTrackingCrfModelManager, SearchSlugManager):
 class SubjectRequisition(
         RequisitionModelMixin, RequisitionStatusMixin, RequisitionIdentifierMixin,
         VisitTrackingCrfModelMixin, OffstudyCrfModelMixin,
-        RequiresConsentMixin, PreviousVisitModelMixin,
+        RequiresConsentModelMixin, PreviousVisitModelMixin,
         RequisitionReferenceModelMixin, UpdatesRequisitionMetadataModelMixin,
         SearchSlugModelMixin, BaseUuidModel):
 
@@ -51,5 +51,5 @@ class SubjectRequisition(
             'human_readable_identifier', 'identifier_prefix'])
         return fields
 
-    class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentMixin.Meta):
+    class Meta(VisitTrackingCrfModelMixin.Meta, RequiresConsentModelMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
