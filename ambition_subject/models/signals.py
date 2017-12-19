@@ -1,10 +1,10 @@
+from ambition_prn.enroll import Enroll
 from ambition_rando.randomizer import Randomizer
 from ambition_screening.models import SubjectScreening
 from django.apps import apps as django_apps
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
-from .enrollment import Enrollment
 from .subject_consent import SubjectConsent
 
 post_delete.providing_args = set(["instance", "using", "raw"])
@@ -17,18 +17,17 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
     it does not exist.
     """
     if not raw:
-        if created:
+        if not created:
+            enroll = Enroll(enrollment_model='ambition_prn.enrollment')
+            enroll.update(subject_identifier=instance.subject_identifier)
+        else:
             subject_screening = SubjectScreening.objects.get(
                 screening_identifier=instance.screening_identifier)
-            try:
-                Enrollment.objects.get(
-                    subject_identifier=instance.subject_identifier,
-                    visit_schedule_name=Enrollment._meta.visit_schedule_name)
-            except Enrollment.DoesNotExist:
-                Enrollment.objects.create(
-                    subject_identifier=instance.subject_identifier,
-                    consent_identifier=instance.consent_identifier,
-                    is_eligible=subject_screening.eligible)
+            enroll = Enroll(enrollment_model='ambition_prn.enrollment')
+            enroll.enroll(
+                subject_identifier=instance.subject_identifier,
+                consent_identifier=instance.consent_identifier,
+                is_eligible=subject_screening.eligible)
             subject_screening.subject_identifier = instance.subject_identifier
             subject_screening.consented = True
             subject_screening.save_base(
