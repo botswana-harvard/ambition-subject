@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel, FormAsJSONModelMixin
-from edc_consent.model_mixins import RequiresConsentMixin
+from edc_consent.model_mixins import RequiresConsentModelMixin
 from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
 from edc_offstudy.model_mixins import OffstudyCrfModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
@@ -14,7 +14,7 @@ from ..subject_visit import SubjectVisit
 
 
 class CrfModelMixin(BaseCrfModelMixin, OffstudyCrfModelMixin,
-                    RequiresConsentMixin, PreviousVisitModelMixin,
+                    RequiresConsentModelMixin, PreviousVisitModelMixin,
                     UpdatesCrfMetadataModelMixin,
                     FormAsJSONModelMixin, ReferenceModelMixin, BaseUuidModel):
 
@@ -31,6 +31,6 @@ class CrfModelMixin(BaseCrfModelMixin, OffstudyCrfModelMixin,
         return self.subject_visit.natural_key()
     natural_key.dependencies = ['ambition_subject.subjectvisit']
 
-    class Meta(BaseCrfModelMixin.Meta, RequiresConsentMixin.Meta):
+    class Meta(BaseCrfModelMixin.Meta, RequiresConsentModelMixin.Meta):
         consent_model = 'ambition_subject.subjectconsent'
         abstract = True
