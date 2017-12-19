@@ -3,6 +3,7 @@ from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
+from edc_facility.holidays import Holidays
 from model_mommy import mommy
 
 
@@ -27,10 +28,17 @@ class TestAppointment(TestCase):
         self.assertEqual(appointments.count(), 12)
 
     def test_appointments_rdates(self):
+        holidays = Holidays(country='botswana')
         appointments = Appointment.objects.filter(
             subject_identifier=self.subject_identifier).order_by('appt_datetime')
-        appt_datetimes = [obj.appt_datetime.date() for obj in appointments]
+        appt_datetimes = [obj.appt_datetime for obj in appointments]
         start = appt_datetimes[0]
-        self.assertEqual(appt_datetimes[1], start + relativedelta(days=2))
-        self.assertEqual(appt_datetimes[2], start + relativedelta(days=4))
-        self.assertEqual(appt_datetimes[3], start + relativedelta(days=6))
+        if not holidays.is_holiday(start + relativedelta(days=2)):
+            self.assertEqual(appt_datetimes[1].date(
+            ), start.date() + relativedelta(days=2))
+        if not holidays.is_holiday(start + relativedelta(days=4)):
+            self.assertEqual(appt_datetimes[2].date(
+            ), start.date() + relativedelta(days=4))
+        if not holidays.is_holiday(start + relativedelta(days=6)):
+            self.assertEqual(appt_datetimes[3].date(
+            ), start.date() + relativedelta(days=6))

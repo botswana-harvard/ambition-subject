@@ -1,9 +1,10 @@
-from ambition_prn.enroll import Enroll
+from ambition_prn.models import Enrollment
 from ambition_rando.randomizer import Randomizer
 from ambition_screening.models import SubjectScreening
 from django.apps import apps as django_apps
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
+from edc_visit_schedule import EnrollToSchedule
 
 from .subject_consent import SubjectConsent
 
@@ -18,20 +19,24 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
     """
     if not raw:
         if not created:
-            enroll = Enroll(enrollment_model='ambition_prn.enrollment')
-            enroll.update(subject_identifier=instance.subject_identifier)
+            enroll_to_schedule = EnrollToSchedule(
+                enrollment_model_cls=Enrollment,
+                subject_identifier=instance.subject_identifier)
+            enroll_to_schedule.update()
         else:
             subject_screening = SubjectScreening.objects.get(
                 screening_identifier=instance.screening_identifier)
-            enroll = Enroll(enrollment_model='ambition_prn.enrollment')
-            enroll.enroll(
-                subject_identifier=instance.subject_identifier,
-                consent_identifier=instance.consent_identifier,
-                is_eligible=subject_screening.eligible)
             subject_screening.subject_identifier = instance.subject_identifier
             subject_screening.consented = True
             subject_screening.save_base(
                 update_fields=['subject_identifier', 'consented'])
+
+            # enroll to visit schedule
+            enroll_to_schedule = EnrollToSchedule(
+                enrollment_model_cls=Enrollment,
+                subject_identifier=instance.subject_identifier,
+                consent_identifier=instance.consent_identifier,
+                eligible=subject_screening.eligible)
 
             # randomize
             randomizer = Randomizer(

@@ -1,6 +1,5 @@
 from .blood_result import BloodResult
 from .clinic_note import ClinicNote
-from .disenrollment import Disenrollment
 from .education import Education
 from .education_hoh import EducationHoh
 from .follow_up import FollowUp

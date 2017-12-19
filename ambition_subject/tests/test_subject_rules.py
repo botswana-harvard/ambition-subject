@@ -16,8 +16,9 @@ class TestSubjectRules(TestCase):
 
     def setUp(self):
         import_randomization_list(verbose=False)
-        screening = mommy.make_recipe('ambition_screening.subjectscreening',
-                                      report_datetime=get_utcnow())
+        screening = mommy.make_recipe(
+            'ambition_screening.subjectscreening',
+            report_datetime=get_utcnow())
         self.consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
             consent_datetime=get_utcnow(),
@@ -126,7 +127,6 @@ class TestSubjectRules(TestCase):
                 visit_code=DAY1).entry_status,
             REQUIRED)
 
-    @tag('1')
     def test_viral_load_required(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
@@ -146,7 +146,6 @@ class TestSubjectRules(TestCase):
                 panel_name=viral_load_panel.name,
                 visit_code=DAY5).entry_status, REQUIRED)
 
-    @tag('1')
     def test_cd4_required(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
@@ -173,7 +172,6 @@ class TestSubjectRules(TestCase):
                 panel_name=cd4_panel.name,
                 visit_code=DAY5).entry_status, REQUIRED)
 
-    @tag('1')
     def test_cd4_rule_d1(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
@@ -193,7 +191,6 @@ class TestSubjectRules(TestCase):
                 panel_name=cd4_panel.name,
                 visit_code=DAY1).entry_status, REQUIRED)
 
-    @tag('1')
     def test_vl_required_d1(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
@@ -214,7 +211,6 @@ class TestSubjectRules(TestCase):
                 visit_code=DAY1).entry_status,
             REQUIRED)
 
-    @tag('1')
     def test_fbc_required_d5(self):
         appointment = Appointment.objects.get(
             subject_identifier=self.consent.subject_identifier,
