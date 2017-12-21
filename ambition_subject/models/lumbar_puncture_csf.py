@@ -126,5 +126,5 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = 'Lumbar puncture/Cerebrospinal fluid'
-        verbose_name_plural = 'Lumbar puncture/Cerebrospinal fluid'
+        verbose_name = 'Lumbar Puncture/Cerebrospinal Fluid'
+        verbose_name_plural = 'Lumbar Puncture/Cerebrospinal Fluid'
