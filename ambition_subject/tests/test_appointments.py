@@ -2,7 +2,6 @@ from ambition_rando.import_randomization_list import import_randomization_list
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
-from edc_base.utils import get_utcnow
 from edc_facility.holidays import Holidays
 from model_mommy import mommy
 
@@ -13,11 +12,9 @@ class TestAppointment(TestCase):
         import_randomization_list(verbose=False)
         subject_screening = mommy.make_recipe(
             'ambition_screening.subjectscreening')
-        options = {
-            'screening_identifier': subject_screening.screening_identifier,
-            'consent_datetime': get_utcnow, }
         consent = mommy.make_recipe(
-            'ambition_subject.subjectconsent', **options)
+            'ambition_subject.subjectconsent',
+            screening_identifier=subject_screening.screening_identifier)
         self.subject_identifier = consent.subject_identifier
 
     def test_appointments_creation(self):

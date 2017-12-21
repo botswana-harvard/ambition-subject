@@ -1,6 +1,6 @@
 import re
 
-from ambition_prn.models import Enrollment
+from ambition_prn.models import OnSchedule
 from ambition_rando.import_randomization_list import import_randomization_list
 from django.test import TestCase
 from edc_base.utils import get_utcnow
@@ -9,6 +9,7 @@ from edc_registration.models import RegisteredSubject
 from model_mommy import mommy
 
 from ..models import SubjectConsent
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class TestSubjectConsent(TestCase):
@@ -39,17 +40,17 @@ class TestSubjectConsent(TestCase):
         mommy.make_recipe('ambition_subject.subjectconsent', **options)
         self.assertEquals(RegisteredSubject.objects.all().count(), 1)
 
-    def test_enrollment_created_on_consent(self):
+    def test_onschedule_created_on_consent(self):
         subject_consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
             consent_datetime=get_utcnow,
             screening_identifier=self.subject_screening.screening_identifier)
 
         try:
-            Enrollment.objects.get(
+            OnSchedule.objects.get(
                 consent_identifier=subject_consent.consent_identifier)
-        except Enrollment.DoesNotExist:
-            self.fail('Enrollment.DoesNotExist: was unexpectedly raised.')
+        except ObjectDoesNotExist:
+            self.fail('ObjectDoesNotExist was unexpectedly raised.')
 
 #     def test_consent_assigns_rando_arm(self):
 #         options = {
