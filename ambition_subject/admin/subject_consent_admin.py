@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.contrib import admin
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
@@ -8,11 +10,9 @@ from edc_model_admin import (
     ModelAdminNextUrlRedirectError)
 from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 
-
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectConsentForm
-from ..models import SubjectConsent
-from django.conf import settings
+from ..models import SubjectConsent, SubjectVisit
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMixin,
@@ -104,3 +104,20 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
                     subject_identifier=obj.subject_identifier))
         except NoReverseMatch:
             return super().view_on_site(obj)
+
+    def delete_view(self, request, object_id, extra_context=None):
+        """Prevent deletion if SubjectVisit objects exist.
+        """
+        extra_context = extra_context or {}
+        obj = SubjectConsent.objects.get(id=object_id)
+
+        try:
+            protected = [SubjectVisit.objects.get(
+                subject_identifier=obj.subject_identifier)]
+        except ObjectDoesNotExist:
+            protected = None
+        except MultipleObjectsReturned:
+            protected = SubjectVisit.objects.filter(
+                subject_identifier=obj.subject_identifier)
+        extra_context.update({'protected': protected})
+        return super().delete_view(request, object_id, extra_context)
