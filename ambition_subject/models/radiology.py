@@ -97,4 +97,5 @@ class Radiology(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
+        verbose_name = 'Radiology'
         verbose_name_plural = 'Radiology'
