@@ -1,28 +1,28 @@
-from ambition_prn.models import Enrollment
 from ambition_rando.randomizer import Randomizer
 from ambition_screening.models import SubjectScreening
 from django.apps import apps as django_apps
+from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from edc_visit_schedule import EnrollToSchedule
+from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 
 from .subject_consent import SubjectConsent
-
-post_delete.providing_args = set(["instance", "using", "raw"])
+from .subject_visit import SubjectVisit
 
 
 @receiver(post_save, weak=False, sender=SubjectConsent,
           dispatch_uid='subject_consent_on_post_save')
 def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
-    """Creates an enrollment instance for this consented subject, if
+    """Creates an onschedule instance for this consented subject, if
     it does not exist.
     """
     if not raw:
         if not created:
-            enroll_to_schedule = EnrollToSchedule(
-                enrollment_model_cls=Enrollment,
+            visit_schedule = site_visit_schedules.get_visit_schedule(
+                'visit_schedule')
+            schedule = visit_schedule.schedules.get('schedule')
+            schedule.refresh_schedule(
                 subject_identifier=instance.subject_identifier)
-            enroll_to_schedule.update()
         else:
             subject_screening = SubjectScreening.objects.get(
                 screening_identifier=instance.screening_identifier)
@@ -31,12 +31,14 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
             subject_screening.save_base(
                 update_fields=['subject_identifier', 'consented'])
 
-            # enroll to visit schedule
-            enroll_to_schedule = EnrollToSchedule(
-                enrollment_model_cls=Enrollment,
+            # put subject on schedule
+            visit_schedule = site_visit_schedules.get_visit_schedule(
+                'visit_schedule')
+            schedule = visit_schedule.schedules.get('schedule')
+            schedule.put_on_schedule(
                 subject_identifier=instance.subject_identifier,
                 consent_identifier=instance.consent_identifier,
-                eligible=subject_screening.eligible)
+                onschedule_datetime=instance.consent_datetime)
 
             # randomize
             randomizer = Randomizer(
@@ -73,10 +75,25 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
 
 @receiver(post_delete, weak=False, sender=SubjectConsent,
           dispatch_uid="subject_consent_on_post_delete")
-def subject_consent_on_post_delete(sender, instance, raw, using, **kwargs):
-    if not raw:
-        subject_screening = SubjectScreening.objects.get(
-            screening_identifier=instance.screening_identifier)
-        subject_screening.consented = False
-        subject_screening.subject_identifier = subject_screening.subject_screening_as_pk
-        subject_screening.save()
+def subject_consent_on_post_delete(sender, instance, using, **kwargs):
+    """Updates/Resets subject screening.
+    """
+    # don't allow if subject visits exist. This should be caught
+    # in the ModelAdmin delete view
+    if SubjectVisit.objects.filter(subject_identifier=instance.subject_identifier).exists():
+        raise ValidationError('Unable to delete consent. Visit data exists.')
+
+    # remove onschedule model
+    visit_schedule = site_visit_schedules.get_visit_schedule(
+        'visit_schedule')
+    schedule = visit_schedule.schedules.get('schedule')
+    onschedule_model_cls = django_apps.get_model(schedule.onschedule_model)
+    onschedule_model_cls.objects.filter(
+        subject_identifier=instance.subject_identifier).delete()
+
+    # update subject screening
+    subject_screening = SubjectScreening.objects.get(
+        screening_identifier=instance.screening_identifier)
+    subject_screening.consented = False
+    subject_screening.subject_identifier = subject_screening.subject_screening_as_pk
+    subject_screening.save()
