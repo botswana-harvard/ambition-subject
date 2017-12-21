@@ -181,4 +181,5 @@ class Microbiology(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
+        verbose_name = 'Microbiology'
         verbose_name_plural = 'Microbiology'
