@@ -18,9 +18,8 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
     """
     if not raw:
         if not created:
-            visit_schedule = site_visit_schedules.get_visit_schedule(
-                'visit_schedule')
-            schedule = visit_schedule.schedules.get('schedule')
+            _, schedule = site_visit_schedules.get_by_onschedule_model(
+                'ambition_prn.onschedule')
             schedule.refresh_schedule(
                 subject_identifier=instance.subject_identifier)
         else:
@@ -31,21 +30,19 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
             subject_screening.save_base(
                 update_fields=['subject_identifier', 'consented'])
 
-            # put subject on schedule
-            visit_schedule = site_visit_schedules.get_visit_schedule(
-                'visit_schedule')
-            schedule = visit_schedule.schedules.get('schedule')
-            schedule.put_on_schedule(
-                subject_identifier=instance.subject_identifier,
-                consent_identifier=instance.consent_identifier,
-                onschedule_datetime=instance.consent_datetime)
-
             # randomize
             randomizer = Randomizer(
                 subject_identifier=instance.subject_identifier,
                 report_datetime=instance.consent_datetime,
                 study_site=instance.study_site,
                 user=instance.user_created)
+
+            # put subject on schedule
+            _, schedule = site_visit_schedules.get_by_onschedule_model(
+                'ambition_prn.onschedule')
+            schedule.put_on_schedule(
+                subject_identifier=instance.subject_identifier,
+                onschedule_datetime=instance.consent_datetime)
 
             # create prescription
             prescription_model_cls = django_apps.get_model(
@@ -83,13 +80,11 @@ def subject_consent_on_post_delete(sender, instance, using, **kwargs):
     if SubjectVisit.objects.filter(subject_identifier=instance.subject_identifier).exists():
         raise ValidationError('Unable to delete consent. Visit data exists.')
 
-    # remove onschedule model
-    visit_schedule = site_visit_schedules.get_visit_schedule(
-        'visit_schedule')
-    schedule = visit_schedule.schedules.get('schedule')
-    onschedule_model_cls = django_apps.get_model(schedule.onschedule_model)
-    onschedule_model_cls.objects.filter(
-        subject_identifier=instance.subject_identifier).delete()
+    _, schedule = site_visit_schedules.get_by_onschedule_model(
+        'ambition_prn.onschedule')
+    schedule.take_off_schedule(
+        subject_identifier=instance.subject_identifier,
+        offschedule_datetime=instance.consent_datetime)
 
     # update subject screening
     subject_screening = SubjectScreening.objects.get(

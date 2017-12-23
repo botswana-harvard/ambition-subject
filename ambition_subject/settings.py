@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'edc_timepoint.apps.AppConfig',
     'edc_device.apps.AppConfig',
     'edc_registration.apps.AppConfig',
+    'edc_visit_schedule.apps.AppConfig',
     'edc_sync.apps.AppConfig',
     'edc_sync_files.apps.AppConfig',
     'ambition_labs.apps.AppConfig',

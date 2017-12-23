@@ -5,7 +5,7 @@ from edc_base.model_mixins import BaseUuidModel, FormAsJSONModelMixin
 from edc_consent.model_mixins import RequiresConsentModelMixin
 from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
-from edc_visit_schedule.model_mixins import OffScheduleCrfModelMixin
+from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
 from edc_visit_tracking.managers import CrfModelManager
 from edc_visit_tracking.model_mixins import CrfModelMixin as BaseCrfModelMixin
 from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
@@ -13,7 +13,7 @@ from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 from ..subject_visit import SubjectVisit
 
 
-class CrfModelMixin(BaseCrfModelMixin, OffScheduleCrfModelMixin,
+class CrfModelMixin(BaseCrfModelMixin, SubjectScheduleCrfModelMixin,
                     RequiresConsentModelMixin, PreviousVisitModelMixin,
                     UpdatesCrfMetadataModelMixin,
                     FormAsJSONModelMixin, ReferenceModelMixin, BaseUuidModel):

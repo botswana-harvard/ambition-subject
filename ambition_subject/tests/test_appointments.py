@@ -1,4 +1,7 @@
+import pytz
+
 from ambition_rando.import_randomization_list import import_randomization_list
+from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
@@ -14,7 +17,8 @@ class TestAppointment(TestCase):
             'ambition_screening.subjectscreening')
         consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
-            screening_identifier=subject_screening.screening_identifier)
+            screening_identifier=subject_screening.screening_identifier,
+            consent_datetime=datetime(2017, 12, 1, 0, 0, 0, 0, pytz.utc))
         self.subject_identifier = consent.subject_identifier
 
     def test_appointments_creation(self):
