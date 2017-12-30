@@ -1,5 +1,5 @@
+from ambition_rando.tests import SiteTestCaseMixin
 from ambition_visit_schedule import DAY1
-from ambition_rando.import_randomization_list import import_randomization_list
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
@@ -11,7 +11,7 @@ from unittest.case import skip
 
 
 @skip
-class TestNaturalKey(TestCase):
+class TestNaturalKey(SiteTestCaseMixin, TestCase):
 
     sync_test_helper = SyncTestHelper()
     crf_test_helper = CrfTestHelper()
@@ -25,7 +25,6 @@ class TestNaturalKey(TestCase):
             'ambition_subject')
 
     def complete_subject_visit(self):
-        import_randomization_list(verbose=False)
         screening = mommy.make_recipe('ambition_screening.subjectscreening',
                                       report_datetime=get_utcnow())
         consent = mommy.make_recipe('ambition_subject.subjectconsent',

@@ -20,7 +20,6 @@ from .prn_model_form import PrnModelForm
 from .radiology_form import RadiologyForm
 from .significant_diagnoses_form import SignificantDiagnosesForm
 from .subject_consent_form import SubjectConsentForm
-from .subject_locator_form import SubjectLocatorForm
 from .subject_requisition_form import SubjectRequisitionForm
 from .subject_visit_form import SubjectVisitForm
 from .week16_form import Week16Form

@@ -34,7 +34,7 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
             randomizer = Randomizer(
                 subject_identifier=instance.subject_identifier,
                 report_datetime=instance.consent_datetime,
-                study_site=instance.study_site,
+                site=instance.site,
                 user=instance.user_created)
 
             # put subject on schedule

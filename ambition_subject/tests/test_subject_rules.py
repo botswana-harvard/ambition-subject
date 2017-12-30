@@ -1,5 +1,4 @@
 from ambition_labs.labs import cd4_panel, viral_load_panel, fbc_panel
-from ambition_rando.import_randomization_list import import_randomization_list
 from ambition_subject.models.subject_visit import SubjectVisit
 from ambition_visit_schedule import DAY1, DAY5, WEEK10
 from django.test import TestCase, tag
@@ -10,12 +9,12 @@ from edc_metadata.constants import NOT_REQUIRED, REQUIRED
 from edc_metadata.models import CrfMetadata, RequisitionMetadata
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
+from ambition_rando.tests.site_test_case_mixin import SiteTestCaseMixin
 
 
-class TestSubjectRules(TestCase):
+class TestSubjectRules(SiteTestCaseMixin, TestCase):
 
     def setUp(self):
-        import_randomization_list(verbose=False)
         screening = mommy.make_recipe(
             'ambition_screening.subjectscreening',
             report_datetime=get_utcnow())

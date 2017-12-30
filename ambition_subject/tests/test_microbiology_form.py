@@ -1,5 +1,5 @@
+from ambition_rando.tests import SiteTestCaseMixin
 from ambition_visit_schedule import DAY1
-from ambition_rando.import_randomization_list import import_randomization_list
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
@@ -11,10 +11,9 @@ from unittest.case import skip
 from ..forms import MicrobiologyForm
 
 
-class TestMicrobiologyForm(TestCase):
+class TestMicrobiologyForm(SiteTestCaseMixin, TestCase):
 
     def setUp(self):
-        import_randomization_list(verbose=False)
         subject_screening = mommy.make_recipe(
             'ambition_screening.subjectscreening')
         options = {

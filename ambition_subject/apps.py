@@ -42,14 +42,6 @@ if settings.APP_NAME == 'ambition_subject':
         study_close_datetime = datetime(
             2018, 12, 31, 23, 59, 59, tzinfo=gettz('UTC'))
 
-        @property
-        def site_name(self):
-            return 'Gaborone'
-
-        @property
-        def site_code(self):
-            return '40'
-
     class EdcLabAppConfig(BaseEdcLabAppConfig):
         base_template_name = 'ambition/base.html'
         requisition_model = 'ambition_subject.subjectrequisition'

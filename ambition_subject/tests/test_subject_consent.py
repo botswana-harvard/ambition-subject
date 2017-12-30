@@ -1,9 +1,9 @@
 import re
 
 from ambition_prn.models import OnSchedule
-from ambition_rando.import_randomization_list import import_randomization_list
+from ambition_rando.tests import SiteTestCaseMixin
 from django.core.exceptions import ObjectDoesNotExist
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_base.utils import get_utcnow
 from edc_constants.constants import UUID_PATTERN
 from edc_registration.models import RegisteredSubject
@@ -12,10 +12,9 @@ from model_mommy import mommy
 from ..models import SubjectConsent
 
 
-class TestSubjectConsent(TestCase):
+class TestSubjectConsent(SiteTestCaseMixin, TestCase):
 
     def setUp(self):
-        import_randomization_list(verbose=False)
         self.subject_screening = mommy.make_recipe(
             'ambition_screening.subjectscreening')
 

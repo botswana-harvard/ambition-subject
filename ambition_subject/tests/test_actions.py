@@ -1,5 +1,5 @@
+from ambition_rando.tests import SiteTestCaseMixin
 from ambition_visit_schedule import DAY1
-from ambition_rando.import_randomization_list import import_randomization_list
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, tag
 from edc_action_item.models.action_item import ActionItem
@@ -11,10 +11,9 @@ from model_mommy import mommy
 from model_mommy.mommy import make_recipe
 
 
-class TestActions(TestCase):
+class TestActions(SiteTestCaseMixin, TestCase):
 
     def setUp(self):
-        import_randomization_list(verbose=False)
         subject_screening = mommy.make_recipe(
             'ambition_screening.subjectscreening')
 

@@ -1,11 +1,10 @@
 from ambition_ae.mommy_recipes import neurological
 from dateutil.relativedelta import relativedelta
+from django.contrib.sites.models import Site
 from edc_base.utils import get_utcnow
-from edc_consent.tests import EdcConsentProvider
 from edc_constants.constants import NOT_APPLICABLE, YES, NEG, NO
 from edc_visit_tracking.constants import SCHEDULED
 from faker import Faker
-from faker.providers import BaseProvider
 from model_mommy.recipe import Recipe, related, seq
 
 from .models import BloodResult, Microbiology, FollowUp
@@ -14,39 +13,12 @@ from .models import LumbarPunctureCsf, Radiology
 from .models import MedicalExpensesTwo
 from .models import MissedVisit, PatientHistory, Week16
 from .models import Week2, SubjectVisit, MedicalExpenses
-from .models import SubjectLocator, SubjectConsent, PrnModel, MedicalExpensesTwoDetail
+from .models import SubjectConsent, PrnModel, MedicalExpensesTwoDetail
 from .models import Antibiotic, Symptom
 from .models import SignificantNewDiagnosis, PkPdCrf
 
 
-class DateProvider(BaseProvider):
-
-    def next_month(self):
-        return (get_utcnow() + relativedelta(months=1)).date()
-
-    def last_year(self):
-        return (get_utcnow() - relativedelta(years=1)).date()
-
-    def three_months_ago(self):
-        return (get_utcnow() - relativedelta(months=3)).date()
-
-    def thirty_four_weeks_ago(self):
-        return (get_utcnow() - relativedelta(weeks=34)).date()
-
-    def four_weeks_ago(self):
-        return (get_utcnow() - relativedelta(weeks=4)).date()
-
-    def yesterday(self):
-        return (get_utcnow() - relativedelta(days=1)).date()
-
-
-class MyEdcConsentProvider(EdcConsentProvider):
-    consent_model = 'ambition_subject.subjectconsent'
-
-
 fake = Faker()
-fake.add_provider(MyEdcConsentProvider)
-fake.add_provider(DateProvider)
 
 bloodresult = Recipe(BloodResult)
 
@@ -141,15 +113,6 @@ week2 = Recipe(
     focal_neurology=NO,
     medicines='Fluconazole',)
 
-subjectlocator = Recipe(
-    SubjectLocator,
-    alt_contact_cell_number='72200111',
-    has_alt_contact=None,
-    alt_contact_name=None,
-    alt_contact_rel=None,
-    alt_contact_cell=None,
-    other_alt_contact_cell='760000111',
-    alt_contact_tel=None)
 
 radiology = Recipe(
     Radiology,
@@ -185,19 +148,19 @@ subjectconsent = Recipe(
     consent_copy=YES,
     consent_datetime=get_utcnow(),
     consent_reviewed=YES,
-    dob=fake.dob_for_consenting_adult,
+    dob=get_utcnow() - relativedelta(years=25),
     first_name=fake.first_name,
     gender='M',
     identity=seq('12315678'),
     identity_type='country_id',
-    initials=fake.initials,
+    initials='XX',
     is_dob_estimated='-',
     is_incarcerated=NO,
     is_literate=YES,
     last_name=fake.last_name,
     screening_identifier=None,
     study_questions=YES,
-    study_site='40',
+    site=Site.objects.get_current(),
     subject_identifier=None)
 
 prnmodel = Recipe(

@@ -1,5 +1,5 @@
 from ambition_visit_schedule import DAY1
-from ambition_rando.import_randomization_list import import_randomization_list
+from ambition_rando.tests import SiteTestCaseMixin
 from ambition_subject.forms import PreviousOpportunisticInfectionForm
 from ambition_subject.models import PatientHistory, PreviousOpportunisticInfection
 from django.forms import inlineformset_factory
@@ -11,10 +11,9 @@ from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 
-class TestSyncInlineOrder(TestCase):
+class TestSyncInlineOrder(SiteTestCaseMixin, TestCase):
 
     def setUp(self):
-        import_randomization_list(verbose=False)
         screening = mommy.make_recipe('ambition_screening.subjectscreening',
                                       report_datetime=get_utcnow())
         self.consent = mommy.make_recipe(

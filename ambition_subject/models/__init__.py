@@ -4,7 +4,6 @@ from .education import Education
 from .education_hoh import EducationHoh
 from .follow_up import FollowUp
 from .follow_up_diagnosis import FollowUpDiagnoses
-from .identifier_history import IdentifierHistory
 from .list_models import Antibiotic, Day14Medication
 from .list_models import CXRType, InfiltrateLocation
 from .list_models import MissedVisitReason, Medication
@@ -22,7 +21,6 @@ from .previous_opportunistic_infection import PreviousOpportunisticInfection
 from .prn_model import PrnModel
 from .radiology import Radiology
 from .subject_consent import SubjectConsent
-from .subject_locator import SubjectLocator
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
 from .week16 import Week16

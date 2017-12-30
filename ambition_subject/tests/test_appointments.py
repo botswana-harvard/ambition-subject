@@ -1,6 +1,6 @@
 import pytz
 
-from ambition_rando.import_randomization_list import import_randomization_list
+from ambition_rando.tests import SiteTestCaseMixin
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
@@ -9,10 +9,9 @@ from edc_facility.holidays import Holidays
 from model_mommy import mommy
 
 
-class TestAppointment(TestCase):
+class TestAppointment(SiteTestCaseMixin, TestCase):
 
     def setUp(self):
-        import_randomization_list(verbose=False)
         subject_screening = mommy.make_recipe(
             'ambition_screening.subjectscreening')
         consent = mommy.make_recipe(
