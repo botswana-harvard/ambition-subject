@@ -1,19 +1,21 @@
-from ambition_visit_schedule import DAY1
-from ambition_rando.tests import SiteTestCaseMixin
+from ambition_rando.tests import AmbitionTestCaseMixin
 from ambition_subject.forms import PreviousOpportunisticInfectionForm
 from ambition_subject.models import PatientHistory, PreviousOpportunisticInfection
+from ambition_visit_schedule import DAY1
 from django.forms import inlineformset_factory
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
 from edc_constants.constants import NO, NOT_APPLICABLE
+from edc_facility.import_holidays import import_holidays
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 
-class TestSyncInlineOrder(SiteTestCaseMixin, TestCase):
+class TestSyncInlineOrder(AmbitionTestCaseMixin, TestCase):
 
     def setUp(self):
+        import_holidays()
         screening = mommy.make_recipe('ambition_screening.subjectscreening',
                                       report_datetime=get_utcnow())
         self.consent = mommy.make_recipe(

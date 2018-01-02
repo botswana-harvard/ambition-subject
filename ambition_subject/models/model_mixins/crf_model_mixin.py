@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel, FormAsJSONModelMixin
-from edc_consent.model_mixins import RequiresConsentCrfModelMixin
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
@@ -14,7 +14,7 @@ from ..subject_visit import SubjectVisit
 
 
 class CrfModelMixin(BaseCrfModelMixin, SubjectScheduleCrfModelMixin,
-                    RequiresConsentCrfModelMixin, PreviousVisitModelMixin,
+                    RequiresConsentFieldsModelMixin, PreviousVisitModelMixin,
                     UpdatesCrfMetadataModelMixin,
                     FormAsJSONModelMixin, ReferenceModelMixin, BaseUuidModel):
 

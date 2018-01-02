@@ -14,6 +14,17 @@ list_data = {
         ('ciprofloxacin', 'Ciprofloxacin'),
         (OTHER, 'Other, specify')
     ],
+    'ambition_subject.neurological': [
+        ('meningism', 'Meningism'),
+        ('papilloedema', ' Papilloedema'),
+        ('focal_neurologic_deficit', 'Focal neurologic deficit'),
+        ('CN_VI_palsy', 'Cranial Nerve VI palsy'),
+        ('CN_III_palsy', 'Cranial Nerve III palsy'),
+        ('CN_IV_palsy', 'Cranial Nerve IV palsy'),
+        ('CN_VII_palsy', 'Cranial Nerve VII palsy'),
+        ('CN_VIII_palsy', 'Cranial Nerve VIII palsy'),
+        (OTHER, 'Other CN palsy'),
+    ],
     'ambition_subject.day14medication': [
         ('fluconazole', 'Fluconazole'),
         ('rifampicin', ' Rifampicin'),

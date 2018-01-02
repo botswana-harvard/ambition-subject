@@ -1,20 +1,22 @@
 from ambition_labs.labs import cd4_panel, viral_load_panel, fbc_panel
+from ambition_rando.tests import AmbitionTestCaseMixin
 from ambition_subject.models.subject_visit import SubjectVisit
 from ambition_visit_schedule import DAY1, DAY5, WEEK10
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
 from edc_constants.constants import YES
+from edc_facility.import_holidays import import_holidays
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
 from edc_metadata.models import CrfMetadata, RequisitionMetadata
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
-from ambition_rando.tests.site_test_case_mixin import SiteTestCaseMixin
 
 
-class TestSubjectRules(SiteTestCaseMixin, TestCase):
+class TestSubjectRules(AmbitionTestCaseMixin, TestCase):
 
     def setUp(self):
+        import_holidays()
         screening = mommy.make_recipe(
             'ambition_screening.subjectscreening',
             report_datetime=get_utcnow())

@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_consent.model_mixins import RequiresConsentCrfModelMixin
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_lab.model_mixins.requisition import RequisitionIdentifierMixin
 from edc_lab.model_mixins.requisition import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
@@ -25,7 +25,7 @@ class Manager(VisitTrackingCrfModelManager, SearchSlugManager):
 class SubjectRequisition(
         RequisitionModelMixin, RequisitionStatusMixin, RequisitionIdentifierMixin,
         VisitTrackingCrfModelMixin, SubjectScheduleCrfModelMixin,
-        RequiresConsentCrfModelMixin, PreviousVisitModelMixin,
+        RequiresConsentFieldsModelMixin, PreviousVisitModelMixin,
         RequisitionReferenceModelMixin, UpdatesRequisitionMetadataModelMixin,
         SearchSlugModelMixin, BaseUuidModel):
 

@@ -1,4 +1,4 @@
-from ambition_rando.tests import SiteTestCaseMixin
+from ambition_rando.tests import AmbitionTestCaseMixin
 from ambition_visit_schedule import DAY1
 from django.test import TestCase, tag
 from edc_appointment.models import Appointment
@@ -11,7 +11,7 @@ from unittest.case import skip
 
 
 @skip
-class TestNaturalKey(SiteTestCaseMixin, TestCase):
+class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
 
     sync_test_helper = SyncTestHelper()
     crf_test_helper = CrfTestHelper()

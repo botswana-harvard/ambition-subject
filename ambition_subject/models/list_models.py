@@ -21,6 +21,11 @@ class Medication(ListModelMixin, BaseUuidModel):
     pass
 
 
+class Neurological(ListModelMixin, BaseUuidModel):
+
+    pass
+
+
 class SignificantNewDiagnosis(ListModelMixin, BaseUuidModel):
 
     pass

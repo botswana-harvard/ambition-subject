@@ -1,20 +1,22 @@
 import re
 
 from ambition_prn.models import OnSchedule
-from ambition_rando.tests import SiteTestCaseMixin
+from ambition_rando.tests import AmbitionTestCaseMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, tag
 from edc_base.utils import get_utcnow
 from edc_constants.constants import UUID_PATTERN
+from edc_facility.import_holidays import import_holidays
 from edc_registration.models import RegisteredSubject
 from model_mommy import mommy
 
 from ..models import SubjectConsent
 
 
-class TestSubjectConsent(SiteTestCaseMixin, TestCase):
+class TestSubjectConsent(AmbitionTestCaseMixin, TestCase):
 
     def setUp(self):
+        import_holidays()
         self.subject_screening = mommy.make_recipe(
             'ambition_screening.subjectscreening')
 
