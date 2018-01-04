@@ -14,6 +14,7 @@ from .pk_pd_crf_admin import PkPdCrfAdmin
 from .prn_model_admin import PrnModelAdmin
 from .radiology_admin import RadiologyAdmin
 from .subject_consent_admin import SubjectConsentAdmin
+from .subject_reconsent_admin import SubjectReconsentAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
 from .week16_admin import Week16Admin

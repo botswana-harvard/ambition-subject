@@ -8,7 +8,8 @@ from edc_consent.field_mixins import VulnerabilityFieldsMixin
 from edc_consent.field_mixins import IdentityFieldsMixin
 from edc_consent.managers import ConsentManager
 from edc_consent.model_mixins import ConsentModelMixin
-from edc_constants.constants import NOT_APPLICABLE
+from edc_constants.constants import NOT_APPLICABLE, ABNORMAL, NO, YES
+from edc_constants.choices import YES_NO
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
@@ -39,6 +40,12 @@ class SubjectConsent(
         verbose_name='Screening identifier',
         max_length=50)
 
+    completed_by_next_of_kin = models.CharField(
+        max_length=10,
+        default=NO,
+        choices=YES_NO,
+        editable=False)
+
     objects = SubjectConsentManager()
 
     consent = ConsentManager()
@@ -49,7 +56,10 @@ class SubjectConsent(
         return f'{self.subject_identifier} V{self.version}'
 
     def save(self, *args, **kwargs):
-        self.gender = self.subject_screening.gender
+        subject_screening = self.get_subject_screening()
+        self.completed_by_next_of_kin = (
+            YES if subject_screening.mental_status == ABNORMAL else NO)
+        self.gender = subject_screening.gender
         self.subject_type = 'subject'
         self.citizen = NOT_APPLICABLE
         super().save(*args, **kwargs)
@@ -57,8 +67,7 @@ class SubjectConsent(
     def natural_key(self):
         return (self.subject_identifier, self.version)
 
-    @property
-    def subject_screening(self):
+    def get_subject_screening(self):
         """Returns the subject screening model instance.
 
         Instance must exist since SubjectScreening is completed

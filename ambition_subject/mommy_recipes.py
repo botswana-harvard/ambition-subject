@@ -14,7 +14,7 @@ from .models import MedicalExpensesTwo
 from .models import MissedVisit, PatientHistory, Week16
 from .models import Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectConsent, PrnModel, MedicalExpensesTwoDetail
-from .models import Antibiotic, Symptom
+from .models import Antibiotic, Symptom, SubjectReconsent
 from .models import SignificantNewDiagnosis, PkPdCrf
 
 
@@ -191,3 +191,10 @@ education = Recipe(Education)
 educationhoh = Recipe(EducationHoh)
 
 pkpdcrf = Recipe(PkPdCrf)
+
+subjectreconsent = Recipe(
+    SubjectReconsent,
+    consent_reviewed=YES,
+    assessment_score=YES,
+    study_questions=YES,
+    consent_copy=YES)

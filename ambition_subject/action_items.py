@@ -6,6 +6,7 @@ from edc_action_item import Action, site_action_items, HIGH_PRIORITY
 from edc_constants.constants import YES
 
 BLOOD_RESULTS_ACTION = 'abnormal-blood-result'
+RECONSENT_ACTION = 'reconsent'
 
 
 class BloodResultAction(Action):
@@ -32,4 +33,19 @@ class BloodResultAction(Action):
         return []
 
 
+class ReconsentAction(Action):
+    name = RECONSENT_ACTION
+    display_name = 'Re-consent participant'
+    model = 'ambition_subject.subjectreconsent'
+    priority = HIGH_PRIORITY
+    show_on_dashboard = True
+    show_link_to_changelist = True
+    admin_site_name = 'ambition_subject_admin'
+    create_by_user = False
+    instructions = (
+        'Participant must be re-consented as soon as able. '
+        'Participant\'s ICF was initially completed by next-of-kin.')
+
+
 site_action_items.register(BloodResultAction)
+site_action_items.register(ReconsentAction)

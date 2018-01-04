@@ -80,7 +80,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
             'description': 'The following questions are directed to the interviewer.'}),
         audit_fieldset_tuple)
 
-    search_fields = ('subject_identifier', 'screening_identifier')
+    search_fields = ('subject_identifier', 'screening_identifier', 'identity')
 
     radio_fields = {
         "assessment_score": admin.VERTICAL,
