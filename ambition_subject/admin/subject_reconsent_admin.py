@@ -26,6 +26,7 @@ class SubjectReconsentAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'consent_reviewed',
                 'study_questions',
                 'assessment_score',
+                'consent_signature',
                 'consent_copy'),
             'description': 'The following questions are directed to the interviewer.'}),
         audit_fieldset_tuple)
@@ -36,6 +37,7 @@ class SubjectReconsentAdmin(ModelAdminMixin, admin.ModelAdmin):
         "assessment_score": admin.VERTICAL,
         "consent_copy": admin.VERTICAL,
         "consent_reviewed": admin.VERTICAL,
+        "consent_signature": admin.VERTICAL,
         "study_questions": admin.VERTICAL,
     }
 

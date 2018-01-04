@@ -42,6 +42,7 @@ class ReconsentAction(Action):
     show_link_to_changelist = True
     admin_site_name = 'ambition_subject_admin'
     create_by_user = False
+    singleton = True
     instructions = (
         'Participant must be re-consented as soon as able. '
         'Participant\'s ICF was initially completed by next-of-kin.')

@@ -59,8 +59,7 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
         if instance.completed_by_next_of_kin == YES:
             create_action_item(
                 action_cls=ReconsentAction,
-                subject_identifier=instance.subject_identifier,
-                singleton=True)
+                subject_identifier=instance.subject_identifier)
         else:
             delete_action_item(
                 action_cls=ReconsentAction,
