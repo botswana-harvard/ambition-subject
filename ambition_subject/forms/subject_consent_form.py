@@ -1,14 +1,24 @@
 from ambition_validators import SubjectConsentFormValidator
 from django import forms
+from django.utils.safestring import mark_safe
 from edc_consent.modelform_mixins import ConsentModelFormMixin
 from edc_form_validators import FormValidatorMixin
 
 from ..models import SubjectConsent
+from ambition_subject.choices import ID_TYPE
 
 
 class SubjectConsentForm(FormValidatorMixin, ConsentModelFormMixin, forms.ModelForm):
 
     form_validator_cls = SubjectConsentFormValidator
+
+    screening_identifier = forms.CharField(
+        label='Screening identifier',
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+
+    identity_type = forms.CharField(
+        label='What type of identity number is this?',
+        widget=forms.RadioSelect(choices=list(ID_TYPE)))
 
     def clean_gender_of_consent(self):
         return None
@@ -19,28 +29,17 @@ class SubjectConsentForm(FormValidatorMixin, ConsentModelFormMixin, forms.ModelF
     def clean_identity_with_unique_fields(self):
         return None
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['guardian_name'].label = (
-            'Guardian\'s Last and first name (for patients with Abnormal mental status)')
-        self.fields['guardian_name'].help_text = (
-            'Required only if participant is unconscious or has an abnormal mental '
-            'status. Format is \'LASTNAME, FIRSTNAME\'. All uppercase separated '
-            'by a comma then followed by a space.')
-        self.fields['identity'].label = (
-            'Identity number (Country ID Number, etc)')
-        self.fields['identity'].help_text = (
-            'Use Country ID Number, Passport number, driver\'s license '
-            'number or Country ID receipt number')
-        self.fields['witness_name'].help_text = (
-            'Required only if participant is illiterate. '
-            'Format is \'LASTNAME, FIRSTNAME\'. '
-            'All uppercase separated by a comma.'),
-
-    screening_identifier = forms.CharField(
-        label='Screening identifier',
-        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-
     class Meta:
         model = SubjectConsent
         fields = '__all__'
+        help_texts = {
+            'guardian_name': mark_safe(
+                'Required only if participant is unconscious or has an abnormal mental '
+                'status.<br>Format is \'LASTNAME, FIRSTNAME\'. All uppercase separated '
+                'by a comma then followed by a space.'),
+            'identity': ('Use Country ID Number, Passport number, driver\'s license '
+                         'number or Country ID receipt number'),
+            'witness_name': ('Required only if participant is illiterate. '
+                             'Format is \'LASTNAME, FIRSTNAME\'. '
+                             'All uppercase separated by a comma.')
+        }

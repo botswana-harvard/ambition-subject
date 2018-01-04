@@ -1,9 +1,12 @@
+from ambition_screening.models.subject_screening import SubjectScreening
 from django.conf import settings
 from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
+from django.utils.safestring import mark_safe
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
+from edc_constants.constants import ABNORMAL
 from edc_model_admin import (
     ModelAdminFormAutoNumberMixin, ModelAdminInstitutionMixin,
     audit_fieldset_tuple, audit_fields, ModelAdminNextUrlRedirectMixin,
@@ -63,14 +66,18 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
                 'identity',
                 'identity_type',
                 'confirm_identity',
-                'is_incarcerated',
+                'is_incarcerated')}),
+        ('Sample collection and storage', {
+            'fields': (
                 'may_store_samples',
-                'may_store_genetic_samples',
-                'comment',
+                'may_store_genetic_samples')}),
+        ('Review Questions', {
+            'fields': (
                 'consent_reviewed',
                 'study_questions',
                 'assessment_score',
-                'consent_copy')}),
+                'consent_copy'),
+            'description': 'The following questions are directed to the interviewer.'}),
         audit_fieldset_tuple)
 
     search_fields = ('subject_identifier', 'screening_identifier')
@@ -81,13 +88,11 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
         "consent_reviewed": admin.VERTICAL,
         "gender": admin.VERTICAL,
         "is_dob_estimated": admin.VERTICAL,
-        'identity_type': admin.VERTICAL,
         "is_incarcerated": admin.VERTICAL,
         "is_literate": admin.VERTICAL,
         "language": admin.VERTICAL,
         "may_store_genetic_samples": admin.VERTICAL,
         "may_store_samples": admin.VERTICAL,
-        "identity_type": admin.VERTICAL,
         "study_questions": admin.VERTICAL,
     }
 
@@ -110,7 +115,6 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
         """
         extra_context = extra_context or {}
         obj = SubjectConsent.objects.get(id=object_id)
-
         try:
             protected = [SubjectVisit.objects.get(
                 subject_identifier=obj.subject_identifier)]
@@ -121,3 +125,23 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
                 subject_identifier=obj.subject_identifier)
         extra_context.update({'protected': protected})
         return super().delete_view(request, object_id, extra_context)
+
+    def get_form(self, request, obj=None, **kwargs):
+        """Returns a form after replacing
+        'participant' with 'next of kin'.
+        """
+        form = super().get_form(request, obj=obj, **kwargs)
+        subject_screening = SubjectScreening.objects.get(
+            screening_identifier=request.GET.get('screening_identifier'))
+        if subject_screening.mental_status == ABNORMAL:
+            form = self.replace_label_text(form, 'participant', 'next of kin')
+        return form
+
+    def replace_label_text(self, form=None, old=None, new=None):
+        WIDGET = 1
+        for fld in form.base_fields.items():
+            label = str(fld[WIDGET].label)
+            if old in label:
+                label = label.replace(old, new)
+                fld[WIDGET].label = mark_safe(label)
+        return form
