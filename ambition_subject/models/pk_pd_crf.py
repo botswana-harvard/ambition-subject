@@ -7,8 +7,8 @@ from edc_constants.choices import YES_NO
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED_DISPLAY
 from edc_reportable import MILLIMOLES_PER_LITER, MILLIGRAMS_PER_DECILITER
 
-from ..choices import FLUCYTOSINE_DOSE_MISSED
 from .model_mixins import CrfModelMixin
+from ambition_subject.models.list_models import MissedDoses
 
 
 class PkPdCrf(CrfModelMixin):
@@ -16,7 +16,8 @@ class PkPdCrf(CrfModelMixin):
     albumin = models.IntegerField(
         verbose_name='Albumin',
         null=True,
-        blank=True)
+        blank=True,
+        help_text='Units in g/L')
 
     ambisome_dose = models.IntegerField(
         verbose_name='Ambisome dose given',
@@ -78,11 +79,9 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    flucytosine_dose_missed = models.CharField(
+    flucytosine_dose_missed = models.ManyToManyField(
+        MissedDoses,
         verbose_name='Which dose(s) was/were missed?',
-        choices=FLUCYTOSINE_DOSE_MISSED,
-        max_length=5,
-        null=True,
         blank=True)
 
     reason_flucytosine_dose_missed = models.CharField(

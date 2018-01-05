@@ -54,3 +54,8 @@ class CXRType(ListModelMixin, BaseUuidModel):
 class InfiltrateLocation(ListModelMixin, BaseUuidModel):
 
     pass
+
+
+class MissedDoses(ListModelMixin, BaseUuidModel):
+
+    pass

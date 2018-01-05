@@ -60,6 +60,8 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     inlines = [PkPdExtraSamplesAdmin]
 
+    filter_horizontal = ('flucytosine_dose_missed', )
+
     conditional_fieldsets = {
         DAY1: day1_samples,
         DAY7: day7_samples,
@@ -89,7 +91,6 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     radio_fields = {
         'full_ambisome_dose_given': admin.VERTICAL,
         'flucytosine_missed': admin.VERTICAL,
-        'flucytosine_dose_missed': admin.VERTICAL,
         'fluconazole_dose_missed': admin.VERTICAL,
         'blood_sample_missed': admin.VERTICAL,
         'pre_dose_lp': admin.VERTICAL,

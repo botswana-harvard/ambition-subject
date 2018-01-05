@@ -8,7 +8,7 @@ from .list_models import AbnormalResultsReason, Neurological
 from .list_models import Antibiotic, Day14Medication
 from .list_models import CXRType, InfiltrateLocation
 from .list_models import MissedVisitReason, Medication
-from .list_models import SignificantNewDiagnosis, Symptom, OtherDrug
+from .list_models import SignificantNewDiagnosis, Symptom, OtherDrug, MissedDoses
 from .lumbar_puncture_csf import LumbarPunctureCsf
 from .medical_expenses import MedicalExpenses
 from .medical_expenses_two import MedicalExpensesTwo
