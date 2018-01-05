@@ -4,13 +4,12 @@ from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
-from django.utils.safestring import mark_safe
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
 from edc_constants.constants import ABNORMAL
 from edc_model_admin import (
     ModelAdminFormAutoNumberMixin, ModelAdminInstitutionMixin,
     audit_fieldset_tuple, audit_fields, ModelAdminNextUrlRedirectMixin,
-    ModelAdminNextUrlRedirectError)
+    ModelAdminNextUrlRedirectError, ModelAdminReplaceLabelTextMixin)
 from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 
 from ..admin_site import ambition_subject_admin
@@ -19,7 +18,8 @@ from ..models import SubjectConsent, SubjectVisit
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMixin,
-                      ModelAdminRevisionMixin, ModelAdminInstitutionMixin):
+                      ModelAdminRevisionMixin, ModelAdminReplaceLabelTextMixin,
+                      ModelAdminInstitutionMixin):
 
     list_per_page = 10
     date_hierarchy = 'modified'
@@ -138,16 +138,4 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
         if subject_screening.mental_status == ABNORMAL:
             form = self.replace_label_text(
                 form, 'participant', 'next of kin', skip_fields=['is_incarcerated'])
-        return form
-
-    def replace_label_text(self, form=None, old=None, new=None, skip_fields=None):
-        NAME = 0
-        WIDGET = 1
-        skip_fields = skip_fields or []
-        for fld in form.base_fields.items():
-            if fld[NAME] not in skip_fields:
-                label = str(fld[WIDGET].label)
-                if old in label:
-                    label = label.replace(old, new)
-                    fld[WIDGET].label = mark_safe(label)
         return form

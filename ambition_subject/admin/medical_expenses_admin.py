@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from edc_model_admin import audit_fieldset_tuple
+from edc_model_admin import audit_fieldset_tuple, ModelAdminReplaceLabelTextMixin
 from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
@@ -9,6 +9,7 @@ from ..models import MedicalExpenses
 from ..constants import DAY1, WEEK10
 
 from .modeladmin_mixins import CrfModelAdminMixin
+from pprint import pprint
 
 info_source = Fieldset(
     'info_source',
@@ -43,7 +44,7 @@ welfare = Fieldset(
 
 
 @admin.register(MedicalExpenses, site=ambition_subject_admin)
-class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class MedicalExpensesAdmin(CrfModelAdminMixin, ModelAdminReplaceLabelTextMixin, admin.ModelAdmin):
 
     form = MedicalExpensesForm
     conditional_fieldsets = {
@@ -81,3 +82,15 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'private_healthcare': admin.VERTICAL,
         'healthcare_insurance': admin.VERTICAL,
         'welfare': admin.VERTICAL}
+
+#     def get_form(self, request, obj=None, **kwargs):
+#         """Returns a form after replacing
+#         'week 4' with 'week 10'.
+#         """
+#         pprint(obj, request.__dict__)
+#
+#         form = super().get_form(request, obj=obj, **kwargs)
+#         if obj:
+#             form = self.replace_label_text(
+#                 form, 'last 4 weeks', 'last 10 weeks')
+#         return form
