@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
@@ -58,7 +58,7 @@ class Microbiology(CrfModelMixin):
 
     day_blood_taken = models.IntegerField(
         verbose_name='If positive, study day positive culture sample taken',
-        validators=[MinValueValidator(1), MaxValueValidator(70)],
+        validators=[MinValueValidator(1)],
         null=True,
         blank=True)
 
@@ -159,7 +159,7 @@ class Microbiology(CrfModelMixin):
 
     day_biopsy_taken = models.IntegerField(
         verbose_name='If positive, Study day positive culture sample taken',
-        validators=[MinValueValidator(1), MaxValueValidator(70)],
+        validators=[MinValueValidator(1)],
         null=True,
         blank=True)
 

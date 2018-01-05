@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from edc_action_item import create_action_item, delete_action_item
+from edc_action_item import SingletonActionItemError, ActionItemDeleteError
 from edc_constants.constants import YES
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 
@@ -57,13 +58,19 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
 
         # create / delete action for reconsent
         if instance.completed_by_next_of_kin == YES:
-            create_action_item(
-                action_cls=ReconsentAction,
-                subject_identifier=instance.subject_identifier)
+            try:
+                create_action_item(
+                    action_cls=ReconsentAction,
+                    subject_identifier=instance.subject_identifier)
+            except SingletonActionItemError:
+                pass
         else:
-            delete_action_item(
-                action_cls=ReconsentAction,
-                subject_identifier=instance.subject_identifier)
+            try:
+                delete_action_item(
+                    action_cls=ReconsentAction,
+                    subject_identifier=instance.subject_identifier)
+            except ActionItemDeleteError:
+                pass
 
 
 # @receiver(post_save, weak=False, sender=PatientHistory,
