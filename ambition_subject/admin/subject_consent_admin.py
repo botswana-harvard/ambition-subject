@@ -136,14 +136,18 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
         subject_screening = SubjectScreening.objects.get(
             screening_identifier=request.GET.get('screening_identifier'))
         if subject_screening.mental_status == ABNORMAL:
-            form = self.replace_label_text(form, 'participant', 'next of kin')
+            form = self.replace_label_text(
+                form, 'participant', 'next of kin', skip_fields=['is_incarcerated'])
         return form
 
-    def replace_label_text(self, form=None, old=None, new=None):
+    def replace_label_text(self, form=None, old=None, new=None, skip_fields=None):
+        NAME = 0
         WIDGET = 1
+        skip_fields = skip_fields or []
         for fld in form.base_fields.items():
-            label = str(fld[WIDGET].label)
-            if old in label:
-                label = label.replace(old, new)
-                fld[WIDGET].label = mark_safe(label)
+            if fld[NAME] not in skip_fields:
+                label = str(fld[WIDGET].label)
+                if old in label:
+                    label = label.replace(old, new)
+                    fld[WIDGET].label = mark_safe(label)
         return form
