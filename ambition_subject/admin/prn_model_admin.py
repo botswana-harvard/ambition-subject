@@ -3,7 +3,7 @@ from edc_model_admin import audit_fieldset_tuple
 from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
-from ..constants import WEEK4, WEEK6, WEEK8, WEEK10, DAY1, DAY7, DAY14
+from ..constants import WEEK4, WEEK6, WEEK8, WEEK10, DAY1, DAY7, DAY14, DAY3
 from ..forms import PrnModelForm
 from ..models import PrnModel
 
@@ -30,6 +30,7 @@ class PrnModelAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = PrnModelForm
     conditional_fieldsets = {
         DAY1: Fieldset(*common_fields, section='PRN'),
+        DAY3: Fieldset(*common_fields, section='PRN'),
         DAY7: Fieldset(*common_fields, section='PRN'),
         DAY14: Fieldset(*common_fields, section='PRN'),
         WEEK4: Fieldset(*week4, section='PRN'),
