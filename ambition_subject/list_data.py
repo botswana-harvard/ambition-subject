@@ -110,6 +110,12 @@ list_data = {
         ('rml', 'RML'),
         ('diffuse', 'Diffuse'),
     ],
+    'ambition_subject.misseddoses': [
+        ('dose_1', 'Dose 1'),
+        ('dose_2', 'Dose 2'),
+        ('dose_3', 'Dose 3'),
+        ('dose_4', 'Dose 4')
+    ],
 }
 
 model_data = {
