@@ -25,7 +25,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     wbc = models.DecimalField(
         verbose_name='WBC',
         decimal_places=1,
-        max_digits=4,
+        max_digits=6,
         null=True,
         blank=True)
 
@@ -33,23 +33,20 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((TEN_X_3_PER_LITER, TEN_X_3_PER_LITER), ),
-        # default=TEN_X_3_PER_LITER,
         null=True,
         blank=True)
 
     wbc_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     wbc_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -62,29 +59,26 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER), ),
-        # default=TEN_X_9_PER_LITER,
         null=True,
         blank=True)
 
     platelets_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     platelets_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     haemoglobin = models.DecimalField(
         decimal_places=1,
-        max_digits=4,
+        max_digits=6,
         null=True,
         blank=True)
 
@@ -92,29 +86,26 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((GRAMS_PER_DECILITER, GRAMS_PER_DECILITER), ),
-        # default=GRAMS_PER_DECILITER,
         null=True,
         blank=True)
 
     haemoglobin_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     haemoglobin_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     neutrophil = models.DecimalField(
         decimal_places=2,
-        max_digits=4,
+        max_digits=6,
         null=True,
         blank=True)
 
@@ -122,23 +113,20 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER), ),
-        # default=TEN_X_9_PER_LITER,
         null=True,
         blank=True)
 
     neutrophil_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     neutrophil_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -151,23 +139,21 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     creatinine_units = models.CharField(
         verbose_name='units',
         choices=MG_UMOL_UNITS,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     creatinine_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     creatinine_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -180,23 +166,20 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER), ),
-        # default=MILLIMOLES_PER_LITER,
         null=True,
         blank=True)
 
     sodium_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     sodium_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -210,7 +193,6 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER), ),
-        # default=MILLIMOLES_PER_LITER,
         null=True,
         blank=True)
 
@@ -218,7 +200,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='abnormal',
         choices=YES_NO,
         # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -226,7 +208,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='reportable',
         choices=REPORTABLE,
         # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -241,23 +223,21 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         choices=MG_MMOL_UNITS,
         null=True,
         blank=True,
-        max_length=6)
+        max_length=25)
 
     magnesium_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
         null=True,
         blank=True,
-        max_length=6)
+        max_length=25)
 
     magnesium_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
         null=True,
         blank=True,
-        max_length=6)
+        max_length=25)
 
     alt = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(2999)],
@@ -269,23 +249,20 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((IU_LITER, IU_LITER), ),
-        # default=IU_LITER,
         null=True,
         blank=True)
 
     alt_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     alt_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -298,7 +275,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     urea_units = models.CharField(
         verbose_name='units',
         choices=MG_MMOL_UNITS,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -306,15 +283,14 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='abnormal',
         choices=YES_NO,
         # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     urea_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -329,23 +305,20 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         max_length=10,
         choices=((CELLS_PER_MILLIMETER_CUBED,
                   CELLS_PER_MILLIMETER_CUBED), ),
-        # default=CELLS_PER_MILLIMETER_CUBED,
         null=True,
         blank=True)
 
     cd4_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        # default=NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     cd4_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        # default=NOT_APPLICABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
@@ -359,33 +332,32 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((COPIES_PER_MILLILITER, COPIES_PER_MILLILITER), ),
-        # default=COPIES_PER_MILLILITER,
         null=True,
         blank=True)
 
     vl_abnormal = models.CharField(
         verbose_name='abnormal',
         choices=YES_NO,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     vl_reportable = models.CharField(
         verbose_name='reportable',
         choices=REPORTABLE,
-        max_length=6,
+        max_length=25,
         null=True,
         blank=True)
 
     results_abnormal = models.CharField(
         verbose_name='Are any of the above results abnormal?',
         choices=YES_NO,
-        max_length=5)
+        max_length=25)
 
     results_reportable = models.CharField(
         verbose_name='If any results are abnormal, are results within grade III '
                      'or above?',
-        max_length=5,
+        max_length=25,
         choices=YES_NO_NA,
         help_text=('If YES, this value will open Adverse Event Form.<br/><br/>'
                    'Note: On Day 1 only abnormal bloods should not be reported as adverse'
