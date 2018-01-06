@@ -6,9 +6,8 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED, MILLIMOLES_PER_LITER
-from edc_reportable import COPIES_PER_MILLILITER, TEN_X_3_PER_LITER, TEN_X_3_PER_LITER_DISPLAY
+from edc_reportable import COPIES_PER_MILLILITER, TEN_X_3_PER_LITER
 from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER
-from edc_reportable import TEN_X_9_PER_LITER_DISPLAY, CELLS_PER_MILLIMETER_CUBED_DISPLAY
 from edc_reportable import site_reportables
 
 from ..action_items import BloodResultAction
@@ -33,7 +32,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     wbc_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((TEN_X_3_PER_LITER, TEN_X_3_PER_LITER_DISPLAY), ),
+        choices=((TEN_X_3_PER_LITER, TEN_X_3_PER_LITER), ),
         # default=TEN_X_3_PER_LITER,
         null=True,
         blank=True)
@@ -62,7 +61,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     platelets_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER_DISPLAY), ),
+        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER), ),
         # default=TEN_X_9_PER_LITER,
         null=True,
         blank=True)
@@ -122,7 +121,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     neutrophil_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER_DISPLAY), ),
+        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER), ),
         # default=TEN_X_9_PER_LITER,
         null=True,
         blank=True)
@@ -329,7 +328,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='units',
         max_length=10,
         choices=((CELLS_PER_MILLIMETER_CUBED,
-                  CELLS_PER_MILLIMETER_CUBED_DISPLAY), ),
+                  CELLS_PER_MILLIMETER_CUBED), ),
         # default=CELLS_PER_MILLIMETER_CUBED,
         null=True,
         blank=True)
