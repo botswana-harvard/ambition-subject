@@ -18,19 +18,20 @@ class BloodResultAction(Action):
     create_by_user = False
 
     def get_next_actions(self):
-        # early withdrawal if qualifying blood results
-        # are abnormal on DAY1
+        actions = []
+        self.delete_if_new(action_cls=AeInitialAction)
         if self.model_obj.subject_visit.visit_code == DAY1:
+            # early withdrawal if qualifying blood results
+            # are abnormal on DAY1
             evaluator = EarlyWithdrawalEvaluator(
                 subject_identifier=self.model_obj.subject_identifier)
             if not evaluator.eligible:
-                return [StudyTerminationConclusionAction]
-        else:
+                actions = [StudyTerminationConclusionAction]
+        elif (self.model_obj.results_abnormal == YES
+              and self.model_obj.results_reportable == YES):
             # AE for reportable result, not on DAY1
-            if (self.model_obj.results_abnormal == YES
-                    and self.model_obj.results_reportable == YES):
-                return [AeInitialAction]
-        return []
+            actions = [AeInitialAction]
+        return actions
 
 
 class ReconsentAction(Action):

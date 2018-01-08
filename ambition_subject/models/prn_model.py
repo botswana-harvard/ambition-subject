@@ -1,7 +1,7 @@
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
-from edc_constants.constants import NO, YES
+from edc_constants.constants import NO
 
 from .model_mixins import CrfModelMixin
 
@@ -12,7 +12,7 @@ class PrnModel(CrfModelMixin):
         verbose_name='Blood result?',
         max_length=5,
         choices=YES_NO,
-        default=YES)
+        default=NO)
 
     microbiology = models.CharField(
         verbose_name='Microbiology?',
@@ -30,8 +30,7 @@ class PrnModel(CrfModelMixin):
         verbose_name='Lumbar puncture?',
         max_length=5,
         choices=YES_NO,
-        default=YES,
-        null=True)
+        default=NO)
 
     viral_load = models.CharField(
         verbose_name='Viral Load?',
