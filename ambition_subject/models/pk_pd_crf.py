@@ -1,14 +1,10 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO
-from edc_reportable import CELLS_PER_MILLIMETER_CUBED_DISPLAY
-from edc_reportable import MILLIMOLES_PER_LITER, MILLIGRAMS_PER_DECILITER
 
 from .model_mixins import CrfModelMixin
-from ambition_subject.models.list_models import MissedDoses
+from .list_models import MissedDoses
 
 
 class PkPdCrf(CrfModelMixin):
