@@ -11,7 +11,6 @@ from .medical_expenses_admin import MedicalExpensesAdmin
 from .missed_visit_admin import MissedVisitAdmin
 from .patient_history_admin import PatientHistory
 from .pk_pd_crf_admin import PkPdCrfAdmin
-from .prn_model_admin import PrnModelAdmin
 from .radiology_admin import RadiologyAdmin
 from .subject_consent_admin import SubjectConsentAdmin
 from .subject_reconsent_admin import SubjectReconsentAdmin

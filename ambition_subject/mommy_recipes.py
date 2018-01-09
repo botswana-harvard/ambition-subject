@@ -13,7 +13,7 @@ from .models import LumbarPunctureCsf, Radiology
 from .models import MedicalExpensesTwo
 from .models import MissedVisit, PatientHistory, Week16
 from .models import Week2, SubjectVisit, MedicalExpenses
-from .models import SubjectConsent, PrnModel, MedicalExpensesTwoDetail
+from .models import SubjectConsent, MedicalExpensesTwoDetail
 from .models import Antibiotic, Symptom, SubjectReconsent
 from .models import SignificantNewDiagnosis, PkPdCrf
 
@@ -162,18 +162,6 @@ subjectconsent = Recipe(
     study_questions=YES,
     site=Site.objects.get_current(),
     subject_identifier=None)
-
-prnmodel = Recipe(
-    PrnModel,
-    blood_result=NO,
-    microbiology=NO,
-    radiology=NO,
-    lumbar_puncture=NO,
-    viral_load=NO,
-    cd4=NO,
-    fbc=NO,
-    chemistry=NO,
-)
 
 clinicnote = Recipe(
     ClinicNote,)

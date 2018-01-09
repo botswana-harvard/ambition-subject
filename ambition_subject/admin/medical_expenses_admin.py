@@ -9,7 +9,6 @@ from ..models import MedicalExpenses
 from ..constants import DAY1, WEEK10
 
 from .modeladmin_mixins import CrfModelAdminMixin
-from pprint import pprint
 
 info_source = Fieldset(
     'info_source',
@@ -82,15 +81,3 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, ModelAdminReplaceLabelTextMixin, 
         'private_healthcare': admin.VERTICAL,
         'healthcare_insurance': admin.VERTICAL,
         'welfare': admin.VERTICAL}
-
-#     def get_form(self, request, obj=None, **kwargs):
-#         """Returns a form after replacing
-#         'week 4' with 'week 10'.
-#         """
-#         pprint(obj, request.__dict__)
-#
-#         form = super().get_form(request, obj=obj, **kwargs)
-#         if obj:
-#             form = self.replace_label_text(
-#                 form, 'last 4 weeks', 'last 10 weeks')
-#         return form

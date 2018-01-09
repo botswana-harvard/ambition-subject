@@ -37,12 +37,6 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
     post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
         'subject_dashboard_url')
 
-    instructions = (
-        'Please complete the questions below. Required questions are in bold. '
-        'When all required questions are complete click SAVE. '
-        'Based on your responses, additional questions may be '
-        'required or some answers may need to be corrected.')
-
     def post_url_on_delete_kwargs(self, request, obj):
         return dict(
             subject_identifier=obj.subject_visit.subject_identifier,
