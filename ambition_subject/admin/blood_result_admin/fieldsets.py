@@ -1,8 +1,8 @@
+from edc_action_item import action_fieldset
 from edc_fieldsets import Fieldset
+from edc_model_admin import audit_fieldset_tuple
 
-from ...constants import DAY1, DAY7, DAY14, WEEK4, WEEK6, WEEK8, WEEK10
-
-fs = {}
+results_fieldsets = []
 fields = [
     ('alt', 'LFT', 'urea'),
     ('cd4', 'Immunology', None),
@@ -17,60 +17,25 @@ fields = [
     ('urea', 'RFT', None),
     ('wbc', 'CBC', None),
 ]
+
 for field, label, insert_after in fields:
     fieldset = Fieldset(
         field, f'{field}_units', f'{field}_abnormal', f'{field}_reportable',
         section=f'{label}: {field.upper()}')
-    fs.update({field: fieldset})
+    results_fieldsets.append(fieldset.fieldset)
 
-fs.update({'crag': Fieldset(
+biosynex_fieldset = Fieldset(
     'bios_crag',
     'crag_control_result',
     'crag_t1_result',
     'crag_t2_result',
-    section='BIOSYNEX® CryptoPS (Semi-quantitative CrAg)')})
+    section='BIOSYNEX® CryptoPS (Semi-quantitative CrAg)')
 
-conditional_fieldsets = {
-    DAY1: (
-        fs.get('alt'),
-        fs.get('wbc'),
-        fs.get('platelets'),
-        fs.get('haemoglobin'),
-        fs.get('neutrophil'),
-        fs.get('cd4'),
-        fs.get('vl'),
-        fs.get('crag')),
-    DAY7: (
-        fs.get('alt'),
-        fs.get('wbc'),
-        fs.get('platelets'),
-        fs.get('haemoglobin'),
-        fs.get('neutrophil')),
-    DAY14: (
-        fs.get('alt'),
-        fs.get('wbc'),
-        fs.get('platelets'),
-        fs.get('haemoglobin'),
-        fs.get('neutrophil')),
-    WEEK4: (
-        fs.get('alt'),
-        fs.get('wbc'),
-        fs.get('platelets'),
-        fs.get('haemoglobin'),
-        fs.get('neutrophil')),
-    WEEK6: (
-        fs.get('wbc'),
-        fs.get('platelets'),
-        fs.get('haemoglobin'),
-        fs.get('neutrophil')),
-    WEEK8: (
-        fs.get('wbc'),
-        fs.get('platelets'),
-        fs.get('haemoglobin'),
-        fs.get('neutrophil')),
-    WEEK10: (
-        fs.get('wbc'),
-        fs.get('platelets'),
-        fs.get('haemoglobin'),
-        fs.get('neutrophil'))
-}
+fieldset = [(None, {'fields': ('subject_visit',)})]
+fieldset.extend(results_fieldsets)
+fieldset.append(('Conclusion', {
+    'fields': ('results_abnormal', 'results_reportable')}))
+fieldset.append(
+    ('Summary', {'classes': ('collapse', ), 'fields': ('summary', )}))
+fieldset.append(action_fieldset)
+fieldset.append(audit_fieldset_tuple)
