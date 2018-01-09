@@ -32,7 +32,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     wbc_units = models.CharField(
         verbose_name='units',
         max_length=10,
-        choices=((TEN_X_3_PER_LITER, TEN_X_3_PER_LITER), ),
+        choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER), ),
         null=True,
         blank=True)
 
