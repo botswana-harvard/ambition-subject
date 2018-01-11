@@ -5,8 +5,9 @@ from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_constants.constants import NOT_APPLICABLE
+from edc_constants.choices import YES_NO
 
-from ..choices import YES_NO, LOCATION_CARE, CARE_PROVIDER, TRANSPORT
+from ..choices import LOCATION_CARE, CARE_PROVIDER, TRANSPORT
 from ..validators import hm_validator
 from .medical_expenses_two import MedicalExpensesTwo
 
