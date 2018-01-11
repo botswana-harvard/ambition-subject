@@ -5,7 +5,7 @@ from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, NOT_DONE
 from edc_constants.constants import NORMAL, IND, YES, NO
 from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER, MICROMOLES_PER_LITER
 from edc_reportable import GRADE3, GRADE4, MICROMOLES_PER_LITER_DISPLAY, MM3, MM3_DISPLAY
-from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED
+from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
 
 from .constants import ALREADY_REPORTED
 from .constants import AZT_3TC_with_ATZ_r_or_Lopinavir_r
@@ -330,6 +330,7 @@ VISIT_UNSCHEDULED_REASON = (
     ('art_initiation', 'ART initiation'),
     ('patient_hospitalised', 'Patient hospitalised'),
     (OTHER, 'Other'),
+    (NOT_APPLICABLE, 'Not applicable'),
 )
 
 DAYS_MISSED = (
@@ -381,12 +382,8 @@ WEIGHT_DETERMINATION = (
 
 VISIT_REASON = (
     (SCHEDULED, 'Scheduled'),
-    (UNSCHEDULED, 'Not scheduled')
-)
-
-YES_NO = (
-    (YES, 'Yes'),
-    (NO, 'No'),
+    (UNSCHEDULED, 'Not scheduled'),
+    (MISSED_VISIT, 'Missed'),
 )
 
 YES_NO_ND = (

@@ -1,10 +1,9 @@
-from ambition_subject.choices import YES_NO, ACTIVITIES_MISSED, CURRENCY,\
-    TRANSPORT
+from ambition_subject.choices import ACTIVITIES_MISSED, CURRENCY, TRANSPORT
 from django.core.validators import MinValueValidator
 from django.db import models
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
-from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
+from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
 
 from .model_mixins import CrfModelMixin
 
