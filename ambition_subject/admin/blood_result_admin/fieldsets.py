@@ -4,18 +4,18 @@ from edc_model_admin import audit_fieldset_tuple
 
 results_fieldsets = []
 fields = [
-    ('alt', 'LFT', 'urea'),
-    ('cd4', 'Immunology', None),
-    ('vl', 'Immunology', None),
     ('creatinine', 'RFT', None),
-    ('haemoglobin', 'CBC', None),
+    ('urea', 'RFT', None),
+    ('sodium', 'RFT', None),
+    ('potassium', 'RFT', None),
     ('magnesium', 'RFT', None),
+    ('alt', 'LFT', 'urea'),
+    ('haemoglobin', 'CBC', None),
+    ('wbc', 'CBC', None),
     ('neutrophil', 'CBC', None),
     ('platelets', 'CBC', None),
-    ('potassium', 'RFT', None),
-    ('sodium', 'RFT', None),
-    ('urea', 'RFT', None),
-    ('wbc', 'CBC', None),
+    ('cd4', 'Immunology', None),
+    ('vl', 'Immunology', None),
 ]
 
 for field, label, insert_after in fields:
