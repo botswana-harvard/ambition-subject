@@ -11,6 +11,8 @@ from ..admin_site import ambition_subject_admin
 from ..models import SubjectRequisition
 from ..forms import SubjectRequisitionForm
 from .modeladmin_mixins import CrfModelAdminMixin
+from pprint import pprint
+from urllib.parse import parse_qs, urlsplit
 
 
 @admin.register(SubjectRequisition, site=ambition_subject_admin)
@@ -21,6 +23,9 @@ class SubjectRequisitionAdmin(CrfModelAdminMixin,
     # show_save_next = False
 
     form = SubjectRequisitionForm
+
+    ordering = ('requisition_identifier', )
+
     fieldsets = (
         (None, {
             'fields': (
@@ -42,3 +47,17 @@ class SubjectRequisitionAdmin(CrfModelAdminMixin,
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)
                 + requisition_identifier_fields)
+
+    def get_search_results(self, request, queryset, search_term):
+        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        path = urlsplit(request.META.get('HTTP_REFERER')).path
+        query = urlsplit(request.META.get('HTTP_REFERER')).query
+        if 'bloodresult' in path:
+            attrs = parse_qs(query)
+            try:
+                subject_visit = attrs.get('subject_visit')[0]
+            except IndexError:
+                pass
+            else:
+                queryset = queryset.filter(subject_visit__id=subject_visit)
+        return queryset, use_distinct

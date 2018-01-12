@@ -4,6 +4,7 @@ from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
+from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_lab.model_mixins.requisition import RequisitionIdentifierMixin
 from edc_lab.model_mixins.requisition import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
@@ -23,6 +24,7 @@ class Manager(VisitTrackingCrfModelManager, SearchSlugManager):
 
 
 class SubjectRequisition(
+        NonUniqueSubjectIdentifierFieldMixin,
         RequisitionModelMixin, RequisitionStatusMixin, RequisitionIdentifierMixin,
         VisitTrackingCrfModelMixin, SubjectScheduleCrfModelMixin,
         RequiresConsentFieldsModelMixin, PreviousVisitModelMixin,
@@ -35,6 +37,11 @@ class SubjectRequisition(
 
     history = HistoricalRecords()
 
+    def __str__(self):
+        return (
+            f'{self.requisition_identifier} '
+            f'{self.panel_object.name}')
+
     def save(self, *args, **kwargs):
         if not self.id:
             edc_protocol_app_config = django_apps.get_app_config(
@@ -42,6 +49,7 @@ class SubjectRequisition(
             self.protocol_number = edc_protocol_app_config.protocol_number
             self.study_site = edc_protocol_app_config.site_code
             self.study_site_name = edc_protocol_app_config.site_name
+        self.subject_identifier = self.subject_visit.subject_identifier
         super().save(*args, **kwargs)
 
     def get_search_slug_fields(self):

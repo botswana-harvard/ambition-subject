@@ -20,6 +20,10 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     fieldsets = fieldset
 
+    autocomplete_fields = ['ft_requisition',
+                           'cbc_requisition',
+                           'cd4_requisition',
+                           'vl_requisition']
     radio_fields = {
         'results_abnormal': admin.VERTICAL,
         'results_reportable': admin.VERTICAL,

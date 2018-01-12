@@ -1,28 +1,41 @@
 from edc_action_item import action_fieldset
 from edc_fieldsets import Fieldset
 from edc_model_admin import audit_fieldset_tuple
+from ...models import BloodResult
+
+
+def get_results_fieldset(fields):
+    fieldsets = []
+    for field in fields:
+        fieldset = Fieldset(
+            field, f'{field}_units', f'{field}_abnormal', f'{field}_reportable',
+            section=f'{field.upper()}')
+        fieldsets.append(fieldset.fieldset)
+    return fieldsets
+
+
+ft_requisition_fieldset = Fieldset(
+    'ft_requisition', 'ft_assay_datetime',
+    section=f'RFT and LFT')
+cbc_requisition_fieldset = Fieldset(
+    'cbc_requisition', 'cbc_assay_datetime',
+    section=f'FBC')
+cd4_requisition_fieldset = Fieldset(
+    'cd4_requisition', 'cd4_assay_datetime',
+    section=f'Immunology')
+vl_requisition_fieldset = Fieldset(
+    'vl_requisition', 'vl_assay_datetime',
+    section=f'Virology')
 
 results_fieldsets = []
-fields = [
-    ('creatinine', 'RFT', None),
-    ('urea', 'RFT', None),
-    ('sodium', 'RFT', None),
-    ('potassium', 'RFT', None),
-    ('magnesium', 'RFT', None),
-    ('alt', 'LFT', 'urea'),
-    ('haemoglobin', 'CBC', None),
-    ('wbc', 'CBC', None),
-    ('neutrophil', 'CBC', None),
-    ('platelets', 'CBC', None),
-    ('cd4', 'Immunology', None),
-    ('vl', 'Immunology', None),
-]
-
-for field, label, insert_after in fields:
-    fieldset = Fieldset(
-        field, f'{field}_units', f'{field}_abnormal', f'{field}_reportable',
-        section=f'{label}: {field.upper()}')
-    results_fieldsets.append(fieldset.fieldset)
+results_fieldsets.append(ft_requisition_fieldset.fieldset)
+results_fieldsets.extend(get_results_fieldset(BloodResult.ft_fields))
+results_fieldsets.append(cbc_requisition_fieldset.fieldset)
+results_fieldsets.extend(get_results_fieldset(BloodResult.cbc_fields))
+results_fieldsets.append(cd4_requisition_fieldset.fieldset)
+results_fieldsets.extend(get_results_fieldset(['cd4']))
+results_fieldsets.append(vl_requisition_fieldset.fieldset)
+results_fieldsets.extend(get_results_fieldset(['vl']))
 
 biosynex_fieldset = Fieldset(
     'bios_crag',

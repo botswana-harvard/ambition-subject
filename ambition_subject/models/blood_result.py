@@ -1,18 +1,20 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.db.models.deletion import PROTECT
 from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED, MILLIMOLES_PER_LITER
-from edc_reportable import COPIES_PER_MILLILITER, TEN_X_3_PER_LITER
+from edc_reportable import COPIES_PER_MILLILITER
 from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER
 from edc_reportable import site_reportables
 
 from ..action_items import BloodResultAction
 from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS, REPORTABLE
 from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
+from .subject_requisition import SubjectRequisition
 
 
 class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMixin,
@@ -21,6 +23,66 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     action_cls = BloodResultAction
 
     tracking_identifier_prefix = 'BR'
+
+    ft_fields = ['creatinine', 'urea', 'sodium',
+                 'potassium', 'magnesium', 'alt']
+    cbc_fields = ['haemoglobin', 'wbc', 'neutrophil', 'platelets']
+
+    ft_requisition = models.ForeignKey(
+        SubjectRequisition,
+        on_delete=PROTECT,
+        related_name='ft',
+        verbose_name='Requisition',
+        null=True,
+        blank=True,
+        help_text='Type the requisition identifier or select one')
+
+    ft_assay_datetime = models.DateTimeField(
+        verbose_name='Assay Date and Time',
+        null=True,
+        blank=True)
+
+    cbc_requisition = models.ForeignKey(
+        SubjectRequisition,
+        on_delete=PROTECT,
+        related_name='cbc',
+        verbose_name='Requisition',
+        null=True,
+        blank=True,
+        help_text='Type the requisition identifier or select one')
+
+    cbc_assay_datetime = models.DateTimeField(
+        verbose_name='Assay Date and Time',
+        null=True,
+        blank=True)
+
+    cd4_requisition = models.ForeignKey(
+        SubjectRequisition,
+        on_delete=PROTECT,
+        related_name='cd4',
+        verbose_name='Requisition',
+        null=True,
+        blank=True,
+        help_text='Type the requisition identifier or select one')
+
+    cd4_assay_datetime = models.DateTimeField(
+        verbose_name='Assay Date and Time',
+        null=True,
+        blank=True)
+
+    vl_requisition = models.ForeignKey(
+        SubjectRequisition,
+        on_delete=PROTECT,
+        related_name='vl',
+        verbose_name='Requisition',
+        null=True,
+        blank=True,
+        help_text='Type the requisition identifier or select one')
+
+    vl_assay_datetime = models.DateTimeField(
+        verbose_name='Assay Date and Time',
+        null=True,
+        blank=True)
 
     wbc = models.DecimalField(
         verbose_name='WBC',
