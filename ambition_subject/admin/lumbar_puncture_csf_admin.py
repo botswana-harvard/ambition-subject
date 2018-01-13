@@ -1,31 +1,10 @@
 from django.contrib import admin
 from edc_model_admin import audit_fieldset_tuple
-from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
-from ..constants import DAY1
 from ..forms import LumbarPunctureCsfForm
 from ..models import LumbarPunctureCsf
 from .modeladmin_mixins import CrfModelAdminMixin
-
-wbc_count = Fieldset(
-    'csf_wbc_cell_count', section='WBC Count')
-
-day1_lp = Fieldset('csf_wbc_cell_count',
-                   'differential_lymphocyte_count',
-                   'differential_lymphocyte_unit',
-                   'differential_neutrophil_count',
-                   'differential_neutrophil_unit',
-                   'india_ink',
-                   'csf_glucose',
-                   'csf_glucose_units',
-                   'csf_protein',
-                   'csf_cr_ag',
-                   'csf_cr_ag_lfa',
-                   'bios_crag',
-                   'crag_control_result',
-                   'crag_t1_result',
-                   'crag_t2_result', section='Day 1')
 
 
 @admin.register(LumbarPunctureCsf, site=ambition_subject_admin)
@@ -33,21 +12,37 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = LumbarPunctureCsfForm
 
-    conditional_fieldsets = {
-        DAY1: day1_lp
-    }
+    autocomplete_fields = ['requisition']
 
     fieldsets = (
         (None, {
             'fields': (
                 'subject_visit',
+                'requisition',
+                'assay_datetime',
                 'reason_for_lp',
                 'opening_pressure',
                 'closing_pressure',
                 'csf_amount_removed',
                 'quantitative_culture',
                 'csf_culture',
-                'other_csf_culture')},
+                'other_csf_culture',
+                'csf_wbc_cell_count',
+                'differential_lymphocyte_count',
+                'differential_lymphocyte_unit',
+                'differential_neutrophil_count',
+                'differential_neutrophil_unit',
+                'india_ink',
+                'csf_glucose',
+                'csf_glucose_units',
+                'csf_protein',
+                'csf_cr_ag',
+                'csf_cr_ag_lfa',
+                'bios_crag',
+                'crag_control_result',
+                'crag_t1_result',
+                'crag_t2_result'
+            )},
          ),
         audit_fieldset_tuple
     )
