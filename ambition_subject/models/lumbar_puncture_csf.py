@@ -1,16 +1,31 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.db.models.deletion import PROTECT
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from ..choices import YES_NO_NOT_DONE_WAIT_RESULTS
+from ..constants import AWAITING_RESULTS
 from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
-from ambition_subject.constants import AWAITING_RESULTS
+from .subject_requisition import SubjectRequisition
 
 
 class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
+
+    requisition = models.ForeignKey(
+        SubjectRequisition,
+        on_delete=PROTECT,
+        verbose_name='Requisition',
+        null=True,
+        help_text='Start typing the requisition identifier or select one from this visit')
+
+    assay_datetime = models.DateTimeField(
+        verbose_name='Assay Date and Time',
+        validators=[datetime_not_future],
+        null=True)
 
     reason_for_lp = models.CharField(
         verbose_name='Reason for LP',
@@ -55,7 +70,8 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         verbose_name='Total CSF WBC cell count:',
         help_text=mark_safe('acceptable units are mm<sup>3</sup>'),
         validators=[MinValueValidator(0), MaxValueValidator(999)],
-        null=True)
+        null=True,
+        blank=True)
 
     differential_lymphocyte_count = models.IntegerField(
         verbose_name='Differential lymphocyte cell count:',
