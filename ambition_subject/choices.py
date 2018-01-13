@@ -14,6 +14,7 @@ from .constants import ROUTINE_APPT
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
 from .constants import RESULTS_UNKNOWN, AWAITING_RESULTS
+from edc_metadata.constants import NOT_REQUIRED
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -375,6 +376,15 @@ RANKIN_SCORE = (
     (NOT_DONE, 'Not done')
 )
 
+REASON_NOT_DRAWN = (
+    (NOT_APPLICABLE, 'Not applicable'),
+    ('collection_failed', 'Tried, but unable to obtain sample from patient'),
+    ('absent', 'Patient did not attend visit'),
+    ('refused', 'Patient refused'),
+    ('no_supplies', 'No supplies'),
+    (NOT_REQUIRED, 'No longer required for this visit'),
+    (OTHER, 'Other'),
+)
 WEIGHT_DETERMINATION = (
     ('estimated', 'Estimated'),
     ('measured', 'Measured')

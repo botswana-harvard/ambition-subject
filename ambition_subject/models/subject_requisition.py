@@ -4,6 +4,7 @@ from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
+from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_lab.model_mixins.requisition import RequisitionIdentifierMixin
 from edc_lab.model_mixins.requisition import RequisitionModelMixin, RequisitionStatusMixin
@@ -15,6 +16,7 @@ from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModel
 from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfModelMixin
 from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
+from ..choices import REASON_NOT_DRAWN
 from .model_mixins import SearchSlugModelMixin
 from .subject_visit import SubjectVisit
 
@@ -32,6 +34,12 @@ class SubjectRequisition(
         SearchSlugModelMixin, BaseUuidModel):
 
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=PROTECT)
+
+    reason_not_drawn = models.CharField(
+        verbose_name='If not drawn, please explain',
+        max_length=25,
+        default=NOT_APPLICABLE,
+        choices=REASON_NOT_DRAWN)
 
     objects = Manager()
 
