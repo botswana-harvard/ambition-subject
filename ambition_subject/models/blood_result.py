@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_managers import HistoricalRecords
+from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject
@@ -35,10 +36,11 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='Requisition',
         null=True,
         blank=True,
-        help_text='Type the requisition identifier or select one')
+        help_text='Start typing the requisition identifier or select one from this visit')
 
     ft_assay_datetime = models.DateTimeField(
         verbose_name='Assay Date and Time',
+        validators=[datetime_not_future],
         null=True,
         blank=True)
 
@@ -49,10 +51,11 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='Requisition',
         null=True,
         blank=True,
-        help_text='Type the requisition identifier or select one')
+        help_text='Start typing the requisition identifier or select one from this visit')
 
     cbc_assay_datetime = models.DateTimeField(
         verbose_name='Assay Date and Time',
+        validators=[datetime_not_future],
         null=True,
         blank=True)
 
@@ -63,10 +66,11 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='Requisition',
         null=True,
         blank=True,
-        help_text='Type the requisition identifier or select one')
+        help_text='Start typing the requisition identifier or select one from this visit')
 
     cd4_assay_datetime = models.DateTimeField(
         verbose_name='Assay Date and Time',
+        validators=[datetime_not_future],
         null=True,
         blank=True)
 
@@ -77,10 +81,11 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         verbose_name='Requisition',
         null=True,
         blank=True,
-        help_text='Type the requisition identifier or select one')
+        help_text='Start typing the requisition identifier or select one from this visit')
 
     vl_assay_datetime = models.DateTimeField(
         verbose_name='Assay Date and Time',
+        validators=[datetime_not_future],
         null=True,
         blank=True)
 
