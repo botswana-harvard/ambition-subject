@@ -43,6 +43,8 @@ class SubjectRequisition(
         default=NOT_APPLICABLE,
         choices=REASON_NOT_DRAWN)
 
+    panel_name = models.CharField(max_length=50, null=True)
+
     objects = Manager()
 
     history = HistoricalRecords()
