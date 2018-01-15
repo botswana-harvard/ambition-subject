@@ -4,8 +4,8 @@ from django.utils.safestring import mark_safe
 from edc_consent.modelform_mixins import ConsentModelFormMixin
 from edc_form_validators import FormValidatorMixin
 
+from ..choices import ID_TYPE
 from ..models import SubjectConsent
-from ambition_subject.choices import ID_TYPE
 
 
 class SubjectConsentForm(FormValidatorMixin, ConsentModelFormMixin, forms.ModelForm):

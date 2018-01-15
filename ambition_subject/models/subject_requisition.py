@@ -6,8 +6,8 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
-from edc_lab.model_mixins.requisition import RequisitionIdentifierMixin
-from edc_lab.model_mixins.requisition import RequisitionModelMixin, RequisitionStatusMixin
+from edc_lab.models import RequisitionIdentifierMixin
+from edc_lab.models import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
 from edc_reference.model_mixins import RequisitionReferenceModelMixin
 from edc_search.model_mixins import SearchSlugManager
@@ -33,6 +33,8 @@ class SubjectRequisition(
         RequisitionReferenceModelMixin, UpdatesRequisitionMetadataModelMixin,
         SearchSlugModelMixin, BaseUuidModel):
 
+    lab_profile_name = 'ambition_subject'
+
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=PROTECT)
 
     reason_not_drawn = models.CharField(
@@ -48,7 +50,7 @@ class SubjectRequisition(
     def __str__(self):
         return (
             f'{self.requisition_identifier} '
-            f'{self.panel_object.name}')
+            f'{self.panel_object.verbose_name}')
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -66,3 +68,6 @@ class SubjectRequisition(
             'requisition_identifier',
             'human_readable_identifier', 'identifier_prefix'])
         return fields
+
+    class Meta:
+        unique_together = ('panel', 'subject_visit')

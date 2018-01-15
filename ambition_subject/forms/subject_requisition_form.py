@@ -1,4 +1,4 @@
-from ambition_labs.labs import chemistry_panel, chemistry_alt_panel
+from ambition_labs.panels import chemistry_panel, chemistry_alt_panel
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import YES, NO

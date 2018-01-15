@@ -31,7 +31,7 @@ class SubjectRequisitionAdmin(CrfModelAdminMixin,
             'fields': (
                 'subject_visit',
                 'requisition_datetime',
-                'panel_name',
+                'panel',
             )}),
         requisition_fieldset,
         requisition_status_fieldset,
