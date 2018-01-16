@@ -12,19 +12,25 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = LumbarPunctureCsfForm
 
-    autocomplete_fields = ['requisition']
+    autocomplete_fields = ['qc_requisition', 'csf_requisition']
 
     fieldsets = (
         (None, {
             'fields': (
                 'subject_visit',
-                'requisition',
-                'assay_datetime',
                 'reason_for_lp',
                 'opening_pressure',
                 'closing_pressure',
-                'csf_amount_removed',
-                'quantitative_culture',
+                'csf_amount_removed')}),
+        ('Quantitative Culture', {
+            'fields': (
+                'qc_requisition',
+                'qc_assay_datetime',
+                'quantitative_culture')}),
+        ('CSF', {
+            'fields': (
+                'csf_requisition',
+                'csf_assay_datetime',
                 'csf_culture',
                 'other_csf_culture',
                 'csf_wbc_cell_count',

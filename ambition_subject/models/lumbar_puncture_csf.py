@@ -4,7 +4,9 @@ from django.db.models.deletion import PROTECT
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
+from edc_base.sites.managers import CurrentSiteManager
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
+from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from ..choices import YES_NO_NOT_DONE_WAIT_RESULTS
@@ -15,17 +17,35 @@ from .subject_requisition import SubjectRequisition
 
 class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
-    requisition = models.ForeignKey(
+    qc_requisition = models.ForeignKey(
         SubjectRequisition,
         on_delete=PROTECT,
-        verbose_name='Requisition',
+        related_name='qcrequisition',
+        verbose_name='QC Requisition',
         null=True,
+        blank=True,
         help_text='Start typing the requisition identifier or select one from this visit')
 
-    assay_datetime = models.DateTimeField(
-        verbose_name='Assay Date and Time',
+    qc_assay_datetime = models.DateTimeField(
+        verbose_name='QC Assay Date and Time',
         validators=[datetime_not_future],
+        blank=True,
         null=True)
+
+    csf_requisition = models.ForeignKey(
+        SubjectRequisition,
+        on_delete=PROTECT,
+        related_name='csfrequisition',
+        verbose_name='CSF Requisition',
+        null=True,
+        blank=True,
+        help_text='Start typing the requisition identifier or select one from this visit')
+
+    csf_assay_datetime = models.DateTimeField(
+        verbose_name='CSF Assay Date and Time',
+        validators=[datetime_not_future],
+        null=True,
+        blank=True)
 
     reason_for_lp = models.CharField(
         verbose_name='Reason for LP',
@@ -138,6 +158,10 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 
