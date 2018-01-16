@@ -25,6 +25,9 @@ class ModelManager(models.Manager):
 
 class PkPdExtraSamples(BaseUuidModel):
 
+    """Inline model.
+    """
+
     pk_pd_crf = models.ForeignKey(PkPdCrf, on_delete=PROTECT)
 
     extra_csf_samples_datetime = models.DateTimeField(

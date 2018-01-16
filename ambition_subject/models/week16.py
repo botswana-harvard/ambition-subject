@@ -1,7 +1,9 @@
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
+from edc_base.sites.managers import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import RANKIN_SCORE
 from .model_mixins import CrfModelMixin
@@ -43,6 +45,10 @@ class Week16(CrfModelMixin):
         max_length=1000,
         null=True,
         blank=True)
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 

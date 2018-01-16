@@ -3,8 +3,10 @@ from django.db import models
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_protocol.validators import date_not_before_study_start
+from edc_base.sites.managers import CurrentSiteManager
 from edc_constants.choices import NOT_APPLICABLE, YES_NO, YES_NO_NA
+from edc_protocol.validators import date_not_before_study_start
+from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import (
     BACTERIA_TYPE, BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM,
@@ -177,6 +179,10 @@ class Microbiology(CrfModelMixin):
     histopathology_report = models.TextField(
         null=True,
         blank=True)
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 

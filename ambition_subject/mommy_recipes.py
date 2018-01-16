@@ -8,10 +8,10 @@ from faker import Faker
 from model_mommy.recipe import Recipe, related, seq
 
 from .models import BloodResult, Microbiology, FollowUp
-from .models import Education, EducationHoh, ClinicNote
+from .models import Education, EducationHoh
 from .models import LumbarPunctureCsf, Radiology
 from .models import MedicalExpensesTwo
-from .models import MissedVisit, PatientHistory, Week16
+from .models import PatientHistory, Week16
 from .models import Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectConsent, MedicalExpensesTwoDetail
 from .models import Antibiotic, Symptom, SubjectReconsent
@@ -50,13 +50,6 @@ microbiology = Recipe(
     blood_culture_performed=NO,
     sputum_results_culture=NEG,
     tissue_biopsy_taken=NO,)
-
-missedvisit = Recipe(
-    MissedVisit,
-    missed_study_visit_date=get_utcnow,
-    visit_missed=2,
-    missed_visit_reason='Not feeling well',
-    notes_or_action_taken='hospitalised')
 
 symptom = Recipe(
     Symptom,
@@ -162,9 +155,6 @@ subjectconsent = Recipe(
     study_questions=YES,
     site=Site.objects.get_current(),
     subject_identifier=None)
-
-clinicnote = Recipe(
-    ClinicNote,)
 
 week16 = Recipe(Week16)
 

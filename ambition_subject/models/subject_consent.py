@@ -2,6 +2,7 @@ from django.apps import apps as django_apps
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_base.sites.managers import CurrentSiteManager
 from edc_consent.field_mixins import ReviewFieldsMixin, PersonalFieldsMixin
 from edc_consent.field_mixins import SampleCollectionFieldsMixin, CitizenFieldsMixin
 from edc_consent.field_mixins import VulnerabilityFieldsMixin
@@ -15,6 +16,7 @@ from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
 
 from .model_mixins import SearchSlugModelMixin
+from edc_base.sites.site_model_mixin import SiteModelMixin
 
 
 class SubjectConsentManager(SearchSlugManager, models.Manager):
@@ -25,7 +27,7 @@ class SubjectConsentManager(SearchSlugManager, models.Manager):
 
 
 class SubjectConsent(
-        ConsentModelMixin, UpdatesOrCreatesRegistrationModelMixin,
+        ConsentModelMixin, SiteModelMixin, UpdatesOrCreatesRegistrationModelMixin,
         NonUniqueSubjectIdentifierModelMixin, IdentityFieldsMixin,
         ReviewFieldsMixin, PersonalFieldsMixin,
         SampleCollectionFieldsMixin, CitizenFieldsMixin,
@@ -45,6 +47,8 @@ class SubjectConsent(
         default=NO,
         choices=YES_NO,
         editable=False)
+
+    on_site = CurrentSiteManager()
 
     objects = SubjectConsentManager()
 

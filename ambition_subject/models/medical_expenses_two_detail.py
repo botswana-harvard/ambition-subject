@@ -1,11 +1,11 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
-from django.core.validators import MinValueValidator
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
-from edc_constants.constants import NOT_APPLICABLE
 from edc_constants.choices import YES_NO
+from edc_constants.constants import NOT_APPLICABLE
 
 from ..choices import LOCATION_CARE, CARE_PROVIDER, TRANSPORT
 from ..validators import hm_validator
@@ -21,8 +21,7 @@ class ModelManager(models.Manager):
             medical_expenses_two__subject_visit__subject_identifier=subject_identifier,
             medical_expenses_two__subject_visit__visit_schedule_name=visit_schedule_name,
             medical_expenses_two__subject_visit__schedule_name=schedule_name,
-            medical_expenses_two__subject_visit__visit_code=visit_code
-        )
+            medical_expenses_two__subject_visit__visit_code=visit_code)
 
 
 class MedicalExpensesTwoDetail(BaseUuidModel):
@@ -106,14 +105,14 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
 
     objects = ModelManager()
 
+    history = HistoricalRecords()
+
     def __str__(self):
         return self.medical_expenses_two.visit.subject_identifier
 
     def natural_key(self):
         return ((self.location_care,) + self.medical_expenses_two.natural_key())
     natural_key.dependencies = ['ambition_subject.medicalexpensestwo']
-
-    history = HistoricalRecords()
 
     class Meta:
         verbose_name = 'Medical Expenses Part 2: Detail'

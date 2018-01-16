@@ -1,5 +1,4 @@
 from .blood_result import BloodResult
-from .clinic_note import ClinicNote
 from .education import Education
 from .education_hoh import EducationHoh
 from .follow_up import FollowUp
@@ -7,14 +6,13 @@ from .follow_up_diagnosis import FollowUpDiagnoses
 from .list_models import AbnormalResultsReason, Neurological
 from .list_models import Antibiotic, Day14Medication
 from .list_models import CXRType, InfiltrateLocation
-from .list_models import MissedVisitReason, Medication
+from .list_models import Medication
 from .list_models import SignificantNewDiagnosis, Symptom, OtherDrug, MissedDoses
 from .lumbar_puncture_csf import LumbarPunctureCsf
 from .medical_expenses import MedicalExpenses
 from .medical_expenses_two import MedicalExpensesTwo
 from .medical_expenses_two_detail import MedicalExpensesTwoDetail
 from .microbiology import Microbiology
-from .missed_visit import MissedVisit
 from .patient_history import PatientHistory
 from .pk_pd_crf import PkPdCrf
 from .pk_pd_extra_samples import PkPdExtraSamples

@@ -1,10 +1,10 @@
 from ambition_validators import SignificantDiagnosesFormValidator
 
 from ..models import SignificantDiagnoses
-from .form_mixins import SubjectModelFormMixin
+from .form_mixins import InlineSubjectModelFormMixin
 
 
-class SignificantDiagnosesForm(SubjectModelFormMixin):
+class SignificantDiagnosesForm(InlineSubjectModelFormMixin):
 
     form_validator_cls = SignificantDiagnosesFormValidator
 

@@ -1,8 +1,8 @@
 from ..models import PkPdExtraSamples
-from .form_mixins import SubjectModelFormMixin
+from .form_mixins import InlineSubjectModelFormMixin
 
 
-class PkPdExtraSamplesForm(SubjectModelFormMixin):
+class PkPdExtraSamplesForm(InlineSubjectModelFormMixin):
 
     class Meta:
         model = PkPdExtraSamples

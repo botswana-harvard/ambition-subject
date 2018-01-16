@@ -1,10 +1,10 @@
 from ambition_validators import PreviousOpportunisticInfectionFormValidator
 
 from ..models import PreviousOpportunisticInfection
-from .form_mixins import SubjectModelFormMixin
+from .form_mixins import InlineSubjectModelFormMixin
 
 
-class PreviousOpportunisticInfectionForm(SubjectModelFormMixin):
+class PreviousOpportunisticInfectionForm(InlineSubjectModelFormMixin):
 
     form_validator_cls = PreviousOpportunisticInfectionFormValidator
 

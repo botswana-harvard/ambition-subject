@@ -9,7 +9,7 @@ from ..models import SubjectRequisition
 from .form_mixins import SubjectModelFormMixin
 
 
-class SubjectRequisitionForm(RequisitionFormMixin, SubjectModelFormMixin):
+class SubjectRequisitionForm(SubjectModelFormMixin, RequisitionFormMixin):
 
     def clean(self):
         cleaned_data = super().clean()

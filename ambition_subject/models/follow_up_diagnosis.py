@@ -21,16 +21,18 @@ class FollowUpDiagnosesManager(models.Manager):
 
 
 class FollowUpDiagnoses(SignificantDiagnosesModelMixin, BaseUuidModel):
+    """Inline model.
+    """
 
     follow_up = models.ForeignKey(FollowUp, on_delete=PROTECT)
 
     objects = FollowUpDiagnosesManager()
 
+    history = HistoricalRecords()
+
     def natural_key(self):
         return (self.possible_diagnoses, self.dx_date) + self.follow_up.natural_key()
     natural_key.dependencies = ['ambition_subject.followup']
-
-    history = HistoricalRecords()
 
     class Meta:
         verbose_name = 'Follow-up diagnosis'

@@ -4,7 +4,9 @@ from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
+from edc_base.sites.managers import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import FLUCONAZOLE_DOSE, YES_NO_ALREADY_ND
 from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
@@ -55,6 +57,10 @@ class Week4(ClinicalAssessmentModelMixin, CrfModelMixin):
         verbose_name='Other significant diagnosis since last visit?',
         max_length=5,
         choices=YES_NO_NA)
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 

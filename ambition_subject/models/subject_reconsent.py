@@ -1,4 +1,5 @@
 from django.apps import apps as django_apps
+from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db import models
 from django_crypto_fields.fields.identity_field import IdentityField
@@ -6,6 +7,7 @@ from edc_action_item.model_mixins.action_item_model_mixin import ActionItemModel
 from edc_base import get_utcnow
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_base.sites.managers import CurrentSiteManager
 from edc_consent.field_mixins import ReviewFieldsMixin
 from edc_constants.constants import ABNORMAL
 from edc_identifier.managers import SubjectIdentifierManager
@@ -32,6 +34,9 @@ class SubjectReconsent(
     tracking_identifier_prefix = 'SR'
     action_cls = ReconsentAction
 
+    site = models.ForeignKey(
+        Site, on_delete=models.PROTECT, null=True, editable=False)
+
     report_datetime = models.DateTimeField(
         default=get_utcnow)
 
@@ -39,6 +44,8 @@ class SubjectReconsent(
         verbose_name='Identity number',
         help_text=('Provide the same identity number provided on the original '
                    'consent complete by the next of kin.'))
+
+    on_site = CurrentSiteManager()
 
     objects = SubjectIdentifierManager()
 

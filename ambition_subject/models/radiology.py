@@ -1,7 +1,9 @@
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
+from edc_base.sites.managers import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
+from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import BRAIN_IMAGINING_REASON
 from .model_mixins import CrfModelMixin
@@ -93,6 +95,10 @@ class Radiology(CrfModelMixin):
         blank=True,
         max_length=50,
         null=True)
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 

@@ -2,6 +2,8 @@ from django.db import models
 from edc_appointment.models import Appointment
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_base.sites.managers import CurrentSiteManager
+from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
@@ -13,13 +15,12 @@ from ..choices import INFO_SOURCE, VISIT_UNSCHEDULED_REASON, VISIT_REASON
 
 
 class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMixin,
-                   RequiresConsentFieldsModelMixin, BaseUuidModel):
+                   SiteModelMixin, RequiresConsentFieldsModelMixin, BaseUuidModel):
 
     """A model completed by the user that captures the covering
     information for the data collected for this timepoint/appointment,
     e.g.report_datetime.
     """
-
     appointment = models.OneToOneField(Appointment, on_delete=models.PROTECT)
 
     reason = models.CharField(
@@ -39,6 +40,8 @@ class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMix
         verbose_name='What is the main source of this information?',
         max_length=25,
         choices=INFO_SOURCE)
+
+    on_site = CurrentSiteManager()
 
     objects = VisitModelManager()
 

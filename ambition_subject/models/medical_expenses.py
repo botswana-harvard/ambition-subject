@@ -1,14 +1,14 @@
-from ambition_subject.choices import ACTIVITIES_MISSED, CURRENCY, TRANSPORT
 from django.core.validators import MinValueValidator
 from django.db import models
 from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
+from edc_base.sites.managers import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
-
-from .model_mixins import CrfModelMixin
+from edc_visit_tracking.managers import CrfModelManager
 
 from ..validators import hm_validator
-from ..choices import PATIENT_REL
+from ..choices import PATIENT_REL, ACTIVITIES_MISSED, CURRENCY, TRANSPORT
+from .model_mixins import CrfModelMixin
 
 
 class MedicalExpenses(CrfModelMixin):
@@ -175,6 +175,10 @@ class MedicalExpenses(CrfModelMixin):
         verbose_name='Do you receive any welfare or social service support?',
         max_length=5,
         choices=YES_NO)
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 

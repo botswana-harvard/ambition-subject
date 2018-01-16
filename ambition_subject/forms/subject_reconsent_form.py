@@ -1,12 +1,13 @@
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
+from edc_base.sites import SiteModelFormMixin
 from edc_form_validators import FormValidatorMixin
 from edc_registration.models import RegisteredSubject
 
 from ..models import SubjectReconsent
 
 
-class SubjectReconsentForm(FormValidatorMixin, forms.ModelForm):
+class SubjectReconsentForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
 
     subject_identifier = forms.CharField(
         label='Subject identifier',

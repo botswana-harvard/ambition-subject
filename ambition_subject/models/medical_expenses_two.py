@@ -1,9 +1,15 @@
 from edc_base.model_managers import HistoricalRecords
+from edc_base.sites.managers import CurrentSiteManager
+from edc_visit_tracking.managers import CrfModelManager
 
 from .model_mixins import CrfModelMixin
 
 
 class MedicalExpensesTwo(CrfModelMixin):
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 

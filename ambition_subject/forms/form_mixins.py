@@ -1,12 +1,18 @@
 import arrow
 
 from django import forms
+from edc_base.sites import SiteModelFormMixin
 from edc_form_validators import FormValidatorMixin
 
 from ..models import SubjectVisit
 
 
-class SubjectModelFormMixin(FormValidatorMixin, forms.ModelForm):
+class SubjectModelFormMixin(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
+
+    visit_model = SubjectVisit
+
+
+class InlineSubjectModelFormMixin(FormValidatorMixin, forms.ModelForm):
 
     visit_model = SubjectVisit
 

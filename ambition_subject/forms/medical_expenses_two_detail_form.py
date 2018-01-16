@@ -1,10 +1,10 @@
 from ambition_validators import MedicalExpensesTwoDetailFormValidator
 
 from ..models import MedicalExpensesTwoDetail
-from .form_mixins import SubjectModelFormMixin
+from .form_mixins import InlineSubjectModelFormMixin
 
 
-class MedicalExpensesTwoDetailForm(SubjectModelFormMixin):
+class MedicalExpensesTwoDetailForm(InlineSubjectModelFormMixin):
 
     form_validator_cls = MedicalExpensesTwoDetailFormValidator
 

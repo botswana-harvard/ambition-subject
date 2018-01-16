@@ -1,10 +1,10 @@
 from ambition_validators import AmphotericinMissedDosesFormValidator
 
 from ..models import AmphotericinMissedDoses
-from .form_mixins import SubjectModelFormMixin
+from .form_mixins import InlineSubjectModelFormMixin
 
 
-class AmphotericinMissedDosesForm(SubjectModelFormMixin):
+class AmphotericinMissedDosesForm(InlineSubjectModelFormMixin):
 
     form_validator_cls = AmphotericinMissedDosesFormValidator
 

@@ -10,6 +10,8 @@ from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
 from .model_mixins import FluconazoleMissedDosesModelMixin, SignificantDiagnosesModelMixin
 from .model_mixins import AmphotericinMissedDosesModelMixin, FlucytosineMissedDosesModelMixin
+from edc_base.sites.managers import CurrentSiteManager
+from edc_visit_tracking.managers import CrfModelManager
 
 
 class AmphotericinMissedDosesManager(models.Manager):
@@ -236,6 +238,10 @@ class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
         verbose_name='Other significant diagnosis since enrollment?',
         max_length=5,
         choices=YES_NO)
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 

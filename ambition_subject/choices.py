@@ -10,7 +10,7 @@ from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
 from .constants import ALREADY_REPORTED
 from .constants import AZT_3TC_with_ATZ_r_or_Lopinavir_r
 from .constants import AZT_3TC_with_EFV_NVP_or_DTG
-from .constants import ROUTINE_APPT
+from .constants import ROUTINE_APPT, THERAPEUTIC_PL
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
 from .constants import RESULTS_UNKNOWN, AWAITING_RESULTS
@@ -239,9 +239,10 @@ INFO_SOURCE = (
     (OTHER, 'Other'),
 )
 
+
 LP_REASON = (
     ('scheduled_per_protocol', 'Scheduled per protocol'),
-    ('therapeutic_lp', 'Therapeutic LP'),
+    (THERAPEUTIC_PL, 'Therapeutic LP'),
     ('clincal_deterioration', 'Clinical deterioration'),
 )
 

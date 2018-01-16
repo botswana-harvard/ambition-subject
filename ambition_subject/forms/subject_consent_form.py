@@ -1,6 +1,7 @@
 from ambition_validators import SubjectConsentFormValidator
 from django import forms
 from django.utils.safestring import mark_safe
+from edc_base.sites import SiteModelFormMixin
 from edc_consent.modelform_mixins import ConsentModelFormMixin
 from edc_form_validators import FormValidatorMixin
 
@@ -8,7 +9,7 @@ from ..choices import ID_TYPE
 from ..models import SubjectConsent
 
 
-class SubjectConsentForm(FormValidatorMixin, ConsentModelFormMixin, forms.ModelForm):
+class SubjectConsentForm(SiteModelFormMixin, FormValidatorMixin, ConsentModelFormMixin, forms.ModelForm):
 
     form_validator_cls = SubjectConsentFormValidator
 

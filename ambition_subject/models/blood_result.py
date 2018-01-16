@@ -4,6 +4,7 @@ from django.db.models.deletion import PROTECT
 from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
+from edc_base.sites import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject
@@ -11,6 +12,7 @@ from edc_reportable import CELLS_PER_MILLIMETER_CUBED, MILLIMOLES_PER_LITER
 from edc_reportable import COPIES_PER_MILLILITER
 from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER
 from edc_reportable import site_reportables
+from edc_visit_tracking.managers import CrfModelManager
 
 from ..action_items import BloodResultAction
 from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS, REPORTABLE
@@ -433,6 +435,10 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
     summary = models.TextField(
         null=True,
         blank=True)
+
+    on_site = CurrentSiteManager()
+
+    objects = CrfModelManager()
 
     history = HistoricalRecords()
 

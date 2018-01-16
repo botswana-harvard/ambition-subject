@@ -31,18 +31,6 @@ list_data = {
         ('co_trimoxazole', 'Co-trimoxazole'),
         (OTHER, 'Other')
     ],
-    'ambition_subject.missedvisitreason': [
-        ('transportation_difficulty', 'Transportation difficulty'),
-        ('severely_sick', 'Severely sick or other physical conditions'),
-        ('discouraged_by_clinic_situation',
-         'Discouraged by clinic situation (long waits, rude clinicians)'),
-        ('away_working_schooling', 'Away working/schooling'),
-        ('away_visiting', 'Away visiting'),
-        ('forgot', 'Forgot about appointment for clinic visit'),
-        ('not_given_an_appointment', 'Not given an appointment'),
-        (OTHER, 'Other, specify;'),
-        (UNKNOWN, 'Reason not known at time of completing this form')
-    ],
     'ambition_subject.medication': [
         ('TMP-SMX', 'TMP-SMX'),
         (OTHER, 'Other, specify;')
