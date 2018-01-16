@@ -1,4 +1,3 @@
-from .appointment_admin import AppointmentAdmin
 from .blood_result_admin import BloodResultsAdmin
 from .education_admin import EducationAdmin
 from .education_hoh_admin import EducationHohAdmin
