@@ -11,11 +11,6 @@ class Day14Medication(ListModelMixin, BaseUuidModel):
     pass
 
 
-class MissedVisitReason(ListModelMixin, BaseUuidModel):
-
-    pass
-
-
 class Medication(ListModelMixin, BaseUuidModel):
 
     pass
