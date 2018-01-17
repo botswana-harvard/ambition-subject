@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
-from edc_base.sites.managers import CurrentSiteManager
+from edc_base.sites import CurrentSiteManager
 from edc_constants.choices import YES_NO
 from edc_visit_tracking.managers import CrfModelManager
 

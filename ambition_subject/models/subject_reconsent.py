@@ -7,7 +7,7 @@ from edc_action_item.model_mixins.action_item_model_mixin import ActionItemModel
 from edc_base import get_utcnow
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_base.sites.managers import CurrentSiteManager
+from edc_base.sites import CurrentSiteManager
 from edc_consent.field_mixins import ReviewFieldsMixin
 from edc_constants.constants import ABNORMAL
 from edc_identifier.managers import SubjectIdentifierManager

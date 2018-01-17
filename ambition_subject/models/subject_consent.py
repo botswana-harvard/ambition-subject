@@ -2,7 +2,7 @@ from django.apps import apps as django_apps
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_base.sites.managers import CurrentSiteManager
+from edc_base.sites import CurrentSiteManager
 from edc_consent.field_mixins import ReviewFieldsMixin, PersonalFieldsMixin
 from edc_consent.field_mixins import SampleCollectionFieldsMixin, CitizenFieldsMixin
 from edc_consent.field_mixins import VulnerabilityFieldsMixin

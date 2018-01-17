@@ -3,8 +3,7 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_base.sites.managers import CurrentSiteManager
-from edc_base.sites.site_model_mixin import SiteModelMixin
+from edc_base.sites import CurrentSiteManager
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
@@ -33,7 +32,7 @@ class SubjectRequisition(
         VisitTrackingCrfModelMixin, SubjectScheduleCrfModelMixin,
         RequiresConsentFieldsModelMixin, PreviousVisitModelMixin,
         RequisitionReferenceModelMixin, UpdatesRequisitionMetadataModelMixin,
-        SiteModelMixin, SearchSlugModelMixin, BaseUuidModel):
+        SearchSlugModelMixin, BaseUuidModel):
 
     lab_profile_name = 'ambition_subject'
 
@@ -61,8 +60,6 @@ class SubjectRequisition(
             edc_protocol_app_config = django_apps.get_app_config(
                 'edc_protocol')
             self.protocol_number = edc_protocol_app_config.protocol_number
-            self.study_site = edc_protocol_app_config.site_code
-            self.study_site_name = edc_protocol_app_config.site_name
         self.subject_identifier = self.subject_visit.subject_identifier
         super().save(*args, **kwargs)
 
