@@ -41,7 +41,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         help_text='Start typing the requisition identifier or select one from this visit')
 
     ft_assay_datetime = models.DateTimeField(
-        verbose_name='Assay Date and Time',
+        verbose_name='Result Report Date and Time',
         validators=[datetime_not_future],
         null=True,
         blank=True)
@@ -56,7 +56,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         help_text='Start typing the requisition identifier or select one from this visit')
 
     cbc_assay_datetime = models.DateTimeField(
-        verbose_name='Assay Date and Time',
+        verbose_name='Result Report Date and Time',
         validators=[datetime_not_future],
         null=True,
         blank=True)
@@ -71,7 +71,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         help_text='Start typing the requisition identifier or select one from this visit')
 
     cd4_assay_datetime = models.DateTimeField(
-        verbose_name='Assay Date and Time',
+        verbose_name='Result Report Date and Time',
         validators=[datetime_not_future],
         null=True,
         blank=True)
@@ -86,7 +86,7 @@ class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMi
         help_text='Start typing the requisition identifier or select one from this visit')
 
     vl_assay_datetime = models.DateTimeField(
-        verbose_name='Assay Date and Time',
+        verbose_name='Result Report Date and Time',
         validators=[datetime_not_future],
         null=True,
         blank=True)

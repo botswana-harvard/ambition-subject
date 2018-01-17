@@ -27,7 +27,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         help_text='Start typing the requisition identifier or select one from this visit')
 
     qc_assay_datetime = models.DateTimeField(
-        verbose_name='QC Assay Date and Time',
+        verbose_name='QC Result Report Date and Time',
         validators=[datetime_not_future],
         blank=True,
         null=True)
@@ -42,7 +42,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         help_text='Start typing the requisition identifier or select one from this visit')
 
     csf_assay_datetime = models.DateTimeField(
-        verbose_name='CSF Assay Date and Time',
+        verbose_name='CSF Result Report Date and Time',
         validators=[datetime_not_future],
         null=True,
         blank=True)
