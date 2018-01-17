@@ -14,25 +14,25 @@ class SubjectRequisitionForm(SubjectModelFormMixin, RequisitionFormMixin):
     def clean(self):
         cleaned_data = super().clean()
         if cleaned_data.get('reason_not_drawn') == NOT_REQUIRED:
-            if self.cleaned_data.get('panel_name') == chemistry_panel.name:
+            if self.cleaned_data.get('panel') == chemistry_panel.panel_model_obj:
                 try:
                     self._meta.model.objects.get(
                         subject_visit=cleaned_data.get('subject_visit'),
-                        panel_name=chemistry_alt_panel.name,
+                        panel=chemistry_alt_panel.panel_model_obj,
                         is_drawn=YES)
                 except ObjectDoesNotExist:
                     raise forms.ValidationError(
-                        {'reason_not_drawn': 'Invalid choice'})
+                        {'reason_not_drawn': 'Invalid choice. At least one chemistry panel is expected.'})
             else:
                 raise forms.ValidationError(
-                    {'reason_not_drawn': 'Invalid choice'})
+                    {'reason_not_drawn': 'Invalid choice. Not expected for this panel'})
 
-        if (self.cleaned_data.get('panel_name') == chemistry_alt_panel.name
+        if (self.cleaned_data.get('panel') == chemistry_alt_panel.panel_model_obj
                 and self.cleaned_data.get('is_drawn') == NO):
             try:
                 self._meta.model.objects.get(
                     subject_visit=cleaned_data.get('subject_visit'),
-                    panel_name=chemistry_panel.name,
+                    panel=chemistry_panel.panel_model_obj,
                     reason_not_drawn=NOT_REQUIRED)
             except ObjectDoesNotExist:
                 pass
