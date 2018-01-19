@@ -367,31 +367,20 @@ POS_NEG = (
 )
 
 RANKIN_SCORE = (
-    ('0', '0'),
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '5'),
-    ('6', '6'),
+    ('0', '0 - No symptoms at all'),
+    ('1', ('1 - No significant disability despite symptoms; able to carry '
+           'out all usual duties and activities')),
+    ('2', ('2 - Slight disability; unable to carry out all previous activities, '
+           'but able to look after own affairs without assistance')),
+    ('3', ('3 - Moderate disability; requiring some help, but able to '
+           'walk without assistance')),
+    ('4', ('4 - Moderately severe disability; unable to walk without '
+           'assistance and unable to attend to own bodily needs without assistance')),
+    ('5', ('5 - Severe disability; bedridden, incontinent and requiring '
+           'constant nursing care and attention')),
+    ('6', '6 - Dead'),
     (NOT_DONE, 'Not done')
 )
-
-# RANKIN_SCORE = (
-#     ('0', '0 - No symptoms at all'),
-#     ('1', ('1 - No significant disability despite symptoms; able to carry '
-#            'out all usual duties and activities')),
-#     ('2', ('2 - Slight disability; unable to carry out all previous activities, '
-#            'but able to look after own affairs without assistance')),
-#     ('3', ('3 - Moderate disability; requiring some help, but able to '
-#            'walk without assistance')),
-#     ('4', ('4 - Moderately severe disability; unable to walk without '
-#            'assistance and unable to attend to own bodily needs without assistance')),
-#     ('5', ('5 - Severe disability; bedridden, incontinent and requiring '
-#            'constant nursing care and attention')),
-#     ('6', '6 - Dead'),
-#     (NOT_DONE, 'Not done')
-# )
 
 REASON_NOT_DRAWN = (
     (NOT_APPLICABLE, 'Not applicable'),
