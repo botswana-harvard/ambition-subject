@@ -17,6 +17,10 @@ from .subject_requisition import SubjectRequisition
 
 class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
+    lp_datetime = models.DateTimeField(
+        verbose_name='LP Date and Time',
+        validators=[datetime_not_future])
+
     qc_requisition = models.ForeignKey(
         SubjectRequisition,
         on_delete=PROTECT,

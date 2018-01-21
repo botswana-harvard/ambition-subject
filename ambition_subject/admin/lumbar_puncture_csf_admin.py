@@ -18,6 +18,7 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'subject_visit',
+                'lp_datetime',
                 'reason_for_lp',
                 'opening_pressure',
                 'closing_pressure',
@@ -66,3 +67,5 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'crag_control_result': admin.VERTICAL,
         'crag_t1_result': admin.VERTICAL,
         'crag_t2_result': admin.VERTICAL, }
+
+    list_filter = ('lp_datetime', 'reason_for_lp', )
