@@ -6,7 +6,6 @@ from edc_constants.choices import YES_NO
 from edc_visit_tracking.managers import CrfModelManager
 
 from .model_mixins import CrfModelMixin
-from .list_models import MissedDoses
 
 
 class PkPdCrf(CrfModelMixin):
@@ -46,9 +45,23 @@ class PkPdCrf(CrfModelMixin):
         blank=True,
         help_text='Units in mg')
 
+    flucytosine_dose_1_missed = models.CharField(
+        verbose_name='Flucytosine dose 1 missed? ',
+        choices=YES_NO,
+        max_length=5,
+        null=True,
+        blank=True)
+
     flucytosine_dose_one_datetime = models.DateTimeField(
         verbose_name=mark_safe(
             'Date and time Flucytosine <u>DOSE&nbsp;1</u> was swallowed?'),
+        null=True,
+        blank=True)
+
+    flucytosine_dose_2_missed = models.CharField(
+        verbose_name='Flucytosine dose 2 missed? ',
+        choices=YES_NO,
+        max_length=5,
         null=True,
         blank=True)
 
@@ -58,9 +71,23 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
+    flucytosine_dose_3_missed = models.CharField(
+        verbose_name='Flucytosine dose 3 missed? ',
+        choices=YES_NO,
+        max_length=5,
+        null=True,
+        blank=True)
+
     flucytosine_dose_three_datetime = models.DateTimeField(
         verbose_name=mark_safe(
             'Date and time Flucytosine <u>DOSE&nbsp;3</u> was swallowed?'),
+        null=True,
+        blank=True)
+
+    flucytosine_dose_4_missed = models.CharField(
+        verbose_name='Flucytosine dose 4 missed? ',
+        choices=YES_NO,
+        max_length=5,
         null=True,
         blank=True)
 
@@ -70,17 +97,17 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    flucytosine_missed = models.CharField(
-        verbose_name='Were any Flucytosine doses missed?',
-        choices=YES_NO,
-        max_length=5,
-        null=True,
-        blank=True)
+    #     flucytosine_missed = models.CharField(
+    #         verbose_name='Were any Flucytosine doses missed?',
+    #         choices=YES_NO,
+    #         max_length=5,
+    #         null=True,
+    #         blank=True)
 
-    flucytosine_dose_missed = models.ManyToManyField(
-        MissedDoses,
-        verbose_name='Which dose(s) was/were missed?',
-        blank=True)
+    #     flucytosine_dose_missed = models.ManyToManyField(
+    #         MissedDoses,
+    #         verbose_name='Which dose(s) was/were missed?',
+    #         blank=True)
 
     reason_flucytosine_dose_missed = models.CharField(
         verbose_name='Why was/were the dose(s) missed?',

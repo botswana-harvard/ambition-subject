@@ -74,11 +74,14 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'subject_visit',
                 'albumin',
                 'flucytosine_dose',
+                'flucytosine_dose_1_missed',
                 'flucytosine_dose_one_datetime',
+                'flucytosine_dose_2_missed'
                 'flucytosine_dose_two_datetime',
+                'flucytosine_dose_3_missed',
                 'flucytosine_dose_three_datetime',
+                'flucytosine_dose_4_missed'
                 'flucytosine_dose_four_datetime',
-                'flucytosine_missed',
                 'flucytosine_dose_missed',
                 'reason_flucytosine_dose_missed',
                 'fluconazole_dose_given',
@@ -90,7 +93,10 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {
         'full_ambisome_dose_given': admin.VERTICAL,
-        'flucytosine_missed': admin.VERTICAL,
+        'flucytosine_dose_1_missed': admin.VERTICAL,
+        'flucytosine_dose_2_missed': admin.VERTICAL,
+        'flucytosine_dose_3_missed': admin.VERTICAL,
+        'flucytosine_dose_4_missed': admin.VERTICAL,
         'fluconazole_dose_missed': admin.VERTICAL,
         'blood_sample_missed': admin.VERTICAL,
         'pre_dose_lp': admin.VERTICAL,
