@@ -40,13 +40,13 @@ class PkPdCrf(CrfModelMixin):
         blank=True)
 
     flucytosine_dose = models.IntegerField(
-        verbose_name='What was the dose of Flucytosine given?',
+        verbose_name='Flucytosine dose?',
         null=True,
         blank=True,
         help_text='Units in mg')
 
-    flucytosine_dose_1_missed = models.CharField(
-        verbose_name='Flucytosine dose 1 missed? ',
+    flucytosine_dose_one_given = models.CharField(
+        verbose_name='Flucytosine <u>DOSE&nbsp;1</u> given? ',
         choices=YES_NO,
         max_length=5,
         null=True,
@@ -58,8 +58,8 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    flucytosine_dose_2_missed = models.CharField(
-        verbose_name='Flucytosine dose 2 missed? ',
+    flucytosine_dose_two_given = models.CharField(
+        verbose_name='Flucytosine <u>DOSE&nbsp;2</u> given? ',
         choices=YES_NO,
         max_length=5,
         null=True,
@@ -71,8 +71,8 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    flucytosine_dose_3_missed = models.CharField(
-        verbose_name='Flucytosine dose 3 missed? ',
+    flucytosine_dose_three_given = models.CharField(
+        verbose_name='Flucytosine <u>DOSE&nbsp;3</u> given? ',
         choices=YES_NO,
         max_length=5,
         null=True,
@@ -84,8 +84,8 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    flucytosine_dose_4_missed = models.CharField(
-        verbose_name='Flucytosine dose 4 missed? ',
+    flucytosine_dose_four_given = models.CharField(
+        verbose_name='Flucytosine <u>DOSE&nbsp;4</u> given? ',
         choices=YES_NO,
         max_length=5,
         null=True,
@@ -97,44 +97,32 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    #     flucytosine_missed = models.CharField(
-    #         verbose_name='Were any Flucytosine doses missed?',
-    #         choices=YES_NO,
-    #         max_length=5,
-    #         null=True,
-    #         blank=True)
-
-    #     flucytosine_dose_missed = models.ManyToManyField(
-    #         MissedDoses,
-    #         verbose_name='Which dose(s) was/were missed?',
-    #         blank=True)
-
-    reason_flucytosine_dose_missed = models.CharField(
-        verbose_name='Why was/were the dose(s) missed?',
+    flucytosine_dose_reason_missed = models.TextField(
+        verbose_name='If any Flucytosine doses not given, provide reason',
         max_length=75,
         null=True,
         blank=True)
 
-    fluconazole_dose_given = models.IntegerField(
-        verbose_name='What was the dose of Fluconazole given?',
+    fluconazole_dose = models.IntegerField(
+        verbose_name='Fluconazole dose?',
         null=True,
         blank=True,
         help_text='Units in mg')
+
+    fluconazole_dose_given = models.CharField(
+        verbose_name='Was the Fluconazole dose given?',
+        choices=YES_NO,
+        max_length=5,
+        null=True,
+        blank=True)
 
     fluconazole_dose_datetime = models.DateTimeField(
         verbose_name='Date and time Fluconazole was swallowed?',
         null=True,
         blank=True)
 
-    fluconazole_dose_missed = models.CharField(
-        verbose_name='Was the Fluconazole dose missed?',
-        choices=YES_NO,
-        max_length=5,
-        null=True,
-        blank=True)
-
-    reason_fluconazole_dose_missed = models.CharField(
-        verbose_name='Why was the Fluconazole dose missed?',
+    fluconazole_dose_reason_missed = models.TextField(
+        verbose_name='If Fluconazole dose not given, provide reason',
         max_length=75,
         null=True,
         blank=True)
@@ -182,8 +170,8 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
-    reason_blood_sample_missed = models.CharField(
-        verbose_name='Why was/were the blood sample(s) missed??',
+    blood_sample_reason_missed = models.TextField(
+        verbose_name='If any blood samples missed, provide reason',
         max_length=75,
         null=True,
         blank=True)

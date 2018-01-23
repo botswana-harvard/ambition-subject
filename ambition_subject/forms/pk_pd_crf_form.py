@@ -1,10 +1,10 @@
-from django import forms
 from ambition_validators import PkPdCrfFormValidator
 
 from ..models import PkPdCrf
+from .form_mixins import SubjectModelFormMixin
 
 
-class PkPdCrfForm(forms.ModelForm):
+class PkPdCrfForm(SubjectModelFormMixin):
 
     form_validator_cls = PkPdCrfFormValidator
 
