@@ -11,6 +11,10 @@ from .form_mixins import SubjectModelFormMixin
 
 class SubjectRequisitionForm(SubjectModelFormMixin, RequisitionFormMixin):
 
+    requisition_identifier = forms.CharField(
+        label='Requisition identifier',
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+
     def clean(self):
         cleaned_data = super().clean()
         if cleaned_data.get('reason_not_drawn') == NOT_REQUIRED:

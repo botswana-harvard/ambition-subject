@@ -6,7 +6,9 @@ from edc_lab.admin import (
     requisition_fieldset,
     requisition_status_fieldset,
     requisition_identifier_fieldset,
-    requisition_identifier_fields)
+    requisition_identifier_fields,
+    requisition_verify_fields,
+    requisition_verify_fieldset)
 from urllib.parse import parse_qs, urlsplit
 
 from ..admin_site import ambition_subject_admin
@@ -36,6 +38,7 @@ class SubjectRequisitionAdmin(CrfModelAdminMixin,
         requisition_fieldset,
         requisition_status_fieldset,
         requisition_identifier_fieldset,
+        requisition_verify_fieldset,
         audit_fieldset_tuple)
 
     radio_fields = {
@@ -46,7 +49,8 @@ class SubjectRequisitionAdmin(CrfModelAdminMixin,
 
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)
-                + requisition_identifier_fields)
+                + requisition_identifier_fields
+                + requisition_verify_fields)
 
     def get_search_results(self, request, queryset, search_term):
         queryset, use_distinct = super().get_search_results(request, queryset, search_term)
