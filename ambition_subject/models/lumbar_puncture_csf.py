@@ -126,7 +126,8 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     india_ink = models.CharField(
         max_length=15,
         choices=POS_NEG,
-        null=True,)
+        null=True,
+        blank=True)
 
     csf_glucose = models.DecimalField(
         verbose_name='CSF glucose:',
@@ -155,6 +156,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         verbose_name='CSF CrAg:',
         max_length=15,
         choices=POS_NEG,
+        blank=True,
         null=True)
 
     csf_cr_ag_lfa = models.CharField(
