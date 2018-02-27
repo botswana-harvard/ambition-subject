@@ -93,13 +93,13 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     csf_wbc_cell_count = models.IntegerField(
         verbose_name='Total CSF WBC cell count:',
         help_text=mark_safe('acceptable units are mm<sup>3</sup>'),
-        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
     differential_lymphocyte_count = models.IntegerField(
         verbose_name='Differential lymphocyte cell count:',
-        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        validators=[MinValueValidator(0)],
         blank=True,
         null=True,
         help_text=mark_safe('acceptable units are mm<sup>3</sup> or %'))
@@ -112,7 +112,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     differential_neutrophil_count = models.IntegerField(
         verbose_name='Differential neutrophil cell count:',
-        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        validators=[MinValueValidator(0)],
         blank=True,
         null=True,
         help_text=mark_safe('acceptable units are mm<sup>3</sup> or %'))
