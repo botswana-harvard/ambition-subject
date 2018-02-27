@@ -160,7 +160,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         null=True)
 
     csf_cr_ag_lfa = models.CharField(
-        verbose_name='CSF CrAg done by CSF CrAg LFA:',
+        verbose_name='CSF CrAg done by IMMY CrAg LFA:',
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)
