@@ -1,4 +1,3 @@
-from ambition_ae.mommy_recipes import neurological
 from dateutil.relativedelta import relativedelta
 from django.contrib.sites.models import Site
 from edc_base.utils import get_utcnow
@@ -16,11 +15,17 @@ from .models import Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectConsent, MedicalExpensesTwoDetail
 from .models import Antibiotic, Symptom, SubjectReconsent
 from .models import SignificantNewDiagnosis, PkPdCrf
+from .models import Neurological
 
 
 fake = Faker()
 
 bloodresult = Recipe(BloodResult)
+
+neurological = Recipe(
+    Neurological,
+    name='meningismus',
+    short_name='Meningismus')
 
 significantnewdiagnosis = Recipe(
     SignificantNewDiagnosis,
