@@ -10,12 +10,13 @@ from edc_metadata.constants import REQUIRED
 from edc_metadata.models import CrfMetadata
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
+from django.test.utils import override_settings
 
 
+@override_settings(SITE_ID='10')
 class TestSubjectRules(AmbitionTestCaseMixin, TestCase):
 
     def setUp(self):
-        import_holidays()
         screening = mommy.make_recipe(
             'ambition_screening.subjectscreening',
             report_datetime=get_utcnow())
@@ -23,7 +24,6 @@ class TestSubjectRules(AmbitionTestCaseMixin, TestCase):
             'ambition_subject.subjectconsent',
             consent_datetime=get_utcnow(),
             screening_identifier=screening.screening_identifier)
-
         self.visit_code = WEEK10
 
         for appointment in Appointment.objects.all().order_by('timepoint'):
