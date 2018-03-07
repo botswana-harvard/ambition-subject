@@ -4,7 +4,7 @@ from django.db.models.deletion import PROTECT
 from edc_action_item.model_mixins import ActionItemModelMixin
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
-from edc_base.sites import CurrentSiteManager
+from ..managers import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject

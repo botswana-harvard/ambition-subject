@@ -10,7 +10,6 @@ from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 
-@tag('1')
 @override_settings(SITE_ID='10')
 class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
 
@@ -51,3 +50,14 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
                 visit=visit,
                 subject_identifier=visit.subject_identifier)})
         self.sync_test_helper.sync_test_natural_keys(complete_required_crfs)
+
+    def test_sync_deserialize(self):
+        complete_required_crfs = {}
+        visit = self.complete_subject_visit()
+        complete_required_crfs.update({
+            visit.visit_code: self.crf_test_helper.complete_required_crfs(
+                visit_code=visit.visit_code,
+                visit=visit,
+                subject_identifier=visit.subject_identifier)})
+        self.sync_test_helper.sync_test_serializers_for_visit(
+            complete_required_crfs)
